@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="public/logo.png" alt="Chappy.php logo">
+  <img src="assets/logo.png" alt="Chappy.php logo">
 </div>
 
 
