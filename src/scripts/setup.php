@@ -2,7 +2,8 @@
 <?php
 
 // 1️⃣ Determine the project root dynamically (if inside src/scripts/)
-$projectRoot = dirname(__DIR__, 2); // Go up two levels from 'src/scripts'
+$frameworkRoot = dirname(__DIR__, 2); // Go up two levels from 'src/scripts'
+$projectRoot = getcwd();
 chdir($projectRoot); // Ensure we run from the project root
 
 echo "🚀 Setting up the project at: $projectRoot\n";
