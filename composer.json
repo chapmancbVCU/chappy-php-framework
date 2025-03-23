@@ -10,9 +10,14 @@
       }
     ],
     "autoload": {
-      "psr-4": {
-        "Chappy\\": "src/"
-      }
+        "psr-4": {
+            "Chappy\\": "src/",
+            "Core\\": "src/core/",
+            "Console\\": "src/console/",
+            "Console\\Commands\\": "src/console/commands/",
+            "Console\\Helpers\\": "src/console/helpers/"
+        },
+        "classmap": ["src"]
     },
     "require": {
       "php": ">=8.3",
