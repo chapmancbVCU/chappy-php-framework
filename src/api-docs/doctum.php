@@ -13,9 +13,6 @@ $iterator = Finder::create()
     ->name('*.php')
     ->in([
         ROOT . DS . 'src',                // Main source directory
-        ROOT . DS . 'database' . DS . 'migrations', // Include migrations
-        ROOT . DS . 'database' . DS . 'seeders',    // Include seeders
-        ROOT . DS . 'tests',              // Include tests
     ]) // This now correctly points to "src" under the project root
     ->exclude([
         'vendor',

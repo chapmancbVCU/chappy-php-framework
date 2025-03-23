@@ -129,6 +129,16 @@ presentable to user during validation.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateUploadFilename">generateUploadFilename</a>(string $originalFilename)
+        
+                                            <p><p>Generates a unique filename for an uploaded file while preserving its extension.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     array
                 </div>
                 <div class="col-md-8">
@@ -308,8 +318,60 @@ presentable to user during validation.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_generateUploadFilename">
+        <div class="location">at line 93</div>
+        <code>                    string
+    <strong>generateUploadFilename</strong>(string $originalFilename)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates a unique filename for an uploaded file while preserving its extension.</p></p>                <p><p>Uses a cryptographically secure random hash to create a unique base name.
+Falls back to 'bin' if no extension is found in the original filename.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$originalFilename</td>
+                <td><p>The original filename (used to extract the extension).</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A unique, safely generated filename with the original extension.</p></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/Exception">Exception</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_getFiles">
-        <div class="location">at line 87</div>
+        <div class="location">at line 106</div>
         <code>                    array
     <strong>getFiles</strong>()
         </code>
@@ -341,7 +403,7 @@ presentable to user during validation.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleUpload">
-        <div class="location">at line 105</div>
+        <div class="location">at line 124</div>
         <code>        static            <a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
     <strong>handleUpload</strong>(array $file, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name, bool $multiple = false)
         </code>
@@ -415,7 +477,7 @@ id field associated with another model.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_restructureFiles">
-        <div class="location">at line 150</div>
+        <div class="location">at line 169</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, bool $multiple)
         </code>
@@ -464,7 +526,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 173</div>
+        <div class="location">at line 192</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -496,7 +558,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_upload">
-        <div class="location">at line 186</div>
+        <div class="location">at line 205</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -548,7 +610,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validates">
-        <div class="location">at line 206</div>
+        <div class="location">at line 225</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>
