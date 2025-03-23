@@ -1,5 +1,5 @@
 {
-    "name": "chadchapman/chappy-php-framework",
+    "name": "chappy-php/chappy-php-framework",
     "description": "A lightweight and extensible PHP MVC framework.",
     "type": "library",
     "license": "MIT",
