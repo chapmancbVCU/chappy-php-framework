@@ -36,6 +36,9 @@
       "phpunit/phpunit": "^11.3"
     },
     "scripts": {
+      "build-docs": [
+        "@php src/api-docs/doctum.phar update src/api-docs/doctum.php"
+      ],
       "post-install-cmd": [
         "@php src/scripts/setup.php"
       ]
