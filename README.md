@@ -17,7 +17,6 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 3. cd into project
 4. Run `php console serve`
 5. Open new terminal and run `npm run dev`
-6. Have fun ...
 
 
 ## This framework includes the following features:
