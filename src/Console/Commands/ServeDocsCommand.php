@@ -31,7 +31,7 @@ class ServeDocsCommand extends Command {
         $port = $input->getOption('port');
 
         // Define the Doctum documentation directory
-        $docsDir = ROOT.DS.'vendor'.DS.'chadchapman'.DS.'chappy-php-framework'.DS.'src'.DS.'api-docs'.DS.'views';
+        $docsDir = ROOT.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'src'.DS.'api-docs'.DS.'views';
 
         if (!is_dir($docsDir)) {
             $output->writeln("<error>Doctum documentation directory not found: $docsDir</error>");
