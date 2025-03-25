@@ -83,27 +83,6 @@ chmod($envFile, 0777);
 
 echo "🔑 Successfully updated .env with generated keys.\n";
 
-// 9️⃣ Remove .git directory (for fresh installs)
-if (is_dir('.git')) {
-    echo "🗑 Removing existing Git repository...\n";
-
-    if (PHP_OS_FAMILY === 'Windows') {
-        // Windows: Use PowerShell to remove the directory
-        system('rd /s /q .git');
-    } else {
-        // macOS/Linux: Use rm -rf
-        system('rm -rf .git');
-    }
-
-    // Verify removal
-    if (!is_dir('.git')) {
-        echo "✅ Git repository removed successfully.\n";
-    } else {
-        echo "❌ Failed to remove .git. Please delete it manually.\n";
-    }
-}
-
-
 // 🔟 Initialize a new Git repository
 echo "🔄 Initializing a new Git repository...\n";
 system("git init");
