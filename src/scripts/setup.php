@@ -136,6 +136,7 @@ if (file_exists("package.json")) {
 
 // 1️⃣5️⃣ Final instructions
 echo "\n✅ Setup complete!\n";
+echo "➡️ Run: git init\n";
 echo "➡️ Run: git add .\n";
 echo "➡️ Run: git commit -m \"Initial commit\"\n";
 echo "➡️ Set GitHub origin: git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git\n";
