@@ -83,13 +83,6 @@ chmod($envFile, 0777);
 
 echo "🔑 Successfully updated .env with generated keys.\n";
 
-// 🔟 Initialize a new Git repository
-echo "🔄 Initializing a new Git repository...\n";
-system("git init");
-system("git add .");
-system("git commit -m 'Initial commit'");
-echo "✅ New Git repository initialized.\n";
-
 // 1️⃣1️⃣ Create necessary directories
 $directories = [
     'storage/app/private/profile_images',
