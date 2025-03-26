@@ -4,6 +4,7 @@ use \Exception;
 use Core\{Helper, Session};
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
 /**
  * Contains functions for building form elements of various types.
@@ -707,13 +708,13 @@ class FormHelper {
         if(strcmp($args, 'a') == 0 && (preg_match_all('['.implode('|', ['placeholder', 'pattern', 'onkeydown']).']', $inputString) > 0)) {
             throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to a");
         }
-        if(str_contains($args, 'h') && str_contains($inputString, 'placeholder')) {
+        if(Str::contains($args, 'h') && Str::contains($inputString, 'placeholder')) {
             throw new Exception('Can not accept placeholder when args contains h flag');
         }
-        if(str_contains($args, 'p') && str_contains($inputString, 'pattern')) {
+        if(Str::contains($args, 'p') && Str::contains($inputString, 'pattern')) {
             throw new Exception('Can not accept pattern when args contains p flag.');
         }
-        if(str_contains($args, 'e') && str_contains($inputString, 'onkeydown')) {
+        if(Str::contains($args, 'e') && Str::contains($inputString, 'onkeydown')) {
             throw new Exception('Can not accept onkeydown when args contains e flag.');
         }
 
@@ -723,13 +724,13 @@ class FormHelper {
             if(strcmp($args, 'a') == 0) {
                 $inputString .= ' placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
             }
-            if(str_contains($args, 'h') && !str_contains($args, 'a')) {
+            if(Str::contains($args, 'h') && !Str::contains($args, 'a')) {
                 $inputString .= ' placeholder="ex: 123-456-7890"';
             }
-            if(str_contains($args, 'p') && !str_contains($args, 'a')) {
+            if(Str::contains($args, 'p') && !Str::contains($args, 'a')) {
                 $inputString .= ' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"';
             }
-            if(str_contains($args, 'e') && !str_contains($args, 'a')) {
+            if(Str::contains($args, 'e') && !Str::contains($args, 'a')) {
                 $inputString .= ' onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
             }
             $html = '<div' . $divString . '>';

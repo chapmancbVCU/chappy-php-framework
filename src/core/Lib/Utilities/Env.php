@@ -39,7 +39,7 @@ class Env{
             }
 
             // Ensure the line contains '=' before exploding
-            if (!str_contains($line, '=')) {
+            if (!Str::contains($line, '=')) {
                 error_log("Invalid .env line: $line"); // Debugging
                 continue;
             }
