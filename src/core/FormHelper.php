@@ -132,7 +132,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
     
         // Determine if it's a multiple checkbox group
-        $isMultiple = str_ends_with($name, '[]');
+        $isMultiple = Str::endsWith($name, '[]');
         $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
         $id = Str::replace('[]', '', $name); // Ensure unique ID
     
@@ -192,7 +192,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
     
         // Determine if it's a multiple checkbox group
-        $isMultiple = str_ends_with($name, '[]');
+        $isMultiple = Str::endsWith($name, '[]');
         $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
         $id = Str::replace('[]', '', $name); // Ensure unique ID
     
