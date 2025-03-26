@@ -132,7 +132,7 @@ class Blueprint {
             throw new Exception("Could not extract column type.");
         }
 
-        $columnType = strtoupper($matches[2]);
+        $columnType = Str::upper($matches[2]);
 
         if ($this->dbDriver === 'sqlite' && Arr::exists(['TEXT', 'BLOB'], $columnType)) {
             Logger::log("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.", 'warning');

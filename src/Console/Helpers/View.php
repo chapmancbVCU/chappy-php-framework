@@ -93,7 +93,7 @@ use Core\Lib\Utilities\Config;
      */
     public static function makeCardComponent(string $componentName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($componentName).".php",
             self::cardComponent(),
             "Form component"
         );
@@ -109,7 +109,7 @@ use Core\Lib\Utilities\Config;
      */
     public static function makeFormComponent(string $componentName, string $method, string $encType): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($componentName).".php",
             self::formComponent($method, $encType),
             "Form component"
         );
@@ -138,7 +138,7 @@ use Core\Lib\Utilities\Config;
      */
     public static function makeMenu(string $menuName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($menuName)."_menu.php",
             self::menu($menuName),
             "Menu file"
         );
@@ -152,7 +152,7 @@ use Core\Lib\Utilities\Config;
      */
     public static function makeMenuAcl(string $menuName): int {
         return Tools::writeFile(
-          ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
+          ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
           self::menuAcl($menuName),
           "The menu_acl json"
         );
@@ -166,7 +166,7 @@ use Core\Lib\Utilities\Config;
      */
     public static function makeTableComponent(string $componentName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($componentName).".php",
             self::tableComponent(),
             "Table component"
         );

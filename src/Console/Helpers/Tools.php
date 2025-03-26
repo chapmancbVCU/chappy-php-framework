@@ -3,6 +3,7 @@ namespace Console\Helpers;
 
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 
@@ -52,7 +53,7 @@ class Tools {
         
         // Validate severity level and log to file.
         $validLevels = ['info', 'debug', 'warning', 'error', 'critical', 'alert', 'emergency'];
-        if (!Arr::exists($validLevels, strtolower($level))) {
+        if (!Arr::exists($validLevels, Str::lower($level))) {
             $level = 'info'; // Default to 'info' if invalid level provided
         }
         Logger::log($message, $level);

@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Str;
 use Core\{FormHelper, Helper, Router};
 
 /**
@@ -63,7 +64,7 @@ class Input {
      * within the $_SERVER superglobal array.
      */
     public function getRequestMethod(): string {
-        return strtoupper($_SERVER['REQUEST_METHOD']);
+        return Str::upper($_SERVER['REQUEST_METHOD']);
     }
 
     /**

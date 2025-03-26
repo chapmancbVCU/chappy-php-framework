@@ -54,9 +54,9 @@ class Env{
             $value = preg_replace('/^["\'](.*)["\']$/', '$1', $value) ?? $value;
 
             // Convert boolean and numeric values correctly
-            if (strtolower($value) === 'true') {
+            if (Str::lower($value) === 'true') {
                 $value = true;
-            } elseif (strtolower($value) === 'false') {
+            } elseif (Str::lower($value) === 'false') {
                 $value = false;
             } elseif (is_numeric($value)) {
                 $value = $value + 0; // Converts "12" to 12, "30.5" to 30.5, etc.

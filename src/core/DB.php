@@ -66,7 +66,7 @@ class DB {
         $table = $join[0];
         $condition = $join[1];
         $alias = $join[2];
-        $type = (isset($join[3]))? strtoupper($join[3]) : "INNER";
+        $type = (isset($join[3]))? Str::upper($join[3]) : "INNER";
         $jString = "{$type} JOIN {$table} {$alias} ON {$condition}";
         return " " . $jString;
     }

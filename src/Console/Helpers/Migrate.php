@@ -82,7 +82,7 @@ class Migrate {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMigration(InputInterface $input): int {
-        $tableName = strtolower($input->getArgument('table_name'));
+        $tableName = Str::lower($input->getArgument('table_name'));
         
         // Generate Migration class
         $fileName = "Migration".time();
@@ -164,7 +164,7 @@ class Migrate {
      * @return string The contents of the new Migration class.
      */
     public static function migrationClass(string $fileName, string $tableName): string {
-        $tableName = strtolower($tableName);
+        $tableName = Str::lower($tableName);
         return '<?php
 namespace Database\Migrations;
 use Core\Lib\Database\Schema;

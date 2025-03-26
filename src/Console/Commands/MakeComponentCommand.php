@@ -1,12 +1,13 @@
 <?php
 namespace Console\Commands;
  
+use Core\Lib\Utilities\Str;
 use Console\Helpers\{Tools, View};
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Supports ability to create components.
@@ -52,7 +53,7 @@ class MakeComponentCommand extends Command {
         } else if($input->getOption('form')) {
             return View::makeFormComponent(
                 $componentName,
-                strtolower($input->getOption('form-method') ?? 'post'),
+                Str::lower($input->getOption('form-method') ?? 'post'),
                 $input->getOption('enctype') ??  ''
             );
         } else if($input->getOption('table')) {

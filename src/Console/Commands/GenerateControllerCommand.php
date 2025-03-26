@@ -63,7 +63,7 @@ class GenerateControllerCommand extends Command
                 Tools::info('Please supply name of layout.', 'debug', 'red');
                 return Command::FAILURE;
             }
-            $layout = strtolower($layoutInput);
+            $layout = Str::lower($layoutInput);
         }
         
         // Test if --resource flag is set and generate appropriate version of file

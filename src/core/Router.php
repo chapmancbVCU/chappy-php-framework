@@ -101,7 +101,7 @@ class Router {
             $currentUser = Users::currentUser();
     
             if ($currentUser) {
-                $username = strtolower($currentUser->username); // Normalize username for ACL matching
+                $username = Str::lower($currentUser->username); // Normalize username for ACL matching
                 $userAcls = $currentUser->acls();
     
                 // If the user has an ACL defined in the ACL file, add it
