@@ -423,6 +423,18 @@ class Str
     }
 
     /**
+     * Replace all occurrences of the search string with the replacement string.
+     *
+     * @param string|string[] $search The value(s) being searched for.
+     * @param string|string[] $replace The replacement value(s).
+     * @param string $subject The string being searched and replaced on.
+     * @return string
+     */
+    public static function replace(string|array $search, string|array $replace, string $subject): string
+    {
+        return str_replace($search, $replace, $subject);
+    }
+    /**
      * Replace placeholders sequentially with values from an array.
      *
      * @param string $search The placeholder string to replace.
