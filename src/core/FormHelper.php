@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 use \Exception;
-use Core\{Helper, Session};
+use Core\Session;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
