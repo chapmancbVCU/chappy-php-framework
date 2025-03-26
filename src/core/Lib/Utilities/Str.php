@@ -659,6 +659,16 @@ class Str
     }
 
     /**
+     * Capitalize the first letter of each word.
+     *
+     * @param string $value The input string.
+     */
+    public static function ucwords(string $value): string
+    {
+        return ucwords($value);
+    }
+    
+    /**
      * Convert a string to UPPERCASE.
      *
      * @param string $value The input string.
