@@ -4,6 +4,7 @@ use Exception;
 use Core\Session;
 use App\Models\Users;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Config;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\ArraySet;
@@ -231,8 +232,8 @@ class Router {
                     }
                 }
 
-                $controller = Env::get('ACCESS_RESTRICTED', 'Restricted') . 'Controller';
-                $controller_name = Env::get('ACCESS_RESTRICTED', 'Restricted');
+                $controller = Config::get('config.access_restricted') . 'Controller';
+                $controller_name = Config::get('config.access_restricted');
                 $action = 'indexAction';
             }
 
