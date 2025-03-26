@@ -1,5 +1,6 @@
 <?php
 namespace Console\Helpers;
+use Core\Lib\Utilities\Str;
 
 /**
  * Helper class for model related console commands.
@@ -15,6 +16,8 @@ class Model {
         return '<?php
 namespace App\Models;
 use Core\Model;
+use Core\Lib\Utilities\Str;
+
 
 /**
  * 
@@ -25,7 +28,7 @@ class '.ucfirst($modelName).' extends Model {
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static $_table = \''.lcfirst($modelName).'\';
+    protected static $_table = \''.Str::lcfirst($modelName).'\';
 
     // Soft delete
     // protected static $_softDelete = true;

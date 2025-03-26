@@ -1,6 +1,7 @@
 <?php
 namespace Console\Helpers;
 
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 /**
@@ -74,7 +75,7 @@ use Core\Lib\Utilities\Config;
 
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <?php $this->component(\''.lcfirst($layoutName).'_menu\') ?>
+    <?php $this->component(\''.Str::lcfirst($layoutName).'_menu\') ?>
     <div class="container-fluid" style="min-height:calc(100% - 125px);">
       <?= Session::displayMessage() ?>
       <?= $this->content(\'body\'); ?>
@@ -123,7 +124,7 @@ use Core\Lib\Utilities\Config;
      */
     public static function makeLayout(string $layoutName, string $menuName = 'main'): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.lcfirst($layoutName).".php", 
+            ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.Str::lcfirst($layoutName).".php", 
             self::layout($menuName), 
             'Layout'
         );
@@ -192,7 +193,7 @@ use Core\Lib\Utilities\Config;
 use Core\Router;
 use Core\Helper;
 $profileImage = Helper::getProfileImage();
-$menu = Router::getMenu(\''.lcfirst($menuName).'_menu_acl\');
+$menu = Router::getMenu(\''.Str::lcfirst($menuName).'_menu_acl\');
 $userMenu = Router::getMenu(\'user_menu\');
 ?>
 <nav class="navbar navbar-expand-lg bg-dark bg-gradient sticky-top mb-5">
