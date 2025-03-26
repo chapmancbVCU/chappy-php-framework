@@ -2,6 +2,7 @@
 namespace Core\Lib\Logging;
 use Core\Helper;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Str;
 /**
  * Supports the ability to produce logging.
  */
@@ -48,7 +49,7 @@ class Logger {
         $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
 
         // Trim base path from filename
-        $shortFile = str_replace($basePath, '', $file);
+        $shortFile = Str::replace($basePath, '', $file);
         $shortFile = ltrim($shortFile, '/'); // Remove leading slash if present
 
         $date = date('Y-m-d H:i:s');

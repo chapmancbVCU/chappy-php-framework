@@ -3,10 +3,11 @@ namespace Core;
 use Exception;
 use Core\Session;
 use App\Models\Users;
-use Core\Lib\Utilities\Env;
-use Core\Lib\Utilities\Config;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Str;
+use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\ArraySet;
 
 /**
@@ -205,7 +206,7 @@ class Router {
             $controller = $url->has(0)->result()
                 ? ucwords($url->first()->result()) . 'Controller'
                 : Env::get('DEFAULT_CONTROLLER', 'Home') . 'Controller';
-            $controller_name = str_replace('Controller', '', $controller);
+            $controller_name = Str::replace('Controller', '', $controller);
             $url->shift();
 
             // Extract action

@@ -26,7 +26,7 @@ class Model {
      * Default constructor.
      */
     public function __construct() {
-        $this->_modelName = Str::replace(' ', '', ucwords(Str::replace('_',' ', static::$_table)));
+        $this->_modelName = Str::replace(' ', '', Str::ucwords(Str::replace('_',' ', static::$_table)));
         $this->onConstruct();
     }
 
