@@ -29,7 +29,7 @@ class Router {
             return $value;
         } else {
             $uArray = explode('/', $value);
-            $controller_name = ucwords($uArray[0]);
+            $controller_name = Str::ucwords($uArray[0]);
             $action_name = (isset($uArray[1])) ? $uArray[1] : '';
 
             // Build link item only if the user has access.
@@ -204,7 +204,7 @@ class Router {
 
             // Extract controller
             $controller = $url->has(0)->result()
-                ? ucwords($url->first()->result()) . 'Controller'
+                ? Str::ucwords($url->first()->result()) . 'Controller'
                 : Env::get('DEFAULT_CONTROLLER', 'Home') . 'Controller';
             $controller_name = Str::replace('Controller', '', $controller);
             $url->shift();
