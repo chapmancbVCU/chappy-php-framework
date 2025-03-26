@@ -20,9 +20,9 @@ class CommandHelper {
     public static function makeCommand(InputInterface $input): int {
         $commandName = $input->getArgument('command-name');
         $ext = ".php";
-        $fullPath = ROOT.DS.'src'.DS.'Console'.DS.'Commands'.DS.$commandName.'Command'.$ext;
+        $fullPath = ROOT.DS.'App'.DS.'Lib'.DS.'Console'.DS.'Commands'.DS.$commandName.'Command'.$ext;
         $content = '<?php
-namespace Console\Commands;
+namespace App\Lib\Console\Commands;
  
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -78,9 +78,9 @@ class '.$commandName.'Command extends Command {
     public static function makeHelper(InputInterface $input): int {
         $helperName = Str::ucfirst($input->getArgument('helper-name'));
         $ext = ".php";
-        $fullPath = ROOT.DS.'src'.DS.'Console'.DS.'Helpers'.DS.$helperName.$ext;
+        $fullPath = ROOT.DS.'App'.DS.'Lib'.DS.'Console'.DS.'Helpers'.DS.$helperName.$ext;
         $content = '<?php
-namespace Console\Helpers;
+namespace App\Lib\Console\Helpers;
 
 use Symfony\Component\Console\Command\Command;
 
