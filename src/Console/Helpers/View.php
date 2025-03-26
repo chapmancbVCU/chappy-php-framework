@@ -44,6 +44,8 @@ class View {
      */
     public static function layout(string $layoutName): string {
         return '<?php use Core\Session; ?>
+use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Config;
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -62,12 +64,12 @@ class View {
       <script type="module" src="<?= vite(\'resources/js/app.js\') ?>"></script>
     <?php endif; ?>
     <link rel="stylesheet" href="<?=Env::get(\'APP_DOMAIN\', \'/\')?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=Env::get(\'APP_DOMAIN\', \'/\')?>resources/css/alerts/alertMsg.min.css?v=<?=Env::get(\'VERSION\')?>" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=Env::get(\'APP_DOMAIN\', \'/\')?>resources/css/alerts/alertMsg.min.css?v=<?=Config::get(\'config.version\')?>" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=Env::get(\'APP_DOMAIN\', \'/\')?>node_modules/@fortawesome/fontawesome-free/css/all.min.css" media="screen" title="no title" charset="utf-8">
     <script src="<?=Env::get(\'APP_DOMAIN\', \'/\')?>node_modules/jquery/dist/jquery.min.js"></script>
     <script src="<?=Env::get(\'APP_DOMAIN\', \'/\')?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?=Env::get(\'APP_DOMAIN\', \'/\')?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="<?=Env::get(\'APP_DOMAIN\', \'/\')?>resources/js/alerts/alertMsg.min.js?v=<?=Env::get(\'VERSION\')?>"></script>
+    <script src="<?=Env::get(\'APP_DOMAIN\', \'/\')?>resources/js/alerts/alertMsg.min.js?v=<?=Config::get(\'config.version\')?>"></script>
     <?= $this->content(\'head\'); ?>
 
   </head>
