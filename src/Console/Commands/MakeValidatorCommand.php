@@ -33,7 +33,7 @@ class MakeValidatorCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $validatorName = Str::ucfirst($input->getArgument('validatorName'));
+        $validatorName = Str::ucfirst($input->getArgument('validator-name'));
         
         $content = '<?php
 namespace App\CustomValidators;
