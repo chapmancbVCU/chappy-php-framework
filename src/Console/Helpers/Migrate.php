@@ -5,6 +5,7 @@ use PDO;
 use Core\DB;
 use PDOException;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -49,7 +50,7 @@ class Migrate {
     
         // ✅ Reverse loop to drop tables in correct order
         foreach (Arr::reverse($migrations) as $fileName) {
-            $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
+            $klass = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
             $klassNamespace = 'Database\\Migrations\\' . $klass;
     
             if (class_exists($klassNamespace)) {
@@ -129,7 +130,7 @@ class Migrate {
         $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
 
         foreach ($migrations as $fileName) {
-            $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
+            $klass = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
             
             if (!Arr::contains($previousMigs, $klass)) {
                 $klassNamespace = 'Database\\Migrations\\' . $klass;

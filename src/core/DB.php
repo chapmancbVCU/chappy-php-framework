@@ -5,6 +5,7 @@ use Exception;
 use Core\Helper;
 use \PDOException;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\ArraySet;
 /**
@@ -367,7 +368,7 @@ class DB {
                 foreach($params['conditions'] as $condition) {
                     // Convert `!=` to `<>` for SQLite
                     if ($dbDriver === 'sqlite') {
-                        $condition = str_replace('!=', '<>', $condition);
+                        $condition = Str::replace('!=', '<>', $condition);
                     }
                     $conditionString .= ' ' . $condition . ' AND';
                 }
@@ -376,7 +377,7 @@ class DB {
             } else {
                 $conditionString = $params['conditions'];
                 if ($dbDriver === 'sqlite') {
-                    $conditionString = str_replace('!=', '<>', $conditionString);
+                    $conditionString = Str::replace('!=', '<>', $conditionString);
                 }
             }
             if($conditionString != '') {

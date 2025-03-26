@@ -134,7 +134,7 @@ class FormHelper {
         // Determine if it's a multiple checkbox group
         $isMultiple = str_ends_with($name, '[]');
         $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
-        $id = str_replace('[]', '', $name); // Ensure unique ID
+        $id = Str::replace('[]', '', $name); // Ensure unique ID
     
         $html = '<div' . $divString . '>';
         $html .= '<label for="' . htmlspecialchars($id) . '">';
@@ -194,7 +194,7 @@ class FormHelper {
         // Determine if it's a multiple checkbox group
         $isMultiple = str_ends_with($name, '[]');
         $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
-        $id = str_replace('[]', '', $name); // Ensure unique ID
+        $id = Str::replace('[]', '', $name); // Ensure unique ID
     
         $html = '<div' . $divString . '>';
         $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
@@ -400,7 +400,7 @@ class FormHelper {
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
-        $id = str_replace('[]','',$name);
+        $id = Str::replace('[]','',$name);
 
         $html = '<div' . $divString . '>';
         $html .= '<label class="control-label" for="'.$id.'">'.$label.'</label>';
@@ -549,7 +549,7 @@ class FormHelper {
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,' is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
-        $id = str_replace('[]' ,'' ,$name);
+        $id = Str::replace('[]' ,'' ,$name);
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
         $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options, $value).'</select>';
@@ -774,7 +774,7 @@ class FormHelper {
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
-        $id = str_replace('[]','',$name);
+        $id = Str::replace('[]','',$name);
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
         $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';

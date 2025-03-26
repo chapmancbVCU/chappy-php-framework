@@ -2,6 +2,7 @@
 namespace Core;
 use Core\Helper;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Utilities\DateTime;
@@ -25,7 +26,7 @@ class Model {
      * Default constructor.
      */
     public function __construct() {
-        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_',' ', static::$_table)));
+        $this->_modelName = Str::replace(' ', '', ucwords(Str::replace('_',' ', static::$_table)));
         $this->onConstruct();
     }
 
