@@ -86,7 +86,7 @@ class Session {
      * @param mixed $value The value to store in the session (can be string, int, array, object, etc).
      * @return mixed The value that was set in the session.
      */
-    public static function set(string $name, mixed $value): string {
+    public static function set(string $name, mixed $value): mixed{
         return $_SESSION[$name] = $value;
     }
 
