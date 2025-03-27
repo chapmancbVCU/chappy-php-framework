@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1); 
 namespace Core;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;

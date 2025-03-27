@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core;
 use \PDO;
 use Exception;
@@ -146,10 +147,10 @@ class DB {
      * join, order, and sort.  The default value is an empty array.
      * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return bool|array An associative array of results returned from an SQL 
+     * @return array|object|bool An associative array of results returned from an SQL 
      * query.
      */
-    public function findFirst(string $table, array $params = [], bool|string $class = false): bool|array {
+    public function findFirst(string $table, array $params = [], bool|string $class = false): array|object|bool {
         if($this->_read($table, $params, $class)) {
             return $this->first();
         }

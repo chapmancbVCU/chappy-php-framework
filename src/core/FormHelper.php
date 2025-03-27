@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core;
 use \Exception;
 use Core\Session;
@@ -778,7 +779,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $value The value we want to set.  We can use this to set 
+     * @param string|null $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
@@ -792,7 +793,7 @@ class FormHelper {
     public static function textareaBlock(
         string $label, 
         string $name, 
-        string $value, 
+        string|null $value, 
         array $inputAttrs=[], 
         array $divAttrs=[], 
         array $errors=[]
