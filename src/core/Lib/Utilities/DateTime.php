@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Utilities;
 
 use Carbon\Carbon;
@@ -83,7 +84,7 @@ class DateTime {
      *
      * @return string A timestamp in the format Y-m-d H:i:s UTC time.
      */
-    public static function timeStamps() {
+    public static function timeStamps(): string {
         $dt = new \DateTime("now", new \DateTimeZone("UTC"));
         return $dt->format('Y-m-d H:i:s');
     }
