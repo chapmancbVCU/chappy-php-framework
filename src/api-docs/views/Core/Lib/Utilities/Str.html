@@ -471,6 +471,16 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_replace">replace</a>(<abbr title="Core\Lib\Utilities\string|array">string|array</abbr> $search, <abbr title="Core\Lib\Utilities\string|array">string|array</abbr> $replace, string $subject)
+        
+                                            <p><p>Replace all occurrences of the search string with the replacement string.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_replaceArray">replaceArray</a>(string $search, array $replace, string $subject)
         
                                             <p><p>Replace placeholders sequentially with values from an array.</p></p>                </div>
@@ -664,6 +674,16 @@
                     <a href="#method_ucfirst">ucfirst</a>(string $value)
         
                                             <p><p>Capitalize the first character of a string.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_ucwords">ucwords</a>(string $value)
+        
+                                            <p><p>Capitalize the first letter of each word.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -2375,8 +2395,60 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_replace">
+        <div class="location">at line 433</div>
+        <code>        static            string
+    <strong>replace</strong>(<abbr title="Core\Lib\Utilities\string|array">string|array</abbr> $search, <abbr title="Core\Lib\Utilities\string|array">string|array</abbr> $replace, string $subject)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Replace all occurrences of the search string with the replacement string.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Utilities\string|array">string|array</abbr></td>
+                <td>$search</td>
+                <td><p>The value(s) being searched for.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Utilities\string|array">string|array</abbr></td>
+                <td>$replace</td>
+                <td><p>The replacement value(s).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$subject</td>
+                <td><p>The string being searched and replaced on.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_replaceArray">
-        <div class="location">at line 432</div>
+        <div class="location">at line 444</div>
         <code>        static            string
     <strong>replaceArray</strong>(string $search, array $replace, string $subject)
         </code>
@@ -2428,7 +2500,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_replaceFirst">
-        <div class="location">at line 448</div>
+        <div class="location">at line 460</div>
         <code>        static            string
     <strong>replaceFirst</strong>(string $search, string $replace, string $subject)
         </code>
@@ -2480,7 +2552,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_replaceLast">
-        <div class="location">at line 461</div>
+        <div class="location">at line 473</div>
         <code>        static            string
     <strong>replaceLast</strong>(string $search, string $replace, string $subject)
         </code>
@@ -2532,7 +2604,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_replaceMultiple">
-        <div class="location">at line 473</div>
+        <div class="location">at line 485</div>
         <code>        static            string
     <strong>replaceMultiple</strong>(array $replacements, string $subject)
         </code>
@@ -2579,7 +2651,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_reverse">
-        <div class="location">at line 483</div>
+        <div class="location">at line 495</div>
         <code>        static            string
     <strong>reverse</strong>(string $value)
         </code>
@@ -2621,7 +2693,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_sha1">
-        <div class="location">at line 493</div>
+        <div class="location">at line 505</div>
         <code>        static            string
     <strong>sha1</strong>(string $value)
         </code>
@@ -2663,7 +2735,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_shuffle">
-        <div class="location">at line 503</div>
+        <div class="location">at line 515</div>
         <code>        static            string
     <strong>shuffle</strong>(string $value)
         </code>
@@ -2705,7 +2777,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_similarity">
-        <div class="location">at line 514</div>
+        <div class="location">at line 526</div>
         <code>        static            int
     <strong>similarity</strong>(string $string1, string $string2)
         </code>
@@ -2752,7 +2824,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_snake">
-        <div class="location">at line 526</div>
+        <div class="location">at line 538</div>
         <code>        static            string
     <strong>snake</strong>(string $value, string $delimiter = &#039;_&#039;)
         </code>
@@ -2799,7 +2871,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_slug">
-        <div class="location">at line 539</div>
+        <div class="location">at line 551</div>
         <code>        static            string
     <strong>slug</strong>(string $title, string $separator = &#039;-&#039;)
         </code>
@@ -2846,7 +2918,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_squish">
-        <div class="location">at line 550</div>
+        <div class="location">at line 562</div>
         <code>        static            string
     <strong>squish</strong>(string $value)
         </code>
@@ -2888,7 +2960,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_startsWith">
-        <div class="location">at line 561</div>
+        <div class="location">at line 573</div>
         <code>        static            bool
     <strong>startsWith</strong>(string $haystack, string $needle)
         </code>
@@ -2935,7 +3007,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stripWhitespace">
-        <div class="location">at line 571</div>
+        <div class="location">at line 583</div>
         <code>        static            string
     <strong>stripWhitespace</strong>(string $value)
         </code>
@@ -2977,7 +3049,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_studly">
-        <div class="location">at line 581</div>
+        <div class="location">at line 593</div>
         <code>        static            string
     <strong>studly</strong>(string $value)
         </code>
@@ -3019,7 +3091,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_substr">
-        <div class="location">at line 593</div>
+        <div class="location">at line 605</div>
         <code>        static            string
     <strong>substr</strong>(string $value, int $start, int|null $length = null)
         </code>
@@ -3071,7 +3143,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_substrCount">
-        <div class="location">at line 604</div>
+        <div class="location">at line 616</div>
         <code>        static            int
     <strong>substrCount</strong>(string $haystack, string $needle)
         </code>
@@ -3118,7 +3190,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_swapKeyValue">
-        <div class="location">at line 614</div>
+        <div class="location">at line 626</div>
         <code>        static            string
     <strong>swapKeyValue</strong>(array $array)
         </code>
@@ -3160,7 +3232,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_title">
-        <div class="location">at line 624</div>
+        <div class="location">at line 636</div>
         <code>        static            string
     <strong>title</strong>(string $value)
         </code>
@@ -3202,7 +3274,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_toArray">
-        <div class="location">at line 634</div>
+        <div class="location">at line 646</div>
         <code>        static            array
     <strong>toArray</strong>(string $value)
         </code>
@@ -3244,7 +3316,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_ucfirst">
-        <div class="location">at line 644</div>
+        <div class="location">at line 656</div>
         <code>        static            string
     <strong>ucfirst</strong>(string $value)
         </code>
@@ -3285,8 +3357,50 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_ucwords">
+        <div class="location">at line 666</div>
+        <code>        static            string
+    <strong>ucwords</strong>(string $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Capitalize the first letter of each word.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$value</td>
+                <td><p>The input string.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_upper">
-        <div class="location">at line 654</div>
+        <div class="location">at line 676</div>
         <code>        static            string
     <strong>upper</strong>(string $value)
         </code>
@@ -3328,7 +3442,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_uuid">
-        <div class="location">at line 662</div>
+        <div class="location">at line 684</div>
         <code>        static            string
     <strong>uuid</strong>()
         </code>
@@ -3360,7 +3474,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_wordCount">
-        <div class="location">at line 672</div>
+        <div class="location">at line 694</div>
         <code>        static            int
     <strong>wordCount</strong>(string $value)
         </code>
@@ -3402,7 +3516,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_words">
-        <div class="location">at line 684</div>
+        <div class="location">at line 706</div>
         <code>        static            string
     <strong>words</strong>(string $value, int $words = 10, string $end = &#039;...&#039;)
         </code>
@@ -3454,7 +3568,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_wrap">
-        <div class="location">at line 696</div>
+        <div class="location">at line 718</div>
         <code>        static            string
     <strong>wrap</strong>(string $value, string $wrapWith)
         </code>

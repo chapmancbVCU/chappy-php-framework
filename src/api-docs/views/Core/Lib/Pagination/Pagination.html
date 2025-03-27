@@ -121,7 +121,7 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_currentPage">currentPage</a>(mixed $request)
+                    <a href="#method_currentPage">currentPage</a>(object $request)
         
                                             <p><p>Retrieves current page from GET request.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -174,7 +174,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 19</div>
+        <div class="location">at line 20</div>
         <code>                    
     <strong>__construct</strong>(int $currentPage = 1, int $limit = 10, int $totalItems = 0)
         </code>
@@ -217,9 +217,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_currentPage">
-        <div class="location">at line 31</div>
+        <div class="location">at line 32</div>
         <code>        static            int
-    <strong>currentPage</strong>(mixed $request)
+    <strong>currentPage</strong>(object $request)
         </code>
     </h3>
     <div class="details">    
@@ -234,9 +234,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>mixed</td>
+                <td>object</td>
                 <td>$request</td>
-                <td><p>The request.</p></td>
+                <td><p>The request object.</p></td>
             </tr>
             </table>
 
@@ -259,7 +259,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_offset">
-        <div class="location">at line 43</div>
+        <div class="location">at line 42</div>
         <code>                    int
     <strong>offset</strong>()
         </code>
@@ -291,7 +291,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_pagination">
-        <div class="location">at line 56</div>
+        <div class="location">at line 55</div>
         <code>        static            string
     <strong>pagination</strong>(int $current_page, int $total_pages, string $base_url = &#039;?page=&#039;)
         </code>
@@ -343,7 +343,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_paginationParams">
-        <div class="location">at line 115</div>
+        <div class="location">at line 114</div>
         <code>                    array
     <strong>paginationParams</strong>(mixed $conditions, array $bind = [], string $order)
         </code>
@@ -395,7 +395,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_totalPages">
-        <div class="location">at line 130</div>
+        <div class="location">at line 129</div>
         <code>                    int
     <strong>totalPages</strong>()
         </code>

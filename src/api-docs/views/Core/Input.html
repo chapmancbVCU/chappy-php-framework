@@ -119,10 +119,10 @@ fails the user is routed to a view stating access is restricted.</p></p>        
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array|string
+                    <abbr title="Core\array|string">array|string</abbr>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_get">get</a>(mixed $input = false)
+                    <a href="#method_get">get</a>(<abbr title="Core\string|null">string|null</abbr> $input = null)
         
                                             <p><p>Supports operations related to handling POST and GET requests.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -175,7 +175,7 @@ fails the user is routed to a view stating access is restricted.</p></p>        
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_csrfCheck">
-        <div class="location">at line 16</div>
+        <div class="location">at line 18</div>
         <code>                    bool
     <strong>csrfCheck</strong>()
         </code>
@@ -209,8 +209,8 @@ fails the user is routed to a view stating access is restricted.</p></p>
                     <div class="method-item">
                     <h3 id="method_get">
         <div class="location">at line 30</div>
-        <code>                    array|string
-    <strong>get</strong>(mixed $input = false)
+        <code>                    <abbr title="Core\array|string">array|string</abbr>
+    <strong>get</strong>(<abbr title="Core\string|null">string|null</abbr> $input = null)
         </code>
     </h3>
     <div class="details">    
@@ -225,10 +225,9 @@ fails the user is routed to a view stating access is restricted.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>mixed</td>
+                <td><abbr title="Core\string|null">string|null</abbr></td>
                 <td>$input</td>
-                <td><p>Values from POST and GET requests.  The default
-value is false.</p></td>
+                <td><p>Field name from POST/GET request, or null to get all</p></td>
             </tr>
             </table>
 
@@ -237,9 +236,8 @@ value is false.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>array|string</td>
-            <td><p>An array associated with a POST or GET request or
-an encoded HTML string.</p></td>
+            <td><abbr title="Core\array|string">array|string</abbr></td>
+            <td><p>Sanitized input as array or string</p></td>
         </tr>
     </table>
 

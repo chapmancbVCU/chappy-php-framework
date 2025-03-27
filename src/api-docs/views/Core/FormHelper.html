@@ -196,7 +196,7 @@ been no tampering of a form's csrf token.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_emailBlock">emailBlock</a>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+                    <a href="#method_emailBlock">emailBlock</a>(string $label, string $name, string $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Renders an HTML div element that surrounds an input of type email.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -246,10 +246,10 @@ or submitTag functions.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;void
+                    static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_optionsForSelect">optionsForSelect</a>(array $options, string $selectedValue)
+                    <a href="#method_optionsForSelect">optionsForSelect</a>(array $options, <abbr title="Core\string|int|null">string|int|null</abbr> $selectedValue)
         
                                             <p><p>Generates options for select.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -300,7 +300,7 @@ element.  Compatible with radio button groups.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_selectBlock">selectBlock</a>(string $label, string $name, string $value, array $options, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+                    <a href="#method_selectBlock">selectBlock</a>(string $label, string $name, <abbr title="Core\string|int|null">string|int|null</abbr> $value, array $options, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Renders a select element with a list of options.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -317,7 +317,7 @@ element.  Compatible with radio button groups.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;
+                    static&nbsp;string
                 </div>
                 <div class="col-md-8">
                     <a href="#method_submitBlock">submitBlock</a>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
@@ -349,10 +349,10 @@ options can be set using the args parameter.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;
+                    static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_textareaBlock">textareaBlock</a>(string $label, string $name, mixed $value, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+                    <a href="#method_textareaBlock">textareaBlock</a>(string $label, string $name, <abbr title="Core\string|null">string|null</abbr> $value, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Assists in the development of textarea in forms.  It accepts parameters
 for setting  attribute tags in the form section.</p></p>                </div>
@@ -366,7 +366,7 @@ for setting  attribute tags in the form section.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_appendErrorClass">
-        <div class="location">at line 23</div>
+        <div class="location">at line 25</div>
         <code>        static            array
     <strong>appendErrorClass</strong>(array $attrs, array $errors, string $name, string $class)
         </code>
@@ -425,7 +425,7 @@ form field.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_button">
-        <div class="location">at line 57</div>
+        <div class="location">at line 59</div>
         <code>        static            string
     <strong>button</strong>(string $buttonText, array $inputAttrs = [])
         </code>
@@ -478,7 +478,7 @@ optional attributes set.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_buttonBlock">
-        <div class="location">at line 80</div>
+        <div class="location">at line 82</div>
         <code>        static            string
     <strong>buttonBlock</strong>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
         </code>
@@ -537,7 +537,7 @@ set and any other optional attributes set.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_checkboxBlockLabelLeft">
-        <div class="location">at line 119</div>
+        <div class="location">at line 121</div>
         <code>        static            string
     <strong>checkboxBlockLabelLeft</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -625,7 +625,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_checkboxBlockLabelRight">
-        <div class="location">at line 179</div>
+        <div class="location">at line 181</div>
         <code>        static            string
     <strong>checkboxBlockLabelRight</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -712,7 +712,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_checkToken">
-        <div class="location">at line 217</div>
+        <div class="location">at line 219</div>
         <code>        static            bool
     <strong>checkToken</strong>(string $token)
         </code>
@@ -758,7 +758,7 @@ of the $token parameter.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_csrfInput">
-        <div class="location">at line 230</div>
+        <div class="location">at line 232</div>
         <code>        static            string
     <strong>csrfInput</strong>()
         </code>
@@ -792,7 +792,7 @@ set as the value.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_displayErrors">
-        <div class="location">at line 242</div>
+        <div class="location">at line 244</div>
         <code>        static            string
     <strong>displayErrors</strong>(<abbr title="array|Core\Lib\Utilities\ArraySet">ArraySet</abbr> $errors)
         </code>
@@ -836,9 +836,9 @@ input of type checkbox.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_emailBlock">
-        <div class="location">at line 285</div>
+        <div class="location">at line 287</div>
         <code>        static            string
-    <strong>emailBlock</strong>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+    <strong>emailBlock</strong>(string $label, string $name, string $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
     </h3>
     <div class="details">    
@@ -867,7 +867,7 @@ FormHelper::emailBlock('Email', 'email', $this-&gt;contact-&gt;email, ['class' =
 for this input.</p></td>
             </tr>
                     <tr>
-                <td>mixed</td>
+                <td>string</td>
                 <td>$value</td>
                 <td><p>The value we want to set.  We can use this to set
 the value of the value attribute during form validation.  Default value
@@ -912,7 +912,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_errorMsg">
-        <div class="location">at line 310</div>
+        <div class="location">at line 319</div>
         <code>        static            string
     <strong>errorMsg</strong>(array $errors, string $name)
         </code>
@@ -959,7 +959,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_generateToken">
-        <div class="location">at line 320</div>
+        <div class="location">at line 329</div>
         <code>        static            string
     <strong>generateToken</strong>()
         </code>
@@ -991,7 +991,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_hidden">
-        <div class="location">at line 339</div>
+        <div class="location">at line 348</div>
         <code>        static            string
     <strong>hidden</strong>(string $name, mixed $value)
         </code>
@@ -1041,7 +1041,7 @@ FormHelper::hidden(&quot;example_name&quot;, &quot;example_value&quot;);</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_inputBlock">
-        <div class="location">at line 390</div>
+        <div class="location">at line 399</div>
         <code>        static            string
     <strong>inputBlock</strong>(string $type, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -1146,9 +1146,9 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_optionsForSelect">
-        <div class="location">at line 419</div>
-        <code>        static            void
-    <strong>optionsForSelect</strong>(array $options, string $selectedValue)
+        <div class="location">at line 428</div>
+        <code>        static            string
+    <strong>optionsForSelect</strong>(array $options, <abbr title="Core\string|int|null">string|int|null</abbr> $selectedValue)
         </code>
     </h3>
     <div class="details">    
@@ -1168,7 +1168,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
                 <td><p>An array of options for the select.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td><abbr title="Core\string|int|null">string|int|null</abbr></td>
                 <td>$selectedValue</td>
                 <td><p>The currently selected value.</p></td>
             </tr>
@@ -1179,7 +1179,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
 
                     <table class="table table-condensed">
         <tr>
-            <td>void</td>
+            <td>string</td>
             <td></td>
         </tr>
     </table>
@@ -1193,7 +1193,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_output">
-        <div class="location">at line 442</div>
+        <div class="location">at line 451</div>
         <code>        static            string
     <strong>output</strong>(string $name, string $for)
         </code>
@@ -1244,7 +1244,7 @@ input.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_posted_values">
-        <div class="location">at line 453</div>
+        <div class="location">at line 462</div>
         <code>        static            array
     <strong>posted_values</strong>(array $post)
         </code>
@@ -1287,7 +1287,7 @@ user submits a form.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_radioInput">
-        <div class="location">at line 491</div>
+        <div class="location">at line 500</div>
         <code>        static            string
     <strong>radioInput</strong>(string $label, string $id, string $name, string $value, bool $checked = false, array $inputAttrs = [])
         </code>
@@ -1370,7 +1370,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sanitize">
-        <div class="location">at line 510</div>
+        <div class="location">at line 519</div>
         <code>        static            <abbr title="Core\string|array">string|array</abbr>
     <strong>sanitize</strong>(<abbr title="Core\string|array">string|array</abbr> $dirty)
         </code>
@@ -1412,9 +1412,9 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectBlock">
-        <div class="location">at line 547</div>
+        <div class="location">at line 556</div>
         <code>        static            string
-    <strong>selectBlock</strong>(string $label, string $name, string $value, array $options, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+    <strong>selectBlock</strong>(string $label, string $name, <abbr title="Core\string|int|null">string|int|null</abbr> $value, array $options, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
     </h3>
     <div class="details">    
@@ -1451,7 +1451,7 @@ FormHelper::selectBlock(&quot;Test&quot;, &quot;test&quot;, $_POST[&quot;test&qu
 for this input.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td><abbr title="Core\string|int|null">string|int|null</abbr></td>
                 <td>$value</td>
                 <td><p>The value we want to set as selected.</p></td>
             </tr>
@@ -1499,7 +1499,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_stringifyAttrs">
-        <div class="location">at line 566</div>
+        <div class="location">at line 583</div>
         <code>        static            string
     <strong>stringifyAttrs</strong>(array $attrs)
         </code>
@@ -1541,8 +1541,8 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_submitBlock">
-        <div class="location">at line 593</div>
-        <code>        static            
+        <div class="location">at line 610</div>
+        <code>        static            string
     <strong>submitBlock</strong>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
         </code>
     </h3>
@@ -1583,6 +1583,15 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -1592,7 +1601,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_submitTag">
-        <div class="location">at line 621</div>
+        <div class="location">at line 642</div>
         <code>        static            string
     <strong>submitTag</strong>(string $buttonText, array $inputAttrs = [])
         </code>
@@ -1646,7 +1655,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_telBlock">
-        <div class="location">at line 684</div>
+        <div class="location">at line 705</div>
         <code>        static            string
     <strong>telBlock</strong>(string $phoneType, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], string $args = &quot;d&quot;, array $errors = [])
         </code>
@@ -1761,9 +1770,9 @@ function call.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_textareaBlock">
-        <div class="location">at line 772</div>
-        <code>        static            
-    <strong>textareaBlock</strong>(string $label, string $name, mixed $value, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        <div class="location">at line 793</div>
+        <code>        static            string
+    <strong>textareaBlock</strong>(string $label, string $name, <abbr title="Core\string|null">string|null</abbr> $value, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
     </h3>
     <div class="details">    
@@ -1796,7 +1805,7 @@ FormHelper::textAreaBlock(&quot;Example&quot;, 'example_name', example_value, ['
 for this input.</p></td>
             </tr>
                     <tr>
-                <td>mixed</td>
+                <td><abbr title="Core\string|null">string|null</abbr></td>
                 <td>$value</td>
                 <td><p>The value we want to set.  We can use this to set
 the value of the value attribute during form validation.  Default value
@@ -1823,6 +1832,15 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             

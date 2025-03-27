@@ -138,10 +138,10 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool|array
+                    <abbr title="Core\bool|array">bool|array</abbr>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_find">find</a>(string $table, array $params = [], bool|string $class = false)
+                    <a href="#method_find">find</a>(string $table, array $params = [], <abbr title="Core\bool|string">bool|string</abbr> $class = false)
         
                                             <p><p>Performs find operation against the database.  The user can use
 parameters such as conditions, bind, order, limit, and sort.</p></p>                </div>
@@ -149,10 +149,10 @@ parameters such as conditions, bind, order, limit, and sort.</p></p>            
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool|array
+                    <abbr title="Core\array|object|bool">array|object|bool</abbr>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_findFirst">findFirst</a>($table, array $params = [], bool|string $class = false)
+                    <a href="#method_findFirst">findFirst</a>(string $table, array $params = [], <abbr title="Core\bool|string">bool|string</abbr> $class = false)
         
                                             <p><p>Returns the first result performed by an SQL query.  It is a wrapper
 for the _read function for this purpose.</p></p>                </div>
@@ -170,7 +170,7 @@ for the _read function for this purpose.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array|object
+                    <abbr title="Core\array|object">array|object</abbr>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_first">first</a>()
@@ -221,7 +221,7 @@ class because we can't use $this.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    int
+                    <abbr title="Core\int|string|null">int|string|null</abbr>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_lastID">lastID</a>()
@@ -234,7 +234,7 @@ class because we can't use $this.</p></p>                </div>
                     <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_query">query</a>(string $sql, array $params = [], bool|string $class = false)
+                    <a href="#method_query">query</a>(string $sql, array $params = [], <abbr title="Core\bool|string">bool|string</abbr> $class = false)
         
                                             <p><p>Performs database query operations that includes prepare,
 binding, execute, and fetch.</p></p>                </div>
@@ -252,10 +252,10 @@ binding, execute, and fetch.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_tableExists">tableExists</a>($table)
+                    <a href="#method_tableExists">tableExists</a>(string $table)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -289,7 +289,7 @@ binding, execute, and fetch.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_count">
-        <div class="location">at line 78</div>
+        <div class="location">at line 79</div>
         <code>                    int
     <strong>count</strong>()
         </code>
@@ -321,7 +321,7 @@ binding, execute, and fetch.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_delete">
-        <div class="location">at line 95</div>
+        <div class="location">at line 96</div>
         <code>                    bool
     <strong>delete</strong>(string $table, int $id)
         </code>
@@ -372,7 +372,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_error">
-        <div class="location">at line 105</div>
+        <div class="location">at line 106</div>
         <code>                    bool
     <strong>error</strong>()
         </code>
@@ -404,9 +404,9 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_find">
-        <div class="location">at line 131</div>
-        <code>                    bool|array
-    <strong>find</strong>(string $table, array $params = [], bool|string $class = false)
+        <div class="location">at line 132</div>
+        <code>                    <abbr title="Core\bool|array">bool|array</abbr>
+    <strong>find</strong>(string $table, array $params = [], <abbr title="Core\bool|string">bool|string</abbr> $class = false)
         </code>
     </h3>
     <div class="details">    
@@ -442,7 +442,7 @@ parameters for our query such as conditions, bind, limit, offset,
 join, order, and sort.  The default value is an empty array.</p></td>
             </tr>
                     <tr>
-                <td>bool|string</td>
+                <td><abbr title="Core\bool|string">bool|string</abbr></td>
                 <td>$class</td>
                 <td><p>A default value of false, it contains the
 name of the class we will build based on the name of a model.</p></td>
@@ -454,7 +454,7 @@ name of the class we will build based on the name of a model.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool|array</td>
+            <td><abbr title="Core\bool|array">bool|array</abbr></td>
             <td><p>An array of object returned from an SQL query.</p></td>
         </tr>
     </table>
@@ -468,9 +468,9 @@ name of the class we will build based on the name of a model.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findFirst">
-        <div class="location">at line 152</div>
-        <code>                    bool|array
-    <strong>findFirst</strong>($table, array $params = [], bool|string $class = false)
+        <div class="location">at line 153</div>
+        <code>                    <abbr title="Core\array|object|bool">array|object|bool</abbr>
+    <strong>findFirst</strong>(string $table, array $params = [], <abbr title="Core\bool|string">bool|string</abbr> $class = false)
         </code>
     </h3>
     <div class="details">    
@@ -486,7 +486,7 @@ for the _read function for this purpose.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$table</td>
                 <td></td>
             </tr>
@@ -498,7 +498,7 @@ parameters for our query such as conditions, bind, limit, offset,
 join, order, and sort.  The default value is an empty array.</p></td>
             </tr>
                     <tr>
-                <td>bool|string</td>
+                <td><abbr title="Core\bool|string">bool|string</abbr></td>
                 <td>$class</td>
                 <td><p>A default value of false, it contains the
 name of the class we will build based on the name of a model.</p></td>
@@ -510,7 +510,7 @@ name of the class we will build based on the name of a model.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool|array</td>
+            <td><abbr title="Core\array|object|bool">array|object|bool</abbr></td>
             <td><p>An associative array of results returned from an SQL
 query.</p></td>
         </tr>
@@ -525,7 +525,7 @@ query.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findTotal">
-        <div class="location">at line 169</div>
+        <div class="location">at line 170</div>
         <code>                    int
     <strong>findTotal</strong>(string $table, array $params = [])
         </code>
@@ -575,8 +575,8 @@ join, order, and sort.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_first">
-        <div class="location">at line 183</div>
-        <code>                    array|object
+        <div class="location">at line 184</div>
+        <code>                    <abbr title="Core\array|object">array|object</abbr>
     <strong>first</strong>()
         </code>
     </h3>
@@ -593,7 +593,7 @@ join, order, and sort.  The default value is an empty array.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>array|object</td>
+            <td><abbr title="Core\array|object">array|object</abbr></td>
             <td><p>An associative array that is the first object
 in a _result.</p></td>
         </tr>
@@ -608,7 +608,7 @@ in a _result.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getColumns">
-        <div class="location">at line 195</div>
+        <div class="location">at line 196</div>
         <code>                    array
     <strong>getColumns</strong>(string $table)
         </code>
@@ -652,7 +652,7 @@ from a database table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getInstance">
-        <div class="location">at line 211</div>
+        <div class="location">at line 212</div>
         <code>        static            <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>getInstance</strong>()
         </code>
@@ -685,7 +685,7 @@ class because we can't use $this.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getPDO">
-        <div class="location">at line 223</div>
+        <div class="location">at line 224</div>
         <code>                    <a target="_blank" rel="noopener" href="https://www.php.net/PDO">PDO</a>
     <strong>getPDO</strong>()
         </code>
@@ -717,7 +717,7 @@ class because we can't use $this.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_insert">
-        <div class="location">at line 245</div>
+        <div class="location">at line 246</div>
         <code>                    bool
     <strong>insert</strong>(string $table, array $fields = [])
         </code>
@@ -773,8 +773,8 @@ set to a particular field.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_lastID">
-        <div class="location">at line 275</div>
-        <code>                    int
+        <div class="location">at line 276</div>
+        <code>                    <abbr title="Core\int|string|null">int|string|null</abbr>
     <strong>lastID</strong>()
         </code>
     </h3>
@@ -791,7 +791,7 @@ set to a particular field.  The default value is an empty array.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>int</td>
+            <td><abbr title="Core\int|string|null">int|string|null</abbr></td>
             <td><p>The primary key ID from the last insert operation.</p></td>
         </tr>
     </table>
@@ -805,9 +805,9 @@ set to a particular field.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_query">
-        <div class="location">at line 293</div>
+        <div class="location">at line 294</div>
         <code>                    <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
-    <strong>query</strong>(string $sql, array $params = [], bool|string $class = false)
+    <strong>query</strong>(string $sql, array $params = [], <abbr title="Core\bool|string">bool|string</abbr> $class = false)
         </code>
     </h3>
     <div class="details">    
@@ -835,7 +835,7 @@ parameters for our query such as conditions, bind, limit, offset,
 join, order, and sort.  The default value is an empty array.</p></td>
             </tr>
                     <tr>
-                <td>bool|string</td>
+                <td><abbr title="Core\bool|string">bool|string</abbr></td>
                 <td>$class</td>
                 <td><p>A default value of false, it contains the
 name of the class we will build based on the name of a model.</p></td>
@@ -863,7 +863,7 @@ returned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_results">
-        <div class="location">at line 442</div>
+        <div class="location">at line 443</div>
         <code>                    array
     <strong>results</strong>()
         </code>
@@ -896,9 +896,9 @@ query.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tableExists">
-        <div class="location">at line 446</div>
-        <code>                    
-    <strong>tableExists</strong>($table)
+        <div class="location">at line 447</div>
+        <code>                    bool
+    <strong>tableExists</strong>(string $table)
         </code>
     </h3>
     <div class="details">    
@@ -914,13 +914,22 @@ query.</p></td>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$table</td>
                 <td></td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -930,7 +939,7 @@ query.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 476</div>
+        <div class="location">at line 477</div>
         <code>                    bool
     <strong>update</strong>(string $table, int $id, array $fields = [])
         </code>
@@ -991,7 +1000,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_valueExistsInColumn">
-        <div class="location">at line 493</div>
+        <div class="location">at line 494</div>
         <code>                    bool
     <strong>valueExistsInColumn</strong>(string $table, string $column, mixed $value)
         </code>

@@ -163,9 +163,9 @@ array.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_set">set</a>(string $name, string $value)
+                    <a href="#method_set">set</a>(string $name, mixed $value)
         
-                                            <p><p>Sets value to $_SESSION name key.</p></p>                </div>
+                                            <p><p>Sets a value in the $_SESSION superglobal array.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -187,7 +187,7 @@ end user software updates.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_addMessage">
-        <div class="location">at line 16</div>
+        <div class="location">at line 17</div>
         <code>        static            void
     <strong>addMessage</strong>(string $type, string $message)
         </code>
@@ -234,7 +234,7 @@ end user software updates.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_delete">
-        <div class="location">at line 30</div>
+        <div class="location">at line 31</div>
         <code>        static            void
     <strong>delete</strong>(string $name)
         </code>
@@ -278,7 +278,7 @@ current user session.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_displayMessage">
-        <div class="location">at line 42</div>
+        <div class="location">at line 43</div>
         <code>        static            string
     <strong>displayMessage</strong>()
         </code>
@@ -311,7 +311,7 @@ button to dismiss the message.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_exists">
-        <div class="location">at line 64</div>
+        <div class="location">at line 65</div>
         <code>        static            bool
     <strong>exists</strong>(string $name)
         </code>
@@ -354,7 +354,7 @@ session.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_get">
-        <div class="location">at line 77</div>
+        <div class="location">at line 78</div>
         <code>        static            mixed
     <strong>get</strong>(string $name)
         </code>
@@ -399,9 +399,9 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_set">
-        <div class="location">at line 90</div>
+        <div class="location">at line 89</div>
         <code>        static            string
-    <strong>set</strong>(string $name, string $value)
+    <strong>set</strong>(string $name, mixed $value)
         </code>
     </h3>
     <div class="details">    
@@ -409,7 +409,7 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Sets value to $_SESSION name key.</p></p>                        
+                            <p><p>Sets a value in the $_SESSION superglobal array.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -418,13 +418,12 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
                     <tr>
                 <td>string</td>
                 <td>$name</td>
-                <td><p>The current user session name.</p></td>
+                <td><p>The session key name.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>mixed</td>
                 <td>$value</td>
-                <td><p>The id of the user associated with a particular
-session.</p></td>
+                <td><p>The value to store in the session (can be string, int, array, object, etc).</p></td>
             </tr>
             </table>
 
@@ -434,8 +433,7 @@ session.</p></td>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>Element in the $_SESSION superglobal array for
-CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
+            <td><p>The value that was set in the session.</p></td>
         </tr>
     </table>
 
@@ -448,7 +446,7 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uagent_no_version">
-        <div class="location">at line 100</div>
+        <div class="location">at line 99</div>
         <code>        static            string
     <strong>uagent_no_version</strong>()
         </code>

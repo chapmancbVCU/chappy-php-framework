@@ -111,10 +111,9 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>($table)
+                    <a href="#method___construct">__construct</a>(string $table)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p><p>Constructor for Blueprint class.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -122,7 +121,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_bigInteger">bigInteger</a>($name)
+                    <a href="#method_bigInteger">bigInteger</a>(string $name)
         
                                             <p><p>Define a big integer column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -132,14 +131,14 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_boolean">boolean</a>($name)
+                    <a href="#method_boolean">boolean</a>(string $name)
         
                                             <p><p>Define a boolean column.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    void
                 </div>
                 <div class="col-md-8">
                     <a href="#method_create">create</a>()
@@ -152,7 +151,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_date">date</a>($name)
+                    <a href="#method_date">date</a>(string $name)
         
                                             <p><p>Define a date column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -162,7 +161,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_dateTime">dateTime</a>($name)
+                    <a href="#method_dateTime">dateTime</a>(string $name)
         
                                             <p><p>Define a datetime column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -172,20 +171,19 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_decimal">decimal</a>($name, $precision = 8, $scale = 2)
+                    <a href="#method_decimal">decimal</a>(string $name, int $precision = 8, int $scale = 2)
         
                                             <p><p>Define a decimal column.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_default">default</a>($value)
+                    <a href="#method_default">default</a>(<abbr title="Core\Lib\Database\string|int|float|bool">string|int|float|bool</abbr> $value)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p><p>Adds a DEFAULT value to the last defined column.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -203,7 +201,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_double">double</a>($name, $precision = 16, $scale = 4)
+                    <a href="#method_double">double</a>(string $name, int $precision = 16, int $scale = 4)
         
                                             <p><p>Define a double column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -213,7 +211,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_enum">enum</a>($name, array $values)
+                    <a href="#method_enum">enum</a>(string $name, array $values)
         
                                             <p><p>Define an enum column (MySQL only).</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -223,17 +221,17 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_float">float</a>($name, $precision = 8, $scale = 2)
+                    <a href="#method_float">float</a>(string $name, int $precision = 8, int $scale = 2)
         
                                             <p><p>Define a float column.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_foreign">foreign</a>($column, $references, $onTable, $onDelete = &#039;CASCADE&#039;, $onUpdate = &#039;CASCADE&#039;)
+                    <a href="#method_foreign">foreign</a>(string $column, string $references, string $onTable, string $onDelete = &#039;CASCADE&#039;, string $onUpdate = &#039;CASCADE&#039;)
         
                                             <p><p>Define a foreign key (MySQL only).</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -250,10 +248,10 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_index">index</a>($column)
+                    <a href="#method_index">index</a>(string $column)
         
                                             <p><p>Define an index.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -263,7 +261,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_integer">integer</a>($name)
+                    <a href="#method_integer">integer</a>(string $name)
         
                                             <p><p>Define an integer column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -273,7 +271,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_mediumInteger">mediumInteger</a>($name)
+                    <a href="#method_mediumInteger">mediumInteger</a>(string $name)
         
                                             <p><p>Define a medium integer column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -293,7 +291,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_smallInteger">smallInteger</a>($name)
+                    <a href="#method_smallInteger">smallInteger</a>(string $name)
         
                                             <p><p>Define a small integer column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -313,7 +311,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_string">string</a>($name, $length = 255)
+                    <a href="#method_string">string</a>(string $name, int $length = 255)
         
                                             <p><p>Define a string column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -323,7 +321,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_text">text</a>($name)
+                    <a href="#method_text">text</a>(string $name)
         
                                             <p><p>Define a text column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -333,7 +331,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_time">time</a>($name)
+                    <a href="#method_time">time</a>(string $name)
         
                                             <p><p>Define a time column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -343,14 +341,14 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_timestamp">timestamp</a>($name)
+                    <a href="#method_timestamp">timestamp</a>(string $name)
         
                                             <p><p>Define a timestamp column.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    void
                 </div>
                 <div class="col-md-8">
                     <a href="#method_timestamps">timestamps</a>()
@@ -363,7 +361,7 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_tinyInteger">tinyInteger</a>($name)
+                    <a href="#method_tinyInteger">tinyInteger</a>(string $name)
         
                                             <p><p>Define a tiny integer column.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -373,14 +371,14 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_unsignedInteger">unsignedInteger</a>($name)
+                    <a href="#method_unsignedInteger">unsignedInteger</a>(string $name)
         
                                             <p><p>Define an unsigned integer column (MySQL only).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    void
                 </div>
                 <div class="col-md-8">
                     <a href="#method_update">update</a>()
@@ -393,7 +391,7 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_uuid">uuid</a>($name)
+                    <a href="#method_uuid">uuid</a>(string $name)
         
                                             <p><p>Define a UUID column (MySQL only).</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -406,9 +404,9 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 21</div>
+        <div class="location">at line 28</div>
         <code>                    
-    <strong>__construct</strong>($table)
+    <strong>__construct</strong>(string $table)
         </code>
     </h3>
     <div class="details">    
@@ -416,17 +414,16 @@
             
 
         <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
+                            <p><p>Constructor for Blueprint class.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$table</td>
-                <td></td>
+                <td><p>The name of the table to be modified.</p></td>
             </tr>
             </table>
 
@@ -440,9 +437,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_bigInteger">
-        <div class="location">at line 31</div>
+        <div class="location">at line 39</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>bigInteger</strong>($name)
+    <strong>bigInteger</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -457,9 +454,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as BIGINT.</p></td>
             </tr>
             </table>
 
@@ -482,9 +479,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_boolean">
-        <div class="location">at line 41</div>
+        <div class="location">at line 50</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>boolean</strong>($name)
+    <strong>boolean</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -499,9 +496,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as TINYINT(1).</p></td>
             </tr>
             </table>
 
@@ -524,8 +521,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_create">
-        <div class="location">at line 49</div>
-        <code>                    
+        <div class="location">at line 58</div>
+        <code>                    void
     <strong>create</strong>()
         </code>
     </h3>
@@ -538,6 +535,15 @@
         </div>
         <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -547,9 +553,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_date">
-        <div class="location">at line 97</div>
+        <div class="location">at line 117</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>date</strong>($name)
+    <strong>date</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -564,9 +570,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as DATE.</p></td>
             </tr>
             </table>
 
@@ -589,9 +595,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_dateTime">
-        <div class="location">at line 107</div>
+        <div class="location">at line 128</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>dateTime</strong>($name)
+    <strong>dateTime</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -606,9 +612,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as DATETIME.</p></td>
             </tr>
             </table>
 
@@ -631,9 +637,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_decimal">
-        <div class="location">at line 117</div>
+        <div class="location">at line 141</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>decimal</strong>($name, $precision = 8, $scale = 2)
+    <strong>decimal</strong>(string $name, int $precision = 8, int $scale = 2)
         </code>
     </h3>
     <div class="details">    
@@ -648,19 +654,19 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$precision</td>
-                <td></td>
+                <td><p>Total number of digits.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$scale</td>
-                <td></td>
+                <td><p>Number of digits after the decimal.</p></td>
             </tr>
             </table>
 
@@ -683,9 +689,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_default">
-        <div class="location">at line 122</div>
-        <code>                    
-    <strong>default</strong>($value)
+        <div class="location">at line 160</div>
+        <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+    <strong>default</strong>(<abbr title="Core\Lib\Database\string|int|float|bool">string|int|float|bool</abbr> $value)
         </code>
     </h3>
     <div class="details">    
@@ -693,22 +699,43 @@
             
 
         <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
+                            <p><p>Adds a DEFAULT value to the last defined column.</p></p>                <p><p>This method appends a default value to the most recently added column
+in the schema definition. It supports string, integer, float, and boolean
+values. If no columns have been added yet, it throws an exception.
+In SQLite, default values for certain column types like TEXT and BLOB are skipped.</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><abbr title="Core\Lib\Database\string|int|float|bool">string|int|float|bool</abbr></td>
                 <td>$value</td>
-                <td></td>
+                <td><p>The default value to assign to the last defined column.
+Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></td>
+            <td><p>Returns the current Blueprint instance for method chaining.</p></td>
+        </tr>
+    </table>
+
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/Exception">Exception</a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -717,7 +744,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_dropIfExists">
-        <div class="location">at line 152</div>
+        <div class="location">at line 190</div>
         <code>                    void
     <strong>dropIfExists</strong>(string $table)
         </code>
@@ -736,7 +763,7 @@
                     <tr>
                 <td>string</td>
                 <td>$table</td>
-                <td></td>
+                <td><p>The name of the table to drop if it exists.</p></td>
             </tr>
             </table>
 
@@ -759,9 +786,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_double">
-        <div class="location">at line 162</div>
+        <div class="location">at line 204</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>double</strong>($name, $precision = 16, $scale = 4)
+    <strong>double</strong>(string $name, int $precision = 16, int $scale = 4)
         </code>
     </h3>
     <div class="details">    
@@ -776,19 +803,19 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as DOUBLE.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$precision</td>
-                <td></td>
+                <td><p>Total number of digits.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$scale</td>
-                <td></td>
+                <td><p>Number of digits after the decimal.</p></td>
             </tr>
             </table>
 
@@ -811,9 +838,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_enum">
-        <div class="location">at line 172</div>
+        <div class="location">at line 216</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>enum</strong>($name, array $values)
+    <strong>enum</strong>(string $name, array $values)
         </code>
     </h3>
     <div class="details">    
@@ -828,14 +855,14 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the enum column.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$values</td>
-                <td></td>
+                <td><p>An array of allowed values for the ENUM.</p></td>
             </tr>
             </table>
 
@@ -858,9 +885,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_float">
-        <div class="location">at line 187</div>
+        <div class="location">at line 234</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>float</strong>($name, $precision = 8, $scale = 2)
+    <strong>float</strong>(string $name, int $precision = 8, int $scale = 2)
         </code>
     </h3>
     <div class="details">    
@@ -875,19 +902,19 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as FLOAT.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$precision</td>
-                <td></td>
+                <td><p>Total number of digits.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$scale</td>
-                <td></td>
+                <td><p>Number of digits after the decimal.</p></td>
             </tr>
             </table>
 
@@ -910,9 +937,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_foreign">
-        <div class="location">at line 195</div>
-        <code>                    
-    <strong>foreign</strong>($column, $references, $onTable, $onDelete = &#039;CASCADE&#039;, $onUpdate = &#039;CASCADE&#039;)
+        <div class="location">at line 248</div>
+        <code>                    void
+    <strong>foreign</strong>(string $column, string $references, string $onTable, string $onDelete = &#039;CASCADE&#039;, string $onUpdate = &#039;CASCADE&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -927,33 +954,42 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$column</td>
-                <td></td>
+                <td><p>The column name to add a foreign key constraint on.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$references</td>
-                <td></td>
+                <td><p>The column name in the foreign table being referenced.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$onTable</td>
-                <td></td>
+                <td><p>The name of the table being referenced.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$onDelete</td>
-                <td></td>
+                <td><p>Action on delete (e.g., CASCADE).</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$onUpdate</td>
-                <td></td>
+                <td><p>Action on update (e.g., CASCADE).</p></td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -963,7 +999,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_id">
-        <div class="location">at line 204</div>
+        <div class="location">at line 263</div>
         <code>                    
     <strong>id</strong>()
         </code>
@@ -986,9 +1022,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_index">
-        <div class="location">at line 212</div>
-        <code>                    
-    <strong>index</strong>($column)
+        <div class="location">at line 273</div>
+        <code>                    void
+    <strong>index</strong>(string $column)
         </code>
     </h3>
     <div class="details">    
@@ -1003,13 +1039,22 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$column</td>
-                <td></td>
+                <td><p>The column name to add an index on.</p></td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -1019,9 +1064,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_integer">
-        <div class="location">at line 221</div>
+        <div class="location">at line 283</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>integer</strong>($name)
+    <strong>integer</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1036,9 +1081,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as INT.</p></td>
             </tr>
             </table>
 
@@ -1061,9 +1106,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_mediumInteger">
-        <div class="location">at line 232</div>
+        <div class="location">at line 295</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>mediumInteger</strong>($name)
+    <strong>mediumInteger</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1078,9 +1123,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as MEDIUMINT.</p></td>
             </tr>
             </table>
 
@@ -1103,7 +1148,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_nullable">
-        <div class="location">at line 242</div>
+        <div class="location">at line 305</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>nullable</strong>()
         </code>
@@ -1135,9 +1180,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_smallInteger">
-        <div class="location">at line 255</div>
+        <div class="location">at line 319</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>smallInteger</strong>($name)
+    <strong>smallInteger</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1152,9 +1197,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as SMALLINT.</p></td>
             </tr>
             </table>
 
@@ -1177,7 +1222,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_softDeletes">
-        <div class="location">at line 265</div>
+        <div class="location">at line 329</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>softDeletes</strong>()
         </code>
@@ -1209,9 +1254,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_string">
-        <div class="location">at line 275</div>
+        <div class="location">at line 341</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>string</strong>($name, $length = 255)
+    <strong>string</strong>(string $name, int $length = 255)
         </code>
     </h3>
     <div class="details">    
@@ -1226,14 +1271,14 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>int</td>
                 <td>$length</td>
-                <td></td>
+                <td><p>The maximum length of the string column.</p></td>
             </tr>
             </table>
 
@@ -1256,9 +1301,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_text">
-        <div class="location">at line 286</div>
+        <div class="location">at line 353</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>text</strong>($name)
+    <strong>text</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1273,9 +1318,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as TEXT.</p></td>
             </tr>
             </table>
 
@@ -1298,9 +1343,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_time">
-        <div class="location">at line 296</div>
+        <div class="location">at line 364</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>time</strong>($name)
+    <strong>time</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1315,9 +1360,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as TIME.</p></td>
             </tr>
             </table>
 
@@ -1340,9 +1385,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_timestamp">
-        <div class="location">at line 306</div>
+        <div class="location">at line 375</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>timestamp</strong>($name)
+    <strong>timestamp</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1357,9 +1402,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as TIMESTAMP.</p></td>
             </tr>
             </table>
 
@@ -1382,8 +1427,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_timestamps">
-        <div class="location">at line 314</div>
-        <code>                    
+        <div class="location">at line 383</div>
+        <code>                    void
     <strong>timestamps</strong>()
         </code>
     </h3>
@@ -1396,6 +1441,15 @@
         </div>
         <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -1405,9 +1459,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_tinyInteger">
-        <div class="location">at line 324</div>
+        <div class="location">at line 394</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>tinyInteger</strong>($name)
+    <strong>tinyInteger</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1422,9 +1476,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as TINYINT or INTEGER depending on DB driver.</p></td>
             </tr>
             </table>
 
@@ -1447,9 +1501,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_unsignedInteger">
-        <div class="location">at line 335</div>
+        <div class="location">at line 406</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
-    <strong>unsignedInteger</strong>($name)
+    <strong>unsignedInteger</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1464,9 +1518,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as unsigned INT (MySQL) or INTEGER.</p></td>
             </tr>
             </table>
 
@@ -1489,8 +1543,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 347</div>
-        <code>                    
+        <div class="location">at line 418</div>
+        <code>                    void
     <strong>update</strong>()
         </code>
     </h3>
@@ -1503,6 +1557,15 @@
         </div>
         <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -1512,9 +1575,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_uuid">
-        <div class="location">at line 362</div>
+        <div class="location">at line 435</div>
         <code>                    
-    <strong>uuid</strong>($name)
+    <strong>uuid</strong>(string $name)
         </code>
     </h3>
     <div class="details">    
@@ -1529,9 +1592,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td><p>The name of the column to be created as UUID.</p></td>
             </tr>
             </table>
 
