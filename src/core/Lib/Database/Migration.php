@@ -45,7 +45,7 @@ abstract class Migration {
      * performing operations on correct table.
      * @return void
      */
-    public function aclSetup($table) {
+    public function aclSetup(string $table): void {
         $timestamp = DateTime::timeStamps();
         if($table == 'acl') {
             $this->_db->insert('acl', ['acl' => 'Admin', 'deleted' => 0, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
@@ -55,15 +55,20 @@ abstract class Migration {
     /**
      * Rollback the migration.
      */
-    abstract public function down();
+    abstract public function down(): void;
 
     /**
-     * Get a new instance of Blueprint for schema building.
+     * Returns a new Blueprint instance for the specified table.
      *
-     * @return \Core\Lib\Database\Blueprint
+     * This method is used to define or modify the structure of a database table.
+     * It provides an entry point to schema-building methods such as `id()`,
+     * `string()`, `timestamps()`, etc.
+     *
+     * @param string $table The name of the table to build or modify.
+     * @return Blueprint An instance of the Blueprint class tied to the given table.
      */
-    protected function schema() {
-        return new \Core\Lib\Database\Blueprint($this->_db);
+    protected function schema(string $table): Blueprint {
+        return new Blueprint($table);
     }
 
     /**

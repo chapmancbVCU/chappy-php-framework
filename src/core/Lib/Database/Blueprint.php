@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Database;
 
 use Core\DB;
@@ -19,7 +20,7 @@ class Blueprint {
     protected $indexes = [];
     protected $table;
 
-    public function __construct($table) {
+    public function __construct(string $table) {
         $this->table = $table;
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
@@ -29,7 +30,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function bigInteger($name): Blueprint {
+    public function bigInteger(string $name): Blueprint {
         $this->columns[] = "{$name} BIGINT";
         return $this;
     }
@@ -39,7 +40,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function boolean($name): Blueprint {
+    public function boolean(string $name): Blueprint {
         $this->columns[] = "{$name} TINYINT(1)";
         return $this;
     }
@@ -47,7 +48,7 @@ class Blueprint {
     /**
      * Create the table.
      */
-    public function create() {
+    public function create(): void {
         $columnsSql = implode(", ", $this->columns);
         
         if ($this->dbDriver === 'mysql') {
@@ -71,7 +72,7 @@ class Blueprint {
     /**
      * Create a foreign key (MySQL only).
      */
-    protected function createForeignKey($fk) {
+    protected function createForeignKey(string $fk): void {
         if ($this->dbDriver === 'mysql') {
             DB::getInstance()->query($fk);
             Tools::info("SUCCESS: Adding Foreign Key To {$this->table}");
@@ -81,7 +82,7 @@ class Blueprint {
     /**
      * Create an index.
      */
-    protected function createIndex($column) {
+    protected function createIndex(string $column): void {
         $sql = ($this->dbDriver === 'sqlite')
             ? "CREATE INDEX IF NOT EXISTS {$this->table}_{$column}_idx ON {$this->table} ({$column})"
             : "ALTER TABLE {$this->table} ADD INDEX ({$column})";
@@ -95,7 +96,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function date($name): Blueprint {
+    public function date(string $name): Blueprint {
         $this->columns[] = "{$name} DATE";
         return $this;
     }
@@ -105,7 +106,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function dateTime($name): Blueprint {
+    public function dateTime(string $name): Blueprint {
         $this->columns[] = "{$name} DATETIME";
         return $this;
     }
@@ -115,12 +116,12 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function decimal($name, $precision = 8, $scale = 2): Blueprint {
+    public function decimal(string $name, int $precision = 8, int $scale = 2): Blueprint {
         $this->columns[] = "{$name} DECIMAL({$precision}, {$scale})";
         return $this;
     }
 
-    public function default($value) {
+    public function default(string|int|float|bool $value): Blueprint {
         $lastIndex = count($this->columns) - 1;
 
         if ($lastIndex < 0) {
@@ -150,7 +151,7 @@ class Blueprint {
      * @param string $table
      * @return void
      */
-    public function dropIfExists($table) {
+    public function dropIfExists(string $table): void {
         $sql = "DROP TABLE IF EXISTS {$table}";
         DB::getInstance()->query($sql);
         Tools::info("SUCCESS: Dropping Table {$table}");
@@ -160,7 +161,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function double($name, $precision = 16, $scale = 4): Blueprint {
+    public function double(string $name, int $precision = 16, int $scale = 4): Blueprint {
         $this->columns[] = "{$name} DOUBLE({$precision}, {$scale})";
         return $this;
     }
@@ -170,7 +171,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function enum($name, array $values): Blueprint {
+    public function enum(string $name, array $values): Blueprint {
         if ($this->dbDriver === 'mysql') {
             $enumValues = implode("','", $values);
             $this->columns[] = "{$name} ENUM('{$enumValues}')";
@@ -185,7 +186,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function float($name, $precision = 8, $scale = 2): Blueprint {
+    public function float(string $name, int $precision = 8, int $scale = 2): Blueprint {
         $this->columns[] = "{$name} FLOAT({$precision}, {$scale})";
         return $this;
     }
@@ -193,7 +194,13 @@ class Blueprint {
     /**
      * Define a foreign key (MySQL only).
      */
-    public function foreign($column, $references, $onTable, $onDelete = 'CASCADE', $onUpdate = 'CASCADE') {
+    public function foreign(
+        string $column, 
+        string $references, 
+        string $onTable, 
+        string $onDelete = 'CASCADE', 
+        string $onUpdate = 'CASCADE'
+    ): void {
         if ($this->dbDriver === 'mysql') {
             $this->foreignKeys[] = "ALTER TABLE {$this->table} ADD FOREIGN KEY ({$column}) REFERENCES {$onTable}({$references}) ON DELETE {$onDelete} ON UPDATE {$onUpdate}";
         }
@@ -210,7 +217,7 @@ class Blueprint {
     /**
      * Define an index.
      */
-    public function index($column) {
+    public function index(string $column): void {
         $this->indexes[] = $column;
     }
 
@@ -219,7 +226,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function integer($name): Blueprint {
+    public function integer(string $name): Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "INT";
         $this->columns[] = "{$name} {$type}";
         return $this;
@@ -230,7 +237,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function mediumInteger($name): Blueprint {
+    public function mediumInteger(string $name): Blueprint {
         $this->columns[] = "{$name} MEDIUMINT";
         return $this;
     }
@@ -253,7 +260,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function smallInteger($name): Blueprint {
+    public function smallInteger(string $name): Blueprint {
         $this->columns[] = "{$name} SMALLINT";
         return $this;
     }
@@ -273,7 +280,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function string($name, $length = 255): Blueprint {
+    public function string(string $name, int $length = 255): Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "TEXT" : "VARCHAR({$length})";
         $this->columns[] = "{$name} {$type}";
         return $this;
@@ -284,7 +291,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function text($name): Blueprint {
+    public function text(string $name): Blueprint {
         $this->columns[] = "{$name} TEXT";
         return $this;
     }
@@ -294,7 +301,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function time($name): Blueprint {
+    public function time(string $name): Blueprint {
         $this->columns[] = "{$name} TIME";
         return $this;
     }
@@ -304,7 +311,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function timestamp($name): Blueprint {
+    public function timestamp(string $name): Blueprint {
         $this->columns[] = "{$name} TIMESTAMP";
         return $this;
     }
@@ -312,7 +319,7 @@ class Blueprint {
     /**
      * Define timestamps (created_at and updated_at).
      */
-    public function timestamps() {
+    public function timestamps(): void {
         $this->columns[] = "created_at DATETIME";
         $this->columns[] = "updated_at DATETIME";
     }
@@ -322,7 +329,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function tinyInteger($name): Blueprint {
+    public function tinyInteger(string $name): Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "TINYINT";
         $this->columns[] = "{$name} {$type}";
         return $this;
@@ -333,7 +340,7 @@ class Blueprint {
      * 
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function unsignedInteger($name): Blueprint {
+    public function unsignedInteger(string $name): Blueprint {
         if ($this->dbDriver === 'mysql') {
             $this->columns[] = "{$name} INT UNSIGNED";
         } else {
@@ -345,7 +352,7 @@ class Blueprint {
     /**
      * Update an existing table.
      */
-    public function update() {
+    public function update(): void {
         foreach ($this->columns as $column) {
             $sql = "ALTER TABLE {$this->table} ADD COLUMN {$column}";
             DB::getInstance()->query($sql);
@@ -360,7 +367,7 @@ class Blueprint {
     /**
      * Define a UUID column (MySQL only).
      */
-    public function uuid($name) {
+    public function uuid(string $name) {
         if ($this->dbDriver === 'mysql') {
             $this->columns[] = "{$name} CHAR(36) NOT NULL";
         } else {
