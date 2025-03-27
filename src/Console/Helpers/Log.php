@@ -1,8 +1,6 @@
 <?php
+declare(strict_types=1);
 namespace Console\Helpers;
-
-use Symfony\Component\Console\Command\Command;
-
 /**
  * Supports ability to manage logs.
  */

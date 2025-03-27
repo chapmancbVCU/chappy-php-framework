@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Console\Helpers;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,7 +37,7 @@ class '.$testName.' extends TestCase {
      * @param OutputInterface $output The results of the test.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function runTest(InputInterface $input, OutputInterface $output) {
+    public static function runTest(InputInterface $input, OutputInterface $output): int {
         $testName = $input->getArgument('testname');
         $command = 'php vendor/bin/phpunit tests'.DS.$testName.'.php';
         $output->writeln(Tools::border());

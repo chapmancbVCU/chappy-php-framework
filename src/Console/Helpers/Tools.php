@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Console\Helpers;
 
 use Core\Lib\Utilities\Arr;
@@ -16,7 +17,7 @@ class Tools {
      *
      * @return string A dashed border.
      */
-    public static function border() {
+    public static function border(): string {
         return '--------------------------------------------------';
     }
 

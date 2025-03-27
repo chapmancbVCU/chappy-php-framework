@@ -2,8 +2,6 @@
 namespace Console\Helpers;
 
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
 /**
  * Supports ability to create views, layouts, components, and menu_acl 
  * json files.

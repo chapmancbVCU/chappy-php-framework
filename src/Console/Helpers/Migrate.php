@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace Console\Helpers;
 
 use PDO;
 use Core\DB;
-use PDOException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
