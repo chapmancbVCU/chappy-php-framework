@@ -493,17 +493,18 @@ class DB {
      */
     public function valueExistsInColumn(string $table, string $column, mixed $value): bool {
         $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-        
+    
         if ($dbDriver === 'mysql') {
             $condition = "JSON_CONTAINS({$column}, ?)";
+            $value = json_encode($value); // ✅ Fix: Ensure it's valid JSON
         } else {
             $condition = "{$column} LIKE ?";
             $value = '%"'.$value.'"%'; // Adjust value for SQLite string search
         }
-
+    
         $query = "SELECT COUNT(*) as count FROM {$table} WHERE {$condition}";
         $result = $this->query($query, [$value])->first();
-
+    
         return $result && isset($result->count) && $result->count > 0;
     }
 
