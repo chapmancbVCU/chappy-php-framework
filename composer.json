@@ -31,9 +31,7 @@
       "smknstd/fakerphp-picsum-images": "^1.0",
       "ramsey/uuid": "^4.7",
       "doctrine/inflector": "^2.0",
-        "tinymce/tinymce": "^7.7"
-    },
-    "require-dev": {
+      "tinymce/tinymce": "^7.7",
       "phpunit/phpunit": "^11.3"
     },
     "scripts": {
