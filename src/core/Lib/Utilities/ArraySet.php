@@ -388,14 +388,14 @@ class ArraySet
     /**
      * Check if a key exists in the array.
      *
-     * @param string $key The key to check.
-     * @return self
+     * @param string|int $key The key to check (can be a string or integer).
+     * @return self Returns the current ArraySet instance.
      */
-    public function has(string $key): self
-    {
-        $this->lastResult = array_key_exists($key, $this->items);
-        return $this;
-    }
+    public function has(string|int $key): self
+{
+    $this->lastResult = array_key_exists($key, $this->items);
+    return $this;
+}
 
     /**
      * Determine if at least one of the given keys exists in the array.
