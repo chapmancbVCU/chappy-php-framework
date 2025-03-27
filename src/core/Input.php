@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace Core;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
-use Core\{FormHelper, Helper, Router};
+use Core\{FormHelper, Router};
 
 /**
  * Input class handles requests to the server.
@@ -28,7 +29,7 @@ class Input {
      * @return array|string An array associated with a POST or GET request or 
      * an encoded HTML string.
      */
-    public function get($input = false) {
+    public function get(string|null $input = null): array|string {
         if (!$input) {
             // Return entire request array and sanitize it
             $data = [];
