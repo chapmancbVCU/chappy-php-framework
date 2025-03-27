@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core;
 use Exception;
 use Core\Session;
@@ -19,11 +20,11 @@ class Router {
      * 
      * @param string $value item in acl that will be used to create a 
      * link.  
-     * @return bool|string False if the user does not have access to a 
+     * @return false|string False if the user does not have access to a 
      * controller or action.  Otherwise we return the value so we can create 
      * a link.
      */
-    private static function get_link(string $value) {
+    private static function get_link(string $value): string|false {
         // Check if external link just return it.
         if(preg_match('/https?:\/\//', $value) == 1) {
             return $value;

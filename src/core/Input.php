@@ -24,10 +24,8 @@ class Input {
     /**
      * Supports operations related to handling POST and GET requests.
      *
-     * @param mixed $input Values from POST and GET requests.  The default 
-     * value is false.
-     * @return array|string An array associated with a POST or GET request or 
-     * an encoded HTML string.
+     * @param string|null $input Field name from POST/GET request, or null to get all
+     * @return array|string Sanitized input as array or string
      */
     public function get(string|null $input = null): array|string {
         if (!$input) {
