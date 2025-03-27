@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
@@ -18,7 +19,7 @@ class Helper {
    * @return string|false Returns the contents of the active output buffer on 
    * success or false on failure.
    */
-  public static function buildMenuListItems($menu,$dropdownClass=""){
+  public static function buildMenuListItems(array $menu, string $dropdownClass=""): string|false {
     ob_start();
     $currentPage = self::currentPage();
     foreach($menu as $key => $val):
@@ -81,13 +82,14 @@ class Helper {
   /**
    * Retrieves URL user's current profile image.
    * 
-   * @return bool|array The associative array for the profile image's 
+   * @return array|false|null The associative array for the profile image's 
    * record.
    */
-  public static function getProfileImage() {
+  public static function getProfileImage(): array|false|null {
     $user = Users::currentUser();
     if($user) {
       return ProfileImages::findCurrentProfileImage($user->id);
     }
+    return null;
   }
 }
