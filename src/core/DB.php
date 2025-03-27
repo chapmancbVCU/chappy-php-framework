@@ -61,7 +61,7 @@ class DB {
      * to construct join query.  Default value is an empty array.
      * @return string The join component of a query.
      */
-    protected function _buildJoin($join=[]) {
+    protected function _buildJoin(array $join=[]): string {
         $table = $join[0];
         $condition = $join[1];
         $alias = $join[2];
@@ -75,7 +75,7 @@ class DB {
      *
      * @return int The number of results found in an SQL query.
      */
-    public function count() {
+    public function count(): int {
         return $this->_count;
     }
 
@@ -92,7 +92,7 @@ class DB {
      * @return bool True if delete operation is successful.  Otherwise, we 
      * return false.
      */
-    public function delete($table, $id) {
+    public function delete(string $table, int $id): bool {
         $sql = "DELETE FROM {$table} WHERE id = ?";
         return !$this->query($sql, [$id])->error();
     }
@@ -102,7 +102,7 @@ class DB {
      *
      * @return bool The value for the $_error flag.
      */
-    public function error() {
+    public function error(): bool {
         return $this->_error;
     }
 
@@ -128,7 +128,7 @@ class DB {
      * name of the class we will build based on the name of a model.
      * @return bool|array An array of object returned from an SQL query.
      */
-    public function find($table, $params = [], $class = false) {
+    public function find(string $table, array $params = [], bool|string $class = false): bool|array {
         if($this->_read($table, $params, $class)) {
             return $this->results();
         }
@@ -149,7 +149,7 @@ class DB {
      * @return bool|array An associative array of results returned from an SQL 
      * query.
      */
-    public function findFirst($table, $params = [], $class = false) {
+    public function findFirst(string $table, array $params = [], bool|string $class = false): bool|array {
         if($this->_read($table, $params, $class)) {
             return $this->first();
         }
@@ -166,7 +166,7 @@ class DB {
      * join, order, and sort.  The default value is an empty array.
      * @return int $count The number of records in a table.
      */
-    public function findTotal($table, $params=[]) {
+    public function findTotal(string $table, array $params=[]): int {
         $count = 0;
         if($this->_read($table, $params, false, true)) {
             $count = $this->first()->count;
@@ -180,7 +180,7 @@ class DB {
      * @return array|object An associative array that is the first object 
      * in a _result.
      */
-    public function first() {
+    public function first(): array|object {
         return (!empty($this->_result)) ? $this->_result[0] : [];
     }
 
@@ -192,7 +192,7 @@ class DB {
      * @return array An array of objects where each one represents a column 
      * from a database table.
      */
-    public function getColumns($table) {
+    public function getColumns($table): array {
         $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         if ($dbDriver === 'sqlite') {
@@ -208,7 +208,7 @@ class DB {
      *
      * @return self The instance of this class.
      */
-    public static function getInstance() {
+    public static function getInstance(): self {
         if(!isset(self::$_instance)) {
             self::$_instance = new self();
         }
@@ -242,7 +242,7 @@ class DB {
      * set to a particular field.  The default value is an empty array.
      * @return bool Report whether or not the operation was successful.
      */
-    public function insert($table, $fields = []) {
+    public function insert(string $table, array $fields = []): bool {
         if (empty($fields)) {
             Logger::log("Attempted to insert empty data into {$table}", 'error');
             return false;
@@ -270,9 +270,9 @@ class DB {
     /**
      * The primary key ID of the last insert operation.
      *
-     * @return int The primary key ID from the last insert operation.
+     * @return int|string|null The primary key ID from the last insert operation.
      */
-    public function lastID() {
+    public function lastID(): int|string|null {
         return $this->_lastInsertID;
     }
 
@@ -290,7 +290,7 @@ class DB {
      * is not successful the $_error instance variable is set to true and is 
      * returned.
      */
-    public function query($sql, $params = [], $class = false) {
+    public function query(string $sql, array $params = [], bool|string $class = false): self {
     $this->_error = false;
     $startTime = microtime(true);
 
@@ -344,7 +344,7 @@ class DB {
      * operations.  Default value is false.
      * @return bool A true or false value depending on a successful operation.
      */
-    protected function _read($table, $params=[], $class=false, $count=false) {
+    protected function _read(string $table, array $params=[], bool|string $class = false, bool $count = false):bool {
         $columns = '*';
         $joins = "";
         $conditionString = '';
@@ -439,11 +439,11 @@ class DB {
      * @return array An array of objects that contain results of a database 
      * query.
      */
-    public function results() {
+    public function results(): array {
         return $this->_result;
     }
 
-    public function tableExists($table) {
+    public function tableExists(string $table): bool {
         if ($this->_dbDriver === 'sqlite') {
             $sql = "SELECT name FROM sqlite_master WHERE type='table' AND name=:table";
         } else {
@@ -473,7 +473,7 @@ class DB {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function update($table, $id, $fields = []) {
+    public function update(string $table, int $id, array $fields = []): bool {
         $setString = implode('=?, ', Arr::keys($fields)) . '=?';
         $values = (new ArraySet($fields))->values()->push($id)->all();
 
@@ -490,7 +490,7 @@ class DB {
      * @param mixed $value The value to search for
      * @return bool True if value exists, False otherwise
      */
-    public function valueExistsInColumn($table, $column, $value) {
+    public function valueExistsInColumn(string $table, string $column, mixed $value): bool {
         $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
         
         if ($dbDriver === 'mysql') {

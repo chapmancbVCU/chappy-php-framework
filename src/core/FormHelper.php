@@ -55,7 +55,7 @@ class FormHelper {
      * @return string An HTML button element with its label set and any other 
      * optional attributes set.
      */
-    public static function button($buttonText, $inputAttrs = []) {
+    public static function button(string $buttonText, array $inputAttrs = []): string {
         $inputString = self::stringifyAttrs($inputAttrs);
         return '<button type="button" '.$inputString.'>'.$buttonText.'</button>';
     }
@@ -78,7 +78,7 @@ class FormHelper {
      * @return string An HTML div surrounding a button element with its label 
      * set and any other optional attributes set.
      */
-    public static function buttonBlock($buttonText, $inputAttrs = [], $divAttrs = []) {
+    public static function buttonBlock(string $buttonText, array $inputAttrs = [], array $divAttrs = []): string {
         $divString = self::stringifyAttrs($divAttrs);
         $html = '<div'.$divString.'>';
         $html .= self::button($buttonText, $inputAttrs); 
@@ -117,14 +117,14 @@ class FormHelper {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type checkbox.
      */
-    public static function checkboxBlockLabelLeft($label, 
-        $name, 
-        $value = "",
-        $checked = false, 
-        $inputAttrs = [], 
-        $divAttrs = [],
-        $errors = [],
-        ){
+    public static function checkboxBlockLabelLeft(string $label, 
+        string $name, 
+        string $value = "",
+        bool $checked = false, 
+        array $inputAttrs = [], 
+        array $divAttrs = [],
+        array $errors = [],
+    ): string {
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
@@ -184,7 +184,7 @@ class FormHelper {
         array $inputAttrs = [], 
         array $divAttrs = [],
         array $errors = [],
-        ): string {
+    ): string {
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
@@ -272,7 +272,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param mixed $value The value we want to set.  We can use this to set 
+     * @param string $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
@@ -283,7 +283,14 @@ class FormHelper {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type email.
      */
-    public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
+    public static function emailBlock(
+        string $label, 
+        string $name, 
+        string $value = '', 
+        array $inputAttrs= [], 
+        array $divAttrs = [], 
+        array $errors = []
+    ): string {
 
         // Make sure placeholder is not an attribute.
         if(arr::exists($inputAttrs, 'placeholder')) {
@@ -308,7 +315,7 @@ class FormHelper {
      * @param string $name Used to search errors array for key/form field.
      * @return string The error message for a particular field.
      */
-    public static function errorMsg(array $errors, string $name) {
+    public static function errorMsg(array $errors, string $name): string {
         //$msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
         return (new ArraySet($errors))->get($name, "")->result();  
     }
@@ -395,7 +402,7 @@ class FormHelper {
         array $inputAttrs = [], 
         array $divAttrs = [],
         array $errors=[]
-        ): string {
+    ): string {
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
@@ -414,10 +421,10 @@ class FormHelper {
      * Generates options for select.
      *
      * @param array $options An array of options for the select.
-     * @param string $selectedValue The currently selected value.
+     * @param string|int|null $selectedValue The currently selected value.
      * @return void
      */
-    public static function optionsForSelect($options, $selectedValue){
+    public static function optionsForSelect(array $options, string|int|null $selectedValue): string {
         $html = "";
         foreach($options as $value => $display){
             $selStr = ($selectedValue == $value) ? ' selected="selected"' : '';
@@ -545,7 +552,15 @@ class FormHelper {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and option select element.
      */
-    public static function selectBlock($label, $name, $value, $options, $inputAttrs=[], $divAttrs=[], $errors=[]){
+    public static function selectBlock(
+        string $label, 
+        string $name, 
+        string|int|null $value, 
+        array $options, 
+        array $inputAttrs = [], 
+        array $divAttrs = [], array 
+        $errors = []
+    ): string{
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,' is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
@@ -591,7 +606,11 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string A surrounding div and the input element of type submit.
      */
-    public static function submitBlock($buttonText, $inputAttrs=[], $divAttrs=[]){
+    public static function submitBlock(
+        string $buttonText, 
+        array $inputAttrs = [], 
+        array $divAttrs = []
+    ): string {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $html = '<div'.$divString.'>';
@@ -690,7 +709,7 @@ class FormHelper {
         array $divAttrs = [], 
         string $args = "d",
         array $errors = []
-        ): string {
+    ): string {
 
         // Test if correct type is provided.
         if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
@@ -759,7 +778,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param mixed $value The value we want to set.  We can use this to set 
+     * @param string $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
@@ -770,7 +789,14 @@ class FormHelper {
      * @param array $errors The errors array.  Default value is an empty array.
      * @param string A surrounding div and the input element.
      */
-    public static function textareaBlock($label, $name, $value, $inputAttrs=[], $divAttrs=[], $errors=[]){
+    public static function textareaBlock(
+        string $label, 
+        string $name, 
+        string $value, 
+        array $inputAttrs=[], 
+        array $divAttrs=[], 
+        array $errors=[]
+    ): string {
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
