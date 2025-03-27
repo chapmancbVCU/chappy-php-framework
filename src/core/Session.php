@@ -80,15 +80,13 @@ class Session {
     }
 
     /**
-     * Sets value to $_SESSION name key.
+     * Sets a value in the $_SESSION superglobal array.
      *
-     * @param string $name The current user session name.
-     * @param string $value The id of the user associated with a particular 
-     * session.
-     * @return string Element in the $_SESSION superglobal array for 
-     * CURRENT_USER_SESSION_NAME set as id for current logged in user.
+     * @param string $name The session key name.
+     * @param mixed $value The value to store in the session (can be string, int, array, object, etc).
+     * @return mixed The value that was set in the session.
      */
-    public static function set(string $name, string $value): string {
+    public static function set(string $name, mixed $value): string {
         return $_SESSION[$name] = $value;
     }
 
