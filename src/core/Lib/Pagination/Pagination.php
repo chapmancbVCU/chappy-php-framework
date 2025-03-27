@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Pagination;
 
 /**
@@ -25,10 +26,10 @@ class Pagination {
     /**
      * Retrieves current page from GET request.
      *
-     * @param mixed $request The request.
+     * @param object $request The request object.
      * @return int The current page number.
      */
-    public static function currentPage(mixed $request): int {
+    public static function currentPage(object $request): int {
         $page = $request->get('page');
         return $page != null ? $page : 1;
     }
@@ -36,8 +37,6 @@ class Pagination {
     /**
      * Calculates offset needed for pagination.
      *
-     * @param int $page The current page.
-     * @param int $limit The maximum allowed number of items for a page.
      * @return int The offset
      */
     public function offset(): int {
@@ -128,6 +127,6 @@ class Pagination {
      * @return int The total number of pages to be manged by pagination.
      */
     public function totalPages(): int {
-        return ceil($this->totalItems / $this->limit);
+        return (int)ceil($this->totalItems / $this->limit);
     }
 }
