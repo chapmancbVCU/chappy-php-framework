@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Database;
 
 use Core\DB;
@@ -7,8 +8,12 @@ use Console\Helpers\Tools;
  * Abstract class for seeders.
  */
 abstract class Seeder {
-    // Instance variables
-    protected $_db;
+    /**
+     * Instance of the database connection.
+     *
+     * @var DB
+     */
+    protected DB $_db;
 
 
     /**
@@ -23,7 +28,7 @@ abstract class Seeder {
      *
      * @return void
      */
-    abstract public function run();
+    abstract public function run(): void;
 
     /**
      * Call another seeder class.

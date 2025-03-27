@@ -19,8 +19,6 @@ class Migrate {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function dropAllTables(): int {
-        $isCli = php_sapi_name() == 'cli';
-    
         $db = DB::getInstance();
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
     
@@ -55,7 +53,7 @@ class Migrate {
     
             if (class_exists($klassNamespace)) {
                 Tools::info("Dropping table from: {$klassNamespace}", 'debug', 'yellow');
-                $mig = new $klassNamespace($isCli);
+                $mig = new $klassNamespace();
                 $mig->down(); // Drop table
             } else {
                 Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
@@ -99,8 +97,6 @@ class Migrate {
      * @return integer A value that indicates success, invalid, or failure.
      */
     public static function migrate(): int {
-        $isCli = php_sapi_name() == 'cli';
-
         $db = DB::getInstance();
         if ($db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
             $db->query("PRAGMA foreign_keys=ON;");
@@ -136,7 +132,7 @@ class Migrate {
                 $klassNamespace = 'Database\\Migrations\\' . $klass;
                 
                 if (class_exists($klassNamespace)) {
-                    $mig = new $klassNamespace($isCli);
+                    $mig = new $klassNamespace();
                     $mig->up();  // Run migration
                     $db->insert('migrations', ['migration' => $klass]); // Store migration history
                     $migrationsRun[] = $klassNamespace;

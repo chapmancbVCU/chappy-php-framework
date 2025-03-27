@@ -1,31 +1,41 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Database;
 use Core\Lib\Utilities\DateTime;
-use Core\{DB, Helper};
-use Console\Helpers\Tools;
+use Core\DB;
 
 /**
  * Supports database migration operations.
  */
 abstract class Migration {
-    protected $_db;
-    protected $_columnTypesMap = [
+    /**
+     * Database instance.
+     *
+     * @var DB
+     */
+    protected DB $_db;
+
+    /**
+     * Maps column types to blueprint methods.
+     *
+     * @var array<string, string>
+     */
+    protected array $_columnTypesMap = [
         'int' => '_intColumn', 'integer' => '_intColumn', 'tinyint' => '_tinyintColumn', 'smallint' => '_smallintColumn',
         'mediumint' => '_mediumintColumn', 'bigint' => '_bigintColumn', 'numeric' => '_decimalColumn', 'decimal' => '_decimalColumn',
         'double' => '_doubleColumn', 'float' => '_floatColumn', 'bit' => '_bitColumn', 'date' => '_dateColumn',
         'datetime' => '_datetimeColumn', 'timestamp' => '_timestampColumn', 'time' => '_timeColumn', 'year' => '_yearColumn',
         'char' => '_charColumn', 'varchar' => '_varcharColumn', 'text' => '_textColumn'
     ];
-    protected $_isCli;
+
 
     /**
      * Creates instance of Migration class.
      * 
      * @param string $isCli Contains value for interface type.
      */
-    public function __construct($isCli) {
+    public function __construct() {
         $this->_db = DB::getInstance();
-        $this->_isCli = $isCli;
     }
 
     /**

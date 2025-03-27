@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Database;
 
 use Core\DB;
@@ -27,7 +28,7 @@ class Schema {
      * @param string $table The name of the table.
      * @return void
      */
-    public static function dropIfExists($table): void {
+    public static function dropIfExists(string $table): void {
         $sql = "DROP TABLE IF EXISTS {$table}";
         DB::getInstance()->query($sql);
     }
@@ -39,7 +40,7 @@ class Schema {
      * @param callable $callback The callback function.
      * @return void
      */
-    public static function table($table, callable $callback) {
+    public static function table(string $table, callable $callback): void {
         $blueprint = new Blueprint($table);
         $callback($blueprint);
         $blueprint->update();

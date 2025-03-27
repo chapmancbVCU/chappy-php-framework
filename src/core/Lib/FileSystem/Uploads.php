@@ -1,7 +1,7 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\FileSystem;
 use Core\Model;
-use Core\Helper;
 use Core\Lib\Logging\Logger;
 use InvalidArgumentException;
 /**

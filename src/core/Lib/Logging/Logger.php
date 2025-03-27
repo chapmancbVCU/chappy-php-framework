@@ -1,6 +1,6 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Logging;
-use Core\Helper;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
 /**
