@@ -34,7 +34,7 @@ class Env{
             $line = trim($line);
 
             // Skip empty lines and comments
-            if ($line === '' || Str::endsWith($line, '#')) {
+            if ($line === '' || Str::startsWith($line, '#')) {
                 continue;
             }
 
