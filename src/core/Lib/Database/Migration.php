@@ -74,5 +74,5 @@ abstract class Migration {
     /**
      * Execute the migration.
      */
-    abstract public function up();
+    abstract public function up(): void;
 }

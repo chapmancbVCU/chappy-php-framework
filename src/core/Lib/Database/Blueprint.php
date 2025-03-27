@@ -20,6 +20,11 @@ class Blueprint {
     protected $indexes = [];
     protected $table;
 
+    /**
+     * Constructor for Blueprint class.
+     *
+     * @param string $table The name of the table to be modified.
+     */
     public function __construct(string $table) {
         $this->table = $table;
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
@@ -28,6 +33,7 @@ class Blueprint {
     /**
      * Define a big integer column.
      * 
+     * @param string $name The name of the column to be created as BIGINT.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function bigInteger(string $name): Blueprint {
@@ -38,6 +44,7 @@ class Blueprint {
     /**
      * Define a boolean column.
      * 
+     * @param string $name The name of the column to be created as TINYINT(1).
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function boolean(string $name): Blueprint {
@@ -71,6 +78,11 @@ class Blueprint {
 
     /**
      * Create a foreign key (MySQL only).
+     *
+     * @param string $fk The full SQL statement to create the foreign key constraint.
+     *                   This should be a valid `ALTER TABLE` query for adding a foreign key.
+     *                   Example: "ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)"
+     * @return void
      */
     protected function createForeignKey(string $fk): void {
         if ($this->dbDriver === 'mysql') {
@@ -80,8 +92,13 @@ class Blueprint {
     }
 
     /**
-     * Create an index.
-     */
+    * Create an index on a specific column.
+    *
+    * @param string $column The name of the column to create an index for.
+    *                       Index will be named as `{table}_{column}_idx` in SQLite,
+    *                       and will be created via `ALTER TABLE` in MySQL.
+    * @return void
+    */
     protected function createIndex(string $column): void {
         $sql = ($this->dbDriver === 'sqlite')
             ? "CREATE INDEX IF NOT EXISTS {$this->table}_{$column}_idx ON {$this->table} ({$column})"
@@ -94,6 +111,7 @@ class Blueprint {
     /**
      * Define a date column.
      * 
+     * @param string $name The name of the column to be created as DATE.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function date(string $name): Blueprint {
@@ -104,6 +122,7 @@ class Blueprint {
     /**
      * Define a datetime column.
      * 
+     * @param string $name The name of the column to be created as DATETIME.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function dateTime(string $name): Blueprint {
@@ -114,6 +133,9 @@ class Blueprint {
     /**
      * Define a decimal column.
      * 
+     * @param string $name The name of the column.
+     * @param int $precision Total number of digits.
+     * @param int $scale Number of digits after the decimal.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function decimal(string $name, int $precision = 8, int $scale = 2): Blueprint {
@@ -121,6 +143,20 @@ class Blueprint {
         return $this;
     }
 
+    /**
+     * Adds a DEFAULT value to the last defined column.
+     *
+     * This method appends a default value to the most recently added column
+     * in the schema definition. It supports string, integer, float, and boolean
+     * values. If no columns have been added yet, it throws an exception.
+     * In SQLite, default values for certain column types like TEXT and BLOB are skipped.
+     *
+     * @param string|int|float|bool $value The default value to assign to the last defined column.
+     *                                     Strings will be wrapped in quotes. Other types will be cast directly.
+     * @return Blueprint Returns the current Blueprint instance for method chaining.
+     *
+     * @throws Exception If no column has been defined yet or the column type cannot be determined.
+     */
     public function default(string|int|float|bool $value): Blueprint {
         $lastIndex = count($this->columns) - 1;
 
@@ -148,7 +184,7 @@ class Blueprint {
     /**
      * Drops a table if it exists.
      *
-     * @param string $table
+     * @param string $table The name of the table to drop if it exists.
      * @return void
      */
     public function dropIfExists(string $table): void {
@@ -156,9 +192,13 @@ class Blueprint {
         DB::getInstance()->query($sql);
         Tools::info("SUCCESS: Dropping Table {$table}");
     }
+
     /**
      * Define a double column.
      * 
+     * @param string $name The name of the column to be created as DOUBLE.
+     * @param int $precision Total number of digits.
+     * @param int $scale Number of digits after the decimal.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function double(string $name, int $precision = 16, int $scale = 4): Blueprint {
@@ -169,6 +209,8 @@ class Blueprint {
     /**
      * Define an enum column (MySQL only).
      * 
+     * @param string $name The name of the enum column.
+     * @param array $values An array of allowed values for the ENUM.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function enum(string $name, array $values): Blueprint {
@@ -184,6 +226,9 @@ class Blueprint {
     /**
      * Define a float column.
      * 
+     * @param string $name The name of the column to be created as FLOAT.
+     * @param int $precision Total number of digits.
+     * @param int $scale Number of digits after the decimal.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function float(string $name, int $precision = 8, int $scale = 2): Blueprint {
@@ -193,6 +238,12 @@ class Blueprint {
 
     /**
      * Define a foreign key (MySQL only).
+     * 
+     * @param string $column The column name to add a foreign key constraint on.
+     * @param string $references The column name in the foreign table being referenced.
+     * @param string $onTable The name of the table being referenced.
+     * @param string $onDelete Action on delete (e.g., CASCADE).
+     * @param string $onUpdate Action on update (e.g., CASCADE).
      */
     public function foreign(
         string $column, 
@@ -216,6 +267,8 @@ class Blueprint {
 
     /**
      * Define an index.
+     * 
+     * @param string $column The column name to add an index on.
      */
     public function index(string $column): void {
         $this->indexes[] = $column;
@@ -224,6 +277,7 @@ class Blueprint {
     /**
      * Define an integer column.
      * 
+     * @param string $name The name of the column to be created as INT.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function integer(string $name): Blueprint {
@@ -235,6 +289,7 @@ class Blueprint {
     /**
      * Define a medium integer column.
      * 
+     * @param string $name The name of the column to be created as MEDIUMINT.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function mediumInteger(string $name): Blueprint {
@@ -258,6 +313,7 @@ class Blueprint {
     /**
      * Define a small integer column.
      * 
+     * @param string $name The name of the column to be created as SMALLINT.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function smallInteger(string $name): Blueprint {
@@ -278,6 +334,8 @@ class Blueprint {
     /**
      * Define a string column.
      * 
+     * @param string $name The name of the column.
+     * @param int $length The maximum length of the string column.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function string(string $name, int $length = 255): Blueprint {
@@ -289,6 +347,7 @@ class Blueprint {
     /**
      * Define a text column.
      * 
+     * @param string $name The name of the column to be created as TEXT.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function text(string $name): Blueprint {
@@ -299,6 +358,7 @@ class Blueprint {
     /**
      * Define a time column.
      * 
+     * @param string $name The name of the column to be created as TIME.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function time(string $name): Blueprint {
@@ -309,6 +369,7 @@ class Blueprint {
     /**
      * Define a timestamp column.
      * 
+     * @param string $name The name of the column to be created as TIMESTAMP.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function timestamp(string $name): Blueprint {
@@ -327,6 +388,7 @@ class Blueprint {
     /**
      * Define a tiny integer column.
      * 
+     * @param string $name The name of the column to be created as TINYINT or INTEGER depending on DB driver.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function tinyInteger(string $name): Blueprint {
@@ -338,6 +400,7 @@ class Blueprint {
     /**
      * Define an unsigned integer column (MySQL only).
      * 
+     * @param string $name The name of the column to be created as unsigned INT (MySQL) or INTEGER.
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function unsignedInteger(string $name): Blueprint {
@@ -366,6 +429,8 @@ class Blueprint {
 
     /**
      * Define a UUID column (MySQL only).
+     * 
+     * @param string $name The name of the column to be created as UUID.
      */
     public function uuid(string $name) {
         if ($this->dbDriver === 'mysql') {
