@@ -191,6 +191,7 @@ use Core\Lib\Utilities\Config;
         return '<?php
 use Core\Router;
 use Core\Helper;
+use Core\Lib\Utilities\Env;
 $profileImage = Helper::getProfileImage();
 $menu = Router::getMenu(\''.Str::lcfirst($menuName).'_menu_acl\');
 $userMenu = Router::getMenu(\'user_menu\');
