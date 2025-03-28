@@ -42,9 +42,10 @@ class View {
      * @return string The contents of the layout.
      */
     public static function layout(string $layoutName): string {
-        return '<?php use Core\Session; ?>
+        return '<?php use Core\Session;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
