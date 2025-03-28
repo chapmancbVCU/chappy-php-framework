@@ -23,13 +23,13 @@ use Core\Lib\Utilities\Str;
 /**
  * 
  */
-class '.ucfirst($modelName).' extends Model {
+class '.$modelName.' extends Model {
 
     // Fields you don\'t want saved on form submit
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static $_table = \''.Str::lcfirst($modelName).'\';
+    protected static $_table = \''.$modelName.'\';
 
     // Soft delete
     // protected static $_softDelete = true;

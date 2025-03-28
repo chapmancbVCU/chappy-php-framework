@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\Model;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,7 +36,7 @@ class GenerateModelCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $modelName = $input->getArgument('modelname');
+        $modelName = Str::lcfirst($input->getArgument('modelname'));
 
         // Generate the Model class
         return Tools::writeFile(
