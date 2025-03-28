@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
+use Core\Lib\Utilities\Str;
 
 /**
  * Helper class for model related console commands.
@@ -26,7 +27,7 @@ class '.$modelName.' extends Model {
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static $_table = \''.$modelName.'\';
+    protected static $_table = \''.Str::lcfirst($modelName).'\';
 
     // Soft delete
     // protected static $_softDelete = true;
