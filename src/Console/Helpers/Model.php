@@ -18,7 +18,7 @@ namespace App\Models;
 use Core\Model;
 
 /**
- * 
+ * Implements features of the '.$modelName.' class.
  */
 class '.$modelName.' extends Model {
 
