@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
-use Core\Lib\Utilities\Str;
 
 /**
  * Helper class for model related console commands.
@@ -17,8 +16,6 @@ class Model {
         return '<?php
 namespace App\Models;
 use Core\Model;
-use Core\Lib\Utilities\Str;
-
 
 /**
  * 
