@@ -180,7 +180,7 @@ class '.$fileName.' extends Migration {
         Schema::create(\''.$tableName.'\', function (Blueprint $table) {
             $table->id();
 
-      });
+        });
     }
 
     /**
