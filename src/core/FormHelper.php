@@ -317,7 +317,6 @@ class FormHelper {
      * @return string The error message for a particular field.
      */
     public static function errorMsg(array $errors, string $name): string {
-        //$msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
         return (new ArraySet($errors))->get($name, "")->result();  
     }
 
@@ -460,10 +459,6 @@ class FormHelper {
      * @return array An array of sanitized values from the submitted form.
      */
     public static function posted_values(array $post): array {
-        // $clean_array = [];
-        // foreach($post as $key => $value) {
-        //     $clean_array[$key] = self::sanitize($value);
-        // }
         return (new ArraySet($post))->map(fn($value) => self::sanitize($value))->all();
     }
 
