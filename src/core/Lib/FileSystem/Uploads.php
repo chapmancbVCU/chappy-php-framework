@@ -170,7 +170,7 @@ class Uploads {
      */
     public static function restructureFiles(array $files, string $mode = self::SINGLE) {
         $structured = [];
-        if($mode === 'multiple') {
+        if($mode === self::MULTIPLE && is_array($files['name'])) {
             foreach($files['tmp_name'] as $key => $val){
                 $structured[] = [
                     'tmp_name'=>$files['tmp_name'][$key],'name'=>$files['name'][$key],
