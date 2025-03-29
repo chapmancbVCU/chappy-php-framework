@@ -25,11 +25,11 @@ class Uploads {
      * types for a particular upload action.
      * @param int $maxAllowedSize Maximum allowable size for a particular 
      * file.  This can vary depending on requirements.
-     * @param bool $multiple A boolean flag to set whether or not we are 
-     * working with a single file upload or an array regarding form setup.
      * @param string $bucket The location where the files will be stored.
      * @param string $sizeMsg The message describing the maximum allowable 
      * size usually described as <size_as_an_int><bytes|mb|gb> (e.g.: 5mb).
+     * @param string $mode A constant to set whether or not we are 
+     * working with a single file upload or an array regarding form setup.
      */
     public function __construct(
         array|string $files, 
@@ -39,6 +39,10 @@ class Uploads {
         string $sizeMsg, 
         string $mode
     ) {
+        if (!in_array($mode, [self::SINGLE, self::MULTIPLE], true)) {
+            throw new InvalidArgumentException("Invalid upload mode: $mode");
+        }
+
         $this->_files = self::restructureFiles($files, $mode);
         $this->_allowedFileTypes = $fileTypes;
         $this->_maxAllowedSize = $maxAllowedSize;
@@ -160,31 +164,38 @@ class Uploads {
     }
 
     /**
-     * Restructures files input from post into an array that can be processed.
+     * Restructures $_FILES data based on mode.
      *
-     * @param array $files A single or an array of elements in the 
-     * $_FILES variable whose information will be restructured so we can 
-     * process.
-     * @param string $mode The mode for the upload.
-     * @return array $structured the restructured array.
+     * @param array $files The uploaded file(s).
+     * @param string $mode Upload mode: Uploads::SINGLE or Uploads::MULTIPLE.
+     * @return array Structured file array.
      */
-    public static function restructureFiles(array $files, string $mode = self::SINGLE) {
+    public static function restructureFiles(array $files, string $mode = self::SINGLE): array {
         $structured = [];
-        if($mode === self::MULTIPLE && is_array($files['name'])) {
-            foreach($files['tmp_name'] as $key => $val){
+
+        if ($mode === self::MULTIPLE) {
+            foreach ($files['tmp_name'] as $key => $val) {
                 $structured[] = [
-                    'tmp_name'=>$files['tmp_name'][$key],'name'=>$files['name'][$key],
-                    'size'=>$files['size'][$key],'error'=>$files['error'][$key],'type'=>$files['type'][$key]
+                    'tmp_name' => $files['tmp_name'][$key],
+                    'name'     => $files['name'][$key],
+                    'size'     => $files['size'][$key],
+                    'error'    => $files['error'][$key],
+                    'type'     => $files['type'][$key],
                 ];
             }
         } else {
             $structured[] = [
-                'tmp_name'=>$files['tmp_name'],'name'=>$files['name'],
-                'size'=>$files['size'],'error'=>$files['error'],'type'=>$files['type']
+                'tmp_name' => $files['tmp_name'],
+                'name'     => $files['name'],
+                'size'     => $files['size'],
+                'error'    => $files['error'],
+                'type'     => $files['type'],
             ];
         }
+
         return $structured;
     }
+
 
     /**
      * Performs validation tasks.
@@ -235,35 +246,35 @@ class Uploads {
      */
     protected function validateFileType(): void { 
         $reportTypes = [];
-
-        // Normalize allowed file types to MIME strings
+    
+        // Ensure allowed file types are mapped to their MIME types
         foreach ($this->_allowedFileTypes as $type) {
-            $reportTypes[] = is_int($type)
-                ? image_type_to_mime_type($type)
-                : $type;
+            if (is_int($type)) {
+                // Convert image type constant to MIME type if it's an integer (image type constant)
+                $reportTypes[] = image_type_to_mime_type($type);
+            } else {
+                // Otherwise, assume it's already a MIME type string
+                $reportTypes[] = $type;
+            }
         }
-
+    
         foreach ($this->_files as $file) {
             $filePath = $file['tmp_name'];
-            $fileName = is_string($file['name']) ? $file['name'] : 'Unknown File';
-
-            // Debug log to trace unexpected values
-            if (!is_string($file['name'])) {
-                Logger::log("validateFileType -> Unexpected non-string filename: " . print_r($file['name'], true), 'warning');
-            }
-
-            // Get MIME type of uploaded file
+            $fileName = $file['name'];
+    
+            // Get the MIME type of the file
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $mimeType = finfo_file($finfo, $filePath);
             finfo_close($finfo);
-
-            // Check against allowed types
+    
+            // Check if the file type is allowed
             if (!in_array($mimeType, $this->_allowedFileTypes, true)) {
                 $msg = "$fileName is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
                 $this->addErrorMessage($fileName, $msg);
             }
         }
     }
+    
 
     /**
      * Validates file size and sets error message if file is too large.
