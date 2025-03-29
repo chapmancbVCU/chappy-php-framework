@@ -123,6 +123,7 @@ class Uploads {
      * @param Model $model The associated with the view you are working with.  
      * May or may not be same as $uploadModel if $uploadModel has index 
      * id field associated with another model.
+     * @param string $name The name of the field for upload from form.
      * @param string $mode Use Uploads::SINGLE for single file uploads or 
      * Uploads::MULTIPLE for multiple file uploads.
      * @return Uploads|null Returns Uploads instance if valid, otherwise null.
@@ -132,7 +133,8 @@ class Uploads {
         string $uploadModel, 
         string $bucket, 
         string $sizeMsg, 
-        Model $model, 
+        Model $model,
+        string $name,
         string $mode = self::SINGLE
     ): ?self {
 
@@ -158,7 +160,7 @@ class Uploads {
 
         // Run validation and report if any errors.
         $uploadInstance->runValidation();
-        $uploadInstance->errorReporting($uploadInstance->validates(), $model, 'profileImage');
+        $uploadInstance->errorReporting($uploadInstance->validates(), $model, $name);
 
         return $uploadInstance;
     }
