@@ -36,7 +36,7 @@ class GenerateModelCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $modelName = Str::lcfirst($input->getArgument('modelname'));
+        $modelName = Str::ucfirst($input->getArgument('modelname'));
 
         // Generate the Model class
         return Tools::writeFile(
