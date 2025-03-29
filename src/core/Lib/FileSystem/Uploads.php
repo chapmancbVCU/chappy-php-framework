@@ -235,35 +235,35 @@ class Uploads {
      */
     protected function validateFileType(): void { 
         $reportTypes = [];
-    
-        // Ensure allowed file types are mapped to their MIME types
+
+        // Normalize allowed file types to MIME strings
         foreach ($this->_allowedFileTypes as $type) {
-            if (is_int($type)) {
-                // Convert image type constant to MIME type if it's an integer (image type constant)
-                $reportTypes[] = image_type_to_mime_type($type);
-            } else {
-                // Otherwise, assume it's already a MIME type string
-                $reportTypes[] = $type;
-            }
+            $reportTypes[] = is_int($type)
+                ? image_type_to_mime_type($type)
+                : $type;
         }
-    
+
         foreach ($this->_files as $file) {
             $filePath = $file['tmp_name'];
-            $fileName = $file['name'];
-    
-            // Get the MIME type of the file
+            $fileName = is_string($file['name']) ? $file['name'] : 'Unknown File';
+
+            // Debug log to trace unexpected values
+            if (!is_string($file['name'])) {
+                Logger::log("validateFileType -> Unexpected non-string filename: " . print_r($file['name'], true), 'warning');
+            }
+
+            // Get MIME type of uploaded file
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $mimeType = finfo_file($finfo, $filePath);
             finfo_close($finfo);
-    
-            // Check if the file type is allowed
+
+            // Check against allowed types
             if (!in_array($mimeType, $this->_allowedFileTypes, true)) {
                 $msg = "$fileName is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
                 $this->addErrorMessage($fileName, $msg);
             }
         }
     }
-    
 
     /**
      * Validates file size and sets error message if file is too large.
