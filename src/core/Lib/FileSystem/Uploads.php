@@ -117,7 +117,6 @@ class Uploads {
      * @param Model $model The associated with the view you are working with.  
      * May or may not be same as $uploadModel if $uploadModel has index 
      * id field associated with another model.
-     * @param string $name The name attribute associated with the file(s).
      * @param bool $multiple Whether the upload is multiple files.
      * @return Uploads|null Returns Uploads instance if valid, otherwise null.
      */
@@ -127,7 +126,6 @@ class Uploads {
         string $bucket, 
         string $sizeMsg, 
         Model $model, 
-        string $name, 
         bool $multiple = false
     ): ?self {
 
