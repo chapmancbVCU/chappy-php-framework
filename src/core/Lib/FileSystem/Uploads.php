@@ -249,20 +249,22 @@ class Uploads {
     protected function validateFileType(): void { 
         $reportTypes = [];
     
-        // Ensure allowed file types are mapped to their MIME types
+        // Normalize allowed file types to MIME strings
         foreach ($this->_allowedFileTypes as $type) {
-            if (is_int($type)) {
-                // Convert image type constant to MIME type if it's an integer (image type constant)
-                $reportTypes[] = image_type_to_mime_type($type);
-            } else {
-                // Otherwise, assume it's already a MIME type string
-                $reportTypes[] = $type;
-            }
+            $reportTypes[] = is_int($type)
+                ? image_type_to_mime_type($type)
+                : $type;
         }
     
         foreach ($this->_files as $file) {
             $filePath = $file['tmp_name'];
             $fileName = $file['name'];
+    
+            // ✅ Skip empty file slots (e.g. when no file was uploaded)
+            if (empty($filePath)) {
+                Logger::log("Skipping empty file slot for: $fileName", 'warning');
+                continue;
+            }
     
             // Get the MIME type of the file
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -277,6 +279,7 @@ class Uploads {
         }
     }
     
+    
 
     /**
      * Validates file size and sets error message if file is too large.
@@ -284,12 +287,19 @@ class Uploads {
      * @return void
      */
     protected function validateSize(): void {
-        foreach($this->_files as $file){
+        foreach ($this->_files as $file) {
             $name = $file['name'];
-            if($file['size'] > $this->_maxAllowedSize){
-                $msg = $name . " is over the max allowed size of " . $this->sizeMsg . ".";
-                $this->addErrorMessage($name,$msg);
+    
+            // ✅ Skip empty file slots
+            if (empty($file['tmp_name'])) {
+                continue;
+            }
+    
+            if ($file['size'] > $this->_maxAllowedSize) {
+                $msg = "$name is over the max allowed size of " . $this->sizeMsg . ".";
+                $this->addErrorMessage($name, $msg);
             }
         } 
     }
+    
 }
