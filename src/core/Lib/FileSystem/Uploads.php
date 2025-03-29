@@ -13,6 +13,8 @@ class Uploads {
     private array $_errors = [];
     protected array $_files= []; 
     protected int $_maxAllowedSize;
+    const MULTIPLE = 'multiple';
+    const SINGLE = 'single';
     protected string $sizeMsg;
 
     /**
@@ -35,9 +37,9 @@ class Uploads {
         int $maxAllowedSize, 
         string $bucket, 
         string $sizeMsg, 
-        bool $multiple
+        string $mode
     ) {
-        $this->_files = self::restructureFiles($files, $multiple);
+        $this->_files = self::restructureFiles($files, $mode);
         $this->_allowedFileTypes = $fileTypes;
         $this->_maxAllowedSize = $maxAllowedSize;
         $this->_bucket = $bucket;
@@ -117,7 +119,8 @@ class Uploads {
      * @param Model $model The associated with the view you are working with.  
      * May or may not be same as $uploadModel if $uploadModel has index 
      * id field associated with another model.
-     * @param bool $multiple Whether the upload is multiple files.
+     * @param string $mode Use Uploads::SINGLE for single file uploads or 
+     * Uploads::MULTIPLE for multiple file uploads.
      * @return Uploads|null Returns Uploads instance if valid, otherwise null.
      */
     public static function handleUpload(
@@ -126,7 +129,7 @@ class Uploads {
         string $bucket, 
         string $sizeMsg, 
         Model $model, 
-        bool $multiple = false
+        string $mode = self::SINGLE
     ): ?self {
 
         if (empty($file['tmp_name'])) {
@@ -146,7 +149,7 @@ class Uploads {
             $uploadModel::getMaxAllowedFileSize(), 
             $bucket, 
             $sizeMsg, 
-            $multiple
+            $mode
         );
 
         // Run validation and report if any errors.
@@ -162,11 +165,12 @@ class Uploads {
      * @param array $files A single or an array of elements in the 
      * $_FILES variable whose information will be restructured so we can 
      * process.
+     * @param string $mode The mode for the upload.
      * @return array $structured the restructured array.
      */
-    public static function restructureFiles(array $files, bool $multiple) {
+    public static function restructureFiles(array $files, string $mode = self::SINGLE) {
         $structured = [];
-        if($multiple) {
+        if($mode === 'multiple') {
             foreach($files['tmp_name'] as $key => $val){
                 $structured[] = [
                     'tmp_name'=>$files['tmp_name'][$key],'name'=>$files['name'][$key],
