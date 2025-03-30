@@ -34,14 +34,22 @@ class Helper {
               <?=$key?>
           </a>
           <ul class="dropdown-menu <?=$dropdownClass?>">
-              <?php foreach ($val as $k => $v): 
-                  $active = ($v == $currentPage) ? 'active' : ''; ?>
-                  <?php if ($k == 'separator'): ?>
-                      <li><hr class="dropdown-divider"></li>
-                  <?php else: ?>
-                      <li><a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a></li>
-                  <?php endif; ?>
-              <?php endforeach; ?>
+          <?php foreach ($val as $k => $v): 
+            $active = ($v == $currentPage) ? 'active' : ''; ?>
+            <?php if ($k == 'separator'): ?>
+              <li><hr class="dropdown-divider"></li>
+            <?php elseif ($v === '/auth/logout'): ?>
+              <li>
+                <form method="POST" action="/auth/logout" class="dropdown-item p-0 m-0">
+                  <?= \Core\FormHelper::csrfInput() ?>
+                  <button type="submit" class="btn btn-link dropdown-item w-100 text-start p-0 m-0"><?=$k?></button>
+                </form>
+              </li>
+            <?php else: ?>
+              <li><a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a></li>
+            <?php endif; ?>
+          <?php endforeach; ?>
+
           </ul>
         </li>
       <?php else:
