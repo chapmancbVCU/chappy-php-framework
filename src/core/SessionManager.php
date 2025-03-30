@@ -7,6 +7,7 @@ use Core\Session;
 use App\Models\Users;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
+use Core\FormHelper;
 /**
  * Supports session management
  */
@@ -31,5 +32,8 @@ class SessionManager {
                 }
             }
         }
+
+        // Generate csrf token.
+        FormHelper::generateToken();
     }
 }

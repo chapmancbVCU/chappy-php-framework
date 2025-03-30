@@ -230,8 +230,9 @@ class FormHelper {
      * set as the value.
      */
     public static function csrfInput(): string {
-        return '<input type="hidden" name="csrf_token" id="csrf_token" value="'.self::generateToken().'" />';
+        return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . self::generateToken() . '" />';
     }
+
 
     /**
      * Returns list of errors.
@@ -326,9 +327,11 @@ class FormHelper {
      * @return string The randomly generated token.
      */
     public static function generateToken(): string {
-        $token = base64_encode(openssl_random_pseudo_bytes(32));
-        Session::set('csrf_token', $token);
-        return $token;
+        if (!Session::exists('csrf_token')) {
+            $token = base64_encode(openssl_random_pseudo_bytes(32));
+            Session::set('csrf_token', $token);
+        }
+        return Session::get('csrf_token');
     }
 
     /**
