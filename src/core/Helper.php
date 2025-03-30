@@ -42,7 +42,7 @@ class Helper {
               <li>
                 <form method="POST" action="/auth/logout" class="dropdown-item p-0 m-0">
                   <?= \Core\FormHelper::csrfInput() ?>
-                  <button type="submit" class="btn btn-link dropdown-item w-100 text-start p-0 m-0"><?=$k?></button>
+                  <button type="submit" class="btn btn-link dropdown-item text-start w-100"><?=$k?></button>
                 </form>
               </li>
             <?php else: ?>
