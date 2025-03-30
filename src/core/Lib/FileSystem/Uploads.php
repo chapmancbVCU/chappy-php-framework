@@ -138,8 +138,8 @@ class Uploads {
         string $mode = self::SINGLE
     ): ?self {
 
-        if (empty($file['tmp_name'])) {
-            return null; // No file uploaded
+        if (empty($file['tmp_name']) || (is_array($file['tmp_name']) && empty($file['tmp_name'][0]))) {
+            return null;
         }
 
         // Ensure the model class exists and has required methods
