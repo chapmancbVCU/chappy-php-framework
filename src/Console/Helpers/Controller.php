@@ -27,7 +27,7 @@ class '.$controllerName.'Controller extends Controller {
      *
      * @return void
      */
-    public function onConstruct(): void{
+    public function onConstruct(): void {
         $this->view->setLayout(\''.$layout.'\');
     }
 }
@@ -55,7 +55,7 @@ class '.$controllerName.'Controller extends Controller {
      *
      * @return void
      */
-    public function onConstruct(): void{
+    public function onConstruct(): void {
         $this->view->setLayout(\''.$layout.'\');
     }
 
