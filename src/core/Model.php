@@ -412,17 +412,19 @@ class Model {
         if(static::$_softDelete){
             $dbDriver = static::getDb()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
             $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
-
+            $deletedCondition = static::$_table . ".deleted {$notEqualOperator} 1";
+        
             if(Arr::exists($params, 'conditions')){
                 if(Arr::isArray($params['conditions'])){
-                    $params['conditions'][] = "deleted {$notEqualOperator} 1";
+                    $params['conditions'][] = $deletedCondition;
                 } else {
-                    $params['conditions'] .= " AND deleted {$notEqualOperator} 1";
+                    $params['conditions'] .= " AND {$deletedCondition}";
                 }
             } else {
-                $params['conditions'] = "deleted {$notEqualOperator} 1";
+                $params['conditions'] = $deletedCondition;
             }
         }
+        
         return $params;
     }
 
