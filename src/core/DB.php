@@ -353,6 +353,7 @@ class DB {
         $order = '';
         $limit = '';
         $offset = '';
+        $group = '';
 
         // Detect SQLite
         $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
@@ -409,6 +410,10 @@ class DB {
             $bind = $params['bind'];
         }
 
+        if (Arr::exists($params, 'group')) {
+            $group = ' GROUP BY ' . $params['group'];
+        }
+
         // Order
         if(Arr::exists($params, 'order')) {
             $order = ' ORDER BY ' . $params['order'];
@@ -425,7 +430,7 @@ class DB {
         }
 
         $sql = ($count) ? "SELECT COUNT(*) as count " : "SELECT {$columns} ";
-        $sql .= "FROM {$table}{$joins}{$conditionString}{$order}{$limit}{$offset}";
+        $sql .= "FROM {$table}{$joins}{$conditionString}{$group}{$order}{$limit}{$offset}";
 
         if($this->query($sql, $bind, $class)) {
             if(!count($this->_result)) return false;
