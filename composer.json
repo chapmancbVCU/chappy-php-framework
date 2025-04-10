@@ -36,7 +36,7 @@
     },
     "scripts": {
       "build-docs": [
-        "@php src/api-docs/doctum.phar update src/api-docs/doctum.php"
+        "@php src/api-docs/doctum.phar update src/api-docs/doctum.php -v"
       ],
       "post-install-cmd": [
         "@php src/scripts/setup.php"

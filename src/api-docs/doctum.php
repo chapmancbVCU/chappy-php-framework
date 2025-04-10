@@ -1,19 +1,20 @@
 <?php
+
 use Doctum\Doctum;
 use Doctum\Parser\Filter\PublicFilter;
+use Doctum\Config;
 use Symfony\Component\Finder\Finder;
 
-// ROOT should point to the **project root**, not "src/api-docs"
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', dirname(__DIR__, 2)); // Move one level up, now correctly points to the project root
+define('ROOT', dirname(__DIR__, 2));
 
-// Use Symfony Finder to scan PHP files inside the correct "src" directory
+// Finder: Which files to document
 $iterator = Finder::create()
     ->files()
     ->name('*.php')
     ->in([
-        ROOT . DS . 'src',                // Main source directory
-    ]) // This now correctly points to "src" under the project root
+        ROOT . DS . 'src'
+    ])
     ->exclude([
         'vendor',
         'node_modules',
@@ -21,15 +22,19 @@ $iterator = Finder::create()
         'public',
         'logs',
         'cache',
-        'api-docs/views' // Ensures generated docs aren't scanned
+        'api-docs/views'
     ]);
 
-// Create Doctum instance
-return new Doctum($iterator, [
+// Create Config object first (preferred in latest Doctum)
+$config = new Config($iterator, [
     'title' => 'Chappy.php API',
-    'build_dir' => ROOT . DS . 'src' . DS . 'api-docs' . DS . 'views',  // Ensures docs are stored directly inside "views"
-    'cache_dir' => ROOT . DS . 'cache' . DS . 'doctum',  // Caching for faster generation
-    'default_opened_level' => 2,  // Sidebar depth
-    'filter' => new PublicFilter(),  // Only include public methods,
-    'base_url' => '/api-docs/',  // **Fixes broken links**
+    'build_dir' => ROOT . DS . 'src' . DS . 'api-docs' . DS . 'views',
+    'cache_dir' => ROOT . DS . 'cache' . DS . 'doctum',
+    'default_opened_level' => 2,
+    'base_url' => '/api-docs/',
 ]);
+
+$config->setFilter(new PublicFilter());
+
+// Return Doctum instance
+return new Doctum($config);
