@@ -247,6 +247,26 @@ class Model {
     }
 
     /**
+     * Performs a database query against a specified table using the same 
+     * query-building logic as the default find method.
+     *
+     * This method is useful when querying a different table than the one 
+     * defined by the model's static::$_table property (e.g., joining or 
+     * selecting from related tables).
+     *
+     * @param string $table The name of the table to query (can include alias, e.g. 'cart_items AS items').
+     * @param array $params The query parameters such as columns, joins, conditions, bind, order, limit, etc.
+     * @return array|bool An array of result objects if found, or false/empty array if no results.
+     */
+    public static function findByTable($table, array $params = []): array|bool {
+        $params = static::_fetchStyleParams($params);
+        $params = static::_softDeleteParams($params);
+        $resultsQuery = static::getDb()->find($table, $params, static::class);
+        if(!$resultsQuery) return [];
+        return $resultsQuery;
+    }
+
+    /**
      * Retrieves list of all records within a table related to a user.
      *
      * @param int $user_id The user ID.
