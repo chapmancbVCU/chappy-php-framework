@@ -335,7 +335,7 @@ class Model {
      * return false.
      */
     public function isNew(): bool {
-        return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
+        return !(isset($this->id) && is_int($this->id) && $this->id > 0);
     }
     
     /**
@@ -407,7 +407,7 @@ class Model {
             if($this->isNew()) {
                 $save = $this->insert($fields);
                 if($save){
-                    $this->id = static::getDb()->lastID();
+                    $this->id = (int) static::getDb()->lastID();
                 }
             } else {
                 $save = $this->update($fields);
