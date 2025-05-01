@@ -27,9 +27,9 @@ class Pagination {
      * Retrieves current page from GET request.
      *
      * @param object $request The request object.
-     * @return int The current page number.
+     * @return int|string The current page number.
      */
-    public static function currentPage(object $request): int {
+    public static function currentPage(object $request): int|string {
         $page = $request->get('page');
         return $page != null ? $page : 1;
     }
