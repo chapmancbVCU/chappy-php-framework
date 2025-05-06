@@ -131,7 +131,7 @@ class '.$modelName.' extends Model {
      * @return int $maxAllowedFileSize The max file size for an individual 
      * file.
      */
-    public static function getMaxAllowedFileSize(): array {
+    public static function getMaxAllowedFileSize(): int {
         return self::$maxAllowedFileSize;
     }
 
