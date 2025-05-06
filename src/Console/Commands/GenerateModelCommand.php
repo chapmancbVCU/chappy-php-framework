@@ -26,7 +26,7 @@ class GenerateModelCommand extends Command
             ->setDescription('Generates a new model file!')
             ->setHelp('Generates a new model file.')
             ->addArgument('modelname', InputArgument::REQUIRED, 'Pass the model\'s name.')
-            ->addOption('upload', null, InputOption::VALUE_OPTIONAL, 'Upload flag', '');
+            ->addOption('upload', null, InputOption::VALUE_NONE, 'Upload flag', '');
     }
  
     /**
