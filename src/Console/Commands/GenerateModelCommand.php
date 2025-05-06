@@ -5,6 +5,7 @@ use Console\Helpers\Model;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,7 +25,8 @@ class GenerateModelCommand extends Command
         $this->setName('make:model')
             ->setDescription('Generates a new model file!')
             ->setHelp('Generates a new model file.')
-            ->addArgument('modelname', InputArgument::REQUIRED, 'Pass the model\'s name.');
+            ->addArgument('modelname', InputArgument::REQUIRED, 'Pass the model\'s name.')
+            ->addOption('upload', null, InputOption::VALUE_OPTIONAL, 'Upload flag', '');
     }
  
     /**
@@ -37,12 +39,13 @@ class GenerateModelCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $modelName = Str::ucfirst($input->getArgument('modelname'));
+        $path = ROOT.DS.'app'.DS.'Models'.DS.$modelName.'.php';
 
-        // Generate the Model class
-        return Tools::writeFile(
-            ROOT.DS.'app'.DS.'Models'.DS.$modelName.'.php',
-            Model::makeModel($modelName),
-            'Model'
-        );
+        if($input->getOption('upload')) {
+            return Tools::writeFile($path, Model::makeUploadModel($modelName), 'Model');
+        } else {
+            return Tools::writeFile($path, Model::makeModel($modelName), 'Model');
+        }
+
     }
 }
