@@ -231,17 +231,17 @@ class DB {
      * or MariaDB.
      *
      * @param string $column Name of the column to format.
-     * @return string|boolean The properly formatted column if DB driver 
-     * is properly set or detected.  Otherwise, we return false.
+     * @return string|null The properly formatted column if DB driver 
+     * is properly set or detected.  Otherwise, we return null.
      */
-    public static function groupByColumn($column): string|bool {
+    public static function groupByColumn($column): string|null {
         $dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
         if($dbDriver) {
             return ($dbDriver === 'mysql' || $dbDriver === 'mariadb') ? 
-                `ANY_VALUE($column)` : $column;
+                "ANY_VALUE($column)" : $column;
         }
         Logger::log('The DB driver was not properly set.  GROUP BY formatting failed.  Please check DB_CONNECTION value in .env file', 'debug');
-        return false;
+        return null;
     }
 
     /**
