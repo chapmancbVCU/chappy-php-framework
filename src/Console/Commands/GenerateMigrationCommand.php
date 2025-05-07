@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,7 +23,8 @@ class GenerateMigrationCommand extends Command
         $this->setName('make:migration')
             ->setDescription('Generates a Database Migration!')
             ->setHelp('Generates a new Database Migration')
-            ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.');
+            ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.')
+            ->addOption('update', null, InputOption::VALUE_NONE, 'Update flag');
     }
  
     /**
@@ -34,6 +36,10 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Migrate::makeMigration($input);
+        if($input->getOption('update')) {
+            return Migrate::makeUpdateMigration($input);
+        } else {
+            return Migrate::makeMigration($input);
+        }
     }
 }

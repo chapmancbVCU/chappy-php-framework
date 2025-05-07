@@ -74,7 +74,7 @@ class Migrate {
     
 
     /**
-     * Generates a new migration.
+     * Generates a migration class for creating a new table.
      *
      * @param InputInterface $input 
      * @return int A value that indicates success, invalid, or failure.
@@ -87,6 +87,24 @@ class Migrate {
         return Tools::writeFile(
             ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
             self::migrationClass($fileName, $tableName),
+            'Migration'
+        );
+    }
+
+    /**
+     * Generates a migration class for updating existing table.
+     *
+     * @param InputInterface $input 
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeUpdateMigration(InputInterface $input): int {
+        $tableName = Str::lower($input->getArgument('table_name'));
+        
+        // Generate Migration class
+        $fileName = "Migration".time();
+        return Tools::writeFile(
+            ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
+            self::migrationUpdateClass($fileName, $tableName),
             'Migration'
         );
     }
@@ -153,7 +171,7 @@ class Migrate {
     }
 
     /**
-     * Generates a new Migration class.
+     * Generates a new Migration class for creating a new table.
      *
      * @param string $fileName The file name for the Migration class.
      * @param string $tableName The name of the table for the migration.
@@ -172,13 +190,55 @@ use Core\Lib\Database\Migration;
  */
 class '.$fileName.' extends Migration {
     /**
-     * Performs a migration.
+     * Performs a migration for a new table.
      *
      * @return void
      */
     public function up(): void {
         Schema::create(\''.$tableName.'\', function (Blueprint $table) {
             $table->id();
+
+        });
+    }
+
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
+    public function down(): void {
+        Schema::dropIfExists(\''.$tableName.'\');
+    }
+}
+';
+    }
+
+    /**
+     * Generates a new Migration class for updating a table.
+     *
+     * @param string $fileName The file name for the Migration class.
+     * @param string $tableName The name of the table for the migration.
+     * @return string The contents of the new Migration class.
+     */
+    public static function migrationUpdateClass(string $fileName, string $tableName): string {
+        $tableName = Str::lower($tableName);
+        return '<?php
+namespace Database\Migrations;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Blueprint;
+use Core\Lib\Database\Migration;
+
+/**
+ * Migration class for the '.$tableName.' table.
+ */
+class '.$fileName.' extends Migration {
+    /**
+     * Performs a migration for updating an existing table.
+     *
+     * @return void
+     */
+    public function up(): void {
+        Schema::table(\''.$tableName.'\', function (Blueprint $table) {
 
         });
     }
