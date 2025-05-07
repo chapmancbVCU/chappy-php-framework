@@ -234,7 +234,7 @@ class DB {
      * @return string|boolean The properly formatted column if DB driver 
      * is properly set or detected.  Otherwise, we return false.
      */
-    public function groupByColumn($column): string|bool {
+    public static function groupByColumn($column): string|bool {
         $dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
         if($dbDriver) {
             return ($dbDriver === 'mysql' || $dbDriver === 'mariadb') ? 
