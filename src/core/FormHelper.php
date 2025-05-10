@@ -274,7 +274,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $value The value we want to set.  We can use this to set 
+     * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
@@ -288,7 +288,7 @@ class FormHelper {
     public static function emailBlock(
         string $label, 
         string $name, 
-        string $value = '', 
+        mixed $value = '', 
         array $inputAttrs= [], 
         array $divAttrs = [], 
         array $errors = []
@@ -302,6 +302,7 @@ class FormHelper {
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
+        
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$name.'">'.$label.'</label>';
         $html .= '<input type="email" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' placeholder="joe@example.com" />';
