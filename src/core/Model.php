@@ -41,12 +41,11 @@ class Model {
      */
     public function addErrorMessage(string $field, string $message): void {
         $this->_validates = false;
-        if(Arr::exists($this->_validationErrors, $field,)) {
-            $this->_validationErrors[$field] .= " " . $message;
-        } else {
-            $this->_validationErrors[$field] = $message;
+        if (!isset($this->_validationErrors[$field])) {
+            $this->_validationErrors[$field] = [];
         }
-    }
+            $this->_validationErrors[$field][] = $message;
+        }
 
     /**
      * Called before delete.

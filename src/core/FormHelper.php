@@ -251,8 +251,15 @@ class FormHelper {
         $logError = '';
 
         $errors->each(function($error) use (&$html, &$logError) {
-            $html .= '<li class="text-danger">'.$error.'</li>';
-            $logError  .= $error . ' ';
+            if (is_array($error)) {
+                foreach ($error as $e) {
+                    $html .= '<li class="text-danger">'.htmlspecialchars($e).'</li>';
+                    $logError .= $e . ' ';
+                }
+            } else {
+                $html .= '<li class="text-danger">'.htmlspecialchars($error).'</li>';
+                $logError .= $error . ' ';
+            }
         });
         $html .= '</ul></div>';
         if($hasErrors != '') {
@@ -319,8 +326,15 @@ class FormHelper {
      * @return string The error message for a particular field.
      */
     public static function errorMsg(array $errors, string $name): string {
-        return (new ArraySet($errors))->get($name, "")->result();  
-    }
+        $value = (new ArraySet($errors))->get($name, "")->result();
+
+        if (is_array($value)) {
+            // Multiple errors for same field
+            return implode('<br>', array_map('htmlspecialchars', $value));
+        }
+
+            return htmlspecialchars((string)$value);
+        }
 
     /**
      * Creates a randomly generated csrf token.
