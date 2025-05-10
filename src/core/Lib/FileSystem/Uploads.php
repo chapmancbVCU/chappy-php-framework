@@ -11,6 +11,7 @@ class Uploads {
     private string $_bucket;
     protected array $_allowedFileTypes = [];
     private array $_errors = [];
+    protected string $_fieldName;
     protected array $_files= []; 
     protected int $_maxAllowedSize;
     const MULTIPLE = 'multiple';
@@ -59,11 +60,10 @@ class Uploads {
      */
     protected function addErrorMessage(string $name, string $message): void {
         Logger::log("Upload error: $message", 'error'); // Log validation errors
-        if(array_key_exists($name, $this->_errors)) {
-            $this->_errors[$name] .= $this->_errors[$name] . " " . $message;
-        } else {
-            $this->_errors[$name] = $message;
+        if (!isset($this->_errors[$name])) {
+            $this->_errors[$name] = [];
         }
+        $this->_errors[$name][] = $message;
     }
 
     /**
@@ -76,12 +76,16 @@ class Uploads {
      * @return void
      */
     public function errorReporting(bool|array $errors, Model $model, string $name): void {
-        if(is_array($errors)){
-            $msg = "";
-            foreach($errors as $name => $message){
-                $msg .= $message . " ";
+        if (is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                if (is_array($messages)) {
+                    foreach ($messages as $msg) {
+                        $model->addErrorMessage($field, $msg);
+                    }
+                } else {
+                    $model->addErrorMessage($field, $messages);
+                }
             }
-            $model->addErrorMessage($name, trim($msg));
         }
     }
 
@@ -138,9 +142,9 @@ class Uploads {
         string $mode = self::SINGLE
     ): ?self {
 
-        if (empty($file['tmp_name']) || (is_array($file['tmp_name']) && empty($file['tmp_name'][0]))) {
-            return null;
-        }
+        // if (empty($file['tmp_name']) || (is_array($file['tmp_name']) && empty($file['tmp_name'][0]))) {
+        //     return null;
+        // }
 
         // Ensure the model class exists and has required methods
         if (!class_exists($uploadModel) || !method_exists($uploadModel, 'getAllowedFileTypes') || 
@@ -157,6 +161,8 @@ class Uploads {
             $sizeMsg, 
             $mode
         );
+
+        $uploadInstance->_fieldName = $name;
 
         // Run validation and report if any errors.
         $uploadInstance->runValidation();
@@ -205,9 +211,28 @@ class Uploads {
      * @return void
      */
     public function runValidation(): void { 
-        $this->validateSize();
-        $this->validateFileType();
-    }
+        // If no file OR upload error present
+        if (empty($this->_files) || !isset($this->_files[0]['error'])) {
+            $this->addErrorMessage($this->_fieldName ?? 'file', "No file was uploaded.");
+            return;
+        }
+
+        $firstFile = $this->_files[0];
+
+        // ✅ Check for php.ini limit error
+        if ($firstFile['error'] === UPLOAD_ERR_INI_SIZE) {
+            $this->addErrorMessage($this->_fieldName, "The file exceeds the maximum upload size allowed by the server.");
+            return;
+        }
+
+        // ✅ Check for any other PHP upload error
+        if ($firstFile['error'] !== UPLOAD_ERR_OK) {
+            $this->addErrorMessage($this->_fieldName, "File upload failed with PHP error code {$firstFile['error']}.");
+            return;
+        }
+            $this->validateSize();
+            $this->validateFileType();
+        }
 
     /**
      * Performs file upload.
@@ -274,7 +299,7 @@ class Uploads {
             // Check if the file type is allowed
             if (!in_array($mimeType, $this->_allowedFileTypes, true)) {
                 $msg = "$fileName is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
-                $this->addErrorMessage($fileName, $msg);
+                $this->addErrorMessage($this->_fieldName, $msg);
             }
         }
     }
@@ -288,18 +313,31 @@ class Uploads {
      */
     protected function validateSize(): void {
         foreach ($this->_files as $file) {
-            $name = $file['name'];
+            $name = $file['name'] ?? 'Unknown file';
     
-            // ✅ Skip empty file slots
-            if (empty($file['tmp_name'])) {
+            if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
                 continue;
             }
     
-            if ($file['size'] > $this->_maxAllowedSize) {
-                $msg = "$name is over the max allowed size of " . $this->sizeMsg . ".";
-                $this->addErrorMessage($name, $msg);
+            if ($file['error'] !== UPLOAD_ERR_OK) {
+                // optionally log or skip error files
+                Logger::log("Skipping file {$name} due to upload error code {$file['error']}", 'warning');
+                continue;
             }
-        } 
+    
+            if (!isset($file['size']) || !is_numeric($file['size'])) {
+                Logger::log("Skipping file {$name}: invalid size value.", 'warning');
+                continue;
+            }
+    
+            Logger::log("Checking size of file {$name}: {$file['size']} bytes (limit: {$this->_maxAllowedSize})", 'debug');
+    
+            if ($file['size'] > $this->_maxAllowedSize) {
+                $msg = "{$name} is over the max allowed size of " . $this->sizeMsg . ".";
+                $this->addErrorMessage($this->_fieldName, $msg);
+            }
+        }
     }
+    
     
 }
