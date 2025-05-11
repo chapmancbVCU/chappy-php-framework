@@ -211,28 +211,32 @@ class Uploads {
      * @return void
      */
     public function runValidation(): void { 
-        // If no file OR upload error present
         if (empty($this->_files) || !isset($this->_files[0]['error'])) {
-            $this->addErrorMessage($this->_fieldName ?? 'file', "No file was uploaded.");
+            return; // No file, do nothing
+        }
+    
+        $firstFile = $this->_files[0];
+    
+        // ✅ Allow user to skip uploading a file without error
+        if ($firstFile['error'] === UPLOAD_ERR_NO_FILE) {
+            Logger::log("No file uploaded. Skipping upload validation.", 'info');
             return;
         }
-
-        $firstFile = $this->_files[0];
-
-        // ✅ Check for php.ini limit error
+    
         if ($firstFile['error'] === UPLOAD_ERR_INI_SIZE) {
             $this->addErrorMessage($this->_fieldName, "The file exceeds the maximum upload size allowed by the server.");
             return;
         }
-
-        // ✅ Check for any other PHP upload error
+    
         if ($firstFile['error'] !== UPLOAD_ERR_OK) {
             $this->addErrorMessage($this->_fieldName, "File upload failed with PHP error code {$firstFile['error']}.");
             return;
         }
-            $this->validateSize();
-            $this->validateFileType();
-        }
+    
+        $this->validateSize();
+        $this->validateFileType();
+    }
+    
 
     /**
      * Performs file upload.

@@ -14,6 +14,7 @@ use Core\Lib\Utilities\DateTime;
  */
 #[\AllowDynamicProperties]
 class Model {
+    const BLACKLIST = 'blacklist';
     protected static $_db;
     public $id;
     protected $_modelName;
@@ -21,6 +22,7 @@ class Model {
     protected static $_table;
     protected $_validates = true;
     protected $_validationErrors = [];
+    const WHITELIST = 'whitelist';
 
     /**
      * Default constructor.
@@ -70,12 +72,12 @@ class Model {
      * blacklisted.  Otherwise they are whitelisted.
      * @return bool Report for whether or not the operation was successful.
      */
-    public function assign(array $params, array $list = [], bool $blackList = true): self {
+    public function assign(array $params, array $list = [], string $assignmentFilter = self::BLACKLIST): self {
         foreach($params as $key => $val) {
             // check if there is permission to update the object
             $whiteListed = true;
             if(sizeof($list) > 0){
-              if($blackList){
+              if($assignmentFilter === self::BLACKLIST){
                     $whiteListed = !Arr::contains($list, $key);
               } else {
                     $whiteListed = Arr::contains($list, $key);
