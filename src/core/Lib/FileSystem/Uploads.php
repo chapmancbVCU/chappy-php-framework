@@ -152,6 +152,10 @@ class Uploads {
             throw new InvalidArgumentException("Invalid model class: $uploadModel");
         }
 
+        if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+            return null;
+        }
+        
         // Create an instance of Uploads
         $uploadInstance = new static(
             $file, 
