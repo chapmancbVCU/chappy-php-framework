@@ -32,7 +32,9 @@
       "ramsey/uuid": "^4.7",
       "doctrine/inflector": "^2.0",
       "tinymce/tinymce": "^7.7",
-      "phpunit/phpunit": "^11.3"
+      "phpunit/phpunit": "^11.3",
+        "giggsey/libphonenumber-for-php": "^9.0",
+        "composer": "*"
     },
     "scripts": {
       "build-docs": [
