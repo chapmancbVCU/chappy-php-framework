@@ -68,8 +68,9 @@ class Model {
      * 
      * @param array $params Take values from post array and assign values.
      * @param array $list A list of values to blacklist or whitelist.
-     * @param bool $blackList When set to true the values in the $list array is 
-     * blacklisted.  Otherwise they are whitelisted.
+     * @param string $assignmentFilter When set to ModelName::BLACKLIST the 
+     * values in the $list array is blacklisted.  When set to 
+     * ModelName::WHITELIST they are whitelisted.
      * @return bool Report for whether or not the operation was successful.
      */
     public function assign(array $params, array $list = [], string $assignmentFilter = self::BLACKLIST): self {
