@@ -658,45 +658,8 @@ class FormHelper {
     }
     
     /**
-     * Renders an HTML div element that surrounds an input of type tel.  The 
-     * user is able to enter cell, home, and work as phone types.  Certain 
-     * options can be set using the args parameter.  
+     * Renders an HTML div element that surrounds an input of type tel.
      * 
-     * Arguments supported:
-     * 1. a - All default options turned on.
-     * 2. d - All options are off.
-     * 3. e - Default event listener turned on for enforcing phone format 
-     * requirements.
-     * 4. h - Default placeholder turned on.
-     * 5. p - Default telephone pattern is enforced. 
-     * 
-     * The user may use 'a', or any combination of 'h', 'p', or 'e'.  The 
-     * empty string is not a valid value for args.  Leaving out a value for 
-     * args in the function call will cause all defaults to be turned on.  If 
-     * the d is entered with all other valid options together will cause no 
-     * options to be set.  If bad phone types and args values are entered 
-     * exceptions displaying relevant information will be thrown.
-     *
-     * An example function call where no arguments are set is shown below:
-     * FormHelper::telBlock('cell', 'Cell Phone', 'cell_phone', $this->contact->cell_phone, ['class' => 'form-control'], ['class' => 'form-group col-md-6']);
-     * 
-     * The corresponding HTML output is shown below:
-     * <div class="form-group col-md-6"><label for="cell_phone">Cell Phone</label><input type="tel" id="cell_phone" name="cell_phone" value="" class="form-control" /></div>
-     * 
-     * An example function call where two options are set and other is set with the inputAttrs array is shown below:
-     * FormHelper::telBlock('home', 'Home Phone', 'home_phone', $this->contact->home_phone, ['class' => 'form-control', 'placeholder' => 'My placeholder'], ['class' => 'form-group col-md-6'],"pe");
-     * 
-     * The corresponding HTML output is shown below:
-     * <div class="form-group col-md-6"><label for="home_phone">Home Phone</label><input type="tel" id="home_phone" name="home_phone" value="" class="form-control" placeholder="My placeholder" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="homePhoneNumberFormatter()" /></div>
-     * 
-     * An example function call where 'a' flag is set is shown below: 
-     * FormHelper::telBlock('work', 'Work Phone', 'work_phone', $this->contact->work_phone, ['class' => 'form-control'], ['class' => 'form-group col-md-6'], "a");
-     * 
-     * The corresponding HTML output is shown below:
-     * <div class="form-group col-md-6"><label for="work_phone">Work Phone</label><input type="tel" id="work_phone" name="work_phone" value="" class="form-control" placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="workPhoneNumberFormatter()" /></div>
-     * 
-     * @param string $phoneType The type of phone that can be used.  We 
-     * currently support "cell", "home", and "work" type phones.
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -708,70 +671,29 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param string $args Arguments that influence which options are turned 
-     * on.
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string The HTML div element surrounding an input of type tel 
      * with configuration and values set based on parameters entered during 
      * function call.
      */
-    public static function telBlock(string $phoneType, 
-        string $label, 
-        string $name, 
-        mixed $value = '', 
-        array $inputAttrs= [], 
-        array $divAttrs = [], 
-        string $args = "d",
+    public static function telBlock(
+        string $label,
+        string $name,
+        mixed $value = '',
+        array $inputAttrs = [],
+        array $divAttrs = [],
         array $errors = []
     ): string {
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $divString = self::stringifyAttrs($divAttrs);
 
-        // Test if correct type is provided.
-        if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
-            throw new Exception("Only cell, home, or work are valid phone types");
-        }
-
-        // Check for valid arguments d, e, h, and p
-        if(!preg_match('/^[adehp]*$/', $args) == 1) {
-            throw new Exception("Incorrect value in arguments field.");
-        }
-
-        // Test for valid args input combinations.
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
-        $inputString = self::stringifyAttrs(($inputAttrs));
-        if(strcmp($args, 'a') == 0 && (preg_match_all('['.implode('|', ['placeholder', 'pattern', 'onkeydown']).']', $inputString) > 0)) {
-            throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to a");
-        }
-        if(Str::contains($args, 'h') && Str::contains($inputString, 'placeholder')) {
-            throw new Exception('Can not accept placeholder when args contains h flag');
-        }
-        if(Str::contains($args, 'p') && Str::contains($inputString, 'pattern')) {
-            throw new Exception('Can not accept pattern when args contains p flag.');
-        }
-        if(Str::contains($args, 'e') && Str::contains($inputString, 'onkeydown')) {
-            throw new Exception('Can not accept onkeydown when args contains e flag.');
-        }
-
-        try {
-            $divString = self::stringifyAttrs($divAttrs);
-            // Check if user wants to use defined attributes.
-            if(strcmp($args, 'a') == 0) {
-                $inputString .= ' placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
-            }
-            if(Str::contains($args, 'h') && !Str::contains($args, 'a')) {
-                $inputString .= ' placeholder="ex: 123-456-7890"';
-            }
-            if(Str::contains($args, 'p') && !Str::contains($args, 'a')) {
-                $inputString .= ' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"';
-            }
-            if(Str::contains($args, 'e') && !Str::contains($args, 'a')) {
-                $inputString .= ' onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
-            }
-            $html = '<div' . $divString . '>';
-            $html .= '<label for="'.$name.'">'.$label.'</label>';
-            $html .= '<input type="tel" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
-            $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
-            $html .= '</div>';
-        } catch (Exception $e) { echo $e->getMessage(); }
+        // Build field
+        $html = '<div' . $divString . '>';
+        $html .= '<label for="' . $name . '">' . $label . '</label>';
+        $html .= '<input type="tel" id="' . $name . '" name="' . $name . '" value="' . $value . '" ' . $inputString . ' />';
+        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
+        $html .= '</div>';
 
         return $html;
     }
