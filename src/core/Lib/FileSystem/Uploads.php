@@ -142,20 +142,16 @@ class Uploads {
         string $mode = self::SINGLE
     ): ?self {
 
-        // if (empty($file['tmp_name']) || (is_array($file['tmp_name']) && empty($file['tmp_name'][0]))) {
-        //     return null;
-        // }
-
+        if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+            return null;
+        }
+        
         // Ensure the model class exists and has required methods
         if (!class_exists($uploadModel) || !method_exists($uploadModel, 'getAllowedFileTypes') || 
                 !method_exists($uploadModel, 'getMaxAllowedFileSize')) {
             throw new InvalidArgumentException("Invalid model class: $uploadModel");
         }
 
-        if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
-            return null;
-        }
-        
         // Create an instance of Uploads
         $uploadInstance = new static(
             $file, 
