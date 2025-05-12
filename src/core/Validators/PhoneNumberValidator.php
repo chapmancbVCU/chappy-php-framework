@@ -28,9 +28,7 @@ class PhoneNumberValidator extends CustomValidator {
         } catch (NumberParseException $e) {
             var_dump($e);
         }
-        $this->message .= " $countryCode";
     
         return ($phoneUtil->isValidNumber($numberToValidate)) ? true : false;
-
     }
 }
