@@ -43,5 +43,8 @@
       "post-install-cmd": [
         "@php src/scripts/setup.php"
       ]
+    },
+    "require-dev": {
+        "psy/psysh": "^0.12.8"
     }
-  }
+}
