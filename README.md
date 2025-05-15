@@ -31,7 +31,7 @@ Chappy.php is a modern PHP MVC framework focused on clarity, modularity, and rap
 - 📄 Doctum-generated API docs
 - 🧾 .env configuration with `vlucas/phpdotenv`
 - 📂 Organized PSR-4 structure
-- 📚 Optional [Jekyll user guide](https://chapmancbvcu.github.io/chappy-php-starter/)
+- 📚 [Jekyll user guide](https://chapmancbvcu.github.io/chappy-php-starter/)
 
 ---
 
