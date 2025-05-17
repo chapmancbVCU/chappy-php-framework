@@ -17,7 +17,7 @@ class MigrateRefreshCommand extends Command
     protected function configure(): void
     {
         $this->setName('migrate:refresh')
-            ->setDescription('Drops all tables and runs a Database Migration!')
+            ->setDescription('Drops all tables with down function and runs a Database Migration!')
             ->setHelp('Drops all tables and runs a Database Migration');
     }
  
