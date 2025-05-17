@@ -53,6 +53,17 @@ abstract class Migration {
     }
 
     /**
+     * Get value for greatest value in batch field in migrations table.
+     *
+     * @return int Value for batch field to be used in next migration run.
+     */
+    public static function getNextBatch(): int {
+        $db = DB::getInstance();
+        $result = $db->query("SELECT MAX(batch) as max_batch FROM migrations")->first();
+        return ($result && $result->max_batch !== null) ? (int)$result->max_batch + 1 : 1;
+    }
+
+    /**
      * Rollback the migration.
      */
     abstract public function down(): void;

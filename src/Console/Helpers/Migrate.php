@@ -6,6 +6,7 @@ use PDO;
 use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
+use Core\Lib\Database\Migration;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -115,7 +116,9 @@ class Migrate {
      * @return integer A value that indicates success, invalid, or failure.
      */
     public static function migrate(): int {
+        
         $db = DB::getInstance();
+        
         if ($db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
             $db->query("PRAGMA foreign_keys=ON;");
         }
@@ -133,7 +136,9 @@ class Migrate {
         }
 
         // If the migrations table exists, load previous migrations
+        $batch = 1;
         if ($migrationTable > 0) {
+            $batch = Migration::getNextBatch();
             $query = $db->query("SELECT migration FROM migrations")->results();
             foreach ($query as $q) {
                 $previousMigs[] = $q->migration;
@@ -152,7 +157,12 @@ class Migrate {
                 if (class_exists($klassNamespace)) {
                     $mig = new $klassNamespace();
                     $mig->up();  // Run migration
-                    $db->insert('migrations', ['migration' => $klass]); // Store migration history
+
+                    // Store migration history and value for batch
+                    $db->insert('migrations', [
+                        'migration' => $klass,
+                        'batch' => $batch 
+                    ]); 
                     $migrationsRun[] = $klassNamespace;
                 } else {
                     Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'red');
