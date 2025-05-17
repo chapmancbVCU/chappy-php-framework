@@ -30,7 +30,7 @@ class MigrateRefreshCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $status = Migrate::dropAllTables();
+        $status = Migrate::refresh();
         if($status == Command::FAILURE) {
             return $status;
         }

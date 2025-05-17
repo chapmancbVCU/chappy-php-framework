@@ -19,7 +19,7 @@ class Migrate {
      *
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function dropAllTables(): int {
+    public static function refresh(): int {
         $db = DB::getInstance();
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
     
