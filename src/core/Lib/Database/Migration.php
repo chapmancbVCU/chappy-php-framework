@@ -53,7 +53,7 @@ abstract class Migration {
     }
 
     /**
-     * Get value for greatest value in batch field in migrations table.
+     * Get value for batch field for next set of migrations.
      *
      * @return int Value for batch field to be used in next migration run.
      */
