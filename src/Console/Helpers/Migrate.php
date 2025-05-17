@@ -14,65 +14,10 @@ use Symfony\Component\Console\Input\InputInterface;
  * Helper class for migration related console commands.
  */
 class Migrate {
-    /**
-     * Drops all migrations.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function refresh(): int {
-        $db = DB::getInstance();
-        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
     
-        // ✅ Ensure SQLite foreign key constraints are disabled before dropping tables
-        if ($driver === 'sqlite') {
-            $db->query("PRAGMA foreign_keys = OFF;");
-        }
-    
-        // ✅ Fetch all tables except SQLite system tables
-        if ($driver === 'sqlite') {
-            $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
-            $tables = $stmt->results();
-            $tableCount = count($tables);
-        } else {
-            $stmt = $db->query("SHOW TABLES");
-            $tables = $stmt->results();
-            $tableCount = count($tables);
-        }
-    
-        if ($tableCount == 0) {
-            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
-            return Command::FAILURE;
-        }
-    
-        // ✅ Get all migration files
-        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
-    
-        // ✅ Reverse loop to drop tables in correct order
-        foreach (Arr::reverse($migrations) as $fileName) {
-            $klass = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
-            $klassNamespace = 'Database\\Migrations\\' . $klass;
-    
-            if (class_exists($klassNamespace)) {
-                Tools::info("Dropping table from: {$klassNamespace}", 'debug', 'yellow');
-                $mig = new $klassNamespace();
-                $mig->down(); // Drop table
-            } else {
-                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
-            }
-        }
-    
-        // ✅ Drop the migrations table and rebuild database
-        if ($driver === 'sqlite') {
-            $db->query("DROP TABLE IF EXISTS migrations;");
-            $db->query("VACUUM;"); // Ensures SQLite properly resets database
-        } else {
-            $db->query("DROP TABLE IF EXISTS migrations;");
-        }
-    
-        Tools::info('All tables have been dropped.', 'success', 'green');
-        return Command::SUCCESS;
+    public static function dropAllTables(): int {
+        
     }
-    
 
     /**
      * Generates a migration class for creating a new table.
@@ -263,5 +208,64 @@ class '.$fileName.' extends Migration {
     }
 }
 ';
+    }
+
+    /**
+     * Performs refresh operation.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function refresh(): int {
+        $db = DB::getInstance();
+        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+    
+        // ✅ Ensure SQLite foreign key constraints are disabled before dropping tables
+        if ($driver === 'sqlite') {
+            $db->query("PRAGMA foreign_keys = OFF;");
+        }
+    
+        // ✅ Fetch all tables except SQLite system tables
+        if ($driver === 'sqlite') {
+            $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+            $tables = $stmt->results();
+            $tableCount = count($tables);
+        } else {
+            $stmt = $db->query("SHOW TABLES");
+            $tables = $stmt->results();
+            $tableCount = count($tables);
+        }
+    
+        if ($tableCount == 0) {
+            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
+            return Command::FAILURE;
+        }
+    
+        // ✅ Get all migration files
+        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
+    
+        // ✅ Reverse loop to drop tables in correct order
+        foreach (Arr::reverse($migrations) as $fileName) {
+            $klass = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
+            $klassNamespace = 'Database\\Migrations\\' . $klass;
+    
+            if (class_exists($klassNamespace)) {
+                Tools::info("Dropping table from: {$klassNamespace}", 'debug', 'yellow');
+                $mig = new $klassNamespace();
+                $mig->down(); // Drop table
+            } else {
+                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
+            }
+        }
+    
+        // ✅ Drop the migrations table and rebuild database
+        if ($driver === 'sqlite') {
+            $db->query("DROP TABLE IF EXISTS migrations;");
+            $db->query("VACUUM;"); // Ensures SQLite properly resets database
+        } else {
+            $db->query("DROP TABLE IF EXISTS migrations;");
+        }
+    
+        Tools::info('All tables have been dropped.', 'success', 'green');
+        return Command::SUCCESS;
     }
 }
