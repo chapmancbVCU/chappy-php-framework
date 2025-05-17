@@ -7,7 +7,7 @@ use Console\Helpers\Migrate;
 /**
  * Supports ability to drop all tables and recreate them.
  */
-class MigrateRefreshCommand extends Command
+class MigrateFreshCommand extends Command
 {
     /**
      * Configures the command.
