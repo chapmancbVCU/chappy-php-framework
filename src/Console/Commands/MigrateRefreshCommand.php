@@ -7,7 +7,7 @@ use Console\Helpers\Migrate;
 /**
  * Supports ability to drop all tables and recreate them.
  */
-class MigrateFreshCommand extends Command
+class MigrateRefreshCommand extends Command
 {
     /**
      * Configures the command.
@@ -16,7 +16,7 @@ class MigrateFreshCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('migrate:fresh')
+        $this->setName('migrate:refresh')
             ->setDescription('Drops all tables and runs a Database Migration!')
             ->setHelp('Drops all tables and runs a Database Migration');
     }
