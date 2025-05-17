@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use PDO;
 use Core\DB;
+use Exception;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
@@ -14,9 +15,37 @@ use Symfony\Component\Console\Input\InputInterface;
  * Helper class for migration related console commands.
  */
 class Migrate {
-    
+    /**
+     * Drops all tables from the database without using down function.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function dropAllTables(): int {
-        
+        $db = DB::getInstance();
+        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+    
+        try {
+            if($driver === 'sqlite') {
+                $tables = $db->query("SELECT name FROM sqlite_master WHERE table='table'")->results();
+                foreach($tables as $row) {
+                    $table = $row->name;
+                    if($table !== 'sqlite_sequence') {
+                        $db->query("DROP TABLE IF EXISTS \"$table\"");
+                    }
+                }
+            } else {
+                $tables = $db->query("SHOW TABLES")->results();
+                foreach($tables as $row) {
+                    $table = array_values((array) $row)[0];
+                    $db->query("DROP TABLE IF EXISTS `$table`");
+                }
+            }
+            Tools::info("All tables dropped successfully.");
+            return Command::SUCCESS;
+        } catch(Exception $e) {
+            Tools::info('Error dropping tables: ' . $e->getMessage(), 'danger');
+            return Command::FAILURE;
+        }
     }
 
     /**
