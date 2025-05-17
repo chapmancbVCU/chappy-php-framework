@@ -26,7 +26,7 @@ class Migrate {
     
         try {
             if($driver === 'sqlite') {
-                $tables = $db->query("SELECT name FROM sqlite_master WHERE table='table'")->results();
+                $tables = $db->query("SELECT name FROM sqlite_master WHERE type='table'")->results();
                 foreach($tables as $row) {
                     $table = $row->name;
                     if($table !== 'sqlite_sequence') {
