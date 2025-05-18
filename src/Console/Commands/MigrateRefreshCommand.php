@@ -25,7 +25,7 @@ class MigrateRefreshCommand extends Command
             ->addOption(
                 'step',
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_REQUIRED,
                 'Number of steps to roll back',
                 false
             );
@@ -43,9 +43,6 @@ class MigrateRefreshCommand extends Command
         $step = $input->getOption('step');
         if($step === false) {
             $status = Migrate::refresh();
-        } else if($step === null) {
-            Tools::info('Please enter number of migrations to roll back', 'red');
-            return Command::FAILURE;
         } else {
             if($step === '') {
                 Tools::info('Please enter number of migrations to roll back', 'red');
