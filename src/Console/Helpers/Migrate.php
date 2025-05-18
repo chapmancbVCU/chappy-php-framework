@@ -288,7 +288,7 @@ class '.$fileName.' extends Migration {
     
             if (class_exists($klassNamespace)) {
                 $step = self::step($klassNamespace, $step);
-                if(is_int($step) && $step < 1) return Command::SUCCESS; 
+                if(is_int($step) && $step <= 0) return Command::SUCCESS; 
             } else {
                 Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
             }
@@ -324,8 +324,7 @@ class '.$fileName.' extends Migration {
             Tools::info('Please enter number of steps to roll back', 'error', 'red');
             return Command::FAILURE;
         }
-        Tools::info('Perform step roll back');
-        return Command::SUCCESS;
+        return self::refresh((int)$step);
     }
 
     /**
