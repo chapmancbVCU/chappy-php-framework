@@ -260,13 +260,12 @@ class '.$fileName.' extends Migration {
             //Ensure SQLite foreign key constraints are disabled before dropping tables
             $db->query("PRAGMA foreign_keys = OFF;");
             $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
-            $tables = $stmt->results();
-            $tableCount = count($tables);
         } else {
             $stmt = $db->query("SHOW TABLES");
-            $tables = $stmt->results();
-            $tableCount = count($tables);
         }
+        
+        $tables = $stmt->results();
+        $tableCount = count($tables);
     
         if(is_int($step) && $step >= $tableCount) {
             Tools::info('The number of steps must not be greater than or equal to the number of tables.', 'error', 'yellow');
