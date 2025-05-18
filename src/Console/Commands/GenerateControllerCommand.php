@@ -34,9 +34,8 @@ class GenerateControllerCommand extends Command
             ->addOption(
                 'resource',
                 null,
-                InputOption::VALUE_OPTIONAL,
-                'Add CRUD functions',
-                false
+                InputOption::VALUE_NONE,
+                'Add CRUD functions'
             );
     }
  
@@ -67,17 +66,10 @@ class GenerateControllerCommand extends Command
         }
         
         // Test if --resource flag is set and generate appropriate version of file
-        $resource = $input->getOption('resource');
-        if($resource === false) {
-            // No option
-            $content = Controller::defaultTemplate($controllerName, $layout);
-        } else if ($resource === null) {
-            // Option with no argument
+        if($input->getOption('resource')) {
             $content = Controller::resourceTemplate($controllerName, $layout);
         } else {
-            // Option with argument
-            Tools::info('--resource does not accept a value.', 'debug', 'red');
-            return Command::FAILURE;
+            $content = Controller::defaultTemplate($controllerName, $layout);
         }
 
         // Generate Controller class
