@@ -254,14 +254,11 @@ class '.$fileName.' extends Migration {
 
         $db = DB::getInstance();
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        // ✅ Ensure SQLite foreign key constraints are disabled before dropping tables
+        
+        // Fetch all tables except SQLite system tables
         if ($driver === 'sqlite') {
+            //Ensure SQLite foreign key constraints are disabled before dropping tables
             $db->query("PRAGMA foreign_keys = OFF;");
-        }
-    
-        // ✅ Fetch all tables except SQLite system tables
-        if ($driver === 'sqlite') {
             $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
             $tables = $stmt->results();
             $tableCount = count($tables);
