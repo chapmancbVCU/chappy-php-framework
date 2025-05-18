@@ -45,7 +45,7 @@ class MigrateRefreshCommand extends Command
             $status = Migrate::refresh();
         } else {
             if($step === '') {
-                Tools::info('Please enter number of migrations to roll back', 'red');
+                Tools::info('Please enter number of migrations to roll back', 'error', 'red');
                 return Command::FAILURE;
             }
             $status = Migrate::refresh($step);
