@@ -312,7 +312,7 @@ class '.$fileName.' extends Migration {
 
     public static function rollbackBatch(string|int $batch): int {
         if($batch === '') {
-            Tools::info('Please enter value for batch to roll back', 'red');
+            Tools::info('Please enter value for batch to roll back', 'error', 'red');
             return Command::FAILURE;
         }
         Tools::info('Perform batch roll back');
@@ -321,7 +321,7 @@ class '.$fileName.' extends Migration {
 
     public static function rollbackStep(string|int $step): int {
         if($step === '') {
-            Tools::info('Please enter number of steps to roll back', 'red');
+            Tools::info('Please enter number of steps to roll back', 'error', 'red');
             return Command::FAILURE;
         }
         Tools::info('Perform step roll back');
