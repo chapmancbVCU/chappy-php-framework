@@ -305,11 +305,11 @@ class '.$fileName.' extends Migration {
         return Command::SUCCESS;
     }
 
-    public static function rollback(): int {
-        return Command::SUCCESS;
-    }
+    public static function rollback(string|int|bool $batch = false): int {
 
-    public static function rollbackBatch(string|int $batch): int {
+        if(!$batch) {
+            Tools::info("no batch arg");
+        }
         if($batch === '') {
             Tools::info('Please enter value for batch to roll back', 'error', 'red');
             return Command::FAILURE;
