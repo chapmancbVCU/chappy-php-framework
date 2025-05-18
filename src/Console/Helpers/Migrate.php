@@ -241,10 +241,17 @@ class '.$fileName.' extends Migration {
 
     /**
      * Performs refresh operation.
-     *
+     * 
+     * @param bool|int $step The number of individual migrations to roll 
+     * back.  When set to false all tables are dropped one by one.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function refresh(): int {
+    public static function refresh(bool|int $step = false): int {
+        if($step === true && !is_int($step)) {
+            Tools::info("Step must be an integer or set to false", 'error', 'yellow');
+            return Command::FAILURE;
+        }
+
         $db = DB::getInstance();
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
     
@@ -264,7 +271,12 @@ class '.$fileName.' extends Migration {
             $tableCount = count($tables);
         }
     
-        if ($tableCount == 0) {
+        if(is_int($step) && $step >= $tableCount) {
+            Tools::info('The number of steps must not be greater than or equal to the number of tables.', 'error', 'yellow');
+            return Command::FAILURE;
+        }
+
+        if($tableCount == 0) {
             Tools::info('Empty database. No tables to drop.', 'debug', 'red');
             return Command::FAILURE;
         }
@@ -278,9 +290,8 @@ class '.$fileName.' extends Migration {
             $klassNamespace = 'Database\\Migrations\\' . $klass;
     
             if (class_exists($klassNamespace)) {
-                Tools::info("Dropping table from: {$klassNamespace}", 'debug', 'yellow');
-                $mig = new $klassNamespace();
-                $mig->down(); // Drop table
+                $step = self::step($klassNamespace, $step);
+                if(is_int($step) && $step < 1) return Command::SUCCESS; 
             } else {
                 Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
             }
@@ -296,5 +307,31 @@ class '.$fileName.' extends Migration {
     
         Tools::info('All tables have been dropped.', 'success', 'green');
         return Command::SUCCESS;
+    }
+
+    /**
+     * Drops table one at a time.
+     *
+     * @param string $klassNamespace The name of the migration class.
+     * @param bool|int $step The number of individual migrations to roll 
+     * back.  When set to false all tables are dropped one by one.
+     * @return bool|int $step The number of remaining steps to perform with 
+     * respect to rolling back migrations.  Boolean value of false is returned 
+     * when no number of steps is provided.
+     */
+    private static function step(string $klassNamespace, bool|int $step = false): bool|int {
+        $db = DB::getInstance();
+        Tools::info("Dropping table from: {$klassNamespace}", 'debug', 'yellow');
+        $mig = new $klassNamespace();
+        if(!$step && !is_int($step)) {
+            $mig->down();
+        } else {
+            $mig->down();
+            $latest = $db->query("SELECT * FROM migrations ORDER BY id DESC LIMIT 1")->first();
+            $db->delete('migrations', $latest->id);
+            $step--;
+        }
+        return $step;
+
     }
 }

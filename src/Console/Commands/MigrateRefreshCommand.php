@@ -1,9 +1,12 @@
 <?php
 namespace Console\Commands;
+use Console\Helpers\Tools;
+use Console\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\Helpers\Migrate;
+
 /**
  * Supports ability to drop tables with down function and recreate them.
  */
@@ -18,7 +21,14 @@ class MigrateRefreshCommand extends Command
     {
         $this->setName('migrate:refresh')
             ->setDescription('Drops all tables with down function and runs a Database Migration!')
-            ->setHelp('Drops all tables and runs a Database Migration');
+            ->setHelp('Drops all tables and runs a Database Migration')
+            ->addOption(
+                'step',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Number of steps to roll back',
+                false
+            );
     }
  
     /**
@@ -30,7 +40,22 @@ class MigrateRefreshCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $status = Migrate::refresh();
+        $step = $input->getOption('step');
+        if($step === false) {
+            $status = Migrate::refresh();
+        } else if($step === null) {
+            Tools::info('Please enter number of migrations to roll back', 'red');
+            return Command::FAILURE;
+        } else {
+            if($step === '') {
+                Tools::info('Please enter number of migrations to roll back', 'red');
+                return Command::FAILURE;
+            }
+            $status = Migrate::refresh($step);
+        }
+
+
+
         if($status == Command::FAILURE) {
             return $status;
         }
