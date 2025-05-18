@@ -306,6 +306,28 @@ class '.$fileName.' extends Migration {
         return Command::SUCCESS;
     }
 
+    public static function rollback(): int {
+        return Command::SUCCESS;
+    }
+
+    public static function rollbackBatch(string|int $batch): int {
+        if($batch === '') {
+            Tools::info('Please enter value for batch to roll back', 'red');
+            return Command::FAILURE;
+        }
+        Tools::info('Perform batch roll back');
+        return Command::SUCCESS;
+    }
+
+    public static function rollbackStep(string|int $step): int {
+        if($step === '') {
+            Tools::info('Please enter number of steps to roll back', 'red');
+            return Command::FAILURE;
+        }
+        Tools::info('Perform step roll back');
+        return Command::SUCCESS;
+    }
+
     /**
      * Drops table one at a time.
      *

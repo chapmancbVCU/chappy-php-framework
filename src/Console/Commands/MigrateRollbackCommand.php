@@ -54,14 +54,15 @@ class MigrateRollbackCommand extends Command
             Tools::info("Can't perform step and batch operations at the same time");
             return Command::FAILURE;
         }
-        if($step === false) {
-            $status = Migrate::refresh();
-        } else {
-            if($step === '') {
-                Tools::info('Please enter number of migrations to roll back', 'red');
-                return Command::FAILURE;
-            }
-            $status = Migrate::refresh($step);
+
+        $status = 1;
+        if($step === false && $batch === false) {
+            Tools::info('$step and $batch is false');
+            //$status = Migrate::rollback();
+        } else if($step || $step === '') {
+            $status = Migrate::rollbackStep($step);
+        } else if($batch || $batch === '') {
+            $status = Migrate::rollbackBatch($batch);
         }
 
 
@@ -69,6 +70,6 @@ class MigrateRollbackCommand extends Command
         if($status == Command::FAILURE) {
             return $status;
         }
-        return Migrate::migrate();
+        return Command::SUCCESS;//Migrate::migrate();
     }
 }
