@@ -269,18 +269,7 @@ class '.$fileName.' extends Migration {
 
         $db = DB::getInstance();
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
-        
-        // Fetch all tables except SQLite system tables
-        if ($driver === 'sqlite') {
-            //Ensure SQLite foreign key constraints are disabled before dropping tables
-            $db->query("PRAGMA foreign_keys = OFF;");
-            $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
-        } else {
-            $stmt = $db->query("SHOW TABLES");
-        }
-        
-        $tables = $stmt->results();
-        $tableCount = count($tables);
+        $tableCount = self::tableCount();
     
         if(is_int($step) && $step >= $tableCount) {
             Tools::info('The number of steps must not be greater than or equal to the number of tables.', 'error', 'yellow');
@@ -336,26 +325,13 @@ class '.$fileName.' extends Migration {
         }
 
         Tools::info("Perform batch roll back for $batch");
-        $db = DB::getInstance();
-        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
 
-        // Fetch all tables except SQLite system tables
-        if ($driver === 'sqlite') {
-            //Ensure SQLite foreign key constraints are disabled before dropping tables
-            $db->query("PRAGMA foreign_keys = OFF;");
-            $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
-        } else {
-            $stmt = $db->query("SHOW TABLES");
-        }
-
-        $tables = $stmt->results();
-        $tableCount = count($tables);
-
-        if($tableCount == 0) {
+        if(self::tableCount() == 0) {
             Tools::info('Empty database. No tables to drop.', 'debug', 'red');
             return Command::FAILURE;
         }
 
+        $db = DB::getInstance();
         $existingMigrations = $db->query("SELECT * FROM migrations WHERE batch = ?", ['bind' => $batch])->results();
         foreach($existingMigrations as $mig) {
             Tools::info("$mig->migration");
@@ -400,6 +376,26 @@ class '.$fileName.' extends Migration {
             $step--;
         }
         return $step;
+    }
 
+    /**
+     * Determines number of tables in database before performing migration 
+     * operations.
+     *
+     * @return int The number of tables in the database.
+     */
+    private static function tableCount(): int {
+        $db = DB::getInstance();
+        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        // Fetch all tables except SQLite system tables
+        if ($driver === 'sqlite') {
+            //Ensure SQLite foreign key constraints are disabled before dropping tables
+            $db->query("PRAGMA foreign_keys = OFF;");
+            $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+        } else {
+            $stmt = $db->query("SHOW TABLES");
+        }
+        return count($stmt->results());
     }
 }
