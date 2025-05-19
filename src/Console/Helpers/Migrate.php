@@ -349,6 +349,7 @@ class '.$fileName.' extends Migration {
                     $mig = new $classNamespace();
                     $mig->down();
                     $db->delete('migrations', $migration->id);
+                    break;
                 }
             }
         }
