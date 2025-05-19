@@ -33,8 +33,15 @@ class Schema {
         DB::getInstance()->query($sql);
     }
 
+    /**
+     * Renames a table
+     *
+     * @param string $from The original table's name.
+     * @param string $to The new table name.
+     * @return void
+     */
     public static function rename(string $from, string $to): void {
-        $sql = "ALTER TABLE $from NAME TO $to";
+        $sql = "ALTER TABLE $from RENAME TO $to";
         DB::getInstance()->query($sql);
     }
 
