@@ -57,12 +57,11 @@ class MigrateRollbackCommand extends Command
 
         $status = 1;
         if($step === false && $batch === false) {
-            Tools::info('$step and $batch is false');
-            //$status = Migrate::rollback();
+            $status = Migrate::rollback();
         } else if($step || $step === '') {
             $status = Migrate::rollbackStep($step);
         } else if($batch || $batch === '') {
-            $status = Migrate::rollbackBatch($batch);
+            $status = Migrate::rollback($batch);
         }
 
 

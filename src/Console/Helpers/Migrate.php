@@ -305,16 +305,30 @@ class '.$fileName.' extends Migration {
         return Command::SUCCESS;
     }
 
-    public static function rollback(string|int|bool $batch = false): int {
 
-        if(!$batch) {
-            Tools::info("no batch arg");
+    private static function batchExists(int $batch): bool {
+        $db = DB::getInstance();
+        $sql = "SELECT * FROM migrations WHERE batch = ? ORDER BY id DESC LIMIT 1";
+        if($db->query($sql, ['bind' => $batch])->first() == null) {
+            return false;
         }
+        return true;
+    }
+
+    public static function rollback(string|int|bool $batch = false): int {
+        // Fail immediately if no batch value is set.
         if($batch === '') {
             Tools::info('Please enter value for batch to roll back', 'error', 'red');
             return Command::FAILURE;
         }
-        Tools::info('Perform batch roll back');
+
+        if(!$batch) {
+            $batch = DB::getInstance()->query('SELECT batch FROM migrations ORDER BY id DESC LIMIT 1')->first()->batch;
+        } else if(!self::batchExists((int)$batch)){
+            Tools::info("The batch value of $batch does not exist", 'error', 'red');
+            return Command::FAILURE;
+        }
+        Tools::info("Perform batch roll back for $batch");
         return Command::SUCCESS;
     }
 
