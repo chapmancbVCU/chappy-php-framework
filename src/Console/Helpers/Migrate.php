@@ -328,7 +328,38 @@ class '.$fileName.' extends Migration {
             Tools::info("The batch value of $batch does not exist", 'error', 'red');
             return Command::FAILURE;
         }
+
         Tools::info("Perform batch roll back for $batch");
+        $db = DB::getInstance();
+        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        // Fetch all tables except SQLite system tables
+        if ($driver === 'sqlite') {
+            //Ensure SQLite foreign key constraints are disabled before dropping tables
+            $db->query("PRAGMA foreign_keys = OFF;");
+            $stmt = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+        } else {
+            $stmt = $db->query("SHOW TABLES");
+        }
+
+        $tables = $stmt->results();
+        $tableCount = count($tables);
+
+        if($tableCount == 0) {
+            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
+            return Command::FAILURE;
+        }
+        
+        $existingMigrations = $db->query("SELECT * FROM migrations WHERE batch = ?", ['bind' => $batch])->results();
+        foreach($existingMigrations as $mig) {
+            Tools::info("$mig->migration");
+        }
+        // Get all migration files
+        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
+        foreach ($migrations as $fileName) {
+            $className = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
+            //Tools::info("$className");
+        }
         return Command::SUCCESS;
     }
 
