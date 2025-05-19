@@ -343,7 +343,7 @@ class '.$fileName.' extends Migration {
         // Perform roll back with loop in reverse to avoid dropping migrations table.
         foreach(Arr::reverse($migrations) as $fileName) {
             $className = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
-            foreach($existingMigrations as $migration) {
+            foreach(Arr::reverse($existingMigrations) as $migration) {
                 $classNamespace = 'Database\\Migrations\\' . $className;
                 if($migration->migration === $className && class_exists($classNamespace) && $migration->id != 1) {
                     $mig = new $classNamespace();
