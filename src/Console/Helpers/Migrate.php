@@ -16,6 +16,21 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class Migrate {
     /**
+     * Test if a particular batch of migrations exists.
+     *
+     * @param int $batch The batch value we want to test if it exists.
+     * @return bool true if exists, otherwise we return false.
+     */
+    private static function batchExists(int $batch): bool {
+        $db = DB::getInstance();
+        $sql = "SELECT * FROM migrations WHERE batch = ? ORDER BY id DESC LIMIT 1";
+        if($db->query($sql, ['bind' => $batch])->first() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Drops all tables from the database without using down function.
      *
      * @return int A value that indicates success, invalid, or failure.
@@ -306,15 +321,6 @@ class '.$fileName.' extends Migration {
     }
 
 
-    private static function batchExists(int $batch): bool {
-        $db = DB::getInstance();
-        $sql = "SELECT * FROM migrations WHERE batch = ? ORDER BY id DESC LIMIT 1";
-        if($db->query($sql, ['bind' => $batch])->first() == null) {
-            return false;
-        }
-        return true;
-    }
-
     public static function rollback(string|int|bool $batch = false): int {
         // Fail immediately if no batch value is set.
         if($batch === '') {
@@ -349,7 +355,7 @@ class '.$fileName.' extends Migration {
             Tools::info('Empty database. No tables to drop.', 'debug', 'red');
             return Command::FAILURE;
         }
-        
+
         $existingMigrations = $db->query("SELECT * FROM migrations WHERE batch = ?", ['bind' => $batch])->results();
         foreach($existingMigrations as $mig) {
             Tools::info("$mig->migration");
