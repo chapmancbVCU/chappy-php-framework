@@ -309,7 +309,13 @@ class '.$fileName.' extends Migration {
         return Command::SUCCESS;
     }
 
-
+    /**
+     * Performs roll back operation
+     *
+     * @param string|bool|int $batch The batch number.  If false we assume 
+     * that we want to roll back latest batch of migrations.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function rollback(string|int|bool $batch = false): int {
         // Fail immediately if no batch value is set.
         if($batch === '') {
@@ -324,27 +330,39 @@ class '.$fileName.' extends Migration {
             return Command::FAILURE;
         }
 
-        Tools::info("Perform batch roll back for $batch");
-
         if(self::tableCount() == 0) {
             Tools::info('Empty database. No tables to drop.', 'debug', 'red');
             return Command::FAILURE;
         }
 
+        // Get all migration files and records with batch matching number
+        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
         $db = DB::getInstance();
         $existingMigrations = $db->query("SELECT * FROM migrations WHERE batch = ?", ['bind' => $batch])->results();
-        foreach($existingMigrations as $mig) {
-            Tools::info("$mig->migration");
-        }
-        // Get all migration files
-        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
-        foreach ($migrations as $fileName) {
+        
+        // Perform roll back with loop in reverse to avoid dropping migrations table.
+        foreach(Arr::reverse($migrations) as $fileName) {
             $className = Str::replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
-            //Tools::info("$className");
+            foreach($existingMigrations as $migration) {
+                $classNamespace = 'Database\\Migrations\\' . $className;
+                if($migration->migration === $className && class_exists($classNamespace) && $migration->id != 1) {
+                    $mig = new $classNamespace();
+                    $mig->down();
+                    $db->delete('migrations', $migration->id);
+                }
+            }
         }
+        
+        Tools::info("Completed roll back for batch $batch");
         return Command::SUCCESS;
     }
 
+    /**
+     * Perform step roll back.
+     *
+     * @param string|int $step
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function rollbackStep(string|int $step): int {
         if($step === '') {
             Tools::info('Please enter number of steps to roll back', 'error', 'red');
