@@ -64,8 +64,6 @@ class MigrateRollbackCommand extends Command
             $status = Migrate::rollback($batch);
         }
 
-
-
         if($status == Command::FAILURE) {
             return $status;
         }

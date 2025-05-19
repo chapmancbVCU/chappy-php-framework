@@ -51,8 +51,6 @@ class MigrateRefreshCommand extends Command
             $status = Migrate::refresh($step);
         }
 
-
-
         if($status == Command::FAILURE) {
             return $status;
         }
