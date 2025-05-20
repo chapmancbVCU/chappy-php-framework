@@ -81,6 +81,19 @@ class Migrate {
         );
     }
 
+    public static function makeRenameMigration(InputInterface $input): int {
+        $from = Str::lower($input->getArgument('table_name'));
+        $to = Str::lower($input->getOption('rename'));
+
+        // Generate Migration class
+        $fileName = "Migration".time();
+        return Tools::writeFile(
+            ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
+            self::migrationRenameClass($fileName, $from, $to),
+            'Migration'
+        );
+    }
+
     /**
      * Generates a migration class for updating existing table.
      *
@@ -207,6 +220,37 @@ class '.$fileName.' extends Migration {
      */
     public function down(): void {
         Schema::dropIfExists(\''.$tableName.'\');
+    }
+}
+';
+    }
+
+    public static function migrationRenameClass(string $fileName, string $from, string $to): string {
+        return '<?php
+namespace Database\Migrations;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Migration;
+
+/**
+ * Migration class for renaming the '.$from.' table.
+ */
+class '.$fileName.' extends Migration {
+    /**
+     * Performs a migration for renaming an existing table.
+     *
+     * @return void
+     */
+    public function up(): void {
+        Schema::rename(\''.$from.'\', \''.$to.'\');
+    }
+
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
+    public function down(): void {
+        Schema::dropIfExists(\''.$to.'\');
     }
 }
 ';

@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
  
+use Console\Helpers\Tools;
 use Console\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,7 +25,8 @@ class GenerateMigrationCommand extends Command
             ->setDescription('Generates a Database Migration!')
             ->setHelp('Generates a new Database Migration')
             ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.')
-            ->addOption('update', null, InputOption::VALUE_NONE, 'Update flag');
+            ->addOption('update', null, InputOption::VALUE_NONE, 'Update flag')
+            ->addOption('rename', null, InputOption::VALUE_REQUIRED, 'to', false);
     }
  
     /**
@@ -36,10 +38,15 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if($input->getOption('update')) {
+        if($input->getOption('update') && !$input->getOption('rename')) {
             return Migrate::makeUpdateMigration($input);
-        } else {
+        } else if($input->getOption('rename') && !$input->getOption('update')) {
+            return Migrate::makeRenameMigration($input);
+        } else if(!$input->getOption('rename') && !$input->getOption('update')){
             return Migrate::makeMigration($input);
+        } else {
+            Tools::info('Cannot accept update and rename options at the same time.', 'error', 'red');
+            return Command::FAILURE;
         }
     }
 }
