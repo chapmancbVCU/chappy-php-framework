@@ -67,6 +67,6 @@ class MigrateRollbackCommand extends Command
         if($status == Command::FAILURE) {
             return $status;
         }
-        return Command::SUCCESS;//Migrate::migrate();
+        return Command::SUCCESS;
     }
 }
