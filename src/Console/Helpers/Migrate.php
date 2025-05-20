@@ -66,7 +66,8 @@ class Migrate {
     /**
      * Generates a migration class for creating a new table.
      *
-     * @param InputInterface $input 
+     * @param InputInterface $input The input that contains the name of the 
+     * table.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMigration(InputInterface $input): int {
@@ -81,6 +82,13 @@ class Migrate {
         );
     }
 
+    /**
+     * Generates a migration class for renaming an existing table.
+     *
+     * @param InputInterface $input The input that contains the table's 
+     * original name and its new name.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeRenameMigration(InputInterface $input): int {
         $from = Str::lower($input->getArgument('table_name'));
         $to = Str::lower($input->getOption('rename'));
@@ -97,7 +105,8 @@ class Migrate {
     /**
      * Generates a migration class for updating existing table.
      *
-     * @param InputInterface $input 
+     * @param InputInterface $input The input that contains the name
+     * of the table.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeUpdateMigration(InputInterface $input): int {
@@ -225,6 +234,14 @@ class '.$fileName.' extends Migration {
 ';
     }
 
+    /**
+     * Generates a new Migration class for renaming an existing table.
+     *
+     * @param string $fileName The file name for the Migration class.
+     * @param string $from The table's original name.
+     * @param string $to The new name for the table.
+     * @return string The contents of the new Migration class.
+     */
     public static function migrationRenameClass(string $fileName, string $from, string $to): string {
         return '<?php
 namespace Database\Migrations;
