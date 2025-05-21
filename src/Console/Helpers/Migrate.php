@@ -8,6 +8,7 @@ use Exception;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
+use Console\Helpers\MigrationStatus;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -433,12 +434,54 @@ class '.$fileName.' extends Migration {
         return self::refresh((int)$step);
     }
 
-    public static function status() {
-        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
-        if(sizeof($migrations) == 0) {
+    /**
+     * Reports migration status.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function status(): int {
+        $migrationFiles = glob('database' . DS . 'migrations' . DS . '*.php');
+        if(sizeof($migrationFiles) == 0) {
             Tools::info("There are no existing migrations", 'debug', 'yellow');
         }
 
+        $migrationStatus = [];
+
+        $db = DB::getInstance();
+        $existingMigrations = $db->query("SELECT * FROM migrations")->results();
+        $found = false;
+        foreach ($migrationFiles as $migrationFile) {
+            $className = basename($migrationFile, '.php');
+
+            $found = false;
+            foreach ($existingMigrations as $existingMigration) {
+                if ($className === $existingMigration->migration) {
+                    $migrationStatus[] = new MigrationStatus(
+                        (string)$existingMigration->batch,
+                        $existingMigration->migration,
+                        true
+                    );
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                $migrationStatus[] = new MigrationStatus("", $className, false);
+            }
+        }
+
+        Tools::info("Name ................................. Batch / Status", 'info','blue');
+        foreach($migrationStatus as $status) {
+            $name = $status->getName();
+            $batch = $status->getBatch();
+            $state = $status->getStatus();
+            if($status->getStatus() == 'Ran') {
+                Tools::info("$name: ........................ [$batch] $state");
+            } else {
+                Tools::info("$name ......................... Pending", 'info', 'yellow');
+            }
+        }
         return Command::SUCCESS;
     }
 
