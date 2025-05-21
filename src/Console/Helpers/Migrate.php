@@ -433,6 +433,10 @@ class '.$fileName.' extends Migration {
         return self::refresh((int)$step);
     }
 
+    public static function status() {
+        return Command::SUCCESS;
+    }
+
     /**
      * Drops table one at a time.
      *
