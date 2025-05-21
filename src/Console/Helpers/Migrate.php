@@ -434,6 +434,11 @@ class '.$fileName.' extends Migration {
     }
 
     public static function status() {
+        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
+        if(sizeof($migrations) == 0) {
+            Tools::info("There are no existing migrations", 'debug', 'yellow');
+        }
+
         return Command::SUCCESS;
     }
 
