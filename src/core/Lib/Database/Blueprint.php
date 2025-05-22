@@ -182,22 +182,37 @@ class Blueprint {
     }
     
     public function dropColumns(array|string $columns): void {
-        $columnList = ' ';
+        $columnString = '';
+        $columnList = '';
+        $drop = 'DROP ';
+        $db = DB::getInstance();
+
+        $indexResults = $db->query("SHOW INDEXES FROM {$this->table}")->results();
+        foreach($indexResults as $results) {
+            $r = $results->Column_name;
+            Tools::info("results: $r");
+        }
         if(Arr::isArray($columns)) {
+            $last = end($columns);
+            // if(Arr::exists())
             foreach($columns as $column) {
-                $columnList .= $column . ', ';
+                $this->isPrimaryKey($column);
+                $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
+                $columnList .=  ($last === $column) ? $column : $column . ', ';
             }
         } else {
-            $columnList .= $columns;
+            $this->isPrimaryKey($columns);
+            $columnString .= $drop . $columns;
+            $columnList = $columns;
         }
         
         $sql = "ALTER TABLE {$this->table}
-            DROP COLUMN {$columnList}";
-
-        DB::getInstance()->query($sql);
-        Tools::info("The column(s) {$columnList} have been dropped from the {$this->table} table.");
+             {$columnString}";
+        Tools::info($sql);
+        $db->query($sql);
+        Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
     }
-    
+
     /**
      * Drops a table if it exists.
      *
@@ -289,6 +304,37 @@ class Blueprint {
      */
     public function index(string $column): void {
         $this->indexes[] = $column;
+    }
+
+    /**
+     * Tests if field is a primary key.  If true then reports to console and 
+     * stops execution of command.
+     *
+     * @param string $column The name of the field we want to test.
+     * @return void
+     */
+    private function isPrimaryKey(string $column): void {
+        $isPrimaryKey = false;
+        if($this->dbDriver === 'mysql') {
+            $sql = "SHOW KEYS FROM {$this->table} WHERE Key_name = 'PRIMARY'";
+            $results = DB::getInstance()->query($sql)->results();
+
+            foreach($results as $row) {
+                $isPrimaryKey = ($row->Column_name === $column) ? true : false;
+            }
+        } else if($this->dbDriver === 'sqlite') {
+            $sql = "PRAGMA table_info({$this->table})";
+            $results = DB::getInstance()->query($sql)->results();
+
+            foreach($results as $row) {
+                $isPrimaryKey = ($row->Column_name === $column) ? true : false;
+            }
+        }
+
+        if($isPrimaryKey) {
+            Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
+            die();
+        }
     }
 
     /**
