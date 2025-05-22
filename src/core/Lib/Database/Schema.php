@@ -41,7 +41,7 @@ class Schema {
      * @return void
      */
     public static function rename(string $from, string $to): void {
-        $sql = "ALTER TABLE $from RENAME TO $to";
+        $sql = "ALTER TABLE {$from} RENAME TO {$to}";
         DB::getInstance()->query($sql);
     }
 
