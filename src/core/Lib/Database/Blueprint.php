@@ -181,6 +181,23 @@ class Blueprint {
         return $this;
     }
     
+    public function dropColumns(array|string $columns): void {
+        $columnList = ' ';
+        if(Arr::isArray($columns)) {
+            foreach($columns as $column) {
+                $columnList .= $column . ', ';
+            }
+        } else {
+            $columnList .= $columns;
+        }
+        
+        $sql = "ALTER TABLE {$this->table}
+            DROP COLUMN {$columnList}";
+
+        DB::getInstance()->query($sql);
+        Tools::info("The column(s) {$columnList} have been dropped from the {$this->table} table.");
+    }
+    
     /**
      * Drops a table if it exists.
      *
