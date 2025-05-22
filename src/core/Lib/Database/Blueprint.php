@@ -310,6 +310,12 @@ class Blueprint {
         return $this;  // Allow chaining
     }
 
+    public function renameColumn(string $from, string $to): void {
+        $sql = "ALTER TABLE {$this->table}
+            RENAME COLUMN {$from} TO {$to}";
+        Db::getInstance()->query($sql);
+    }
+
     /**
      * Define a small integer column.
      * 
