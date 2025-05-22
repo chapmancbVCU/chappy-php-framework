@@ -310,10 +310,18 @@ class Blueprint {
         return $this;  // Allow chaining
     }
 
+    /**
+     * Renames a particular column
+     *
+     * @param string $from The column's original name.
+     * @param string $to The column's new name.
+     * @return void
+     */
     public function renameColumn(string $from, string $to): void {
         $sql = "ALTER TABLE {$this->table}
             RENAME COLUMN {$from} TO {$to}";
         Db::getInstance()->query($sql);
+        Tools::info("Table {$from} renamed to {$to}");
     }
 
     /**
