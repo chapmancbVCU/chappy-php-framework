@@ -186,7 +186,7 @@ class Blueprint {
         return $this;
     }
     
-    public function dropColumns(array|string $columns): Blueprint {
+    public function dropColumns(array|string $columns) {
         $columnString = '';
         $columnList = '';
         $drop = 'DROP ';
