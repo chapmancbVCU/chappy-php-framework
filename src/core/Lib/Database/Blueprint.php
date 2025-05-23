@@ -13,6 +13,7 @@ use Core\Lib\Logging\Logger;
  * Handles schema definitions before executing them.
  */
 class Blueprint {
+    protected $allowPrimaryDropFlag = false;
     protected $columns = [];
     protected $engine = 'InnoDB';
     protected $dbDriver;
@@ -30,6 +31,9 @@ class Blueprint {
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
 
+    public function allowPrimaryDrop() {
+        $this->allowPrimaryDropFlag = true;
+    }
     /**
      * Define a big integer column.
      * 
@@ -181,7 +185,7 @@ class Blueprint {
         return $this;
     }
     
-    public function dropColumns(array|string $columns): void {
+    public function dropColumns(array|string $columns): Blueprint {
         $columnString = '';
         $columnList = '';
         $drop = 'DROP ';
@@ -211,6 +215,7 @@ class Blueprint {
         Tools::info($sql);
         $db->query($sql);
         Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
+        return $this;
     }
 
     /**
@@ -313,7 +318,7 @@ class Blueprint {
      * @param string $column The name of the field we want to test.
      * @return void
      */
-    private function isPrimaryKey(string $column): void {
+    private function isPrimaryKey(string $column): Blueprint {
         $isPrimaryKey = false;
         if($this->dbDriver === 'mysql') {
             $sql = "SHOW KEYS FROM {$this->table} WHERE Key_name = 'PRIMARY'";
@@ -331,10 +336,11 @@ class Blueprint {
             }
         }
 
-        if($isPrimaryKey) {
+        if($isPrimaryKey && $this->allowPrimaryDropFlag) {
             Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
             die();
         }
+        return $this;
     }
 
     /**
