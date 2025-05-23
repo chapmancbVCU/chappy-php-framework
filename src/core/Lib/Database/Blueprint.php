@@ -35,6 +35,7 @@ class Blueprint {
         $this->allowPrimaryDropFlag = true;
         return $this;
     }
+    
     /**
      * Define a big integer column.
      * 
