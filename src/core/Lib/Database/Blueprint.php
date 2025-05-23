@@ -339,7 +339,7 @@ class Blueprint {
             $results = DB::getInstance()->query($sql)->results();
 
             foreach($results as $row) {
-                $isPrimaryKey = ($row->Column_name === $column) ? true : false;
+                $isPrimaryKey = ($row->Column_name === $column && $row->pk == 1) ? true : false;
             }
         }
 
