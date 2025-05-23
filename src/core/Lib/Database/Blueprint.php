@@ -13,7 +13,6 @@ use Core\Lib\Logging\Logger;
  * Handles schema definitions before executing them.
  */
 class Blueprint {
-    protected $allowPrimaryModifyFlag = false;
     protected $columns = [];
     protected $engine = 'InnoDB';
     protected $dbDriver;
@@ -30,17 +29,6 @@ class Blueprint {
         $this->table = $table;
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
-
-    /**
-     * Sets $allowPrimaryDropFlag to true when we want to remove primary key 
-     * from table.
-     *
-     * @return Blueprint Return the instance to allow method chaining.
-     */
-    // public function allowPrimaryModify(): Blueprint {
-    //     $this->allowPrimaryModifyFlag = true;
-    //     return $this;
-    // }
     
     /**
      * Define a big integer column.
@@ -337,7 +325,7 @@ class Blueprint {
             }
         }
 
-        if($isPrimaryKey && !$this->allowPrimaryModifyFlag) {
+        if($isPrimaryKey) {
             Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
             die();
         }
