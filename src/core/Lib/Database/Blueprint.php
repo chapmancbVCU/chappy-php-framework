@@ -13,7 +13,7 @@ use Core\Lib\Logging\Logger;
  * Handles schema definitions before executing them.
  */
 class Blueprint {
-    protected $allowPrimaryDropFlag = false;
+    protected $allowPrimaryModifyFlag = false;
     protected $columns = [];
     protected $engine = 'InnoDB';
     protected $dbDriver;
@@ -37,8 +37,8 @@ class Blueprint {
      *
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function allowPrimaryDrop(): Blueprint {
-        $this->allowPrimaryDropFlag = true;
+    public function allowPrimaryModify(): Blueprint {
+        $this->allowPrimaryModifyFlag = true;
         return $this;
     }
     
@@ -206,7 +206,6 @@ class Blueprint {
         }
         if(Arr::isArray($columns)) {
             $last = end($columns);
-            // if(Arr::exists())
             foreach($columns as $column) {
                 $this->isPrimaryKey($column);
                 $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
