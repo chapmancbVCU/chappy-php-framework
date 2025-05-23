@@ -33,6 +33,7 @@ class Blueprint {
 
     public function allowPrimaryDrop() {
         $this->allowPrimaryDropFlag = true;
+        return true;
     }
     /**
      * Define a big integer column.
