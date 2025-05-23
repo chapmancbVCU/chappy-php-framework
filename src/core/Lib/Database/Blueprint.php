@@ -31,6 +31,12 @@ class Blueprint {
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
 
+    /**
+     * Sets $allowPrimaryDropFlag to true when we want to remove primary key 
+     * from table.
+     *
+     * @return Blueprint Return the instance to allow method chaining.
+     */
     public function allowPrimaryDrop(): Blueprint {
         $this->allowPrimaryDropFlag = true;
         return $this;
@@ -320,7 +326,7 @@ class Blueprint {
      * @param string $column The name of the field we want to test.
      * @return void
      */
-    private function isPrimaryKey(string $column): Blueprint {
+    private function isPrimaryKey(string $column): void {
         $isPrimaryKey = false;
         if($this->dbDriver === 'mysql') {
             $sql = "SHOW KEYS FROM {$this->table} WHERE Key_name = 'PRIMARY'";
@@ -342,7 +348,6 @@ class Blueprint {
             Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
             die();
         }
-        return $this;
     }
 
     /**
