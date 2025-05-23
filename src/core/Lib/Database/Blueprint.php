@@ -343,7 +343,7 @@ class Blueprint {
             }
         }
 
-        if($isPrimaryKey && !$this->allowPrimaryDropFlag) {
+        if($isPrimaryKey && !$this->allowPrimaryModifyFlag) {
             Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
             die();
         }
