@@ -216,7 +216,7 @@ class Blueprint {
         Tools::info($sql);
         $db->query($sql);
         Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
-        return $this;
+        // return $this;
     }
 
     /**
