@@ -37,10 +37,10 @@ class Blueprint {
      *
      * @return Blueprint Return the instance to allow method chaining.
      */
-    public function allowPrimaryModify(): Blueprint {
-        $this->allowPrimaryModifyFlag = true;
-        return $this;
-    }
+    // public function allowPrimaryModify(): Blueprint {
+    //     $this->allowPrimaryModifyFlag = true;
+    //     return $this;
+    // }
     
     /**
      * Define a big integer column.
@@ -199,11 +199,6 @@ class Blueprint {
         $drop = 'DROP ';
         $db = DB::getInstance();
 
-        $indexResults = $db->query("SHOW INDEXES FROM {$this->table}")->results();
-        foreach($indexResults as $results) {
-            $r = $results->Column_name;
-            Tools::info("results: $r");
-        }
         if(Arr::isArray($columns)) {
             $last = end($columns);
             foreach($columns as $column) {
@@ -335,6 +330,7 @@ class Blueprint {
                 $isPrimaryKey = ($row->Column_name === $column) ? true : false;
             }
         } else if($this->dbDriver === 'sqlite') {
+            Tools::info("test", 'yellow');
             $sql = "PRAGMA table_info({$this->table})";
             $results = DB::getInstance()->query($sql)->results();
 
