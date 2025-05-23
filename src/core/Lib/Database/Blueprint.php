@@ -31,9 +31,9 @@ class Blueprint {
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
 
-    public function allowPrimaryDrop() {
+    public function allowPrimaryDrop(): Blueprint {
         $this->allowPrimaryDropFlag = true;
-        return true;
+        return $this;
     }
     /**
      * Define a big integer column.
