@@ -330,12 +330,10 @@ class Blueprint {
                 $isPrimaryKey = ($row->Column_name === $column) ? true : false;
             }
         } else if($this->dbDriver === 'sqlite') {
-            Tools::info("test", 'yellow');
             $sql = "PRAGMA table_info({$this->table})";
             $results = DB::getInstance()->query($sql)->results();
-
             foreach($results as $row) {
-                $isPrimaryKey = ($row->Column_name === $column && $row->pk == 1) ? true : false;
+                $isPrimaryKey = ($row->pk == 1) ? false : true;
             }
         }
 
