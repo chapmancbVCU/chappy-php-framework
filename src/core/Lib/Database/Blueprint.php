@@ -183,7 +183,7 @@ class Blueprint {
     
     /**
      * Drops a column or group of columns.  If a column has a restraint 
-     *
+     * then warnings are presented to the user.
      * @param array|string $columns An individual column or an array of 
      * columns to drop.
      * @return void
