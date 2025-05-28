@@ -395,10 +395,12 @@ class Blueprint {
      * @return void
      */
     public function renameColumn(string $from, string $to): void {
-        $sql = "ALTER TABLE {$this->table}
-            RENAME COLUMN {$from} TO {$to}";
-        Db::getInstance()->query($sql);
-        Tools::info("Table {$from} renamed to {$to}");
+        if(!$this->isPrimaryKey($from)) {
+            $sql = "ALTER TABLE {$this->table}
+                RENAME COLUMN {$from} TO {$to}";
+            Db::getInstance()->query($sql);
+            Tools::info("Table {$from} renamed to {$to}");
+        }
     }
 
     /**
