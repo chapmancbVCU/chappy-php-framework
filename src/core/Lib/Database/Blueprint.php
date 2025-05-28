@@ -181,31 +181,51 @@ class Blueprint {
         return $this;
     }
     
+    /**
+     * Drops a column or group of columns.  If a column has a restraint 
+     *
+     * @param array|string $columns An individual column or an array of 
+     * columns to drop.
+     * @return void
+     */
     public function dropColumns(array|string $columns) {
         $columnString = '';
         $columnList = '';
         $drop = 'DROP ';
         $db = DB::getInstance();
 
+        $columnsConstrained = false;
         if(Arr::isArray($columns)) {
             $last = end($columns);
             foreach($columns as $column) {
-                $this->isPrimaryKey($column);
-                $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
-                $columnList .=  ($last === $column) ? $column : $column . ', ';
+                $columnsConstrained = $this->isPrimaryKey($column);
+                if(!$columnsConstrained) {
+                    $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
+                    $columnList .=  ($last === $column) ? $column : $column . ', ';
+                } 
+                if($columnsConstrained && $column == $last) {
+                    $columnString = substr($columnString, 0, -2);
+                    $columnList = substr($columnList, 0, -2);
+                }
             }
         } else {
-            $this->isPrimaryKey($columns);
-            $columnString .= $drop . $columns;
-            $columnList = $columns;
+            $columnsConstrained = $this->isPrimaryKey($columns);
+            if(!$columnsConstrained) {
+                $columnString .= $drop . $columns;
+                $columnList = $columns;
+            }
         }
         
-        $sql = "ALTER TABLE {$this->table}
-             {$columnString}";
-        Tools::info($sql);
-        $db->query($sql);
-        Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
-        // return $this;
+        if($columnString !== '') {
+            $sql = "ALTER TABLE {$this->table}
+                 {$columnString}";
+            Tools::info($sql);
+            $db->query($sql);
+            Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
+        }
+        if($columnsConstrained) {
+            Tools::info('One or more columns have restraints.  Please review results show above.', 'debug', 'yellow');
+        }
     }
 
     /**
@@ -308,7 +328,7 @@ class Blueprint {
      * @param string $column The name of the field we want to test.
      * @return void
      */
-    private function isPrimaryKey(string $column): void {
+    private function isPrimaryKey(string $column): bool {
         $isPrimaryKey = false;
         if($this->dbDriver === 'mysql') {
             $sql = "SHOW KEYS FROM {$this->table} WHERE Key_name = 'PRIMARY'";
@@ -327,8 +347,8 @@ class Blueprint {
 
         if($isPrimaryKey) {
             Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
-            die();
         }
+        return $isPrimaryKey;
     }
 
     /**
