@@ -198,7 +198,7 @@ class Blueprint {
         if(Arr::isArray($columns)) {
             $last = end($columns);
             foreach($columns as $column) {
-                $columnsConstrained = $this->isPrimaryKey($column);
+                $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column);
                 if(!$columnsConstrained) {
                     $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
                     $columnList .=  ($last === $column) ? $column : $column . ', ';
@@ -207,9 +207,10 @@ class Blueprint {
                     $columnString = substr($columnString, 0, -2);
                     $columnList = substr($columnList, 0, -2);
                 }
+                $columnsConstrained = false;
             }
         } else {
-            $columnsConstrained = $this->isPrimaryKey($columns);
+            $columnsConstrained = $this->isPrimaryKey($columns) || $this->isIndex($columns);
             if(!$columnsConstrained) {
                 $columnString .= $drop . $columns;
                 $columnList = $columns;
@@ -322,11 +323,39 @@ class Blueprint {
     }
 
     /**
-     * Tests if field is a primary key.  If true then reports to console and 
-     * stops execution of command.
+     * Tests if field is an index.  If true then reports to console.
      *
      * @param string $column The name of the field we want to test.
-     * @return void
+     * @return bool True if value is an index and otherwise we return false.
+     */
+    private function isIndex(string $column): bool {
+        $isIndex = false;
+        if($this->dbDriver === 'mysql') {
+            $sql = "SHOW INDEX FROM {$this->table}";
+            $results = DB::getInstance()->query($sql)->results();
+            foreach($results as $row) {       
+                $isIndex = ($row->Column_name === $column) ? true : false;
+            }
+        } else if($this->dbDriver === 'sqlite') {
+            $sql = "PRAGMA table_info({$this->table})";
+            $results = DB::getInstance()->query($sql)->results();
+            foreach($results as $row) {
+                $isIndex = ($row->pk == 1) ? false : true;
+            }
+        }
+
+        if($isIndex) {
+            Tools::info("Cannot modify a INDEX {$column} from {$this->table}", 'debug', 'yellow');
+        }
+        return $isIndex;
+    }
+
+    /**
+     * Tests if field is a primary key.  If true then reports to console.
+     *
+     * @param string $column The name of the field we want to test.
+     * @return bool True if value is a primary key and otherwise we return 
+     * false.
      */
     private function isPrimaryKey(string $column): bool {
         $isPrimaryKey = false;
@@ -395,7 +424,7 @@ class Blueprint {
      * @return void
      */
     public function renameColumn(string $from, string $to): void {
-        if(!$this->isPrimaryKey($from)) {
+        if(!$this->isPrimaryKey($from) && !$this->isIndex($from)) {
             $sql = "ALTER TABLE {$this->table}
                 RENAME COLUMN {$from} TO {$to}";
             Db::getInstance()->query($sql);
