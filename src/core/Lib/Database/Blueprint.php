@@ -207,7 +207,6 @@ class Blueprint {
                     $columnString = substr($columnString, 0, -2);
                     $columnList = substr($columnList, 0, -2);
                 }
-                $columnsConstrained = false;
             }
         } else {
             $columnsConstrained = $this->isPrimaryKey($columns) || $this->isIndex($columns);
@@ -223,9 +222,6 @@ class Blueprint {
             Tools::info($sql);
             $db->query($sql);
             Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
-        }
-        if($columnsConstrained) {
-            Tools::info('One or more columns have restraints.  Please review results show above.', 'debug', 'yellow');
         }
     }
 
@@ -345,7 +341,7 @@ class Blueprint {
         }
 
         if($isIndex) {
-            Tools::info("Cannot modify a INDEX {$column} from {$this->table}", 'debug', 'yellow');
+            Tools::info("Cannot modify the INDEX {$column} from {$this->table}", 'debug', 'yellow');
         }
         return $isIndex;
     }
@@ -375,7 +371,7 @@ class Blueprint {
         }
 
         if($isPrimaryKey) {
-            Tools::info("Cannot modify a PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
+            Tools::info("Cannot modify the PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
         }
         return $isPrimaryKey;
     }
