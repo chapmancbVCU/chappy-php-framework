@@ -18,6 +18,7 @@ class Blueprint {
     protected $dbDriver;
     protected $foreignKeys = [];
     protected $indexes = [];
+    protected ?string $lastColumn = null;
     protected $table;
 
     /**
@@ -38,6 +39,7 @@ class Blueprint {
      */
     public function bigInteger(string $name): Blueprint {
         $this->columns[] = "{$name} BIGINT";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -49,6 +51,7 @@ class Blueprint {
      */
     public function boolean(string $name): Blueprint {
         $this->columns[] = "{$name} TINYINT(1)";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -116,6 +119,7 @@ class Blueprint {
      */
     public function date(string $name): Blueprint {
         $this->columns[] = "{$name} DATE";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -127,6 +131,7 @@ class Blueprint {
      */
     public function dateTime(string $name): Blueprint {
         $this->columns[] = "{$name} DATETIME";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -140,6 +145,7 @@ class Blueprint {
      */
     public function decimal(string $name, int $precision = 8, int $scale = 2): Blueprint {
         $this->columns[] = "{$name} DECIMAL({$precision}, {$scale})";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -244,6 +250,10 @@ class Blueprint {
         Tools::info("SUCCESS: Dropping Table {$table}");
     }
 
+    public function dropPK(): void {
+
+    }
+
     /**
      * Define a double column.
      * 
@@ -254,6 +264,7 @@ class Blueprint {
      */
     public function double(string $name, int $precision = 16, int $scale = 4): Blueprint {
         $this->columns[] = "{$name} DOUBLE({$precision}, {$scale})";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -271,6 +282,7 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} TEXT";
         }
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -284,6 +296,7 @@ class Blueprint {
      */
     public function float(string $name, int $precision = 8, int $scale = 2): Blueprint {
         $this->columns[] = "{$name} FLOAT({$precision}, {$scale})";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -392,6 +405,7 @@ class Blueprint {
     public function integer(string $name): Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "INT";
         $this->columns[] = "{$name} {$type}";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -403,6 +417,7 @@ class Blueprint {
      */
     public function mediumInteger(string $name): Blueprint {
         $this->columns[] = "{$name} MEDIUMINT";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -443,6 +458,7 @@ class Blueprint {
      */
     public function smallInteger(string $name): Blueprint {
         $this->columns[] = "{$name} SMALLINT";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -466,6 +482,7 @@ class Blueprint {
     public function string(string $name, int $length = 255): Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "TEXT" : "VARCHAR({$length})";
         $this->columns[] = "{$name} {$type}";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -477,6 +494,7 @@ class Blueprint {
      */
     public function text(string $name): Blueprint {
         $this->columns[] = "{$name} TEXT";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -488,6 +506,7 @@ class Blueprint {
      */
     public function time(string $name): Blueprint {
         $this->columns[] = "{$name} TIME";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -499,6 +518,7 @@ class Blueprint {
      */
     public function timestamp(string $name): Blueprint {
         $this->columns[] = "{$name} TIMESTAMP";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -519,6 +539,7 @@ class Blueprint {
     public function tinyInteger(string $name): Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "TINYINT";
         $this->columns[] = "{$name} {$type}";
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -534,6 +555,7 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} INTEGER";
         }
+        $this->lastColumn = $name;
         return $this;
     }
 
@@ -563,5 +585,6 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} TEXT";
         }
+        $this->lastColumn = $name;
     }
 }
