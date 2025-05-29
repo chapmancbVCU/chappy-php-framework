@@ -188,16 +188,25 @@ class Blueprint {
      * columns to drop.
      * @return void
      */
-    public function dropColumns(array|string $columns) {
+    public function dropColumns(array|string $columns): void {
+        if($columns === '' || Arr::isEmpty($columns)) {
+            Tools::info('Column argument can\'t be an empty string or an empty array', 'debug', 'yellow');
+            return;
+        }
+
         $columnString = '';
         $columnList = '';
         $drop = 'DROP ';
         $db = DB::getInstance();
-
         $columnsConstrained = false;
+        
         if(Arr::isArray($columns)) {
             $last = end($columns);
             foreach($columns as $column) {
+                if($column === '') {
+                    Tools::info('Array contains empty string.', 'debug', 'yellow');
+                    continue;
+                }
                 $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column);
                 if(!$columnsConstrained) {
                     $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
@@ -216,13 +225,11 @@ class Blueprint {
             }
         }
         
-        if($columnString !== '') {
-            $sql = "ALTER TABLE {$this->table}
-                 {$columnString}";
-            Tools::info($sql);
-            $db->query($sql);
-            Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
-        }
+        $sql = "ALTER TABLE {$this->table}
+                {$columnString}";
+        Tools::info($sql);
+        $db->query($sql);
+        Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
     }
 
     /**
