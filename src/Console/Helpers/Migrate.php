@@ -186,7 +186,7 @@ class Migrate {
         if (sizeof($migrationsRun) == 0) {
             Tools::info('No new migrations to run.', 'debug', 'yellow');
         } else {
-            Tools::info('Migrations completed successfully.', 'success', 'green');
+            Tools::info('Migrations completed.  Check console logging for any warnings.', 'success', 'green');
         }
 
         return Command::SUCCESS;
