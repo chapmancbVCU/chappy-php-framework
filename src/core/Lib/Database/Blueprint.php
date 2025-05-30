@@ -213,7 +213,7 @@ class Blueprint {
      * @return void
      */
     public function dropColumns(array|string $columns): void {
-        if($columns === '' || Arr::isEmpty($columns)) {
+        if($columns === '' || (Arr::isArray($columns) && Arr::isEmpty($columns))) {
             Tools::info('Column argument can\'t be an empty string or an empty array', 'debug', 'yellow');
             return;
         }
@@ -231,7 +231,7 @@ class Blueprint {
                     Tools::info('Array contains empty string.', 'debug', 'yellow');
                     continue;
                 }
-                $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column);
+                $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column) || $this->isUnique($column);
                 if(!$columnsConstrained) {
                     $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
                     $columnList .=  ($last === $column) ? $column : $column . ', ';
@@ -242,7 +242,7 @@ class Blueprint {
                 }
             }
         } else {
-            $columnsConstrained = $this->isPrimaryKey($columns) || $this->isIndex($columns);
+            $columnsConstrained = $this->isPrimaryKey($columns) || $this->isIndex($columns) || $this->isUnique($columns);
             if(!$columnsConstrained) {
                 $columnString .= $drop . $columns;
                 $columnList = $columns;
@@ -268,9 +268,10 @@ class Blueprint {
         Tools::info("SUCCESS: Dropping Table {$table}");
     }
 
-    public function dropPK(): void {
-
-    }
+    public function dropForeign(): void {}
+    public function dropIndex(): void {}
+    public function dropPrimaryKey(): void {}
+    public function dropUnique(): void {}
 
     /**
      * Define a double column.
@@ -412,6 +413,53 @@ class Blueprint {
             Tools::info("Cannot modify the PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
         }
         return $isPrimaryKey;
+    }
+
+    /**
+     * Tests if a column has a UNIQUE constraint.
+     *
+     * If true, reports to the console. This helps avoid modifying unique-indexed columns
+     * unintentionally during schema changes like dropping or renaming.
+     *
+     * @param string $column The name of the column to check.
+     * @return bool True if the column is unique, false otherwise.
+     */
+    private function isUnique(string $column): bool {
+        $isUnique = false;
+
+        if ($this->dbDriver === 'mysql') {
+            $sql = "SHOW INDEX FROM {$this->table} WHERE Non_unique = 0 AND Column_name = '{$column}'";
+            $results = DB::getInstance()->query($sql)->results();
+
+            foreach ($results as $row) {
+                if ($row->Column_name === $column) {
+                    $isUnique = true;
+                    break;
+                }
+            }
+        } else if ($this->dbDriver === 'sqlite') {
+            // Get all unique indexes on the table
+            $indexList = DB::getInstance()->query("PRAGMA index_list('{$this->table}')")->results();
+
+            foreach ($indexList as $index) {
+                if ($index->unique == 1) {
+                    // Check if the column is part of the unique index
+                    $indexInfo = DB::getInstance()->query("PRAGMA index_info('{$index->name}')")->results();
+                    foreach ($indexInfo as $colInfo) {
+                        if ($colInfo->name === $column) {
+                            $isUnique = true;
+                            break 2; // Break both loops
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($isUnique) {
+            Tools::info("Cannot modify the UNIQUE constraint on {$column} from {$this->table}", 'debug', 'yellow');
+        }
+
+        return $isUnique;
     }
 
     /**
