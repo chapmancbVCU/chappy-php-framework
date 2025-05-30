@@ -508,11 +508,14 @@ class Blueprint {
      * @return void
      */
     public function renameColumn(string $from, string $to): void {
-        if(!$this->isPrimaryKey($from) && !$this->isIndex($from)) {
+        $isConstrained = $this->isPrimaryKey($from) || $this->isIndex($from) || $this->isUnique($from);
+        if(!$isConstrained) {
             $sql = "ALTER TABLE {$this->table}
                 RENAME COLUMN {$from} TO {$to}";
             Db::getInstance()->query($sql);
             Tools::info("Table {$from} renamed to {$to}");
+        } else {
+            Tools::info("The field {$from} is a constrained column.  Make sure you drop any constraints before renaming this column.", 'debug', 'yellow');
         }
     }
 
