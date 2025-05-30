@@ -222,9 +222,9 @@ class Blueprint {
         $columnList = '';
         $drop = 'DROP ';
         $db = DB::getInstance();
-        $columnsConstrained = false;
         
         if(Arr::isArray($columns)) {
+            $columnsConstrained = false;
             $last = end($columns);
             foreach($columns as $column) {
                 if($column === '') {
