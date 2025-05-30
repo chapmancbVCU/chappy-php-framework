@@ -104,22 +104,24 @@ class Blueprint {
     */
     protected function createIndex(array|string $index): void {
         if (is_string($index)) {
+            $indexName = "{$this->table}_{$index}_idx";
             $sql = ($this->dbDriver === 'sqlite')
-                ? "CREATE INDEX IF NOT EXISTS {$this->table}_{$index}_idx ON {$this->table} ({$index})"
+                ? "CREATE INDEX IF NOT EXISTS {$indexName} ON {$this->table} ({$index})"
                 : "ALTER TABLE {$this->table} ADD INDEX ({$index})";
+
+            DB::getInstance()->query($sql);
+            Tools::info("SUCCESS: Adding Index {$index} To {$this->table}");
         } else {
-            // Structured index array with 'type', 'name', and 'columns'
             $columns = implode(', ', array_map(fn($col) => "`$col`", $index['columns']));
             $sql = match ($index['type']) {
                 'unique' => "CREATE UNIQUE INDEX `{$index['name']}` ON `{$this->table}` ({$columns})",
                 default => "CREATE INDEX `{$index['name']}` ON `{$this->table}` ({$columns})",
             };
+
+            DB::getInstance()->query($sql);
+            Tools::info("SUCCESS: Adding Index {$index['name']} To {$this->table}");
         }
-
-        DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Adding Index {$index['name']} To {$this->table}");
     }
-
 
     /**
      * Define a date column.
