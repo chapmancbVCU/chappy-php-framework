@@ -267,8 +267,23 @@ class Blueprint {
     }
 
     public function dropForeign(): void {}
+
     public function dropIndex(): void {}
-    public function dropPrimaryKey(): void {}
+
+    public function dropPrimaryKey(string $column): void {
+        if(!$this->isPrimaryKey($column)) {
+            Tools::info("'{$column}' is not a primary key.  Skipping operation.");
+            return;
+        }
+
+        $sql = "ALTER TABLE {$this->table} MODIFY {$column} INT"; // remove AUTO_INCREMENT
+        DB::getInstance()->query($sql);
+
+        $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
+        Tools::info($sql);
+        DB::getInstance()->query($sql);
+    }
+
     public function dropUnique(): void {}
 
     /**
@@ -408,7 +423,7 @@ class Blueprint {
         }
 
         if($isPrimaryKey) {
-            Tools::info("Cannot modify the PRIMARY KEY {$column} from {$this->table}", 'debug', 'yellow');
+            Tools::info("Cannot modify the PRIMARY KEY {$column} from {$this->table}.  If you are using the dropPrimaryKey function this message can be ignored.", 'debug', 'yellow');
         }
         return $isPrimaryKey;
     }
