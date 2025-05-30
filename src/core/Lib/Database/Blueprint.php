@@ -95,13 +95,19 @@ class Blueprint {
     }
 
     /**
-    * Create an index on a specific column.
-    *
-    * @param string $column The name of the column to create an index for.
-    *                       Index will be named as `{table}_{column}_idx` in SQLite,
-    *                       and will be created via `ALTER TABLE` in MySQL.
-    * @return void
-    */
+     * Define an index on one or more columns.
+     *
+     * This method registers a standard (non-unique) index to be created
+     * after the table is created. The index will be applied to the given column
+     * or set of columns. The index name is automatically generated as
+     * `{table}_{column}_idx` for a single column or based on the provided structure.
+     *
+     * Note: Actual SQL index creation occurs in the `create()` method via `createIndex()`.
+     *
+     * @param string|array $column The name of the column or an array of columns to index.
+     *                              If a string is provided, a default index name will be generated.
+     * @return void
+     */
     protected function createIndex(array|string $index): void {
         if (is_string($index)) {
             $indexName = "{$this->table}_{$index}_idx";
