@@ -242,11 +242,9 @@ class Blueprint {
                 }
             }
         } else {
-            $columnsConstrained = $this->isPrimaryKey($columns) || $this->isIndex($columns) || $this->isUnique($columns);
-            if(!$columnsConstrained) {
-                $columnString .= $drop . $columns;
-                $columnList = $columns;
-            }
+            if($this->isPrimaryKey($columns) || $this->isIndex($columns) || $this->isUnique($columns)) return;
+            $columnString .= $drop . $columns;
+            $columnList = $columns;
         }
         
         $sql = "ALTER TABLE {$this->table}
