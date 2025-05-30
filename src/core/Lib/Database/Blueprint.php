@@ -102,14 +102,24 @@ class Blueprint {
     *                       and will be created via `ALTER TABLE` in MySQL.
     * @return void
     */
-    protected function createIndex(string $column): void {
-        $sql = ($this->dbDriver === 'sqlite')
-            ? "CREATE INDEX IF NOT EXISTS {$this->table}_{$column}_idx ON {$this->table} ({$column})"
-            : "ALTER TABLE {$this->table} ADD INDEX ({$column})";
+    protected function createIndex(array|string $index): void {
+        if (is_string($index)) {
+            $sql = ($this->dbDriver === 'sqlite')
+                ? "CREATE INDEX IF NOT EXISTS {$this->table}_{$index}_idx ON {$this->table} ({$index})"
+                : "ALTER TABLE {$this->table} ADD INDEX ({$index})";
+        } else {
+            // Structured index array with 'type', 'name', and 'columns'
+            $columns = implode(', ', array_map(fn($col) => "`$col`", $index['columns']));
+            $sql = match ($index['type']) {
+                'unique' => "CREATE UNIQUE INDEX `{$index['name']}` ON `{$this->table}` ({$columns})",
+                default => "CREATE INDEX `{$index['name']}` ON `{$this->table}` ({$columns})",
+            };
+        }
 
         DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Adding Index {$column} To {$this->table}");
+        Tools::info("SUCCESS: Adding Index {$index['name']} To {$this->table}");
     }
+
 
     /**
      * Define a date column.
@@ -540,6 +550,27 @@ class Blueprint {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "TINYINT";
         $this->columns[] = "{$name} {$type}";
         $this->lastColumn = $name;
+        return $this;
+    }
+
+    /**
+     * Adds a unique index to the last defined column.
+     *
+     * @return Blueprint
+     * @throws Exception if no column has been defined yet.
+     */
+    public function unique(): Blueprint {
+        if(!$this->lastColumn) {
+            throw new Exception("Cannot apply unique index with a defined column.");
+        }
+
+        $indexName = "uniq_{$this->table}_{$this->lastColumn}";
+        $this->indexes[] = [
+            'type' => 'unique',
+            'name' => $indexName,
+            'columns' => [$this->lastColumn]
+        ];
+
         return $this;
     }
 
