@@ -231,7 +231,8 @@ class Blueprint {
                     Tools::info('Array contains empty string.', 'debug', 'yellow');
                     continue;
                 }
-                $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column) || $this->isUnique($column);
+                $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column) || 
+                    $this->isUnique($column) || $this->isForeignKey($column);
                 if(!$columnsConstrained) {
                     $columnString .= ($last === $column) ? $drop . $column : $drop . $column . ', ';
                     $columnList .=  ($last === $column) ? $column : $column . ', ';
@@ -242,7 +243,11 @@ class Blueprint {
                 }
             }
         } else {
-            if($this->isPrimaryKey($columns) || $this->isIndex($columns) || $this->isUnique($columns)) return;
+            if($this->isPrimaryKey($columns) || $this->isIndex($columns) || 
+                $this->isUnique($columns) || $this->isForeignKey($columns)) {
+                return;
+            }
+
             $columnString .= $drop . $columns;
             $columnList = $columns;
         }
@@ -266,10 +271,50 @@ class Blueprint {
         Tools::info("SUCCESS: Dropping Table {$table}");
     }
 
-    public function dropForeign(): void {}
+    /**
+     * Drops a foreign key constraint from the table (MySQL only).
+     *
+     * @param string $column The name of the column to be dropped.
+     * @return void
+     */
+    public function dropForeign(string $column): void {
+        if ($column === '') {
+            Tools::info("Column argument can't be an empty string", 'debug', 'yellow');
+            return;
+        }
+
+        if ($this->dbDriver === 'mysql') {
+            // Get foreign key constraint name from information_schema
+            $sql = "SELECT CONSTRAINT_NAME 
+                    FROM information_schema.KEY_COLUMN_USAGE 
+                    WHERE TABLE_SCHEMA = DATABASE() 
+                    AND TABLE_NAME = '{$this->table}' 
+                    AND COLUMN_NAME = '{$column}' 
+                    AND REFERENCED_TABLE_NAME IS NOT NULL 
+                    LIMIT 1";
+
+            $result = DB::getInstance()->query($sql)->first();
+
+            if (!$result) {
+                Tools::info("No foreign key constraint found on column '{$column}'", 'debug', 'yellow');
+                return;
+            }
+
+            $constraintName = $result->CONSTRAINT_NAME;
+            $dropSql = "ALTER TABLE {$this->table} DROP FOREIGN KEY `{$constraintName}`";
+            DB::getInstance()->query($dropSql);
+            $this->dropColumns($column);
+            Tools::info("Dropped FOREIGN KEY '{$constraintName}' on '{$column}' in '{$this->table}'");
+
+        } elseif ($this->dbDriver === 'sqlite') {
+            // SQLite does not support DROP CONSTRAINT or ALTER TABLE DROP FOREIGN KEY.
+            // You must recreate the table without the foreign key.
+            Tools::info("SQLite does not support dropping foreign keys directly. You must recreate the table.", 'debug', 'yellow');
+        }
+    }
 
     /**
-     * Drops indexed value from table.
+     * Drops indexed value from the table.
      *
      * @param string $column The name of the column to be dropped.
      * @return void
@@ -297,7 +342,7 @@ class Blueprint {
     }
 
     /**
-     * Drops primary key field from table.
+     * Drops primary key field from the table.
      *
      * @param string $column The name of the column to be dropped.
      * @return void
@@ -322,7 +367,7 @@ class Blueprint {
     }
 
     /**
-     * Drops column with unique constraint from table.
+     * Drops column with unique constraint from the table.
      *
      * @param string $column The name of the column to be dropped.
      * @return void
@@ -469,6 +514,52 @@ class Blueprint {
      */
     public function index(string $column): void {
         $this->indexes[] = $column;
+    }
+
+    /**
+     * Tests if a column is a foreign key.
+     *
+     * If true, reports to the console. Helps prevent unsafe renames or drops.
+     *
+     * @param string $column The name of the column to check.
+     * @return bool True if the column has a foreign key constraint.
+     */
+    private function isForeignKey(string $column): bool {
+        $isForeignKey = false;
+
+        if ($this->dbDriver === 'mysql') {
+            $sql = "SELECT COLUMN_NAME 
+                    FROM information_schema.KEY_COLUMN_USAGE 
+                    WHERE TABLE_SCHEMA = DATABASE() 
+                    AND TABLE_NAME = '{$this->table}' 
+                    AND COLUMN_NAME = '{$column}' 
+                    AND REFERENCED_TABLE_NAME IS NOT NULL";
+
+            $result = DB::getInstance()->query($sql)->results();
+
+            foreach ($result as $row) {
+                if ($row->COLUMN_NAME === $column) {
+                    $isForeignKey = true;
+                    break;
+                }
+            }
+        } elseif ($this->dbDriver === 'sqlite') {
+            $sql = "PRAGMA foreign_key_list('{$this->table}')";
+            $results = DB::getInstance()->query($sql)->results();
+
+            foreach ($results as $row) {
+                if ($row->from === $column) {
+                    $isForeignKey = true;
+                    break;
+                }
+            }
+        }
+
+        if ($isForeignKey) {
+            Tools::info("Cannot modify FOREIGN KEY '{$column}' from '{$this->table}'.  If you are using the dropForeign function this message can be ignored.", 'debug', 'yellow');
+        }
+
+        return $isForeignKey;
     }
 
     /**
@@ -622,7 +713,8 @@ class Blueprint {
      * @return void
      */
     public function renameColumn(string $from, string $to): void {
-        $isConstrained = $this->isPrimaryKey($from) || $this->isIndex($from) || $this->isUnique($from);
+        $isConstrained = $this->isPrimaryKey($from) || $this->isIndex($from) || 
+            $this->isUnique($from) || $this->isForeignKey($from);
         if(!$isConstrained) {
             $sql = "ALTER TABLE {$this->table}
                 RENAME COLUMN {$from} TO {$to}";
