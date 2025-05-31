@@ -293,6 +293,7 @@ class Blueprint {
 
         DB::getInstance()->query($sql);
         $this->dropColumns($column);
+        Tools::info("Dropped the indexed value {$column} from the {$this->table} table.");
     }
 
     /**
@@ -357,7 +358,7 @@ class Blueprint {
             $dropSql = "ALTER TABLE {$this->table} DROP INDEX `{$indexName}`";
             DB::getInstance()->query($dropSql);
             $this->dropColumns($column);
-            Tools::info("SUCCESS: Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+            Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
 
         } elseif ($this->dbDriver === 'sqlite') {
             // In SQLite, find the name of the unique index
@@ -375,7 +376,7 @@ class Blueprint {
                             $dropSql = "DROP INDEX IF EXISTS `{$indexName}`";
                             DB::getInstance()->query($dropSql);
                             $this->dropColumns($column);
-                            Tools::info("SUCCESS: Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+                            Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
                             return;
                         }
                     }
