@@ -268,7 +268,27 @@ class Blueprint {
 
     public function dropForeign(): void {}
 
-    public function dropIndex(): void {}
+    /**
+     * Drops indexed value from table.
+     *
+     * @param string $column The name of the column to be dropped.
+     * @return void
+     */
+    public function dropIndex(string $column): void {
+        if(!$this->isIndex($column)) {
+            Tools::info("'{$column}' is not an indexed field.  Skipping operation.");
+            return;
+        }
+
+        if($column === '') {
+            Tools::info("Column argument can't be an empty string");
+            return;
+        }
+
+        $sql = "DROP INDEX {$column} on {$this->table}";
+        DB::getInstance()->query($sql);
+        $this->dropColumns($column);
+    }
 
     /**
      * Drops primary key field from table.
@@ -292,6 +312,7 @@ class Blueprint {
         $db->getInstance()->query($sql);
         $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
         $db->getInstance()->query($sql);
+        Tools::info("The primary key for this table has been dropped.");
     }
 
     public function dropUnique(): void {}
@@ -403,7 +424,7 @@ class Blueprint {
         }
 
         if($isIndex) {
-            Tools::info("Cannot modify the INDEX {$column} from {$this->table}", 'debug', 'yellow');
+            Tools::info("Cannot modify the INDEX {$column} from {$this->table}.  If you are using the dropIndex function this message can be ignored.", 'debug', 'yellow');
         }
         return $isIndex;
     }
