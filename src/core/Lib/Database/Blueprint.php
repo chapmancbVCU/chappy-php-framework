@@ -285,7 +285,12 @@ class Blueprint {
             return;
         }
 
-        $sql = "DROP INDEX {$column} on {$this->table}";
+        if($this->dbDriver === 'sqlite') {
+            $sql = "DROP INDEX IF EXISTS {$column}";
+        } else {
+            $sql = "DROP INDEX {$column} on {$this->table}";
+        }
+        
         DB::getInstance()->query($sql);
         $this->dropColumns($column);
     }
