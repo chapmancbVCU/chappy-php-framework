@@ -270,18 +270,28 @@ class Blueprint {
 
     public function dropIndex(): void {}
 
+    /**
+     * Drops primary key field from table.
+     *
+     * @param string $column The name of the column to be dropped.
+     * @return void
+     */
     public function dropPrimaryKey(string $column): void {
         if(!$this->isPrimaryKey($column)) {
             Tools::info("'{$column}' is not a primary key.  Skipping operation.");
             return;
         }
 
-        $sql = "ALTER TABLE {$this->table} MODIFY {$column} INT"; // remove AUTO_INCREMENT
-        DB::getInstance()->query($sql);
+        if($column === '') {
+            Tools::info("Column argument can't be an empty string");
+            return;
+        }
 
+        $sql = "ALTER TABLE {$this->table} MODIFY {$column} INT"; // remove AUTO_INCREMENT
+        $db = DB::getInstance();
+        $db->getInstance()->query($sql);
         $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
-        Tools::info($sql);
-        DB::getInstance()->query($sql);
+        $db->getInstance()->query($sql);
     }
 
     public function dropUnique(): void {}
