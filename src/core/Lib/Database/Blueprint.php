@@ -290,7 +290,7 @@ class Blueprint {
         } else {
             $sql = "DROP INDEX {$column} on {$this->table}";
         }
-        
+
         DB::getInstance()->query($sql);
         $this->dropColumns($column);
     }
@@ -320,7 +320,71 @@ class Blueprint {
         Tools::info("The primary key for this table has been dropped.");
     }
 
-    public function dropUnique(): void {}
+    /**
+     * Drops column with unique constraint from table.
+     *
+     * @param string $column The name of the column to be dropped.
+     * @return void
+     */
+    public function dropUnique(string $column): void {
+        if ($column === '') {
+            Tools::info("Column argument can't be an empty string", 'debug', 'yellow');
+            return;
+        }
+
+        if (!$this->isUnique($column)) {
+            Tools::info("'{$column}' does not have a unique constraint. Skipping operation.", 'debug', 'yellow');
+            return;
+        }
+
+        if ($this->dbDriver === 'mysql') {
+            // Get the actual unique index name for this column
+            $sql = "SELECT INDEX_NAME FROM information_schema.STATISTICS 
+                    WHERE table_schema = DATABASE() 
+                    AND table_name = '{$this->table}' 
+                    AND column_name = '{$column}' 
+                    AND non_unique = 0 
+                    LIMIT 1";
+            $result = DB::getInstance()->query($sql)->first();
+
+            if (!$result) {
+                Tools::info("No unique index found for column '{$column}' on table '{$this->table}'", 'debug', 'yellow');
+                return;
+            }
+
+            $indexName = $result->INDEX_NAME;
+
+            $dropSql = "ALTER TABLE {$this->table} DROP INDEX `{$indexName}`";
+            DB::getInstance()->query($dropSql);
+            $this->dropColumns($column);
+            Tools::info("SUCCESS: Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+
+        } elseif ($this->dbDriver === 'sqlite') {
+            // In SQLite, find the name of the unique index
+            $indexList = DB::getInstance()->query("PRAGMA index_list('{$this->table}')")->results();
+
+            foreach ($indexList as $index) {
+                if ($index->unique == 1) {
+                    $indexName = $index->name;
+
+                    // Get column(s) associated with this index
+                    $indexInfo = DB::getInstance()->query("PRAGMA index_info('{$indexName}')")->results();
+                    foreach ($indexInfo as $colInfo) {
+                        if ($colInfo->name === $column) {
+                            // Found a unique index on this column — drop it
+                            $dropSql = "DROP INDEX IF EXISTS `{$indexName}`";
+                            DB::getInstance()->query($dropSql);
+                            $this->dropColumns($column);
+                            Tools::info("SUCCESS: Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+                            return;
+                        }
+                    }
+                }
+            }
+
+            Tools::info("No unique index found for '{$column}' in SQLite table '{$this->table}'", 'debug', 'yellow');
+        }
+    }
 
     /**
      * Define a double column.
@@ -505,7 +569,7 @@ class Blueprint {
         }
 
         if ($isUnique) {
-            Tools::info("Cannot modify the UNIQUE constraint on {$column} from {$this->table}", 'debug', 'yellow');
+            Tools::info("Cannot modify the UNIQUE constraint on {$column} from {$this->table}.  If you are using the dropUnique function this message can be ignored.", 'debug', 'yellow');
         }
 
         return $isUnique;
