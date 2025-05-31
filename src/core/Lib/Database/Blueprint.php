@@ -713,6 +713,11 @@ class Blueprint {
      * @return void
      */
     public function renameColumn(string $from, string $to): void {
+        if($from === '' || $to === '') {
+            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            return;
+        }
+        
         $isConstrained = $this->isPrimaryKey($from) || $this->isIndex($from) || 
             $this->isUnique($from) || $this->isForeignKey($from);
         if(!$isConstrained) {
