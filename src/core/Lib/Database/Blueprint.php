@@ -376,11 +376,11 @@ class Blueprint {
         $db->getInstance()->query($sql);
         $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
         $db->getInstance()->query($sql);
+        Tools::info("The primary key constraint for the '{$column}' column for the '{$this->table}' table has been dropped.");
         
         if(!$preserveColumn) {
             $this->dropColumns($column);
         }
-        Tools::info("The primary key for this table has been dropped.");
     }
 
     /**
