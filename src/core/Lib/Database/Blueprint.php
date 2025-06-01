@@ -340,7 +340,7 @@ class Blueprint {
         }
 
         DB::getInstance()->query($sql);
-        Tools::info("Dropped the indexed constraint {$column} from the {$this->table} table.");
+        Tools::info("Dropped the indexed constraint for the {$column} column of the {$this->table} table.");
         if(!$preserveColumn) {
             $this->dropColumns($column);
         }
