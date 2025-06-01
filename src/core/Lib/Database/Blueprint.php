@@ -789,6 +789,38 @@ class Blueprint {
     }
 
     /**
+     * Renames the table's primary key.
+     *
+     * @param string $from The original column name.
+     * @param string $to The new column name.
+     * @return void
+     */
+    public function renamePrimaryKey(string $from, string $to): void {
+        if($from === '' || $to === '') {
+            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            return;
+        }
+
+        // Check if the column is a primary key
+        $isPrimaryKey = $this->isPrimaryKey($from);
+
+        // Drop the primary key constraint but conserve the column
+        if($isPrimaryKey) {
+            $this->dropPrimaryKey($from, true);
+        } else {
+            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", 'debug', 'yellow');
+        }
+
+        // Rename the column
+        $this->renameColumn($from, $to);
+
+        // Reapply the index if it was present.
+        if($isPrimaryKey) {
+            DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY ({$to})");
+        }
+    }
+
+    /**
      * Define a small integer column.
      * 
      * @param string $name The name of the column to be created as SMALLINT.
