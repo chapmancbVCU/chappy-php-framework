@@ -319,7 +319,7 @@ class Blueprint {
      * @param string $column The name of the column to be dropped.
      * @return void
      */
-    public function dropIndex(string $column): void {
+    public function dropIndex(string $column, bool $preserveColumn = false): void {
         if(!$this->isIndex($column)) {
             Tools::info("'{$column}' is not an indexed field.  Skipping operation.");
             return;
@@ -337,8 +337,10 @@ class Blueprint {
         }
 
         DB::getInstance()->query($sql);
-        $this->dropColumns($column);
         Tools::info("Dropped the indexed value {$column} from the {$this->table} table.");
+        if(!$preserveColumn) {
+            $this->dropColumns($column);
+        }
     }
 
     /**
@@ -728,6 +730,38 @@ class Blueprint {
         } else {
             Tools::info("The field {$from} is a constrained column.  Make sure you drop any constraints before renaming this column.", 'debug', 'yellow');
         }
+    }
+
+    /**
+     * Renames an indexed column by preserving and reapplying the index.
+     *
+     * @param string $from The original column name.
+     * @param string $to The new column name.
+     * @return void
+     */
+    public function renameIndex(string $from, string $to): void {
+        if ($from === '' || $to === '') {
+            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            return;
+        }
+
+        // Check if the column is indexed
+        $isIndexed = $this->isIndex($from);
+
+        // Drop the index but preserve the column
+        if ($isIndexed) {
+            $this->dropIndex($from, true);
+        }
+
+        // Rename the column
+        $this->renameColumn($from, $to);
+
+        // Reapply the index if it was present
+        if ($isIndexed) {
+            $this->index($to);
+        }
+
+        Tools::info("Successfully renamed indexed column '{$from}' to '{$to}' on '{$this->table}'");
     }
 
     /**
