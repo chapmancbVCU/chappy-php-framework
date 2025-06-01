@@ -317,9 +317,12 @@ class Blueprint {
      * Drops indexed value from the table.
      *
      * @param string $column The name of the column to be dropped.
+     * @param bool $preserveColumn When true only the index constraint is 
+     * removed.  If set to false the column is also dropped from the table.  
+     * The default value is true.
      * @return void
      */
-    public function dropIndex(string $column, bool $preserveColumn = false): void {
+    public function dropIndex(string $column, bool $preserveColumn = true): void {
         if(!$this->isIndex($column)) {
             Tools::info("'{$column}' is not an indexed field.  Skipping operation.");
             return;
