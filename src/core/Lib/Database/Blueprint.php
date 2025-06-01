@@ -275,9 +275,12 @@ class Blueprint {
      * Drops a foreign key constraint from the table (MySQL only).
      *
      * @param string $column The name of the column to be dropped.
+     * @param bool $preserveColumn When true only the foreign key constraint is 
+     * removed.  If set to false the column is also dropped from the table.  
+     * The default value is true.
      * @return void
      */
-    public function dropForeign(string $column): void {
+    public function dropForeign(string $column, bool $preserveColumn = true): void {
         if ($column === '') {
             Tools::info("Column argument can't be an empty string", 'debug', 'yellow');
             return;
@@ -303,7 +306,9 @@ class Blueprint {
             $constraintName = $result->CONSTRAINT_NAME;
             $dropSql = "ALTER TABLE {$this->table} DROP FOREIGN KEY `{$constraintName}`";
             DB::getInstance()->query($dropSql);
-            $this->dropColumns($column);
+            if(!$preserveColumn) {
+                $this->dropColumns($column);
+            }
             Tools::info("Dropped FOREIGN KEY '{$constraintName}' on '{$column}' in '{$this->table}'");
 
         } elseif ($this->dbDriver === 'sqlite') {
