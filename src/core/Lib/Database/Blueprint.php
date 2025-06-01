@@ -387,9 +387,12 @@ class Blueprint {
      * Drops column with unique constraint from the table.
      *
      * @param string $column The name of the column to be dropped.
+     * @param bool $preserveColumn When true only the unique constraint is 
+     * removed.  If set to false the column is also dropped from the table.  
+     * The default value is true.
      * @return void
      */
-    public function dropUnique(string $column): void {
+    public function dropUnique(string $column, bool $preserveColumn = false): void {
         if ($column === '') {
             Tools::info("Column argument can't be an empty string", 'debug', 'yellow');
             return;
@@ -419,8 +422,11 @@ class Blueprint {
 
             $dropSql = "ALTER TABLE {$this->table} DROP INDEX `{$indexName}`";
             DB::getInstance()->query($dropSql);
-            $this->dropColumns($column);
             Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+
+            if(!$preserveColumn) {
+                $this->dropColumns($column);
+            }
 
         } elseif ($this->dbDriver === 'sqlite') {
             // In SQLite, find the name of the unique index
