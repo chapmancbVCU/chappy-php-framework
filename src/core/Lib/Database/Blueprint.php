@@ -355,16 +355,19 @@ class Blueprint {
      * Drops primary key field from the table.
      *
      * @param string $column The name of the column to be dropped.
+     * @param bool $preserveColumn When true only the primary key constraint is 
+     * removed.  If set to false the column is also dropped from the table.  
+     * The default value is true.
      * @return void
      */
-    public function dropPrimaryKey(string $column): void {
-        if(!$this->isPrimaryKey($column)) {
-            Tools::info("'{$column}' is not a primary key.  Skipping operation.");
+    public function dropPrimaryKey(string $column, bool $preserveColumn = true): void {
+        if($column === '') {
+            Tools::info("Column argument can't be an empty string");
             return;
         }
 
-        if($column === '') {
-            Tools::info("Column argument can't be an empty string");
+        if(!$this->isPrimaryKey($column)) {
+            Tools::info("'{$column}' is not a primary key.  Skipping operation.");
             return;
         }
 
@@ -373,6 +376,10 @@ class Blueprint {
         $db->getInstance()->query($sql);
         $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
         $db->getInstance()->query($sql);
+        
+        if(!$preserveColumn) {
+            $this->dropColumns($column);
+        }
         Tools::info("The primary key for this table has been dropped.");
     }
 
