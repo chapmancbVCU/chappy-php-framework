@@ -747,7 +747,7 @@ class Blueprint {
             $sql = "ALTER TABLE {$this->table}
                 RENAME COLUMN {$from} TO {$to}";
             Db::getInstance()->query($sql);
-            Tools::info("Table {$from} renamed to {$to}");
+            Tools::info("Column {$from} renamed to {$to}");
         } else {
             Tools::info("The field {$from} is a constrained column.  Make sure you drop any constraints before renaming this column.", 'debug', 'yellow');
         }
@@ -808,7 +808,8 @@ class Blueprint {
         if($isPrimaryKey) {
             $this->dropPrimaryKey($from, true);
         } else {
-            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$from}' is not a primary key.  Skipping operation.", 'debug', 'yellow');
+            return;
         }
 
         // Rename the column
@@ -817,6 +818,39 @@ class Blueprint {
         // Reapply the index if it was present.
         if($isPrimaryKey) {
             DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY ({$to})");
+        }
+    }
+
+    /**
+     * Renames a column with a unique constraint by preserving and reapplying the index.
+     *
+     * @param string $from The original column name.
+     * @param string $to The new column name.
+     * @return void
+     */
+    public function renameUnique(string $from, string $to): void {
+        if($from === '' || $to === '') {
+            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            return;
+        }
+
+        // Check if the column has a unique constraint.
+        $isUnique = $this->isUnique($from);
+
+        // Drop the unique constraint but conserve the column.
+        if($isUnique) {
+            $this->dropUnique($from, true);
+        } else {
+            Tools::info("'{$from}' does not have an unique constraint.  Skipping operation.", 'debug', 'yellow');
+            return;
+        }
+
+        // Rename the column
+        $this->renameColumn($from, $to);
+
+        // Reapply the unique constraint if it was present.
+        if($isUnique) {
+            $this->setUnique($to);
         }
     }
 
@@ -924,14 +958,25 @@ class Blueprint {
             throw new Exception("Cannot apply unique index with a defined column.");
         }
 
-        $indexName = "uniq_{$this->table}_{$this->lastColumn}";
+        $this->setUnique($this->lastColumn);
+
+        return $this;
+    }
+
+    /**
+     * Sets the unique index on a column.
+     *
+     * @param string $column The column where the unique index constraint 
+     * will be applied.
+     * @return void
+     */
+    protected function setUnique(string $column): void {
+        $indexName = "uniq_{$this->table}_{$column}";
         $this->indexes[] = [
             'type' => 'unique',
             'name' => $indexName,
-            'columns' => [$this->lastColumn]
+            'columns' => [$column]
         ];
-
-        return $this;
     }
 
     /**
