@@ -74,9 +74,7 @@ class Blueprint {
             $this->createIndex($index);
         }
         
-        foreach ($this->foreignKeys as $fk) {
-            $this->createForeignKey($fk);
-        }
+        $this->setForeignKeys();
     }
 
     /**
@@ -260,18 +258,6 @@ class Blueprint {
     }
 
     /**
-     * Drops a table if it exists.
-     *
-     * @param string $table The name of the table to drop if it exists.
-     * @return void
-     */
-    public function dropIfExists(string $table): void {
-        $sql = "DROP TABLE IF EXISTS {$table}";
-        DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Dropping Table {$table}");
-    }
-
-    /**
      * Drops a foreign key constraint from the table (MySQL only).
      *
      * @param string $column The name of the column to be dropped.
@@ -288,7 +274,6 @@ class Blueprint {
 
         if ($this->dbDriver === 'mysql') {
             $result = $this->getForeignKey($column);
-            var_dump($result);
             if (!$result) {
                 Tools::info("No foreign key constraint found on column '{$column}'", 'debug', 'yellow');
                 return;
@@ -308,6 +293,18 @@ class Blueprint {
             // You must recreate the table without the foreign key.
             Tools::info("SQLite does not support dropping foreign keys directly. You must recreate the table.", 'debug', 'yellow');
         }
+    }
+
+    /**
+     * Drops a table if it exists.
+     *
+     * @param string $table The name of the table to drop if it exists.
+     * @return void
+     */
+    public function dropIfExists(string $table): void {
+        $sql = "DROP TABLE IF EXISTS {$table}";
+        DB::getInstance()->query($sql);
+        Tools::info("SUCCESS: Dropping Table {$table}");
     }
 
     /**
@@ -503,15 +500,19 @@ class Blueprint {
      * @param string $onUpdate Action on update (e.g., CASCADE).
      */
     public function foreign(
-        string $column, 
-        string $references, 
-        string $onTable, 
-        string $onDelete = 'CASCADE', 
-        string $onUpdate = 'CASCADE'
+        string $column,
+        string $referencedColumn,
+        string $onTable,
+        string $onDelete = 'RESTRICT',
+        string $onUpdate = 'RESTRICT'
     ): void {
-        if ($this->dbDriver === 'mysql') {
-            $this->foreignKeys[] = "ALTER TABLE {$this->table} ADD FOREIGN KEY ({$column}) REFERENCES {$onTable}({$references}) ON DELETE {$onDelete} ON UPDATE {$onUpdate}";
-        }
+        $this->foreignKeys[] = [
+            'column' => $column,
+            'referenced_column' => $referencedColumn,
+            'referenced_table' => $onTable,
+            'on_delete' => strtoupper($onDelete),
+            'on_update' => strtoupper($onUpdate),
+        ];
     }
 
     /**
@@ -781,8 +782,34 @@ class Blueprint {
             return;
         }
 
+        // Check if column has a foreign key constraint
         $isForeignKey = $this->isForeignKey($from);
+        $results = $this->getForeignKey($from);
 
+        // Get information for recreating foreign key, drop index, and conserve column.
+        if($isForeignKey) {
+            $this->dropForeign($from, true);
+        } else {
+            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", 'debug', 'yellow');
+            return;
+        }
+
+        // Rename the column
+        $this->renameColumn($from, $to);
+
+        // Reapply foreign key if it was present
+        if($isForeignKey) {
+            $this->foreign(
+                $to, 
+                $results->REFERENCED_COLUMN_NAME, 
+                $results->REFERENCED_TABLE_NAME, 
+                $results->DELETE_RULE, 
+                $results->UPDATE_RULE
+            );
+        }
+
+        $this->setForeignKeys();
+        Tools::info("Successfully renamed foreign key '{$from}' to '{$to}' on '{$this->table}'");
     }
 
     /**
@@ -851,6 +878,8 @@ class Blueprint {
         if($isPrimaryKey) {
             DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY ({$to})");
         }
+
+        Tools::info("Successfully renamed primary key '{$from}' to '{$to}' on '{$this->table}'");
     }
 
     /**
@@ -884,8 +913,36 @@ class Blueprint {
         if($isUnique) {
             $this->setUnique($to);
         }
+
+        Tools::info("Successfully unique constrained column '{$from}' to '{$to}' on '{$this->table}'");
     }
 
+    private function setForeignKeys(): void {
+        foreach ($this->foreignKeys as $fk) {
+            $sql = "ALTER TABLE {$this->table} ADD FOREIGN KEY ({$fk['column']}) " .
+                "REFERENCES {$fk['referenced_table']}({$fk['referenced_column']}) " .
+                "ON DELETE {$fk['on_delete']} ON UPDATE {$fk['on_update']}";
+            DB::getInstance()->query($sql);
+            Tools::info("Applied foreign key: {$fk['column']} → {$fk['referenced_table']}.{$fk['referenced_column']}");
+        }
+    }
+
+    /**
+     * Sets the unique index on a column.
+     *
+     * @param string $column The column where the unique index constraint 
+     * will be applied.
+     * @return void
+     */
+    private function setUnique(string $column): void {
+        $indexName = "uniq_{$this->table}_{$column}";
+        $this->indexes[] = [
+            'type' => 'unique',
+            'name' => $indexName,
+            'columns' => [$column]
+        ];
+    }
+    
     /**
      * Define a small integer column.
      * 
@@ -993,22 +1050,6 @@ class Blueprint {
         $this->setUnique($this->lastColumn);
 
         return $this;
-    }
-
-    /**
-     * Sets the unique index on a column.
-     *
-     * @param string $column The column where the unique index constraint 
-     * will be applied.
-     * @return void
-     */
-    private function setUnique(string $column): void {
-        $indexName = "uniq_{$this->table}_{$column}";
-        $this->indexes[] = [
-            'type' => 'unique',
-            'name' => $indexName,
-            'columns' => [$column]
-        ];
     }
 
     /**
