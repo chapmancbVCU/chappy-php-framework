@@ -776,6 +776,13 @@ class Blueprint {
         }
     }
 
+    /**
+     * Renames a foreign key.
+     *
+     * @param string $from The original column name.
+     * @param string $to The new column name.
+     * @return void
+     */
     public function renameForeign(string $from, string $to): void {
         if($from === '' || $to === '') {
             Tools::info("Column names cannot be empty", 'debug', 'yellow');
@@ -790,7 +797,7 @@ class Blueprint {
         if($isForeignKey) {
             $this->dropForeign($from, true);
         } else {
-            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$from}' is not a foreign key.  Skipping operation.", 'debug', 'yellow');
             return;
         }
 
@@ -808,7 +815,6 @@ class Blueprint {
             );
         }
 
-        $this->setForeignKeys();
         Tools::info("Successfully renamed foreign key '{$from}' to '{$to}' on '{$this->table}'");
     }
 
@@ -917,6 +923,12 @@ class Blueprint {
         Tools::info("Successfully unique constrained column '{$from}' to '{$to}' on '{$this->table}'");
     }
 
+    /**
+     * Sets foreign keys during creating of table or renaming of existing 
+     * foreign key.
+     *
+     * @return void
+     */
     private function setForeignKeys(): void {
         foreach ($this->foreignKeys as $fk) {
             $sql = "ALTER TABLE {$this->table} ADD FOREIGN KEY ({$fk['column']}) " .
@@ -942,7 +954,7 @@ class Blueprint {
             'columns' => [$column]
         ];
     }
-    
+
     /**
      * Define a small integer column.
      * 
@@ -1081,6 +1093,8 @@ class Blueprint {
         foreach ($this->indexes as $index) {
             $this->createIndex($index);
         }
+
+        $this->setForeignKeys();
     }
 
     /**
