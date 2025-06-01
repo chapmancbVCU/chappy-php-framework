@@ -306,6 +306,7 @@ class Blueprint {
             $constraintName = $result->CONSTRAINT_NAME;
             $dropSql = "ALTER TABLE {$this->table} DROP FOREIGN KEY `{$constraintName}`";
             DB::getInstance()->query($dropSql);
+            $this->dropIndex($column);
             if(!$preserveColumn) {
                 $this->dropColumns($column);
             }
@@ -520,6 +521,10 @@ class Blueprint {
         if ($this->dbDriver === 'mysql') {
             $this->foreignKeys[] = "ALTER TABLE {$this->table} ADD FOREIGN KEY ({$column}) REFERENCES {$onTable}({$references}) ON DELETE {$onDelete} ON UPDATE {$onUpdate}";
         }
+    }
+
+    private function getForeignKey(string $column, string $table) {
+
     }
 
     /**
@@ -753,6 +758,16 @@ class Blueprint {
         }
     }
 
+    public function renameForeign(string $from, string $to): void {
+        if($from === '' || $to === '') {
+            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            return;
+        }
+
+        $isForeignKey = $this->isForeignKey($from);
+
+    }
+
     /**
      * Renames an indexed column by preserving and reapplying the index.
      *
@@ -970,7 +985,7 @@ class Blueprint {
      * will be applied.
      * @return void
      */
-    protected function setUnique(string $column): void {
+    private function setUnique(string $column): void {
         $indexName = "uniq_{$this->table}_{$column}";
         $this->indexes[] = [
             'type' => 'unique',
