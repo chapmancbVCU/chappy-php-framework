@@ -740,7 +740,7 @@ class Blueprint {
      * @return void
      */
     public function renameIndex(string $from, string $to): void {
-        if ($from === '' || $to === '') {
+        if($from === '' || $to === '') {
             Tools::info("Column names cannot be empty", 'debug', 'yellow');
             return;
         }
@@ -749,15 +749,18 @@ class Blueprint {
         $isIndexed = $this->isIndex($from);
 
         // Drop the index but preserve the column
-        if ($isIndexed) {
+        if($isIndexed) {
             $this->dropIndex($from, true);
+        } else {
+            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", 'debug', 'yellow');
+            return;
         }
 
         // Rename the column
         $this->renameColumn($from, $to);
 
         // Reapply the index if it was present
-        if ($isIndexed) {
+        if($isIndexed) {
             $this->index($to);
         }
 
