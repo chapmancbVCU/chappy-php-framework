@@ -288,6 +288,7 @@ class Blueprint {
 
         if ($this->dbDriver === 'mysql') {
             $result = $this->getForeignKey($column);
+            var_dump($result);
             if (!$result) {
                 Tools::info("No foreign key constraint found on column '{$column}'", 'debug', 'yellow');
                 return;
@@ -520,13 +521,25 @@ class Blueprint {
      * @return object The results returned from the database.
      */
     private function getForeignKey(string $column): object {
-        $sql = "SELECT CONSTRAINT_NAME 
-                    FROM information_schema.KEY_COLUMN_USAGE 
-                    WHERE TABLE_SCHEMA = DATABASE() 
-                    AND TABLE_NAME = '{$this->table}' 
-                    AND COLUMN_NAME = '{$column}' 
-                    AND REFERENCED_TABLE_NAME IS NOT NULL 
-                    LIMIT 1";
+        $sql = "
+            SELECT
+                k.CONSTRAINT_NAME,
+                k.COLUMN_NAME,
+                k.REFERENCED_TABLE_NAME,
+                k.REFERENCED_COLUMN_NAME,
+                rc.UPDATE_RULE,
+                rc.DELETE_RULE
+            FROM
+                information_schema.KEY_COLUMN_USAGE AS k
+            JOIN
+                information_schema.REFERENTIAL_CONSTRAINTS AS rc
+                ON k.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND k.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            WHERE
+                k.TABLE_NAME = '{$this->table}'
+                AND k.TABLE_SCHEMA = DATABASE()
+                AND k.COLUMN_NAME = '{$column}'
+            ";
 
         return DB::getInstance()->query($sql)->first();
     }
