@@ -1,9 +1,11 @@
 <?php
 namespace Console\Commands;
+use Console\Helpers\Migrate;
+use Console\Helpers\DBSeeder;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\Helpers\Migrate;
 /**
  * Supports ability to run a migration file.
  */
@@ -18,7 +20,8 @@ class RunMigrationCommand extends Command
     {
         $this->setName('migrate')
             ->setDescription('Runs a Database Migration!')
-            ->setHelp('Runs a Database Migration');
+            ->setHelp('Runs a Database Migration')
+            ->addOption('seed', null, InputOption::VALUE_NONE, 'Seed flag');
     }
  
     /**
@@ -30,6 +33,11 @@ class RunMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Migrate::migrate();
+        $status = Migrate::migrate();
+        if($status == Command::SUCCESS && $input->getOption('seed')) {
+            return DBSeeder::seed();
+        }
+
+        return $status;
     }
 }
