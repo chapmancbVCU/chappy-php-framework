@@ -1,5 +1,7 @@
 <?php
 namespace Console\Commands;
+
+use Console\Helpers\DBSeeder;
 use Console\Helpers\Tools;
 use Console\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
@@ -28,7 +30,8 @@ class MigrateRefreshCommand extends Command
                 InputOption::VALUE_REQUIRED,
                 'Number of steps to roll back',
                 false
-            );
+            )
+            ->addOption('seed', null, InputOption::VALUE_NONE, 'Seed flag');
     }
  
     /**
@@ -54,6 +57,12 @@ class MigrateRefreshCommand extends Command
         if($status == Command::FAILURE) {
             return $status;
         }
-        return Migrate::migrate();
+        
+        $status = Migrate::migrate();
+        if($status == Command::SUCCESS && $input->getOption('seed')) {
+            return DBSeeder::seed();
+        }
+
+        return $status;
     }
 }
