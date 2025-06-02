@@ -1,9 +1,11 @@
 <?php
 namespace Console\Commands;
+use Console\Helpers\Migrate;
+use Console\Helpers\DBSeeder;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\Helpers\Migrate;
 /**
  * Supports ability to drop all tables and recreate them.
  */
@@ -18,7 +20,8 @@ class MigrateFreshCommand extends Command
     {
         $this->setName('migrate:fresh')
             ->setDescription('Drops all tables and runs a Database Migration!')
-            ->setHelp('Drops all tables and runs a Database Migration');
+            ->setHelp('Drops all tables and runs a Database Migration')
+            ->addOption('seed', null, InputOption::VALUE_NONE, 'Seed flag');
     }
  
     /**
@@ -34,6 +37,12 @@ class MigrateFreshCommand extends Command
         if($status == Command::FAILURE) {
             return $status;
         }
-        return Migrate::migrate();
+        
+        $status = Migrate::migrate();
+        if($status == Command::SUCCESS && $input->getOption('seed')) {
+            return DBSeeder::seed();
+        }
+
+        return $status;
     }
 }
