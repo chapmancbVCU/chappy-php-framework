@@ -12,6 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Test {
 
+    public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
+    public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
     
     /**
      * The template for a new TestCase class.
