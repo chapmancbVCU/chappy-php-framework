@@ -39,7 +39,7 @@ class '.$testName.' extends TestCase {
      */
     public static function runTest(InputInterface $input, OutputInterface $output): int {
         $testName = $input->getArgument('testname');
-        $command = 'php vendor/bin/phpunit tests'.DS.'UnitTests'.DS.$testName.'.php';
+        $command = 'php vendor/bin/phpunit tests'.DS.'Unit'.DS.$testName.'.php';
         $output->writeln(Tools::border());
         $output->writeln(sprintf('Running command: '.$command));
         $output->writeln(Tools::border());
