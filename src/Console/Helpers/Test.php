@@ -42,9 +42,9 @@ class '.$testName.' extends TestCase {
      * @param OutputInterface $output The results of the test.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function runTest(string $fileName, OutputInterface $output): int {
-        $command = 'php vendor/bin/phpunit '.$fileName;
-        Tools::info('File: '.$fileName);
+    public static function runTest(string $tests, OutputInterface $output): int {
+        $command = 'php vendor/bin/phpunit '.$tests;
+        Tools::info('File: '.$tests);
         $output->writeln(shell_exec($command));
         return Command::SUCCESS;
     }
