@@ -2,14 +2,17 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Arr;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Command\Command;
 
 /**
  * Supports unit test related console commands.
  */
 class Test {
+
+    
     /**
      * The template for a new TestCase class.
      *
@@ -39,14 +42,17 @@ class '.$testName.' extends TestCase {
      * @param OutputInterface $output The results of the test.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function runTest(InputInterface $input, OutputInterface $output): int {
-        $testName = $input->getArgument('testname');
-        $command = 'php vendor/bin/phpunit tests'.DS.'Unit'.DS.$testName.'.php';
-        $output->writeln(Tools::border());
-        $output->writeln(sprintf('Running command: '.$command));
-        $output->writeln(Tools::border());
+    public static function runTest(string $fileName, OutputInterface $output): int {
+        $command = 'php vendor/bin/phpunit '.$fileName;
+        Tools::info('File: '.$fileName);
         $output->writeln(shell_exec($command));
-        $output->writeln(Tools::border());
+        return Command::SUCCESS;
+    }
+
+    public static function testSuite(OutputInterface $output, array $collection): int {
+        foreach($collection as $fileName) {
+            self::runTest($fileName, $output);
+        }
         return Command::SUCCESS;
     }
 }

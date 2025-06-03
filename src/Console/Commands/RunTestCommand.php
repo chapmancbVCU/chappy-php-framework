@@ -3,6 +3,7 @@ namespace Console\Commands;
 use Core\Helper;
 use Console\Helpers\Test;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,7 +24,11 @@ class RunTestCommand extends Command
         $this->setName('test')
             ->setDescription('Performs the phpunit test.')
             ->setHelp('php console test <test_file_name> without the .php extension.')
-            ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test file\'s name.');
+            ->addArgument('testname', InputArgument::OPTIONAL, 'Pass the test file\'s name.')
+            ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.')
+            ->addOption('feature', null, InputOption::VALUE_NONE, 'Run feature tests.');
+;
+;
     }
  
     /**
@@ -35,6 +40,21 @@ class RunTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Test::runTest($input, $output);
+        // Get options and arguments
+        $testName = $input->getArgument('testname');
+        $unit = $input->getOption('unit');
+        $feature = $input->getOption('feature');
+
+        // Get classes
+        $unitTests = glob('tests'.DS.'Unit'.DS.'*.php');
+        $featureTests = glob('tests'.DS.'Feature'.DS.'*.php');
+
+        if(!$unit && !$feature && !$testName) {
+            Test::testSuite($output, $unitTests);
+            Test::testSuite($output, $featureTests);
+            return Command::SUCCESS;
+        }
+        // return Test::runTest($input, $output);
+        return Command::SUCCESS;
     }
 }
