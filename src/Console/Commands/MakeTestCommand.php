@@ -7,6 +7,7 @@ use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -24,7 +25,8 @@ class MakeTestCommand extends Command
         $this->setName('make:test')
             ->setDescription('Generates a new test file!')
             ->setHelp('php console make:test <test_name>')
-            ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.');
+            ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
+            ->addOption('feature', null, InputOption::VALUE_NONE, 'Create feature test');
     }
  
     /**
@@ -38,10 +40,16 @@ class MakeTestCommand extends Command
     {
         $testName = Str::ucfirst($input->getArgument('testname'));
         
+        if($input->getOption('feature')) {
+            $type = 'Feature';
+        } else {
+            $type = 'Unit';
+        }
+
         // Generate unit test class
         return Tools::writeFile(
-            ROOT.DS.'tests'.DS.'Unit'.DS.$testName.'.php',
-            Test::makeTest($testName),
+            ROOT.DS.'tests'.DS.$type.DS.$testName.'.php',
+            Test::makeTest($testName, $type),
             'Test'
         );
     }

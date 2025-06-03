@@ -14,17 +14,19 @@ class Test {
      * The template for a new TestCase class.
      *
      * @param string $testName The name of the TestCase class.
+     * @param string $type The type of test.
      * @return string The contents for the new TestCase class.
      */
-    public static function makeTest(string $testName): string {
+    public static function makeTest(string $testName, $type): string {
         return '<?php
-namespace Tests\UnitTests;
+namespace Tests\\'.$type.';
 use PHPUnit\Framework\TestCase;
 
 /**
- * Undocumented class
+ * Unit tests
  */
 class '.$testName.' extends TestCase {
+    
 }
 ';
     }
