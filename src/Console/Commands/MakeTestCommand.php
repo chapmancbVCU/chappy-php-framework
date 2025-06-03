@@ -40,7 +40,7 @@ class MakeTestCommand extends Command
         
         // Generate unit test class
         return Tools::writeFile(
-            ROOT.DS.'tests'.DS.$testName.'.php',
+            ROOT.DS.'tests'.DS.'UnitTests'.DS.$testName.'.php',
             Test::makeTest($testName),
             'Test'
         );
