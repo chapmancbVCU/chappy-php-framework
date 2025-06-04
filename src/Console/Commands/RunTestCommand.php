@@ -53,28 +53,9 @@ class RunTestCommand extends Command
         }
         
         if($testArg && !$unit && !$feature) {
-            $command = '';
-            if(Str::contains($testArg, '::')) {
-                // Run a specific function
-                [$class, $method] = explode('::', $testArg);
-
-                $path = Test::UNIT_PATH.$class.'.php';
-                if(!file_exists($path)) { $path = Test::FEATURE_PATH.$class.'.php'; }
-
-                if(file_exists($path)) {
-                    $command .= escapeshellarg($path) . ' --filter ' . escapeshellarg($method);
-                } else {
-                    Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
-                }
-
-            } elseif(file_exists(Test::UNIT_PATH.$testArg.'.php')) {
-                $command .= ' '.Test::UNIT_PATH.$testArg.'.php';
-            } elseif(file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
-                $command .= ' '.Test::FEATURE_PATH.$testArg.'.php';
-            }
-            Test::runTest($command, $output);
+             return Test::selectTests($output, $testArg);
         }
-        Tools::info("Selected tests have been completed");
-        return Command::SUCCESS;
+        
+        return Command::FAILURE;
     }
 }
