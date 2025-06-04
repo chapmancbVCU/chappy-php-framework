@@ -48,13 +48,13 @@ class RunTestCommand extends Command
         $feature = $input->getOption('feature');
 
         if(!$feature && !$unit && !$testArg) {
-            Test::allTests($output);
-            return Command::SUCCESS;
+            return Test::allTests($output);
         }
         
         if($testArg && !$unit && !$feature) {
              return Test::selectTests($output, $testArg);
         }
+        
         
         return Command::FAILURE;
     }

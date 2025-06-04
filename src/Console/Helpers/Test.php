@@ -20,16 +20,22 @@ class Test {
      * Performs all tests.
      *
      * @param OutputInterface $output The output.
-     * @return void
+     * @return int A value that indicates success, invalid, or failure.
      */
-    public static function allTests(OutputInterface $output): void {
+    public static function allTests(OutputInterface $output): int {
         $unitTests = glob(Test::UNIT_PATH.'*.php');
         $featureTests = glob(Test::FEATURE_PATH.'*.php');
+
+        if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
+            Tools::info("No test available to perform", 'debug', 'yellow');
+            return Command::FAILURE;
+        }
 
         Test::testSuite($output, $unitTests);
         Test::testSuite($output, $featureTests);
 
         Tools::info("All available test have been completed");
+        return Command::SUCCESS;
     }
 
     /**
