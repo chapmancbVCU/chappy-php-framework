@@ -15,22 +15,20 @@ class Test {
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
     
-    public static function allTests(
-        string $feature, 
-        OutputInterface $output, 
-        null|string $testArg, 
-        null|string $unit
-        ): bool {
-        // Get classes
+    /**
+     * Performs all tests.
+     *
+     * @param OutputInterface $output The output.
+     * @return void
+     */
+    public static function allTests(OutputInterface $output): void {
         $unitTests = glob(Test::UNIT_PATH.'*.php');
         $featureTests = glob(Test::FEATURE_PATH.'*.php');
 
-        if(!$unit && !$feature && !$testArg) {
-            Test::testSuite($output, $unitTests);
-            Test::testSuite($output, $featureTests);
-            return true;
-        }
-        return false;
+        Test::testSuite($output, $unitTests);
+        Test::testSuite($output, $featureTests);
+
+        Tools::info("All test have been completed");
     }
 
     /**
@@ -60,19 +58,22 @@ class '.$testName.' extends TestCase {
      * @param InputInterface $input Input obtained from the console used to 
      * set name of unit test we want to run.
      * @param OutputInterface $output The results of the test.
-     * @return int A value that indicates success, invalid, or failure.
      */
-    public static function runTest(string $tests, OutputInterface $output): int {
+    public static function runTest(string $tests, OutputInterface $output): void {
         $command = 'php vendor/bin/phpunit '.$tests;
         Tools::info('File: '.$tests);
         $output->writeln(shell_exec($command));
-        return Command::SUCCESS;
     }
 
-    public static function testSuite(OutputInterface $output, array $collection): int {
+    /**
+     * Run all test files in an individual test suite.
+     *
+     * @param OutputInterface $output The output.
+     * @param array $collection All classes in a particular test suite.
+     */
+    public static function testSuite(OutputInterface $output, array $collection): void {
         foreach($collection as $fileName) {
             self::runTest($fileName, $output);
         }
-        return Command::SUCCESS;
     }
 }

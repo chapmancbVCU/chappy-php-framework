@@ -47,8 +47,8 @@ class RunTestCommand extends Command
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
 
-        if(Test::allTests($feature, $output, $testArg, $unit)) {
-            Tools::info("All test have been completed");
+        if(!$feature && !$unit && !$testArg) {
+            Test::allTests($output);
             return Command::SUCCESS;
         }
         
