@@ -28,7 +28,7 @@ class Test {
         Test::testSuite($output, $unitTests);
         Test::testSuite($output, $featureTests);
 
-        Tools::info("All test have been completed");
+        Tools::info("All available test have been completed");
     }
 
     /**
