@@ -72,6 +72,9 @@ class '.$testName.' extends TestCase {
      * @param array $collection All classes in a particular test suite.
      */
     public static function testSuite(OutputInterface $output, array $collection): void {
+        if(Arr::isEmpty($collection)) {
+            return;
+        }
         foreach($collection as $fileName) {
             self::runTest($fileName, $output);
         }
