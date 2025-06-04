@@ -47,13 +47,8 @@ class RunTestCommand extends Command
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
 
-        // Get classes
-        $unitTests = glob(Test::UNIT_PATH.'*.php');
-        $featureTests = glob(Test::FEATURE_PATH.'*.php');
-
-        if(!$unit && !$feature && !$testArg) {
-            Test::testSuite($output, $unitTests);
-            Test::testSuite($output, $featureTests);
+        if(Test::allTests($feature, $output, $testArg, $unit)) {
+            Tools::info("All test have been completed");
             return Command::SUCCESS;
         }
         
@@ -79,6 +74,7 @@ class RunTestCommand extends Command
             }
             Test::runTest($command, $output);
         }
+        Tools::info("Selected tests have been completed");
         return Command::SUCCESS;
     }
 }

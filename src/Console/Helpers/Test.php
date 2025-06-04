@@ -15,6 +15,24 @@ class Test {
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
     
+    public static function allTests(
+        string $feature, 
+        OutputInterface $output, 
+        null|string $testArg, 
+        null|string $unit
+        ): bool {
+        // Get classes
+        $unitTests = glob(Test::UNIT_PATH.'*.php');
+        $featureTests = glob(Test::FEATURE_PATH.'*.php');
+
+        if(!$unit && !$feature && !$testArg) {
+            Test::testSuite($output, $unitTests);
+            Test::testSuite($output, $featureTests);
+            return true;
+        }
+        return false;
+    }
+
     /**
      * The template for a new TestCase class.
      *
