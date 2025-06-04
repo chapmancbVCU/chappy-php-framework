@@ -66,7 +66,15 @@ class '.$testName.' extends TestCase {
         $output->writeln(shell_exec($command));
     }
 
-    public static function selectTests(OutputInterface $output, string $testArg) {
+    /**
+     * Supports ability to run test by class name or function name within 
+     * a class.
+     *
+     * @param OutputInterface $output
+     * @param string $testArg The name of the class or class::test_name.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function selectTests(OutputInterface $output, string $testArg): int {
         $command = '';
         if(Str::contains($testArg, '::')) {
             // Run a specific function
