@@ -67,10 +67,10 @@ class RunTestCommand extends Command
                     Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
                 }
 
-            } elseif(file_exists(Test::UNIT_PATH.$testArg.'php')) {
-                $command .= ' '.Test::UNIT_PATH.$testArg.'php';
-            } elseif(file_exists(Test::FEATURE_PATH.$testArg.'php')) {
-                $command .= ' '.Test::FEATURE_PATH.$testArg.'php';
+            } elseif(file_exists(Test::UNIT_PATH.$testArg.'.php')) {
+                $command .= ' '.Test::UNIT_PATH.$testArg.'.php';
+            } elseif(file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
+                $command .= ' '.Test::FEATURE_PATH.$testArg.'.php';
             }
             Test::runTest($command, $output);
         }
