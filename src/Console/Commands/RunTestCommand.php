@@ -68,7 +68,16 @@ class RunTestCommand extends Command
             return Command::SUCCESS;
         }
 
-
+        // Run individual test file based on --unit and --feature flags
+        if($testArg && $unit) {
+            $unitStatus = Test::singleFileWithinSuite($output, Test::UNIT_PATH, $testArg);
+        }
+        if($testArg && $feature) {
+            $featureStatus = Test::singleFileWithinSuite($output, Test::FEATURE_PATH, $testArg);
+        }
+        if($testArg && ($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS)) {
+            return Command::SUCCESS;
+        }
 
         Tools::info("There was an issue running unit tests", 'error', 'red');
         return Command::FAILURE;
