@@ -47,15 +47,33 @@ class RunTestCommand extends Command
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
 
+        // Run all tests
         if(!$feature && !$unit && !$testArg) {
             return Test::allTests($output);
         }
         
+        // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
              return Test::selectTests($output, $testArg);
         }
         
-        
+        // Run tests based on --unit and --feature flags
+        if(!$testArg && $unit) {
+            $unitStatus = Test::testSuite($output, Test::unitTests());
+            Tools::info("unit testing");
+        }
+        if(!$testArg && $feature) {
+            $featureStatus = Test::testSuite($output, Test::featureTests());
+            Tools::info("feature testing");
+        }
+
+        if(!$testArg && ($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS)) {
+            return Command::SUCCESS;
+        }
+
+
+
+        Tools::info("There was an issue running unit tests", 'error', 'red');
         return Command::FAILURE;
     }
 }
