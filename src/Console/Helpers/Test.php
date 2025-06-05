@@ -100,7 +100,6 @@ class '.$testName.' extends TestCase {
             if(file_exists($path)) {
                 $command = escapeshellarg($path) . ' --filter ' . escapeshellarg($method);
                 Test::runTest($command, $output);
-                Tools::info("The selected test has been completed");
                 return Command::SUCCESS;
             } else {
                 Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
@@ -109,24 +108,29 @@ class '.$testName.' extends TestCase {
         } 
         
         // Run the test class if it exists in feature, unit, or both.
-        self::singleTestWithinSuite($output, self::UNIT_PATH, $testArg);
-        self::singleTestWithinSuite($output, self::FEATURE_PATH, $testArg);
-        
+        $unitStatus = self::singleFileWithinSuite($output, self::UNIT_PATH, $testArg);
+        $featureStatus = self::singleFileWithinSuite($output, self::FEATURE_PATH, $testArg);
+        if($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS) {
+            Tools::info("Selected tests have been completed");
+            return Command::SUCCESS;
+        }
+
         // No such test class exists.
         if(!file_exists(self::UNIT_PATH.$testArg.'.php') && !file_exists(self::FEATURE_PATH.$testArg.'.php')) {
-            Tools::info("Test does not exist", 'debug', 'yellow');
+            Tools::info("The {$testArg} test file does not exist", 'debug', 'yellow');
             return Command::FAILURE;
         }
         
-        Tools::info("Selected tests have been completed");
-        return Command::SUCCESS;
+        return Command::FAILURE;
     }
 
-    public static function singleTestWithinSuite(OutputInterface $output, string $suite = self::UNIT_PATH, string $testArg) {
+    public static function singleFileWithinSuite(OutputInterface $output, string $suite = self::UNIT_PATH, string $testArg) {
         if(file_exists($suite.$testArg.'.php')) {
             $command = ' '.$suite.$testArg.'.php';
             self::runTest($command, $output);
+            return Command::SUCCESS;
         }
+        return Command::FAILURE;
     }
 
     /**
