@@ -23,8 +23,8 @@ class Test {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function allTests(OutputInterface $output): int {
-        $unitTests = glob(Test::UNIT_PATH.'*.php');
-        $featureTests = glob(Test::FEATURE_PATH.'*.php');
+        $unitTests = self::unitTests();
+        $featureTests = self::featureTests();
 
         if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
             Tools::info("No test available to perform", 'debug', 'yellow');
@@ -36,6 +36,15 @@ class Test {
 
         Tools::info("All available test have been completed");
         return Command::SUCCESS;
+    }
+
+    /**
+     * Returns array containing all filenames in Feature directory.
+     *
+     * @return array The array of all filenames in the Feature directory.
+     */
+    public static function featureTests(): array {
+        return glob(Test::FEATURE_PATH.'*.php');
     }
 
     /**
@@ -134,5 +143,14 @@ class '.$testName.' extends TestCase {
         foreach($collection as $fileName) {
             self::runTest($fileName, $output);
         }
+    }
+
+    /**
+     * Returns array containing all filenames in Unit directory.
+     *
+     * @return array The array of all filenames in the Unit directory.
+     */
+    public static function unitTests(): array {
+        return glob(Test::UNIT_PATH.'*.php');
     }
 }
