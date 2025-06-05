@@ -109,25 +109,24 @@ class '.$testName.' extends TestCase {
         } 
         
         // Run the test class if it exists in feature, unit, or both.
-        if(file_exists(Test::UNIT_PATH.$testArg.'.php')) {
-            $command = ' '.Test::UNIT_PATH.$testArg.'.php';
-            Test::runTest($command, $output);
-        } 
-
-        $command = '';
-        if(file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
-            $command = ' '.Test::FEATURE_PATH.$testArg.'.php';
-            Test::runTest($command, $output);
-        }
+        self::singleTestWithinSuite($output, self::UNIT_PATH, $testArg);
+        self::singleTestWithinSuite($output, self::FEATURE_PATH, $testArg);
         
         // No such test class exists.
-        if(!file_exists(Test::UNIT_PATH.$testArg.'.php') && !file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
+        if(!file_exists(self::UNIT_PATH.$testArg.'.php') && !file_exists(self::FEATURE_PATH.$testArg.'.php')) {
             Tools::info("Test does not exist", 'debug', 'yellow');
             return Command::FAILURE;
         }
         
         Tools::info("Selected tests have been completed");
         return Command::SUCCESS;
+    }
+
+    public static function singleTestWithinSuite(OutputInterface $output, string $suite = self::UNIT_PATH, string $testArg) {
+        if(file_exists($suite.$testArg.'.php')) {
+            $command = ' '.$suite.$testArg.'.php';
+            self::runTest($command, $output);
+        }
     }
 
     /**
