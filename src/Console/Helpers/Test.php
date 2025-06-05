@@ -135,14 +135,18 @@ class '.$testName.' extends TestCase {
      *
      * @param OutputInterface $output The output.
      * @param array $collection All classes in a particular test suite.
+     * @return int A value that indicates success, invalid, or failure.
      */
-    public static function testSuite(OutputInterface $output, array $collection): void {
+    public static function testSuite(OutputInterface $output, array $collection): int {
         if(Arr::isEmpty($collection)) {
-            return;
+            return Command::FAILURE;
         }
+
         foreach($collection as $fileName) {
             self::runTest($fileName, $output);
         }
+
+        return Command::SUCCESS;
     }
 
     /**
