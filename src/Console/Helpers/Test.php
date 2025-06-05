@@ -81,30 +81,42 @@ class '.$testName.' extends TestCase {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function selectTests(OutputInterface $output, string $testArg): int {
-        $command = '';
+        // Run a specific function
         if(Str::contains($testArg, '::')) {
-            // Run a specific function
             [$class, $method] = explode('::', $testArg);
 
             $path = Test::UNIT_PATH.$class.'.php';
             if(!file_exists($path)) { $path = Test::FEATURE_PATH.$class.'.php'; }
 
             if(file_exists($path)) {
-                $command .= escapeshellarg($path) . ' --filter ' . escapeshellarg($method);
+                $command = escapeshellarg($path) . ' --filter ' . escapeshellarg($method);
+                Test::runTest($command, $output);
+                Tools::info("The selected test has been completed");
+                return Command::SUCCESS;
             } else {
                 Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
+                return Command::FAILURE;
             }
+        } 
+        
+        // Run the test class if it exists in feature, unit, or both.
+        if(file_exists(Test::UNIT_PATH.$testArg.'.php')) {
+            $command = ' '.Test::UNIT_PATH.$testArg.'.php';
+            Test::runTest($command, $output);
+        } 
 
-        } elseif(file_exists(Test::UNIT_PATH.$testArg.'.php')) {
-            $command .= ' '.Test::UNIT_PATH.$testArg.'.php';
-        } elseif(file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
-            $command .= ' '.Test::FEATURE_PATH.$testArg.'.php';
-        } else {
+        $command = '';
+        if(file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
+            $command = ' '.Test::FEATURE_PATH.$testArg.'.php';
+            Test::runTest($command, $output);
+        }
+        
+        // No such test class exists.
+        if(!file_exists(Test::UNIT_PATH.$testArg.'.php') && !file_exists(Test::FEATURE_PATH.$testArg.'.php')) {
             Tools::info("Test does not exist", 'debug', 'yellow');
             return Command::FAILURE;
         }
-        Test::runTest($command, $output);
-
+        
         Tools::info("Selected tests have been completed");
         return Command::SUCCESS;
     }
