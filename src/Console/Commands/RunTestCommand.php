@@ -60,13 +60,10 @@ class RunTestCommand extends Command
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
             $unitStatus = Test::testSuite($output, Test::unitTests());
-            Tools::info("unit testing");
         }
         if(!$testArg && $feature) {
             $featureStatus = Test::testSuite($output, Test::featureTests());
-            Tools::info("feature testing");
         }
-
         if(!$testArg && ($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS)) {
             return Command::SUCCESS;
         }
