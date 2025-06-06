@@ -30,7 +30,10 @@ class RemoveLogsCommand extends Command {
             ->addOption('cli', null, InputOption::VALUE_NONE, 'Delete cli.log')
 
             // Remove all logs
-            ->addOption('all', null, InputOption::VALUE_NONE, 'Delete all logs');
+            ->addOption('all', null, InputOption::VALUE_NONE, 'Delete all logs')
+            
+            // Remove unit test logs
+            ->addOption('unit', null, InputOption::VALUE_NONE, 'Delete phpunit.log');
     }
 
     /**
@@ -52,6 +55,12 @@ class RemoveLogsCommand extends Command {
             Log::delete(
                 'cli.log successfully cleared',
                 ROOT.DS.'storage'.DS.'logs'.DS.'cli.log'
+            );
+            return COMMAND::SUCCESS;
+        } else if($input->getOption('unit')) {
+            Log::delete(
+                'phpunit.log successfully cleared',
+                ROOT.DS.'storage'.DS.'logs'.DS.'phpunit.log'
             );
             return COMMAND::SUCCESS;
         } else if($input->getOption('all')) {
