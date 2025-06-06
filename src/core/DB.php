@@ -27,7 +27,8 @@ class DB {
      * there are any failures the application quits with an error message.
      */
     private function __construct() {
-        $config = require ROOT.DS.'config'.DS.'database.php';
+        $config = require CHAPPY_BASE_PATH . DS . 'config' . DS . 'database.php';
+
         $dbConfig = $config['connections'][$config['default']] ?? null;
         
         if (!$dbConfig) {

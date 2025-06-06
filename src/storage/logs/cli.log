@@ -1,0 +1,1 @@
+[2025-06-06 00:42:19 - GMT] [debug] [core/DB.php:455] Executed Query: SELECT * FROM users WHERE id = ? AND users.deleted != 1 | Params: [1] | Rows Affected: 1 | Execution Time: 0.00033s
