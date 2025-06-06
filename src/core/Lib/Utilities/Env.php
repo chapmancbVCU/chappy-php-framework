@@ -51,6 +51,11 @@ class Env{
             $key = trim($key);
             $value = trim($value);
 
+            // Do NOT overwrite if already set via environment or phpunit.xml
+            if (getenv($key) !== false || isset($_ENV[$key]) || isset($_SERVER[$key])) {
+                continue;
+            }
+
             // Remove surrounding quotes from value if present
             $value = preg_replace('/^["\'](.*)["\']$/', '$1', $value) ?? $value;
 
@@ -65,6 +70,7 @@ class Env{
 
             static::$variables[$key] = $value;
             putenv("$key=$value");
+            $_ENV[$key] = $value;
         }
     }
 
@@ -79,7 +85,10 @@ class Env{
      * @param mixed $default The default value to return if the key is not found.
      * @return mixed The value of the environment variable or the default value.
      */
-    public static function get(string $key, mixed $default = null): mixed {
-        return static::$variables[$key] ?? $default;
+    public static function get(string $key, $default = null)
+    {
+        // Priority: actual $_ENV > loaded config > default
+        return $_ENV[$key] ?? self::$config[$key] ?? $default;
     }
+
 }

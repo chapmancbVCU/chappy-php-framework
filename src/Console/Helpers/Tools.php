@@ -60,10 +60,14 @@ class Tools {
         Logger::log($message, $level);
 
         // Perform console logging
-        if(Arr::exists($backgroundColor, $background) && Arr::exists($textColor, $text)) {
-            echo "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n"."   ".$message."\n\e[0m\n";
+        if (Arr::exists($backgroundColor, $background) && Arr::exists($textColor, $text)) {
+            $output = "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n   ".$message."\n\e[0m\n";
+            fwrite(STDOUT, $output);
+            fflush(STDOUT);
         } else {
-            echo "\e[0;37;41m\n\n"."   Invalid background or text color.\n\e[0m\n";
+            $output = "\e[0;37;41m\n\n   Invalid background or text color.\n\e[0m\n";
+            fwrite(STDOUT, $output);
+            fflush(STDOUT);
         }
     }
 

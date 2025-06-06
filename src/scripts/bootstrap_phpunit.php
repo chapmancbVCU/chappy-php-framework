@@ -29,5 +29,10 @@ if (!defined('CHAPPY_BASE_PATH')) {
 define('PHPUNIT_RUNNING', true);
 require_once __DIR__ . '/bootstrap.php';
 
+// Use `.env.testing` if needed
+if (file_exists(__DIR__ . '/../.env.testing')) {
+    $_ENV = array_merge($_ENV, parse_ini_file(__DIR__ . '/../.env.testing'));
+}
+
 // Then load your framework bootstrap logic
 require_once __DIR__ . '/bootstrap.php';

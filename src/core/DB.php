@@ -37,9 +37,10 @@ class DB {
 
         try {
             if ($dbConfig['driver'] === 'sqlite') {
-                if (!file_exists($dbConfig['database'])) {
+                if ($dbConfig['database'] !== ':memory:' && !file_exists($dbConfig['database'])) {
                     touch($dbConfig['database']);
                 }
+
                 $dsn = "sqlite:" . $dbConfig['database'];
                 $this->_pdo = new PDO($dsn);
                 $this->_pdo->exec("PRAGMA foreign_keys=ON;"); // Enable foreign keys for SQLite
@@ -70,6 +71,30 @@ class DB {
         $type = (isset($join[3]))? Str::upper($join[3]) : "INNER";
         $jString = "{$type} JOIN {$table} {$alias} ON {$condition}";
         return " " . $jString;
+    }
+
+    public static function connect(array $override): void
+    {
+        $instance = new self();
+
+        try {
+            if ($override['driver'] === 'sqlite') {
+                $dsn = 'sqlite:' . ($override['database'] ?? ':memory:');
+                $instance->_pdo = new PDO($dsn);
+                $instance->_pdo->exec("PRAGMA foreign_keys=ON;");
+            } else {
+                $dsn = "mysql:host={$override['host']};port={$override['port']};dbname={$override['database']};charset={$override['charset']}";
+                $instance->_pdo = new PDO($dsn, $override['username'], $override['password']);
+                $instance->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $instance->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $instance->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+            }
+
+            $instance->_dbDriver = $override['driver'];
+            self::$_instance = $instance;
+        } catch (PDOException $e) {
+            throw new Exception("Test DB connection failed: " . $e->getMessage());
+        }
     }
 
     /**
