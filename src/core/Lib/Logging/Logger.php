@@ -18,7 +18,10 @@ class Logger {
         }
 
         // Determine log file location
-        self::$logFile = ROOT . DS . 'storage' . DS . 'logs' . DS . (php_sapi_name() === 'cli' ? 'cli.log' : 'app.log');
+        self::$logFile = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS .
+            (defined('PHPUNIT_RUNNING') ? 'phpunit.log' :
+            (php_sapi_name() === 'cli' ? 'cli.log' : 'app.log'));
+
     }
 
     /**
@@ -30,11 +33,6 @@ class Logger {
      * @return void
      */
     public static function log(string $message, string $level = 'info'): void {
-        // Skip logging during PHPUnit runs
-        if (defined('PHPUNIT_RUNNING')) {
-            return;
-        }
-
         if (!Env::get('DEBUG', false)) {
             return; // Skip logging if DEBUG is disabled
         }
