@@ -73,6 +73,11 @@ class RemoveLogsCommand extends Command {
                 'cli.log successfully cleared',
                 ROOT.DS.'storage'.DS.'logs'.DS.'cli.log'
             );
+
+            Log::delete(
+                'phpunit.log successfully cleared',
+                ROOT.DS.'storage'.DS.'logs'.DS.'phpunit.log'
+            );
             return COMMAND::SUCCESS;
         }
 
