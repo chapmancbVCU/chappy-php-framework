@@ -26,5 +26,8 @@ if (!defined('CHAPPY_BASE_PATH')) {
     define('CHAPPY_BASE_PATH', $starterBase);
 }
 
+define('PHPUNIT_RUNNING', true);
+require_once __DIR__ . '/bootstrap.php';
+
 // Then load your framework bootstrap logic
 require_once __DIR__ . '/bootstrap.php';

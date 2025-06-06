@@ -30,6 +30,11 @@ class Logger {
      * @return void
      */
     public static function log(string $message, string $level = 'info'): void {
+        // Skip logging during PHPUnit runs
+        if (defined('PHPUNIT_RUNNING')) {
+            return;
+        }
+
         if (!Env::get('DEBUG', false)) {
             return; // Skip logging if DEBUG is disabled
         }
