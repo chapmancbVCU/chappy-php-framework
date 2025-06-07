@@ -11,6 +11,38 @@ use Database\Seeders\DatabaseSeeder;
  */
 abstract class ApplicationTestCase extends TestCase {
     /**
+     * Simulates a controller action based on URL-style input and captures its output.
+     *
+     * @param string $controllerSlug e.g., 'home'
+     * @param string $actionSlug     e.g., 'index'
+     * @param array $params          Parameters to pass to the action
+     * @return string Rendered HTML output
+     *
+     * @throws \Exception
+     */
+    protected function controllerOutput(string $controllerSlug, string $actionSlug, array $urlSegments = []): string
+    {
+        $controllerClass = 'App\\Controllers\\' . ucfirst($controllerSlug) . 'Controller';
+        $actionMethod = $actionSlug . 'Action';
+
+        if (!class_exists($controllerClass)) {
+            throw new \Exception("Controller class {$controllerClass} not found.");
+        }
+
+        $controller = new $controllerClass($controllerSlug, $actionSlug);
+
+        if (!method_exists($controller, $actionMethod)) {
+            throw new \Exception("Method {$actionMethod} not found in {$controllerClass}.");
+        }
+
+        ob_start();
+        call_user_func_array([$controller, $actionMethod], $urlSegments); // 👈 full support for routed parameters
+        return ob_get_clean();
+    }
+
+
+
+    /**
      * Implements setUp function from TestCase class.
      *
      * @return void
