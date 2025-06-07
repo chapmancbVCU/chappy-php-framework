@@ -83,16 +83,17 @@ class View extends stdClass {
      * @return void
      */
     public function render(string $viewName): void {
-        // Separate into array to get view name.
         $viewArray = explode('/', $viewName);
         $viewString = implode(DS, $viewArray);
 
-        // Include view and layouts
-        if(file_exists(ROOT . DS . 'resources' . DS . 'views' . DS . $viewString . '.php')) {
-            include(ROOT . DS . 'resources' . DS . 'views' . DS . $viewString . '.php');
-            include(ROOT . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
+        $viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
+        $layoutPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php';
+
+        if (file_exists($viewPath)) {
+            include $viewPath;
+            include $layoutPath;
         } else {
-            throw new Exception('The view \"' . $viewName . '\" does not exist');
+            throw new Exception('The view "' . $viewName . '" does not exist');
         }
     }
 
