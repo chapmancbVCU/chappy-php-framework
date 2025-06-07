@@ -48,15 +48,14 @@ class Test {
     }
 
     /**
-     * The template for a new TestCase class.
+     * The template for a new Feature test class that extends ApplicationTestCase.
      *
      * @param string $testName The name of the TestCase class.
-     * @param string $type The type of test.
      * @return string The contents for the new TestCase class.
      */
-    public static function makeAppTest(string $testName, $type): string {
+    public static function makeFeatureTest(string $testName): string {
         return '<?php
-namespace Tests\\'.$type.';
+namespace Tests\Feature;
 use Core\Lib\Testing\ApplicationTestCase;
 
 /**
@@ -69,15 +68,14 @@ class '.$testName.' extends ApplicationTestCase {
     }
 
     /**
-     * The template for a new TestCase class.
+     * The template for a new Unit Test class that extends TestCase.
      *
      * @param string $testName The name of the TestCase class.
-     * @param string $type The type of test.
      * @return string The contents for the new TestCase class.
      */
-    public static function makeTest(string $testName, $type): string {
+    public static function makeUnitTest(string $testName): string {
         return '<?php
-namespace Tests\\'.$type.';
+namespace Tests\Unit;
 use PHPUnit\Framework\TestCase;
 
 /**

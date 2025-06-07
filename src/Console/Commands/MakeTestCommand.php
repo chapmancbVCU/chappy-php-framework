@@ -26,8 +26,7 @@ class MakeTestCommand extends Command
             ->setDescription('Generates a new test file!')
             ->setHelp('php console make:test <test_name>')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
-            ->addOption('feature', null, InputOption::VALUE_NONE, 'Create feature test')
-            ->addOption('app', null, InputOption::VALUE_NONE, 'Make class extend ApplicationTestCase');
+            ->addOption('feature', null, InputOption::VALUE_NONE, 'Create feature test');
     }
  
     /**
@@ -42,26 +41,18 @@ class MakeTestCommand extends Command
         $testName = Str::ucfirst($input->getArgument('testname'));
         
         if($input->getOption('feature')) {
-            $type = 'Feature';
-        } else {
-            $type = 'Unit';
-        }
-
-        // Generate unit test class
-        if($input->getOption('app')) {
             return Tools::writeFile(
-                ROOT.DS.'tests'.DS.$type.DS.$testName.'.php',
-                Test::makeAppTest($testName, $type),
+                ROOT.DS.'tests'.DS.'Feature'.DS.$testName.'.php',
+                Test::makeFeatureTest($testName),
                 'Test'
             );
         } else {
             return Tools::writeFile(
-                ROOT.DS.'tests'.DS.$type.DS.$testName.'.php',
-                Test::makeTest($testName, $type),
+                ROOT.DS.'tests'.DS.'Unit'.DS.$testName.'.php',
+                Test::makeUnitTest($testName),
                 'Test'
             );
         }
-
 
         return Command::FAILURE;
     }
