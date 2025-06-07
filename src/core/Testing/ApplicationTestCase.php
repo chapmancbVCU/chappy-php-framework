@@ -34,20 +34,12 @@ abstract class ApplicationTestCase extends TestCase {
             Migrate::refresh();
         }
 
-        $this->runMigrations();
+        if(Env::get('DB_MIGRATE', true)) {
+            Migrate::migrate();
+        }
 
         if(Env::get('DB_SEED', true)) {
-            $this->runSeeders();
+            (new DatabaseSeeder())->run();
         }
-    }
-
-    protected function runMigrations(): void
-    {
-        Migrate::migrate();
-    }
-
-    protected function runSeeders(): void
-    {
-        (new DatabaseSeeder())->run();
     }
 }
