@@ -1,17 +1,17 @@
 <?php
+use Core\Lib\Utilities\Env;
+
 define('DS', DIRECTORY_SEPARATOR);
-// File: vendor/chappy-php/chappy-php-framework/src/scripts/bootstrap_phpunit.php
+
+// Define CHAPPY_ROOT and CHAPPY_BASE_PATH
 if (!defined('CHAPPY_ROOT')) {
-    define('CHAPPY_ROOT', realpath(dirname(__DIR__)));
+    define('CHAPPY_ROOT', realpath(dirname(__DIR__))); // chappy-php-framework/src
 }
-
-// ✅ Add this legacy alias if needed by older files
 if (!defined('ROOT')) {
-    define('ROOT', CHAPPY_ROOT); // backward-compatible alias
+    define('ROOT', CHAPPY_ROOT);
 }
 
-// Assume PHPUnit is run from the starter project root
-$starterBase = getcwd(); // e.g., /home/chadchapman/framework/chappy-php-starter
+$starterBase = getcwd(); // starter project root
 $autoloadPath = $starterBase . '/vendor/autoload.php';
 
 if (!file_exists($autoloadPath)) {
@@ -21,18 +21,16 @@ if (!file_exists($autoloadPath)) {
 
 require_once $autoloadPath;
 
-// Predefine CHAPPY_BASE_PATH for test bootstrapping
-if (!defined('CHAPPY_BASE_PATH')) {
-    define('CHAPPY_BASE_PATH', $starterBase);
+// Load .env.testing BEFORE anything else
+$envFile = $starterBase . '/.env.testing';
+if (file_exists($envFile)) {
+    Env::load($envFile);
+} else {
+    echo "⚠️ .env.testing not found at $envFile — using fallback config.\n";
 }
 
+define('CHAPPY_BASE_PATH', $starterBase);
 define('PHPUNIT_RUNNING', true);
-require_once __DIR__ . '/bootstrap.php';
 
-// Use `.env.testing` if needed
-if (file_exists(__DIR__ . '/../.env.testing')) {
-    $_ENV = array_merge($_ENV, parse_ini_file(__DIR__ . '/../.env.testing'));
-}
-
-// Then load your framework bootstrap logic
+// Now load the main framework bootstrap
 require_once __DIR__ . '/bootstrap.php';
