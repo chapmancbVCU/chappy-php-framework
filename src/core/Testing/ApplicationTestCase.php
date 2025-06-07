@@ -3,6 +3,7 @@ namespace Core\Lib\Testing;
 use Core\DB;
 use Core\Lib\Utilities\Env;
 use Console\Helpers\Migrate;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Database\Seeders\DatabaseSeeder;
 
@@ -10,6 +11,108 @@ use Database\Seeders\DatabaseSeeder;
  * Abstract class for test cases.
  */
 abstract class ApplicationTestCase extends TestCase {
+    public static array $controllerOutput = [];
+    
+    /**
+     * Assert that a record exists in the specified database table with the given conditions.
+     *
+     * This method builds a SQL WHERE clause from the provided key-value array and checks
+     * whether a matching row exists. It fails the test if no such row is found.
+     *
+     * @param string $table   The name of the database table to search.
+     * @param array  $data    An associative array of column => value pairs to match against.
+     * @param string $message Optional custom failure message.
+     *
+     * @return void
+     *
+     * @throws \PHPUnit\Framework\AssertionFailedError If the assertion fails.
+     */
+    public function assertDatabaseHas(string $table, array $data, string $message = ''): void
+    {
+        $db = \Core\DB::getInstance(); // Adjust if your DB class is namespaced differently
+
+        $query = "SELECT COUNT(*) as count FROM `$table` WHERE ";
+        $conditions = [];
+        $params = [];
+
+        foreach ($data as $column => $value) {
+            $conditions[] = "`$column` = ?";
+            $params[] = $value;
+        }
+
+        $query .= implode(" AND ", $conditions);
+        $result = $db->query($query, $params)->first();
+
+        $exists = $result && $result->count > 0;
+
+        Assert::assertTrue(
+            $exists,
+            $message ?: "Failed asserting that a row in the '$table' table matches: " . json_encode($data)
+        );
+    }
+
+    /**
+     * Assert that no record exists in the specified database table with the given conditions.
+     *
+     * This method builds a SQL WHERE clause from the provided key-value array and verifies
+     * that no matching row exists. It fails the test if such a row is found.
+     *
+     * @param string $table   The name of the database table to search.
+     * @param array  $data    An associative array of column => value pairs to match against.
+     * @param string $message Optional custom failure message.
+     *
+     * @return void
+     *
+     * @throws \PHPUnit\Framework\AssertionFailedError If the assertion fails.
+     */
+    public function assertDatabaseMissing(string $table, array $data, string $message = ''): void
+    {
+        $db = \Core\DB::getInstance();
+
+        $query = "SELECT COUNT(*) as count FROM `$table` WHERE ";
+        $conditions = [];
+        $params = [];
+
+        foreach ($data as $column => $value) {
+            $conditions[] = "`$column` = ?";
+            $params[] = $value;
+        }
+
+        $query .= implode(" AND ", $conditions);
+        $result = $db->query($query, $params)->first();
+
+        $exists = $result && $result->count > 0;
+
+        Assert::assertFalse(
+            $exists,
+            $message ?: "Failed asserting that a row in the '$table' table does not exist with: " . json_encode($data)
+        );
+    }
+
+    /**
+     * Asserts that a property exists on the View object captured via controllerOutput().
+     * Optionally asserts that the value matches.
+     *
+     * @param string $property The view property to check.
+     * @param mixed|null $expectedValue Optional value to compare against.
+     * @return void
+     */
+    public function assertViewContains(string $property, mixed $expectedValue = null): void
+    {
+        $view = static::$controllerOutput['view'] ?? null;
+
+        $this->assertNotNull($view, 'No view object captured. Did you forget to call logViewForTesting()?');
+        $this->assertObjectHasProperty($property, $view, "View does not contain property '$property'.");
+
+        if (func_num_args() === 2) {
+            $this->assertEquals(
+                $expectedValue,
+                $view->{$property},
+                "View property '$property' does not match the expected value."
+            );
+        }
+    }
+
     /**
      * Simulates a controller action based on URL-style input and captures its output.
      *

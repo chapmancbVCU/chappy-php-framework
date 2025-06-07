@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Core;
 use Core\Application;
+use Core\Lib\Utilities\Env;
+use Core\Lib\Testing\ApplicationTestCase;
 
 /**
  * This is the parent Controller class.  It describes functions that are 
@@ -44,6 +46,23 @@ class Controller extends Application {
         http_response_code(200);
         echo json_encode($res);
         exit;
+    }
+
+    /**
+     * Captures the current View instance during testing so that test assertions
+     * (e.g., assertViewContains) can access view-bound variables.
+     *
+     * This method should be called in controller actions before rendering a view.
+     * It stores the View object in ApplicationTestCase::$controllerOutput['view']
+     * when the application is running in the 'testing' environment.
+     *
+     * @param \Core\View $view The View instance to capture.
+     * @return void
+     */
+    protected function logViewForTesting(View $view): void {
+        if (Env::get('APP_ENV') === 'testing') {
+            ApplicationTestCase::$controllerOutput['view'] = $view;
+        }
     }
 
     /**
