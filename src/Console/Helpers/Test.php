@@ -93,7 +93,16 @@ use Core\Lib\Testing\ApplicationTestCase;
  * Unit tests
  */
 class '.$testName.' extends ApplicationTestCase {
-    
+    /**
+     * Example for testing home page.
+     *
+     * @return void
+     */
+    public function test_homepage_loads_successfully(): void
+    {
+        $response = $this->get(\'/\');
+        $response->assertStatus(200);
+    }
 }
 ';
     }
@@ -113,7 +122,15 @@ use PHPUnit\Framework\TestCase;
  * Unit tests
  */
 class '.$testName.' extends TestCase {
-    
+    /**
+    * Example test.
+    *
+    * @return void
+    */
+    public function test_example(): void
+    {
+        $this->assertTrue(true);
+    }
 }
 ';
     }
