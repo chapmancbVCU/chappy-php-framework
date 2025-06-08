@@ -33,7 +33,11 @@ class RunTestCommand extends Command
             ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.')
             ->addOption('testdox', null, InputOption::VALUE_NONE, 'Use TestDox output.')
             ->addOption('debug', null, InputOption::VALUE_NONE, 'Enable debug output.')
-            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Stop on first failure.');
+            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Stop on first failure.')
+            ->addOption('reverse-order', null, InputOption::VALUE_NONE, 'Perform tests in reverse order.')
+            ->addOption('random-order', null, InputOption::VALUE_NONE, 'Perform tests in random order.')
+            ->addOption('fail-on-risky', null, InputOption::VALUE_NONE, 'Fail if risky tests are detected.')
+            ->addOption('fail-on-incomplete', null, InputOption::VALUE_NONE, 'Mark incomplete tests as failed.');
     }
  
     /**
