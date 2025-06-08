@@ -7,6 +7,7 @@ use Console\Helpers\Migrate;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Database\Seeders\DatabaseSeeder;
+use Core\Lib\Testing\TestResponse;
 
 /**
  * Abstract class for test cases.
@@ -144,7 +145,36 @@ abstract class ApplicationTestCase extends TestCase {
         return ob_get_clean();
     }
 
+    /**
+     * Simulates an HTTP GET request to a given URI by resolving and executing
+     * the corresponding controller and action, capturing the output.
+     *
+     * Supports URI segments in the form of /controller/action/param1/param2,
+     * and maps them to a controller class and action method with optional
+     * parameters passed positionally.
+     *
+     * Example:
+     * - get('/')                → HomeController::indexAction()
+     * - get('/products/show/3') → ProductsController::showAction(3)
+     *
+     * @param string \$uri The URI string, e.g., '/home/index' or '/products/show/3'
+     * @return \Core\Lib\Testing\TestResponse The response object containing status and content
+     */
+    protected function get(string $uri): TestResponse
+    {
+        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
 
+        $controller = $segments[0] ?? 'home';
+        $action = $segments[1] ?? 'index';
+        $params = array_slice($segments, 2);
+
+        try {
+            $output = $this->controllerOutput($controller, $action, $params);
+            return new TestResponse($output, 200);
+        } catch (\Exception $e) {
+            return new TestResponse($e->getMessage(), 404);
+        }
+    }
 
     /**
      * Implements setUp function from TestCase class.
