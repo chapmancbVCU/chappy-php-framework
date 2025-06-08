@@ -21,6 +21,12 @@ class Test {
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     
+    /**
+     * Constructor
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     */
     public function __construct(InputInterface $input, OutputInterface $output) {
         $this->inputOptions = self::parseOptions($input);
         $this->output = $output;
