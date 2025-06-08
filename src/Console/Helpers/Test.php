@@ -104,18 +104,6 @@ class '.$testName.' extends TestCase {
     }
 
     /**
-     * Runs the unit test contained in the TestCase class.
-     *
-     * @param string $tests The test to be performed.
-     * @return void
-     */
-    public function runTest(string $tests): void {
-        $command = 'php vendor/bin/phpunit ' . $tests . $this->inputOptions;
-        Tools::info('File: '.$tests);
-        $this->output->writeln(shell_exec($command));
-    }
-
-    /**
      * Parses PHPUnit related arguments and ignore Symfony arguments.
      *
      * @param InputInterface $input Instance of InputInterface from command.
@@ -160,6 +148,18 @@ class '.$testName.' extends TestCase {
         }
 
         return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
+    }
+    
+    /**
+     * Runs the unit test contained in the TestCase class.
+     *
+     * @param string $tests The test to be performed.
+     * @return void
+     */
+    public function runTest(string $tests): void {
+        $command = 'php vendor/bin/phpunit ' . $tests . $this->inputOptions;
+        Tools::info('File: '.$tests);
+        $this->output->writeln(shell_exec($command));
     }
 
     /**
