@@ -52,7 +52,6 @@ class RunTestCommand extends Command
         
         $test = new Test($input, $output);
         
-        // dd($test->getInputOptions());
         if(!$feature && !$unit && !$testArg) {
             return $test->allTests();
         }
