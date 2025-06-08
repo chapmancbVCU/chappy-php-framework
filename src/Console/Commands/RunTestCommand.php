@@ -85,7 +85,7 @@ class RunTestCommand extends Command
             return Command::SUCCESS;
         }
 
-        Tools::info("There was an issue running unit tests", 'error', 'red');
+        Tools::info("There was an issue running unit tests.  Check your command line input.", 'error', 'red');
         return Command::FAILURE;
     }
 }
