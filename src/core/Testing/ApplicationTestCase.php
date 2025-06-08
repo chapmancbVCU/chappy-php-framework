@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Testing;
 use Core\DB;
 use Core\Lib\Utilities\Env;

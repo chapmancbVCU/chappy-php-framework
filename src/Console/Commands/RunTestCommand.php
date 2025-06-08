@@ -28,9 +28,12 @@ class RunTestCommand extends Command
             ->setHelp('php console test <test_file_name> without the .php extension.')
             ->addArgument('testname', InputArgument::OPTIONAL, 'Pass the test file\'s name.')
             ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.')
-            ->addOption('feature', null, InputOption::VALUE_NONE, 'Run feature tests.');
-;
-;
+            ->addOption('feature', null, InputOption::VALUE_NONE, 'Run feature tests.')
+            ->addOption('filter', null, InputOption::VALUE_REQUIRED, 'Filter by test method or class name.')
+            ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.')
+            ->addOption('testdox', null, InputOption::VALUE_NONE, 'Use TestDox output.')
+            ->addOption('debug', null, InputOption::VALUE_NONE, 'Enable debug output.')
+            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Stop on first failure.');
     }
  
     /**
@@ -46,36 +49,38 @@ class RunTestCommand extends Command
         $testArg = $input->getArgument('testname');
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
-
-        // Run all tests
+        
+        $test = new Test($input, $output);
+        
+        // dd($test->getInputOptions());
         if(!$feature && !$unit && !$testArg) {
-            return Test::allTests($output);
+            return $test->allTests();
         }
         
         // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
-             return Test::selectTests($output, $testArg);
+             return $test->selectTests($testArg);
         }
         
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
-            $unitStatus = Test::testSuite($output, Test::unitTests());
+            $unitStatus = $test->testSuite(Test::unitTests());
         }
         if(!$testArg && $feature) {
-            $featureStatus = Test::testSuite($output, Test::featureTests());
+            $featureStatus = $test->testSuite(Test::featureTests());
         }
-        if(!$testArg && ($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS)) {
+        if(!$testArg && ((isset($unitStatus) && $unitStatus == Command::SUCCESS) || isset($featureStatus) && $featureStatus == Command::SUCCESS)) {
             return Command::SUCCESS;
         }
 
         // Run individual test file based on --unit and --feature flags
         if($testArg && $unit) {
-            $unitStatus = Test::singleFileWithinSuite($output, Test::UNIT_PATH, $testArg);
+            $unitStatus = $test->singleFileWithinSuite(Test::UNIT_PATH, $testArg);
         }
         if($testArg && $feature) {
-            $featureStatus = Test::singleFileWithinSuite($output, Test::FEATURE_PATH, $testArg);
+            $featureStatus = $test->singleFileWithinSuite(Test::FEATURE_PATH, $testArg);
         }
-        if($testArg && ($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS)) {
+        if($testArg && ((isset($unitStatus) && $unitStatus == Command::SUCCESS) || isset($featureStatus) && $featureStatus == Command::SUCCESS)) {
             return Command::SUCCESS;
         }
 

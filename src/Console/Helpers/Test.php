@@ -12,17 +12,26 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Supports unit test related console commands.
  */
 class Test {
+    public const ALLOWED_OPTIONS = [
+        'coverage', 'debug', 'testdox', 'stop-on-failure'
+    ];
 
-    public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
+    public string $inputOptions;
+    public OutputInterface $output;
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
+    public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     
+    public function __construct(InputInterface $input, OutputInterface $output) {
+        $this->inputOptions = self::parseOptions($input);
+        $this->output = $output;
+    }
+
     /**
      * Performs all tests.
      *
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function allTests(OutputInterface $output): int {
+    public function allTests(): int {
         $unitTests = self::unitTests();
         $featureTests = self::featureTests();
 
@@ -31,8 +40,8 @@ class Test {
             return Command::FAILURE;
         }
 
-        Test::testSuite($output, $unitTests);
-        Test::testSuite($output, $featureTests);
+        Test::testSuite($unitTests);
+        Test::testSuite($featureTests);
 
         Tools::info("All available test have been completed");
         return Command::SUCCESS;
@@ -88,27 +97,60 @@ class '.$testName.' extends TestCase {
     }
 
     /**
-     * Runs the unit test contained in the TestCase class
+     * Runs the unit test contained in the TestCase class.
      *
-     * @param InputInterface $input Input obtained from the console used to 
-     * set name of unit test we want to run.
-     * @param OutputInterface $output The results of the test.
+     * @param string $tests The test to be performed.
+     * @return void
      */
-    public static function runTest(string $tests, OutputInterface $output): void {
-        $command = 'php vendor/bin/phpunit '.$tests;
+    public function runTest(string $tests): void {
+        $command = 'php vendor/bin/phpunit ' . $tests . $this->inputOptions;
         Tools::info('File: '.$tests);
-        $output->writeln(shell_exec($command));
+        $this->output->writeln(shell_exec($command));
+    }
+
+    /**
+     * Parses PHPUnit related arguments and ignore Symfony arguments.
+     *
+     * @param InputInterface $input Instance of InputInterface from command.
+     * @return string A string containing the arguments to be provided to 
+     * PHPUnit.
+     */
+    public static function parseOptions(InputInterface $input): string {
+        $args = [];
+
+        foreach(self::ALLOWED_OPTIONS as $allowed) {
+            if($input->hasOption($allowed) && $input->getOption($allowed)) {
+                switch ($allowed) {
+                    case 'coverage':
+                        $args[] = '--coverage-text';
+                        break;
+                    case 'debug':
+                        $args[] = '--debug';
+                        break;
+                    case 'testbox':
+                        $args[] = '--testbox';
+                        break;
+                    case 'stop-on-failure':
+                        $args[] = '--stop-on-failure';
+                        break;
+                    default;
+                        $args[] = '--' . $allowed;
+                        break;
+                }
+            }
+        }
+
+        return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
     }
 
     /**
      * Supports ability to run test by class name or function name within 
      * a class.
      *
-     * @param OutputInterface $output
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function selectTests(OutputInterface $output, string $testArg): int {
+    public function selectTests(string $testArg): int {
         // Run a specific function
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
@@ -118,7 +160,7 @@ class '.$testName.' extends TestCase {
 
             if(file_exists($path)) {
                 $command = escapeshellarg($path) . ' --filter ' . escapeshellarg($method);
-                Test::runTest($command, $output);
+                $this->runTest($command, $this->output);
                 return Command::SUCCESS;
             } else {
                 Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
@@ -127,8 +169,8 @@ class '.$testName.' extends TestCase {
         } 
         
         // Run the test class if it exists in feature, unit, or both.
-        $unitStatus = self::singleFileWithinSuite($output, self::UNIT_PATH, $testArg);
-        $featureStatus = self::singleFileWithinSuite($output, self::FEATURE_PATH, $testArg);
+        $unitStatus = self::singleFileWithinSuite(self::UNIT_PATH, $testArg);
+        $featureStatus = self::singleFileWithinSuite(self::FEATURE_PATH, $testArg);
         if($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
@@ -143,10 +185,17 @@ class '.$testName.' extends TestCase {
         return Command::FAILURE;
     }
 
-    public static function singleFileWithinSuite(OutputInterface $output, string $suite = self::UNIT_PATH, string $testArg) {
+    /**
+     * Performs testing against a single class within a test suite.
+     *
+     * @param string $suite The name of the test suite.
+     * @param string $testArg The name of the test class.
+     * @return void
+     */
+    public function singleFileWithinSuite(string $suite = self::UNIT_PATH, string $testArg) {
         if(file_exists($suite.$testArg.'.php')) {
             $command = ' '.$suite.$testArg.'.php';
-            self::runTest($command, $output);
+            $this->runTest($command, $this->output);
             return Command::SUCCESS;
         }
         return Command::FAILURE;
@@ -155,17 +204,16 @@ class '.$testName.' extends TestCase {
     /**
      * Run all test files in an individual test suite.
      *
-     * @param OutputInterface $output The output.
      * @param array $collection All classes in a particular test suite.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function testSuite(OutputInterface $output, array $collection): int {
+    public function testSuite(array $collection): int {
         if(Arr::isEmpty($collection)) {
             return Command::FAILURE;
         }
 
         foreach($collection as $fileName) {
-            self::runTest($fileName, $output);
+            $this->runTest($fileName, $this->output);
         }
 
         return Command::SUCCESS;
