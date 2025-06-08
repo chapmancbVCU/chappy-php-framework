@@ -226,6 +226,19 @@ class '.$testName.' extends TestCase {
     }
 
     /**
+     * Determines if execution of a test suite(s) is successful.
+     *
+     * @param integer|null $featureStatus Tracks if feature test are 
+     * successful.
+     * @param integer|null $unitStatus Tracks if unit test are successful.
+     * @return bool True if successful, otherwise we return false.
+     */
+    public static function testSuiteStatus(int|null $featureStatus, int|null $unitStatus): bool {
+        return (isset($unitStatus) && $unitStatus == Command::SUCCESS) || 
+            (isset($featureStatus) && $featureStatus == Command::SUCCESS);
+    }
+
+    /**
      * Returns array containing all filenames in Unit directory.
      *
      * @return array The array of all filenames in the Unit directory.

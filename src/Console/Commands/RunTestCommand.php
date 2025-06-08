@@ -62,6 +62,8 @@ class RunTestCommand extends Command
              return $test->selectTests($testArg);
         }
         
+        $featureStatus = null;
+        $unitStatus = null;
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
             $unitStatus = $test->testSuite(Test::unitTests());
@@ -69,7 +71,7 @@ class RunTestCommand extends Command
         if(!$testArg && $feature) {
             $featureStatus = $test->testSuite(Test::featureTests());
         }
-        if(!$testArg && ((isset($unitStatus) && $unitStatus == Command::SUCCESS) || isset($featureStatus) && $featureStatus == Command::SUCCESS)) {
+        if(!$testArg && Test::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;
         }
 
@@ -80,7 +82,7 @@ class RunTestCommand extends Command
         if($testArg && $feature) {
             $featureStatus = $test->singleFileWithinSuite(Test::FEATURE_PATH, $testArg);
         }
-        if($testArg && ((isset($unitStatus) && $unitStatus == Command::SUCCESS) || isset($featureStatus) && $featureStatus == Command::SUCCESS)) {
+        if($testArg && Test::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;
         }
 
