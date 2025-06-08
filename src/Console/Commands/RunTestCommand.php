@@ -27,17 +27,28 @@ class RunTestCommand extends Command
             ->setDescription('Performs the phpunit test.')
             ->setHelp('php console test <test_file_name> without the .php extension.')
             ->addArgument('testname', InputArgument::OPTIONAL, 'Pass the test file\'s name.')
-            ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.')
+
+            // Flags
+            ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.')
+            ->addOption('debug', null, InputOption::VALUE_NONE, 'Enable debug output.')
+            ->addOption('display-depreciations', null, InputOption::VALUE_NONE, 'Show deprecated method warnings.')
+            ->addOption('display-errors', null, InputOption::VALUE_NONE, 'Show errors (on by default).')
+            ->addOption('display-incomplete', null, InputOption::VALUE_NONE, 'Show incomplete tests in summary .')
+            ->addOption('display-skipped', null, InputOption::VALUE_NONE, 'Show skipped tests in summary.')
+            ->addOption('fail-on-incomplete', null, InputOption::VALUE_NONE, 'Mark incomplete tests as failed.')
+            ->addOption('fail-on-risky', null, InputOption::VALUE_NONE, 'Fail if risky tests are detected.')
             ->addOption('feature', null, InputOption::VALUE_NONE, 'Run feature tests.')
             ->addOption('filter', null, InputOption::VALUE_REQUIRED, 'Filter by test method or class name.')
-            ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.')
-            ->addOption('testdox', null, InputOption::VALUE_NONE, 'Use TestDox output.')
-            ->addOption('debug', null, InputOption::VALUE_NONE, 'Enable debug output.')
-            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Stop on first failure.')
-            ->addOption('reverse-order', null, InputOption::VALUE_NONE, 'Perform tests in reverse order.')
             ->addOption('random-order', null, InputOption::VALUE_NONE, 'Perform tests in random order.')
-            ->addOption('fail-on-risky', null, InputOption::VALUE_NONE, 'Fail if risky tests are detected.')
-            ->addOption('fail-on-incomplete', null, InputOption::VALUE_NONE, 'Mark incomplete tests as failed.');
+            ->addOption('reverse-order', null, InputOption::VALUE_NONE, 'Perform tests in reverse order.')
+            ->addOption('stop-on-error', null, InputOption::VALUE_NONE, 'Stop on error.')
+            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Stop on first failure.')
+            ->addOption('stop-on-incomplete', null, InputOption::VALUE_NONE, 'Stop on incomplete test.')
+            ->addOption('stop-on-risky', null, InputOption::VALUE_NONE, 'Stop on risky test.')
+            ->addOption('stop-on-skipped', null, InputOption::VALUE_NONE, 'Stop on skipped test.')
+            ->addOption('stop-on-warning', null, InputOption::VALUE_NONE, 'Stop on warning.')
+            ->addOption('testdox', null, InputOption::VALUE_NONE, 'Use TestDox output.')
+            ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.');
     }
  
     /**

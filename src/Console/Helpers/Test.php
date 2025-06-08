@@ -13,8 +13,23 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Test {
     public const ALLOWED_OPTIONS = [
-        'coverage', 'debug', 'testdox', 'stop-on-failure', 'reverse-order', 
-        'random-order', 'fail-on-incomplete', 'fail-on-risky'
+        'coverage',
+        'debug',
+        'display-depreciations',
+        'display-errors',
+        'display-incomplete',
+        'display-skipped',
+        'fail-on-incomplete',
+        'fail-on-risky',
+        'random-order',
+        'reverse-order',
+        'stop-on-error',
+        'stop-on-failure',
+        'stop-on-incomplete',
+        'stop-on-risky',
+        'stop-on-skipped',
+        'stop-on-warning',
+        'testdox',
     ];
 
     public string $inputOptions;
@@ -122,14 +137,17 @@ class '.$testName.' extends TestCase {
                     case 'debug':
                         $args[] = '--debug';
                         break;
-                    case 'testbox':
-                        $args[] = '--testbox';
+                    case 'display-deprecations':
+                        $args[] = '--display-deprecations';
                         break;
-                    case 'reverse-order':
-                        $args[] = '--reverse-order';
+                    case 'display-errors':
+                        $args[] = '--display-errors';
                         break;
-                    case 'random-order':
-                        $args[] = '--random-order';
+                    case 'display-incomplete':
+                        $args[] = '--display-incomplete';
+                        break;
+                    case 'display-skipped':
+                        $args[] = '--display-skipped';
                         break;
                     case 'fail-on-incomplete':
                         $args[] = '--fail-on-incomplete';
@@ -137,8 +155,32 @@ class '.$testName.' extends TestCase {
                     case 'fail-on-risky':
                         $args[] = '--fail-on-risky';
                         break;
+                    case 'random-order':
+                        $args[] = '--random-order';
+                        break;
+                    case 'reverse-order':
+                        $args[] = '--reverse-order';
+                        break;
+                    case 'stop-on-error':
+                        $args[] = '--stop-on-error';
+                        break;
                     case 'stop-on-failure':
                         $args[] = '--stop-on-failure';
+                        break;
+                    case 'stop-on-incomplete':
+                        $args[] = '--stop-on-incomplete';
+                        break;
+                    case 'stop-on-risky':
+                        $args[] = '--stop-on-risky';
+                        break;
+                    case 'stop-on-skipped':
+                        $args[] = '--stop-on-skipped';
+                        break;
+                    case 'stop-on-warning':
+                        $args[] = '--stop-on-warning';
+                        break;
+                    case 'testbox':
+                        $args[] = '--testbox';
                         break;
                     default;
                         $args[] = '--' . $allowed;
@@ -149,7 +191,7 @@ class '.$testName.' extends TestCase {
 
         return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
     }
-    
+
     /**
      * Runs the unit test contained in the TestCase class.
      *
