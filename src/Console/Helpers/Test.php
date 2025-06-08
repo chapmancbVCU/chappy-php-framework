@@ -13,7 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Test {
     public const ALLOWED_OPTIONS = [
-        'coverage', 'debug', 'testdox', 'stop-on-failure'
+        'coverage', 'debug', 'testdox', 'stop-on-failure', 'reverse-order', 
+        'random-order', 'fail-on-incomplete', 'fail-on-risky'
     ];
 
     public string $inputOptions;
@@ -135,6 +136,18 @@ class '.$testName.' extends TestCase {
                         break;
                     case 'testbox':
                         $args[] = '--testbox';
+                        break;
+                    case 'reverse-order':
+                        $args[] = '--reverse-order';
+                        break;
+                    case 'random-order':
+                        $args[] = '--random-order';
+                        break;
+                    case 'fail-on-incomplete':
+                        $args[] = '--fail-on-incomplete';
+                        break;
+                    case 'fail-on-risky':
+                        $args[] = '--fail-on-risky';
                         break;
                     case 'stop-on-failure':
                         $args[] = '--stop-on-failure';
