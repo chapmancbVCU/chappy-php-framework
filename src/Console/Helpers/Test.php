@@ -228,9 +228,9 @@ class '.$testName.' extends TestCase {
     /**
      * Determines if execution of a test suite(s) is successful.
      *
-     * @param integer|null $featureStatus Tracks if feature test are 
+     * @param int|null $featureStatus Tracks if feature test are 
      * successful.
-     * @param integer|null $unitStatus Tracks if unit test are successful.
+     * @param int|null $unitStatus Tracks if unit test are successful.
      * @return bool True if successful, otherwise we return false.
      */
     public static function testSuiteStatus(int|null $featureStatus, int|null $unitStatus): bool {
