@@ -145,6 +145,25 @@ abstract class ApplicationTestCase extends TestCase {
         return ob_get_clean();
     }
 
+    protected function delete(string $uri): TestResponse
+    {
+        $_SERVER['REQUEST_METHOD'] = 'DELETE';
+
+        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
+        $controller = $segments[0] ?? 'home';
+        $action = $segments[1] ?? 'index';
+        $params = array_slice($segments, 2);
+
+        try {
+            $output = $this->controllerOutput($controller, $action, $params);
+            return new TestResponse($output, 200);
+        } catch (\Exception $e) {
+            return new TestResponse($e->getMessage(), 500);
+        } finally {
+            unset($_SERVER['REQUEST_METHOD']);
+        }
+    }
+
     /**
      * Simulates an HTTP GET request to a given URI by resolving and executing
      * the corresponding controller and action, capturing the output.
@@ -175,6 +194,63 @@ abstract class ApplicationTestCase extends TestCase {
             return new TestResponse($e->getMessage(), 404);
         }
     }
+
+    /**
+     * Simulates a POST request by setting $_POST data and executing the specified
+     * controller and action. Returns a TestResponse with the output and status.
+     *
+     * @param string $uri The URI to simulate, e.g., '/login'
+     * @param array $data The POST data to inject (e.g., ['email' => 'foo@bar.com'])
+     * @return \Core\Lib\Testing\TestResponse The test response object
+     */
+    protected function post(string $uri, array $data = []): TestResponse
+    {
+        $_POST = $data;
+
+        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
+        $controller = $segments[0] ?? 'home';
+        $action = $segments[1] ?? 'index';
+        $params = array_slice($segments, 2);
+
+        try {
+            $output = $this->controllerOutput($controller, $action, $params);
+            return new TestResponse($output, 200);
+        } catch (\Exception $e) {
+            return new TestResponse($e->getMessage(), 500);
+        } finally {
+            $_POST = []; // Reset for future tests
+        }
+    }
+
+    /**
+     * Simulates a DELETE request to a specified URI. This sets the request method
+     * to DELETE and runs the matching controller action.
+     *
+     * @param string $uri The URI to simulate, e.g., '/posts/10'
+     * @return \Core\Lib\Testing\TestResponse The test response object
+     */
+    protected function put(string $uri, array $data = []): TestResponse
+    {
+        $_POST = $data;
+        $_SERVER['REQUEST_METHOD'] = 'PUT';
+
+        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
+        $controller = $segments[0] ?? 'home';
+        $action = $segments[1] ?? 'index';
+        $params = array_slice($segments, 2);
+
+        try {
+            $output = $this->controllerOutput($controller, $action, $params);
+            return new TestResponse($output, 200);
+        } catch (\Exception $e) {
+            return new TestResponse($e->getMessage(), 500);
+        } finally {
+            $_POST = [];
+            unset($_SERVER['REQUEST_METHOD']);
+        }
+    }
+
+    
 
     /**
      * Implements setUp function from TestCase class.

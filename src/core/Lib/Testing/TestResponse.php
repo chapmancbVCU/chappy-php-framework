@@ -46,6 +46,54 @@ class TestResponse
     }
 
     /**
+     * Asserts that the given text is not present in the response content.
+     *
+     * @param string $text The string that should not appear in the content
+     * @return void
+     */
+    public function assertDontSee(string $text): void
+    {
+        Assert::assertStringNotContainsString(
+            $text,
+            $this->content,
+            "Unexpected text '{$text}' found in response."
+        );
+    }
+
+    /**
+     * Asserts that the response content is a valid JSON string and that it
+     * contains the specified keys and values.
+     *
+     * @param array $expected An associative array of expected key-value pairs
+     * @return void
+     */
+    public function assertJson(array $expected): void
+    {
+        $decoded = json_decode($this->content, true);
+        Assert::assertIsArray($decoded, 'Response content is not valid JSON.');
+
+        foreach ($expected as $key => $value) {
+            Assert::assertArrayHasKey($key, $decoded, "Key '{$key}' not found in JSON response.");
+            Assert::assertSame($value, $decoded[$key], "Mismatched value for key '{$key}' in JSON.");
+        }
+    }
+
+    /**
+     * Asserts that the response content contains the given text.
+     *
+     * @param string $text The text expected to be found in the response content.
+     * @return void
+     */
+    public function assertSee(string $text): void
+    {
+        Assert::assertStringContainsString(
+            $text,
+            $this->content,
+            "Did not see expected text '{$text}' in response."
+        );
+    }
+
+    /**
      * Asserts that the response status matches the expected value.
      *
      * @param int $expected The expected HTTP status code.
@@ -68,20 +116,5 @@ class TestResponse
     public function getContent(): string
     {
         return $this->content;
-    }
-
-    /**
-     * Asserts that the response content contains the given text.
-     *
-     * @param string $text The text expected to be found in the response content.
-     * @return void
-     */
-    public function assertSee(string $text): void
-    {
-        Assert::assertStringContainsString(
-            $text,
-            $this->content,
-            "Did not see expected text '{$text}' in response."
-        );
     }
 }
