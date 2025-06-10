@@ -201,8 +201,8 @@ abstract class ApplicationTestCase extends TestCase {
      * @param string $files The name of the $_FILES field.
      * @return void
      */
-    protected function mockFile(string $files) {
-        return $_FILES[$files] = [
+    protected function mockFile(string $files): void {
+        $_FILES[$files] = [
             'name' => '',
             'type' => '',
             'tmp_name' => '',
