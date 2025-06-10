@@ -205,7 +205,13 @@ abstract class ApplicationTestCase extends TestCase {
      */
     protected function post(string $uri, array $data = []): TestResponse
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $_POST = $data;
+        $_REQUEST = $data; // ✅ Ensure Input::get() works correctly
+        $_SERVER['REQUEST_METHOD'] = 'POST'; // ✅ Fix your test case
 
         $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
         $controller = $segments[0] ?? 'home';
@@ -218,7 +224,10 @@ abstract class ApplicationTestCase extends TestCase {
         } catch (\Exception $e) {
             return new TestResponse($e->getMessage(), 500);
         } finally {
-            $_POST = []; // Reset for future tests
+            // Clean up
+            $_POST = [];
+            $_REQUEST = [];
+            unset($_SERVER['REQUEST_METHOD']);
         }
     }
 
