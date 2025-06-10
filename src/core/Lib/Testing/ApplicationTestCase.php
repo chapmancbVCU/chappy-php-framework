@@ -196,6 +196,22 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
+     * Create a mock file for actions that require file input in form submissions.
+     *
+     * @param string $files The name of the $_FILES field.
+     * @return void
+     */
+    protected function mockFile(string $files) {
+        return $_FILES[$files] = [
+            'name' => '',
+            'type' => '',
+            'tmp_name' => '',
+            'error' => 4, // No file uploaded
+            'size' => 0
+        ];
+    }
+
+    /**
      * Simulates a POST request by setting $_POST data and executing the specified
      * controller and action. Returns a TestResponse with the output and status.
      *
