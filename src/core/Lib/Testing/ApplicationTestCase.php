@@ -141,8 +141,16 @@ abstract class ApplicationTestCase extends TestCase {
         }
 
         ob_start();
-        call_user_func_array([$controller, $actionMethod], $urlSegments); // 👈 full support for routed parameters
-        return ob_get_clean();
+        try {
+            call_user_func_array([$controller, $actionMethod], $urlSegments); // full support for routed parameters
+            return ob_get_clean();
+        } catch (\Throwable $e) {
+            // 🚨 Clean buffer to avoid risky test error
+            if (ob_get_level() > 0) {
+                ob_end_clean();
+            }
+            throw $e;
+        }
     }
 
     protected function delete(string $uri): TestResponse
