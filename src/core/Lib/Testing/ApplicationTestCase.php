@@ -189,6 +189,7 @@ abstract class ApplicationTestCase extends TestCase {
      */
     protected function get(string $uri): TestResponse
     {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
         $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
 
         $controller = $segments[0] ?? 'home';
@@ -200,6 +201,8 @@ abstract class ApplicationTestCase extends TestCase {
             return new TestResponse($output, 200);
         } catch (\Exception $e) {
             return new TestResponse($e->getMessage(), 404);
+        } finally {
+            unset($_SERVER['REQUEST_METHOD']);
         }
     }
 
