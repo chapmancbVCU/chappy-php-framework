@@ -66,11 +66,6 @@ class Input {
         return Str::upper($_SERVER['REQUEST_METHOD']);
     }
 
-
-    public function isDelete(): bool {
-        return $this->getRequestMethod() === 'DELETE';
-    }
-
     /**
      * Checks if the REQUEST_METHOD is GET.
      *

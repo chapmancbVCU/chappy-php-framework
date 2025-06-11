@@ -154,37 +154,6 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
-     * Simulates an HTTP DELETE request to a given URI and returns a TestResponse.
-     *
-     * This method parses the URI into controller, action, and optional parameters,
-     * then routes the request using the same logic as your application's router.
-     * It temporarily sets the request method to DELETE via the $_SERVER superglobal.
-     *
-     * Intended for use in feature tests that verify controller logic for delete actions.
-     *
-     * @param string $uri The URI to simulate (e.g., '/users/delete/5')
-     * @return TestResponse The response object containing output and status code
-     */
-    protected function delete(string $uri): TestResponse
-    {
-        $_SERVER['REQUEST_METHOD'] = 'DELETE';
-
-        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
-        $controller = $segments[0] ?? 'home';
-        $action = $segments[1] ?? 'index';
-        $params = array_slice($segments, 2);
-
-        try {
-            $output = $this->controllerOutput($controller, $action, $params);
-            return new TestResponse($output, 200);
-        } catch (\Exception $e) {
-            return new TestResponse($e->getMessage(), 500);
-        } finally {
-            unset($_SERVER['REQUEST_METHOD']);
-        }
-    }
-
-    /**
      * Simulates an HTTP GET request to a given URI by resolving and executing
      * the corresponding controller and action, capturing the output.
      *
