@@ -237,8 +237,8 @@ class '.$testName.' extends TestCase {
             if(!file_exists($path)) { $path = Test::FEATURE_PATH.$class.'.php'; }
 
             if(file_exists($path)) {
-                $command = escapeshellarg($path) . ' --filter ' . escapeshellarg($method);
-                $this->runTest($command, $this->output);
+                $command = "--filter " . escapeshellarg("{$class}::{$method}");
+                $this->runTest($command);
                 return Command::SUCCESS;
             } else {
                 Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
