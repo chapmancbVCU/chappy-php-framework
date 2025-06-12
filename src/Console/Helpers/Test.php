@@ -233,16 +233,18 @@ class '.$testName.' extends TestCase {
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
 
-            $path = Test::UNIT_PATH.$class.'.php';
-            if(!file_exists($path)) { $path = Test::FEATURE_PATH.$class.'.php'; }
+            $namespaces = [
+                'Tests\\Unit\\' => Test::UNIT_PATH,
+                'Tests\\Feature\\' => Test::FEATURE_PATH
+            ];
 
-            if(file_exists($path)) {
-                $command = "--filter " . escapeshellarg("{$class}::{$method}");
-                $this->runTest($command);
-                return Command::SUCCESS;
-            } else {
-                Tools::info("Test class file not found for '$class'", 'debug', 'yellow');
-                return Command::FAILURE;
+            foreach ($namespaces as $namespace => $path) {
+                $file = $path . $class . '.php';
+                if (file_exists($file)) {
+                    $filter = "--filter " . escapeshellarg($namespace . $class . "::" . $method);
+                    $this->runTest($filter);
+                    return Command::SUCCESS;
+                }
             }
         } 
         
