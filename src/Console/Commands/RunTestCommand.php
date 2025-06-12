@@ -38,7 +38,6 @@ class RunTestCommand extends Command
             ->addOption('fail-on-incomplete', null, InputOption::VALUE_NONE, 'Mark incomplete tests as failed.')
             ->addOption('fail-on-risky', null, InputOption::VALUE_NONE, 'Fail if risky tests are detected.')
             ->addOption('feature', null, InputOption::VALUE_NONE, 'Run feature tests.')
-            ->addOption('filter', null, InputOption::VALUE_REQUIRED, 'Filter by test method or class name.')
             ->addOption('random-order', null, InputOption::VALUE_NONE, 'Perform tests in random order.')
             ->addOption('reverse-order', null, InputOption::VALUE_NONE, 'Perform tests in reverse order.')
             ->addOption('stop-on-error', null, InputOption::VALUE_NONE, 'Stop on error.')
