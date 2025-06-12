@@ -281,11 +281,17 @@ class '.$testName.' extends TestCase {
         return Command::FAILURE;
     }
 
+    /**
+     * Checks if file exists in either test suite.
+     *
+     * @param string $name The name of the file to be created.
+     * @return bool True if file exists in either test suite, otherwise we 
+     * return false.
+     */
     public static function testIfExists(string $name): bool {
         $testName = $name.'.php';
-        dd(self::FEATURE_PATH.$testName);
         if(file_exists(self::FEATURE_PATH.$testName) || file_exists(self::UNIT_PATH.$testName)) {
-            Tools::info('File with the same name cannot exist in both test suites', 'error', 'red');
+            Tools::info("File with the name '{$testName}' cannot exist in both test suites", 'error', 'red');
             return true;
         }
         return false;
