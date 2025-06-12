@@ -40,6 +40,10 @@ class MakeTestCommand extends Command
     {
         $testName = Str::ucfirst($input->getArgument('testname'));
         
+        if(Test::testIfExists($testName)) {
+            return Command::FAILURE;
+        }
+
         if($input->getOption('feature')) {
             return Tools::writeFile(
                 ROOT.DS.'tests'.DS.'Feature'.DS.$testName.'.php',

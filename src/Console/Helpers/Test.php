@@ -281,6 +281,16 @@ class '.$testName.' extends TestCase {
         return Command::FAILURE;
     }
 
+    public static function testIfExists(string $name): bool {
+        $testName = $name.'.php';
+        dd(self::FEATURE_PATH.$testName);
+        if(file_exists(self::FEATURE_PATH.$testName) || file_exists(self::UNIT_PATH.$testName)) {
+            Tools::info('File with the same name cannot exist in both test suites', 'error', 'red');
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Run all test files in an individual test suite.
      *
