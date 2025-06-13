@@ -9,7 +9,7 @@ namespace Core\Lib\Utilities;
  *
  * @package Core\Lib\Utilities
  */
-class Env{
+class Env {
     /**
      * @var array Holds the loaded environment variables.
      */
@@ -85,7 +85,7 @@ class Env{
      * @param mixed $default The default value to return if the key is not found.
      * @return mixed The value of the environment variable or the default value.
      */
-    public static function get(string $key, $default = null)
+    public static function get(string $key, mixed $default = null): mixed
     {
         // Priority: actual $_ENV > loaded config > default
         return $_ENV[$key] ?? self::$config[$key] ?? $default;
