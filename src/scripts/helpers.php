@@ -1,11 +1,13 @@
 <?php
 
+use Core\Router;
 use Core\FormHelper;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
 use Symfony\Component\VarDumper\VarDumper;
 
+// add session message
 if (!function_exists('asset')) {
     /**
      * Retrieves publicly available asset. 
@@ -74,6 +76,10 @@ if(!function_exists('dd')) {
     }
 }
 
+// display form errors
+
+
+
 if(!function_exists('dump')) {
       /**
      * Dumps content but continues execution.
@@ -101,6 +107,19 @@ if(!function_exists('env')) {
         return Env::get($key, $default);
     }
 }
+
+/**
+ * Performs redirect operations.
+ * 
+ * @param string $location The view where we will redirect the user.
+ * @return void
+ */
+if(!function_exists('redirect')) {
+    function redirect(string $location): void {
+        Router::redirect($location);
+    }
+}
+
 if(!function_exists('vite')){
     /**
      * Generate the URL for a Vite asset.
