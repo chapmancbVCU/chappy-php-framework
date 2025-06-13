@@ -6,6 +6,18 @@ use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
 use Symfony\Component\VarDumper\VarDumper;
 
+if (!function_exists('asset')) {
+    /**
+     * Retrieves publicly available asset. 
+     *
+     * @param string $path Path to the asset.
+     * @return string The full path.
+     */
+    function asset(string $path): string {
+        return rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . ltrim($path, '/');
+    }
+}
+
 if(!function_exists('cl')) {
     /**
      * Prints to console using JavaScript.
