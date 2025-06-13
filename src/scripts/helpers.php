@@ -1,5 +1,6 @@
 <?php
 
+use Core\FormHelper;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
@@ -32,6 +33,12 @@ if(!function_exists('config')) {
     function config($key, $default = null)
     {
         return Config::get($key, $default);
+    }
+}
+
+if(!function_exists('csrf')) {
+    function csrf() {
+        return FormHelper::csrfInput();
     }
 }
 
