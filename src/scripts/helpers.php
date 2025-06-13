@@ -37,6 +37,11 @@ if(!function_exists('config')) {
 }
 
 if(!function_exists('csrf')) {
+    /**
+     * Inserts csrf token into form.
+     *
+     * @return void
+     */
     function csrf() {
         return FormHelper::csrfInput();
     }
@@ -70,6 +75,7 @@ if(!function_exists('dump')) {
         }
     }
 }
+
 if(!function_exists('env')) {
     /**
      * Get an environment variable.
