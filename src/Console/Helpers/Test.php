@@ -233,6 +233,8 @@ class '.$testName.' extends TestCase {
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
 
+            if(self::testIfSame($class)) { return Command::FAILURE; }
+
             $namespaces = [
                 'Tests\\Unit\\' => Test::UNIT_PATH,
                 'Tests\\Feature\\' => Test::FEATURE_PATH
@@ -240,12 +242,14 @@ class '.$testName.' extends TestCase {
 
             foreach ($namespaces as $namespace => $path) {
                 $file = $path . $class . '.php';
+                dump($file);
                 if (file_exists($file)) {
-                    $filter = "--filter " . escapeshellarg($namespace . $class . "::" . $method);
+                    $filter = "--filter " . escapeshellarg("{$class}::{$method}");
                     $this->runTest($filter);
                     return Command::SUCCESS;
                 }
             }
+
         } 
         
         // Run the test class if it exists in feature, unit, or both.
@@ -292,6 +296,22 @@ class '.$testName.' extends TestCase {
         $testName = $name.'.php';
         if(file_exists(self::FEATURE_PATH.$testName) || file_exists(self::UNIT_PATH.$testName)) {
             Tools::info("File with the name '{$testName}' cannot exist in both test suites", 'error', 'red');
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Enforces rule that classes/files across test suites should be unique.
+     *
+     * @param string $name The name of the test class to be executed.
+     * @return bool True if class/file exists across both test suites, 
+     * otherwise we return false.
+     */
+    public static function testIfSame(string $name): bool {
+        $testName = $name.'.php';
+        if(file_exists(self::FEATURE_PATH.$testName) && file_exists(self::UNIT_PATH.$testName)) {
+            Tools::info("You have files with the same name in both test suites.  Cannot use built in filtering", 'error', 'red');
             return true;
         }
         return false;
