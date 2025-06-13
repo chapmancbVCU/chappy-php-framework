@@ -78,7 +78,7 @@ if(!function_exists('env')) {
      * @param mixed $default Default value if key is not found
      * @return mixed
      */
-    function env($key, $default = null)
+    function env(string $key, mixed $default = null)
     {
         return Env::get($key, $default);
     }
