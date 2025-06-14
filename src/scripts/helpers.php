@@ -132,6 +132,14 @@ if(!function_exists('redirect')) {
 }
 
 if(!function_exists('route')) {
+    /**
+     * Route function for views that supports dot notation and array of parameters.
+     *
+     * @param string $path The controller name concatenated with the action 
+     * name using dot notation.
+     * @param array $params The parameters for the action.
+     * @return string $url The URL.
+     */
     function route(string $path, array $params = []): string {
         $parts = explode('.', $path, 2);
         $controller = $parts[0];
