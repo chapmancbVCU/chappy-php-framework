@@ -3,6 +3,29 @@
 use Core\FormHelper;
 use Core\Lib\Utilities\ArraySet;
 
+if(!function_exists('checkboxLeft')) {
+    function checkboxLeft(
+        string $label, 
+        string $name, 
+        string $value = "",
+        bool $checked = false, 
+        array $inputAttrs = [], 
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        return FormHelper::checkboxBlockLabelLeft(
+            $label, 
+            $name, 
+            $value,
+            $checked, 
+            $inputAttrs,
+            $divAttrs,
+            $errors
+        );
+    }
+}
+
+
 if(!function_exists('csrf')) {
     /**
      * Inserts csrf token into form.
