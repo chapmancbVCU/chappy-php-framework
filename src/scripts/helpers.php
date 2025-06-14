@@ -5,9 +5,9 @@ use Core\FormHelper;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
+use Core\Lib\Utilities\ArraySet;
 use Symfony\Component\VarDumper\VarDumper;
 
-// add session message
 if (!function_exists('asset')) {
     /**
      * Retrieves publicly available asset. 
@@ -76,9 +76,6 @@ if(!function_exists('dd')) {
     }
 }
 
-// display form errors
-
-
 
 if(!function_exists('dump')) {
       /**
@@ -105,6 +102,12 @@ if(!function_exists('env')) {
     function env(string $key, mixed $default = null)
     {
         return Env::get($key, $default);
+    }
+}
+
+if(!function_exists('errorBag')) {
+    function errorBag(array|ArraySet $errors) {
+        FormHelper::displayErrors($errors);
     }
 }
 
