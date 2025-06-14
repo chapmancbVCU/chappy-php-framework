@@ -131,6 +131,22 @@ if(!function_exists('redirect')) {
     }
 }
 
+if(!function_exists('route')) {
+    function route(string $path, array $params = []): string {
+        $parts = explode('.', $path, 2);
+        $controller = $parts[0];
+        $action = $parts[1] ?? 'index';
+
+        $url = rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . trim($controller, '/') . '/' . trim($action, '/');
+
+        if (!empty($params)) {
+            $url .= '/' . implode('/', array_map('urlencode', $params));
+        }
+
+        return $url;
+    }
+}
+
 if(!function_exists('vite')){
     /**
      * Generate the URL for a Vite asset.
