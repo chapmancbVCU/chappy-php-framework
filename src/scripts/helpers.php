@@ -2,11 +2,9 @@
 
 use Core\Router;
 use Core\Session;
-use Core\FormHelper;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
-use Core\Lib\Utilities\ArraySet;
 use Symfony\Component\VarDumper\VarDumper;
 
 if (!function_exists('asset')) {
@@ -48,17 +46,6 @@ if(!function_exists('config')) {
     function config($key, $default = null)
     {
         return Config::get($key, $default);
-    }
-}
-
-if(!function_exists('csrf')) {
-    /**
-     * Inserts csrf token into form.
-     *
-     * @return void
-     */
-    function csrf() {
-        return FormHelper::csrfInput();
     }
 }
 
@@ -117,20 +104,6 @@ if(!function_exists('env')) {
     function env(string $key, mixed $default = null)
     {
         return Env::get($key, $default);
-    }
-}
-
-if(!function_exists('errorBag')) {
-    /**
-     * Returns list of errors.
-     * 
-     * @param array|ArraySet $errors A list of errors and their description that is 
-     * generated during server side form validation.
-     * @return string A string representation of a div element containing an 
-     * input of type checkbox.
-     */
-    function errorBag(array|ArraySet $errors): string {
-        return FormHelper::displayErrors($errors);
     }
 }
 
