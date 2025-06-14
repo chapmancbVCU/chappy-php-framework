@@ -1,6 +1,7 @@
 <?php
 
 use Core\Router;
+use Core\Session;
 use Core\FormHelper;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
@@ -88,6 +89,20 @@ if(!function_exists('dump')) {
         foreach ($vars as $var) {
         VarDumper::dump($var);
         }
+    }
+}
+
+if(!function_exists('flashMessage')) {
+    /**
+     * Adds a session alert message.
+     *
+     * @param string $type Can be info, success, warning, danger, primary, 
+     * secondary, or dark.
+     * @param string $message The message you want to display in the alert.
+     * @return void
+     */
+    function flashMessage(string $type, string $message): void {
+        Session::addMessage($type, $message);
     }
 }
 
