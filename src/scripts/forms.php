@@ -3,7 +3,7 @@
 use Core\FormHelper;
 use Core\Lib\Utilities\ArraySet;
 
-if(!function_exists('checkboxLeft')) {
+if(!function_exists('checkboxLabelLeft')) {
     /**
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
@@ -26,7 +26,7 @@ if(!function_exists('checkboxLeft')) {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type checkbox.
      */
-    function checkboxLeft(
+    function checkboxLabelLeft(
         string $label, 
         string $name, 
         string $value = "",
@@ -47,7 +47,7 @@ if(!function_exists('checkboxLeft')) {
     }
 }
 
-if(!function_exists('checkboxRight')) {
+if(!function_exists('checkboxLabelRight')) {
     /**
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
@@ -69,7 +69,7 @@ if(!function_exists('checkboxRight')) {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element.
      */
-    function checkboxRight(
+    function checkboxLabelRight(
         string $label, 
         string $name, 
         string $value = "",
