@@ -98,9 +98,10 @@ if(!function_exists('csrf')) {
      */
     function csrf() {
         return FormHelper::csrfInput();
-    }
+    }  
+}
 
-    if(!function_exists('errorBag')) {
+if(!function_exists('errorBag')) {
     /**
      * Returns list of errors.
      * 
@@ -112,5 +113,4 @@ if(!function_exists('csrf')) {
     function errorBag(array|ArraySet $errors): string {
         return FormHelper::displayErrors($errors);
     }
-}
 }
