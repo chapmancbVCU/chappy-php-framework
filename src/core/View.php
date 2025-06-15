@@ -33,7 +33,13 @@ class View extends stdClass {
      * @return void
      */
     public function component(string $component): void {
-        include ROOT . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
+        $componentPath = ROOT . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
+        
+        if(!file_exists($componentPath)) {
+            throw new Exception('The component "' . $component . '" does not exist');
+        } else {
+            require $componentPath;
+        }
     }
 
     /**
@@ -63,16 +69,6 @@ class View extends stdClass {
         } else {
             die('You must first run the start method.');
         }
-    }
-
-    /**
-     * Inserts a partial into another partial.
-     *
-     * @param string $path Path to view.  Example: auth/register
-     * @return void
-     */
-    public function insertView(string $path): void {
-        include ROOT . DS . 'resources' . DS . 'views' . DS . $path . '.php';
     }
 
     /**
