@@ -378,3 +378,41 @@ if(!function_exists('tel')) {
         );
     }
 }
+
+if(!function_exists('textarea')) {
+    /**
+     * Assists in the development of textarea in forms.  It accepts parameters 
+     * for setting  attribute tags in the form section.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param string|null $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @param string A surrounding div and the input element.
+     */
+    function textarea(
+        string $label, 
+        string $name, 
+        string|null $value, 
+        array $inputAttrs=[], 
+        array $divAttrs=[], 
+        array $errors=[]
+    ): string {
+        return FormHelper::textareaBlock(
+            $label, 
+            $name, 
+            $value, 
+            $inputAttrs, 
+            $divAttrs, 
+            $errors
+        );
+    }
+}
