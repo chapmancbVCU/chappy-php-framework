@@ -158,16 +158,23 @@ class Router {
      * @return void
      */
     public static function redirect(string $location): void {
-        if(Env::get('APP_ENV') !== 'testing') {
-            if(!headers_sent()) {
-                header('Location: '.Env::get('APP_DOMAIN', '/').$location);
+        if (Env::get('APP_ENV') !== 'testing') {
+            // Convert dot notation to slash path if needed
+            if (!str_starts_with($location, '/') && str_contains($location, '.')) {
+                $location = '/' . str_replace('.', '/', $location);
+            }
+
+            $fullUrl = rtrim(Env::get('APP_DOMAIN', '/'), '/') . $location;
+
+            if (!headers_sent()) {
+                header('Location: ' . $fullUrl);
                 exit();
             } else {
-                echo '<script type="text/javascript">';;
-                echo 'window.location.href="'.Env::get('APP_DOMAIN', '/').$location.'";';
+                echo '<script type="text/javascript">';
+                echo 'window.location.href="' . $fullUrl . '";';
                 echo '</script>';
                 echo '<noscript>';
-                echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';
+                echo '<meta http-equiv="refresh" content="0;url=' . $fullUrl . '" />';
                 echo '</noscript>';
                 exit;
             }
