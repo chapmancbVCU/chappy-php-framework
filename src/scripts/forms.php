@@ -299,3 +299,28 @@ if(!function_exists('select')) {
         );
     };
 }
+
+if(!function_exists('submitBlock')) {
+    /**
+     * Generates a div containing an input of type submit.
+     *
+     * @param string $buttonText Sets the value of the text describing the 
+     * button.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param string A surrounding div and the input element of type submit.
+     */
+    function submitBlock(
+        string $buttonText, 
+        array $inputAttrs = [], 
+        array $divAttrs = []
+    ): string {
+        return FormHelper::submitBlock(
+            $buttonText, 
+            $inputAttrs, 
+            $divAttrs
+        );
+    }
+}
