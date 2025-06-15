@@ -324,3 +324,18 @@ if(!function_exists('submitBlock')) {
         );
     }
 }
+
+if(!function_exists('submit')) {
+    /**
+     * Create a input element of type submit.
+     *
+     * @param string $buttonText Sets the value of the text describing the 
+     * button.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return string An input element of type submit.
+     */
+    function submit(string $buttonText, array $inputAttrs = []): string {
+        return FormHelper::submitTag($buttonText, $inputAttrs);
+    }
+}
