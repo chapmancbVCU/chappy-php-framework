@@ -159,13 +159,17 @@ class Router {
      */
     public static function redirect(string $location): void {
         if (Env::get('APP_ENV') !== 'testing') {
-            // Convert dot notation to slash path if needed
-            if (!str_starts_with($location, '/') && str_contains($location, '.')) {
-                $location = '/' . str_replace('.', '/', $location);
+            // Only convert if dot notation is clearly intended
+            if (!str_starts_with($location, '/')) {
+                if (str_contains($location, '.')) {
+                    $location = '/' . str_replace('.', '/', $location);
+                } else {
+                    $location = '/' . $location;
+                }
             }
 
             $fullUrl = rtrim(Env::get('APP_DOMAIN', '/'), '/') . $location;
-
+            dd($fullUrl);
             if (!headers_sent()) {
                 header('Location: ' . $fullUrl);
                 exit();
