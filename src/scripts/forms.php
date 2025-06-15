@@ -261,3 +261,41 @@ if(!function_exists('radio')) {
         );
     }
 }
+
+if(!function_exists('select')) {
+    /**
+     * Renders a select element with a list of options.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param string $value The value we want to set as selected.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $options The list of options we will use to populate the 
+     * select option dropdown.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and option select element.
+     */
+    function select(
+        string $label, 
+        string $name, 
+        string|int|null $value, 
+        array $options, 
+        array $inputAttrs = [], 
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        return FormHelper::selectBlock(
+            $label, 
+            $name, 
+            $value, 
+            $options, 
+            $inputAttrs, 
+            $divAttrs,
+            $errors
+        );
+    };
+}

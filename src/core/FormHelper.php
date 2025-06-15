@@ -572,8 +572,8 @@ class FormHelper {
         string|int|null $value, 
         array $options, 
         array $inputAttrs = [], 
-        array $divAttrs = [], array 
-        $errors = []
+        array $divAttrs = [], 
+        array $errors = []
     ): string{
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,' is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
