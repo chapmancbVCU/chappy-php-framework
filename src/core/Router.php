@@ -157,9 +157,9 @@ class Router {
      * @param string $location The view where we will redirect the user.
      * @return void
      */
-    public static function redirect(string $location): void {
+    public static function redirect(string $location, array $params = []): void {
         if (Env::get('APP_ENV') !== 'testing') {
-            // Only convert if dot notation is clearly intended
+            // Convert dot notation to slash notation if needed
             if (!str_starts_with($location, '/')) {
                 if (str_contains($location, '.')) {
                     $location = '/' . str_replace('.', '/', $location);
@@ -168,8 +168,13 @@ class Router {
                 }
             }
 
+            // Append parameters to the URL path
+            if (!empty($params)) {
+                $location .= '/' . implode('/', array_map('urlencode', $params));
+            }
+
             $fullUrl = rtrim(Env::get('APP_DOMAIN', '/'), '/') . $location;
-            dd($fullUrl);
+
             if (!headers_sent()) {
                 header('Location: ' . $fullUrl);
                 exit();

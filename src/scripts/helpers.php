@@ -107,15 +107,16 @@ if(!function_exists('env')) {
     }
 }
 
-/**
- * Performs redirect operations.
- * 
- * @param string $location The view where we will redirect the user.
- * @return void
- */
 if(!function_exists('redirect')) {
-    function redirect(string $location): void {
-        Router::redirect($location);
+    /**
+     * Performs redirect operations.
+     * 
+     * @param string $location The view where we will redirect the user.
+     * @param array $params The parameters for the action.
+     * @return void
+     */
+    function redirect(string $location, array $params = []): void {
+        Router::redirect($location, $params);
     }
 }
 
