@@ -114,3 +114,40 @@ if(!function_exists('errorBag')) {
         return FormHelper::displayErrors($errors);
     }
 }
+
+if(!function_exists('email')) {
+    /**
+     * Renders an HTML div element that surrounds an input of type email.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and the input element of type email.
+     */
+    function email(
+        string $label, 
+        string $name, 
+        mixed $value = '', 
+        array $inputAttrs= [], 
+        array $divAttrs = [], 
+        array $errors = []
+    ): string {
+        return FormHelper::emailBlock(
+            $label, 
+            $name, 
+            $value, 
+            $inputAttrs, 
+            $divAttrs, 
+            $errors
+        );
+    }
+}
