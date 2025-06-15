@@ -4,6 +4,7 @@ use Core\Router;
 use Core\Session;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Config;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -104,6 +105,20 @@ if(!function_exists('env')) {
     function env(string $key, mixed $default = null)
     {
         return Env::get($key, $default);
+    }
+}
+
+if(!function_exists('logger')) {
+    /**
+     * Performs operations for adding content to log files.
+     *
+     * @param string $message The description of an event that is being 
+     * written to a log file.
+     * @param string $level Describes the severity of the message.
+     * @return void
+     */
+    function logger(string $message, string $level = 'info') {
+        Logger::log($message, $level);
     }
 }
 
