@@ -160,7 +160,11 @@ if(!function_exists('hidden')) {
      * @param mixed $value The value for the value attribute.
      * @return string The html input element with type hidden.
      */
-    function hidden(string $name, mixed $value) {
-        FormHelper::hidden($name, $value);
+    function hidden(string $name, mixed $value): string {
+        return FormHelper::hidden($name, $value);
     }
+}
+
+if(!function_exists('input')) {
+
 }
