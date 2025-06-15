@@ -83,7 +83,7 @@ class View extends stdClass {
      * @return void
      */
     public function render(string $viewName): void {
-        $viewArray = explode('/', $viewName);
+        $viewArray = explode('.', $viewName);
         $viewString = implode(DS, $viewArray);
 
         $viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
