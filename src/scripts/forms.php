@@ -221,3 +221,43 @@ if(!function_exists('output')) {
         return FormHelper::output($name, $for);
     }
 }
+
+if(!function_exists('radio')) {
+    /**
+     * Creates an input element of type radio with an accompanying label 
+     * element.  Compatible with radio button groups.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $id The id attribute for the radio input element.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param string $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param bool $checked The value for the checked attribute.  If true 
+     * this attribute will be set as checked="checked".  The default value is 
+     * false.  It can be set with values during form validation and forms 
+     * used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return string The HTML input element of type radio.
+     */
+    function radio(
+        string $label, 
+        string $id, 
+        string $name, 
+        string $value, 
+        bool $checked = false, 
+        array $inputAttrs = [],
+    ): string {
+        return FormHelper::radioInput(
+            $label, 
+            $id, 
+            $name, 
+            $value, 
+            $checked, 
+            $inputAttrs
+        );
+    }
+}
