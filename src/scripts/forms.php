@@ -207,3 +207,17 @@ if(!function_exists('input')) {
         );
     }
 }
+
+if(!function_exists('output')) {
+    /** 
+     * Generates an HTML output element.
+     * 
+     * @param string $name Sets the value for the name attributes for this 
+     * input.
+     * @param string $for Sets the value for the for attribute.
+     * @return string The HTML output element.
+     */
+    function output(string $name, string $for): string {
+        return FormHelper::output($name, $for);
+    }
+}
