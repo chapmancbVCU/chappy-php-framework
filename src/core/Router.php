@@ -155,6 +155,7 @@ class Router {
      * Performs redirect operations.
      * 
      * @param string $location The view where we will redirect the user.
+     * @param array $params The parameters for the action.
      * @return void
      */
     public static function redirect(string $location, array $params = []): void {
