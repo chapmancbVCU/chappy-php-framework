@@ -135,7 +135,7 @@ abstract class ApplicationTestCase extends TestCase {
         }
 
         $controller = new $controllerClass($controllerSlug, $actionSlug);
-
+        
         if (!method_exists($controller, $actionMethod)) {
             throw new \Exception("Method {$actionMethod} not found in {$controllerClass}.");
         }

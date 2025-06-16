@@ -242,7 +242,6 @@ class '.$testName.' extends TestCase {
 
             foreach ($namespaces as $namespace => $path) {
                 $file = $path . $class . '.php';
-                dump($file);
                 if (file_exists($file)) {
                     $filter = "--filter " . escapeshellarg("{$class}::{$method}");
                     $this->runTest($filter);
