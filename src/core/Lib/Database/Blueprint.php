@@ -19,6 +19,7 @@ class Blueprint {
     protected $foreignKeys = [];
     protected $indexes = [];
     protected ?string $lastColumn = null;
+    protected array $columnModifiers = [];
     protected $table;
 
     /**
@@ -31,6 +32,13 @@ class Blueprint {
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
     
+    public function after(string $column): Blueprint {
+        if ($this->lastColumn) {
+            $this->columnModifiers[$this->lastColumn]['after'] = $column;
+        }
+        return $this;
+    }
+
     /**
      * Define a big integer column.
      * 
@@ -1084,10 +1092,23 @@ class Blueprint {
      * Update an existing table.
      */
     public function update(): void {
-        foreach ($this->columns as $column) {
-            $sql = "ALTER TABLE {$this->table} ADD COLUMN {$column}";
+        foreach ($this->columns as $columnDef) {
+            preg_match('/^(\w+)\s/', $columnDef, $matches);
+            $columnName = $matches[1] ?? null;
+
+            $modifierSql = '';
+            if (
+                $this->dbDriver === 'mysql' &&
+                $columnName &&
+                isset($this->columnModifiers[$columnName]['after'])
+            ) {
+                $afterCol = $this->columnModifiers[$columnName]['after'];
+                $modifierSql = " AFTER `{$afterCol}`";
+            }
+
+            $sql = "ALTER TABLE {$this->table} ADD COLUMN {$columnDef}{$modifierSql}";
             DB::getInstance()->query($sql);
-            Tools::info("SUCCESS: Adding Column {$column} To {$this->table}");
+            Tools::info("SUCCESS: Adding Column {$columnDef} To {$this->table}");
         }
 
         foreach ($this->indexes as $index) {
@@ -1096,6 +1117,7 @@ class Blueprint {
 
         $this->setForeignKeys();
     }
+
 
     /**
      * Define a UUID column (MySQL only).
