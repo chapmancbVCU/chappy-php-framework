@@ -32,6 +32,21 @@ class Blueprint {
         $this->dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
     
+    /**
+     * Specifies the position of the last defined column to appear 
+     * immediately after another column in the table (MySQL only).
+     *
+     * This method is only meaningful during ALTER TABLE operations
+     * (i.e., when calling $table->update()). The generated SQL will
+     * include an `AFTER column_name` clause to control column order.
+     *
+     * Example:
+     * $table->string('nickname')->after('last_name');
+     * // Produces: ALTER TABLE users ADD COLUMN nickname VARCHAR(255) AFTER last_name;
+     *
+     * @param string $column The existing column name after which the new column should be added.
+     * @return Blueprint Returns the current Blueprint instance for method chaining.
+     */
     public function after(string $column): Blueprint {
         if ($this->lastColumn) {
             $this->columnModifiers[$this->lastColumn]['after'] = $column;
