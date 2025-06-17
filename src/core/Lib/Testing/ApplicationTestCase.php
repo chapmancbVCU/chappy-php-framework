@@ -179,6 +179,7 @@ abstract class ApplicationTestCase extends TestCase {
 
         try {
             $output = $this->controllerOutput($controller, $action, $params);
+
             return new TestResponse($output, 200);
         } catch (\Exception $e) {
             return new TestResponse($e->getMessage(), 404);

@@ -85,13 +85,13 @@ class View extends stdClass {
         $viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
         $layoutPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php';
 
-        if (!file_exists($layoutPath)) {
-            throw new Exception('The layout "' . $this->_layout . '" does not exist');
-        }
+        // if (!file_exists($layoutPath)) {
+        //     throw new Exception('The layout "' . $this->_layout . '" does not exist');
+        // }
 
         if (file_exists($viewPath)) {
-            require $viewPath;
-            require $layoutPath;
+            include $viewPath;
+            include $layoutPath;
         } else {
             throw new Exception('The view "' . $viewName . '" does not exist');
         }
