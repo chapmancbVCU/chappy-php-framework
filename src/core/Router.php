@@ -50,7 +50,7 @@ class Router {
      */
     public static function getMenu(string $menu): array {
         $menuArray = [];
-        $menuFile = file_get_contents(ROOT . DS . 'app' . DS . $menu . '.json');
+        $menuFile = file_get_contents(CHAPPY_BASE_PATH . DS . 'app' . DS . $menu . '.json');
         $acl = json_decode($menuFile, true);
         
         foreach($acl as $key => $value) {
@@ -91,7 +91,7 @@ class Router {
      * @return bool $grantAccess True if we give access, otherwise false.
      */
     public static function hasAccess(string $controller_name, string $action_name = "index"): bool {
-        $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
+        $acl_file = file_get_contents(CHAPPY_BASE_PATH . DS . 'app' . DS . 'acl.json');
         $acl = json_decode($acl_file, true) ?? [];
         $grantAccess = false;
         $current_user_acls = ["Guest"]; // Default to Guest

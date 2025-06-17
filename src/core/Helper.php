@@ -65,9 +65,9 @@ class Helper {
   /**
    * Determines current page based on REQUEST_URI.
    * 
-   * @return string $currentPage  The current page.
+   * @return string|null $currentPage  The current page.
    */
-  public static function currentPage(): string {
+  public static function currentPage(): string|null {
     $currentPage = $_SERVER['REQUEST_URI'];
     if($currentPage == Env::get('APP_DOMAIN', '/') || $currentPage == Env::get('APP_DOMAIN', '/').'home/index') {
       $currentPage = Env::get('APP_DOMAIN', '/') . 'home';
