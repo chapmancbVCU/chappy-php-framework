@@ -33,7 +33,7 @@ class View extends stdClass {
      * @return void
      */
     public function component(string $component): void {
-        $componentPath = ROOT . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
+        $componentPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
         
         if(!file_exists($componentPath)) {
             throw new Exception('The component "' . $component . '" does not exist');
@@ -84,14 +84,14 @@ class View extends stdClass {
 
         $viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
         $layoutPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php';
-
-        // if (!file_exists($layoutPath)) {
-        //     throw new Exception('The layout "' . $this->_layout . '" does not exist');
-        // }
+        
+        if (!file_exists($layoutPath)) {
+            throw new Exception('The layout "' . $this->_layout . '" does not exist');
+        }
 
         if (file_exists($viewPath)) {
-            include $viewPath;
-            include $layoutPath;
+            require $viewPath;
+            require $layoutPath;
         } else {
             throw new Exception('The view "' . $viewName . '" does not exist');
         }
