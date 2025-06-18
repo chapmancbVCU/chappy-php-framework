@@ -20,7 +20,7 @@ class MailerService {
         $this->mailer = new Mailer($transport);
     }
 
-    public function send(string $to, string $subject, string $htmlBody): bool {
+    public function send(string $to, string $subject, string $htmlBody, ?string $template = null): bool {
         try {
             $email = (new Email())
                 ->from(Env::get('MAIL_FROM_ADDRESS'))
@@ -48,6 +48,8 @@ class MailerService {
                 'timestamp' => date('Y-m-d H:i:s'),
                 'to' => $to,
                 'subject' => $subject,
+                'template' => $template ?? null,
+                'transport' => Env::get('MAILER_DSN'),
                 'error' => $e->getMessage(),
                 'mailer_class' => static::class,
                 'body' => $htmlBody
