@@ -40,7 +40,7 @@ class MailerService {
                 'mailer_class' => static::class,
                 'body' => $htmlBody
             ]));
-            
+
             return true;
         } catch (Throwable $e) {
             Logger::log(json_encode([
@@ -49,7 +49,8 @@ class MailerService {
                 'to' => $to,
                 'subject' => $subject,
                 'error' => $e->getMessage(),
-                'mailer_class' => static::class
+                'mailer_class' => static::class,
+                'body' => $htmlBody
             ]));
 
             return false;
