@@ -28,9 +28,11 @@ class MailerService {
                 ->subject($subject)
                 ->html($htmlBody);
 
+            $this->mailer->send($email);
+
             Logger::log(json_encode([
+                'MailerService_status' => 'sent',
                 'timestamp' => date('Y-m-d H:i:s'),
-                'status' => 'sent',
                 'to' => $to,
                 'subject' => $subject,
                 'template' => $template ?? null,
@@ -38,11 +40,18 @@ class MailerService {
                 'mailer_class' => static::class,
                 'body' => $htmlBody
             ]));
-
-            $this->mailer->send($email);
+            
             return true;
         } catch (Throwable $e) {
-            logger($e, 'error');
+            Logger::log(json_encode([
+                'MailerService_status' => 'failed',
+                'timestamp' => date('Y-m-d H:i:s'),
+                'to' => $to,
+                'subject' => $subject,
+                'error' => $e->getMessage(),
+                'mailer_class' => static::class
+            ]));
+
             return false;
         }
     }
