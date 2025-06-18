@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Mail;
 
 use Throwable;
@@ -10,6 +11,7 @@ use Symfony\Component\Mailer\Transport;
 
 class MailerService {
     protected Mailer $mailer;
+    protected string $templatePath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'emails' . DS;
 
     /**
      * Creates a new mailer.
