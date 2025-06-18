@@ -33,8 +33,10 @@
       "doctrine/inflector": "^2.0",
       "tinymce/tinymce": "^7.7",
       "phpunit/phpunit": "^11.3",
-        "giggsey/libphonenumber-for-php": "^9.0",
-        "composer": "*"
+      "giggsey/libphonenumber-for-php": "^9.0",
+      "composer": "*",
+      "symfony/mailer": "^7.3",
+      "symfony/http-client": "^7.3"
     },
     "scripts": {
       "build-docs": [
