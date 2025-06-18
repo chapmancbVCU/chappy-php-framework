@@ -1,11 +1,12 @@
 <?php
 namespace Core\Lib\Mail;
 
-use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mime\Email;
-use Core\Lib\Utilities\Env;
 use Throwable;
+use Core\Lib\Utilities\Env;
+use Core\Lib\Logging\Logger;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
 
 class MailerService {
     protected Mailer $mailer;
@@ -26,6 +27,17 @@ class MailerService {
                 ->to($to)
                 ->subject($subject)
                 ->html($htmlBody);
+
+            Logger::log(json_encode([
+                'timestamp' => date('Y-m-d H:i:s'),
+                'status' => 'sent',
+                'to' => $to,
+                'subject' => $subject,
+                'template' => $template ?? null,
+                'transport' => Env::get('MAILER_DSN'),
+                'mailer_class' => static::class,
+                'body' => $htmlBody
+            ]));
 
             $this->mailer->send($email);
             return true;
