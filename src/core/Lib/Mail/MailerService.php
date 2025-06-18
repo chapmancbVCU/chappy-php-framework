@@ -35,10 +35,10 @@ class MailerService {
                 'timestamp' => date('Y-m-d H:i:s'),
                 'to' => $to,
                 'subject' => $subject,
+                'body' => $htmlBody,
                 'template' => $template ?? null,
                 'transport' => Env::get('MAILER_DSN'),
-                'mailer_class' => static::class,
-                'body' => $htmlBody
+                'mailer_class' => static::class
             ]));
 
             return true;
@@ -48,11 +48,11 @@ class MailerService {
                 'timestamp' => date('Y-m-d H:i:s'),
                 'to' => $to,
                 'subject' => $subject,
+                'body' => $htmlBody,
                 'template' => $template ?? null,
                 'transport' => Env::get('MAILER_DSN'),
-                'error' => $e->getMessage(),
                 'mailer_class' => static::class,
-                'body' => $htmlBody
+                'error' => $e->getMessage()
             ]));
 
             return false;
