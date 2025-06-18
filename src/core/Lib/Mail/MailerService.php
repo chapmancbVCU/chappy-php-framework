@@ -53,7 +53,7 @@ class MailerService {
                 'transport' => Env::get('MAILER_DSN'),
                 'mailer_class' => static::class,
                 'error' => $e->getMessage()
-            ]));
+            ]), 'error');
 
             return false;
         }
