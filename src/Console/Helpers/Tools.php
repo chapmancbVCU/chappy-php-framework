@@ -71,6 +71,12 @@ class Tools {
         }
     }
 
+    public static function pathExists(string $path): void {
+        if(!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+    }
+
     /**
      * Generates files for console commands
      *
