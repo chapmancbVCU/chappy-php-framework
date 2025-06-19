@@ -71,6 +71,12 @@ class Tools {
         }
     }
 
+    /**
+     * Tests if a path exits and creates it if necessary.
+     *
+     * @param string $path The path to check if it exists.
+     * @return void
+     */
     public static function pathExists(string $path): void {
         if(!is_dir($path)) {
             mkdir($path, 0755, true);
