@@ -23,7 +23,8 @@ class MakeEmailCommand extends Command {
         $this->setName('make:email')
             ->setDescription('Generates a new email')
             ->setHelp('php console make:email <email_name>')
-            ->addArgument('email-name', InputArgument::REQUIRED, 'Pass the name of the new email');
+            ->addArgument('email-name', InputArgument::REQUIRED, 'Pass the name of the new email')
+            ->addOption('layout', null, InputOption::VALUE_REQUIRED, 'layout-name', false);
     }
 
     /**
@@ -35,6 +36,9 @@ class MakeEmailCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $emailName = $input->getArgument('email-name');
+
+        
         return Command::SUCCESS;
     }
 }
