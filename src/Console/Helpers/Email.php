@@ -15,7 +15,15 @@ class Email {
     }
 
     public static function layoutTemplate(): string {
-        return '';
+        return '<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+</body>
+</html>';
     }
 
     public static function makeEmail(InputInterface $input): int {
@@ -24,8 +32,9 @@ class Email {
         return Tools::writeFile($emailName, '', 'E-mail file');
     }
 
-    public static function makeLayout(): int {
-
-        return Command::SUCCESS;
+    public static function makeLayout(InputInterface $input): int {
+        Tools::pathExists(self::$layoutPath);
+        $layoutName = self::$layoutPath . $input->getArgument('layout-name') . '.php';
+        return Tools::writeFile($layoutName, self::layoutTemplate(), 'E-mail layout');
     }
 }
