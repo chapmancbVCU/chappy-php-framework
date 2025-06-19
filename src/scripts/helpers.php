@@ -81,6 +81,24 @@ if(!function_exists('dump')) {
     }
 }
 
+if(!function_exists('e')) {
+    /**
+     * Escape a string for safe HTML output.
+     *
+     * This function converts special characters to HTML entities to prevent
+     * cross-site scripting (XSS) vulnerabilities when rendering user-provided
+     * content inside HTML templates.
+     *
+     * Equivalent to Laravel's `e()` function and wraps `htmlspecialchars()` using UTF-8 encoding.
+     *
+     * @param string|null $value The string to be escaped. Non-string values will be cast to string.
+     * @return string The escaped string safe for HTML output.
+     */
+    function e($value) {
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+}
+
 if(!function_exists('flashMessage')) {
     /**
      * Adds a session alert message.
