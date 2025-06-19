@@ -95,11 +95,17 @@ class View {
         );
     }
 
+    /**
+     * Generates a new CSS file.
+     *
+     * @param string $fileName The name of the CSS file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeCSS(string $fileName): int {
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'css'.DS.Str::lcfirst($fileName).".css", 
             '', 
-            'CSS file'
+            "CSS file '$fileName.css'"
         );
     }
 
