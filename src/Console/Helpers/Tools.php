@@ -75,11 +75,14 @@ class Tools {
      * Tests if a path exits and creates it if necessary.
      *
      * @param string $path The path to check if it exists.
+     * @param int $permissions The permissions for the directory.
+     * @param bool $recursive Optional.  Specifies if the recursive mode 
+     * is set.
      * @return void
      */
-    public static function pathExists(string $path): void {
+    public static function pathExists(string $path, int $permissions = 0755, bool $recursive = true): void {
         if(!is_dir($path)) {
-            mkdir($path, 0755, true);
+            mkdir($path, $permissions, $recursive);
         }
     }
 
