@@ -24,6 +24,15 @@ class MailerService {
         $this->mailer = new Mailer($transport);
     }
 
+    /**
+     * Sends an E-mail
+     *
+     * @param string $to The recipient.
+     * @param string $subject The E-mail's subject.
+     * @param string $htmlBody The E-mail's content
+     * @param string|null $template The content if it exists.
+     * @return bool True if sent, otherwise we return false.
+     */
     public function send(string $to, string $subject, string $htmlBody, ?string $template = null): bool {
         try {
             $email = (new Email())
@@ -63,11 +72,30 @@ class MailerService {
         }
     }
 
+    /**
+     * 
+     * 
+     *
+     * @param string $to The recipient.
+     * @param string $subject The E-mail's subject.
+     * @param string $template The name of the template.
+     * @param array $data Any data that the template uses.
+     * @param string|null $layout The layout if it exists.
+     * @return bool True if sent, otherwise we return false.
+     */
     public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null): bool {
         $html = $this->template($template, $data, $layout);
         return $this->send($to, $subject, $html, $template);
     }
 
+    /**
+     * Prepares E-mail content based on template to be sent.
+     *
+     * @param string $view The name of the template.
+     * @param array $data Any data that the template uses.
+     * @param string|null $layout The layout if it exists.
+     * @return string The E-mail's contents.
+     */
     protected function template(string $view, array $data = [], ?string $layout = null): string {
         $viewPath = self::$templatePath . $view . '.php';
         if(!file_exists($viewPath)) {
