@@ -5,6 +5,7 @@ namespace Core\Lib\Mail;
 use Throwable;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
+use Exception;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
@@ -60,5 +61,33 @@ class MailerService {
 
             return false;
         }
+    }
+
+    public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null): bool {
+        $html = $this->template($template, $data, $layout);
+        return $this->send($to, $subject, $html, $template);
+    }
+
+    protected function template(string $view, array $data = [], ?string $layout = null): string {
+        $viewPath = self::$templatePath . $view . '.php';
+        if(!file_exists($viewPath)) {
+            throw new Exception("Email view $view not found");
+        }
+
+        extract($data);
+        ob_start();
+        include $viewPath;
+        $content = ob_get_clean();
+
+        if($layout) {
+            $layoutPath = self::$layoutPath . $layout . '.php';
+            if(file_exists($layoutPath)) {
+                ob_start();
+                include $layoutPath;
+                return ob_get_clean();
+            }
+        }
+
+        return $content;
     }
 }
