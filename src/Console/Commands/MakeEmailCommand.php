@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\View;
 use Console\Helpers\Tools;
+use Console\Helpers\Email;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -36,9 +37,9 @@ class MakeEmailCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $emailName = $input->getArgument('email-name');
+        Email::makeEmail($input);
 
-        
+
         return Command::SUCCESS;
     }
 }

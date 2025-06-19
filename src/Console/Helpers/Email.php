@@ -1,5 +1,5 @@
 <?php
-
+namespace Console\Helpers;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,8 +15,8 @@ class Email {
 
     public static function makeEmail(InputInterface $input): int {
         $emailName = self::$templatePath . $input->getArgument('email-name') . '.php';
-        Tools::writeFile($emailName, '', 'E-mail file');
-        return Command::SUCCESS;
+        dd($emailName);
+        return Tools::writeFile($emailName, '', 'E-mail file');
     }
 
     public static function makeLayout(): int {
