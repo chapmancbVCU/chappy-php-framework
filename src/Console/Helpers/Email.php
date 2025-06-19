@@ -34,7 +34,7 @@ class Email {
 
     public static function makeLayout(InputInterface $input): int {
         Tools::pathExists(self::$layoutPath);
-        $layoutName = self::$layoutPath . $input->getArgument('layout-name') . '.php';
+        $layoutName = self::$layoutPath . $input->getArgument('email-layout') . '.php';
         return Tools::writeFile($layoutName, self::layoutTemplate(), 'E-mail layout');
     }
 }
