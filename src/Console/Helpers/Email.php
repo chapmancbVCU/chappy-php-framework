@@ -1,21 +1,21 @@
 <?php
 
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
 
 class Email {
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
 
-    public static function emailTemplate(): string {
-        return '';
-    }
 
     public static function layoutTemplate(): string {
         return '';
     }
 
-    public static function makeEmail(): int {
-
+    public static function makeEmail(InputInterface $input): int {
+        $emailName = self::$templatePath . $input->getArgument('email-name') . '.php';
+        Tools::writeFile($emailName, '', 'E-mail file');
         return Command::SUCCESS;
     }
 
