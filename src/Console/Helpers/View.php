@@ -95,6 +95,14 @@ class View {
         );
     }
 
+    public static function makeCSS(string $fileName): int {
+        return Tools::writeFile(
+            ROOT.DS.'resources'.DS.'css'.DS.Str::lcfirst($fileName).".css", 
+            '', 
+            'CSS file'
+        );
+    }
+
     /**
      * Writes form component to file.
      *
