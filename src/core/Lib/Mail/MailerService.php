@@ -24,6 +24,13 @@ class MailerService {
         $this->mailer = new Mailer($transport);
     }
 
+    protected function renderTemplateFile(string $path, array $data = []): string {
+        extract($data);
+        ob_start();
+        include $path;
+        return ob_get_clean();
+    }
+
     /**
      * Sends an E-mail
      *
@@ -72,6 +79,46 @@ class MailerService {
         }
     }
 
+    public function sendWithText(string $to, string $subject, string $htmlBody, string $textBody, ?string $template = null): bool {
+        try {
+            $email = (new Email())
+                ->from(Env::get('MAIL_FROM_ADDRESS'))
+                ->to($to)
+                ->subject($subject)
+                ->text($textBody)
+                ->html($htmlBody);
+
+            $this->mailer->send($email);
+
+            Logger::log(json_encode([
+                'MailerService_status' => 'sent',
+                'timestamp' => date('Y-m-d H:i:s'),
+                'to' => $to,
+                'subject' => $subject,
+                'body' => $htmlBody,
+                'template' => $template ?? null,
+                'transport' => Env::get('MAILER_DSN'),
+                'mailer_class' => static::class
+            ]));
+
+            return true;
+        } catch (Throwable $e) {
+            Logger::log(json_encode([
+                'MailerService_status' => 'failed',
+                'timestamp' => date('Y-m-d H:i:s'),
+                'to' => $to,
+                'subject' => $subject,
+                'body' => $htmlBody,
+                'template' => $template ?? null,
+                'transport' => Env::get('MAILER_DSN'),
+                'mailer_class' => static::class,
+                'error' => $e->getMessage()
+            ]), 'error');
+
+            return false;
+        }
+    }
+
     /**
      * 
      * 
@@ -85,6 +132,14 @@ class MailerService {
      */
     public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null): bool {
         $html = $this->template($template, $data, $layout);
+
+        $textPath = self::$templatePath . $template . '.text';
+        dd("Text path: $textPath");
+        if(file_exists($textPath)) {
+            $text = $this->renderTemplateFile($textPath, $data);
+            return $this->sendWithText($to, $subject, $html, $text, $template);
+        }
+
         return $this->send($to, $subject, $html, $template);
     }
 
