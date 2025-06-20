@@ -24,6 +24,13 @@ class MailerService {
         $this->mailer = new Mailer($transport);
     }
 
+    /**
+     * Renders template file.
+     *
+     * @param string $path Path to the template.
+     * @param array $data Any data that needs to be passed to the view.
+     * @return string The template's content.
+     */
     protected function renderTemplateFile(string $path, array $data = []): string {
         extract($data);
         ob_start();
@@ -32,7 +39,7 @@ class MailerService {
     }
 
     /**
-     * Sends an E-mail
+     * Sends a HTML E-mail.
      *
      * @param string $to The recipient.
      * @param string $subject The E-mail's subject.
@@ -79,6 +86,16 @@ class MailerService {
         }
     }
 
+    /**
+     * Sends a text E-mail.
+     *
+     * @param string $to The recipient.
+     * @param string $subject The E-mail's subject.
+     * @param string $htmlBody The E-mail's HTML content.
+     * @param string $textBody The E-mail's text content.
+     * @param string|null $template The content if it exists.
+     * @return bool True if sent, otherwise we return false.
+     */
     public function sendWithText(string $to, string $subject, string $htmlBody, string $textBody, ?string $template = null): bool {
         try {
             $email = (new Email())
@@ -131,15 +148,14 @@ class MailerService {
      * @return bool True if sent, otherwise we return false.
      */
     public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null): bool {
+        
         $html = $this->template($template, $data, $layout);
 
-        $textPath = self::$templatePath . $template . '.text';
-        dd("Text path: $textPath");
+        $textPath = self::$templatePath . $template . '.txt';
         if(file_exists($textPath)) {
             $text = $this->renderTemplateFile($textPath, $data);
             return $this->sendWithText($to, $subject, $html, $text, $template);
         }
-
         return $this->send($to, $subject, $html, $template);
     }
 
