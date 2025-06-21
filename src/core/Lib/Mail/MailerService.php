@@ -25,6 +25,51 @@ class MailerService {
     }
 
     /**
+     * Logs each attempt at sending an E-mail.
+     *
+     * @param string $status The status of the attempt to send E-mail.
+     * @param string $to he recipient.
+     * @param string $subject The E-mail's subject.
+     * @param string $htmlBody The E-mail's content
+     * @param string|null $textBody The E-mail's text content.
+     * @param string|null $template The name of the template.
+     * @param string|null $error Reported errors for a send attempt.
+     * @return void
+     */
+    protected function mailLogger(
+        string $status,
+        string $to,
+        string $subject,
+        string $htmlBody,
+        ?string $textBody = null,
+        ?string $template = null,
+        ?string $error = null
+    ): void {
+        // We want to maintain key order explicitly.
+        $log = [];
+
+        $log['MailerService_status'] = $status;
+        $log['timestamp'] = date('Y-m-d H:i:s');
+        $log['to'] = $to;
+        $log['subject'] = $subject;
+        $log['html_body'] = $htmlBody;
+
+        if($textBody !== null) {
+            $log['text_body'] = $textBody;
+        }
+
+        $log['template'] = $template;
+        $log['transport'] = Env::get('MAILER_DSN');
+        $log['mailer_class'] = static::class;
+
+        if($error !== null) {
+            $log['error'] = $error;
+        }
+
+        Logger::log(json_encode($log), $status === 'failed' ? 'error' : 'info');
+    }
+
+    /**
      * Renders template file.
      *
      * @param string $path Path to the template.
@@ -43,7 +88,7 @@ class MailerService {
      *
      * @param string $to The recipient.
      * @param string $subject The E-mail's subject.
-     * @param string $htmlBody The E-mail's content
+     * @param string $htmlBody The E-mail's content.
      * @param string|null $template The content if it exists.
      * @return bool True if sent, otherwise we return false.
      */
@@ -57,30 +102,26 @@ class MailerService {
 
             $this->mailer->send($email);
 
-            Logger::log(json_encode([
-                'MailerService_status' => 'sent',
-                'timestamp' => date('Y-m-d H:i:s'),
-                'to' => $to,
-                'subject' => $subject,
-                'body' => $htmlBody,
-                'template' => $template ?? null,
-                'transport' => Env::get('MAILER_DSN'),
-                'mailer_class' => static::class
-            ]));
+            $this->mailLogger(
+                'failed',
+                $to,
+                $subject,
+                $htmlBody,
+                null,
+                $template
+            );
 
             return true;
         } catch (Throwable $e) {
-            Logger::log(json_encode([
-                'MailerService_status' => 'failed',
-                'timestamp' => date('Y-m-d H:i:s'),
-                'to' => $to,
-                'subject' => $subject,
-                'body' => $htmlBody,
-                'template' => $template ?? null,
-                'transport' => Env::get('MAILER_DSN'),
-                'mailer_class' => static::class,
-                'error' => $e->getMessage()
-            ]), 'error');
+            $this->mailLogger(
+                'failed',
+                $to,
+                $subject,
+                $htmlBody,
+                null,
+                $template,
+                $e->getMessage()
+            );
 
             return false;
         }
@@ -107,30 +148,26 @@ class MailerService {
 
             $this->mailer->send($email);
 
-            Logger::log(json_encode([
-                'MailerService_status' => 'sent',
-                'timestamp' => date('Y-m-d H:i:s'),
-                'to' => $to,
-                'subject' => $subject,
-                'body' => $htmlBody,
-                'template' => $template ?? null,
-                'transport' => Env::get('MAILER_DSN'),
-                'mailer_class' => static::class
-            ]));
+            $this->mailLogger(
+                'failed',
+                $to,
+                $subject,
+                $htmlBody,
+                $textBody,
+                $template
+            );
 
             return true;
         } catch (Throwable $e) {
-            Logger::log(json_encode([
-                'MailerService_status' => 'failed',
-                'timestamp' => date('Y-m-d H:i:s'),
-                'to' => $to,
-                'subject' => $subject,
-                'body' => $htmlBody,
-                'template' => $template ?? null,
-                'transport' => Env::get('MAILER_DSN'),
-                'mailer_class' => static::class,
-                'error' => $e->getMessage()
-            ]), 'error');
+            $this->mailLogger(
+                'failed',
+                $to,
+                $subject,
+                $htmlBody,
+                $textBody,
+                $template,
+                $e->getMessage()
+            );
 
             return false;
         }
