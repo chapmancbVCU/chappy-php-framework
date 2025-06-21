@@ -8,10 +8,6 @@ use App\Models\Users;
 class WelcomeMailer {
     public static function send(Users $user) {
         $mail = new MailerService();
-        // dd(CHAPPY_ROOT);
-        $templatePath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
-        $layoutPath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
-
         $subject = 'Welcome to ' . env('SITE_TITLE');
 
         return $mail->sendTemplate(
@@ -21,8 +17,8 @@ class WelcomeMailer {
             ['user' => $user],
             'default',
             [],
-            $layoutPath,
-            $templatePath
+            MailerService::FRAMEWORK_LAYOUT_PATH,
+            MailerService::FRAMEWORK_TEMPLATE_PATH
         );
     }
 }
