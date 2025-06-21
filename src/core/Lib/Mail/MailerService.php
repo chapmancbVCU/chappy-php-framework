@@ -29,6 +29,17 @@ class MailerService {
     }
 
     /**
+     * Supports ability to use alternative layout paths.
+     *
+     * @param string|null $layoutPath The path to the layout.
+     * @return string If parameter is null then constant is used.  Otherwise, 
+     * the value of the parameter is used.
+     */
+    protected static function layoutPath(?string $layoutPath = null): string {
+        return $layoutPath ?? self::$layoutPath;
+    }
+
+    /**
      * Logs each attempt at sending an E-mail.
      *
      * @param string $status The status of the attempt to send E-mail.
@@ -194,13 +205,26 @@ class MailerService {
      * @param string $template The name of the template.
      * @param array $data Any data that the template uses.
      * @param string|null $layout The layout if it exists.
+     * @param array $attachments An array containing information about 
+     * attachments.
+     * @param string|null $layoutPath The path to the layout.
+     * @param string $templatePath The path to the template.
      * @return bool True if sent, otherwise we return false.
      */
-    public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null, array $attachments = []): bool {
-        
-        $html = $this->template($template, $data, $layout);
+    public function sendTemplate(
+        string $to, 
+        string $subject, 
+        string $template, 
+        array $data, 
+        ?string $layout = null, 
+        array $attachments = [], 
+        ?string $layoutPath = null,
+        ?string $templatePath = null
+    ): bool {
+        $templatePath = self::templatePath($templatePath);
+        $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath);
 
-        $textPath = self::$templatePath . $template . '.txt';
+        $textPath = $templatePath . $template . '.txt';
         if(file_exists($textPath)) {
             $text = $this->renderTemplateFile($textPath, $data);
             return $this->sendWithText($to, $subject, $html, $text, $template, $attachments);
@@ -214,10 +238,18 @@ class MailerService {
      * @param string $view The name of the template.
      * @param array $data Any data that the template uses.
      * @param string|null $layout The layout if it exists.
+     * @param string|null $layoutPath The path to the layout.
+     * @param string $templatePath The path to the template.
      * @return string The E-mail's contents.
      */
-    protected function template(string $view, array $data = [], ?string $layout = null): string {
-        $viewPath = self::$templatePath . $view . '.php';
+    protected function template(
+        string $view, 
+        array $data = [], 
+        ?string $layout = null, 
+        ?string $layoutPath = null,
+        string $templatePath
+    ): string {
+        $viewPath = $templatePath . $view . '.php';
         if(!file_exists($viewPath)) {
             throw new Exception("Email view $view not found");
         }
@@ -228,7 +260,7 @@ class MailerService {
         $content = ob_get_clean();
 
         if($layout) {
-            $layoutPath = self::$layoutPath . $layout . '.php';
+            $layoutPath = $layoutPath . $layout . '.php';
             if(file_exists($layoutPath)) {
                 ob_start();
                 include $layoutPath;
@@ -237,5 +269,16 @@ class MailerService {
         }
 
         return $content;
+    }
+
+    /**
+     * Supports ability to use alternative template paths.
+     *
+     * @param string|null $templatePath The path to the template.
+     * @return string If parameter is null then constant is used.  Otherwise, 
+     * the value of the parameter is used.
+     */
+    protected static function templatePath(?string $templatePath = null): string {
+        return $templatePath ?? self::$templatePath;
     }
 }
