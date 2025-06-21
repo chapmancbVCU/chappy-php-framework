@@ -14,25 +14,32 @@ use Symfony\Component\Mailer\Transport;
 class MailerService {
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected Mailer $mailer;
+    const MIME_7ZIP = 'application/x-7z-compressed';
     const MIME_BMP = 'image/bmp';
+    const MIME_CSS = 'text/css';
     const MIME_CSV = 'text/csv';
     const MIME_DOC = 'application/msword';
     const MIME_DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     const MIME_GIF = 'image/gif';
+    const MIME_GZIP = 'application/gzip';
+    const MIME_JAVASCRIPT = 'application/javascript';
     const MIME_JPG = 'image/jpeg';
     const MIME_JSON = 'application/json';
     const MIME_MARKDOWN = 'text/markdown';
     const MIME_HTML = 'text/html';
     const MIME_PDF = 'application/pdf';
+    const MIME_PHP = 'application/x-httpd-php';
     const MIME_PNG = 'image/png';
     const MIME_SVG = 'image/svg+xml';
+    const MIME_TAR = 'application/x-tar';
     const MIME_TEXT = 'text/plain';
     const MIME_WEBP = 'image/webp';
     const MIME_XLS = 'application/vnd.ms-excel';
     const MIME_XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
     const MIME_XML = 'application/xml';
+    const MIME_ZIP = 'application/zip';
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
-
+    
     /**
      * Creates a new mailer.
      */
