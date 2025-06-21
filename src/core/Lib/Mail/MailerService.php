@@ -147,6 +147,42 @@ class MailerService {
     }
 
     /**
+     * 
+     * 
+     *
+     * @param string $to The recipient.
+     * @param string $subject The E-mail's subject.
+     * @param string $template The name of the template.
+     * @param array $data Any data that the template uses.
+     * @param string|null $layout The layout if it exists.
+     * @param array $attachments An array containing information about 
+     * attachments.
+     * @param string|null $layoutPath The path to the layout.
+     * @param string $templatePath The path to the template.
+     * @return bool True if sent, otherwise we return false.
+     */
+    public function sendTemplate(
+        string $to, 
+        string $subject, 
+        string $template, 
+        array $data, 
+        ?string $layout = null, 
+        array $attachments = [], 
+        ?string $layoutPath = null,
+        ?string $templatePath = null
+    ): bool {
+        $templatePath = self::templatePath($templatePath);
+        $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath);
+
+        $textPath = $templatePath . $template . '.txt';
+        if(file_exists($textPath)) {
+            $text = $this->renderTemplateFile($textPath, $data);
+            return $this->sendWithText($to, $subject, $html, $text, $template, $attachments);
+        }
+        return $this->send($to, $subject, $html, $template, $attachments);
+    }
+
+    /**
      * Sends a text E-mail.
      *
      * @param string $to The recipient.
@@ -195,43 +231,7 @@ class MailerService {
             return false;
         }
     }
-
-    /**
-     * 
-     * 
-     *
-     * @param string $to The recipient.
-     * @param string $subject The E-mail's subject.
-     * @param string $template The name of the template.
-     * @param array $data Any data that the template uses.
-     * @param string|null $layout The layout if it exists.
-     * @param array $attachments An array containing information about 
-     * attachments.
-     * @param string|null $layoutPath The path to the layout.
-     * @param string $templatePath The path to the template.
-     * @return bool True if sent, otherwise we return false.
-     */
-    public function sendTemplate(
-        string $to, 
-        string $subject, 
-        string $template, 
-        array $data, 
-        ?string $layout = null, 
-        array $attachments = [], 
-        ?string $layoutPath = null,
-        ?string $templatePath = null
-    ): bool {
-        $templatePath = self::templatePath($templatePath);
-        $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath);
-
-        $textPath = $templatePath . $template . '.txt';
-        if(file_exists($textPath)) {
-            $text = $this->renderTemplateFile($textPath, $data);
-            return $this->sendWithText($to, $subject, $html, $text, $template, $attachments);
-        }
-        return $this->send($to, $subject, $html, $template, $attachments);
-    }
-
+    
     /**
      * Prepares E-mail content based on template to be sent.
      *
