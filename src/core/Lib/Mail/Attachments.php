@@ -5,6 +5,9 @@ namespace Core\Lib\Mail;
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Mime\Email;
 
+/**
+ * Supports attachment processing for MailerService.
+ */
 class Attachments {
     const MIME_7ZIP = 'application/x-7z-compressed';
     const MIME_BMP = 'image/bmp';
