@@ -52,7 +52,7 @@ class MailerService {
         $log['timestamp'] = date('Y-m-d H:i:s');
         $log['to'] = $to;
         $log['subject'] = $subject;
-        $log['html_body'] = $htmlBody;
+        $log['html_body'] = $htmlBody ?: '(empty)';
 
         if($textBody !== null) {
             $log['text_body'] = $textBody;
