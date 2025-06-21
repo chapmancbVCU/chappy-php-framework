@@ -249,6 +249,7 @@ class MailerService {
         ?string $layoutPath = null,
         string $templatePath
     ): string {
+        dd($templatePath);
         $viewPath = $templatePath . $view . '.php';
         if(!file_exists($viewPath)) {
             throw new Exception("Email view $view not found");

@@ -9,10 +9,9 @@ class WelcomeMailer {
     public static function send(Users $user) {
         $mail = new MailerService();
         // dd(CHAPPY_ROOT);
-        $templatePath = CHAPPY_ROOT . '/core/views/emails/';
-$layoutPath   = CHAPPY_ROOT . '/core/views/emails/layouts/';
+        $templatePath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
+        $layoutPath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
 
-        // dd($layoutPath);
         $subject = 'Welcome to ' . env('SITE_TITLE');
 
         return $mail->sendTemplate(
