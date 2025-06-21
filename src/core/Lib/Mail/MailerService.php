@@ -2,10 +2,11 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
+use Exception;
 use Throwable;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
-use Exception;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
@@ -69,6 +70,25 @@ class MailerService {
         Logger::log(json_encode($log), $status === 'failed' ? 'error' : 'info');
     }
 
+    protected function processAttachments(array $attachments, Email $email): Email {
+        foreach($attachments as $attachment) {
+            if(isset($attachment['path'])) {
+                $email->attachFromPath(
+                    $attachment['path'],
+                    $attachment['name'] ?? null,
+                    $attachment['mime'] ?? null
+                );
+            } else if(isset($attachment['content'])) {
+                $email->attach(
+                    $attachment['content'],
+                    $attachment['name'] ?? null,
+                    $attachment['mime'] ?? null
+                );
+            }
+        }
+        return $email;
+    }
+
     /**
      * Renders template file.
      *
@@ -92,13 +112,17 @@ class MailerService {
      * @param string|null $template The content if it exists.
      * @return bool True if sent, otherwise we return false.
      */
-    public function send(string $to, string $subject, string $htmlBody, ?string $template = null): bool {
+    public function send(string $to, string $subject, string $htmlBody, ?string $template = null, array $attachments = []): bool {
         try {
             $email = (new Email())
                 ->from(Env::get('MAIL_FROM_ADDRESS'))
                 ->to($to)
                 ->subject($subject)
                 ->html($htmlBody);
+
+            if(!Arr::isEmpty($attachments)) {
+                $email = $this->processAttachments($attachments, $email);
+            }
 
             $this->mailer->send($email);
 
@@ -137,7 +161,7 @@ class MailerService {
      * @param string|null $template The content if it exists.
      * @return bool True if sent, otherwise we return false.
      */
-    public function sendWithText(string $to, string $subject, string $htmlBody, string $textBody, ?string $template = null): bool {
+    public function sendWithText(string $to, string $subject, string $htmlBody, string $textBody, ?string $template = null, array $attachments = []): bool {
         try {
             $email = (new Email())
                 ->from(Env::get('MAIL_FROM_ADDRESS'))
@@ -145,6 +169,10 @@ class MailerService {
                 ->subject($subject)
                 ->text($textBody)
                 ->html($htmlBody);
+
+            if(!Arr::isEmpty($attachments)) {
+                $email = $this->processAttachments($attachments, $email);
+            }
 
             $this->mailer->send($email);
 
@@ -184,16 +212,16 @@ class MailerService {
      * @param string|null $layout The layout if it exists.
      * @return bool True if sent, otherwise we return false.
      */
-    public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null): bool {
+    public function sendTemplate(string $to, string $subject, string $template, array $data, ?string $layout = null, array $attachments = []): bool {
         
         $html = $this->template($template, $data, $layout);
 
         $textPath = self::$templatePath . $template . '.txt';
         if(file_exists($textPath)) {
             $text = $this->renderTemplateFile($textPath, $data);
-            return $this->sendWithText($to, $subject, $html, $text, $template);
+            return $this->sendWithText($to, $subject, $html, $text, $template, $attachments);
         }
-        return $this->send($to, $subject, $html, $template);
+        return $this->send($to, $subject, $html, $template, $attachments);
     }
 
     /**
