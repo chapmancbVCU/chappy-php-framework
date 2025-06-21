@@ -8,8 +8,10 @@ use App\Models\Users;
 class WelcomeMailer {
     public static function send(Users $user) {
         $mail = new MailerService();
-        $templatePath = CHAPPY_BASE_PATH.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'src'.DS.'views'.DS.'emails'.DS;
-        $layoutPath = CHAPPY_BASE_PATH.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'src'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+        // dd(CHAPPY_ROOT);
+        $templatePath = CHAPPY_ROOT . '/src/core/views/emails/';
+$layoutPath = CHAPPY_ROOT . '/src/core/views/emails/layouts/';
+
         $subject = 'Welcome to ' . env('SITE_TITLE');
 
         return $mail->sendTemplate(
