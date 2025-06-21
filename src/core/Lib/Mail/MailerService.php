@@ -15,6 +15,8 @@ use Symfony\Component\Mailer\Transport;
  * Supports E-mail infrastructure for this framework.
  */
 class MailerService {
+    protected static string $frameworkLayoutPath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    protected static string $frameworkTemplatePath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected Mailer $mailer;
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
