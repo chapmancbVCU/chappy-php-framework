@@ -134,7 +134,7 @@ class MailerService {
      * @return Email $email The Email to be sent after attachments have been 
      * processed.
      */
-    protected function processAttachments(array $attachments, Email $email): Email {
+    protected static function processAttachments(array $attachments, Email $email): Email {
         if(Arr::isAssoc($attachments)) {
             if(isset($attachments['path'])) {
                 $email = self::attachFromPath($attachments, $email);
@@ -186,7 +186,7 @@ class MailerService {
                 ->html($htmlBody);
 
             if(!Arr::isEmpty($attachments)) {
-                $email = $this->processAttachments($attachments, $email);
+                $email = self::processAttachments($attachments, $email);
             }
 
             $this->mailer->send($email);
@@ -236,7 +236,7 @@ class MailerService {
                 ->html($htmlBody);
 
             if(!Arr::isEmpty($attachments)) {
-                $email = $this->processAttachments($attachments, $email);
+                $email = self::processAttachments($attachments, $email);
             }
 
             $this->mailer->send($email);
