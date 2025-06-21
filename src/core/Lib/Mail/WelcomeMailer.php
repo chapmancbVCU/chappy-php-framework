@@ -6,12 +6,14 @@ use Core\Lib\Mail\MailerService;
 use App\Models\Users;
 
 class WelcomeMailer {
-    public static function send(User $user) {
+    public static function send(Users $user) {
         $mail = new MailerService();
-        $layoutPath = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'welcome.php';
-        $templatePath = CHAPPY_ROOT.DS .'views'.DS.'emails'.DS.'layouts'.DS.'default.php';
+        $layoutPath = CHAPPY_BASE_PATH.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'src'.DS.'views'.DS.'emails'.DS.'welcome.php';
+        // dd($layoutPath);
+        $templatePath = CHAPPY_BASE_PATH.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'src'.DS.'views'.DS.'emails'.DS.'layouts'.DS.'default.php';
         $subject = 'Welcome to ' . env('APP_NAME');
-        $mail->sendTemplate(
+
+        return $mail->sendTemplate(
             $user->email,
             $subject,
             'welcome',
