@@ -135,7 +135,7 @@ class MailerService {
      * processed.
      */
     protected function processAttachments(array $attachments, Email $email): Email {
-        if(isset($attachments['name']) && isset($attachments['mime'])) {
+        if(Arr::isAssoc($attachments)) {
             if(isset($attachments['path'])) {
                 $email = self::attachFromPath($attachments, $email);
             } else if(isset($attachments['content'])) {
