@@ -14,6 +14,17 @@ use Symfony\Component\Mailer\Transport;
 class MailerService {
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected Mailer $mailer;
+    const MIME_CSV = 'text/csv';
+    const MIME_DOC = 'application/msword';
+    const MIME_DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+    const MIME_JSON = 'application/json';
+    const MIME_MARKDOWN = 'text/markdown';
+    const MIME_HTML = 'text/html';
+    const MIME_PDF = 'application/pdf';
+    const MIME_TEXT = 'text/plain';
+    const MIME_XLS = 'application/vnd.ms-excel';
+    const MIME_XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    const MIME_XML = 'application/xml';
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
 
     /**
@@ -24,6 +35,7 @@ class MailerService {
         $transport = Transport::fromDsn($dsn);
         $this->mailer = new Mailer($transport);
     }
+
 
     /**
      * Logs each attempt at sending an E-mail.
