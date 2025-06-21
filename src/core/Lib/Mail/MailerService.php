@@ -135,7 +135,7 @@ class MailerService {
      * processed.
      */
     protected function processAttachments(array $attachments, Email $email): Email {
-        if(isset($attachments['name'])) {
+        if(isset($attachments['name']) && isset($attachments['mime'])) {
             if(isset($attachments['path'])) {
                 $email = self::attachFromPath($attachments, $email);
             } else if(isset($attachments['content'])) {
@@ -143,7 +143,6 @@ class MailerService {
             }
             return $email;
         }
-
 
         foreach($attachments as $attachment) {
             if(isset($attachment['path'])) {
