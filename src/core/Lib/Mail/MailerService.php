@@ -70,6 +70,14 @@ class MailerService {
         Logger::log(json_encode($log), $status === 'failed' ? 'error' : 'info');
     }
 
+    /**
+     * Process attachments to be sent.
+     *
+     * @param array $attachments The array of attachments.
+     * @param Email $email The Email to be sent.
+     * @return Email $email The Email to be sent after attachments have been 
+     * processed.
+     */
     protected function processAttachments(array $attachments, Email $email): Email {
         foreach($attachments as $attachment) {
             if(isset($attachment['path'])) {
