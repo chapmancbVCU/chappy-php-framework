@@ -49,6 +49,37 @@ class MailerService {
         $this->mailer = new Mailer($transport);
     }
 
+    /**
+     * Processes attachment if key labeled content is found.
+     *
+     * @param array $attachment The attachment.
+     * @param Email $email The Email to be sent.
+     * @return Email $email The Email to be sent after attachments have been 
+     * processed.
+     */
+    protected static function attach(array $attachment, Email $email): Email {
+        return $email->attach(
+            $attachment['content'],
+            $attachment['name'] ?? null,
+            $attachment['mime'] ?? null
+        );
+    }
+
+    /**
+     * Processes attachment if key labeled path is found.
+     *
+     * @param array $attachment The attachment.
+     * @param Email $email The Email to be sent.
+     * @return Email $email The Email to be sent after attachments have been 
+     * processed.
+     */
+    protected static function attachFromPath(array $attachment, Email $email): Email {
+        return $email->attachFromPath(
+            $attachment['path'],
+            $attachment['name'] ?? null,
+            $attachment['mime'] ?? null
+        );
+    }
 
     /**
      * Logs each attempt at sending an E-mail.
@@ -104,19 +135,21 @@ class MailerService {
      * processed.
      */
     protected function processAttachments(array $attachments, Email $email): Email {
+        if(isset($attachments['name'])) {
+            if(isset($attachments['path'])) {
+                $email = self::attachFromPath($attachments, $email);
+            } else if(isset($attachments['content'])) {
+                $email = self::attach($attachments, $email);
+            }
+            return $email;
+        }
+
+
         foreach($attachments as $attachment) {
             if(isset($attachment['path'])) {
-                $email->attachFromPath(
-                    $attachment['path'],
-                    $attachment['name'] ?? null,
-                    $attachment['mime'] ?? null
-                );
+                $email = self::attachFromPath($attachment, $email);
             } else if(isset($attachment['content'])) {
-                $email->attach(
-                    $attachment['content'],
-                    $attachment['name'] ?? null,
-                    $attachment['mime'] ?? null
-                );
+                $email = self::attach($attachment, $email);
             }
         }
         return $email;
