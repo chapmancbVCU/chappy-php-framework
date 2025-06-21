@@ -1,4 +1,4 @@
 <!-- src/views/emails/welcome.php -->
 <h1>Welcome, <?= e($user->fname) ?>!</h1>
-<p>Thank you for registering with <?= e(env('APP_NAME')) ?>.</p>
+<p>Thank you for registering with <?= e(env('SITE_TITLE')) ?>.</p>
 <p>Your username is <?= e($user->username) ?></p>
