@@ -83,7 +83,7 @@ class MailerService {
             $log['error'] = $error;
         }
 
-        Logger::log(json_encode($log), $status === 'failed' ? 'error' : 'info');
+        Logger::log(json_encode($log, JSON_PRETTY_PRINT), $status === 'failed' ? 'error' : 'info');
     }
 
     /**
