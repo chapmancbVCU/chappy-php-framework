@@ -21,7 +21,7 @@ class MailerService {
     public const FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected Mailer $mailer;
-    protected static string $stylesPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'styles'.DS;
+    protected static string $stylesPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
     
     /**
