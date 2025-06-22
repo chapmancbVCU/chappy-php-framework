@@ -60,7 +60,8 @@ class MailerService {
         string $htmlBody,
         ?string $textBody = null,
         ?string $template = null,
-        ?string $error = null
+        ?string $error = null,
+        ?array $attachments = null
     ): void {
         // We want to maintain key order explicitly.
         $log = [];
@@ -81,6 +82,18 @@ class MailerService {
 
         if($error !== null) {
             $log['error'] = $error;
+        }
+
+        if(Arr::isNotEmpty($attachments)) {
+            $log['attachments'] = array_map(function ($attachment) {
+            return [
+                'name' => $attachment['name'] ?? '(no name)',
+                'mime' => $attachment['mime'] ?? '(unknown)',
+                'source' => isset($attachment['path']) ? 'path: ' . $attachment['path']
+                            : (isset($attachment['content']) ? 'inline content (' . strlen($attachment['content']) . ' bytes)' 
+                            : '(missing)'),
+            ];
+            }, Arr::isAssoc($attachments) ? [$attachments] : $attachments);
         }
 
         Logger::log(json_encode($log, JSON_PRETTY_PRINT), $status === 'failed' ? 'error' : 'info');
@@ -129,7 +142,9 @@ class MailerService {
                 $subject,
                 $htmlBody,
                 null,
-                $template
+                $template,
+                null,
+                $attachments
             );
 
             return true;
@@ -141,7 +156,8 @@ class MailerService {
                 $htmlBody,
                 null,
                 $template,
-                $e->getMessage()
+                $e->getMessage(),
+                $attachments
             );
 
             return false;
@@ -215,7 +231,9 @@ class MailerService {
                 $subject,
                 $htmlBody,
                 $textBody,
-                $template
+                $template,
+                null,
+                $attachments
             );
 
             return true;
@@ -227,7 +245,8 @@ class MailerService {
                 $htmlBody,
                 $textBody,
                 $template,
-                $e->getMessage()
+                $e->getMessage(),
+                $attachments
             );
 
             return false;
