@@ -196,6 +196,7 @@ class MailerService {
     ): bool {
         $templatePath = self::templatePath($templatePath);
         $stylesPath = $stylesPath ?? self::$stylesPath;
+
         $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath, $styles, $stylesPath);
 
         $textPath = $templatePath . $template . '.txt';
@@ -293,15 +294,14 @@ class MailerService {
             if(file_exists($layoutPath)) {
                 ob_start();
                 include $layoutPath;
-                return ob_get_clean();
+                $content = ob_get_clean();
             }
         }
 
-        $stylesPath = $stylesPath . DS . $styles . '.css';
-        dd($stylePath);
+        $stylePath = $stylesPath . $styles . '.css';
         $style = file_exists($stylePath) ? file_get_contents($stylePath) : '';
-
         $inliner = new CssToInlineStyles();
+        
         return $inliner->convert($content, $style);
     }
 
