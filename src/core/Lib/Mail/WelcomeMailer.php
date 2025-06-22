@@ -11,14 +11,16 @@ class WelcomeMailer {
         $subject = 'Welcome to ' . env('SITE_TITLE');
 
         return $mail->sendTemplate(
-            $user->email,
+            'chad.chapman2010+welcome_test@gmail.com',
             $subject,
             'welcome',
             ['user' => $user],
-            'default',
+            'account_status',
             [],
             MailerService::FRAMEWORK_LAYOUT_PATH,
-            MailerService::FRAMEWORK_TEMPLATE_PATH
+            MailerService::FRAMEWORK_TEMPLATE_PATH,
+            'account_status',
+            MailerService::FRAMEWORK_STYLES_PATH
         );
     }
 }

@@ -36,7 +36,8 @@
       "giggsey/libphonenumber-for-php": "^9.0",
       "composer": "*",
       "symfony/mailer": "^7.3",
-      "symfony/http-client": "^7.3"
+      "symfony/http-client": "^7.3",
+        "tijsverkoyen/css-to-inline-styles": "^2.3"
     },
     "scripts": {
       "build-docs": [

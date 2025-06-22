@@ -10,15 +10,18 @@ use Core\Lib\Logging\Logger;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 /**
  * Supports E-mail infrastructure for this framework.
  */
 class MailerService {
     public const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
-    public const string FRAMEWORK_TEMPLATE_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
+    public const FRAMEWORK_TEMPLATE_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
+    public const FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected Mailer $mailer;
+    protected static string $stylesPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'styles'.DS;
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
     
     /**
@@ -187,10 +190,13 @@ class MailerService {
         ?string $layout = null, 
         array $attachments = [], 
         ?string $layoutPath = null,
-        ?string $templatePath = null
+        ?string $templatePath = null,
+        ?string $styles = null,
+        ?string $stylesPath = null
     ): bool {
         $templatePath = self::templatePath($templatePath);
-        $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath);
+        $stylesPath = $stylesPath ?? self::$stylesPath;
+        $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath, $styles, $stylesPath);
 
         $textPath = $templatePath . $template . '.txt';
         if(file_exists($textPath)) {
@@ -268,7 +274,9 @@ class MailerService {
         array $data = [], 
         ?string $layout = null, 
         ?string $layoutPath = null,
-        string $templatePath
+        string $templatePath,
+        ?string $styles = null,
+        ?string $stylesPath = null
     ): string {
         $viewPath = $templatePath . $view . '.php';
         if(!file_exists($viewPath)) {
@@ -289,7 +297,12 @@ class MailerService {
             }
         }
 
-        return $content;
+        $stylesPath = $stylesPath . DS . $styles . '.css';
+        dd($stylePath);
+        $style = file_exists($stylePath) ? file_get_contents($stylePath) : '';
+
+        $inliner = new CssToInlineStyles();
+        return $inliner->convert($content, $style);
     }
 
     /**
