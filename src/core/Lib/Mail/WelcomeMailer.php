@@ -15,11 +15,11 @@ class WelcomeMailer {
             $subject,
             'welcome',
             ['user' => $user],
-            'account_status',
+            'default',
             [],
             MailerService::FRAMEWORK_LAYOUT_PATH,
             MailerService::FRAMEWORK_TEMPLATE_PATH,
-            'account_status',
+            'default',
             MailerService::FRAMEWORK_STYLES_PATH
         );
     }
