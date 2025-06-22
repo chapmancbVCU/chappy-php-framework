@@ -140,7 +140,7 @@ class MailerService {
             $this->mailer->send($email);
 
             $this->mailLogger(
-                'failed',
+                'success',
                 $to,
                 $subject,
                 $htmlBody,
@@ -233,7 +233,7 @@ class MailerService {
             $this->mailer->send($email);
 
             $this->mailLogger(
-                'failed',
+                'success',
                 $to,
                 $subject,
                 $htmlBody,
@@ -301,7 +301,7 @@ class MailerService {
         $stylePath = $stylesPath . $styles . '.css';
         $style = file_exists($stylePath) ? file_get_contents($stylePath) : '';
         $inliner = new CssToInlineStyles();
-        
+
         return $inliner->convert($content, $style);
     }
 
