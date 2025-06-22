@@ -201,7 +201,10 @@ if(!function_exists('route')) {
         $controller = $parts[0];
         $action = $parts[1] ?? 'index';
 
-        $url = rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . trim($controller, '/') . '/' . trim($action, '/');
+        $domain = Env::get('APP_DOMAIN') ?? '';
+        $domain = rtrim($domain, '/');
+
+        $url = $domain . '/' . trim($controller, '/') . '/' . trim($action, '/');
 
         if (!empty($params)) {
             $url .= '/' . implode('/', array_map('urlencode', $params));
