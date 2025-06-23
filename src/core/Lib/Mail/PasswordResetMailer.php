@@ -1,0 +1,35 @@
+<?php
+declare(strict_types=1);
+namespace Core\Lib\Mail;
+
+use Core\Lib\Mail\MailerService;
+use App\Models\Users;
+
+/**
+ * Class for generating a reset password E-mail.
+ */
+class PasswordResetMailer {
+    /**
+     * Generates and sends reset password E-mail.
+     *
+     * @param Users $user The user whose password needs to be reset.
+     * @return void
+     */
+    public static function send(Users $user) {
+        $mail = new MailerService();
+        $subject = $user->username . ', please reset your password';
+
+        return $mail->sendTemplate(
+            'chad.chapman2010+welcome_test@gmail.com',
+            $subject,
+            'reset_password',
+            ['user' => $user],
+            'default',
+            [],
+            MailerService::FRAMEWORK_LAYOUT_PATH,
+            MailerService::FRAMEWORK_TEMPLATE_PATH,
+            'default',
+            MailerService::FRAMEWORK_STYLES_PATH
+        );
+    }
+}
