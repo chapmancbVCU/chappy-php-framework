@@ -13,9 +13,9 @@ class PasswordResetMailer {
      * Generates and sends reset password E-mail.
      *
      * @param Users $user The user whose password needs to be reset.
-     * @return void
+     * @return bool True if sent, otherwise false.
      */
-    public static function send(Users $user) {
+    public static function send(Users $user): bool {
         $mail = new MailerService();
         $subject = $user->username . ', please reset your password';
 

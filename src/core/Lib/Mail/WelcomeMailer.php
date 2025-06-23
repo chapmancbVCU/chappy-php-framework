@@ -13,9 +13,9 @@ class WelcomeMailer {
      * Generates and sends welcome message.
      *
      * @param Users $user The new user.
-     * @return void
+     * @return bool True if sent, otherwise false.
      */
-    public static function send(Users $user) {
+    public static function send(Users $user): bool {
         $mail = new MailerService();
         $subject = 'Welcome to ' . env('SITE_TITLE');
 
