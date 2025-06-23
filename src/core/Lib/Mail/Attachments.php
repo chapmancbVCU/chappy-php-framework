@@ -25,6 +25,7 @@ class Attachments {
     const MIME_PDF = 'application/pdf';
     const MIME_PHP = 'application/x-httpd-php';
     const MIME_PNG = 'image/png';
+    const MIME_PPTX = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
     const MIME_SVG = 'image/svg+xml';
     const MIME_TAR = 'application/x-tar';
     const MIME_TEXT = 'text/plain';
