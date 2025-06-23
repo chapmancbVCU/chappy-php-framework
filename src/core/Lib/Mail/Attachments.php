@@ -17,14 +17,12 @@ class Attachments {
     const MIME_DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     const MIME_GIF = 'image/gif';
     const MIME_GZIP = 'application/gzip';
-    const MIME_JAVASCRIPT = 'application/javascript';
     const MIME_JPG = 'image/jpeg';
     const MIME_JSON = 'application/json';
     const MIME_MARKDOWN = 'text/markdown';
-    const MIME_HTML = 'text/html';
     const MIME_PDF = 'application/pdf';
-    const MIME_PHP = 'application/x-httpd-php';
     const MIME_PNG = 'image/png';
+    const MIME_PPT = 'application/vnd.ms-powerpoint';
     const MIME_PPTX = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
     const MIME_SVG = 'image/svg+xml';
     const MIME_TAR = 'application/x-tar';
