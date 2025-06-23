@@ -5,7 +5,16 @@ namespace Core\Lib\Mail;
 use Core\Lib\Mail\MailerService;
 use App\Models\Users;
 
+/**
+ * Class for generating a welcome message.
+ */
 class WelcomeMailer {
+    /**
+     * Generates and sends welcome message.
+     *
+     * @param Users $user The new user.
+     * @return void
+     */
     public static function send(Users $user) {
         $mail = new MailerService();
         $subject = 'Welcome to ' . env('SITE_TITLE');
