@@ -168,8 +168,8 @@ class MailerService {
     }
 
     /**
-     * 
-     * 
+     * Generates E-mail using a specified template, layout,
+     * and/or css stylesheet.
      *
      * @param string $to The recipient.
      * @param string $subject The E-mail's subject.
