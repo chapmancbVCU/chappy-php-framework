@@ -22,7 +22,7 @@ class AccountDeactivatedMailer {
         $subject = 'Notice: Your account has been deactivated';
 
         return $mail->sendTemplate(
-            'chad.chapman2010+welcome_test@gmail.com',
+            $user->email,
             $subject,
             'deactivated_account',
             ['user' => $user],

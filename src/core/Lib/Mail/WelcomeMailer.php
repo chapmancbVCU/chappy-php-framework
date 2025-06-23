@@ -20,7 +20,7 @@ class WelcomeMailer {
         $subject = 'Welcome to ' . env('SITE_TITLE');
 
         return $mail->sendTemplate(
-            'chad.chapman2010+welcome_test@gmail.com',
+            $user->email,
             $subject,
             'welcome',
             ['user' => $user],

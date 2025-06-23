@@ -20,7 +20,7 @@ class PasswordResetMailer {
         $subject = $user->username . ', please reset your password';
 
         return $mail->sendTemplate(
-            'chad.chapman2010+welcome_test@gmail.com',
+            $user->email,
             $subject,
             'reset_password',
             ['user' => $user],

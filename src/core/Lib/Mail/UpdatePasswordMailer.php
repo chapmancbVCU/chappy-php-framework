@@ -22,7 +22,7 @@ class UpdatePasswordMailer {
         $subject = 'The password update notification for ' . $user->username;
 
         return $mail->sendTemplate(
-            'chad.chapman2010+welcome_test@gmail.com',
+            $user->email,
             $subject,
             'update_password',
             ['user' => $user],
