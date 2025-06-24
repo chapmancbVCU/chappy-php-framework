@@ -9,33 +9,35 @@ use Symfony\Component\Mime\Email;
  * Supports attachment processing for MailerService.
  */
 class Attachments {
-    const MIME_7ZIP = 'application/x-7z-compressed';
-    const MIME_ADOBE_ILLUSTRATOR = 'application/postscript';
-    const MIME_ADOBE_PHOTOSHOP = 'image/vnd.adobe.photoshop';
-    const MIME_CSV = 'text/csv';
-    const MIME_DOC = 'application/msword';
-    const MIME_DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-    const MIME_GIF = 'image/gif';
-    const MIME_GZIP = 'application/gzip';
-    const MIME_JPG = 'image/jpeg';
-    const MIME_JSON = 'application/json';
-    const MIME_MARKDOWN = 'text/markdown';
-    const MIME_MP3 = 'audio/mpeg';
-    const MIME_MP4 = 'video/mp4';
-    const MIME_PDF = 'application/pdf';
-    const MIME_PNG = 'image/png';
-    const MIME_PPT = 'application/vnd.ms-powerpoint';
-    const MIME_PPTX = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
-    const MIME_RTF = 'application/rtf';
-    const MIME_SVG = 'image/svg+xml';
-    const MIME_TAR = 'application/x-tar';
-    const MIME_TEXT = 'text/plain';
-    const MIME_WEBP = 'image/webp';
-    const MIME_XBRL = 'application/x-xbrl+xml';
-    const MIME_XLS = 'application/vnd.ms-excel';
-    const MIME_XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-    const MIME_XML = 'application/xml';
-    const MIME_ZIP = 'application/zip';
+    public const MIME_TYPES = [
+        '7z'   => 'application/x-7z-compressed',
+        'ai'   => 'application/postscript',
+        'psd'  => 'image/vnd.adobe.photoshop',
+        'csv'  => 'text/csv',
+        'doc'  => 'application/msword',
+        'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'gif'  => 'image/gif',
+        'gz'   => 'application/gzip',
+        'jpg'  => 'image/jpeg',
+        'json' => 'application/json',
+        'md'   => 'text/markdown',
+        'mp3'  => 'audio/mpeg',
+        'mp4'  => 'video/mp4',
+        'pdf'  => 'application/pdf',
+        'png'  => 'image/png',
+        'ppt'  => 'application/vnd.ms-powerpoint',
+        'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'rtf'  => 'application/rtf',
+        'svg'  => 'image/svg+xml',
+        'tar'  => 'application/x-tar',
+        'txt'  => 'text/plain',
+        'webp' => 'image/webp',
+        'xbrl' => 'application/x-xbrl+xml',
+        'xls'  => 'application/vnd.ms-excel',
+        'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'xml'  => 'application/xml',
+        'zip'  => 'application/zip',
+    ];
 
     /**
      * Processes attachment if key labeled content is found.
@@ -69,6 +71,14 @@ class Attachments {
         );
     }
 
+    public static function getAllowedMimeTypes(): array {
+        return array_values(self::MIME_TYPES);
+    }
+
+    public static function getMimeByExtension(string $ext): ?string {
+        return self::MIME_TYPES[strtolower($ext)] ?? null;
+    }
+    
     /**
      * Process attachments to be sent.
      *
