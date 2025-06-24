@@ -9,7 +9,8 @@ use Symfony\Component\Mime\Email;
  * Supports attachment processing for MailerService.
  */
 class Attachments {
-    public const ATTACHMENTS_PATH = 'storage'.DS.'private'.DS.'email_attachments'.DS; 
+    public const ATTACHMENTS_PATH = CHAPPY_BASE_PATH.DS.'storage'.DS.'app'.DS.'private'.DS.'email_attachments'.DS; 
+    
     public const MIME_TYPES = [
         '7z'   => 'application/x-7z-compressed',
         'ai'   => 'application/postscript',
