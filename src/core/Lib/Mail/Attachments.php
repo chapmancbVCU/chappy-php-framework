@@ -74,6 +74,20 @@ class Attachments {
     }
 
     /**
+     * Used to get path of file when content key is used.
+     *
+     * @param string $name The name of the file
+     * @return string The full path to the file.
+     */
+    public static function content(string $file, string $name, string $mime): array {
+        return [
+            'content' => file_get_contents(self::ATTACHMENTS_PATH.$file),
+            'name' => $name,
+            'mime' => self::mime($mime)
+        ];
+    }
+    
+    /**
      * Gets the values from the MIME_TYPES array.
      *
      * @return array The values from the MIME_TYPES array.
@@ -90,6 +104,16 @@ class Attachments {
      */
     public static function mime(string $ext): string {
         return self::MIME_TYPES[strtolower($ext)] ?? 'application/octet-stream';
+    }
+
+    /**
+     * Used to get path of file when path key is used.
+     *
+     * @param string $name The name of the file
+     * @return string The full path to the file.
+     */
+    public static function path(string $name): string {
+        return self::ATTACHMENTS_PATH.$name;
     }
 
     /**
