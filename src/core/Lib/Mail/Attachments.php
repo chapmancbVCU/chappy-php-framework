@@ -77,7 +77,7 @@ class Attachments {
      * Used to get path of file when content key is used.
      *
      * @param string $name The name of the file
-     * @return string The full path to the file.
+     * @return array The full path to the file.
      */
     public static function content(string $file, string $name, string $mime): array {
         return [
