@@ -10,6 +10,9 @@ use Symfony\Component\Mime\Email;
  */
 class Attachments {
     const MIME_7ZIP = 'application/x-7z-compressed';
+    const MIME_ADOBE_ILLUSTRATOR = 'application/postscript';
+    const MIME_ADOBE_PHOTOSHOP = 'image/vnd.adobe.photoshop';
+    const MIME_XBRL = 'application/x-xbrl+xml';
     const MIME_BMP = 'image/bmp';
     const MIME_CSS = 'text/css';
     const MIME_CSV = 'text/csv';
@@ -20,10 +23,13 @@ class Attachments {
     const MIME_JPG = 'image/jpeg';
     const MIME_JSON = 'application/json';
     const MIME_MARKDOWN = 'text/markdown';
+    const MIME_MP3 = 'audio/mpeg';
+    const MIME_MP4 = 'video/mp4';
     const MIME_PDF = 'application/pdf';
     const MIME_PNG = 'image/png';
     const MIME_PPT = 'application/vnd.ms-powerpoint';
     const MIME_PPTX = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+    const MIME_RTF = 'application/rtf';
     const MIME_SVG = 'image/svg+xml';
     const MIME_TAR = 'application/x-tar';
     const MIME_TEXT = 'text/plain';
