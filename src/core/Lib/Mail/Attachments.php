@@ -74,7 +74,7 @@ class Attachments {
     }
 
     /**
-     * Used assemble array for attachment when content key is used.
+     * Used to assemble array for attachment when content key is used.
      *
      * @param string $file The name of the file.
      * @param string $name The name of the attachment.
@@ -114,7 +114,7 @@ class Attachments {
     }
 
     /**
-     * Used assemble array for attachment when path key is used.
+     * Used to assemble array for attachment when path key is used.
      *
      * @param string $file The name of the file.
      * @param string $name The name of the attachment.
