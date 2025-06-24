@@ -75,10 +75,10 @@ class Attachments {
         return array_values(self::MIME_TYPES);
     }
 
-    public static function getMimeByExtension(string $ext): ?string {
-        return self::MIME_TYPES[strtolower($ext)] ?? null;
+    public static function mime(string $ext): string {
+        return self::MIME_TYPES[strtolower($ext)] ?? 'application/octet-stream';
     }
-    
+
     /**
      * Process attachments to be sent.
      *
