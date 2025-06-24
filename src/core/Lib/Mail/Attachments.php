@@ -12,9 +12,6 @@ class Attachments {
     const MIME_7ZIP = 'application/x-7z-compressed';
     const MIME_ADOBE_ILLUSTRATOR = 'application/postscript';
     const MIME_ADOBE_PHOTOSHOP = 'image/vnd.adobe.photoshop';
-    const MIME_XBRL = 'application/x-xbrl+xml';
-    const MIME_BMP = 'image/bmp';
-    const MIME_CSS = 'text/css';
     const MIME_CSV = 'text/csv';
     const MIME_DOC = 'application/msword';
     const MIME_DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
@@ -34,6 +31,7 @@ class Attachments {
     const MIME_TAR = 'application/x-tar';
     const MIME_TEXT = 'text/plain';
     const MIME_WEBP = 'image/webp';
+    const MIME_XBRL = 'application/x-xbrl+xml';
     const MIME_XLS = 'application/vnd.ms-excel';
     const MIME_XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
     const MIME_XML = 'application/xml';
