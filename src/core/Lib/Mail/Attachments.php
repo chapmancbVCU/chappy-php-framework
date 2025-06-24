@@ -71,10 +71,21 @@ class Attachments {
         );
     }
 
+    /**
+     * Gets the values from the MIME_TYPES array.
+     *
+     * @return array The values from the MIME_TYPES array.
+     */
     public static function getAllowedMimeTypes(): array {
         return array_values(self::MIME_TYPES);
     }
 
+    /**
+     * Returns the MIME type for a given file extension.
+     *
+     * @param string $ext File extension (e.g., 'pdf', 'jpg', 'docx')
+     * @return string The corresponding MIME type or 'application/octet-stream'
+     */
     public static function mime(string $ext): string {
         return self::MIME_TYPES[strtolower($ext)] ?? 'application/octet-stream';
     }
