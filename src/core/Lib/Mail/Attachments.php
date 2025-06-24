@@ -90,7 +90,7 @@ class Attachments {
         return [
             'content' => file_get_contents($path),
             'name' => $name,
-            'mime' => self::mime(pathinfo($name, PATHINFO_EXTENSION))
+            'mime' => self::mime(pathinfo($file, PATHINFO_EXTENSION))
         ];
     }
     
@@ -130,7 +130,7 @@ class Attachments {
         return [
             'path' => $path,
             'name' => $name,
-            'mime' => self::mime(pathinfo($name, PATHINFO_EXTENSION))
+            'mime' => self::mime(pathinfo($file, PATHINFO_EXTENSION))
         ];
     }
 
