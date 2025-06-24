@@ -74,9 +74,11 @@ class Attachments {
     }
 
     /**
-     * Used to get path of file when content key is used.
+     * Used assemble array for attachment when content key is used.
      *
-     * @param string $name The name of the file
+     * @param string $file The name of the file.
+     * @param string $name The name of the attachment.
+     * @param string $mime The MIME type.
      * @return array The full path to the file.
      */
     public static function content(string $file, string $name, string $mime): array {
@@ -107,13 +109,19 @@ class Attachments {
     }
 
     /**
-     * Used to get path of file when path key is used.
+     * Used assemble array for attachment when path key is used.
      *
-     * @param string $name The name of the file
-     * @return string The full path to the file.
+     * @param string $file The name of the file.
+     * @param string $name The name of the attachment.
+     * @param string $mime The MIME type.
+     * @return array The full path to the file.
      */
-    public static function path(string $name): string {
-        return self::ATTACHMENTS_PATH.$name;
+    public static function path(string $file, string $name, string $mime): array {
+        return [
+            'path' => self::ATTACHMENTS_PATH.$file,
+            'name' => $name,
+            'mime' => self::mime($mime)
+        ];
     }
 
     /**
