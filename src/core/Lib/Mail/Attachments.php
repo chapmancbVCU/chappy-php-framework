@@ -78,14 +78,19 @@ class Attachments {
      *
      * @param string $file The name of the file.
      * @param string $name The name of the attachment.
-     * @param string $mime The MIME type.
      * @return array The full path to the file.
      */
-    public static function content(string $file, string $name, string $mime): array {
+    public static function content(string $file, string $name): array {
+        $path = self::ATTACHMENTS_PATH . $file;
+    
+        if (!file_exists($path)) {
+            throw new \RuntimeException("Attachment file not found: {$path}");
+        }
+
         return [
-            'content' => file_get_contents(self::ATTACHMENTS_PATH.$file),
+            'content' => file_get_contents($path),
             'name' => $name,
-            'mime' => self::mime($mime)
+            'mime' => self::mime(pathinfo($name, PATHINFO_EXTENSION))
         ];
     }
     
@@ -113,14 +118,19 @@ class Attachments {
      *
      * @param string $file The name of the file.
      * @param string $name The name of the attachment.
-     * @param string $mime The MIME type.
      * @return array The full path to the file.
      */
-    public static function path(string $file, string $name, string $mime): array {
+    public static function path(string $file, string $name): array {
+        $path = self::ATTACHMENTS_PATH . $file;
+    
+        if (!file_exists($path)) {
+            throw new \RuntimeException("Attachment file not found: {$path}");
+        }
+
         return [
-            'path' => self::ATTACHMENTS_PATH.$file,
+            'path' => $path,
             'name' => $name,
-            'mime' => self::mime($mime)
+            'mime' => self::mime(pathinfo($name, PATHINFO_EXTENSION))
         ];
     }
 
