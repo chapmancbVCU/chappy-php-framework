@@ -4,6 +4,7 @@ namespace Core\Lib\Mail;
 
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Mime\Email;
+use App\Models\EmailAttachments;
 
 /**
  * Supports attachment processing for MailerService.
@@ -60,16 +61,16 @@ class Attachments {
     /**
      * Processes attachment if key labeled path is found.
      *
-     * @param array $attachment The attachment.
+     * @param EmailAttachment $attachment The attachment.
      * @param Email $email The Email to be sent.
      * @return Email $email The Email to be sent after attachments have been 
      * processed.
      */
-    protected static function attachFromPath(array $attachment, Email $email): Email {
+    protected static function attachFromPath(EmailAttachment $attachment, Email $email): Email {
         return $email->attachFromPath(
-            $attachment['path'],
-            $attachment['name'] ?? null,
-            $attachment['mime'] ?? null
+            $attachment->path,
+            $attachment->attachment_name ?? null,
+            $attachment->mime_type ?? null
         );
     }
 
