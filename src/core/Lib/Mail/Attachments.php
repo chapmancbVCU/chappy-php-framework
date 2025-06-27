@@ -66,11 +66,11 @@ class Attachments {
      * @return Email $email The Email to be sent after attachments have been 
      * processed.
      */
-    protected static function attachFromPath(EmailAttachment $attachment, Email $email): Email {
+    protected static function attachFromPath(array $attachment, Email $email): Email {
         return $email->attachFromPath(
-            $attachment->path,
-            $attachment->attachment_name ?? null,
-            $attachment->mime_type ?? null
+            $attachment['path'],
+            $attachment['name'] ?? null,
+            $attachment['mime'] ?? null
         );
     }
 
@@ -121,8 +121,8 @@ class Attachments {
      * @param string $name The name of the attachment.
      * @return array The full path to the file.
      */
-    public static function path(string $file, string $name): array {
-        $path = self::ATTACHMENTS_PATH . $file;
+    public static function path(EmailAttachment $attachment, string $name): array {
+        $path = $attachment->path;
     
         if (!file_exists($path)) {
             throw new \RuntimeException("Attachment file not found: {$path}");
@@ -130,8 +130,8 @@ class Attachments {
 
         return [
             'path' => $path,
-            'name' => $name,
-            'mime' => self::mime(pathinfo($file, PATHINFO_EXTENSION))
+            'name' => $attachment->attachment_name,
+            'mime' => $attachment->mime_type
         ];
     }
 
