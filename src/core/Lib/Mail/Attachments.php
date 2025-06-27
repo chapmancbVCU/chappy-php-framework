@@ -61,7 +61,7 @@ class Attachments {
     /**
      * Processes attachment if key labeled path is found.
      *
-     * @param EmailAttachment $attachment The attachment.
+     * @param array $attachment The attachment.
      * @param Email $email The Email to be sent.
      * @return Email $email The Email to be sent after attachments have been 
      * processed.
@@ -77,12 +77,11 @@ class Attachments {
     /**
      * Used to assemble array for attachment when content key is used.
      *
-     * @param string $file The name of the file.
-     * @param string $name The name of the attachment.
+     * @param EmailAttachment $attachment Instance of the EmailAttachment model.
      * @return array The full path to the file.
      */
-    public static function content(string $file, string $name): array {
-        $path = self::ATTACHMENTS_PATH . $file;
+    public static function content(EmailAttachments $attachment): array {
+        $path = $attachment->path;
     
         if (!file_exists($path)) {
             throw new \RuntimeException("Attachment file not found: {$path}");
@@ -90,8 +89,8 @@ class Attachments {
 
         return [
             'content' => file_get_contents($path),
-            'name' => $name,
-            'mime' => self::mime(pathinfo($file, PATHINFO_EXTENSION))
+            'name' => $attachment->attachment_name,
+            'mime' => $attachment->mime_type
         ];
     }
     
@@ -117,11 +116,10 @@ class Attachments {
     /**
      * Used to assemble array for attachment when path key is used.
      *
-     * @param string $file The name of the file.
-     * @param string $name The name of the attachment.
-     * @return array The full path to the file.
+     * @param EmailAttachment $attachment Instance of the EmailAttachment model.
+     * @return array The data needed to assemble an attachment.
      */
-    public static function path(EmailAttachment $attachment, string $name): array {
+    public static function path(EmailAttachments $attachment): array {
         $path = $attachment->path;
     
         if (!file_exists($path)) {
