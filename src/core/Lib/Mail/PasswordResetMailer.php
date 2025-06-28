@@ -52,23 +52,6 @@ class PasswordResetMailer extends AbstractMailer {
     }
 
     /**
-     * Generates and sends reset password E-mail.
-     *
-     * @param Users $user The user whose password needs to be reset.
-     * @return bool True if sent, otherwise false.
-     */
-    // public function send(): bool {
-    //     $subject = $this->user->username . ', please reset your password';
-
-    //     return $this->buildAndSend(
-    //         $this->user->email,
-    //         $subject,
-    //         'reset_password',
-    //         ['user' => $this->user],
-    //     );
-    // }
-
-    /**
      * Statically sends E-mail
      *
      * @param Users $user The recipient

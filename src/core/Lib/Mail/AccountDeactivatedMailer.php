@@ -53,24 +53,6 @@ class AccountDeactivatedMailer extends AbstractMailer {
     }
 
     /**
-     * Generates and sends E-mail informing the user that their 
-     * password has been updated.
-     *
-     * @param Users $user The new user.
-     * @return bool True if sent, otherwise false.
-     */
-    // public function send(): bool {
-    //     $subject = 'Notice: Your account has been deactivated';
-
-    //     return $this->buildAndSend(
-    //         $this->user->email,
-    //         $subject,
-    //         'deactivated_account',
-    //         ['user' => $this->user],
-    //     );
-    // }
-
-    /**
      * Statically sends E-mail
      *
      * @param Users $user The recipient

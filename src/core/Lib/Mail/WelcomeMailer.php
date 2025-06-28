@@ -52,22 +52,6 @@ class WelcomeMailer extends AbstractMailer {
     }
 
     /**
-     * Generates and sends welcome message.
-     *
-     * @param Users $user The new user.
-     * @return bool True if sent, otherwise false.
-     */
-    // public function send(): bool {
-    //     $subject = 'Welcome to ' . env('SITE_TITLE');
-    //     return $this->buildAndSend(
-    //         $this->user->email,
-    //         $subject,
-    //         'welcome',
-    //         ['user' => $this->user]
-    //     );
-    // }
-
-    /**
      * Statically sends E-mail
      *
      * @param Users $user The recipient

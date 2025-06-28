@@ -53,24 +53,6 @@ class UpdatePasswordMailer extends AbstractMailer {
     }
 
     /**
-     * Generates and sends E-mail informing the user that their 
-     * password has been updated.
-     *
-     * @param Users $user The new user.
-     * @return bool True if sent, otherwise false.
-     */
-    // public function send(): bool {
-    //     $subject = 'The password update notification for ' . $this->user->username;
-
-    //     return $this->buildAndSend(
-    //         $this->user->email,
-    //         $subject,
-    //         'update_password',
-    //         ['user' => $this->user],
-    //     );
-    // }
-
-    /**
      * Statically sends E-mail
      *
      * @param Users $user The recipient
