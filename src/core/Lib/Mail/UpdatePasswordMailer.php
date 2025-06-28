@@ -17,22 +17,58 @@ class UpdatePasswordMailer extends AbstractMailer {
     }
 
     /**
+     * Overrides getData from parent.
+     *
+     * @return array Data to be used by E-mail.
+     */
+    protected function getData(): array {
+        return ['user' => $this->user];
+    }
+
+    /**
+     * Overrides getRecipient from parent.
+     *
+     * @return string The E-mail's recipient.
+     */
+    protected function getRecipient(): string {
+        return $this->user->email;
+    }
+
+    /**
+     * Overrides getSubject from parent.
+     *
+     * @return string The E-mail's subject.
+     */
+    protected function getSubject(): string {
+        return 'The password update notification for ' . $this->user->username;
+    }
+
+    /**
+     * Overrides getTemplate from parent.
+     *
+     * @return string The template to be used.
+     */
+    protected function getTemplate(): string {
+        return 'update_password';
+    }
+
+    /**
      * Generates and sends E-mail informing the user that their 
      * password has been updated.
      *
      * @param Users $user The new user.
      * @return bool True if sent, otherwise false.
      */
-    public function send(): bool {
-        $subject = 'The password update notification for ' . $this->user->username;
+    // public function send(): bool {
+    //     $subject = 'The password update notification for ' . $this->user->username;
 
-        return $this->buildAndSend(
-            $this->user->email,
-            $subject,
-            'update_password',
-            ['user' => $this->user],
-        );
-    }
+    //     return $this->buildAndSend(
+    //         $this->user->email,
+    //         $subject,
+    //         'update_password',
+    //         ['user' => $this->user],
+    //     );
+    // }
 
     /**
      * Statically sends E-mail

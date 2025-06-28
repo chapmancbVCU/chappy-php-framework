@@ -16,21 +16,57 @@ class PasswordResetMailer extends AbstractMailer {
     }
 
     /**
+     * Overrides getData from parent.
+     *
+     * @return array Data to be used by E-mail.
+     */
+    protected function getData(): array {
+        return ['user' => $this->user];
+    }
+
+    /**
+     * Overrides getRecipient from parent.
+     *
+     * @return string The E-mail's recipient.
+     */
+    protected function getRecipient(): string {
+        return $this->user->email;
+    }
+
+    /**
+     * Overrides getSubject from parent.
+     *
+     * @return string The E-mail's subject.
+     */
+    protected function getSubject(): string {
+        return $this->user->username . ', please reset your password';
+    }
+
+    /**
+     * Overrides getTemplate from parent.
+     *
+     * @return string The template to be used.
+     */
+    protected function getTemplate(): string {
+        return 'reset_password';
+    }
+
+    /**
      * Generates and sends reset password E-mail.
      *
      * @param Users $user The user whose password needs to be reset.
      * @return bool True if sent, otherwise false.
      */
-    public function send(): bool {
-        $subject = $this->user->username . ', please reset your password';
+    // public function send(): bool {
+    //     $subject = $this->user->username . ', please reset your password';
 
-        return $this->buildAndSend(
-            $this->user->email,
-            $subject,
-            'reset_password',
-            ['user' => $this->user],
-        );
-    }
+    //     return $this->buildAndSend(
+    //         $this->user->email,
+    //         $subject,
+    //         'reset_password',
+    //         ['user' => $this->user],
+    //     );
+    // }
 
     /**
      * Statically sends E-mail
