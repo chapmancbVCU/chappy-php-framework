@@ -15,18 +15,38 @@ class WelcomeMailer extends AbstractMailer {
         $this->user = $user;
     }
 
+    /**
+     * Overrides getData from parent.
+     *
+     * @return array Data to be used by E-mail.
+     */
     protected function getData(): array {
         return ['user' => $this->user];
     }
 
+    /**
+     * Overrides getRecipient from parent.
+     *
+     * @return string The E-mail's recipient.
+     */
     protected function getRecipient(): string {
         return $this->user->email;
     }
 
+    /**
+     * Overrides getSubject from parent.
+     *
+     * @return string The E-mail's subject.
+     */
     protected function getSubject(): string {
         return 'Welcome to ' . env('SITE_TITLE');
     }
 
+    /**
+     * Overrides getTemplate from parent.
+     *
+     * @return string The template to be used.
+     */
     protected function getTemplate(): string {
         return 'welcome';
     }

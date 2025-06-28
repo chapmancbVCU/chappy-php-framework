@@ -17,22 +17,58 @@ class AccountDeactivatedMailer extends AbstractMailer {
     }
 
     /**
+     * Overrides getData from parent.
+     *
+     * @return array Data to be used by E-mail.
+     */
+    protected function getData(): array {
+        return ['user' => $this->user];
+    }
+
+    /**
+     * Overrides getRecipient from parent.
+     *
+     * @return string The E-mail's recipient.
+     */
+    protected function getRecipient(): string {
+        return $this->user->email;
+    }
+
+    /**
+     * Overrides getSubject from parent.
+     *
+     * @return string The E-mail's subject.
+     */
+    protected function getSubject(): string {
+        return 'Notice: Your account has been deactivated';
+    }
+
+    /**
+     * Overrides getTemplate from parent.
+     *
+     * @return string The template to be used.
+     */
+    protected function getTemplate(): string {
+        return 'deactivated_account';
+    }
+
+    /**
      * Generates and sends E-mail informing the user that their 
      * password has been updated.
      *
      * @param Users $user The new user.
      * @return bool True if sent, otherwise false.
      */
-    public function send(): bool {
-        $subject = 'Notice: Your account has been deactivated';
+    // public function send(): bool {
+    //     $subject = 'Notice: Your account has been deactivated';
 
-        return $this->buildAndSend(
-            $this->user->email,
-            $subject,
-            'deactivated_account',
-            ['user' => $this->user],
-        );
-    }
+    //     return $this->buildAndSend(
+    //         $this->user->email,
+    //         $subject,
+    //         'deactivated_account',
+    //         ['user' => $this->user],
+    //     );
+    // }
 
     /**
      * Statically sends E-mail
