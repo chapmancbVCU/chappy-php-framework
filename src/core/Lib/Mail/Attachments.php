@@ -77,7 +77,7 @@ class Attachments {
     /**
      * Used to assemble array for attachment when content key is used.
      *
-     * @param EmailAttachment $attachment Instance of the EmailAttachment model.
+     * @param EmailAttachments $attachment Instance of the EmailAttachment model.
      * @return array The full path to the file.
      */
     public static function content(EmailAttachments $attachment): array {
