@@ -17,10 +17,10 @@ abstract class AbstractMailer {
     /**
      * Common send logic shared by all mailers.
      *
-     * @param string $to
-     * @param string $subject
-     * @param string $template
-     * @param array $data
+     * @param string $to The recipient.
+     * @param string $subject The E-mail's subject.
+     * @param string $template The content if it exists.
+     * @param array $data Any data that the template uses.
      * @return boolean
      */
     protected function buildAndSend(
