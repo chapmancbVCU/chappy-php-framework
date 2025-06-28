@@ -52,9 +52,25 @@ abstract class AbstractMailer {
         );
     }
 
+    /**
+     * Used to retrieve data to be used in E-mail.
+     *
+     * @return array Data to be used in E-mail.
+     */
     abstract protected function getData(): array;
 
+    /**
+     * Returns subject for E-mail.
+     *
+     * @return string The subject of the E-mail.
+     */
     abstract protected function getSubject(): string;
+
+    /**
+     * Returns the template to be used.
+     *
+     * @return string The name of the template to be used.
+     */
     abstract protected function getTemplate(): string;
 
     /**
