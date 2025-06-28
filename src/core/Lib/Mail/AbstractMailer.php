@@ -29,7 +29,7 @@ abstract class AbstractMailer {
      * @param string|null $stylesPath The path to the stylesheet.
      * @return boolean
      */
-    protected function buildAndSend(
+    public function buildAndSend(
         ?string $layout = null,
         array $attachments = [],
         ?string $layoutPath = null,
