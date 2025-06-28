@@ -2,16 +2,19 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
+use App\Models\Users;
 abstract class AbstractMailer {
     protected string $layout = 'default';
     protected MailerService $mailer;
     protected string $style = 'default';
+    protected Users $user;
 
     /**
      * Constructor for AbstractMailer
      */
-    public function __construct() {
+    public function __construct(Users $user) {
         $this->mailer = new MailerService();
+        $this->user = $user;
     }
 
     /**
@@ -36,7 +39,7 @@ abstract class AbstractMailer {
 
     ): bool {
         return $this->mailer->sendTemplate(
-            $this->getRecipient(),
+            $this->user->email,
             $this->getSubject(),
             $this->getTemplate(),
             $this->getData(),
@@ -50,7 +53,7 @@ abstract class AbstractMailer {
     }
 
     abstract protected function getData(): array;
-    abstract protected function getRecipient(): string;
+
     abstract protected function getSubject(): string;
     abstract protected function getTemplate(): string;
 
@@ -61,5 +64,15 @@ abstract class AbstractMailer {
      */
     public function send(): bool {
         return $this->buildAndSend();
+    }
+
+    /**
+     * Statically sends E-mail
+     *
+     * @param Users $user The recipient
+     * @return boolean
+     */
+    public static function sendTo(Users $user): bool {
+        return (new static($user))->send();
     }
 }

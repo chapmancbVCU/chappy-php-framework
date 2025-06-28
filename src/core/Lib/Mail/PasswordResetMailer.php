@@ -2,19 +2,10 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
-use App\Models\Users;
-
 /**
  * Class for generating a reset password E-mail.
  */
 class PasswordResetMailer extends AbstractMailer {
-    protected Users $user;
-
-    public function __construct(Users $user) {
-        parent::__construct();
-        $this->user = $user;
-    }
-
     /**
      * Overrides getData from parent.
      *
@@ -22,15 +13,6 @@ class PasswordResetMailer extends AbstractMailer {
      */
     protected function getData(): array {
         return ['user' => $this->user];
-    }
-
-    /**
-     * Overrides getRecipient from parent.
-     *
-     * @return string The E-mail's recipient.
-     */
-    protected function getRecipient(): string {
-        return $this->user->email;
     }
 
     /**
@@ -49,15 +31,5 @@ class PasswordResetMailer extends AbstractMailer {
      */
     protected function getTemplate(): string {
         return 'reset_password';
-    }
-
-    /**
-     * Statically sends E-mail
-     *
-     * @param Users $user The recipient
-     * @return boolean
-     */
-    public static function sendTo(Users $user): bool {
-        return (new static($user))->send();
     }
 }
