@@ -179,7 +179,9 @@ class MailerService {
      * @param array $attachments An array containing information about 
      * attachments.
      * @param string|null $layoutPath The path to the layout.
-     * @param string $templatePath The path to the template.
+     * @param string|null $templatePath The path to the template.
+     * @param string|null $styles Name of stylesheet file.
+     * @param string|null $stylesPath The path to the stylesheet.
      * @return bool True if sent, otherwise we return false.
      */
     public function sendTemplate(
