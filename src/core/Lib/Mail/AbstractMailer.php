@@ -17,10 +17,6 @@ abstract class AbstractMailer {
     /**
      * Common send logic shared by all mailers.
      *
-     * @param string $to The recipient.
-     * @param string $subject The E-mail's subject.
-     * @param string $template The content if it exists.
-     * @param array $data Any data that the template uses.
      * @param string $layout The layout if it exists.
      * @param array $attachments An array containing information about 
      * attachments.
@@ -31,10 +27,6 @@ abstract class AbstractMailer {
      * @return boolean
      */
     protected function buildAndSend(
-        string $to,
-        string $subject,
-        ?string $template = null,
-        array $data = [],
         ?string $layout = null,
         array $attachments = [],
         ?string $layoutPath = null,
@@ -44,10 +36,10 @@ abstract class AbstractMailer {
 
     ): bool {
         return $this->mailer->sendTemplate(
-            $to,
-            $subject,
-            $template,
-            $data,
+            $this->getRecipient(),
+            $this->getSubject(),
+            $this->getTemplate(),
+            $this->getData(),
             $layout ?? $this->layout,
             $attachments,
             $layoutPath ?? MailerService::FRAMEWORK_LAYOUT_PATH,
@@ -57,10 +49,17 @@ abstract class AbstractMailer {
         );
     }
 
+    abstract protected function getData(): array;
+    abstract protected function getRecipient(): string;
+    abstract protected function getSubject(): string;
+    abstract protected function getTemplate(): string;
+
     /**
      * Send the mail
      *
      * @return bool
      */
-    abstract public function send(): bool;
+    public function send(): bool {
+        return $this->buildAndSend();
+    }
 }
