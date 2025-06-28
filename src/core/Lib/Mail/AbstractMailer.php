@@ -46,14 +46,14 @@ abstract class AbstractMailer {
         return $this->mailer->sendTemplate(
             $to,
             $subject,
-            $template ?? $template,
+            $template,
             $data,
-            $layout ?? $this->layout ?? 'default',
+            $layout ?? $this->layout,
             $attachments,
-            MailerService::FRAMEWORK_LAYOUT_PATH ?? $layoutPath,
-            MailerService::FRAMEWORK_TEMPLATE_PATH ?? $templatePath,
-            $styles ?? $this->style ?? 'default',
-            MailerService::FRAMEWORK_STYLES_PATH ?? $stylesPath
+            $layoutPath ?? MailerService::FRAMEWORK_LAYOUT_PATH,
+            $templatePath ?? MailerService::FRAMEWORK_TEMPLATE_PATH ,
+            $styles ?? $this->style,
+            $stylesPath ?? MailerService::FRAMEWORK_STYLES_PATH
         );
     }
 
