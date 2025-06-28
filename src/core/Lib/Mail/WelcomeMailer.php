@@ -8,28 +8,31 @@ use App\Models\Users;
 /**
  * Class for generating a welcome message.
  */
-class WelcomeMailer {
+class WelcomeMailer extends AbstractMailer {
+    protected Users $user;
+
+    public function __construct(Users $user) {
+        parent::__construct();
+        $this->user = $user;
+    }
+
     /**
      * Generates and sends welcome message.
      *
      * @param Users $user The new user.
      * @return bool True if sent, otherwise false.
      */
-    public static function send(Users $user): bool {
-        $mail = new MailerService();
+    public function send(): bool {
         $subject = 'Welcome to ' . env('SITE_TITLE');
-
-        return $mail->sendTemplate(
-            $user->email,
+        return $this->buildAndSend(
+            $this->user->email,
             $subject,
             'welcome',
-            ['user' => $user],
-            'default',
-            [],
-            MailerService::FRAMEWORK_LAYOUT_PATH,
-            MailerService::FRAMEWORK_TEMPLATE_PATH,
-            'default',
-            MailerService::FRAMEWORK_STYLES_PATH
+            ['user' => $this->user]
         );
+    }
+
+    public static function sendTo(Users $user): bool {
+        return (new static($user))->send();
     }
 }
