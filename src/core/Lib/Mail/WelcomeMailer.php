@@ -31,6 +31,12 @@ class WelcomeMailer extends AbstractMailer {
         );
     }
 
+    /**
+     * Statically sends E-mail
+     *
+     * @param Users $user The recipient
+     * @return boolean
+     */
     public static function sendTo(Users $user): bool {
         return (new static($user))->send();
     }
