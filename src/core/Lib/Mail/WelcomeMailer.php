@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
-use Core\Lib\Mail\MailerService;
 use App\Models\Users;
 
 /**
