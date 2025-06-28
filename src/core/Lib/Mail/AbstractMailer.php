@@ -21,25 +21,39 @@ abstract class AbstractMailer {
      * @param string $subject The E-mail's subject.
      * @param string $template The content if it exists.
      * @param array $data Any data that the template uses.
+     * @param string $layout The layout if it exists.
+     * @param array $attachments An array containing information about 
+     * attachments.
+     * @param string|null $layoutPath The path to the layout.
+     * @param string $templatePath The path to the template.
+     * @param string|null $styles Name of stylesheet file.
+     * @param string|null $stylesPath The path to the stylesheet.
      * @return boolean
      */
     protected function buildAndSend(
         string $to,
         string $subject,
-        string $template,
-        array $data = []
+        ?string $template = null,
+        array $data = [],
+        ?string $layout = null,
+        array $attachments = [],
+        ?string $layoutPath = null,
+        ?string $templatePath = null,
+        ?string $styles = null,
+        ?string $stylesPath = null
+
     ): bool {
         return $this->mailer->sendTemplate(
             $to,
             $subject,
-            $template,
+            $template ?? $template,
             $data,
-            $this->layout,
-            [],
-            MailerService::FRAMEWORK_LAYOUT_PATH,
-            MailerService::FRAMEWORK_TEMPLATE_PATH,
-            $this->style,
-            MailerService::FRAMEWORK_STYLES_PATH
+            $layout ?? $this->layout ?? 'default',
+            $attachments,
+            MailerService::FRAMEWORK_LAYOUT_PATH ?? $layoutPath,
+            MailerService::FRAMEWORK_TEMPLATE_PATH ?? $templatePath,
+            $styles ?? $this->style ?? 'default',
+            MailerService::FRAMEWORK_STYLES_PATH ?? $stylesPath
         );
     }
 
