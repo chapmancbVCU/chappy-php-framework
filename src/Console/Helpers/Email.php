@@ -1,6 +1,7 @@
 <?php
 namespace Console\Helpers;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -10,6 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class Email {
     protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    protected static string $mailerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'CustomMailers'.DS;
     protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
 
     /**
@@ -41,6 +43,52 @@ class Email {
     }
 
     /**
+     * Template for custom mailer class.
+     *
+     * @param string $mailerName The name of the custom mailer class.
+     * @return string The class' contents.
+     */
+    public function mailerTemplate(string $mailerName): string {
+        $mailerName = Str::ucfirst($mailerName);
+        return '<?php
+declare(strict_types=1);
+namespace Core\Lib\Mail;
+
+/**
+ * Class for generating a reset password E-mail.
+ */
+class '.$mailerName.'Mailer extends AbstractMailer {
+    /**
+     * Overrides getData from parent.
+     *
+     * @return array Data to be used by E-mail.
+     */
+    protected function getData(): array {
+        // Implement function
+    }
+
+    /**
+     * Overrides getSubject from parent.
+     *
+     * @return string The E-mail\'s subject.
+     */
+    protected function getSubject(): string {
+        // Implement function
+    }
+
+    /**
+     * Overrides getTemplate from parent.
+     *
+     * @return string The template to be used.
+     */
+    protected function getTemplate(): string {
+        // Implement function
+    }
+}      
+';
+    }
+
+    /**
      * Generates a new E-mail.
      *
      * @param InputInterface $input The input.
@@ -62,5 +110,19 @@ class Email {
         Tools::pathExists(self::$layoutPath);
         $layoutName = self::$layoutPath . $input->getArgument('email-layout') . '.php';
         return Tools::writeFile($layoutName, self::layoutTemplate(), 'E-mail layout');
+    }
+
+    /**
+     * Generates a new custom mailer class.
+     *
+     * @param InputInterface $input The input.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeMailer(InputInterface $input): int {
+        Tools::pathExists(self::$mailerPath);
+        $mailerName = $input->getArgument('mailer-name');
+        $mailerPath = self::$mailerPath . $mailerName . '.php';
+        $content = self::mailerTemplate($mailerName);
+        return Tools::writeFile($mailerPath, $content, "Custom mailer $mailerName");
     }
 }
