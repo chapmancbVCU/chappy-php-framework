@@ -48,14 +48,14 @@ class Email {
      * @param string $mailerName The name of the custom mailer class.
      * @return string The class' contents.
      */
-    public function mailerTemplate(string $mailerName): string {
+    public static function mailerTemplate(string $mailerName): string {
         $mailerName = Str::ucfirst($mailerName);
         return '<?php
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
 /**
- * Class for generating a reset password E-mail.
+ * Document class
  */
 class '.$mailerName.'Mailer extends AbstractMailer {
     /**
@@ -64,7 +64,7 @@ class '.$mailerName.'Mailer extends AbstractMailer {
      * @return array Data to be used by E-mail.
      */
     protected function getData(): array {
-        // Implement function
+        return [];
     }
 
     /**
@@ -73,7 +73,7 @@ class '.$mailerName.'Mailer extends AbstractMailer {
      * @return string The E-mail\'s subject.
      */
     protected function getSubject(): string {
-        // Implement function
+        return \'\';
     }
 
     /**
@@ -82,7 +82,7 @@ class '.$mailerName.'Mailer extends AbstractMailer {
      * @return string The template to be used.
      */
     protected function getTemplate(): string {
-        // Implement function
+        return \'\';
     }
 }      
 ';
