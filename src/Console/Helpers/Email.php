@@ -52,7 +52,7 @@ class Email {
         $mailerName = Str::ucfirst($mailerName);
         return '<?php
 declare(strict_types=1);
-namespace Core\Lib\Mail;
+namespace App\CustomMailers;
 
 /**
  * Document class
