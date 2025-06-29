@@ -33,6 +33,6 @@ class MakeMailerCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Email::makeEmail($input);
+        return Email::makeMailer($input);
     }
 }
