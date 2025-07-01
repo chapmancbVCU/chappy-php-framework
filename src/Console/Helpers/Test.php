@@ -275,7 +275,7 @@ class '.$testName.' extends TestCase {
      * @param string $testArg The name of the test class.
      * @return void
      */
-    public function singleFileWithinSuite(string $suite = self::UNIT_PATH, string $testArg) {
+    public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH, ) {
         if(file_exists($suite.$testArg.'.php')) {
             $command = ' '.$suite.$testArg.'.php';
             $this->runTest($command, $this->output);
