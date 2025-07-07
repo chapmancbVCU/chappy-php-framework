@@ -259,7 +259,8 @@ class Router {
             }
 
             // Prepare controller class with namespace
-            $controller = 'App\Controllers\\' . $controller;
+            $controller = class_exists('App\Controllers\\' . $controller) ? class_exists('App\Controllers\\' . $controller) : 
+                class_exists('Core\Controllers\\' . $controller);
             $dispatch = new $controller($controller_name, $action);
 
             // Execute action
