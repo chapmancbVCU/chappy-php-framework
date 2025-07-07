@@ -38,10 +38,10 @@ class Helper {
             $active = ($v == $currentPage) ? 'active' : ''; ?>
             <?php if ($k == 'separator'): ?>
               <li><hr class="dropdown-divider"></li>
-            <?php elseif ($v === '/auth/logout'): ?>
+            <?php elseif ($v === route('auth.logout')): ?>
               <li>
-                <form method="POST" action="/auth/logout" class="dropdown-item p-0 m-0">
-                  <?= \Core\FormHelper::csrfInput() ?>
+                <form method="POST" action="<?=route('auth.logout')?>" class="dropdown-item p-0 m-0">
+                  <?= csrf() ?>
                   <button type="submit" class="btn btn-link dropdown-item text-start w-100"><?=$k?></button>
                 </form>
               </li>
