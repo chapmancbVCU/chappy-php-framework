@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace Core\Models;
 use Core\Lib\Utilities\Env;
 use Core\{Cookie, Model, Session};
 
