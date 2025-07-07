@@ -10,14 +10,15 @@ use Core\Lib\Utilities\Env;
  * Handles operations related to views and its content.
  */
 class View extends stdClass {
+    private const APP_VIEW_PATH = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS;
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
+    private const FRAMEWORK_VIEW_PATH = CHAPPY_ROOT.DS.'views'.DS;
     protected $_head;
     protected $_layout;
     protected $_outputBuffer;
     protected $_siteTitle;
-    
     /**
      * Default constructor.
      */
@@ -78,11 +79,12 @@ class View extends stdClass {
      * @param string $viewName The name of the view we want to render.
      * @return void
      */
-    public function render(string $viewName): void {
+    public function render(string $viewName, bool $internal = false): void {
         $viewArray = explode('.', $viewName);
-        $viewString = implode(DS, $viewArray);
+        $viewString = implode(DS, $viewArray) . '.php';
 
-        $viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
+        $viewPath = !$internal ? self::APP_VIEW_PATH . $viewString : self::FRAMEWORK_VIEW_PATH . $viewString;
+        //$viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
         $layoutPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php';
         
         if (!file_exists($layoutPath)) {
