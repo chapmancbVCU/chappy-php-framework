@@ -10,9 +10,9 @@ class AuthService {
     /**
      * Processes login attempts
      *
-     * @param Input $request The request for the login
-     * @param Login $loginModel The login model
-     * @param string $username The user to be logged in
+     * @param Input $request The request for the login.
+     * @param Login $loginModel The login model.
+     * @param string $username The user to be logged in.
      * @return Login Model that handles logins.
      */
     public static function login(Input $request, Login $loginModel, string $username) : Login {
@@ -76,6 +76,30 @@ class AuthService {
         $user = Users::currentUser();
         if($user) {
             $user->logout();
+        }
+    }
+
+    /**
+     * Resets password
+     *
+     * @param Input $request The request for the password reset action.
+     * @param Users $user The user whose password we will reset.
+     * @return void
+     */
+    public static function passwordReset(Input $request, Users $user): void {
+        $user->assign($request->get(), Users::blackListedFormKeys);
+            
+        // PW mode on for correct validation.
+        $user->setChangePassword(true);
+        
+        // Allows password matching confirmation.
+        $user->confirm = $request->get('confirm');
+        
+        if($user->save()) {
+            // PW change mode off.
+            $user->reset_password = 0;
+            $user->setChangePassword(false);    
+            redirect('auth.login');
         }
     }
 
