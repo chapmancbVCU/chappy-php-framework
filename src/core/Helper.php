@@ -4,6 +4,7 @@ namespace Core;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use App\Models\{ProfileImages, Users};
+use core\Auth\AuthService;
 
 /**
  * Helper and utility functions.
@@ -25,7 +26,7 @@ class Helper {
     foreach($menu as $key => $val):
       $active = '';
       if($key == '%USERNAME%'){
-        $key = (Users::currentUser())? "Hello " .Users::currentUser()->fname : $key;
+        $key = (AuthService::currentUser())? "Hello " .AuthService::currentUser()->fname : $key;
         
       }
       if(Arr::isArray($val)): ?>
@@ -94,7 +95,7 @@ class Helper {
    * record.
    */
   public static function getProfileImage(): ProfileImages|false|null {
-    $user = Users::currentUser();
+    $user = AuthService::currentUser();
     if($user) {
       return ProfileImages::findCurrentProfileImage($user->id);
     }

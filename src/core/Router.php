@@ -4,6 +4,7 @@ namespace Core;
 use Exception;
 use Core\Session;
 use App\Models\Users;
+use core\Auth\AuthService;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
@@ -99,7 +100,7 @@ class Router {
         // Get current user
         if (Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
             $current_user_acls[] = "LoggedIn"; // Default to LoggedIn if user is authenticated
-            $currentUser = Users::currentUser();
+            $currentUser = AuthService::currentUser();
     
             if ($currentUser) {
                 $username = Str::lower($currentUser->username); // Normalize username for ACL matching
