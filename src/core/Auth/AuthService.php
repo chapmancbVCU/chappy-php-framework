@@ -67,7 +67,12 @@ class AuthService {
         return $loginModel;
     }
 
-    public static function logout() {
+    /**
+     * Logs user out.
+     *
+     * @return void
+     */
+    public static function logout(): void {
         $user = Users::currentUser();
         if($user) {
             $user->logout();
