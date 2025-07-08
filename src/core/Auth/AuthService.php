@@ -149,7 +149,7 @@ class AuthService {
         if($userSession && $userSession->user_id != '') {
             $user = Users::findById((int)$userSession->user_id);
             if($user) {
-                $user->login();
+                self::loginUser($user);
             }
             return $user;
         }
