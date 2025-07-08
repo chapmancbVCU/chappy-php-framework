@@ -1,5 +1,6 @@
 <?php
 namespace core\Auth;
+use Core\DB;
 use Core\Input;
 use Core\Cookie;
 use Core\Session;
@@ -32,7 +33,7 @@ class AuthService {
             $remember = $loginModel->getRememberMeChecked();
             $user->login_attempts = 0;
             $user->save();
-            $user->loginUser($user, $remember);
+            self::loginUser($user, $remember);
             redirect('home');
         }  else {
             if($user) {
@@ -80,29 +81,29 @@ class AuthService {
      * found in login form.  Default value is false.
      * @return void
      */
-    public function loginUser(Users $usr, bool $rememberMe = false): void {
+    public static function loginUser(Users $loginUser, bool $rememberMe = false): void {
         $user = Users::findFirst([
             'conditions' => 'username = ?',
-            'bind' => [$this->username]
+            'bind' => [$loginUser->username]
         ]);
 
         if (!$user) {
-            Logger::log("Failed login attempt: Username '{$usr->username}' not found.", 'warning');
+            Logger::log("Failed login attempt: Username '{$loginUser->username}' not found.", 'warning');
         }
 
         if ($user->inactive == 1) {
             Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", 'warning');
         }
 
-        Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $usr->id);
+        Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $loginUser->id);
         Logger::log("User {$user->id} ({$user->username}) logged in successfully.", 'info');
         
         if($rememberMe) {
             $hash = Str::md5(uniqid() . rand(0, 100));
             $user_agent = Session::uagent_no_version();
             Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000));
-            $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$usr->id];
-            Users::$_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$usr->id, $user_agent]);
+            $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$loginUser->id];
+            DB::getInstance()->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$loginUser->id, $user_agent]);
             $us = new UserSessions();
             $us->assign($fields);
             $us->save();
