@@ -77,6 +77,8 @@ class View extends stdClass {
      * Example input: home/index.
      * 
      * @param string $viewName The name of the view we want to render.
+     * @param bool $internal When true we use built in controllers under Core, 
+     * otherwise controllers defined by users are utilized.
      * @return void
      */
     public function render(string $viewName, bool $internal = false): void {
