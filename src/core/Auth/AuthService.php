@@ -1,10 +1,14 @@
 <?php
 namespace core\Auth;
 use Core\Input;
+use Core\Cookie;
+use Core\Session;
 use App\Models\Users;
 use Core\Models\Login;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
+use Core\Models\UserSessions;
 
 class AuthService {
     /**
@@ -28,7 +32,7 @@ class AuthService {
             $remember = $loginModel->getRememberMeChecked();
             $user->login_attempts = 0;
             $user->save();
-            $user->login($remember);
+            $user->loginUser($user, $remember);
             redirect('home');
         }  else {
             if($user) {
@@ -65,6 +69,45 @@ class AuthService {
         $user->login_attempts = $user->login_attempts + 1;
         $user->save();
         return $loginModel;
+    }
+
+    /**
+     * Creates a session when the user logs in.  A new record is added to the 
+     * user_sessions table and a cookie is created if remember me is 
+     * selected.
+     *
+     * @param bool $rememberMe Value obtained from remember me checkbox 
+     * found in login form.  Default value is false.
+     * @return void
+     */
+    public function loginUser(Users $usr, bool $rememberMe = false): void {
+        $user = Users::findFirst([
+            'conditions' => 'username = ?',
+            'bind' => [$this->username]
+        ]);
+
+        if (!$user) {
+            Logger::log("Failed login attempt: Username '{$usr->username}' not found.", 'warning');
+        }
+
+        if ($user->inactive == 1) {
+            Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", 'warning');
+        }
+
+        Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $usr->id);
+        Logger::log("User {$user->id} ({$user->username}) logged in successfully.", 'info');
+        
+        if($rememberMe) {
+            $hash = Str::md5(uniqid() . rand(0, 100));
+            $user_agent = Session::uagent_no_version();
+            Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000));
+            $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$usr->id];
+            Users::$_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$usr->id, $user_agent]);
+            $us = new UserSessions();
+            $us->assign($fields);
+            $us->save();
+            Logger::log("Remember Me token set for user {$user->id} ({$user->username}).", 'info');
+        }
     }
 
     /**
