@@ -104,9 +104,9 @@ class AuthService {
      * user_sessions table and a cookie is created if remember me is 
      * selected.
      *
+     * @param Users $loginUser The user to be logged in.
      * @param bool $rememberMe Value obtained from remember me checkbox 
      * found in login form.  Default value is false.
-     * @param Users $loginUser The user to be logged in.
      * @return void
      */
     public static function loginUser(Users $loginUser, bool $rememberMe = false): void {
