@@ -11,14 +11,17 @@ use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Core\Models\UserSessions;
 
+/**
+ * Supports authentication operations.
+ */
 class AuthService {
     /**
      * Checks if a user is logged in.
      *
-     * @return object|null An object containing information about current 
+     * @return Users|null An object containing information about current 
      * logged in user from users table.
      */
-    public static function currentUser() {
+    public static function currentUser(): ?Users {
         if(!isset(Users::$currentLoggedInUser) && Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
             Users::$currentLoggedInUser = Users::findById((int)Session::get(Env::get('CURRENT_USER_SESSION_NAME')));
         }
@@ -141,7 +144,7 @@ class AuthService {
      *
      * @return Users The user associated with previous session.
      */
-    public static function loginUserFromCookie() {
+    public static function loginUserFromCookie(): ?Users {
         $userSession = UserSessions::getFromCookie();
         if($userSession && $userSession->user_id != '') {
             $user = Users::findById((int)$userSession->user_id);
@@ -150,7 +153,7 @@ class AuthService {
             }
             return $user;
         }
-        return;
+        return null;
     }
 
     /**
@@ -170,9 +173,10 @@ class AuthService {
      * current logged in user is removed from the user_session table and the 
      * corresponding cookie is deleted.
      *
+     * @param User $user The user to be logged out.
      * @return bool Returns true if operation is successful.
      */
-    public static function logoutUser($user): bool {
+    public static function logoutUser(Users $user): bool {
         $userSession = UserSessions::getFromCookie();
         if($userSession) {
             $userSession->delete();
