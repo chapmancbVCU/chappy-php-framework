@@ -13,6 +13,19 @@ use Core\Models\UserSessions;
 
 class AuthService {
     /**
+     * Checks if a user is logged in.
+     *
+     * @return object|null An object containing information about current 
+     * logged in user from users table.
+     */
+    public static function currentUser() {
+        if(!isset(Users::$currentLoggedInUser) && Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
+            Users::$currentLoggedInUser = Users::findById((int)Session::get(Env::get('CURRENT_USER_SESSION_NAME')));
+        }
+        return Users::$currentLoggedInUser;
+    }
+
+    /**
      * Hashes password.
      *
      * @param string $password Original password submitted on a registration 
@@ -146,7 +159,7 @@ class AuthService {
      * @return void
      */
     public static function logout(): void {
-        $user = Users::currentUser();
+        $user = self::currentUser();
         if($user) {
             self::logoutUser($user);
         }
