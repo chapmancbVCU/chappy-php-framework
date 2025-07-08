@@ -86,7 +86,7 @@ class AuthService {
      * @return string The value of the ACL we are setting upon 
      * registration of a user.
      */
-    public static function setAclAtRegistration() {
+    public static function setAclAtRegistration(): string {
         if(Users::findTotal() == 0) {
             return '["Admin"]';
         }
