@@ -1,8 +1,10 @@
 <?php
 namespace core\Auth;
 
+/**
+ * Collection of functions for managing User's ACLs.
+ */
 class ACLService {
-
     /**
      * Add ACL to user's acl field as an element of an array.
      *
@@ -43,7 +45,6 @@ class ACLService {
         }
     }
 
-
     /**
      * Removes ACL from user's acl field array.
      *
@@ -63,7 +64,7 @@ class ACLService {
         }
         return true;
     }
-    
+
     /**
      * Sets ACL at registration.  If users table is empty the default 
      * value is Admin.  Otherwise, we set the value to "".
