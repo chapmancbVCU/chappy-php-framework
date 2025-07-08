@@ -15,7 +15,7 @@ class AuthService {
      * @param string $username The user to be logged in
      * @return Login Model that handles logins.
      */
-    public static function attemptLogin(Input $request, Login $loginModel, string $username) : Login {
+    public static function login(Input $request, Login $loginModel, string $username) : Login {
         $user = Users::findByUsername($username);
         if($user && password_verify($request->get('password'), $user->password)) {
             if($user->reset_password == 1) {
