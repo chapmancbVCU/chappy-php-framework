@@ -25,10 +25,8 @@ class ACL extends Model {
     public function beforeSave(): void {
         if ($this->isAssignedToUsers()) {
             $this->addErrorMessage('acl', "Cannot update '{$this->acl}', assigned to one or more users.");
-            //return false;
         }
         $this->timeStamps();
-        //return true;
     }
 
     /**
