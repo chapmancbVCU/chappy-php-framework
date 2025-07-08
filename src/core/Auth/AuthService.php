@@ -13,6 +13,17 @@ use Core\Models\UserSessions;
 
 class AuthService {
     /**
+     * Hashes password.
+     *
+     * @param string $password Original password submitted on a registration 
+     * or update password form.
+     * @return void
+     */
+    public function hashPassword($password) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+    }
+    
+    /**
      * Processes login attempts
      *
      * @param Input $request The request for the login.
