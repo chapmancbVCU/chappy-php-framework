@@ -53,7 +53,7 @@ class AuthService {
      * @return Login $loginModel The Login model after login in attempt test 
      * and session messages are assigned.
      */
-    public static function loginAttempts($user, $loginModel) {
+    public static function loginAttempts(Users $user, Login $loginModel): Login {
         if($user->login_attempts >= Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $user->inactive = 1; 
         }
@@ -80,7 +80,7 @@ class AuthService {
     }
 
     /**
-     * Resets password
+     * Resets password.
      *
      * @param Input $request The request for the password reset action.
      * @param Users $user The user whose password we will reset.
