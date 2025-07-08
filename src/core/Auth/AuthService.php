@@ -19,10 +19,10 @@ class AuthService {
      * or update password form.
      * @return void
      */
-    public function hashPassword($password) {
-        $password = password_hash($password, PASSWORD_DEFAULT);
+    public static function hashPassword(string $password): string {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
-    
+
     /**
      * Processes login attempts
      *
