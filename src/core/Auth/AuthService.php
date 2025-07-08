@@ -79,6 +79,7 @@ class AuthService {
      *
      * @param bool $rememberMe Value obtained from remember me checkbox 
      * found in login form.  Default value is false.
+     * @param Users $loginUser The user to be logged in.
      * @return void
      */
     public static function loginUser(Users $loginUser, bool $rememberMe = false): void {
@@ -136,8 +137,29 @@ class AuthService {
     public static function logout(): void {
         $user = Users::currentUser();
         if($user) {
-            $user->logout();
+            self::logoutUser($user);
         }
+    }
+
+    /**
+     * Perform logout operation on current logged in user.  The record for the 
+     * current logged in user is removed from the user_session table and the 
+     * corresponding cookie is deleted.
+     *
+     * @return bool Returns true if operation is successful.
+     */
+    public static function logoutUser($user): bool {
+        $userSession = UserSessions::getFromCookie();
+        if($userSession) {
+            $userSession->delete();
+        }
+        Session::delete(Env::get('CURRENT_USER_SESSION_NAME'));
+        if(Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
+            Cookie::delete(Env::get('REMEMBER_ME_COOKIE_NAME'));
+        }
+        $user::$currentLoggedInUser = null;
+        Logger::log("User {$user->id} ({$user->username}) logged out.", 'info');
+        return true;
     }
 
     /**
