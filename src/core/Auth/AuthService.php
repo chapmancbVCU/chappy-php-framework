@@ -68,6 +68,23 @@ class AuthService {
     }
 
     /**
+     * Logs in user from cookie.
+     *
+     * @return Users The user associated with previous session.
+     */
+    public static function loginUserFromCookie() {
+        $userSession = UserSessions::getFromCookie();
+        if($userSession && $userSession->user_id != '') {
+            $user = Users::findById((int)$userSession->user_id);
+            if($user) {
+                $user->login();
+            }
+            return $user;
+        }
+        return;
+    }
+
+    /**
      * Logs user out.
      *
      * @return void

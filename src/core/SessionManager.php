@@ -4,7 +4,7 @@ namespace Core;
 
 use Core\Cookie;
 use Core\Session;
-use App\Models\Users;
+use core\Auth\AuthService;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Core\FormHelper;
@@ -20,7 +20,7 @@ class SessionManager {
      */
     public static function initialize(): void {
         if (!Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) && Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
-            $user = Users::loginUserFromCookie();
+            $user = AuthService::loginUserFromCookie();
             
             if ($user) {
                 if ($user->inactive == 1) {
