@@ -77,15 +77,15 @@ class View extends stdClass {
      * Example input: home/index.
      * 
      * @param string $viewName The name of the view we want to render.
-     * @param bool $internal When true we use built in controllers under Core, 
+     * @param bool $frameworkViewPath When true we use built in controllers under Core, 
      * otherwise controllers defined by users are utilized.
      * @return void
      */
-    public function render(string $viewName, bool $internal = false): void {
+    public function render(string $viewName, bool $frameworkViewPath = false): void {
         $viewArray = explode('.', $viewName);
         $viewString = implode(DS, $viewArray) . '.php';
 
-        $viewPath = !$internal ? self::APP_VIEW_PATH . $viewString : self::FRAMEWORK_VIEW_PATH . $viewString;
+        $viewPath = !$frameworkViewPath ? self::APP_VIEW_PATH . $viewString : self::FRAMEWORK_VIEW_PATH . $viewString;
         //$viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
         $layoutPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php';
         
