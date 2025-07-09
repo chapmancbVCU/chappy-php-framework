@@ -6,7 +6,7 @@ use Core\{Cookie, Model, Session};
 /**
  * Supports operations of the User Session model.  Extends the Model class.
  */
-class UserSessions extends Model{
+final class UserSessions extends Model{
     public $id;
     public $session;
     protected static $_table = 'user_sessions';

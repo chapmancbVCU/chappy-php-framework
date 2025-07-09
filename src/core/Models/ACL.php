@@ -6,7 +6,7 @@ use Core\Validators\{RequiredValidator, UniqueValidator};
 /**
  * Describes ACL model.
  */
-class ACL extends Model {
+final class ACL extends Model {
     public $acl;
     public const blackList = ['id', 'deleted'];
     public $created_at;

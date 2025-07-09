@@ -6,7 +6,7 @@ use Core\Validators\RequiredValidator;
 /**
  * Extends the Model class.  Supports functions for the Login model.
  */
-class Login extends Model {
+final class Login extends Model {
     public $password;
     public $remember_me;
     protected static $_table = 'tmp_fake';
