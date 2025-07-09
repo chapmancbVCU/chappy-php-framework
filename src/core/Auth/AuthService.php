@@ -4,12 +4,13 @@ use Core\DB;
 use Core\Input;
 use Core\Cookie;
 use Core\Session;
-use App\Models\Users;
+use App\Models\{ProfileImages, Users};
 use Core\Models\Login;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Core\Models\UserSessions;
+use Core\Lib\FileSystem\Uploads;
 
 /**
  * Supports authentication operations.
@@ -212,5 +213,16 @@ class AuthService {
             $user->setChangePassword(false);    
             redirect('auth.login');
         }
+    }
+
+    public static function profileImageUpload(Users $user): ?Uploads{
+        return Uploads::handleUpload(
+            $_FILES['profileImage'],
+            ProfileImages::class,
+            ROOT . DS,
+            "5mb",
+            $user,
+            'profileImage'
+        );
     }
 }
