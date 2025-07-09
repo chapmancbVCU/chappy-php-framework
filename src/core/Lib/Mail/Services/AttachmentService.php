@@ -4,7 +4,7 @@ namespace Core\Lib\Mail\Services;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
 
-class AttachmentService {
+final class AttachmentService {
 
     /**
      * Generates upload object for attachments.
