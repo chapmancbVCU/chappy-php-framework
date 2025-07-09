@@ -6,7 +6,7 @@ use Core\Lib\Utilities\Arr;
 /**
  * Supports CRUD operations on profile image records.
  */
-class ProfileImages extends Model {
+final class ProfileImages extends Model {
     protected static $allowedFileTypes = ['image/gif', 'image/jpeg', 'image/png'];
     public $deleted = 0;
     public $id;
