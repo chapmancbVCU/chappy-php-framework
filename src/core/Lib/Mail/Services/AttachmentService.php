@@ -6,6 +6,13 @@ use Core\Models\EmailAttachments;
 
 class AttachmentService {
 
+    /**
+     * Generates upload object for attachments.
+     *
+     * @param EmailAttachments $attachment The attachment to upload.
+     * @return Uploads|null The upload object if the attachment is new, 
+     * otherwise we return null.
+     */
     public static function attachmentUpload(EmailAttachments $attachment): ?Uploads {
         if($attachment->isNew()) {
             $uploads = Uploads::handleUpload(
@@ -21,12 +28,17 @@ class AttachmentService {
         return null;
     }
 
+    /**
+     * Deletes an attachment
+     *
+     * @param EmailAttachments $attachment The attachment we want to delete 
+     * from the filesystem.
+     * @return void
+     */
     public static function deleteAttachment(EmailAttachments $attachment): void {
         if($attachment && file_exists($attachment->path)) {
             unlink($attachment->path);
             $attachment->delete();
         }
     }
-
-    
 }
