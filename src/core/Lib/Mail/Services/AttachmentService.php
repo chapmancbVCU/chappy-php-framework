@@ -5,6 +5,9 @@ use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
 
+/**
+ * Service for managing attachment uploads and deletion.
+ */
 final class AttachmentService {
 
     /**
