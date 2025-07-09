@@ -56,7 +56,15 @@ final class AttachmentService {
             $attachment->attachment_name;
     }
 
-    public static function processAttachment(EmailAttachments $attachment, Uploads $upload) {
+    /**
+     * Sets fields for attachment record based on file information and 
+     * performs uploads.
+     *
+     * @param EmailAttachments $attachment The attachment to process and upload.
+     * @param Uploads|null $upload The handler for the upload of this attachment.
+     * @return void
+     */
+    public static function processAttachment(EmailAttachments $attachment, ?Uploads $upload = null): void {
         if($upload) {
             $file = $upload->getFiles();
             $path = EmailAttachments::$_uploadPath . DS;
