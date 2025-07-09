@@ -8,7 +8,7 @@ use Core\Validators\RequiredValidator as Required;
 /**
  * Implements features of the EmailAttachments class.
  */
-class EmailAttachments extends Model {
+final class EmailAttachments extends Model {
 
     // Fields you don't want saved on form submit
     // public const blackList = [];
