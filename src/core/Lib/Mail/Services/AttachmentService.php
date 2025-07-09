@@ -68,16 +68,21 @@ final class AttachmentService {
      * @return void
      */
     public static function processAttachment(EmailAttachments $attachment, ?Uploads $upload = null): void {
-        if($upload) {
-            $file = $upload->getFiles();
-            $path = EmailAttachments::$_uploadPath . DS;
-            $uploadName = $upload->generateUploadFilename($file[0]['name']);
-            $attachment->name =$uploadName;
-            $attachment->path = $path . $uploadName;
-            $attachment->size = $file[0]['size'];
-            $attachment->mime_type = Attachments::mime(pathinfo($file[0]['name'], PATHINFO_EXTENSION));
-            $upload->upload($path, $uploadName, $file[0]['tmp_name']);
-            $attachment->save();
-        }
+        if (!$upload || !$attachment) return;
+
+        $file = $upload->getFiles();
+        if(empty($file)) return;
+
+        $file = reset($file);
+        if(!$file) return;
+
+        $path = EmailAttachments::$_uploadPath . DS;
+        $uploadName = $upload->generateUploadFilename($file['name']);
+        $attachment->name =$uploadName;
+        $attachment->path = $path . $uploadName;
+        $attachment->size = $file['size'];
+        $attachment->mime_type = Attachments::mime(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $upload->upload($path, $uploadName, $file['tmp_name']);
+        $attachment->save();
     }
 }
