@@ -10,10 +10,13 @@ use Core\Lib\Utilities\Env;
  * Handles operations related to views and its content.
  */
 class View extends stdClass {
-    private const APP_VIEW_PATH = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS;
+    private const APP_COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'components'.DS;
+    private const APP_LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'layouts'.DS;
+    private const APP_VIEW_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS;
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
+    private const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'layouts'.DS;
     private const FRAMEWORK_VIEW_PATH = CHAPPY_ROOT.DS.'views'.DS;
     protected $_head;
     protected $_layout;
@@ -34,7 +37,7 @@ class View extends stdClass {
      * @return void
      */
     public function component(string $component): void {
-        $componentPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
+        $componentPath = self::APP_COMPONENT_PATH . $component . '.php';
         
         if(!file_exists($componentPath)) {
             throw new Exception('The component "' . $component . '" does not exist');
@@ -81,14 +84,16 @@ class View extends stdClass {
      * otherwise controllers defined by users are utilized.
      * @return void
      */
-    public function render(string $viewName, bool $frameworkViewPath = false): void {
+    public function render(string $viewName, bool $frameworkViewPath = false, bool $frameworkLayoutPath = false): void {
         $viewArray = explode('.', $viewName);
         $viewString = implode(DS, $viewArray) . '.php';
+        $layoutString = $this->_layout . '.php';
 
         $viewPath = !$frameworkViewPath ? self::APP_VIEW_PATH . $viewString : self::FRAMEWORK_VIEW_PATH . $viewString;
-        //$viewPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . $viewString . '.php';
-        $layoutPath = CHAPPY_BASE_PATH . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php';
-        
+
+        $layoutPath = !$frameworkLayoutPath ? self::APP_LAYOUT_PATH . $layoutString :
+            self::FRAMEWORK_LAYOUT_PATH . $layoutString;
+            
         if (!file_exists($layoutPath)) {
             throw new Exception('The layout "' . $this->_layout . '" does not exist');
         }
