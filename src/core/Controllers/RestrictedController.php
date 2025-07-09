@@ -26,4 +26,13 @@ class RestrictedController extends Controller {
     public function indexAction(): void {
         $this->view->render('restricted.index', true);
     }
+
+    /**
+     * Runs when the object is constructed.
+     *
+     * @return void
+     */
+    public function onConstruct(): void {
+        $this->view->setLayout('internal');
+    }
 }
