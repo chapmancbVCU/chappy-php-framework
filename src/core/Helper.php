@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace Core;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
-use App\Models\{ProfileImages, Users};
+use Core\Models\ProfileImages;
 use core\Auth\AuthService;
 
 /**
