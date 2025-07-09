@@ -1,6 +1,7 @@
 <?php
 namespace Core\Lib\Mail\Services;
 
+use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
 
@@ -15,7 +16,7 @@ final class AttachmentService {
      */
     public static function attachmentUpload(EmailAttachments $attachment): ?Uploads {
         if($attachment->isNew()) {
-            $uploads = Uploads::handleUpload(
+            $upload = Uploads::handleUpload(
                 $_FILES['attachment_name'],
                 EmailAttachments::class,
                 ROOT.DS,
@@ -23,7 +24,7 @@ final class AttachmentService {
                 $attachment,
                 'attachment_name'
             );
-            return $uploads;
+            return $upload;
         }
         return null;
     }
@@ -53,5 +54,19 @@ final class AttachmentService {
     public static function name(EmailAttachments $attachment, ?string $attachmentName = null): string {
         return ($attachment->isNew()) ? htmlspecialchars($attachmentName) :
             $attachment->attachment_name;
+    }
+
+    public static function processAttachment(EmailAttachments $attachment, Uploads $upload) {
+        if($upload) {
+            $file = $upload->getFiles();
+            $path = EmailAttachments::$_uploadPath . DS;
+            $uploadName = $upload->generateUploadFilename($file[0]['name']);
+            $attachment->name =$uploadName;
+            $attachment->path = $path . $uploadName;
+            $attachment->size = $file[0]['size'];
+            $attachment->mime_type = Attachments::mime(pathinfo($file[0]['name'], PATHINFO_EXTENSION));
+            $upload->upload($path, $uploadName, $file[0]['tmp_name']);
+            $attachment->save();
+        }
     }
 }
