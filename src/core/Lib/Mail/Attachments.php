@@ -4,7 +4,7 @@ namespace Core\Lib\Mail;
 
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Mime\Email;
-use App\Models\EmailAttachments;
+use Core\Models\EmailAttachments;
 
 /**
  * Supports attachment processing for MailerService.
