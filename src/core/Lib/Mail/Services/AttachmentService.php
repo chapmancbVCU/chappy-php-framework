@@ -41,4 +41,17 @@ class AttachmentService {
             $attachment->delete();
         }
     }
+
+    /**
+     * Sets name for the attachment.
+     *
+     * @param EmailAttachments $attachment The attachment whose name is being 
+     * set.
+     * @param string|null $attachmentName The name from POST.
+     * @return string The attachment's name.
+     */
+    public static function name(EmailAttachments $attachment, ?string $attachmentName = null): string {
+        return ($attachment->isNew()) ? htmlspecialchars($attachmentName) :
+            $attachment->attachment_name;
+    }
 }
