@@ -79,6 +79,7 @@ final class AttachmentService {
         $attachment->save();
         if (!$upload || !$attachment) return;
 
+        // Process attachment, upload, and save record again with remaining fields set.
         $file = $upload->getFiles();
         if(empty($file)) return;
 
@@ -93,6 +94,5 @@ final class AttachmentService {
         $attachment->mime_type = Attachments::mime(pathinfo($file['name'], PATHINFO_EXTENSION));
         $upload->upload($path, $uploadName, $file['tmp_name']);
         $attachment->save();
-            
     }
 }
