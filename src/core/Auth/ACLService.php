@@ -120,6 +120,27 @@ class ACLService {
         return '[""]';
     }
 
+    /**
+     * Returns array of unused ACLs.
+     *
+     * @return array $unUsedAcls An array of unused ACLs.
+     */
+    public static function unUsedACLs(): array {
+        $acls = ACL::getACLs();
+        $unUsedAcls = [];
+        foreach($acls as $acl) {
+            if(!$acl->isAssignedToUsers()) {
+                Arr::push($unUsedAcls, $acl);
+            }
+        }
+        return $unUsedAcls;
+    }
+
+    /**
+     * Returns array of used ACLs.
+     *
+     * @return array $usedACLs An array of used ACLs.
+     */
     public static function usedACLs(): array {
         $acls = ACL::getACLs();
         $usedAcls = [];
@@ -131,14 +152,4 @@ class ACLService {
         return $usedAcls;
     }
 
-    public static function unUsedACLs(): array {
-        $acls = ACL::getACLs();
-        $unUsedAcls = [];
-        foreach($acls as $acl) {
-            if(!$acl->isAssignedToUsers()) {
-                Arr::push($unUsedAcls, $acl);
-            }
-        }
-        return $unUsedAcls;
-    }
 }
