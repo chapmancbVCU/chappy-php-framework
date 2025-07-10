@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 namespace Console\Helpers;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
 
