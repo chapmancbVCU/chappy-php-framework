@@ -22,6 +22,12 @@ final class DashboardService {
         ));
     }
 
+    /**
+     * Assist in toggling reset_password field.
+     *
+     * @param Input $request The request.
+     * @return integer 1 if reset_password is 'on', otherwise we return 0.
+     */
     public static function toggleResetPassword(Input $request): int {
         return ($request->get('reset_password') == 'on') ? 1 : 0;
     }
