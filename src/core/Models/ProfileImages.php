@@ -82,9 +82,10 @@ final class ProfileImages extends Model {
      *
      * @param int $user_id The id of the user whose profile image we want to 
      * retrieve.
-     * @return ProfileImages The model for profile images.
+     * @return ProfileImages|bool The model for profile images if images 
+     * exits, otherwise we return false.
      */
-    public static function findCurrentProfileImage(int $user_id): ProfileImages {
+    public static function findCurrentProfileImage(int $user_id): ProfileImages|bool {
         return self::findFirst([
             'conditions' => 'user_id = ? AND sort = 0',
             'bind' => ['user_id' => $user_id]
