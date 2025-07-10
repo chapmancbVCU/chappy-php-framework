@@ -1,5 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace core\Auth;
+
+use Core\Lib\Utilities\Arr;
+use App\Models\Users;
 
 /**
  * Collection of functions for managing User's ACLs.
@@ -13,8 +17,8 @@ class ACLService {
      * @param string $acl The name of the new ACL.
      * @return bool True or false depending on success of operation.
      */
-    public static function addAcl($user_id,$acl) {
-        $user = self::findById($user_id);
+    public static function addAcl(int $user_id, string $acl): bool {
+        $user = Users::findById($user_id);
         if(!$user) return false;
         $acls = $user->acls();
         if(!in_array($acl, $acls)){
@@ -50,10 +54,10 @@ class ACLService {
      *
      * @param int $user_id The id of the user whose acl field we want to modify.
      * @param string $acl The name of the ACL to be removed.
-     * @return void
+     * @return bool True if  user is found, otherwise we  return false.
      */
-    public static function removeAcl($user_id, $acl) {
-        $user = self::findById($user_id);
+    public static function removeAcl(int $user_id, string $acl): bool {
+        $user = Users::findById($user_id);
         if(!$user) return false;
         $acls = $user->acls();
         if(in_array($acl,$acls)){

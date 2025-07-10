@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Models;
 use Core\Model;
 use Core\Lib\Utilities\Arr;
@@ -36,7 +37,7 @@ final class ProfileImages extends Model {
      * @return bool Result of delete operation.  True if success, otherwise 
      * false.
      */
-    public static function deleteById($id) {
+    public static function deleteById(int $id): bool {
         $image = self::findById($id);
         $deleted = false;
         if($image) {
@@ -56,11 +57,11 @@ final class ProfileImages extends Model {
      * to permanently image file. 
      *
      * @param int $user_id The user id for user whose image we want to delete.
-     * @param boolean $unlink Set to true if you want to unlink or false to 
+     * @param bool $unlink Set to true if you want to unlink or false to 
      * preserve image in storage.
      * @return void
      */
-    public static function deleteImages($user_id, $unlink = false) {
+    public static function deleteImages(int $user_id, bool $unlink = false): void {
         $images = self::find([
             'conditions' => 'user_id = ?',
             'bind' => [$user_id]
@@ -81,10 +82,9 @@ final class ProfileImages extends Model {
      *
      * @param int $user_id The id of the user whose profile image we want to 
      * retrieve.
-     * @return bool|array The associative array for the profile image's 
-     * record.
+     * @return ProfileImages The model for profile images.
      */
-    public static function findCurrentProfileImage($user_id) {
+    public static function findCurrentProfileImage(int $user_id): ProfileImages {
         return self::findFirst([
             'conditions' => 'user_id = ? AND sort = 0',
             'bind' => ['user_id' => $user_id]
@@ -99,7 +99,7 @@ final class ProfileImages extends Model {
      * @return bool|array The associative array of profile image records for a 
      * user.
      */
-    public static function findByUserId($user_id) {
+    public static function findByUserId(int $user_id): bool|array {
         return self::find([
             'conditions' => 'user_id = ?',
             'bind' => ['user_id' => $user_id],
@@ -112,7 +112,7 @@ final class ProfileImages extends Model {
      *
      * @return array $allowedFileTypes The array of allowed file types.
      */
-    public static function getAllowedFileTypes() {
+    public static function getAllowedFileTypes(): array {
         return self::$allowedFileTypes;
     }
 
@@ -122,7 +122,7 @@ final class ProfileImages extends Model {
      * @return int $maxAllowedFileSize The max file size for an individual 
      * file.
      */
-    public static function getMaxAllowedFileSize() {
+    public static function getMaxAllowedFileSize(): int {
         return self::$maxAllowedFileSize;
     }
     
@@ -135,7 +135,7 @@ final class ProfileImages extends Model {
      * image.
      * @return void
      */
-    public static function updateSortByUserId($user_id, $sortOrder = []) {
+    public static function updateSortByUserId(int $user_id, array $sortOrder = []): void {
         $images = self::findByUserId($user_id);
         $i = 0;
         foreach($images as $image) {
@@ -156,7 +156,7 @@ final class ProfileImages extends Model {
      * upload.
      * @return void
      */
-    public static function uploadProfileImage($user_id, $uploads) {
+    public static function uploadProfileImage(int $user_id, Uploads $uploads): void {
         $lastImage = self::findFirst([
             'conditions' => "user_id = ?",
             'bind' => [$user_id],
