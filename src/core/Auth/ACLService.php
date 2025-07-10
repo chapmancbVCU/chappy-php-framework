@@ -33,7 +33,18 @@ class ACLService {
         }
         return Arr::map($acls, 'strval');
     }
-    
+
+    /**
+     * Handles ACLs from post whether or not $_POST['acls'] has elements 
+     * or is an empty array.  It returns an array in either case.
+     *
+     * @param array|null $acls The ACLs from post or null.
+     * @return array An array containing acls.
+     */
+    public static function aclsFromPost(?array $acls = null): array {
+        return ACLService::aclToArray($acls ?? []);
+    }
+
     /**
      * Add ACL to user's acl field as an element of an array.
      *
