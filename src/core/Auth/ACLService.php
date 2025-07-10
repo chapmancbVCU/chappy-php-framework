@@ -42,7 +42,7 @@ class ACLService {
      * @return array An array containing acls.
      */
     public static function aclsFromPost(?array $acls = null): array {
-        return ACLService::aclToArray($acls ?? []);
+        return self::aclToArray($acls ?? []);
     }
 
     /**
