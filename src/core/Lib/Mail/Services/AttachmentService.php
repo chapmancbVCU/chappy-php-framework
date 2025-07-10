@@ -71,28 +71,28 @@ final class AttachmentService {
      */
     public static function processAttachment(EmailAttachments $attachment, Input $request): void {
         $upload = self::attachmentUpload($attachment);
-
         $attachment->description = $request->get('description');
         $attachment->attachment_name = self::name($attachment);
         $attachment->user_id = AuthService::currentUser()->id;
+
+        // Save record then return if no upload to process when updating record.
         $attachment->save();
+        if (!$upload || !$attachment) return;
+
+        $file = $upload->getFiles();
+        if(empty($file)) return;
+
+        $file = reset($file);
+        if(!$file) return;
         
-        if($attachment->validationPassed()) {
-            if (!$upload || !$attachment) return;
-            $file = $upload->getFiles();
-            if(empty($file)) return;
-    
-            $file = reset($file);
-            if(!$file) return;
-            $path = EmailAttachments::$_uploadPath . DS;
-            $uploadName = $upload->generateUploadFilename($file['name']);
-            $attachment->name =$uploadName;
-            $attachment->path = $path . $uploadName;
-            $attachment->size = $file['size'];
-            $attachment->mime_type = Attachments::mime(pathinfo($file['name'], PATHINFO_EXTENSION));
-            $upload->upload($path, $uploadName, $file['tmp_name']);
-            $attachment->save();
-            redirect('admindashboard.attachments');
-        }
+        $path = EmailAttachments::$_uploadPath . DS;
+        $uploadName = $upload->generateUploadFilename($file['name']);
+        $attachment->name =$uploadName;
+        $attachment->path = $path . $uploadName;
+        $attachment->size = $file['size'];
+        $attachment->mime_type = Attachments::mime(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $upload->upload($path, $uploadName, $file['tmp_name']);
+        $attachment->save();
+            
     }
 }
