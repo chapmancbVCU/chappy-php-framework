@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace core\Auth;
 use Core\DB;
 use Core\Input;

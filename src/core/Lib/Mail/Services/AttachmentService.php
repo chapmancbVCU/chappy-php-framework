@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Core\Lib\Mail\Services;
 
 use Core\Lib\Mail\Attachments;
