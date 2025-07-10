@@ -21,6 +21,10 @@ final class DashboardService {
         ));
     }
 
+    public static function toggleResetPassword(Input $request): int {
+        return ($request->get('reset_password') == 'on') ? 1 : 0;
+    }
+
     /**
      * Returns query number of users excluding current.
      *
