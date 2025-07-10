@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail\Services;
 
-use Core\Input;
-use core\Auth\AuthService;
 use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
@@ -57,8 +55,8 @@ final class AttachmentService {
      * @param string|null $attachmentName The name from POST.
      * @return string The attachment's name.
      */
-    public static function name(EmailAttachments $attachment): string {
-        return ($attachment->isNew()) ? htmlspecialchars($_FILES['attachment_name']['name']) :
+    public static function name(EmailAttachments $attachment, ?string $attachmentName = null): string {
+        return ($attachment->isNew()) ? htmlspecialchars($attachmentName) :
             $attachment->attachment_name;
     }
 
@@ -67,34 +65,26 @@ final class AttachmentService {
      * performs uploads.
      *
      * @param EmailAttachments $attachment The attachment to process and upload.
-     * @param Input $request The request for this update or edit.
+     * @param Uploads|null $upload The handler for the upload of this attachment.
      * @return void
      */
-    public static function processAttachment(EmailAttachments $attachment, Input $request): void {
-        $upload = self::attachmentUpload($attachment);
-
-        if (!$upload || !$attachment) return;
+    public static function processAttachment(EmailAttachments $attachment, ?Uploads $upload = null): void {
         
-        $attachment->description = $request->get('description');
-        $attachment->attachment_name = self::name($attachment);
-        $attachment->user_id = AuthService::currentUser()->id;
-        $attachment->save();
+        if (!$upload || !$attachment) return;
 
-        if($attachment->validationPassed()) {
-            $file = $upload->getFiles();
-            if(empty($file)) return;
-    
-            $file = reset($file);
-            if(!$file) return;
-    
-            $path = EmailAttachments::$_uploadPath . DS;
-            $uploadName = $upload->generateUploadFilename($file['name']);
-            $attachment->name =$uploadName;
-            $attachment->path = $path . $uploadName;
-            $attachment->size = $file['size'];
-            $attachment->mime_type = Attachments::mime(pathinfo($file['name'], PATHINFO_EXTENSION));
-            $upload->upload($path, $uploadName, $file['tmp_name']);
-            $attachment->save();
-        }
+        $file = $upload->getFiles();
+        if(empty($file)) return;
+
+        $file = reset($file);
+        if(!$file) return;
+
+        $path = EmailAttachments::$_uploadPath . DS;
+        $uploadName = $upload->generateUploadFilename($file['name']);
+        $attachment->name =$uploadName;
+        $attachment->path = $path . $uploadName;
+        $attachment->size = $file['size'];
+        $attachment->mime_type = Attachments::mime(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $upload->upload($path, $uploadName, $file['tmp_name']);
+        $attachment->save();
     }
 }
