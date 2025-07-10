@@ -57,8 +57,8 @@ final class AttachmentService {
      * @param string|null $attachmentName The name from POST.
      * @return string The attachment's name.
      */
-    public static function name(EmailAttachments $attachment, ?string $attachmentName = null): string {
-        return ($attachment->isNew()) ? htmlspecialchars($attachmentName) :
+    public static function name(EmailAttachments $attachment): string {
+        return ($attachment->isNew()) ? htmlspecialchars($_FILES['attachment_name']['name']) :
             $attachment->attachment_name;
     }
 
@@ -67,19 +67,20 @@ final class AttachmentService {
      * performs uploads.
      *
      * @param EmailAttachments $attachment The attachment to process and upload.
-     * @param Uploads|null $upload The handler for the upload of this attachment.
+     * @param Input $request The request for this update or edit.
      * @return void
      */
     public static function processAttachment(EmailAttachments $attachment, Input $request): void {
         $upload = self::attachmentUpload($attachment);
+
+        if (!$upload || !$attachment) return;
+        
         $attachment->description = $request->get('description');
-        $attachment->attachment_name = self::name($attachment, $_FILES['attachment_name']['name']);
+        $attachment->attachment_name = self::name($attachment);
         $attachment->user_id = AuthService::currentUser()->id;
         $attachment->save();
 
         if($attachment->validationPassed()) {
-            if (!$upload || !$attachment) return;
-    
             $file = $upload->getFiles();
             if(empty($file)) return;
     
