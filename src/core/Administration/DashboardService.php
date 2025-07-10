@@ -23,6 +23,16 @@ final class DashboardService {
     }
 
     /**
+     * Assist in toggling inactive field.
+     *
+     * @param Input $request The request.
+     * @return integer 1 if inactive is 'on', otherwise we return 0.
+     */
+    public static function toggleAccountStatus(Input $request) {
+        return ($request->get('inactive') == 'on') ? 1 : 0;
+    }
+
+    /**
      * Assist in toggling reset_password field.
      *
      * @param Input $request The request.
