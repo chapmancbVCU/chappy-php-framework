@@ -10,6 +10,18 @@ use App\Models\Users;
  */
 class ACLService {
     /**
+     * Returns an array containing access control list information.  When the 
+     * $acl instance variable is empty an empty array is returned.
+     *
+     * @param Users $user The user whose ACLs we want to use.
+     * @return array The array containing access control list information.
+     */
+    public static function aclsForUser(Users $user) {
+        if(empty($user->acl)) return [];
+        return json_decode($user->acl, true);
+    }
+    
+    /**
      * Add ACL to user's acl field as an element of an array.
      *
      * @param int $user_id The id of the user whose acl field we want to 
@@ -20,7 +32,7 @@ class ACLService {
     public static function addAcl(int $user_id, string $acl): bool {
         $user = Users::findById($user_id);
         if(!$user) return false;
-        $acls = $user->acls();
+        $acls = self::aclsForUser($user);
         if(!in_array($acl, $acls)){
             $acls[] = $acl;
             $user->acl = json_encode($acls);
@@ -59,7 +71,7 @@ class ACLService {
     public static function removeAcl(int $user_id, string $acl): bool {
         $user = Users::findById($user_id);
         if(!$user) return false;
-        $acls = $user->acls();
+        $acls = self::aclsForUser($user);
         if(in_array($acl,$acls)){
             $key = Arr::search($acls, $acl);
             unset($acls[$key]);

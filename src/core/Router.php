@@ -4,6 +4,7 @@ namespace Core;
 use Exception;
 use Core\Session;
 use App\Models\Users;
+use core\Auth\ACLService;
 use core\Auth\AuthService;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
@@ -104,7 +105,7 @@ class Router {
     
             if ($currentUser) {
                 $username = Str::lower($currentUser->username); // Normalize username for ACL matching
-                $userAcls = $currentUser->acls();
+                $userAcls = ACLService::aclsForUser($currentUser);
     
                 // If the user has an ACL defined in the ACL file, add it
                 if (isset($acl[$username])) {
