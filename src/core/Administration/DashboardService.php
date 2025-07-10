@@ -7,19 +7,29 @@ use App\Models\Users;
 use Core\Lib\Pagination\Pagination;
 
 final class DashboardService {
-
-    public static function allUsersExceptCurrent() {
-        return Users::findTotal([
-            'conditions' => 'id != ?',
-            'bind' => [AuthService::currentUser()->id]
-        ]);
-    }
-
-    public static function paginateUsers(Pagination $pagination) {
+    /**
+     * Returns list of paginated users.
+     *
+     * @param Pagination $pagination Instance of Pagination class
+     * @return array An array of paginated users.
+     */
+    public static function paginateUsers(Pagination $pagination): array {
         return Users::find($pagination->paginationParams(
             'id != ?',
             [AuthService::currentUser()->id],
             'created_at DESC'
         ));
+    }
+
+    /**
+     * Returns query number of users excluding current.
+     *
+     * @return int The number of users except current.
+     */
+    public static function totalUserCountExceptCurrent(): int {
+        return Users::findTotal([
+            'conditions' => 'id != ?',
+            'bind' => [AuthService::currentUser()->id]
+        ]);
     }
 }
