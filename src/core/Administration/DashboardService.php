@@ -2,8 +2,9 @@
 declare(strict_types=1);
 namespace Core\Administration;
 
-use core\Auth\AuthService;
+use Core\Input;
 use App\Models\Users;
+use core\Auth\AuthService;
 use Core\Lib\Pagination\Pagination;
 
 final class DashboardService {
