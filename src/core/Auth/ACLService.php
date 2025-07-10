@@ -2,8 +2,9 @@
 declare(strict_types=1);
 namespace core\Auth;
 
-use Core\Lib\Utilities\Arr;
+use Core\Models\ACL;
 use App\Models\Users;
+use Core\Lib\Utilities\Arr;
 
 /**
  * Collection of functions for managing User's ACLs.
@@ -117,5 +118,27 @@ class ACLService {
             return '["Admin"]';
         }
         return '[""]';
+    }
+
+    public static function usedACLs(): array {
+        $acls = ACL::getACLs();
+        $usedAcls = [];
+        foreach($acls as $acl) {
+            if($acl->isAssignedToUsers()) {
+                Arr::push($usedAcls, $acl);
+            }
+        }
+        return $usedAcls;
+    }
+
+    public static function unUsedACLs(): array {
+        $acls = ACL::getACLs();
+        $unUsedAcls = [];
+        foreach($acls as $acl) {
+            if(!$acl->isAssignedToUsers()) {
+                Arr::push($unUsedAcls, $acl);
+            }
+        }
+        return $unUsedAcls;
     }
 }
