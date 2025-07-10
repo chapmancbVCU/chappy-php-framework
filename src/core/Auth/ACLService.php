@@ -22,6 +22,19 @@ class ACLService {
     }
     
     /**
+     * Ensures that we are always dealing with an array of ACLs
+     *
+     * @param mixed $acls An array or any type that we want to add to an array.
+     * @return array An array of acls.
+     */
+    public static function aclToArray(mixed $acls): array {
+        if (!is_array($acls)) {
+            $acls = [];
+        }
+        return Arr::map($acls, 'strval');
+    }
+    
+    /**
      * Add ACL to user's acl field as an element of an array.
      *
      * @param int $user_id The id of the user whose acl field we want to 
