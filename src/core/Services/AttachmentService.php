@@ -7,6 +7,7 @@ use Core\Services\AuthService;
 use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
+use App\Models\Users;
 
 /**
  * Service for managing attachment uploads and deletion.
