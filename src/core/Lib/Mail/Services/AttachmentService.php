@@ -61,6 +61,12 @@ final class AttachmentService {
             $attachment->attachment_name;
     }
 
+    /**
+     * Generates preview for attachment in new tab.
+     *
+     * @param int $id The id for the attachment's record.
+     * @return void
+     */
     public static function previewAttachment(int $id) {
         $attachment = EmailAttachments::findById($id);
         if (!$attachment || !file_exists(CHAPPY_BASE_PATH . DS . $attachment->path)) {
