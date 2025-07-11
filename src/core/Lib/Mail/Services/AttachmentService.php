@@ -61,6 +61,19 @@ final class AttachmentService {
             $attachment->attachment_name;
     }
 
+    public static function previewAttachment(int $id) {
+        $attachment = EmailAttachments::findById($id);
+        if (!$attachment || !file_exists(CHAPPY_BASE_PATH . DS . $attachment->path)) {
+            http_response_code(404);
+            exit('File not found.');
+        }
+
+        header('Content-Type: ' . $attachment->mime_type);
+        header('Content-Disposition: inline; filename="' . $attachment->attachment_name . '"');
+        readfile($attachment->path);
+        exit;
+    }
+
     /**
      * Sets fields for attachment record based on file information and 
      * performs uploads.
