@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Models;
 use Core\Model;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\FileSystem\Uploads;
 
 /**
  * Supports CRUD operations on profile image records.
