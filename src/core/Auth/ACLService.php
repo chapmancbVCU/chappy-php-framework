@@ -155,16 +155,16 @@ class ACLService {
      *
      * @param ACL $acl The ACL to be Saves
      * @param Input $request The request.
-     * @return void
+     * @return bool
      */
-    public static function saveACL(ACL $acl, Input $request): void {
-        $acl->isNew() ? $acl->assign($request->get()) : 
+    public static function saveACL(ACL $acl, Input $request): bool {
+        if ($acl->isNew()) {
+            $acl->assign($request->get());
+        } else {
             $acl->assign($request->get(), ACL::blackList);
-    
-        if($acl->save()) {
-            flashMessage('info', "ACL record saved.");
-            redirect('admindashboard.manageAcls');
         }
+    
+        return $acl->save();
     }
 
     /**
