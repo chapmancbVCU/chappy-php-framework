@@ -36,7 +36,13 @@ final class AttachmentService {
         return null;
     }
 
-    public static function attachmentUploader($id) {
+    /**
+     * Retrieves user who uploaded an attachment.
+     *
+     * @param int $id User id for uploader of attachment.
+     * @return Users The user who uploaded the attachment.
+     */
+    public static function attachmentUploader(int $id): Users {
         return Users::findById((int)$id);
     }
 
