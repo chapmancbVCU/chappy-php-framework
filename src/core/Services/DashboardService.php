@@ -4,7 +4,7 @@ namespace Core\Services;
 
 use Core\Input;
 use App\Models\Users;
-use core\Services\AuthService;
+use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
 
 final class DashboardService {

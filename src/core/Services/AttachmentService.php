@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace Core\Services;
 
 use Core\Input;
-use core\Services\AuthService;
+use Core\Services\AuthService;
 use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
