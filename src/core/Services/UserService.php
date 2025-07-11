@@ -7,8 +7,15 @@ use App\Models\Users;
 use Core\Models\ProfileImages;
 
 final class UserService {
-
-    public static function deleteIfAllowed(int $id, bool $unlink) {
+    /**
+     * Deletes user if not admin and unlinks profile images if $unlink
+     * is set to true.
+     *
+     * @param int $id The id for user we want to delete.
+     * @param bool $unlink Determines if profile images are deleted.
+     * @return void
+     */
+    public static function deleteIfAllowed(int $id, bool $unlink = false): void {
         $user = Users::findById((int)$id);
         if($user && $user->acl != '["Admin"]') {
             ProfileImages::deleteImages($id, $unlink);
@@ -23,9 +30,9 @@ final class UserService {
      * Assist in toggling inactive field.
      *
      * @param Input $request The request.
-     * @return integer 1 if inactive is 'on', otherwise we return 0.
+     * @return int 1 if inactive is 'on', otherwise we return 0.
      */
-    public static function toggleAccountStatus(Input $request) {
+    public static function toggleAccountStatus(Input $request): int {
         return ($request->get('inactive') == 'on') ? 1 : 0;
     }
 
@@ -33,7 +40,7 @@ final class UserService {
      * Assist in toggling reset_password field.
      *
      * @param Input $request The request.
-     * @return integer 1 if reset_password is 'on', otherwise we return 0.
+     * @return int 1 if reset_password is 'on', otherwise we return 0.
      */
     public static function toggleResetPassword(Input $request): int {
         return ($request->get('reset_password') == 'on') ? 1 : 0;
