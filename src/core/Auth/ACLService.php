@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace core\Auth;
 
+use Core\Input;
 use Core\Models\ACL;
 use App\Models\Users;
 use Core\Lib\Utilities\Arr;
@@ -162,8 +163,6 @@ class ACLService {
         if($acl->save()) {
             flashMessage('info', "ACL Name updated.");
             redirect('admindashboard.manageAcls');
-        } else {
-            flashMessage('danger', implode(" ", $acl->getErrorMessages()));
         }
     }
 
