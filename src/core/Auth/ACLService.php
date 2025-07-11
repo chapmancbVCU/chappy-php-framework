@@ -56,6 +56,25 @@ class ACLService {
     }
 
     /**
+     * Checks if ACL is found and sets flash message if not the case.  Also, 
+     * checks if it is assigned to a user and sets flash message.
+     *
+     * @param ACL $acl The ACL to verify.
+     * @return void
+     */
+    public static function checkACL(ACL $acl): void {
+        if (!$acl) {
+            flashMessage('danger', "ACL not found.");
+            redirect('admindashboard.manageAcls');
+        }
+    
+        if ($acl->isAssignedToUsers()) {
+            flashMessage('danger', "Access denied. '{$acl->acl}' is assigned to one or more users and cannot be edited.");
+            redirect('admindashboard.manageAcls');
+        }
+    }
+
+    /**
      * Deletes ACL if allowed.
      *
      * @param int $id The id for the ACL.
