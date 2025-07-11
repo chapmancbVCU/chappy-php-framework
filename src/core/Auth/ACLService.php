@@ -42,9 +42,9 @@ class ACLService {
      * @param array|null $acls The ACLs from post or null.
      * @return array An array containing acls.
      */
-    public static function aclsFromPost(?array $acls = null): array {
-        return self::aclToArray($acls ?? []);
-    }
+    // public static function aclsFromPost(?array $acls = null): array {
+    //     return self::aclToArray($acls ?? []);
+    // }
 
     /**
      * Add ACL to user's acl field as an element of an array.
@@ -139,6 +139,12 @@ class ACLService {
             return '["Admin"]';
         }
         return '[""]';
+    }
+
+    public static function updateUserACLs(Users $user, array $userAcls, array $acls, ?array $postAcls = null) {
+        $newAcls = $postAcls ?? [];
+        self::manageAcls($acls, $user, $newAcls, $userAcls);
+        $user->acl = json_encode($newAcls);
     }
 
     /**
