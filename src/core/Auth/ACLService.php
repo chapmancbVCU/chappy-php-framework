@@ -36,17 +36,6 @@ class ACLService {
     }
 
     /**
-     * Handles ACLs from post whether or not $_POST['acls'] has elements 
-     * or is an empty array.  It returns an array in either case.
-     *
-     * @param array|null $acls The ACLs from post or null.
-     * @return array An array containing acls.
-     */
-    // public static function aclsFromPost(?array $acls = null): array {
-    //     return self::aclToArray($acls ?? []);
-    // }
-
-    /**
      * Add ACL to user's acl field as an element of an array.
      *
      * @param int $user_id The id of the user whose acl field we want to 
@@ -141,7 +130,16 @@ class ACLService {
         return '[""]';
     }
 
-    public static function updateUserACLs(Users $user, array $userAcls, array $acls, ?array $postAcls = null) {
+    /**
+     * Updates user's acl field
+     *
+     * @param Users $user The user whose ACLs we want to update.
+     * @param array $userAcls Existing user's ACLs.
+     * @param array $acls All available ACLs.
+     * @param array|null $postAcls ACLs from post that are selected.
+     * @return void
+     */
+    public static function updateUserACLs(Users $user, array $userAcls, array $acls, ?array $postAcls = null): void {
         $newAcls = $postAcls ?? [];
         self::manageAcls($acls, $user, $newAcls, $userAcls);
         $user->acl = json_encode($newAcls);
