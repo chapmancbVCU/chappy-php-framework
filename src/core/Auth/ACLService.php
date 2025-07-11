@@ -150,6 +150,24 @@ class ACLService {
     }
 
     /**
+     * Updates ACL record
+     *
+     * @param ACL $acl The ACL to be updated
+     * @param Input $request The request.
+     * @return void
+     */
+    public static function updateACL(ACL $acl, Input $request): void {
+        $acl->assign($request->get(), ACL::blackList);
+    
+        if($acl->save()) {
+            flashMessage('info', "ACL Name updated.");
+            redirect('admindashboard.manageAcls');
+        } else {
+            flashMessage('danger', implode(" ", $acl->getErrorMessages()));
+        }
+    }
+
+    /**
      * Updates user's acl field
      *
      * @param Users $user The user whose ACLs we want to update.
