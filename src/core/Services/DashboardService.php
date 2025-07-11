@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Services;
 
-use Core\Input;
 use App\Models\Users;
 use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;

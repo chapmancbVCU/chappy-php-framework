@@ -35,6 +35,10 @@ final class AttachmentService {
         return null;
     }
 
+    public static function attachmentUploader($id) {
+        return Users::findById((int)$id);
+    }
+
     /**
      * Deletes an attachment
      *
