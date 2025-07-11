@@ -67,6 +67,27 @@ class ACLService {
     }
 
     /**
+     * Deletes ACL if allowed.
+     *
+     * @param int $id The id for the ACL.
+     * @return bool True if deleted, otherwise false.
+     */
+    public static function deleteIfAllowed(int $id): bool {
+        $acl = ACL::findById($id);
+        if(!$acl) return false;
+
+        $users = $acl->isAssignedToUsers();
+        if(is_countable($users) > 0) {
+            flashMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
+            return false;
+        }
+        
+        $acl->delete();
+        flashMessage('success', 'ACL has been deleted');
+        return true;
+    }
+
+    /**
      * Manages the adding and removing of ACLs.
      *
      * @param array $acls ACLs stored in acl table.
