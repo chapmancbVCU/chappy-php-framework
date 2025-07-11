@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace core\Auth;
+namespace core\Services;
 use Core\DB;
 use Core\Input;
 use Core\Cookie;

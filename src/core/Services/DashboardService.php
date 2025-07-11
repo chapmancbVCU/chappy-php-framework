@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace Core\Administration;
+namespace Core\Services;
 
 use Core\Input;
 use App\Models\Users;
-use core\Auth\AuthService;
+use core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
 
 final class DashboardService {

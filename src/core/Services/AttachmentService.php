@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace Core\Lib\Mail\Services;
+namespace Core\Services;
 
 use Core\Input;
-use core\Auth\AuthService;
+use core\Services\AuthService;
 use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;

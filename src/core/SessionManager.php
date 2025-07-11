@@ -4,7 +4,7 @@ namespace Core;
 
 use Core\Cookie;
 use Core\Session;
-use core\Auth\AuthService;
+use core\Services\AuthService;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Core\FormHelper;
