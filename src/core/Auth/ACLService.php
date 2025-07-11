@@ -151,17 +151,18 @@ class ACLService {
     }
 
     /**
-     * Updates ACL record
+     * Saves ACL record.
      *
-     * @param ACL $acl The ACL to be updated
+     * @param ACL $acl The ACL to be Saves
      * @param Input $request The request.
      * @return void
      */
-    public static function updateACL(ACL $acl, Input $request): void {
-        $acl->assign($request->get(), ACL::blackList);
+    public static function saveACL(ACL $acl, Input $request): void {
+        $acl->isNew() ? $acl->assign($request->get()) : 
+            $acl->assign($request->get(), ACL::blackList);
     
         if($acl->save()) {
-            flashMessage('info', "ACL Name updated.");
+            flashMessage('info', "ACL record saved.");
             redirect('admindashboard.manageAcls');
         }
     }
