@@ -5,6 +5,7 @@ namespace core\Services;
 use Core\Input;
 use App\Models\Users;
 use Core\Models\ProfileImages;
+use Core\Lib\FileSystem\Uploads;
 
 final class UserService {
     /**
@@ -23,6 +24,16 @@ final class UserService {
             flashMessage('success', 'User has been deleted.');
         } else {
             flashMessage('danger', 'Cannot delete Admin user!');
+        }
+    }
+
+    public static function handleProfileImages(Users $user, ?Uploads $uploads, ?string $sortedImages): void {
+        if($uploads) {
+            ProfileImages::uploadProfileImage($user->id, $uploads);
+        }
+
+        if($sortedImages) {
+            ProfileImages::updateSortByUserId($user->id, json_decode($sortedImages));
         }
     }
 
