@@ -91,7 +91,7 @@ final class UserService {
 
         $user->assign($request->get(), Users::blackListedFormKeys);
         $user->setChangePassword(true);
-        $user->confirm = $request->get('confirm');
+        $user->confirm = AuthService::confirm($request);
 
         if($user->save()) {
             $user->setChangePassword(false);
