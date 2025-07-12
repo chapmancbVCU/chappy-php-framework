@@ -6,6 +6,7 @@ use Core\Input;
 use App\Models\Users;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
+use Core\Lib\Mail\AccountDeactivatedMailer;
 
 final class UserService {
     /**
@@ -105,8 +106,14 @@ final class UserService {
      * @param Input $request The request.
      * @return int 1 if inactive is 'on', otherwise we return 0.
      */
-    public static function toggleAccountStatus(Input $request): int {
-        return ($request->get('inactive') == 'on') ? 1 : 0;
+    public static function toggleAccountStatus(Users $user, Input $request, bool $mailer = false) {
+        $previousInactiveState = $user->inactive;
+        $user->inactive = ($request->get('inactive') == 'on') ? 1 : 0;
+        $user->login_attempts = ($user->inactive == 0) ? 0 : $user->login_attempts;
+
+        if($previousInactiveState == 0 && $user->inactive == 1 && $mailer == true) {
+            AccountDeactivatedMailer::sendTo($user);
+        }
     }
 
     /**
