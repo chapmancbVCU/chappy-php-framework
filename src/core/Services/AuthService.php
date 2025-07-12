@@ -78,7 +78,7 @@ class AuthService {
             redirect('home');
         }  else {
             if($user) {
-                $loginModel = self::loginAttempts($user, $loginModel);
+                $loginModel = self::loginAttempts($user, $loginModel, $mailer);
             }
             else {
                 $loginModel->addErrorMessage('username','There is an error with your username or password');
@@ -107,7 +107,7 @@ class AuthService {
         if($previousInactiveState == 0 && $user->inactive == 1 && $mailer == true) {
             AccountDeactivatedMailer::sendTo($user);
         }
-        
+
         if($user->login_attempts < Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
         } else {
