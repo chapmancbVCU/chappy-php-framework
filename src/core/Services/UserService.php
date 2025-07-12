@@ -28,6 +28,23 @@ final class UserService {
     }
 
     /**
+     * Deletes profile image
+     *
+     * @param Input $request The request for deleting image.
+     * @return array JSON response array.
+     */
+    public static function deleteProfileImage(Input $request): array {
+        $user = AuthService::currentUser();
+        $id = $request->get('image_id');
+        $image = ProfileImages::findById((int)$id);
+        if($user && $image) {
+            ProfileImages::deleteById($image->id);
+            return ['success' => true, 'model_id' => $image->id];
+        }
+        return ['success' => false];
+    }
+
+    /**
      * Uploads and sorts profile images.
      *
      * @param Users $user The user whose profile images we want to manage.
