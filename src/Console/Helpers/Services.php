@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+/**
+ * Supports commands related to Services.
+ */
 class Services {
     protected static string $servicesPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Services'.DS;
 
