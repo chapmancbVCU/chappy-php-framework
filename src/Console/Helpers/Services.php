@@ -18,4 +18,14 @@ class Services {
             mkdir(self::$servicesPath, 0755, true);
         }
     }
+
+    /**
+     * Template for new Service class.
+     *
+     * @param string $serviceName The name of the Service class.
+     * @return string The template for the new Service class.
+     */
+    public static function servicesTemplate(string $serviceName): string {
+        return '';
+    }
 }
