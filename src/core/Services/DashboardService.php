@@ -7,6 +7,13 @@ use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
 
 final class DashboardService {
+    public static function checkIfCurrentUser(Users $user, string $redirect = '') {
+        if($user == AuthService::currentUser()) {
+            flashMessage('danger', 'Logged in admin user can\'t be edited or viewed through admin dashboard.');
+            redirect($redirect);
+        }
+    }
+
     /**
      * Returns list of paginated users.
      *
