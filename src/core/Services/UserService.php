@@ -104,18 +104,11 @@ final class UserService {
      * Assist in toggling inactive field.
      *
      * @param Input $request The request.
-     * @param bool $mailer Sends account deactivated E-mail when user 
-     * surpasses max number of login attempts before account is locked.
      * @return int 1 if inactive is 'on', otherwise we return 0.
      */
-    public static function toggleAccountStatus(Users $user, Input $request, bool $mailer = false) {
-        $previousInactiveState = $user->inactive;
+    public static function toggleAccountStatus(Users $user, Input $request) {
         $user->inactive = ($request->get('inactive') == 'on') ? 1 : 0;
         $user->login_attempts = ($user->inactive == 0) ? 0 : $user->login_attempts;
-
-        if($previousInactiveState === 'on' && $user->inactive == 1 && $mailer == true) {
-            AccountDeactivatedMailer::sendTo($user);
-        }
     }
 
     /**
