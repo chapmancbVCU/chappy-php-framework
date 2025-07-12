@@ -6,6 +6,7 @@ use Core\Input;
 use App\Models\Users;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
+use Core\Lib\Mail\AccountDeactivatedMailer;
 
 /**
  * Provides functions for managing users.
@@ -100,6 +101,20 @@ final class UserService {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Sends E-mail to user when account is deactivated when appropriate.
+     *
+     * @param Users $user The user we will send E-mail to.
+     * @param bool $shouldSendEmail Sends E-mail when true.
+     * @return void
+     */
+    public static function sendWhenSetToInactive(Users $user, bool $shouldSendEmail): void {
+        if($shouldSendEmail) {
+            flashMessage('info', "Account Deactivated Email sent to {$user->username} via {$user->email}");
+            AccountDeactivatedMailer::sendTo($user);
+        }
     }
 
     /**
