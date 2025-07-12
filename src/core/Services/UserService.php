@@ -26,6 +26,20 @@ final class UserService {
         }
     }
 
+    public static function updatePassword(Users $user, Input $request) {
+        if(!password_verify($request->get('current_password'), $user->password)) {
+            return false;
+        }
+
+        $user->assign($request->get(), Users::blackListedFormKeys);
+        $user->setChangePassword(true);
+        $user->confirm = $request->get('confirm');
+
+        if($user->save()) {
+            $user->setChangePassword(false);
+        }
+    }
+
     /**
      * Assist in toggling inactive field.
      *
