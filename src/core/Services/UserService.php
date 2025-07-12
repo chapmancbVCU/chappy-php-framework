@@ -85,6 +85,7 @@ final class UserService {
      * @return bool True if password is updated, otherwise false
      */
     public static function updatePassword(Users $user, Input $request): bool {
+        // dd(password_verify($request->get('current_password'), $user->password));
         if(!password_verify($request->get('current_password'), $user->password)) {
             return false;
         }
@@ -93,11 +94,10 @@ final class UserService {
         $user->setChangePassword(true);
         $user->confirm = AuthService::confirm($request);
 
-        if($user->save()) {
+        $user->save();
             $user->setChangePassword(false);
             return true;
-        }
-        return false;
+
     }
 
     /**
