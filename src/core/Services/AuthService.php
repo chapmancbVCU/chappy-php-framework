@@ -19,6 +19,16 @@ use Core\Lib\FileSystem\Uploads;
  */
 class AuthService {
     /**
+     * Gets value of password confirm field.  Assumes field value is "confirm".
+     *
+     * @param Input $request The request.
+     * @return void
+     */
+    public static function confirm(Input $request): string {
+        return $request->get('confirm');
+    }
+
+    /**
      * Checks if a user is logged in.
      *
      * @return Users|null An object containing information about current 
