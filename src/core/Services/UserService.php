@@ -94,10 +94,11 @@ final class UserService {
         $user->setChangePassword(true);
         $user->confirm = AuthService::confirm($request);
 
-        $user->save();
+        if($user->save()) {
             $user->setChangePassword(false);
             return true;
-
+        }
+        return false;
     }
 
     /**
