@@ -6,13 +6,14 @@ use Core\Input;
 use Core\Cookie;
 use Core\Session;
 use App\Models\Users;
-use Core\Models\ProfileImages;
 use Core\Models\Login;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Core\Models\UserSessions;
+use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
+use Core\Lib\Mail\AccountDeactivatedMailer;
 
 /**
  * Supports authentication operations.
@@ -60,7 +61,7 @@ class AuthService {
      * @param string $username The user to be logged in.
      * @return Login Model that handles logins.
      */
-    public static function login(Input $request, Login $loginModel, string $username) : Login {
+    public static function login(Input $request, Login $loginModel, string $username, bool $mailer = false) : Login {
         $user = Users::findByUsername($username);
         if($user && password_verify($request->get('password'), $user->password)) {
             if($user->reset_password == 1) {
@@ -98,10 +99,15 @@ class AuthService {
      * @return Login $loginModel The Login model after login in attempt test 
      * and session messages are assigned.
      */
-    public static function loginAttempts(Users $user, Login $loginModel): Login {
+    public static function loginAttempts(Users $user, Login $loginModel, bool $mailer = false): Login {
+        $previousInactiveState = $user->inactive;
         if($user->login_attempts >= Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $user->inactive = 1; 
         }
+        if($previousInactiveState == 0 && $user->inactive == 1 && $mailer == true) {
+            AccountDeactivatedMailer::sendTo($user);
+        }
+        
         if($user->login_attempts < Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
         } else {
