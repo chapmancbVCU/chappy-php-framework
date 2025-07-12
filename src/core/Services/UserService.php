@@ -27,11 +27,11 @@ final class UserService {
     }
 
     /**
-     * Undocumented function
+     * Updates user's password
      *
-     * @param Users $user
-     * @param Input $request
-     * @return void
+     * @param Users $user The user whose password we want to update.
+     * @param Input $request The request.
+     * @return bool True if password is updated, otherwise false
      */
     public static function updatePassword(Users $user, Input $request): bool {
         if(!password_verify($request->get('current_password'), $user->password)) {
