@@ -116,8 +116,7 @@ final class UserService {
         $user->inactive = ($request->get('inactive') == 'on') ? 1 : 0;
         $user->login_attempts = ($user->inactive == 0) ? 0 : $user->login_attempts;
 
-        if($currentInactive && $currentInactive == 0 && $user->inactive == 1) return true;
-        return false;
+        return $currentInactive !== null && $currentInactive === 0 && $user->inactive === 1;
     }
 
     /**
