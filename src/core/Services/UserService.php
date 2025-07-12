@@ -85,7 +85,6 @@ final class UserService {
      * @return bool True if password is updated, otherwise false
      */
     public static function updatePassword(Users $user, Input $request): bool {
-        // dd(password_verify($request->get('current_password'), $user->password));
         if(!password_verify($request->get('current_password'), $user->password)) {
             return false;
         }
