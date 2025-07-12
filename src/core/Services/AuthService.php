@@ -132,7 +132,7 @@ class AuthService {
         if($rememberMe) {
             $hash = Str::md5(uniqid() . rand(0, 100));
             $user_agent = Session::uagent_no_version();
-            Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000));
+            Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, (int)Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000));
             $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$loginUser->id];
             DB::getInstance()->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$loginUser->id, $user_agent]);
             $us = new UserSessions();
