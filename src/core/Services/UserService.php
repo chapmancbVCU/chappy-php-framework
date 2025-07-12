@@ -45,6 +45,19 @@ final class UserService {
     }
 
     /**
+     * Acts as safeguard to ensure incorrect user is not updated.
+     *
+     * @param Users $user The user object to test.
+     * @return void
+     */
+    public static function ensureAuthenticatedUser(Users $user): void {
+        if(!$user) {
+            flashMessage('danger', 'You do not have permission to edit this user.');
+            redirect('');
+        }
+    }
+
+    /**
      * Uploads and sorts profile images.
      *
      * @param Users $user The user whose profile images we want to manage.
