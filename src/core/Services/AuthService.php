@@ -217,7 +217,7 @@ class AuthService {
         $user->setChangePassword(true);
         
         // Allows password matching confirmation.
-        $user->confirm = $request->get('confirm');
+        $user->confirm = self::confirm($request);
         
         if($user->save()) {
             // PW change mode off.
