@@ -110,7 +110,7 @@ final class UserService {
      * @param bool $shouldSendEmail Sends E-mail when true.
      * @return void
      */
-    public static function sendWhenSetToInactive(Users $user, bool $shouldSendEmail): void {
+    public static function sendWhenSetToInactive(Users $user, bool $shouldSendEmail = false): void {
         if($shouldSendEmail) {
             flashMessage('info', "Account Deactivated Email sent to {$user->username} via {$user->email}");
             AccountDeactivatedMailer::sendTo($user);
