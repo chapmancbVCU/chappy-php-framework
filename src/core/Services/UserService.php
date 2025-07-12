@@ -27,6 +27,14 @@ final class UserService {
         }
     }
 
+    /**
+     * Uploads and sorts profile images.
+     *
+     * @param Users $user The user whose profile images we want to manage.
+     * @param Uploads|null $uploads The Uploads object or profile image upload.
+     * @param string|null $sortedImages Order of sorted images.
+     * @return void
+     */
     public static function handleProfileImages(Users $user, ?Uploads $uploads, ?string $sortedImages): void {
         if($uploads) {
             ProfileImages::uploadProfileImage($user->id, $uploads);
