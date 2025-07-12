@@ -26,7 +26,14 @@ final class UserService {
         }
     }
 
-    public static function updatePassword(Users $user, Input $request) {
+    /**
+     * Undocumented function
+     *
+     * @param Users $user
+     * @param Input $request
+     * @return void
+     */
+    public static function updatePassword(Users $user, Input $request): bool {
         if(!password_verify($request->get('current_password'), $user->password)) {
             return false;
         }
@@ -37,7 +44,9 @@ final class UserService {
 
         if($user->save()) {
             $user->setChangePassword(false);
+            return true;
         }
+        return false;
     }
 
     /**
