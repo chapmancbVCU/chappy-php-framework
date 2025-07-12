@@ -51,7 +51,9 @@ final class UserService {
      * @return void
      */
     public static function ensureAuthenticatedUser(Users $user): void {
-        if(!$user) {
+        $currentUser = AuthService::currentUser();
+
+        if (!$user || !$currentUser || $user->id !== $currentUser->id) {
             flashMessage('danger', 'You do not have permission to edit this user.');
             redirect('');
         }
