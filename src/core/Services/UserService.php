@@ -6,8 +6,10 @@ use Core\Input;
 use App\Models\Users;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
-use Core\Lib\Mail\AccountDeactivatedMailer;
 
+/**
+ * Provides functions for managing users.
+ */
 final class UserService {
     /**
      * Deletes user if not admin and unlinks profile images if $unlink
