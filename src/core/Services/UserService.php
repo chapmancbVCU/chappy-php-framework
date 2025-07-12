@@ -101,14 +101,19 @@ final class UserService {
     }
 
     /**
-     * Assist in toggling inactive field.
+     * Assist in toggling inactive field.  Returns boolean value to determine 
+     * if E-mail should be sent.
      *
+     * @param Users $user The user whose status we want to set.
      * @param Input $request The request.
-     * @return int 1 if inactive is 'on', otherwise we return 0.
+     * @return bool true if we want to send mail and otherwise false.
      */
-    public static function toggleAccountStatus(Users $user, Input $request) {
+    public static function toggleAccountStatus(Users $user, Input $request): bool {
+        $wasActive = (int)$user->inactive === 0;
         $user->inactive = ($request->get('inactive') == 'on') ? 1 : 0;
         $user->login_attempts = ($user->inactive == 0) ? 0 : $user->login_attempts;
+
+        return $wasActive && $user->inactive === 1;
     }
 
     /**
