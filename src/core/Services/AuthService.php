@@ -59,6 +59,8 @@ class AuthService {
      * @param Input $request The request for the login.
      * @param Login $loginModel The login model.
      * @param string $username The user to be logged in.
+     * @param bool $mailer Sends account deactivated E-mail when user 
+     * surpasses max number of login attempts before account is locked.
      * @return Login Model that handles logins.
      */
     public static function login(Input $request, Login $loginModel, string $username, bool $mailer = false) : Login {
@@ -96,6 +98,8 @@ class AuthService {
      * @param User $user The user whose login attempts we are tracking.
      * @param Login $loginModel The model that will be responsible for 
      * displaying messages.
+     * @param bool $mailer Sends account deactivated E-mail when user 
+     * surpasses max number of login attempts before account is locked.
      * @return Login $loginModel The Login model after login in attempt test 
      * and session messages are assigned.
      */
