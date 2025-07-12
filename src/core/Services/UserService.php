@@ -7,6 +7,7 @@ use App\Models\Users;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
 use Core\Lib\Mail\AccountDeactivatedMailer;
+use Core\Lib\Mail\PasswordResetMailer;
 
 /**
  * Provides functions for managing users.
@@ -104,7 +105,7 @@ final class UserService {
     }
 
     /**
-     * Sends E-mail to user when account is deactivated when appropriate.
+     * Sends E-mail to user when account is deactivated as appropriate.
      *
      * @param Users $user The user we will send E-mail to.
      * @param bool $shouldSendEmail Sends E-mail when true.
@@ -114,6 +115,20 @@ final class UserService {
         if($shouldSendEmail) {
             flashMessage('info', "Account Deactivated Email sent to {$user->username} via {$user->email}");
             AccountDeactivatedMailer::sendTo($user);
+        }
+    }
+
+    /**
+     * Sends E-mail to user when reset_password flag is set as appropriate.
+     *
+     * @param Users $user The user we will send E-mail to.
+     * @param bool $shouldSendEmail Sends E-mail when true.
+     * @return void
+     */
+    public static function sendWhenSetToResetPW(Users $user, bool $shouldSendEmail = false): void {
+        if($shouldSendEmail) {
+            flashMessage('info', "Reset Password Email sent to {$user->username} via {$user->email}");
+            PasswordResetMailer::sendTo($user);
         }
     }
 
@@ -137,10 +152,13 @@ final class UserService {
     /**
      * Assist in toggling reset_password field.
      *
+     * @param Users $user The user whose status we want to set.
      * @param Input $request The request.
+     * @param int|null $currentReset Value of $user->reset_password before post.
      * @return int 1 if reset_password is 'on', otherwise we return 0.
      */
-    public static function toggleResetPassword(Input $request): int {
-        return ($request->get('reset_password') == 'on') ? 1 : 0;
+    public static function toggleResetPassword(Users $user, Input $request, ?int $currentReset = null): bool {
+        $user->reset_password = ($request->get('reset_password') == 'on') ? 1 : 0;
+        return $currentReset !== null && $currentReset === 0 && $user->reset_password === 1;
     }
 }
