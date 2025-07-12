@@ -18,7 +18,14 @@ class Services {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeService(InputInterface $input): int {
-        return Command::SUCCESS;
+        Tools::pathExists(self::$servicesPath);
+        $serviceName = $input->getArgument('service-name').'.php';
+        $servicePath = self::$servicesPath . $serviceName . '.php';
+        return Tools::writeFile(
+            $servicePath, 
+            self::servicesTemplate($serviceName), 
+            "The service $serviceName"
+        );
     }
 
     /**
