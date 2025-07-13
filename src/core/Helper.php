@@ -4,7 +4,7 @@ namespace Core;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Models\ProfileImages;
-use core\Services\AuthService;
+use Core\Services\AuthService;
 
 /**
  * Helper and utility functions.
