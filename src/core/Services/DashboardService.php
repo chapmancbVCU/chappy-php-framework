@@ -6,6 +6,9 @@ use App\Models\Users;
 use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
 
+/**
+ * Supports admin dashboard operations.
+ */
 final class DashboardService {
     public static function checkIfCurrentUser(Users $user, string $redirect = '') {
         if($user == AuthService::currentUser()) {
