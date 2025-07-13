@@ -16,6 +16,7 @@ class View extends stdClass {
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
+    private const FRAMEWORK_COMPONENT_PATH = CHAPPY_ROOT.DS.'views'.DS.'components'.DS;
     private const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'layouts'.DS;
     private const FRAMEWORK_VIEW_PATH = CHAPPY_ROOT.DS.'views'.DS;
     protected $_head;
@@ -34,10 +35,13 @@ class View extends stdClass {
      * Includes a component into a view.
      *
      * @param string $component The name of the component.
+     * @param bool $frameworkComponentPath Uses path for component inside 
+     * framework when true.
      * @return void
      */
-    public function component(string $component): void {
-        $componentPath = self::APP_COMPONENT_PATH . $component . '.php';
+    public function component(string $component, bool $frameworkComponentPath = false): void {
+        $componentPath = !$frameworkComponentPath ? self::APP_COMPONENT_PATH . $component . '.php' :
+            self::FRAMEWORK_COMPONENT_PATH.$component.'.php';
         
         if(!file_exists($componentPath)) {
             throw new Exception('The component "' . $component . '" does not exist');
