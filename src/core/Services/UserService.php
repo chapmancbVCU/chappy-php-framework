@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace core\Services;
+namespace Core\Services;
 
 use Core\Input;
 use App\Models\Users;
