@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class CommandHelper {
     private const COMMAND_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Commands'.DS;
-
+    private const HELPER_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Helpers'.DS;
     /**
      * Creates template for new command class.
      *
@@ -60,6 +60,27 @@ class '.$commandName.'Command extends Command {
     }
 
     /**
+     * Creates new helper class.
+     *
+     * @param string $helperName The name of the helper class.
+     * @return string The contents of the helper class.
+     */
+    public static function helperTemplate(string $helperName): string {
+        return '<?php
+namespace App\Lib\Console\Helpers;
+
+use Symfony\Component\Console\Command\Command;
+
+/**
+ * 
+ */
+class '. $helperName.' {
+
+}
+';
+    }
+
+    /**
      * Generates new class that extends Command.
      *
      * @param InputInterface $input The name of the Command child class.
@@ -81,29 +102,8 @@ class '.$commandName.'Command extends Command {
      */
     public static function makeHelper(InputInterface $input): int {
         $helperName = Str::ucfirst($input->getArgument('helper-name'));
-        $ext = ".php";
-        $fullPath = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Helpers'.DS.$helperName.$ext;
-        $content = '<?php
-namespace App\Lib\Console\Helpers;
-
-use Symfony\Component\Console\Command\Command;
-
-/**
- * 
- */
-class '. $helperName.' {
-
-}
-';
-
-        if(!file_exists($fullPath)) {
-            $resp = file_put_contents($fullPath, $content);
-        } else {
-            Tools::info('Command helper already exists', 'debug', 'red');
-            return Command::FAILURE;
-        }
-
-        Tools::info('Command helper successfully created');
-        return Command::SUCCESS;
+        Tools::pathExists(self::HELPER_PATH);
+        $fullPath = self::HELPER_PATH.$helperName.'.php';
+        return Tools::writeFile($fullPath, self::helperTemplate($helperName), 'Helper');
     }
 }
