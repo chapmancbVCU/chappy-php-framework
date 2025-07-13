@@ -87,7 +87,7 @@ class '. $helperName.' {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeCommand(InputInterface $input): int {
-        $commandName = $input->getArgument('command-name');
+        $commandName = Str::ucfirst($input->getArgument('command-name'));
         Tools::pathExists(self::COMMAND_PATH);
         $fullPath = self::COMMAND_PATH.$commandName.'Command.php';
         return Tools::writeFile($fullPath, self::commandTemplate($commandName), 'Command');
