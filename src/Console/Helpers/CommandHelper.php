@@ -12,17 +12,16 @@ use Symfony\Component\Console\Input\InputInterface;
  * helper classes.
  */
 class CommandHelper {
+    private const COMMAND_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Commands'.DS;
+
     /**
-     * Generates new class that extends Command.
+     * Creates template for new command class.
      *
-     * @param InputInterface $input The name of the Command child class.
-     * @return int A value that indicates success, invalid, or failure.
+     * @param string $commandName The name of the class.
+     * @return string The contents for the new command class.
      */
-    public static function makeCommand(InputInterface $input): int {
-        $commandName = $input->getArgument('command-name');
-        $ext = ".php";
-        $fullPath = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Commands'.DS.$commandName.'Command'.$ext;
-        $content = '<?php
+    public static function commandTemplate(string $commandName): string {
+        return '<?php
 namespace App\Lib\Console\Commands;
  
 use Symfony\Component\Console\Command\Command;
@@ -58,15 +57,18 @@ class '.$commandName.'Command extends Command {
     }
 }
 ';
-        if(!file_exists($fullPath)) {
-            $resp = file_put_contents($fullPath, $content);
-        } else {
-            Tools::info('Command already exists', 'debug', 'red');
-            return Command::FAILURE;
-        }
+    }
 
-        Tools::info('Command successfully created');
-        return Command::SUCCESS;
+    /**
+     * Generates new class that extends Command.
+     *
+     * @param InputInterface $input The name of the Command child class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeCommand(InputInterface $input): int {
+        $commandName = $input->getArgument('command-name');
+        $fullPath = self::COMMAND_PATH.$commandName.'Command.php';
+        return Tools::writeFile($fullPath, self::commandTemplate($commandName), 'Command');
     }
 
     /**
