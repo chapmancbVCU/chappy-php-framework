@@ -68,7 +68,7 @@ class '.$commandName.'Command extends Command {
     public static function makeCommand(InputInterface $input): int {
         $commandName = $input->getArgument('command-name');
         Tools::pathExists(self::COMMAND_PATH);
-        $fullPath = self::COMMAND_PATH.$commandName.DS.'Command';
+        $fullPath = self::COMMAND_PATH.$commandName.'Command.php';
         return Tools::writeFile($fullPath, self::commandTemplate($commandName), 'Command');
     }
 
