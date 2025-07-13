@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -19,7 +20,7 @@ class Services {
      */
     public static function makeService(InputInterface $input): int {
         Tools::pathExists(self::$servicesPath);
-        $serviceName = $input->getArgument('service-name').'.php';
+        $serviceName = Str::ucfirst($input->getArgument('service-name')).'.php';
         $servicePath = self::$servicesPath . $serviceName . '.php';
         return Tools::writeFile(
             $servicePath, 
@@ -46,6 +47,11 @@ class Services {
      * @return string The template for the new Service class.
      */
     public static function servicesTemplate(string $serviceName): string {
-        return '';
+        return '<?php
+namespace App\Services
+
+class '.$serviceName.' {
+
+}';
     }
 }
