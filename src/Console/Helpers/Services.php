@@ -20,8 +20,8 @@ class Services {
      */
     public static function makeService(InputInterface $input): int {
         Tools::pathExists(self::$servicesPath);
-        $serviceName = Str::ucfirst($input->getArgument('service-name')).'Service';
-        $servicePath = self::$servicesPath . $serviceName . '.php';
+        $serviceName = Str::ucfirst($input->getArgument('service-name'));
+        $servicePath = self::$servicesPath . $serviceName . 'Service.php';
         return Tools::writeFile(
             $servicePath, 
             self::servicesTemplate($serviceName), 
@@ -50,7 +50,12 @@ class Services {
         return '<?php
 namespace App\Services;
 
-class '.$serviceName.' {
+use App\Models\\'.$serviceName.';
+
+/**
+ * Service that supports the '.$serviceName.' model.
+ */
+class '.$serviceName.'Service {
 
 }';
     }
