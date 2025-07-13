@@ -24,8 +24,7 @@
             <div class="form-group mb-3">
                 <label>Manage ACLs:</label>
                 <?php foreach ($this->acls as $aclKey => $aclName): ?>
-                    <?= checkboxLabelRight($aclName, "acls[]", $aclName, $this->user->hasAcl($aclName), [], ['class' => 'form-check'], $this->displayErrors, 
-                    ); ?>
+                    <?= checkboxLabelRight($aclName, "acls[]", $aclName, $this->user->hasAcl($aclName), [], ['class' => 'form-check'], $this->displayErrors); ?>
                 <?php endforeach; ?>
             </div>
             
