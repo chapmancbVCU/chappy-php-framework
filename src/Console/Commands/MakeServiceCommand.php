@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\Helpers\Services;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,7 +21,7 @@ class MakeServiceCommand extends Command {
         $this->setName('make:service')
             ->setDescription('Generates a new service class')
             ->setHelp('php console make:mailer <service_name>')
-            ->addArgument('mailer-name', InputArgument::REQUIRED, 'Pass the name of the new service');
+            ->addArgument('service-name', InputArgument::REQUIRED, 'Pass the name of the new service');
     }
 
     /**
@@ -32,6 +33,6 @@ class MakeServiceCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
+        return Services::makeService($input);
     }
 }

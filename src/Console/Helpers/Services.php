@@ -20,7 +20,7 @@ class Services {
      */
     public static function makeService(InputInterface $input): int {
         Tools::pathExists(self::$servicesPath);
-        $serviceName = Str::ucfirst($input->getArgument('service-name')).'.php';
+        $serviceName = Str::ucfirst($input->getArgument('service-name')).'Service';
         $servicePath = self::$servicesPath . $serviceName . '.php';
         return Tools::writeFile(
             $servicePath, 
@@ -48,7 +48,7 @@ class Services {
      */
     public static function servicesTemplate(string $serviceName): string {
         return '<?php
-namespace App\Services
+namespace App\Services;
 
 class '.$serviceName.' {
 
