@@ -34,6 +34,14 @@ class View extends stdClass {
         $this->_siteTitle = Env::get('SITE_TITLE', 'My Website'); // Default site title
     }
     
+    /**
+     * Registers a new widget.
+     *
+     * @param string $section The category for the widget.
+     * @param string $viewPath The widget described as parentDirectory.widgetName.
+     * @param array $data Any data associated with the widget.
+     * @return void
+     */
     public function addWidget(string $section, string $viewPath, array $data = []): void {
         $this->widgets[$section][] = ['view' => $viewPath, 'data' => $data];
     }
