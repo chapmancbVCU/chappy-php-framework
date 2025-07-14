@@ -118,6 +118,36 @@ class View extends stdClass {
     }
 
     /**
+     * Renders widgets for a given section.
+     *
+     * @param string $slot Widget slot name (e.g., 'dashboard.cards').
+     * @param array $widgets All registered widgets (usually $this->widgets or WidgetRegistry::getAll()).
+     * @return string Rendered HTML for the widget slot.
+     */
+    public function renderWidgets(string $slot, array $widgets = []): string {
+        $output = '';
+
+        if (!isset($widgets[$slot]) || empty($widgets[$slot])) {
+            return $output;
+        }
+
+        foreach ($widgets[$slot] as $widget) {
+            $view = $widget['view'] ?? '';
+            $data = $widget['data'] ?? [];
+
+            $file = self::APP_WIDGET_PATH . $view;
+
+            if(!file_exists($file)) return '';
+
+            ob_start();
+            extract($data, EXTR_SKIP);
+            include $file;
+            return ob_get_clean();
+        }
+
+        return $output;
+    }
+    /**
      * Sets the layout for the view.
      *
      * @param string $path The path for our view.
