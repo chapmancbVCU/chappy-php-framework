@@ -32,6 +32,6 @@
 <?= $this->pagination ?>
 
 <div class="widget-container">
-    <?= $this->renderWidgets('dashboard', $this->widgets) ?>
+    <?= $this->renderWidgets('dashboard.index', $this->widgets) ?>
 </div>
 <?php $this->end(); ?>
