@@ -13,6 +13,7 @@ class View extends stdClass {
     private const APP_COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'components'.DS;
     private const APP_LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'layouts'.DS;
     private const APP_VIEW_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS;
+    private const APP_WIDGET_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'widgets'.DS;
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
@@ -23,6 +24,8 @@ class View extends stdClass {
     protected $_layout;
     protected $_outputBuffer;
     protected $_siteTitle;
+    protected array $widgets = [];
+    
     /**
      * Default constructor.
      */
@@ -31,6 +34,10 @@ class View extends stdClass {
         $this->_siteTitle = Env::get('SITE_TITLE', 'My Website'); // Default site title
     }
     
+    public function addWidget(string $section, string $viewPath, array $data = []): void {
+        $this->widgets[$section][] = ['view' => $viewPath, 'data' => $data];
+    }
+
     /**
      * Includes a component into a view.
      *

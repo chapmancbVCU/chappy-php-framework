@@ -30,4 +30,10 @@
     </tbody>
 </table>
 <?= $this->pagination ?>
+
+<?php if (!empty($widgets['dashboard.cards'])): ?>
+    <?php foreach ($widgets['dashboard.cards'] as $widget): ?>
+        <?= $this->render($widget['view'], $widget['data']) ?>
+    <?php endforeach; ?>
+<?php endif; ?>
 <?php $this->end(); ?>
