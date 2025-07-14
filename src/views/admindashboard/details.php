@@ -90,4 +90,7 @@ use Core\Lib\Utilities\DateTime; ?>
     </div>
 </div>
 
+<div class="widget-container">
+    <?= $this->renderWidgets('dashboard.details', $this->widgets) ?>
+</div>
 <?php $this->end(); ?>

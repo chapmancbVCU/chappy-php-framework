@@ -27,4 +27,9 @@
         </div>
     </div>
 </div>
+
+<div class="widget-container">
+    <?= $this->renderWidgets('dashboard.attachments', $this->widgets) ?>
+</div>
+
 <?php $this->end(); ?>

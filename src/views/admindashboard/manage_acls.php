@@ -59,4 +59,9 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<div class="widget-container">
+    <?= $this->renderWidgets('dashboard.acls', $this->widgets) ?>
+</div>
+
 <?php $this->end(); ?>
