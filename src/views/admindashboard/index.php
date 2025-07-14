@@ -31,9 +31,7 @@
 </table>
 <?= $this->pagination ?>
 
-<?php if (!empty($widgets['dashboard.cards'])): ?>
-    <?php foreach ($widgets['dashboard.cards'] as $widget): ?>
-        <?= $this->renderWidget($widget['view'], $widget['data']) ?>
-    <?php endforeach; ?>
-<?php endif; ?>
+<div class="widget-container">
+    <?= $this->renderWidgets('dashboard', $this->widgets) ?>
+</div>
 <?php $this->end(); ?>
