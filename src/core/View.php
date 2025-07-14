@@ -118,6 +118,28 @@ class View extends stdClass {
     }
 
     /**
+     * Renders a single widget view file with given data.
+     *
+     * @param string $viewPath Relative to resources/views/, without .php
+     *                         e.g., 'widgets/dashboard/revenueCard'
+     * @param array $data Data to extract into the view.
+     * @return string Rendered HTML output.
+     */
+    public function renderWidget(string $viewPath, array $data = []): string
+    {
+        $file = self::APP_WIDGET_PATH . str_replace('.', DS, $viewPath) . '.php';
+
+        if (!file_exists($file)) {
+            return '';
+        }
+
+        ob_start();
+        extract($data, EXTR_SKIP);
+        include $file;
+        return ob_get_clean();
+    }
+    
+    /**
      * Renders widgets for a given section.
      *
      * @param string $slot Widget slot name (e.g., 'dashboard.cards').
@@ -134,19 +156,12 @@ class View extends stdClass {
         foreach ($widgets[$slot] as $widget) {
             $view = $widget['view'] ?? '';
             $data = $widget['data'] ?? [];
-
-            $file = self::APP_WIDGET_PATH . $view;
-
-            if(!file_exists($file)) return '';
-
-            ob_start();
-            extract($data, EXTR_SKIP);
-            include $file;
-            return ob_get_clean();
+            $output .= $this->renderWidget($view, $data);
         }
 
         return $output;
     }
+
     /**
      * Sets the layout for the view.
      *
