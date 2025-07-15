@@ -28,6 +28,11 @@ class RestrictedController extends Controller {
         $this->view->render('restricted.index', true, true);
     }
 
+    public function noControllerAction($controllerName): void {
+        $this->view->controllerName = $controllerName;
+        $this->view->render('restricted.no_controller');
+    }
+
     /**
      * Runs when the object is constructed.
      *
