@@ -255,9 +255,8 @@ class Router {
                 : 'index';
             $url->shift();
 
-            if(!class_exists(self::resolveControllerClass($controller))) {
-                throw new Exception("Controller does not exist");
-            }
+            // Redirect to no controller found view if it doesn't exist.
+            self::resolveControllerClass($controller);
 
             // ACL check
             if (!self::hasAccess($controller_name, $action_name) && !method_exists($controller, $action)) {

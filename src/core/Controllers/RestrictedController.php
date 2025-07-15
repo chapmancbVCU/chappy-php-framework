@@ -30,7 +30,7 @@ class RestrictedController extends Controller {
 
     public function noControllerAction($controllerName): void {
         $this->view->controllerName = $controllerName;
-        $this->view->render('restricted.no_controller');
+        $this->view->render('restricted.no_controller', true, true);
     }
 
     /**
