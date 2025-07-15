@@ -286,7 +286,8 @@ class Router {
             if (method_exists($controller, $action)) {
                 call_user_func_array([$dispatch, $action], $url->all());
             } else {
-                throw new Exception("Method '$action_name' does not exist in the controller '$controller_name'.");
+                // throw new Exception("Method '$action_name' does not exist in the controller '$controller_name'.");
+                redirect('restricted.notFound', [$action_name, $controller_name]);
             }
         } catch (Exception $e) {
             Logger::log("Unhandled Exception in Router: " . $e->getMessage(), 'error');

@@ -33,6 +33,14 @@ class RestrictedController extends Controller {
         $this->view->render('restricted.no_controller', true, true);
     }
 
+    public function notFoundAction($actionName, $controllerName): void {
+        // Set HTTP response code
+        http_response_code(404);
+        $this->view->actionName = $actionName;
+        $this->view->controllerName = $controllerName;
+        $this->view->render('restricted.not_found', true, true);
+    }
+
     /**
      * Runs when the object is constructed.
      *
