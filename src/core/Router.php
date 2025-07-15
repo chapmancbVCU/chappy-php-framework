@@ -205,7 +205,7 @@ class Router {
             return $coreClass;
         }
 
-        redirect('restricted.noController');
+        redirect('restricted.noController', [$controllerShort]);
     }
 
     /**
@@ -255,9 +255,9 @@ class Router {
                 : 'index';
             $url->shift();
 
-            // if(!class_exists(self::resolveControllerClass($controller))) {
-            //     throw new Exception("Controller does not exist");
-            // }
+            if(!class_exists(self::resolveControllerClass($controller))) {
+                throw new Exception("Controller does not exist");
+            }
 
             // ACL check
             if (!self::hasAccess($controller_name, $action_name) && !method_exists($controller, $action)) {
