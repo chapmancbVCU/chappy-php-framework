@@ -193,7 +193,14 @@ class Router {
         }
     }
 
-    private static function resolveControllerClass(string $controllerShort) {
+    /**
+     * Resolves namespaces for controllers.
+     *
+     * @param string $controllerShort
+     * @return string|bool The controller in namespaced form if it exists.  
+     * Otherwise we redirect.
+     */
+    private static function resolveControllerClass(string $controllerShort): string|bool {
         $appClass = 'App\\Controllers\\' . $controllerShort;
         $coreClass = 'Core\\Controllers\\' . $controllerShort;
 
@@ -204,8 +211,8 @@ class Router {
         if (class_exists($coreClass)) {
             return $coreClass;
         }
-
-        redirect('restricted.noController', [$controllerShort]);
+  
+        return false;
     }
 
     /**
@@ -256,7 +263,9 @@ class Router {
             $url->shift();
 
             // Redirect to no controller found view if it doesn't exist.
-            self::resolveControllerClass($controller);
+            if(!self::resolveControllerClass($controller)) {
+                redirect('restricted.noController', [$controller]);
+            }
 
             // ACL check
             if (!self::hasAccess($controller_name, $action_name) && !method_exists($controller, $action)) {
@@ -286,7 +295,6 @@ class Router {
             if (method_exists($controller, $action)) {
                 call_user_func_array([$dispatch, $action], $url->all());
             } else {
-                // throw new Exception("Method '$action_name' does not exist in the controller '$controller_name'.");
                 redirect('restricted.notFound', [$action_name, $controller_name]);
             }
         } catch (Exception $e) {
