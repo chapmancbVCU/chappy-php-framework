@@ -28,14 +28,31 @@ class RestrictedController extends Controller {
         $this->view->render('restricted.index', true, true);
     }
 
-    public function noControllerAction($controllerName): void {
+    /**
+     * Handles case when controller is not found and sets 404 response.
+     *
+     * @param string $controllerName The name of the controller.
+     * @return void
+     */
+    public function noControllerAction(string $controllerName): void {
+        // Set HTTP response code
+        http_response_code(404);
+
         $this->view->controllerName = $controllerName;
         $this->view->render('restricted.no_controller', true, true);
     }
 
-    public function notFoundAction($actionName, $controllerName): void {
+    /**
+     * Handles cases when view is not found and sets 404 response.
+     *
+     * @param string $actionName The name of the action/view.
+     * @param string $controllerName The name of the controller.
+     * @return void
+     */
+    public function notFoundAction(string $actionName, string $controllerName): void {
         // Set HTTP response code
         http_response_code(404);
+
         $this->view->actionName = $actionName;
         $this->view->controllerName = $controllerName;
         $this->view->render('restricted.not_found', true, true);
