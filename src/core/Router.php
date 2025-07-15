@@ -193,6 +193,21 @@ class Router {
         }
     }
 
+    private static function resolveControllerClass(string $controllerShort) {
+        $appClass = 'App\\Controllers\\' . $controllerShort;
+        $coreClass = 'Core\\Controllers\\' . $controllerShort;
+
+        if (class_exists($appClass)) {
+            return $appClass;
+        }
+
+        if (class_exists($coreClass)) {
+            return $coreClass;
+        }
+
+        throw new Exception("Controller '{$controllerShort}' does not exist.");
+    }
+
     /**
      * Supports operations for routing.  It parses the url to determine which 
      * page needs to be rendered.  That path is parsed to determine 
@@ -240,8 +255,12 @@ class Router {
                 : 'index';
             $url->shift();
 
+            if(!class_exists(self::resolveControllerClass($controller))) {
+                throw new Exception("Controller does not exist");
+            }
+
             // ACL check
-            if (!self::hasAccess($controller_name, $action_name)) {
+            if (!self::hasAccess($controller_name, $action_name) && !method_exists($controller, $action)) {
                 static $deniedAttempts = [];
                 $key = "{$userId}_{$controller_name}_{$action_name}";
 
@@ -261,8 +280,7 @@ class Router {
             }
 
             // Prepare controller class with namespace
-            $controller = class_exists('App\Controllers\\' . $controller) ? 'App\Controllers\\' . $controller : 
-                'Core\Controllers\\' . $controller;
+            $controller = self::resolveControllerClass($controller);
             $dispatch = new $controller($controller_name, $action);
 
             // Execute action
