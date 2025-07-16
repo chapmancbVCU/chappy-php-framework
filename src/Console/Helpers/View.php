@@ -192,6 +192,12 @@ class View {
         return Tools::writeFile($filePath, self::viewContent(), "View file");
     }
 
+    /**
+     * Writes new file for widget.
+     *
+     * @param string $filePath The path to the widget file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeWidget(string $filePath): int {
         return Tools::writeFile($filePath, '', "Widget file");
     }
