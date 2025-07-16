@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
- * Implements command for making a new view file.
+ * Implements command for making a new widget file.
  */
 class MakeWidgetCommand extends Command {
     /**
