@@ -1104,6 +1104,23 @@ class Blueprint {
     }
 
     /**
+     * Define an unsigned big integer column (MySQL only).
+     *
+     * @param string $name The name of the column to be created as unsigned BIGINT (MySQL) or INTEGER for SQLite.
+     * @return Blueprint Return the instance to allow method chaining.
+     */
+    public function unsignedBigInteger(string $name): Blueprint {
+        if ($this->dbDriver === 'mysql') {
+            $this->columns[] = "{$name} BIGINT UNSIGNED";
+        } else {
+            // SQLite doesn't support unsigned, but BIGINT is fine
+            $this->columns[] = "{$name} BIGINT";
+        }
+        $this->lastColumn = $name;
+        return $this;
+    }
+
+    /**
      * Update an existing table.
      */
     public function update(): void {
