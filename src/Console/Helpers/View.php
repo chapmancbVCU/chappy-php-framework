@@ -192,6 +192,10 @@ class View {
         return Tools::writeFile($filePath, self::viewContent(), "View file");
     }
 
+    public static function makeWidget(string $filePath): int {
+        return Tools::writeFile($filePath, '', "Widget file");
+    }
+
     /**
      * Returns a string containing contents for a menu.
      *
