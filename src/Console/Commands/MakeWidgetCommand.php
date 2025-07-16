@@ -13,7 +13,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 /**
  * Implements command for making a new view file.
  */
-class MakeViewCommand extends Command {
+class MakeWidgetCommand extends Command {
     /**
      * Configures the command.
      *
