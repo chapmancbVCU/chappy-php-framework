@@ -775,6 +775,35 @@ class Blueprint {
     }
 
     /**
+     * Define the primary key for one or more columns.
+     *
+     * @param string|array $columns The column name or array of columns to set as primary.
+     * @return Blueprint Return the instance to allow method chaining.
+     */
+    public function primary(string|array $columns): Blueprint {
+        if (is_array($columns)) {
+            $cols = implode(', ', array_map(fn($col) => "`{$col}`", $columns));
+            $this->indexes[] = [
+                'type' => 'primary',
+                'name' => "{$this->table}_primary",
+                'columns' => $columns
+            ];
+            // Apply immediately after create()
+            DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY ({$cols})");
+        } else {
+            // Single column
+            $this->indexes[] = [
+                'type' => 'primary',
+                'name' => "{$this->table}_primary",
+                'columns' => [$columns]
+            ];
+            DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY (`{$columns}`)");
+        }
+
+        return $this;
+    }
+
+    /**
      * Renames a particular column
      *
      * @param string $from The column's original name.
