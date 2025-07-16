@@ -65,6 +65,15 @@ class Migrate {
     }
 
     /**
+     * Generates file/class name for migration.
+     *
+     * @return string The file/class name of the migration.
+     */
+    public static function fileName(): string {
+        return "Migration".time();
+    }
+
+    /**
      * Generates a migration class for creating a new table.
      *
      * @param InputInterface $input The input that contains the name of the 
@@ -75,7 +84,7 @@ class Migrate {
         $tableName = Str::lower($input->getArgument('table_name'));
         
         // Generate Migration class
-        $fileName = "Migration".time();
+        $fileName = self::fileName();
         return Tools::writeFile(
             ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
             self::migrationClass($fileName, $tableName),
