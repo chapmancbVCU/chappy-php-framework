@@ -17,7 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class Migrate {
     public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
-    
+
     /**
      * Test if a particular batch of migrations exists.
      *
@@ -88,7 +88,7 @@ class Migrate {
         // Generate Migration class
         $fileName = self::fileName();
         return Tools::writeFile(
-            ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
+            self::MIGRATIONS_PATH.$fileName.'.php',
             self::migrationClass($fileName, $tableName),
             'Migration'
         );
@@ -108,7 +108,7 @@ class Migrate {
         // Generate Migration class
         $fileName = "Migration".time();
         return Tools::writeFile(
-            ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
+            self::MIGRATIONS_PATH.$fileName.'.php',
             self::migrationRenameClass($fileName, $from, $to),
             'Migration'
         );
@@ -127,7 +127,7 @@ class Migrate {
         // Generate Migration class
         $fileName = "Migration".time();
         return Tools::writeFile(
-            ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
+            self::MIGRATIONS_PATH.$fileName.'.php',
             self::migrationUpdateClass($fileName, $tableName),
             'Migration'
         );
