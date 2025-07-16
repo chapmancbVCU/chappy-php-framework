@@ -16,6 +16,8 @@ use Symfony\Component\Console\Input\InputInterface;
  * Helper class for migration related console commands.
  */
 class Migrate {
+    public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
+    
     /**
      * Test if a particular batch of migrations exists.
      *
