@@ -36,7 +36,7 @@ class MakeWidgetCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $widgetArray = explode(".", $input->getArgument('view-name'));
+        $widgetArray = explode(".", $input->getArgument('widget-name'));
 
         if (sizeof($widgetArray) !== 2) {
             Tools::info(
