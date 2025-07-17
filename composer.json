@@ -29,7 +29,7 @@
       "nesbot/carbon": "^3.8",
       "fakerphp/faker": "^1.24",
       "smknstd/fakerphp-picsum-images": "^1.0",
-      "ramsey/uuid": "^4.7",
+      "ramsey/uuid": "^4.9",
       "doctrine/inflector": "^2.0",
       "tinymce/tinymce": "^7.7",
       "phpunit/phpunit": "^11.3",
