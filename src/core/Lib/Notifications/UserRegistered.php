@@ -2,12 +2,13 @@
 namespace Core\Lib\Notifications;
 
 use Core\Lib\Notifications\Notification;
+use App\Models\Users;
 
 class UserRegistered extends Notification
 {
     protected $user;
 
-    public function __construct($user)
+    public function __construct(Users $user)
     {
         $this->user = $user;
     }
