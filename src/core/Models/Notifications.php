@@ -6,15 +6,8 @@ use Core\Model;
  * Implements features of the Notifications class.
  */
 class Notifications extends Model {
-
-    // Fields you don't want saved on form submit
-    // public const blackList = [];
-
     // Set to name of database table.
     protected static $_table = 'notifications';
-
-    // Soft delete
-    // protected static $_softDelete = true;
     
     // Fields from your database
     public $created_at;
@@ -26,28 +19,12 @@ class Notifications extends Model {
     public $type;
     public $updated_at;
 
-    public function afterDelete(): void {
-        // Implement your function
-    }
-
-    public function afterSave(): void {
-        // Implement your function
-    }
-
-    public function beforeDelete(): void {
-        // Implement your function
-    }
-
-    public function beforeSave(): void {
-        $this->timeStamps();
-    }
-
     /**
-     * Performs validation for the Notifications model.
+     * Implementation of beforeSave from base class.
      *
      * @return void
      */
-    public function validator(): void {
-        // Implement your function
+    public function beforeSave(): void {
+        $this->timeStamps();
     }
 }
