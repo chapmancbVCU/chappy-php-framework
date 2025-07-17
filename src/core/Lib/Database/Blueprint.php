@@ -96,7 +96,7 @@ class Blueprint {
         } else {
             $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql})";
         }
-        
+
         DB::getInstance()->query($sql);
         Tools::info("SUCCESS: Creating Table {$this->table}");
 
@@ -782,10 +782,19 @@ class Blueprint {
     }
 
     /**
-     * Define the primary key for one or more columns.
+     * Specify one or more columns to be used as the primary key for the table.
      *
-     * @param string|array $columns The column name or array of columns to set as primary.
-     * @return Blueprint Return the instance to allow method chaining.
+     * This method does not immediately execute any SQL. Instead, it stores the
+     * provided column(s) so that the `create()` method can append a PRIMARY KEY
+     * definition to the CREATE TABLE statement.
+     *
+     * Usage:
+     * $table->primary('id');
+     * // or for composite keys:
+     * $table->primary(['user_id', 'post_id']);
+     *
+     * @param string|array $columns The column name or an array of column names to set as the primary key.
+     * @return Blueprint Returns the current Blueprint instance for method chaining.
      */
     public function primary(string|array $columns): Blueprint {
         $this->primaryKeys = is_array($columns) ? $columns : [$columns];
