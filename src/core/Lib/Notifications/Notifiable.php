@@ -23,6 +23,9 @@ trait Notifiable {
     }
 
     public function notifications(): array {
-        return Notifications::findAllByUserId($this->id);
+        return Notifications::find(
+            ['conditions' => 'notifiable_id = ?',
+            'bind' => [$this->id]]
+        );
     }
 }

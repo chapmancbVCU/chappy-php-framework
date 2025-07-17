@@ -796,10 +796,31 @@ class Blueprint {
      * @param string|array $columns The column name or an array of column names to set as the primary key.
      * @return Blueprint Returns the current Blueprint instance for method chaining.
      */
-    public function primary(string|array $columns): Blueprint {
-        $this->primaryKeys = is_array($columns) ? $columns : [$columns];
+    public function primary(string|array $columns = null): Blueprint {
+        // If columns is null, apply to last column
+        if ($columns === null && $this->lastColumn !== null) {
+            $lastIndex = count($this->columns) - 1;
+            $this->columns[$lastIndex] .= " PRIMARY KEY";
+        } elseif (is_string($columns)) {
+            // Mark an existing column as primary before table creation
+            foreach ($this->columns as $i => $colDef) {
+                if (str_starts_with($colDef, $columns.' ')) {
+                    $this->columns[$i] .= " PRIMARY KEY";
+                    break;
+                }
+            }
+        } elseif (is_array($columns)) {
+            // For composite primary keys, handle separately (optional)
+            $pk = implode(', ', $columns);
+            $this->indexes[] = [
+                'type' => 'primary',
+                'name' => "{$this->table}_primary",
+                'columns' => $columns
+            ];
+        }
         return $this;
     }
+
 
     /**
      * Renames a particular column
