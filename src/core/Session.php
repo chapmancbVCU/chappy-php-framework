@@ -22,7 +22,7 @@ class Session {
     }
 
     /**
-     * Removes CURRENT_USER_SESSION_NAME from th $_SESSION superglobal array 
+     * Removes CURRENT_USER_SESSION_NAME from the $_SESSION superglobal array 
      * when a user logs out of a user session.
      *
      * @param string $name The CURRENT_USER_SESSION_NAME associated with the 
