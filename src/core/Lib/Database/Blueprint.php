@@ -14,12 +14,13 @@ use Core\Lib\Logging\Logger;
  */
 class Blueprint {
     protected $columns = [];
-    protected $engine = 'InnoDB';
+    protected array $columnModifiers = [];
     protected $dbDriver;
+    protected $engine = 'InnoDB';
     protected $foreignKeys = [];
     protected $indexes = [];
     protected ?string $lastColumn = null;
-    protected array $columnModifiers = [];
+    protected array $primaryKeys = [];
     protected $table;
 
     /**
@@ -83,6 +84,12 @@ class Blueprint {
      */
     public function create(): void {
         $columnsSql = implode(", ", $this->columns);
+        
+        if ($this->dbDriver === 'mysql') {
+            $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql}) ENGINE={$this->engine}";
+        } else {
+            $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql})";
+        }
         
         if ($this->dbDriver === 'mysql') {
             $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql}) ENGINE={$this->engine}";
@@ -781,25 +788,7 @@ class Blueprint {
      * @return Blueprint Return the instance to allow method chaining.
      */
     public function primary(string|array $columns): Blueprint {
-        if (is_array($columns)) {
-            $cols = implode(', ', array_map(fn($col) => "`{$col}`", $columns));
-            $this->indexes[] = [
-                'type' => 'primary',
-                'name' => "{$this->table}_primary",
-                'columns' => $columns
-            ];
-            // Apply immediately after create()
-            DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY ({$cols})");
-        } else {
-            // Single column
-            $this->indexes[] = [
-                'type' => 'primary',
-                'name' => "{$this->table}_primary",
-                'columns' => [$columns]
-            ];
-            DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY (`{$columns}`)");
-        }
-
+        $this->primaryKeys = is_array($columns) ? $columns : [$columns];
         return $this;
     }
 
