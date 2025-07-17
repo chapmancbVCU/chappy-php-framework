@@ -1211,5 +1211,6 @@ class Blueprint {
             $this->columns[] = "{$name} TEXT";
         }
         $this->lastColumn = $name;
+        return $this;
     }
 }
