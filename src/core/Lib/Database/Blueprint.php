@@ -796,7 +796,7 @@ class Blueprint {
      * @param string|array $columns The column name or an array of column names to set as the primary key.
      * @return Blueprint Returns the current Blueprint instance for method chaining.
      */
-    public function primary(string|array $columns = null): Blueprint {
+    public function primary(string|array|null $columns = null): Blueprint {
         // If columns is null, apply to last column
         if ($columns === null && $this->lastColumn !== null) {
             $lastIndex = count($this->columns) - 1;
