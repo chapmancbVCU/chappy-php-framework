@@ -3,6 +3,12 @@
 <?php $this->start('body'); ?>
 <h1 class="text-center">Administration Dashboard</h1>
 
+<?php
+// foreach ($notifications as $notification) {
+//     $data = json_decode($notification->data, true);
+//     echo "<li>{$data['message']} ({$data['registered_at']})</li>";
+// }
+?>
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <th>Username</th>

@@ -1,5 +1,5 @@
 <?php
-namespace App\Notifications;
+namespace Core\Lib\Notifications;
 
 use Core\Lib\Notifications\Notification;
 
