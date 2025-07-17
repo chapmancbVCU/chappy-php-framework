@@ -20,7 +20,6 @@ class Blueprint {
     protected $foreignKeys = [];
     protected $indexes = [];
     protected ?string $lastColumn = null;
-    protected array $primaryKeys = [];
     protected $table;
 
     /**
@@ -84,17 +83,6 @@ class Blueprint {
      */
     public function create(): void {
         $columnsSql = implode(", ", $this->columns);
-        
-        // append composite primary keys if defined
-        foreach ($this->primaryKeys as $pk) {
-            $columnsSql .= ", PRIMARY KEY ({$pk})";
-        }
-
-        if ($this->dbDriver === 'mysql') {
-            $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql}) ENGINE={$this->engine}";
-        } else {
-            $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql})";
-        }
         
         if ($this->dbDriver === 'mysql') {
             $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql}) ENGINE={$this->engine}";
@@ -787,46 +775,6 @@ class Blueprint {
     }
 
     /**
-     * Specify one or more columns to be used as the primary key for the table.
-     *
-     * Usage:
-     *   $table->primary('id');             // single column
-     *   $table->uuid('id')->primary();     // chain after column
-     *   $table->primary(['col1','col2']);  // composite key
-     */
-    public function primary(string|array|null $columns = null): Blueprint {
-        // If no columns specified, apply to the last defined column
-        if ($columns === null && $this->lastColumn !== null) {
-            // modify the last column definition
-            $lastIndex = count($this->columns) - 1;
-            $this->columns[$lastIndex] .= " PRIMARY KEY";
-            return $this;
-        }
-
-        if (is_string($columns)) {
-            // apply primary key to an existing single column
-            foreach ($this->columns as $i => $colDef) {
-                // match column start (with trailing space or end of string)
-                if (preg_match('/^'.$columns.'\s/', $colDef)) {
-                    $this->columns[$i] .= " PRIMARY KEY";
-                    break;
-                }
-            }
-            return $this;
-        }
-
-        if (is_array($columns)) {
-            // composite key (defer to table-level constraint)
-            $pkCols = implode(', ', array_map(fn($col) => "`{$col}`", $columns));
-            // store a composite primary key to append after columns
-            $this->primaryKeys[] = $pkCols;
-            return $this;
-        }
-
-        return $this;
-    }
-
-    /**
      * Renames a particular column
      *
      * @param string $from The column's original name.
@@ -1206,15 +1154,13 @@ class Blueprint {
      * Define a UUID column (MySQL only).
      * 
      * @param string $name The name of the column to be created as UUID.
-     * @return Blueprint Returns the Blueprint instance for chaining.
      */
-    public function uuid(string $name): Blueprint {
+    public function uuid(string $name) {
         if ($this->dbDriver === 'mysql') {
             $this->columns[] = "{$name} CHAR(36) NOT NULL";
         } else {
             $this->columns[] = "{$name} TEXT";
         }
         $this->lastColumn = $name;
-        return $this;
     }
 }
