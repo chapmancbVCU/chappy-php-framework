@@ -85,6 +85,11 @@ class Blueprint {
     public function create(): void {
         $columnsSql = implode(", ", $this->columns);
         
+        // append composite primary keys if defined
+        foreach ($this->primaryKeys as $pk) {
+            $columnsSql .= ", PRIMARY KEY ({$pk})";
+        }
+
         if ($this->dbDriver === 'mysql') {
             $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columnsSql}) ENGINE={$this->engine}";
         } else {
@@ -1201,8 +1206,9 @@ class Blueprint {
      * Define a UUID column (MySQL only).
      * 
      * @param string $name The name of the column to be created as UUID.
+     * @return Blueprint Returns the Blueprint instance for chaining.
      */
-    public function uuid(string $name) {
+    public function uuid(string $name): Blueprint {
         if ($this->dbDriver === 'mysql') {
             $this->columns[] = "{$name} CHAR(36) NOT NULL";
         } else {
