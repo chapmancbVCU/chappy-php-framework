@@ -14,7 +14,7 @@ class NotificationService {
         ]);
 
         foreach($admins as $admin) {
-            if($admin->hasAcl('admin')) {
+            if($admin->hasAcl('Admin')) {
                 $admin->notify(new UserRegistered($newUser));
             }
         }
