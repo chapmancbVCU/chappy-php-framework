@@ -27,4 +27,19 @@ class Notifications extends Model {
     public function beforeSave(): void {
         $this->timeStamps();
     }
+
+    public function markAsRead(): void {
+        $this->read_at = date('Y-m-d H:i:s');
+        $this->save();
+    }
+
+    public static function markAsReadById(string $id): bool {
+    $record = self::findFirst(['conditions' => 'id = ?', 'bind' => [$id]]);
+    if ($record) {
+        $record->read_at = date('Y-m-d H:i:s');
+        return $record->save();
+    }
+    return false;
+}
+
 }

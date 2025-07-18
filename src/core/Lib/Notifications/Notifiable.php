@@ -23,9 +23,11 @@ trait Notifiable {
     }
 
     public function notifications(): array {
-        return Notifications::find([
-            'conditions' => 'notifiable_id = ? AND notifiable_type = ?',
-            'bind' => [$this->id, get_class($this)]
+        $results = Notifications::find([
+            'conditions' => 'notifiable_id = ? AND read_at IS NULL',
+            'bind' => [$this->id],
+            'order' => 'created_at DESC'
         ]);
+        return is_array($results) ? $results : [];
     }
 }
