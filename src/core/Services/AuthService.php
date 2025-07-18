@@ -237,6 +237,12 @@ class AuthService {
         }
     }
 
+    /**
+     * Handles upload for profile image.
+     *
+     * @param Users $user The user who uploaded a profile image.
+     * @return Uploads|null The uploads object if it's created or null.
+     */
     public static function profileImageUpload(Users $user): ?Uploads{
         return Uploads::handleUpload(
             $_FILES['profileImage'],
