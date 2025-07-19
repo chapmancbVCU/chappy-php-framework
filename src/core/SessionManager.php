@@ -9,7 +9,7 @@ use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Core\Services\AuthService;
 use Core\Lib\Events\EventDispatcher;
-use Core\Lib\Providers\EventServiceProvider;
+use Core\Lib\Providers\EventServiceProvider as CoreEventServiceProvider;
 
 /**
  * Supports session management
@@ -46,9 +46,16 @@ class SessionManager {
         // Generate csrf token.
         FormHelper::generateToken();
 
+        // Boot core provider
         $dispatcher = new EventDispatcher();
-        $provider = new EventServiceProvider();
+        $provider = new CoreEventServiceProvider();
         $provider->boot($dispatcher);
+
+        // Boot app provider if available.
+        if(class_exists(\App\Providers\EventServiceProvider::class)) {
+            $appProvider = new \App\Providers\EventServiceProvider();
+            $appProvider->boot($dispatcher);
+        }
         self::$events = $dispatcher;
     }
 }
