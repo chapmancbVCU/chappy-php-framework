@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Core\Lib\Providers;
 
+use Core\Lib\Events\EventDispatcher;
+
 /**
  * Abstract class for event service providers.
  */
@@ -23,7 +25,7 @@ abstract class ServiceProvider {
      *
      * @return void
      */
-    public function boot(): void {
+    public function boot(EventDispatcher $dispatcher): void {
 
     }
 }
