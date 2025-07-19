@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Core\Lib\Events;
+namespace Core\Lib\Listeners;
 
 use Core\Lib\Events\UserPasswordResetRequested;
 use Core\Lib\Mail\PasswordResetMailer;
