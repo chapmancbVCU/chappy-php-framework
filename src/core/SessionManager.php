@@ -48,8 +48,8 @@ class SessionManager {
 
         // Boot core provider
         $dispatcher = new EventDispatcher();
-        $provider = new CoreEventServiceProvider();
-        $provider->boot($dispatcher);
+        $coreProvider = new CoreEventServiceProvider();
+        $coreProvider->boot($dispatcher);
 
         // Boot app provider if available.
         if(class_exists(\App\Providers\EventServiceProvider::class)) {
