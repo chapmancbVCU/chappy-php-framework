@@ -17,7 +17,6 @@ class SendPasswordResetEmail {
      */
     public function handle(UserPasswordResetRequested $event): void {
         $user = $event->user;
-
         flashMessage('info', "Reset Password Email sent to {$user->username} via {$user->email}");
         PasswordResetMailer::sendTo($user);
     }

@@ -15,7 +15,7 @@ class UserPasswordResetRequested {
      *
      * @param User $user User associated with event.
      */
-    public function __construct(User $user) {
+    public function __construct(Users $user) {
         $this->user = $user;
     }
 }
