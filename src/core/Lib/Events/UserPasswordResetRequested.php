@@ -4,9 +4,17 @@ namespace Core\Lib\Events;
 
 use App\Models\Users;
 
+/**
+ * Simple DTO (Data Transfer Object) class for password reset event.
+ */
 class UserPasswordResetRequested {
     public Users $user;
 
+    /**
+     * Constructor
+     *
+     * @param User $user User associated with event.
+     */
     public function __construct(User $user) {
         $this->user = $user;
     }
