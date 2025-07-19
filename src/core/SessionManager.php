@@ -4,14 +4,24 @@ namespace Core;
 
 use Core\Cookie;
 use Core\Session;
-use Core\Services\AuthService;
+use Core\FormHelper;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
-use Core\FormHelper;
+use Core\Services\AuthService;
+use Core\Lib\Events\EventDispatcher;
+use Core\Lib\Providers\EventServiceProvider;
+
 /**
  * Supports session management
  */
 class SessionManager {
+    protected static ?EventDispatcher $events = null;
+
+    public static function events(): EventDispatcher
+    {
+        return self::$events;
+    }
+
     /**
      * Checks if session exists and logs user in.  Logs user out if account 
      * status is inactive.
@@ -35,5 +45,10 @@ class SessionManager {
 
         // Generate csrf token.
         FormHelper::generateToken();
+
+        $dispatcher = new EventDispatcher();
+        $provider = new EventServiceProvider();
+        $provider->boot($dispatcher);
+        self::$events = $dispatcher;
     }
 }
