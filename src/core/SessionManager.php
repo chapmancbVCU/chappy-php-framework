@@ -8,20 +8,11 @@ use Core\FormHelper;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Core\Services\AuthService;
-use Core\Lib\Events\EventDispatcher;
-
 
 /**
  * Supports session management
  */
 class SessionManager {
-    protected static ?EventDispatcher $events = null;
-
-    public static function events(): EventDispatcher
-    {
-        return self::$events;
-    }
-
     /**
      * Checks if session exists and logs user in.  Logs user out if account 
      * status is inactive.
@@ -45,12 +36,5 @@ class SessionManager {
 
         // Generate csrf token.
         FormHelper::generateToken();
-
-        // Boot app provider if available.
-        if(class_exists(\App\Providers\EventServiceProvider::class)) {
-            $appProvider = new \App\Providers\EventServiceProvider();
-            $appProvider->boot($dispatcher);
-        }
-        self::$events = $dispatcher;
     }
 }

@@ -3,6 +3,7 @@
 use Dotenv\Dotenv;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
+use Core\Lib\Events\EventManager;
 
 // Define CHAPPY_ROOT (framework root)
 if (!defined('CHAPPY_ROOT')) {
@@ -31,3 +32,6 @@ $dotenv->load();
 // Load .env values and config
 Env::load($envPath);
 Config::load(CHAPPY_BASE_PATH . '/config');
+
+// Initialize Events/Listeners
+EventManager::boot();
