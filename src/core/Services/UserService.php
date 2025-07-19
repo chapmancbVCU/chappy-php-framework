@@ -4,10 +4,11 @@ namespace Core\Services;
 
 use Core\Input;
 use App\Models\Users;
+use Core\SessionManager;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
-use Core\Lib\Mail\AccountDeactivatedMailer;
 use Core\Lib\Mail\PasswordResetMailer;
+use Core\Lib\Mail\AccountDeactivatedMailer;
 
 /**
  * Provides functions for managing users.
@@ -127,8 +128,9 @@ final class UserService {
      */
     public static function sendWhenSetToResetPW(Users $user, bool $shouldSendEmail = false): void {
         if($shouldSendEmail) {
-            flashMessage('info', "Reset Password Email sent to {$user->username} via {$user->email}");
-            PasswordResetMailer::sendTo($user);
+            SessionManager::events()->dispatch(
+                new \Core\Lib\Events\UserPasswordResetRequested($user)
+            );
         }
     }
 
