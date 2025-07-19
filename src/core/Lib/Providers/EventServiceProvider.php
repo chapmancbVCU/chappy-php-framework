@@ -4,11 +4,33 @@ namespace Core\Lib\Providers;
 
 use Core\Lib\Events\EventDispatcher;
 use Core\Lib\Events\UserPasswordResetRequested;
-use Core\Lib\listeners\SendPasswordResetEmail;
+use Core\Lib\Listeners\SendPasswordResetEmail;
 
 /**
  * Internal EventServiceProvider for builtin events.
  */
 class EventServiceProvider extends ServiceProvider {
+    /**
+     * The event listener mappings for the application's built-in framework 
+     * events.
+     */
+    protected array $listen = [
+        UserPasswordResetRequested::class => [
+            SendPasswordResetEmail::class,
+        ],
+    ];
 
+    /**
+     * Register your events with the dispatcher.
+     *
+     * @param EventDispatcher $dispatcher The dispatcher.
+     * @return void
+     */
+    public function boot(EventDispatcher $dispatcher): void {
+        foreach($this->listen as $event => $listeners) {
+            foreach($listeners as $listener) {
+                $dispatcher->listen($event, [new $listener(), 'handle']);
+            }
+        }
+    }
 }
