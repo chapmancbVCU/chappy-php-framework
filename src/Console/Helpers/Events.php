@@ -7,14 +7,14 @@ namespace Console\Helpers;
  * Supports operations related to Events/Listeners.
  */
 class Events {
-    protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'providers';
+    protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
     public static function eventServiceProviderTemplate(string $providerName) {
         return '<?php
-declare(strict_types=1);
 namespace App\Providers;
 
 use Core\Lib\Events\EventDispatcher;
+use Core\Lib\Providers\ServiceProvider;
 
 /**
  * App namespace event service providers
