@@ -8,6 +8,7 @@ namespace Console\Helpers;
  */
 class Events {
     protected static string $eventPath  = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
+    protected static string $listenerPath  = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
     protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
     /**
@@ -30,6 +31,29 @@ class '.$eventName.'
     }
 }
 ';
+    }
+
+    public static function listenerTemplate(string $eventName, string $listenerName): string {
+        return '<?php
+declare(strict_types=1);
+namespace App\Listeners;
+
+use App\Events\\'.$eventName.';
+
+/**
+ * Class for sending password reset E-mail.
+ */
+class '.$listenerName.' {
+    /**
+     * Handles event for sending password reset E-mail.
+     *
+     * @param UserPasswordResetRequested $event The event.
+     * @return void
+     */
+    public function handle(UserPasswordResetRequested $event): void {
+        $user = $event->user;
+    }
+}';
     }
 
     /**
@@ -78,6 +102,16 @@ class '.$providerName.' extends ServiceProvider {
             $fullPath,
             self::eventTemplate($eventName),
             'Event'
+        );
+    }
+
+    public static function makeListener(string $eventName, string $listenerName): int {
+        Tools::pathExists(self::$listenerPath);
+        $fullPath = self::$listenerPath.$listenerName.'.php';
+        return Tools::writeFile(
+            $fullPath,
+            self::listenerTemplate($eventName, $listenerName),
+            'Listener'
         );
     }
 
