@@ -14,16 +14,19 @@ class EventManager {
         // Only boot once
         if(self::$dispatcher !== null) return;
 
-        // Boot core provider
+        // // Boot core provider
         $dispatcher = new EventDispatcher();
-        $coreProvider = new CoreEventServiceProvider();
-        $coreProvider->boot($dispatcher);
+        $providerClasses = require ROOT.DS.'config'.DS.'providers.php';
 
-        // Boot app provider if available.
-        if(class_exists(\App\Providers\EventServiceProvider::class)) {
-            $appProvider = new \App\Providers\EventServiceProvider();
-            $appProvider->boot($dispatcher);
+        foreach($providerClasses as $providerClass) {
+            if(class_exists($providerClass)) {
+                $provider = new $providerClass();
+                if(method_exists($provider, 'boot')) {
+                    $provider->boot($dispatcher);
+                }
+            }
         }
+        
         self::$dispatcher = $dispatcher;
     }
 
