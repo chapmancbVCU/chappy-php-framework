@@ -9,6 +9,7 @@ use Core\Lib\Events\EventDispatcher;
  * Abstract class for event service providers.
  */
 abstract class ServiceProvider {
+    protected array $listen = [];
 
     /**
      * Default function to register bindings or event listeners.  Can 
@@ -26,6 +27,10 @@ abstract class ServiceProvider {
      * @return void
      */
     public function boot(EventDispatcher $dispatcher): void {
-
+        foreach($this->listen as $event => $listeners) {
+            foreach($listeners as $listener) {
+                $dispatcher->listen($event, [new $listener(), 'handle']);
+            }
+        }
     }
 }
