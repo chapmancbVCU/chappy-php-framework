@@ -31,11 +31,7 @@ class '.$providerName.' extends ServiceProvider {
      * @return void
      */
     public function boot(EventDispatcher $dispatcher): void {
-        foreach($this->listen as $event => $listeners) {
-            foreach($listeners as $listener) {
-                $dispatcher->listen($event, [new $listener(), \'handle\']);
-            }
-        }
+        parent::boot($dispatcher);
     }
 }';
     }
