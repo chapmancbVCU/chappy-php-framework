@@ -9,7 +9,13 @@ namespace Console\Helpers;
 class Events {
     protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
-    public static function eventServiceProviderTemplate(string $providerName) {
+    /**
+     * Template for event service provider.
+     *
+     * @param string $providerName The name of the event service provider.
+     * @return string The content of the event service provider.
+     */
+    public static function eventServiceProviderTemplate(string $providerName): string {
         return '<?php
 namespace App\Providers;
 
@@ -36,6 +42,12 @@ class '.$providerName.' extends ServiceProvider {
 }';
     }
 
+    /**
+     * Creates a new event service provider
+     *
+     * @param string $providerName The name for the event service provider.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeEventServiceProvider(string $providerName): int {
         Tools::pathExists(self::$providerPath);
         $fullPath = self::$providerPath.$providerName.'.php';
