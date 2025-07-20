@@ -9,9 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new event service provider class.
+ * Generates a new event class.
  */
-class MakeEventServiceProviderCommand extends Command
+class MakeEventCommand extends Command
 {
     /**
      * Configures the command.
@@ -20,10 +20,10 @@ class MakeEventServiceProviderCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('make:provider')
-            ->setDescription('Generates a new event service provider')
-            ->setHelp('php console make:provider <provider-name>')
-            ->addArgument('provider-name', InputArgument::REQUIRED, 'Pass the name for the new event service provider');
+        $this->setName('make:event')
+            ->setDescription('Generates a new event class')
+            ->setHelp('php console make:event <event-name>')
+            ->addArgument('event-name', InputArgument::REQUIRED, 'Pass the name for the new event');
     }
 
     /**
@@ -35,7 +35,7 @@ class MakeEventServiceProviderCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $providerName = Str::ucfirst($input->getArgument('provider-name'));
-        return Events::makeEventServiceProvider($providerName);
+        $eventName = Str::ucfirst($input->getArgument('event-name'));
+        return Events::makeEvent($eventName);
     }
 }
