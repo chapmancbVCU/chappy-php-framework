@@ -33,6 +33,13 @@ class '.$eventName.'
 ';
     }
 
+    /**
+     * Template for event listener class.
+     *
+     * @param string $eventName The name of the event.
+     * @param string $listenerName The name of the listener.
+     * @return string The content for the new listener class.
+     */
     public static function listenerTemplate(string $eventName, string $listenerName): string {
         return '<?php
 namespace App\Listeners;
@@ -89,7 +96,7 @@ class '.$providerName.' extends ServiceProvider {
     }
 
     /**
-     * Creates a new event.
+     * Creates a new event class.
      *
      * @param string $eventName The name for the event.
      * @return int A value that indicates success, invalid, or failure.
@@ -104,6 +111,13 @@ class '.$providerName.' extends ServiceProvider {
         );
     }
 
+    /**
+     * Creates a new listener class.
+     *
+     * @param string $eventName The name of the event.
+     * @param string $listenerName The name of the listener.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeListener(string $eventName, string $listenerName): int {
         Tools::pathExists(self::$listenerPath);
         $fullPath = self::$listenerPath.$listenerName.'.php';
