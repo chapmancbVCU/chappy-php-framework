@@ -7,7 +7,7 @@ namespace Console\Helpers;
  * Supports operations related to Events/Listeners.
  */
 class Events {
-    protected static string $eventName  = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
+    protected static string $eventPath  = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
     protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
     /**
@@ -72,8 +72,8 @@ class '.$providerName.' extends ServiceProvider {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeEvent(string $eventName): int {
-        Tools::pathExists(self::$providerPath);
-        $fullPath = self::$providerPath.$eventName.'.php';
+        Tools::pathExists(self::$eventPath);
+        $fullPath = self::$eventPath.$eventName.'.php';
         return Tools::writeFile(
             $fullPath,
             self::eventTemplate($eventName),
