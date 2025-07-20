@@ -35,22 +35,21 @@ class '.$eventName.'
 
     public static function listenerTemplate(string $eventName, string $listenerName): string {
         return '<?php
-declare(strict_types=1);
 namespace App\Listeners;
 
 use App\Events\\'.$eventName.';
 
 /**
- * Class for sending password reset E-mail.
+ * Add description for class here
  */
 class '.$listenerName.' {
     /**
-     * Handles event for sending password reset E-mail.
+     * Add description for function here
      *
-     * @param UserPasswordResetRequested $event The event.
+     * @param '.$eventName.'
      * @return void
      */
-    public function handle(UserPasswordResetRequested $event): void {
+    public function handle('.$eventName.' $event): void {
         $user = $event->user;
     }
 }';
