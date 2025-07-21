@@ -2,8 +2,10 @@
 declare(strict_types=1);
 namespace Core\Lib\Providers;
 
+use Core\Lib\Events\UserRegistered;
 use Core\Lib\Events\EventDispatcher;
 use Core\Lib\Events\AccountDeactivated;
+use Core\Lib\Listeners\SendRegistrationEmail;
 use Core\Lib\Listeners\SendPasswordResetEmail;
 use Core\Lib\Events\UserPasswordResetRequested;
 use Core\Lib\Listeners\SendAccountDeactivatedEmail;
@@ -22,7 +24,10 @@ class EventServiceProvider extends ServiceProvider {
         ],
         AccountDeactivated::class => [
             SendAccountDeactivatedEmail::class
-        ]
+        ],
+        UserRegistered::class => [
+            SendRegistrationEmail::class,
+    ],
     ];
 
     /**
