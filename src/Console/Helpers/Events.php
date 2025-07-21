@@ -30,7 +30,12 @@ class '.$eventName.'
 {
     public $user;
 
-    public function __construct($user)
+    /**
+     * Constructor
+     *
+     * @param User $user User associated with event.
+     */
+    public function __construct(Users $user)
     {
         $this->user = $user;
     }
