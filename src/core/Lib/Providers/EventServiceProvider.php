@@ -3,8 +3,10 @@ declare(strict_types=1);
 namespace Core\Lib\Providers;
 
 use Core\Lib\Events\EventDispatcher;
-use Core\Lib\Events\UserPasswordResetRequested;
+use Core\Lib\Events\AccountDeactivated;
 use Core\Lib\Listeners\SendPasswordResetEmail;
+use Core\Lib\Events\UserPasswordResetRequested;
+use Core\Lib\Listeners\SendAccountDeactivatedEmail;
 
 /**
  * Internal EventServiceProvider for builtin events.
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider {
         UserPasswordResetRequested::class => [
             SendPasswordResetEmail::class,
         ],
+        AccountDeactivated::class => [
+            SendAccountDeactivatedEmail::class
+        ]
     ];
 
     /**

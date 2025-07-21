@@ -10,7 +10,7 @@ use Core\Lib\Events\EventManager;
 use Core\Lib\Mail\PasswordResetMailer;
 use Core\Lib\Mail\AccountDeactivatedMailer;
 use Core\Lib\Events\UserPasswordResetRequested;
-use App\Events\AccountDeactivated;
+use Core\Lib\Events\AccountDeactivated;
 
 /**
  * Provides functions for managing users.
