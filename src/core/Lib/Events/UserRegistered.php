@@ -14,9 +14,10 @@ class UserRegistered {
      * Constructor
      *
      * @param User $user User associated with event.
-     * @param bool $shouldSendEmail Flag to determine if E-mail should be sent.
+     * @param bool $shouldSendEmail Flag to determine if E-mail should be 
+     * sent.  Set default value to false.
      */
-    public function __construct(Users $user, bool $shouldSendEmail) {
+    public function __construct(Users $user, bool $shouldSendEmail = false) {
         $this->user = $user;
         $this->shouldSendEmail = $shouldSendEmail;
     }
