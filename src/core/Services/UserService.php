@@ -10,6 +10,7 @@ use Core\Lib\Events\EventManager;
 use Core\Lib\Mail\PasswordResetMailer;
 use Core\Lib\Mail\AccountDeactivatedMailer;
 use Core\Lib\Events\UserPasswordResetRequested;
+use App\Events\AccountDeactivated;
 
 /**
  * Provides functions for managing users.
@@ -115,8 +116,9 @@ final class UserService {
      */
     public static function sendWhenSetToInactive(Users $user, bool $shouldSendEmail = false): void {
         if($shouldSendEmail) {
-            flashMessage('info', "Account Deactivated Email sent to {$user->username} via {$user->email}");
-            AccountDeactivatedMailer::sendTo($user);
+            EventManager::dispatcher()->dispatch(
+                new AccountDeactivated($user)
+            );
         }
     }
 
