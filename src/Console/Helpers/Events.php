@@ -21,6 +21,11 @@ class Events {
         return '<?php
 namespace App\Events;
 
+use App\Models\Users;
+
+/**
+ * Document class here.
+ */
 class '.$eventName.'
 {
     public $user;
