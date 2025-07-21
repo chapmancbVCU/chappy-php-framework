@@ -33,7 +33,7 @@ class Notifications extends Model {
         $this->save();
     }
 
-    public static function markAsReadById(string $id): bool {
+    public static function markAsReadById(string|int $id): bool {
     $record = self::findFirst(['conditions' => 'id = ?', 'bind' => [$id]]);
         if ($record) {
             $record->read_at = date('Y-m-d H:i:s');
