@@ -9,13 +9,14 @@ use App\Models\Users;
  */
 class UserRegistered {
     public Users $user;
-
+    public bool $shouldSendEmail;
     /**
      * Constructor
      *
      * @param User $user User associated with event.
      */
-    public function __construct(Users $user) {
+    public function __construct(Users $user, bool $shouldSendEmail) {
         $this->user = $user;
+        $this->shouldSendEmail = $shouldSendEmail;
     }
 }

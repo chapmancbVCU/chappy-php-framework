@@ -18,7 +18,10 @@ class SendRegistrationEmail {
      */
     public function handle(UserRegistered $event): void {
         $user = $event->user;
+        $shouldSendEmail = $event->shouldSendEmail;
         NotificationService::sendUserRegistrationNotification($user);
-        WelcomeMailer::sendTo($user);
+        if($shouldSendEmail) {
+            WelcomeMailer::sendTo($user);
+        }
     }
 }
