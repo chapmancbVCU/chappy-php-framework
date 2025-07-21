@@ -53,7 +53,7 @@ class '.$listenerName.' {
     /**
      * Add description for function here
      *
-     * @param '.$eventName.' $event
+     * @param '.$eventName.' $event The event.
      * @return void
      */
     public function handle('.$eventName.' $event): void {
