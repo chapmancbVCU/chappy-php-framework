@@ -7,8 +7,8 @@ namespace Console\Helpers;
  * Supports operations related to Events/Listeners.
  */
 class Events {
-    protected static string $eventPath  = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
-    protected static string $listenerPath  = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
+    protected static string $eventPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
+    protected static string $listenerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
     protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
     /**
