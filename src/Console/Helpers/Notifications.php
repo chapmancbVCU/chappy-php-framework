@@ -9,7 +9,7 @@ class Notifications {
     /**
      * Template for notifications migration.
      *
-     * @param string $fileName The file an class name.
+     * @param string $fileName The file and class name.
      * @return string The contents for the notifications migration.
      */
     public static function migrationTemplate(string $fileName): string {
