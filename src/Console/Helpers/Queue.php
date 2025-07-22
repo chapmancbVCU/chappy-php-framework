@@ -10,7 +10,7 @@ class Queue {
      * Template for queue migration.
      *
      * @param string $fileName The file and class name.
-     * @return string The contents for the notifications migration.
+     * @return string The contents for the queue migration.
      */
     public static function migrationTemplate(string $fileName): string {
         return '<?php
@@ -20,7 +20,7 @@ use Core\Lib\Database\Blueprint;
 use Core\Lib\Database\Migration;
 
 /**
- * Migration class for the notifications table.
+ * Migration class for the queue table.
  */
 class '.$fileName.' extends Migration {
     /**
@@ -29,17 +29,14 @@ class '.$fileName.' extends Migration {
      * @return void
      */
     public function up(): void {
-        Schema::create(\'notifications\', function (Blueprint $table) {
+        Schema::create(\'queue\', function (Blueprint $table) {
             $table->uuid(\'id\');
-            $table->primary(\'id\');
-            $table->string(\'type\');
-            $table->string(\'notifiable_type\');
-            $table->unsignedBigInteger(\'notifiable_id\');
-            $table->text(\'data\');
-            $table->timestamp(\'read_at\')->nullable();
-            $table->timestamps();
-            $table->index(\'notifiable_type\');
-            $table->index(\'notifiable_id\');
+            $table->string(\'queue\')->default(\'default\');
+            $table->text(\'payload\');
+            $table->unsignedInteger(\'attempts\')->default(0);
+            $table->timestamp(\'reserved_at\')->nullable();
+            $table->timestamp(\'available_at\');
+            $table->timestamp(\'created_at\');
         });
     }
 
@@ -49,7 +46,7 @@ class '.$fileName.' extends Migration {
      * @return void
      */
     public function down(): void {
-        Schema::dropIfExists(\'notifications\');
+        Schema::dropIfExists(\'queue\');
     }
 }
 ';
