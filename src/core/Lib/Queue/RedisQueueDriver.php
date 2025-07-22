@@ -4,7 +4,7 @@ namespace Core\Lib\Queue;
 
 use Redis;
 
-class RedisQueueDriver {
+class RedisQueueDriver implements QueueDriverInterface {
     protected Redis $redis;
 
     public function __construct(Redis $redis) {

@@ -4,7 +4,7 @@ namespace Core\Lib\Queue;
 
 use PDO;
 
-class DatabaseQueueDriver {
+class DatabaseQueueDriver implements QueueDriverInterface {
     protected PDO $pdo;
 
     public function __construct(PDO $pdo) {
