@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
+use Core\Lib\Queue\QueueManager;
 
 /**
  * Supports commands related to queues.
@@ -65,4 +66,50 @@ class '.$fileName.' extends Migration {
             'Queue migration'
         );
     }
+
+    public static function worker(string $queueName = 'default'): void {
+        // Load config
+        $config = require CHAPPY_BASE_PATH . DS . 'config' . DS . 'queue.php';
+
+        // Init manager
+        $queue = new QueueManager($config);
+
+        // Handle shutdown signals
+        pcntl_async_signals(true);
+        pcntl_signal(SIGTERM, function() { echo "Worker shutting down...\n"; exit; });
+        pcntl_signal(SIGINT, function() { echo "Worker interrupted...\n"; exit; });
+
+        echo "Worker started on queue: {$queueName}\n";
+
+        $iterations = 0;
+        $maxIterations = 1000; // restart periodically
+
+        while (true) {
+            $job = $queue->pop($queueName);
+
+            if ($job) {
+                try {
+                    echo "Processing job: " . json_encode($job['payload']) . PHP_EOL;
+
+                    // TODO: dispatch to appropriate Job class here:
+                    // JobDispatcher::dispatch($job['payload']);
+
+                    if ($job['id']) {
+                        $queue->delete($job['id']);
+                    }
+                } catch (\Exception $e) {
+                    echo "Job failed: " . $e->getMessage() . PHP_EOL;
+                    // Optionally requeue or record failed job
+                }
+            }
+
+            usleep(500000); // wait 0.5s before polling again
+            $iterations++;
+            if ($iterations >= $maxIterations) {
+                echo "Restarting worker after {$maxIterations} iterations.\n";
+                break;
+            }
+        }
+    }
+
 }
