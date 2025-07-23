@@ -1,6 +1,7 @@
 <?php
 namespace Core\Models;
 use Core\Model;
+use Core\Lib\Utilities\DateTime;
 
 /**
  * Implements features of the Queue class.
@@ -32,6 +33,12 @@ class Queue extends Model {
 
     public function beforeSave(): void {
         // Implement your function
+    }
+
+    public function createdAt(): void {
+        if($this->isNew()) {
+            $this->created_at = DateTime::timeStamps();
+        }
     }
 
     /**
