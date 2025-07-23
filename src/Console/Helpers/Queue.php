@@ -12,7 +12,7 @@ class Queue {
      * @param string $fileName The file and class name.
      * @return string The contents for the queue migration.
      */
-    public static function migrationTemplate(string $fileName): string {
+    public static function queueTemplate(string $fileName): string {
         return '<?php
 namespace Database\Migrations;
 use Core\Lib\Database\Schema;
@@ -53,16 +53,16 @@ class '.$fileName.' extends Migration {
     }
 
     /**
-     * Creates new notifications migration.
+     * Creates new queue migration.
      *
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function notificationsMigration(): int {
+    public static function queueMigration(): int {
         $fileName = Migrate::fileName();
         return Tools::writeFile(
             Migrate::MIGRATIONS_PATH.$fileName.'.php',
-            self::migrationTemplate($fileName),
-            'Notifications migration'
+            self::queueTemplate($fileName),
+            'Queue migration'
         );
     }
 }
