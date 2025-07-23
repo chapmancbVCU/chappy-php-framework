@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Notifications;
+use Console\Helpers\Queue;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -32,6 +32,6 @@ class QueueMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-       return Notifications::notificationsMigration();
+       return Queue::queueMigration();
     }
 }
