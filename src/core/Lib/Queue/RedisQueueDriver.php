@@ -2,25 +2,24 @@
 declare(strict_types=1);
 namespace Core\Lib\Queue;
 
-use Redis;
+use Predis\Client;
 
 class RedisQueueDriver implements QueueDriverInterface {
-    protected Redis $redis;
+    protected Client $redis;
 
-    public function __construct(Redis $redis) {
+    public function __construct(Client $redis) {
         $this->redis = $redis;
     }
 
     public function push(string $queue, array $payload): void {
-        $this->redis->lPush($queue, json_encode($payload));
+        $this->redis->lpush($queue, [json_encode($payload)]);
     }
 
     public function pop(string $queue): ?array {
-        // Blocking pop with timeout
-        $result = $this->redis->brPop([$queue], 5); // wait up to 5s
+        $result = $this->redis->brpop([$queue], 5);
         if ($result) {
             [, $payload] = $result;
-            return ['id'=>null, 'payload'=>json_decode($payload, true)];
+            return ['id' => null, 'payload' => json_decode($payload, true)];
         }
         return null;
     }
@@ -33,6 +32,6 @@ class RedisQueueDriver implements QueueDriverInterface {
     }
 
     public function delete($jobId): void {
-        // Not needed for Redis; nothing to delete after pop
+        // nothing needed for Redis
     }
 }

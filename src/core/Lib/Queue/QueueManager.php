@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Queue;
 
 use PDO;
+use Predis\Client;
 
 class QueueManager {
     protected QueueDriverInterface $driver;
@@ -12,9 +13,11 @@ class QueueManager {
             $pdo = new PDO($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
             $this->driver = new DatabaseQueueDriver($pdo);
         } elseif ($config['driver'] === 'redis') {
-            $redis = new Redis();
-            $redis->connect($config['redis']['host'], $config['redis']['port']);
-            $this->driver = new RedisQueueDriver($redis);
+            $redis = new Predis([
+                'scheme' => 'tcp',
+                'host' => $config['redis']['host'],
+                'port' => $config['redis']['port'],
+            ]);
         } else {
             throw new \Exception("Unsupported driver: " . $config['driver']);
         }
