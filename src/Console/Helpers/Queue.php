@@ -31,7 +31,7 @@ class '.$fileName.' extends Migration {
      */
     public function up(): void {
         Schema::create(\'queue\', function (Blueprint $table) {
-            $table->uuid(\'id\');
+            $table->id();
             $table->string(\'queue\')->default(\'default\');
             $table->text(\'payload\');
             $table->unsignedInteger(\'attempts\')->default(0);
