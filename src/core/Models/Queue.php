@@ -32,13 +32,47 @@ class Queue extends Model {
     }
 
     public function beforeSave(): void {
-        // Implement your function
+        self::createdAt();
     }
 
     public function createdAt(): void {
         if($this->isNew()) {
             $this->created_at = DateTime::timeStamps();
         }
+    }
+
+    public static function reserveNext(string $queueName): ?self {
+        $db = static::getDb();
+        $pdo = $db->getPDO();
+        try {
+            $pdo->beginTransaction();
+
+            $sql = "SELECT * FROM " . static::$_table . " 
+                    WHERE queue = ? 
+                    AND reserved_at IS NULL 
+                    AND available_at <= ? 
+                    ORDER BY id LIMIT 1 FOR UPDATE";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$queueName, date('Y-m-d H:i:s')]);
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            if ($result) {
+                $update = $pdo->prepare("UPDATE " . static::$_table . " SET reserved_at = ? WHERE id = ?");
+                $update->execute([date('Y-m-d H:i:s'), $result['id']]);
+                $pdo->commit();
+
+                $job = new static();
+                $job->assign($result);
+                return $job;
+            }
+
+            $pdo->commit();
+        } catch (\Exception $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+
+        return null;
     }
 
     /**
