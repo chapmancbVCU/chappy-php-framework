@@ -41,6 +41,32 @@ class Queue extends Model {
         }
     }
 
+    /**
+     * Attempts to atomically reserve the next available job from the queue.
+     *
+     * This method wraps the operation in a database transaction and uses
+     * a SELECT ... FOR UPDATE query (when supported) to safely fetch the
+     * next unreserved job in the specified queue. Once a job is found,
+     * it immediately updates the `reserved_at` timestamp to mark it as
+     * reserved and prevent other workers from picking it up.
+     *
+     * Usage example:
+     * ```php
+     * $job = Queue::reserveNext('default');
+     * if ($job) {
+     *     // Process the job...
+     * }
+     * ```
+     *
+     * @param string $queueName The name of the queue to pull from (e.g. "default").
+     *
+     * @return static|null Returns an instance of the job model with the job data
+     *                     if a job was reserved, or `null` if no available job
+     *                     was found at this time.
+     *
+     * @throws \Exception If there is a database error during selection or update,
+     *                    the transaction is rolled back and the exception is rethrown.
+     */
     public static function reserveNext(string $queueName): ?self {
         $db = static::getDb();
         try {
