@@ -476,6 +476,31 @@ class Model {
         return static::getDb()->update(static::$_table, $this->id, $fields);
     }
 
+    /**
+     * Updates one or more rows in this model's underlying table using
+     * your framework's params-style conditions.
+     *
+     * This method delegates to the DB::updateWhere() method and allows
+     * you to pass both the fields to update and a parameterized WHERE
+     * clause (using `conditions` and `bind` arrays just like find/findFirst).
+     *
+     * Example:
+     * ```php
+     * Queue::updateWhere(
+     *     ['reserved_at' => date('Y-m-d H:i:s')],
+     *     ['conditions' => 'id = ?', 'bind' => [$jobId]]
+     * );
+     * ```
+     *
+     * @param array $fields  Associative array of columns to update with their new values.
+     *                       Example: ['status' => 'processed', 'attempts' => 3]
+     * @param array $params  Query parameters for the WHERE clause.
+     *                       Supports:
+     *                       - `conditions` (string|array): SQL conditions with placeholders.
+     *                       - `bind` (array): Values to bind to placeholders.
+     *
+     * @return int The number of rows affected by the update.
+     */
     public static function updateWhere(array $fields, array $params): int {
         return static::getDb()->updateWhere(static::$_table, $fields, $params);
     }
