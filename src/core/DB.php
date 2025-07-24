@@ -57,6 +57,15 @@ class DB {
         }
     }
 
+    /**
+     * Begins a database transaction.
+     *
+     * @return bool True on success, false on failure
+     */
+    public function beginTransaction(): bool {
+        return $this->_pdo->beginTransaction();
+    }
+
     /** 
      * Constructs join statements for SQL queries.
      *
@@ -73,6 +82,43 @@ class DB {
         return " " . $jString;
     }
 
+    /**
+     * Commits the current database transaction.
+     *
+     * @return bool True on success, false on failure
+     */
+    public function commit(): bool {
+        return $this->_pdo->commit();
+    }
+
+    /**
+     * Establishes a new database connection using the provided configuration array.
+     *
+     * This method creates a new PDO instance based on the given connection details
+     * and sets it as the singleton instance for the DB class. It can be used to
+     * override the default database connection at runtime (e.g., for testing or
+     * connecting to a different database).
+     *
+     * Supported drivers:
+     * - **sqlite:** Connects to a SQLite database file or an in-memory database. 
+     *   Foreign key constraints are enabled by default.
+     * - **mysql:** Connects to a MySQL/MariaDB database using the provided host, port, 
+     *   database name, charset, username, and password.
+     *
+     * @param array $override An associative array containing connection parameters:
+     *                        - `driver`   (string)  The database driver ('sqlite' or 'mysql').
+     *                        - `database` (string)  Path to SQLite file or database name for MySQL.
+     *                        - `host`     (string)  (MySQL) The database host.
+     *                        - `port`     (int)     (MySQL) The database port.
+     *                        - `charset`  (string)  (MySQL) The character set.
+     *                        - `username` (string)  (MySQL) The username for authentication.
+     *                        - `password` (string)  (MySQL) The password for authentication.
+     *
+     * @return void
+     *
+     * @throws \Exception If the connection attempt fails, an Exception is thrown
+     *                    with the corresponding error message.
+     */
     public static function connect(array $override): void
     {
         $instance = new self();
@@ -314,6 +360,15 @@ class DB {
     }
 
     /**
+     * Checks if a transaction is currently active.
+     *
+     * @return bool True if a transaction is active, false otherwise
+     */
+    public function inTransaction(): bool {
+        return $this->_pdo->inTransaction();
+    }
+
+    /**
      * The primary key ID of the last insert operation.
      *
      * @return int|string|null The primary key ID from the last insert operation.
@@ -337,42 +392,40 @@ class DB {
      * returned.
      */
     public function query(string $sql, array $params = [], bool|string $class = false): self {
-    $this->_error = false;
-    $startTime = microtime(true);
+        $this->_error = false;
+        $startTime = microtime(true);
 
-    if ($this->_query = $this->_pdo->prepare($sql)) {
-        $x = 1;
-        foreach ($params as $param) {
-            $this->_query->bindValue($x, $param);
-            $x++;
-        }
+        if ($this->_query = $this->_pdo->prepare($sql)) {
+            $x = 1;
+            foreach ($params as $param) {
+                $this->_query->bindValue($x, $param);
+                $x++;
+            }
 
-        if ($this->_query->execute()) {
-            $executionTime = microtime(true) - $startTime;
-            $this->_result = $class ? $this->_query->fetchAll(PDO::FETCH_CLASS, $class) : $this->_query->fetchAll($this->_fetchStyle);
-            $this->_count = $this->_query->rowCount();
-            $this->_lastInsertID = $this->_pdo->lastInsertId();
+            if ($this->_query->execute()) {
+                $executionTime = microtime(true) - $startTime;
+                $this->_result = $class ? $this->_query->fetchAll(PDO::FETCH_CLASS, $class) : $this->_query->fetchAll($this->_fetchStyle);
+                $this->_count = $this->_query->rowCount();
+                $this->_lastInsertID = $this->_pdo->lastInsertId();
 
-            // If multiple rows updated, log a summary
-            if ($this->_count > 1) {
-                Logger::log("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
+                // If multiple rows updated, log a summary
+                if ($this->_count > 1) {
+                    Logger::log("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
+                } else {
+                    Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
+                }
             } else {
-                Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
+                $this->_error = true;
+                Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
             }
         } else {
-            $this->_error = true;
-            Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
+            Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
         }
-    } else {
-        Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
+
+        return $this;
     }
 
-    return $this;
-}
-
     
-    
-
     /**
      * Supports SELECT operations that maybe ran against a SQL database.  It 
      * supports the ability to order and limit the number of results returned 
@@ -494,6 +547,26 @@ class DB {
         return $this->_result;
     }
 
+    /**
+     * Rolls back the current database transaction.
+     *
+     * @return bool True on success, false on failure
+     */
+    public function rollBack(): bool {
+        return $this->_pdo->rollBack();
+    }
+
+    /**
+     * Checks whether a given table exists in the currently connected database.
+     *
+     * This method runs a driver-specific query to determine if the table is present.
+     * For SQLite, it queries the `sqlite_master` system table. For MySQL/MariaDB,
+     * it uses the `SHOW TABLES LIKE` statement.
+     *
+     * @param string $table The name of the table to check for existence.
+     *
+     * @return bool Returns true if the table exists in the database, or false if it does not.
+     */
     public function tableExists(string $table): bool {
         if ($this->_dbDriver === 'sqlite') {
             $sql = "SELECT name FROM sqlite_master WHERE type='table' AND name=:table";
