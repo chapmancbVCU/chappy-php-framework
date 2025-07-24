@@ -2,7 +2,9 @@
 declare(strict_types=1);
 namespace Core\Lib\Queue;
 
+use Core\Lib\Utilities\DateTime;
 use PDO;
+use Core\Models\Queue;
 
 class DatabaseQueueDriver implements QueueDriverInterface {
     protected PDO $pdo;
@@ -12,40 +14,38 @@ class DatabaseQueueDriver implements QueueDriverInterface {
     }
 
     public function push(string $queue, array $payload): void {
-        $stmt = $this->pdo->prepare(
-            "INSERT INTO jobs (queue,payload,available_at) VALUES (?,?,NOW())"
-        );
-        $stmt->execute([$queue, json_encode($payload)]);
+        $job = new Queue();
+        $job->queue = $queue;
+        $job->payload = json_encode($payload);
+        $job->available_at = DateTime::timeStamps();
+        $job->attempts = 0;
+        $job->save();
     }
 
     public function pop(string $queue): ?array {
-        // Begin transaction to safely reserve job
-        $this->pdo->beginTransaction();
-        $stmt = $this->pdo->prepare(
-            "SELECT * FROM jobs WHERE queue=? AND reserved_at IS NULL AND available_at<=NOW() ORDER BY id LIMIT 1 FOR UPDATE"
-        );
-        $stmt->execute([$queue]);
-        $job = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($job) {
-            $this->pdo->prepare("UPDATE jobs SET reserved_at=NOW() WHERE id=?")
-                      ->execute([$job['id']]);
-            $this->pdo->commit();
-            return ['id'=>$job['id'], 'payload'=>json_decode($job['payload'], true)];
+        $job = Queue::reserveNext($queue);
+        if($job) {
+            return [
+                'id' => $job->id,
+                'payload' => json_decode($job->payload, true)
+            ];
         }
-        $this->pdo->commit();
         return null;
     }
 
     public function release(string $queue, array $payload, int $delay = 0): void {
-        $availableAt = date('Y-m-d H:i:s', time() + $delay);
-        $stmt = $this->pdo->prepare(
-            "INSERT INTO jobs (queue,payload,available_at) VALUES (?,?,?)"
-        );
-        $stmt->execute([$queue, json_encode($payload), $availableAt]);
+        $job = new Queue();
+        $job->queue = $queue;
+        $job->payload = json_encode($payload);
+        $job->available_at = date('Y-m-d H:i:s', time() + $delay);
+        $job->attempts = 0;
+        $job->save();
     }
 
     public function delete($jobId): void {
-        $stmt = $this->pdo->prepare("DELETE FROM jobs WHERE id=?");
-        $stmt->execute([$jobId]);
+        $job =Queue::findById((int)$jobId);
+        if($job) {
+            $job->delete();
+        }
     }
 }
