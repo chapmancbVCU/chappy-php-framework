@@ -43,35 +43,34 @@ class Queue extends Model {
 
     public static function reserveNext(string $queueName): ?self {
         $db = static::getDb();
-        $pdo = $db->getPDO();
         try {
-            $pdo->beginTransaction();
+            $db->beginTransaction();
 
-            $sql = "SELECT * FROM " . static::$_table . " 
-                    WHERE queue = ? 
-                    AND reserved_at IS NULL 
-                    AND available_at <= ? 
-                    ORDER BY id LIMIT 1 FOR UPDATE";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$queueName, date('Y-m-d H:i:s')]);
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            // find first with lock
+            $job = static::findFirst([
+                'conditions' => 'queue = ? AND reserved_at IS NULL AND available_at <= ?',
+                'bind'       => [$queueName, date('Y-m-d H:i:s')],
+                'order'      => 'id',
+                'limit'      => 1,
+                'lock'       => true
+            ]);
 
-            if ($result) {
-                $update = $pdo->prepare("UPDATE " . static::$_table . " SET reserved_at = ? WHERE id = ?");
-                $update->execute([date('Y-m-d H:i:s'), $result['id']]);
-                $pdo->commit();
+            if ($job) {
+                // update reserved_at using your new param-based update
+                static::updateWhere(
+                    ['reserved_at' => date('Y-m-d H:i:s')],
+                    ['conditions' => 'id = ?', 'bind' => [$job->id]]
+                );
 
-                $job = new static();
-                $job->assign($result);
+                $db->commit();
                 return $job;
             }
 
-            $pdo->commit();
+            $db->commit();
         } catch (\Exception $e) {
-            $pdo->rollBack();
+            $db->rollBack();
             throw $e;
         }
-
         return null;
     }
 

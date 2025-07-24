@@ -476,6 +476,10 @@ class Model {
         return static::getDb()->update(static::$_table, $this->id, $fields);
     }
 
+    public static function updateWhere(array $fields, array $params): int {
+        return static::getDb()->updateWhere(static::$_table, $fields, $params);
+    }
+
     /**
      * Getter function for the $_validates boolean instance variable.
      *

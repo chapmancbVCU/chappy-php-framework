@@ -452,6 +452,7 @@ class DB {
         $limit = '';
         $offset = '';
         $group = '';
+        $forUpdate = '';
 
         // Detect SQLite
         $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
@@ -527,8 +528,13 @@ class DB {
             $offset = ' OFFSET ' . $params['offset'];
         }
 
+        // For Update
+        if (Arr::exists($params, 'lock') && $params['lock'] === true && $dbDriver !== 'sqlite') {
+            $forUpdate .= ' FOR UPDATE';
+        }
+
         $sql = ($count) ? "SELECT COUNT(*) as count " : "SELECT {$columns} ";
-        $sql .= "FROM {$table}{$joins}{$conditionString}{$group}{$order}{$limit}{$offset}";
+        $sql .= "FROM {$table}{$joins}{$conditionString}{$group}{$order}{$forUpdate}{$limit}{$offset}";
 
         if($this->query($sql, $bind, $class)) {
             if(!count($this->_result)) return false;
@@ -600,11 +606,45 @@ class DB {
     public function update(string $table, int $id, array $fields = []): bool {
         $setString = implode('=?, ', Arr::keys($fields)) . '=?';
         $values = (new ArraySet($fields))->values()->push($id)->all();
-
         $sql = "UPDATE {$table} SET {$setString} WHERE id = ?";
-
         return !$this->query($sql, $values)->error();
-    }  
+    }
+
+    /**
+     * Updates records in a table using params-style conditions.
+     *
+     * @param string $table The table to update.
+     * @param array $fields Key/value pairs to set.
+     * @param array $params Params like ['conditions' => 'queue = ?', 'bind' => [$queueName]]
+     * @return int Number of rows affected.
+     */
+    public function updateWhere(string $table, array $fields, array $params = []): int {
+        if (empty($fields)) {
+            Logger::log("Attempted to update with empty data in {$table}", 'error');
+            return 0;
+        }
+
+        // Build SET part
+        $setString = implode(' = ?, ', Arr::keys($fields)) . ' = ?';
+        $values = Arr::values($fields);
+
+        // Build WHERE part using your params logic
+        $conditionString = '';
+        if (isset($params['conditions'])) {
+            $conditionString = ' WHERE ' . (is_array($params['conditions'])
+                ? implode(' AND ', $params['conditions'])
+                : $params['conditions']);
+        }
+
+        if (isset($params['bind'])) {
+            $values = array_merge($values, $params['bind']);
+        }
+
+        $sql = "UPDATE {$table} SET {$setString}{$conditionString}";
+        $this->query($sql, $values);
+
+        return $this->count();
+    }
 
     /**
      * Check if a value exists in a JSON or text-based column
