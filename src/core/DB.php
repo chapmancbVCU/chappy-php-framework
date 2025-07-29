@@ -534,7 +534,7 @@ class DB {
         }
 
         $sql = ($count) ? "SELECT COUNT(*) as count " : "SELECT {$columns} ";
-        $sql .= "FROM {$table}{$joins}{$conditionString}{$group}{$order}{$forUpdate}{$limit}{$offset}";
+        $sql .= "FROM {$table}{$joins}{$conditionString}{$group}{$order}{$limit}{$offset}{$forUpdate}";
 
         if($this->query($sql, $bind, $class)) {
             if(!count($this->_result)) return false;
