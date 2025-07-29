@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Queue;
 
 use PDO;
+use Core\DB;
 use Predis\Client as PredisClient;
 
 class QueueManager {
@@ -10,7 +11,7 @@ class QueueManager {
 
     public function __construct(array $config) {
         if ($config['driver'] === 'database') {
-            $pdo = new PDO($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
+            $pdo = DB::getInstance()->getPDO();
             $this->driver = new DatabaseQueueDriver($pdo);
         } elseif ($config['driver'] === 'redis') {
             $redis = new PredisClient([
