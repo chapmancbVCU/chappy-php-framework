@@ -14,7 +14,7 @@ class QueueManager {
      */
     public function __construct() {
         $config = require CHAPPY_BASE_PATH.DS.'config'.DS.'queue.php';
-
+        
         if ($config['driver'] === 'database') {
             $pdo = DB::getInstance()->getPDO();
             $this->driver = new DatabaseQueueDriver($pdo);
