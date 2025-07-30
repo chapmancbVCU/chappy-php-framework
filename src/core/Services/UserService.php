@@ -84,28 +84,6 @@ final class UserService {
         }
     }
 
-    /**
-     * Updates user's password
-     *
-     * @param Users $user The user whose password we want to update.
-     * @param Input $request The request.
-     * @return bool True if password is updated, otherwise false
-     */
-    public static function updatePassword(Users $user, Input $request): bool {
-        if(!password_verify($request->get('current_password'), $user->password)) {
-            return false;
-        }
-
-        $user->assign($request->get(), Users::blackListedFormKeys);
-        $user->setChangePassword(true);
-        $user->confirm = AuthService::confirm($request);
-
-        if($user->save()) {
-            $user->setChangePassword(false);
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Sends E-mail to user when account is deactivated as appropriate.
@@ -165,5 +143,28 @@ final class UserService {
     public static function toggleResetPassword(Users $user, Input $request, ?int $currentReset = null): bool {
         $user->reset_password = ($request->get('reset_password') == 'on') ? 1 : 0;
         return $currentReset !== null && $currentReset === 0 && $user->reset_password === 1;
+    }
+
+    /**
+     * Updates user's password
+     *
+     * @param Users $user The user whose password we want to update.
+     * @param Input $request The request.
+     * @return bool True if password is updated, otherwise false
+     */
+    public static function updatePassword(Users $user, Input $request): bool {
+        if(!password_verify($request->get('current_password'), $user->password)) {
+            return false;
+        }
+
+        $user->assign($request->get(), Users::blackListedFormKeys);
+        $user->setChangePassword(true);
+        $user->confirm = AuthService::confirm($request);
+
+        if($user->save()) {
+            $user->setChangePassword(false);
+            return true;
+        }
+        return false;
     }
 }
