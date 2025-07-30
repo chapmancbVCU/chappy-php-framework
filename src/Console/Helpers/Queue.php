@@ -98,7 +98,6 @@ class '.$fileName.' extends Migration {
         }
 
         for($i = 0; $i < $maxIterations; $i++) {
-            echo("Iterations: " . $i . "\n");
             $job = $queue->pop($queueName);
 
             if ($job) {
