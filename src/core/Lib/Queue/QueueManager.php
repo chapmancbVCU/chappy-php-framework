@@ -8,8 +8,13 @@ use Predis\Client as PredisClient;
 
 class QueueManager {
     protected QueueDriverInterface $driver;
+    
+    /**
+     * Constructor for QueueManager class.
+     */
+    public function __construct() {
+        $config = require CHAPPY_BASE_PATH.DS.'config'.DS.'queue.php';
 
-    public function __construct(array $config) {
         if ($config['driver'] === 'database') {
             $pdo = DB::getInstance()->getPDO();
             $this->driver = new DatabaseQueueDriver($pdo);
