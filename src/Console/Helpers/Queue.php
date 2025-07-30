@@ -67,7 +67,15 @@ class '.$fileName.' extends Migration {
         );
     }
 
-    public static function worker(string $queueName = 'default', int $max = false, bool $once = false): void {
+    /**
+     * Worker for queue.
+     *
+     * @param string $queueName The name of the queue to run.
+     * @param int $max The number of times to run worker.
+     * @param bool $once Runs worker for one iteration if set to true.
+     * @return void
+     */
+    public static function worker(string $queueName = 'default', int $max = 0, bool $once = false): void {
         // Load config
         $config = require CHAPPY_BASE_PATH . DS . 'config' . DS . 'queue.php';
 
@@ -81,10 +89,16 @@ class '.$fileName.' extends Migration {
 
         echo "Worker started on queue: {$queueName}\n";
 
-        $iterations = 0;
-        $maxIterations = 1000; // restart periodically
+        if($once) {
+            $maxIterations = 1;
+        } else if($max > 0) {
+            $maxIterations = $max;
+        } else {
+            $maxIterations = 1000;
+        }
 
-        while (true) {
+        for($i = 0; $i < $maxIterations; $i++) {
+            echo("Iterations: " . $i . "\n");
             $job = $queue->pop($queueName);
 
             if ($job) {
@@ -112,11 +126,6 @@ class '.$fileName.' extends Migration {
             }
 
             usleep(500000); // wait 0.5s before polling again
-            $iterations++;
-            if ($iterations >= $maxIterations) {
-                echo "Restarting worker after {$maxIterations} iterations.\n";
-                break;
-            }
         }
     }
 
