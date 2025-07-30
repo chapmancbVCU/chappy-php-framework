@@ -67,7 +67,7 @@ class '.$fileName.' extends Migration {
         );
     }
 
-    public static function worker(string $queueName = 'default'): void {
+    public static function worker(string $queueName = 'default', int $max = false, bool $once = false): void {
         // Load config
         $config = require CHAPPY_BASE_PATH . DS . 'config' . DS . 'queue.php';
 
