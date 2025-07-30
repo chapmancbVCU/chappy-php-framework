@@ -91,8 +91,16 @@ class '.$fileName.' extends Migration {
                 try {
                     echo "Processing job: " . json_encode($job['payload']) . PHP_EOL;
 
-                    // TODO: dispatch to appropriate Job class here:
-                    // JobDispatcher::dispatch($job['payload']);
+                    $payload = $job['payload'];
+                    $jobClass = $payload['job'] ?? null;
+                    $data = $payload['data'] ?? [];
+
+                    if (!$jobClass || !class_exists($jobClass)) {
+                        throw new \Exception("Invalid job class: " . ($jobClass ?? 'null'));
+                    }
+
+                    $instance = new $jobClass($data);
+                    $instance->handle();
 
                     if ($job['id']) {
                         $queue->delete($job['id']);
