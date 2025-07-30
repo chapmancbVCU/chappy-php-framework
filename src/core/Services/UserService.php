@@ -7,10 +7,10 @@ use App\Models\Users;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
 use Core\Lib\Events\EventManager;
-use Core\Lib\Mail\PasswordResetMailer;
-use Core\Lib\Mail\AccountDeactivatedMailer;
 use Core\Lib\Events\UserPasswordResetRequested;
 use Core\Lib\Events\AccountDeactivated;
+use Core\Lib\Queue\QueueManager;
+use App\Jobs\SendWelcomeEmail;
 
 /**
  * Provides functions for managing users.
@@ -84,6 +84,11 @@ final class UserService {
         }
     }
 
+    public static function queueWelcomeMailer(int $user_id) {
+        $queue = new QueueManager();
+        $job = new SendWelcomeEmail(['user_id' => $user_id]);
+        $queue->push('default', $job->toPayload());
+    }
 
     /**
      * Sends E-mail to user when account is deactivated as appropriate.
