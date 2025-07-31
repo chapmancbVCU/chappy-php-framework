@@ -5,6 +5,9 @@ namespace Core\Lib\Queue;
 use Core\DB;
 use Predis\Client as PredisClient;
 
+/**
+ * Manages queue / job dispatch system.
+ */
 class QueueManager {
     protected QueueDriverInterface $driver;
     
