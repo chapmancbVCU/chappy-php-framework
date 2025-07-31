@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Queue;
 
-use PDO;
 use Core\DB;
 use Predis\Client as PredisClient;
 
@@ -14,10 +13,9 @@ class QueueManager {
      */
     public function __construct() {
         $config = require CHAPPY_BASE_PATH.DS.'config'.DS.'queue.php';
-        
+
         if ($config['driver'] === 'database') {
-            $pdo = DB::getInstance()->getPDO();
-            $this->driver = new DatabaseQueueDriver($pdo);
+            $this->driver = new DatabaseQueueDriver();
         } elseif ($config['driver'] === 'redis') {
             $redis = new PredisClient([
                 'scheme' => 'tcp',

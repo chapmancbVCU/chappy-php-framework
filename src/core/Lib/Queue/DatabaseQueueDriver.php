@@ -3,16 +3,13 @@ declare(strict_types=1);
 namespace Core\Lib\Queue;
 
 use Core\Lib\Utilities\DateTime;
-use PDO;
 use Core\Models\Queue;
 
+/**
+ * Implements the QueueDriverInterface.  This driver implements functions 
+ * that support queue database operations.
+ */
 class DatabaseQueueDriver implements QueueDriverInterface {
-    protected PDO $pdo;
-
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
-    }
-
     public function push(string $queue, array $payload): void {
         $job = new Queue();
         $job->queue = $queue;
