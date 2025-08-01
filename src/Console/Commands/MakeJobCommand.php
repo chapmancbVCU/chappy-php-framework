@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Generates a new Job class.
  */
-class MakeEventCommand extends Command
+class MakeJobCommand extends Command
 {
     /**
      * Configures the command.
