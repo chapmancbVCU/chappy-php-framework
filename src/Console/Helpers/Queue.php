@@ -7,6 +7,57 @@ use Core\Lib\Queue\QueueManager;
  * Supports commands related to queues.
  */
 class Queue {
+    protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
+
+    /**
+     * Template for Jobs class.
+     *
+     * @param string $jobName The name of the job.
+     * @return string The content of the job class.
+     */
+    public static function jobTemplate(string $jobName): string {
+        return '<?php
+
+namespace App\Jobs;
+
+use App\Models\Users;
+use Core\Lib\Mail\WelcomeMailer;
+use Core\Lib\Queue\QueueableJobInterface;
+
+class '.$jobName.' implements QueueableJobInterface {
+    protected array $data;
+
+    public function __construct(array $data) {
+        $this->data = $data;
+    }
+
+    public function handle(): void {
+        // Implement your handle.
+    }
+
+    public function toPayload(): array {
+        return [];
+    }
+}
+';
+    }
+
+    /**
+     * Creates a new job class.
+     *
+     * @param string $jobName The name of the job class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeJob(string $jobName): int {
+        Tools::pathExists(self::$jobsPath);
+        $fullPath = self::$jobsPath.$jobName.'.php';
+        return Tools::writeFile(
+            $fullPath,
+            self::jobTemplate($jobName),
+            'Job'
+        );
+    }
+
     /**
      * Template for queue migration.
      *
