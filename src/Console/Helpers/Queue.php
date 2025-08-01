@@ -20,8 +20,6 @@ class Queue {
 
 namespace App\Jobs;
 
-use App\Models\Users;
-use Core\Lib\Mail\WelcomeMailer;
 use Core\Lib\Queue\QueueableJobInterface;
 
 class '.$jobName.' implements QueueableJobInterface {
