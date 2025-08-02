@@ -198,6 +198,17 @@ class '.$fileName.' extends Migration {
     }
 
     /**
+     * Manages shutdown signals.
+     *
+     * @return void
+     */
+    public static function shutdownSignals(): void {
+        pcntl_async_signals(true);
+        pcntl_signal(SIGTERM, function() { echo "Worker shutting down...\n"; exit; });
+        pcntl_signal(SIGINT, function() { echo "Worker interrupted...\n"; exit; });
+    }
+
+    /**
      * Worker for queue.
      *
      * @param string $queueName The name of the queue to run.
@@ -206,19 +217,12 @@ class '.$fileName.' extends Migration {
      * @return void
      */
     public static function worker(int $maxIterations, string $queueName = 'default'): void {
-        // Init manager
         $queue = new QueueManager();
-
-        // Handle shutdown signals
-        pcntl_async_signals(true);
-        pcntl_signal(SIGTERM, function() { echo "Worker shutting down...\n"; exit; });
-        pcntl_signal(SIGINT, function() { echo "Worker interrupted...\n"; exit; });
-
+        self::shutdownSignals();
         echo "Worker started on queue: {$queueName}\n";
         
         for($i = 0; $i < $maxIterations; $i++) {
             $job = $queue->pop($queueName);
-
             if ($job) {
                 try {
                     echo "Processing job: " . json_encode($job['payload']) . PHP_EOL;
@@ -235,7 +239,8 @@ class '.$fileName.' extends Migration {
                 }
             }
 
-            usleep(500000); // wait 0.5s before polling again
+            // wait 0.5s before polling again
+            usleep(500000); 
         }
     }
 
