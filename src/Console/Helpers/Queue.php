@@ -22,7 +22,7 @@ class Queue {
      * @return void
      */
     public static function exceptionMessaging(Exception $e, array $job): void {
-        echo "Job failed: " . $e->getMessage() . PHP_EOL;  
+        Tools::info("Job failed: " . $e->getMessage(), 'warning');
         $maxAttempts = Config::get('queue.max_attempts');
 
         if(Arr::exists($job, 'id')) {
@@ -35,10 +35,10 @@ class Queue {
 
             if ($queueModel->attempts >= $maxAttempts) {
                 $queueModel->failed_at = DateTime::timeStamps();
-                echo "Job permanently failed and marked as failed.\n";
+                Tools::info('Job permanently failed and marked as failed.', 'warning');
             } else {
                 $queueModel->available_at = DateTime::nowPlusSeconds(10);
-                echo "Job will be retried. Attempt: {$queueModel->attempts}\n";
+                Tools::info("Job will be retried. Attempt: {$queueModel->attempts}", 'warning');
             }
 
             $queueModel->save();
