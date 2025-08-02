@@ -2,16 +2,48 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 use Exception;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Queue\QueueManager;
 use Core\Lib\Utilities\DateTime;
-use Core\Models\Queue as ModelsQueue;
+use Core\Models\Queue as QueueModel;
 
 /**
  * Supports commands related to queues.
  */
 class Queue {
     protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
+
+    /**
+     * Handles tasks related to exceptions and retry of jobs.
+     *
+     * @param Exception $e The exception.
+     * @param array $job The array of jobs
+     * @return void
+     */
+    public static function exceptionMessaging(Exception $e, array $job): void {
+        echo "Job failed: " . $e->getMessage() . PHP_EOL;  
+        $maxAttempts = Config::get('queue.max_attempts');
+
+        if(Arr::exists($job, 'id')) {
+            $queueModel = QueueModel::findById($job['id']); 
+        }
+
+        if ($queueModel) {
+            $queueModel->attempts += 1;
+            $queueModel->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
+
+            if ($queueModel->attempts >= $maxAttempts) {
+                $queueModel->failed_at = DateTime::timeStamps();
+                echo "Job permanently failed and marked as failed.\n";
+            } else {
+                $queueModel->available_at = DateTime::nowPlusSeconds(10);
+                echo "Job will be retried. Attempt: {$queueModel->attempts}\n";
+            }
+
+            $queueModel->save();
+        }
+    }
 
     /**
      * Deletes a job
@@ -21,7 +53,7 @@ class Queue {
      * @return void
      */
     public static function deleteJob(array $job, QueueManager $queue): void {
-        if ($job['id']) {
+        if (Arr::exists($job, 'id') && $job['id']) {
             $queue->delete($job['id']);
         }
     }
@@ -173,7 +205,7 @@ class '.$fileName.' extends Migration {
      * @param bool $once Runs worker for one iteration if set to true.
      * @return void
      */
-    public static function worker(int $maxIterations, string $queueName = 'default',): void {
+    public static function worker(int $maxIterations, string $queueName = 'default'): void {
         // Init manager
         $queue = new QueueManager();
 
@@ -198,29 +230,8 @@ class '.$fileName.' extends Migration {
                     $instance->handle();
                     self::deleteJob($job, $queue);
 
-                } catch (\Exception $e) {
-
-
                 } catch (Exception $e) {
-                    echo "Job failed: " . $e->getMessage() . PHP_EOL;
-
-                    $maxAttempts = Config::get('queue.max_attempts');
-
-                    $queueModel = \Core\Models\Queue::findById($job['id']); // assuming you have this method
-                    if ($queueModel) {
-                        $queueModel->attempts += 1;
-                        $queueModel->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
-
-                        if ($queueModel->attempts >= $maxAttempts) {
-                            $queueModel->failed_at = DateTime::timeStamps(); // or timeStamps()
-                            echo "Job permanently failed and marked as failed.\n";
-                        } else {
-                            $queueModel->available_at = DateTime::nowPlusSeconds(10); // delay retry
-                            echo "Job will be retried. Attempt: {$queueModel->attempts}\n";
-                        }
-
-                        $queueModel->save();
-                    }
+                    self::exceptionMessaging($e, $job);
                 }
             }
 
