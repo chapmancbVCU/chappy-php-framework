@@ -32,13 +32,7 @@ class Queue extends Model {
     }
 
     public function beforeSave(): void {
-        self::createdAt();
-    }
-
-    public function createdAt(): void {
-        if($this->isNew()) {
-            $this->created_at = DateTime::timeStamps();
-        }
+        $this->timeStamps();
     }
 
     /**
