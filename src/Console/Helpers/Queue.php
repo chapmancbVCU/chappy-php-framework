@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
+use Exception;
+use Core\Lib\Utilities\Config;
 use Core\Lib\Queue\QueueManager;
 use Core\Lib\Utilities\DateTime;
 use Core\Models\Queue as ModelsQueue;
@@ -10,6 +12,31 @@ use Core\Models\Queue as ModelsQueue;
  */
 class Queue {
     protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
+
+    /**
+     * Deletes a job
+     *
+     * @param int $jobId Id of the job to delete.
+     * @param QueueManager $queue The QueueManager instance.
+     * @return void
+     */
+    public static function deleteJob(array $job, QueueManager $queue): void {
+        if ($job['id']) {
+            $queue->delete($job['id']);
+        }
+    }
+
+    /**
+     * Test if name of job class is valid.
+     *
+     * @param string $jobClass The name of class to test.
+     * @return void
+     */
+    public static function isValidJob(string $jobClass): void {
+        if (!$jobClass || !class_exists($jobClass)) {
+            throw new Exception("Invalid job class: " . ($jobClass ?? 'null'));
+        }
+    }
 
     /**
      * Template for Jobs class.
@@ -131,11 +158,8 @@ class '.$fileName.' extends Migration {
      * @return void
      */
     public static function worker(string $queueName = 'default', int $max = 0, bool $once = false): void {
-        // Load config
-        $config = require CHAPPY_BASE_PATH . DS . 'config' . DS . 'queue.php';
-
         // Init manager
-        $queue = new QueueManager($config);
+        $queue = new QueueManager();
 
         // Handle shutdown signals
         pcntl_async_signals(true);
@@ -158,25 +182,21 @@ class '.$fileName.' extends Migration {
             if ($job) {
                 try {
                     echo "Processing job: " . json_encode($job['payload']) . PHP_EOL;
-
                     $payload = $job['payload'];
                     $jobClass = $payload['job'] ?? null;
                     $data = $payload['data'] ?? [];
-
-                    if (!$jobClass || !class_exists($jobClass)) {
-                        throw new \Exception("Invalid job class: " . ($jobClass ?? 'null'));
-                    }
-
+                    self::isValidJob($jobClass);
                     $instance = new $jobClass($data);
                     $instance->handle();
+                    self::deleteJob($job, $queue);
 
-                    if ($job['id']) {
-                        $queue->delete($job['id']);
-                    }
                 } catch (\Exception $e) {
+
+
+                } catch (Exception $e) {
                     echo "Job failed: " . $e->getMessage() . PHP_EOL;
 
-                    $maxAttempts = $config['max_attempts'] ?? 3;
+                    $maxAttempts = Config::get('queue.max_attempts');
 
                     $queueModel = \Core\Models\Queue::findById($job['id']); // assuming you have this method
                     if ($queueModel) {
