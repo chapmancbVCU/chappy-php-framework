@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Queue;
 
 use Core\DB;
+use Core\Lib\Utilities\Config;
 use Predis\Client as PredisClient;
 
 /**
@@ -15,19 +16,18 @@ class QueueManager {
      * Constructor for QueueManager class.
      */
     public function __construct() {
-        $config = require CHAPPY_BASE_PATH.DS.'config'.DS.'queue.php';
-
-        if ($config['driver'] === 'database') {
+        $driver = Config::get('queue.driver');
+        if ($driver === 'database') {
             $this->driver = new DatabaseQueueDriver();
-        } elseif ($config['driver'] === 'redis') {
+        } elseif($driver === 'redis') {
             $redis = new PredisClient([
                 'scheme' => 'tcp',
-                'host' => $config['redis']['host'],
-                'port' => $config['redis']['port'],
+                'host' => Config::get('queue.redis.host'),
+                'port' => Config::get('queue.redis.port'),
             ]);
             $this->driver = new RedisQueueDriver($redis);
         } else {
-            throw new \Exception("Unsupported driver: " . $config['driver']);
+            throw new \Exception("Unsupported driver: " . $driver);
         }
     }
 
