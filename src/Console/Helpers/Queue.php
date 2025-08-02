@@ -39,6 +39,22 @@ class Queue {
     }
 
     /**
+     * Determines number of iterations to run worker
+     *
+     * @param int $max $max The number of times to run worker.
+     * @param bool $once Runs worker for one iteration if set to true.
+     * @return int The number of iterations.
+     */
+    public static function iterations(?int $max = 0, bool $once = false): int {
+        if($once) {
+            return  1;
+        } else if($max > 0) {
+            return $max;
+        } 
+        return 1000;
+    }
+
+    /**
      * Template for Jobs class.
      *
      * @param string $jobName The name of the job.
@@ -157,7 +173,7 @@ class '.$fileName.' extends Migration {
      * @param bool $once Runs worker for one iteration if set to true.
      * @return void
      */
-    public static function worker(string $queueName = 'default', int $max = 0, bool $once = false): void {
+    public static function worker(int $maxIterations, string $queueName = 'default',): void {
         // Init manager
         $queue = new QueueManager();
 
@@ -167,15 +183,7 @@ class '.$fileName.' extends Migration {
         pcntl_signal(SIGINT, function() { echo "Worker interrupted...\n"; exit; });
 
         echo "Worker started on queue: {$queueName}\n";
-
-        if($once) {
-            $maxIterations = 1;
-        } else if($max > 0) {
-            $maxIterations = $max;
-        } else {
-            $maxIterations = 1000;
-        }
-
+        
         for($i = 0; $i < $maxIterations; $i++) {
             $job = $queue->pop($queueName);
 

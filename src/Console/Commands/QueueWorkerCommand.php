@@ -42,13 +42,10 @@ class QueueWorkerCommand extends Command
         if($once && $max) {
             Tools::info('You can only set one option at a time', 'warning', 'yellow');
             return Command::FAILURE;
-        } else if ($max) {
-            Queue::worker('default', $max);  
-        } else if ($once) {
-            Queue::worker('default', false, $once);
-        } else {
-            Queue::worker();
-        }
+        } 
+            
+        $iterations = Queue::iterations($max, $once);
+        Queue::worker($iterations);
         return Command::SUCCESS;
     }
 }
