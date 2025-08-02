@@ -39,6 +39,18 @@ class DateTime {
     }
 
     /**
+     * Adds second passed as parameter to current time.
+     *
+     * @param int $seconds The number of seconds to add.
+     * @return string The time plus seconds passed as parameter.
+     */
+    public static function nowPlusSeconds(int $seconds): string {
+        $dt = new \DateTime("now", new \DateTimeZone("UTC"));
+        $dt->modify("+{$seconds} seconds");
+        return $dt->format('Y-m-d H:i:s');
+    }
+    
+    /**
      * Accepts UTC time in format Y-m-d H:i:s and returns a string describing  
      * how much time has elapsed.
      * 
