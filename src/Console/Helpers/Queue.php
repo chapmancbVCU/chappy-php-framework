@@ -218,8 +218,6 @@ class '.$fileName.' extends Migration {
      * Worker for queue.
      *
      * @param string $queueName The name of the queue to run.
-     * @param int $max The number of times to run worker.
-     * @param bool $once Runs worker for one iteration if set to true.
      * @return void
      */
     public static function worker(int $maxIterations, string $queueName = 'default'): void {
