@@ -82,11 +82,15 @@ class '.$fileName.' extends Migration {
         Schema::create(\'queue\', function (Blueprint $table) {
             $table->id();
             $table->string(\'queue\')->default(\'default\');
+            $table->index(\'queue\');
             $table->text(\'payload\');
+            $table->text(\'exception\')->nullable();
             $table->unsignedInteger(\'attempts\')->default(0);
             $table->timestamp(\'reserved_at\')->nullable();
             $table->timestamp(\'available_at\');
-            $table->timestamp(\'created_at\');
+            $table->index(\'available_at\');
+            $table->timestamp(\'failed_at\')->nullable();
+            $table->timestamps();
         });
     }
 
