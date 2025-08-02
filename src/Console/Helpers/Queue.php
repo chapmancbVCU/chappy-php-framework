@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 use Core\Lib\Queue\QueueManager;
+use Core\Lib\Utilities\DateTime;
+use Core\Models\Queue as ModelsQueue;
 
 /**
  * Supports commands related to queues.
@@ -173,7 +175,24 @@ class '.$fileName.' extends Migration {
                     }
                 } catch (\Exception $e) {
                     echo "Job failed: " . $e->getMessage() . PHP_EOL;
-                    // Optionally requeue or record failed job
+
+                    $maxAttempts = $config['max_attempts'] ?? 3;
+
+                    $queueModel = \Core\Models\Queue::findById($job['id']); // assuming you have this method
+                    if ($queueModel) {
+                        $queueModel->attempts += 1;
+                        $queueModel->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
+
+                        if ($queueModel->attempts >= $maxAttempts) {
+                            $queueModel->failed_at = DateTime::timeStamps(); // or timeStamps()
+                            echo "Job permanently failed and marked as failed.\n";
+                        } else {
+                            $queueModel->available_at = DateTime::nowPlusSeconds(10); // delay retry
+                            echo "Job will be retried. Attempt: {$queueModel->attempts}\n";
+                        }
+
+                        $queueModel->save();
+                    }
                 }
             }
 
