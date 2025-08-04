@@ -8,6 +8,13 @@ namespace Core\Lib\Queue;
  */
 interface QueueableJobInterface {
     /**
+     * Sets delay for a job.
+     *
+     * @return int The time for delay in seconds or Unix timestamp.
+     */
+    public function delay(): int;
+
+    /**
      * The logic that should be executed when the job is processed.
      *
      * @return void
