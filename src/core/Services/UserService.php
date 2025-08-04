@@ -86,7 +86,7 @@ final class UserService {
 
     public static function queueWelcomeMailer(int $user_id) {
         $queue = new QueueManager();
-        $job = new SendWelcomeEmail(['user_id' => $user_id]);
+        $job = new SendWelcomeEmail(['user_id' => $user_id], 0);
         $queue->push('default', $job->toPayload());
     }
 

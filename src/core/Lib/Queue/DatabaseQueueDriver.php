@@ -51,7 +51,7 @@ class DatabaseQueueDriver implements QueueDriverInterface {
         $job = new Queue();
         $job->queue = $queue;
         $job->payload = json_encode($payload);
-        $job->available_at = DateTime::timeStamps();
+        $job->available_at = $payload['available_at'] ?? DateTime::timeStamps();
         $job->attempts = 0;
         $job->save();
     }

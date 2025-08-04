@@ -1,6 +1,7 @@
 <?php
 namespace Core\Models;
 use Core\Model;
+use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
 
 /**
@@ -63,13 +64,14 @@ class Queue extends Model {
      */
     public static function reserveNext(string $queueName): ?self {
         $db = static::getDb();
+        $maxAttempts = Config::get('queue.max_attempts', 3);
         try {
             $db->beginTransaction();
 
             // find first with lock
             $job = static::findFirst([
-                'conditions' => 'queue = ? AND reserved_at IS NULL AND available_at <= ?',
-                'bind'       => [$queueName, date('Y-m-d H:i:s')],
+                'conditions' => 'queue = ? AND reserved_at IS NULL AND failed_at IS NULL AND attempts < ? AND available_at <= ?',
+                'bind'       => [$queueName, $maxAttempts, date('Y-m-d H:i:s')],
                 'order'      => 'id',
                 'limit'      => 1,
                 'lock'       => true
