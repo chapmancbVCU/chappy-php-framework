@@ -7,6 +7,7 @@ use Core\Lib\Utilities\Config;
 use Core\Lib\Queue\QueueManager;
 use Core\Lib\Utilities\DateTime;
 use Core\Models\Queue as QueueModel;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * Supports commands related to queues.
@@ -218,9 +219,9 @@ class '.$fileName.' extends Migration {
      * Worker for queue.
      *
      * @param string $queueName The name of the queue to run.
-     * @return void
+     * @return int A value that indicates success, invalid, or failure.
      */
-    public static function worker(int $maxIterations, string $queueName = 'default'): void {
+    public static function worker(int $maxIterations, string $queueName = 'default'): int {
         $queue = new QueueManager();
         self::shutdownSignals();
         Tools::info("Worker started on queue: {$queueName}", "info");
@@ -246,5 +247,7 @@ class '.$fileName.' extends Migration {
             // wait 0.5s before polling again
             usleep(500000); 
         }
+
+        return Command::SUCCESS;
     }
 }

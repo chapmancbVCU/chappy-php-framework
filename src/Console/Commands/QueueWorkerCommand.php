@@ -24,7 +24,8 @@ class QueueWorkerCommand extends Command
             ->setDescription('Starts a new Queue worker')
             ->setHelp('Run php console queue:worker')
             ->addOption('once', null, InputOption::VALUE_NONE, 'Run queue once')
-            ->addOption('max', null, InputOption::VALUE_REQUIRED, 'Max jobs', false);
+            ->addOption('max', null, InputOption::VALUE_REQUIRED, 'Max jobs', false)
+            ->addOption('queue', null, InputOption::VALUE_REQUIRED, 'Queue name', false);
     }
  
     /**
@@ -38,14 +39,19 @@ class QueueWorkerCommand extends Command
     {
         $once = $input->getOption('once');
         $max = $input->getOption('max');
+        $queueName = $input->getOption('queue');
 
         if($once && $max) {
             Tools::info('You can only set one option at a time', 'warning', 'yellow');
             return Command::FAILURE;
         } 
-            
+        
         $iterations = Queue::iterations($max, $once);
-        Queue::worker($iterations);
-        return Command::SUCCESS;
+
+        if($queueName) {
+            return Queue::worker($iterations, $queueName);
+        }
+        return Queue::worker($iterations);
+
     }
 }
