@@ -24,7 +24,8 @@ class Queue {
      */
     public static function exceptionMessaging(Exception $e, array $job): void {
         Tools::info("Job failed: " . $e->getMessage(), 'warning');
-        $maxAttempts = Config::get('queue.max_attempts');
+        $payload = $job['payload'] ?? [];
+        $maxAttempts = $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
 
         if(Arr::exists($job, 'id')) {
             $queueModel = QueueModel::findById($job['id']); 
@@ -39,6 +40,9 @@ class Queue {
                 Tools::info('Job permanently failed and marked as failed.', 'warning');
             } else {
                 $queueModel->available_at = DateTime::nowPlusSeconds(10);
+                $decoded = json_decode($queueModel->payload, true);
+                $decoded['attempts'] = $queueModel->attempts;
+                $queueModel->payload = json_encode($decoded);
                 Tools::info("Job will be retried. Attempt: {$queueModel->attempts}", 'warning');
             }
 

@@ -22,6 +22,13 @@ interface QueueableJobInterface {
     public function handle(): void;
 
     /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function maxAttempts(): int;
+
+    /**
      * Converts the job into a payload array for storage in the queue.
      * Must include the fully qualified class name and job data.
      *

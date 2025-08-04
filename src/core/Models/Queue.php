@@ -71,7 +71,7 @@ class Queue extends Model {
             // find first with lock
             $job = static::findFirst([
                 'conditions' => 'queue = ? AND reserved_at IS NULL AND failed_at IS NULL AND attempts < ? AND available_at <= ?',
-                'bind'       => [$queueName, $maxAttempts, date('Y-m-d H:i:s')],
+                'bind'       => [$queueName, date('Y-m-d H:i:s')],
                 'order'      => 'id',
                 'limit'      => 1,
                 'lock'       => true
