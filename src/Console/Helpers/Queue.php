@@ -99,24 +99,40 @@ class Queue {
      */
     public static function jobTemplate(string $jobName): string {
         return '<?php
-
 namespace App\Jobs;
 
 use Core\Lib\Queue\QueueableJobInterface;
 
 class '.$jobName.' implements QueueableJobInterface {
     protected array $data;
+    protected int $delayInSeconds;
+    protected int $maxAttempts;
 
-    public function __construct(array $data) {
+    public function __construct(array $data, int $delayInSeconds = 0, int $maxAttempts = 3) {
         $this->data = $data;
+        $this->delayInSeconds = $delayInSeconds;
+        $this->maxAttempts = $maxAttempts;
+    }
+
+    public function delay(): int {
+        return $this->delayInSeconds;
     }
 
     public function handle(): void {
         // Implement your handle.
     }
 
+    public function maxAttempts(): int {
+        return $this->maxAttempts;
+    }
+
     public function toPayload(): array {
-        return [];
+        return [
+            \'job\' => static::class,
+            \'data\' => $this->data,
+            \'available_at\' => time() + $this->delayInSeconds,
+            \'max_attempts\' => $this->maxAttempts()
+        ];
     }
 }
 ';
