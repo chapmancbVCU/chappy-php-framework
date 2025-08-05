@@ -21,18 +21,11 @@ class Queue extends Model {
     public $reserved_at;
     public $payload;
 
-    public function afterDelete(): void {
-        // Implement your function
-    }
-
-    public function afterSave(): void {
-        // Implement your function
-    }
-
-    public function beforeDelete(): void {
-        // Implement your function
-    }
-
+    /**
+     * Implements beforeSave.
+     *
+     * @return void
+     */
     public function beforeSave(): void {
         $this->timeStamps();
     }
@@ -138,14 +131,5 @@ class Queue extends Model {
             throw $e;
         }
         return null;
-    }
-
-    /**
-     * Performs validation for the Queue model.
-     *
-     * @return void
-     */
-    public function validator(): void {
-        // Implement your function
     }
 }
