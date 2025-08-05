@@ -1,5 +1,6 @@
 <?php
 namespace Core\Models;
+use Core\DB;
 use Core\Model;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
@@ -37,6 +38,61 @@ class Queue extends Model {
     }
 
     /**
+     * Find first with lock
+     *
+     * @param string $queueName
+     * @return self|null
+     */
+    private static function findFirstWithLock(string $queueName): ?self {
+        return static::findFirst([
+            'conditions' => 'queue = ? AND reserved_at IS NULL AND failed_at IS NULL AND available_at <= ?',
+            'bind'       => [$queueName, date('Y-m-d H:i:s')],
+            'order'      => 'id',
+            'limit'      => 1,
+            'lock'       => true
+        ]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param DB $db
+     * @param self $job
+     * @return boolean
+     */
+    private static function hasExceededMaxAttempts(DB $db, self $job): bool {
+        $payload = json_decode($job->payload, true);
+        $maxAttempts = $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
+
+        if($job->attempts >= $maxAttempts) {
+            static::updateWhere(
+                ['failed_at' => DateTime::timeStamps()],
+                ['conditions'=> 'id = ?', 'bind' => [$job->id]]
+            );
+            $db->commit();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param DB $db
+     * @param self $job
+     * @return self
+     */
+    private static function reservedAt(DB $db, self $job): self {
+        static::updateWhere(
+            ['reserved_at' => DateTime::timeStamps()],
+            ['conditions' => 'id = ?', 'bind' => [$job->id]]
+        );
+
+        $db->commit();
+        return $job;
+    }
+
+    /**
      * Attempts to atomically reserve the next available job from the queue.
      *
      * This method wraps the operation in a database transaction and uses
@@ -64,28 +120,16 @@ class Queue extends Model {
      */
     public static function reserveNext(string $queueName): ?self {
         $db = static::getDb();
-        $maxAttempts = Config::get('queue.max_attempts', 3);
+
         try {
             $db->beginTransaction();
-
-            // find first with lock
-            $job = static::findFirst([
-                'conditions' => 'queue = ? AND reserved_at IS NULL AND failed_at IS NULL AND attempts < ? AND available_at <= ?',
-                'bind'       => [$queueName, date('Y-m-d H:i:s')],
-                'order'      => 'id',
-                'limit'      => 1,
-                'lock'       => true
-            ]);
-
-            if ($job) {
-                // update reserved_at using your new param-based update
-                static::updateWhere(
-                    ['reserved_at' => date('Y-m-d H:i:s')],
-                    ['conditions' => 'id = ?', 'bind' => [$job->id]]
-                );
-
-                $db->commit();
-                return $job;
+            $job = self::findFirstWithLock($queueName);
+            
+            if($job) {
+                if(self::hasExceededMaxAttempts($db, $job)) {
+                    return null;
+                }
+                return self::reservedAt($db, $job);
             }
 
             $db->commit();
