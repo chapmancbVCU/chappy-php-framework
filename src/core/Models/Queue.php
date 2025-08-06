@@ -1,6 +1,7 @@
 <?php
 namespace Core\Models;
 use Core\DB;
+use Exception;
 use Core\Model;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
@@ -47,11 +48,11 @@ class Queue extends Model {
     }
 
     /**
-     * Undocumented function
+     * Test if job as exceeded limit for maximum allowed attempts.
      *
-     * @param DB $db
-     * @param self $job
-     * @return boolean
+     * @param DB $db Instance of DB class.
+     * @param self $job Queue model.
+     * @return bool True if exceeded maximum allowed attempts, otherwise false.
      */
     private static function hasExceededMaxAttempts(DB $db, self $job): bool {
         $payload = json_decode($job->payload, true);
@@ -69,11 +70,11 @@ class Queue extends Model {
     }
 
     /**
-     * Undocumented function
+     * Updates reserved_at field.
      *
-     * @param DB $db
-     * @param self $job
-     * @return self
+     * @param DB $db Instance of DB class.
+     * @param self $job Queue model.
+     * @return self This instance of Queue model passed as parameter.
      */
     private static function reservedAt(DB $db, self $job): self {
         static::updateWhere(
@@ -108,7 +109,7 @@ class Queue extends Model {
      *                     if a job was reserved, or `null` if no available job
      *                     was found at this time.
      *
-     * @throws \Exception If there is a database error during selection or update,
+     * @throws Exception If there is a database error during selection or update,
      *                    the transaction is rolled back and the exception is rethrown.
      */
     public static function reserveNext(string $queueName): ?self {
@@ -126,7 +127,7 @@ class Queue extends Model {
             }
 
             $db->commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $db->rollBack();
             throw $e;
         }
