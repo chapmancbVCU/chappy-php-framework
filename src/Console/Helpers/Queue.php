@@ -39,7 +39,22 @@ class Queue {
                 $queueModel->failed_at = DateTime::timeStamps();
                 Tools::info('Job permanently failed and marked as failed.', 'warning');
             } else {
-                $queueModel->available_at = DateTime::nowPlusSeconds(10);
+                $delay = 10;
+                $jobClass = $payload['job'] ?? null;
+                $jobData = $payload['data'] ?? [];
+
+                if($jobClass && class_exists($jobClass)) {
+                    $jobInstance = new $jobClass($jobData);
+                    $backoff = $jobInstance->backoff();
+                    
+                    if(is_array($backoff)) {
+                        $delay = $backoff[$queueModel->attempts - 1] ?? end($backoff);
+                    } else if (is_int($backoff)) {
+                        $delay = $backoff;
+                    }
+                }
+
+                $queueModel->available_at = DateTime::nowPlusSeconds($delay);
                 $decoded = json_decode($queueModel->payload, true);
                 $decoded['attempts'] = $queueModel->attempts;
                 $queueModel->payload = json_encode($decoded);
@@ -112,6 +127,11 @@ class '.$jobName.' implements QueueableJobInterface {
         $this->data = $data;
         $this->delayInSeconds = $delayInSeconds;
         $this->maxAttempts = $maxAttempts;
+    }
+
+    public function backoff(): int|array {
+        // Array or fixed
+        return [];
     }
 
     public function delay(): int {
