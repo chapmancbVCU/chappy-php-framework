@@ -7,6 +7,7 @@ use Core\Lib\Utilities\Config;
 use Core\Lib\Queue\QueueManager;
 use Core\Lib\Utilities\DateTime;
 use Core\Models\Queue as QueueModel;
+use Core\Lib\Queue\QueueableJobInterface;
 use Symfony\Component\Console\Command\Command;
 
 /**
@@ -43,7 +44,7 @@ class Queue {
                 $jobClass = $payload['job'] ?? null;
                 $jobData = $payload['data'] ?? [];
 
-                if($jobClass && class_exists($jobClass)) {
+                if($jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class)) {
                     $jobInstance = new $jobClass($jobData);
                     $backoff = $jobInstance->backoff();
                     
@@ -150,7 +151,7 @@ class '.$jobName.' implements QueueableJobInterface {
         return [
             \'job\' => static::class,
             \'data\' => $this->data,
-            \'available_at\' => time() + $this->delayInSeconds,
+            \'available_at\' => time() + $this->delay(),
             \'max_attempts\' => $this->maxAttempts()
         ];
     }

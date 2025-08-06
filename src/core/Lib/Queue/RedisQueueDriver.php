@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Queue;
 
 use Predis\Client;
+use Console\Helpers\Tools;
 
 /**
  * Implements the QueueDriverInterface.  This driver implements functions 
@@ -59,6 +60,7 @@ class RedisQueueDriver implements QueueDriverInterface {
      */
     public function release(string $queue, array $payload, int $delay = 0): void {
         if ($delay > 0) {
+            Tools::info("Redis release with delay uses `sleep({$delay})`. This blocks the worker. Consider switching to a scheduled queue or DB driver.", 'warning', 'yellow');
             sleep($delay);
         }
         $this->push($queue, $payload);
