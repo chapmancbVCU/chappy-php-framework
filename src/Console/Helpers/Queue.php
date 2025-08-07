@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace Console\Helpers;
 use Exception;
 use Core\Lib\Utilities\Arr;
-use Core\Lib\Utilities\Config;
 use Core\Lib\Queue\QueueManager;
 use Core\Models\Queue as QueueModel;
 use Symfony\Component\Console\Command\Command;
@@ -121,10 +120,6 @@ class '.$jobName.' implements QueueableJobInterface {
             self::jobTemplate($jobName),
             'Job'
         );
-    }
-
-    private static function maxAttempts(array $payload): int {
-        return $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
     }
 
     /**
