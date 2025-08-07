@@ -16,51 +16,9 @@ use Symfony\Component\Console\Command\Command;
 class Queue {
     protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
 
-    /**
-     * Handles tasks related to exceptions and retry of jobs.
-     *
-     * @param Exception $e The exception.
-     * @param array $job The array of jobs
-     * @return void
-     */
-    private static function exceptionMessaging(Exception $e, array $queueJob): void {
-        Tools::info("Job failed: " . $e->getMessage(), 'warning');
-        $payload = $queueJob['payload'] ?? [];
-        $maxAttempts = $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
-        $job = self::findJob($queueJob);
-
-        if ($job) {
-            $job->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
-            if ($job->attempts >= $maxAttempts) {
-                $job->failed_at = self::failedAt();
-            } else {
-                self::updateAttempts($job);
-                $delay = self::calcRetryDelay($job, $payload);
-                $job = self::availableAt($delay, $job);
-            }
-
-            $job->save();
-        }
-    }
-
-    private static function findJob(array $queueJob): ?QueueModel {
-        return Arr::exists($queueJob, 'id') 
-            ? QueueModel::findById($queueJob['id']) 
-            : null;
-    }
-
     private static function availableAt(int $delay, QueueModel $job) {
         Tools::info("Job will be retried. Attempt: {$job->attempts}", 'warning');
         return DateTime::nowPlusSeconds($delay);
-    }
-
-    private static function failedAt() {
-        Tools::info('Job permanently failed and marked as failed.', 'warning');
-        return DateTime::timeStamps();
-    }
-
-    private static function isQueueableClass(mixed $jobClass): bool {
-        return $jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class);
     }
 
     private static function calcRetryDelay(QueueModel $job, ?array $payload): int {
@@ -76,13 +34,45 @@ class Queue {
         return 10;
     }
 
-    private static function resolveBackoffDelay(mixed $backoff, QueueModel $job): int {
-        if(is_array($backoff)) {
-            $delay = $backoff[$job->attempts - 1] ?? end($backoff);
-        } else if (is_int($backoff)) {
-            $delay = $backoff;
+    /**
+     * Handles tasks related to exceptions and retry of jobs.
+     *
+     * @param Exception $e The exception.
+     * @param array $job The array of jobs
+     * @return void
+     */
+    private static function exceptionMessaging(Exception $e, array $queueJob): void {
+        Tools::info("Job failed: " . $e->getMessage(), 'warning');
+        $payload = $queueJob['payload'] ?? [];
+        $job = self::findJob($queueJob);
+
+        if($job) {
+            $job->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
+            if($job->attempts >= self::maxAttempts($payload)) {
+                $job->failed_at = self::failedAt();
+            } else {
+                self::updateAttempts($job);
+                $delay = self::calcRetryDelay($job, $payload);
+                $job = self::availableAt($delay, $job);
+            }
+
+            $job->save();
         }
-        return $delay;
+    }
+
+    private static function failedAt() {
+        Tools::info('Job permanently failed and marked as failed.', 'warning');
+        return DateTime::timeStamps();
+    }
+
+    private static function findJob(array $queueJob): ?QueueModel {
+        return Arr::exists($queueJob, 'id') 
+            ? QueueModel::findById($queueJob['id']) 
+            : null;
+    }
+
+    private static function isQueueableClass(mixed $jobClass): bool {
+        return $jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class);
     }
 
     /**
@@ -194,6 +184,10 @@ class '.$jobName.' implements QueueableJobInterface {
         );
     }
 
+    private static function maxAttempts(array $payload){
+        return $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
+    }
+
     /**
      * Template for queue migration.
      *
@@ -256,6 +250,15 @@ class '.$fileName.' extends Migration {
             self::queueTemplate($fileName),
             'Queue migration'
         );
+    }
+
+    private static function resolveBackoffDelay(mixed $backoff, QueueModel $job): int {
+        if(is_array($backoff)) {
+            $delay = $backoff[$job->attempts - 1] ?? end($backoff);
+        } else if (is_int($backoff)) {
+            $delay = $backoff;
+        }
+        return $delay;
     }
 
     /**
