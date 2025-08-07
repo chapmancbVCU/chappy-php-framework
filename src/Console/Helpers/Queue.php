@@ -16,11 +16,6 @@ use Symfony\Component\Console\Command\Command;
 class Queue {
     protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
 
-    private static function availableAt(int $delay, QueueModel $job) {
-        Tools::info("Job will be retried. Attempt: {$job->attempts}", 'warning');
-        return DateTime::nowPlusSeconds($delay);
-    }
-
     private static function calcRetryDelay(QueueModel $job, ?array $payload): int {
         $jobClass = $payload['job'] ?? null;
 
@@ -53,7 +48,7 @@ class Queue {
             } else {
                 self::updateAttempts($job);
                 $delay = self::calcRetryDelay($job, $payload);
-                $job = self::availableAt($delay, $job);
+                $job = self::setAvailableAt($delay, $job);
             }
 
             $job->save();
@@ -184,7 +179,7 @@ class '.$jobName.' implements QueueableJobInterface {
         );
     }
 
-    private static function maxAttempts(array $payload){
+    private static function maxAttempts(array $payload): int {
         return $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
     }
 
@@ -259,6 +254,11 @@ class '.$fileName.' extends Migration {
             $delay = $backoff;
         }
         return $delay;
+    }
+
+    private static function setAvailableAt(int $delay, QueueModel $job) {
+        Tools::info("Job will be retried. Attempt: {$job->attempts}", 'warning');
+        return DateTime::nowPlusSeconds($delay);
     }
 
     /**
