@@ -5,9 +5,7 @@ use Exception;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Queue\QueueManager;
-use Core\Lib\Utilities\DateTime;
 use Core\Models\Queue as QueueModel;
-use Core\Lib\Queue\QueueableJobInterface;
 use Symfony\Component\Console\Command\Command;
 
 /**
@@ -15,60 +13,6 @@ use Symfony\Component\Console\Command\Command;
  */
 class Queue {
     protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
-
-    private static function calcRetryDelay(QueueModel $job, ?array $payload): int {
-        $jobClass = $payload['job'] ?? null;
-
-        if(self::isQueueableClass($jobClass)) {
-            $jobData = $payload['data'] ?? [];
-            $jobInstance = new $jobClass($jobData);
-            $backoff = $jobInstance->backoff();
-            return self::resolveBackoffDelay($backoff, $job);
-            
-        }
-        return 10;
-    }
-
-    /**
-     * Handles tasks related to exceptions and retry of jobs.
-     *
-     * @param Exception $e The exception.
-     * @param array $job The array of jobs
-     * @return void
-     */
-    private static function exceptionMessaging(Exception $e, array $queueJob): void {
-        Tools::info("Job failed: " . $e->getMessage(), 'warning');
-        $payload = $queueJob['payload'] ?? [];
-        $job = self::findJob($queueJob);
-
-        if($job) {
-            $job->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
-            if($job->attempts >= self::maxAttempts($payload)) {
-                $job->failed_at = self::failedAt();
-            } else {
-                self::updateAttempts($job);
-                $delay = self::calcRetryDelay($job, $payload);
-                $job = self::setAvailableAt($delay, $job);
-            }
-
-            $job->save();
-        }
-    }
-
-    private static function failedAt() {
-        Tools::info('Job permanently failed and marked as failed.', 'warning');
-        return DateTime::timeStamps();
-    }
-
-    private static function findJob(array $queueJob): ?QueueModel {
-        return Arr::exists($queueJob, 'id') 
-            ? QueueModel::findById($queueJob['id']) 
-            : null;
-    }
-
-    private static function isQueueableClass(mixed $jobClass): bool {
-        return $jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class);
-    }
 
     /**
      * Deletes a job
@@ -247,20 +191,6 @@ class '.$fileName.' extends Migration {
         );
     }
 
-    private static function resolveBackoffDelay(mixed $backoff, QueueModel $job): int {
-        if(is_array($backoff)) {
-            $delay = $backoff[$job->attempts - 1] ?? end($backoff);
-        } else if (is_int($backoff)) {
-            $delay = $backoff;
-        }
-        return $delay;
-    }
-
-    private static function setAvailableAt(int $delay, QueueModel $job) {
-        Tools::info("Job will be retried. Attempt: {$job->attempts}", 'warning');
-        return DateTime::nowPlusSeconds($delay);
-    }
-
     /**
      * Manages shutdown signals.
      *
@@ -276,19 +206,6 @@ class '.$fileName.' extends Migration {
             Tools::info("Worker interrupted...", "info"); 
             exit; 
         });
-    }
-
-    /**
-     * Updates information about attempts.
-     *
-     * @param QueueModel $job The job whose attempts we want to update.
-     * @return void
-     */
-    private static function updateAttempts(QueueModel $job): void {
-        $job->attempts += 1;
-        $decoded = json_decode($job->payload, true);
-        $decoded['attempts'] = $job->attempts;
-        $job->payload = json_encode($decoded);
     }
 
     /**
@@ -316,7 +233,7 @@ class '.$fileName.' extends Migration {
                     self::deleteJob($job, $queue);
 
                 } catch (Exception $e) {
-                    self::exceptionMessaging($e, $job);
+                    QueueModel::exceptionMessaging($e, $job);
                 }
             }
 

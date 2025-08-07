@@ -3,8 +3,11 @@ namespace Core\Models;
 use Core\DB;
 use Exception;
 use Core\Model;
+use Console\Helpers\Tools;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
+use Core\Lib\Queue\QueueableJobInterface;
 
 /**
  * Implements features of the Queue class.
@@ -22,6 +25,19 @@ class Queue extends Model {
     public $reserved_at;
     public $payload;
 
+    private static function calcRetryDelay(self $job, ?array $payload): int {
+        $jobClass = $payload['job'] ?? null;
+
+        if(self::isQueueableClass($jobClass)) {
+            $jobData = $payload['data'] ?? [];
+            $jobInstance = new $jobClass($jobData);
+            $backoff = $jobInstance->backoff();
+            return self::resolveBackoffDelay($backoff, $job);
+            
+        }
+        return 10;
+    }
+
     /**
      * Implements beforeSave.
      *
@@ -31,6 +47,37 @@ class Queue extends Model {
         $this->timeStamps();
     }
 
+    /**
+     * Handles tasks related to exceptions and retry of jobs.
+     *
+     * @param Exception $e The exception.
+     * @param array $job The array of jobs
+     * @return void
+     */
+    public static function exceptionMessaging(Exception $e, array $queueJob): void {
+        Tools::info("Job failed: " . $e->getMessage(), 'warning');
+        $payload = $queueJob['payload'] ?? [];
+        $job = self::findJob($queueJob);
+
+        if($job) {
+            $job->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
+            if($job->attempts >= self::maxAttempts($payload)) {
+                $job->failed_at = self::failedAt();
+            } else {
+                self::updateAttempts($job);
+                $delay = self::calcRetryDelay($job, $payload);
+                $job = self::setAvailableAt($delay, $job);
+            }
+
+            $job->save();
+        }
+    }
+
+    private static function failedAt() {
+        Tools::info('Job permanently failed and marked as failed.', 'warning');
+        return DateTime::timeStamps();
+    }
+    
     /**
      * Find first with lock
      *
@@ -45,6 +92,12 @@ class Queue extends Model {
             'limit'      => 1,
             'lock'       => true
         ]);
+    }
+
+    private static function findJob(array $queueJob): ?self {
+        return Arr::exists($queueJob, 'id') 
+            ? self::findById($queueJob['id']) 
+            : null;
     }
 
     /**
@@ -69,6 +122,14 @@ class Queue extends Model {
         return false;
     }
 
+    private static function isQueueableClass(mixed $jobClass): bool {
+        return $jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class);
+    }
+
+    private static function maxAttempts(array $payload): int {
+        return $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
+    }
+    
     /**
      * Updates reserved_at field.
      *
@@ -85,7 +146,7 @@ class Queue extends Model {
         $db->commit();
         return $job;
     }
-
+    
     /**
      * Attempts to atomically reserve the next available job from the queue.
      *
@@ -132,5 +193,32 @@ class Queue extends Model {
             throw $e;
         }
         return null;
+    }
+
+    private static function resolveBackoffDelay(mixed $backoff, self $job): int {
+        if(is_array($backoff)) {
+            $delay = $backoff[$job->attempts - 1] ?? end($backoff);
+        } else if (is_int($backoff)) {
+            $delay = $backoff;
+        }
+        return $delay;
+    }
+
+    private static function setAvailableAt(int $delay, self $job) {
+        Tools::info("Job will be retried. Attempt: {$job->attempts}", 'warning');
+        return DateTime::nowPlusSeconds($delay);
+    }
+
+    /**
+     * Updates information about attempts.
+     *
+     * @param QueueModel $job The job whose attempts we want to update.
+     * @return void
+     */
+    private static function updateAttempts(self $job): void {
+        $job->attempts += 1;
+        $decoded = json_decode($job->payload, true);
+        $decoded['attempts'] = $job->attempts;
+        $job->payload = json_encode($decoded);
     }
 }
