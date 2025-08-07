@@ -23,47 +23,66 @@ class Queue {
      * @param array $job The array of jobs
      * @return void
      */
-    public static function exceptionMessaging(Exception $e, array $job): void {
+    private static function exceptionMessaging(Exception $e, array $queueJob): void {
         Tools::info("Job failed: " . $e->getMessage(), 'warning');
-        $payload = $job['payload'] ?? [];
+        $payload = $queueJob['payload'] ?? [];
         $maxAttempts = $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
+        $job = self::findJob($queueJob);
 
-        if(Arr::exists($job, 'id')) {
-            $queueModel = QueueModel::findById($job['id']); 
-        }
-
-        if ($queueModel) {
-            $queueModel->attempts += 1;
-            $queueModel->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
-
-            if ($queueModel->attempts >= $maxAttempts) {
-                $queueModel->failed_at = DateTime::timeStamps();
-                Tools::info('Job permanently failed and marked as failed.', 'warning');
+        if ($job) {
+            $job->exception = $e->getMessage() . "\n" . $e->getTraceAsString();
+            if ($job->attempts >= $maxAttempts) {
+                $job->failed_at = self::failedAt();
             } else {
-                $delay = 10;
-                $jobClass = $payload['job'] ?? null;
-                $jobData = $payload['data'] ?? [];
-
-                if($jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class)) {
-                    $jobInstance = new $jobClass($jobData);
-                    $backoff = $jobInstance->backoff();
-                    
-                    if(is_array($backoff)) {
-                        $delay = $backoff[$queueModel->attempts - 1] ?? end($backoff);
-                    } else if (is_int($backoff)) {
-                        $delay = $backoff;
-                    }
-                }
-
-                $queueModel->available_at = DateTime::nowPlusSeconds($delay);
-                $decoded = json_decode($queueModel->payload, true);
-                $decoded['attempts'] = $queueModel->attempts;
-                $queueModel->payload = json_encode($decoded);
-                Tools::info("Job will be retried. Attempt: {$queueModel->attempts}", 'warning');
+                self::updateAttempts($job);
+                $delay = self::calcRetryDelay($job, $payload);
+                $job = self::availableAt($delay, $job);
             }
 
-            $queueModel->save();
+            $job->save();
         }
+    }
+
+    private static function findJob(array $queueJob): ?QueueModel {
+        return Arr::exists($queueJob, 'id') 
+            ? QueueModel::findById($queueJob['id']) 
+            : null;
+    }
+
+    private static function availableAt(int $delay, QueueModel $job) {
+        Tools::info("Job will be retried. Attempt: {$job->attempts}", 'warning');
+        return DateTime::nowPlusSeconds($delay);
+    }
+
+    private static function failedAt() {
+        Tools::info('Job permanently failed and marked as failed.', 'warning');
+        return DateTime::timeStamps();
+    }
+
+    private static function isQueueableClass(mixed $jobClass): bool {
+        return $jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class);
+    }
+
+    private static function calcRetryDelay(QueueModel $job, ?array $payload): int {
+        $jobClass = $payload['job'] ?? null;
+
+        if(self::isQueueableClass($jobClass)) {
+            $jobData = $payload['data'] ?? [];
+            $jobInstance = new $jobClass($jobData);
+            $backoff = $jobInstance->backoff();
+            return self::resolveBackoffDelay($backoff, $job);
+            
+        }
+        return 10;
+    }
+
+    private static function resolveBackoffDelay(mixed $backoff, QueueModel $job): int {
+        if(is_array($backoff)) {
+            $delay = $backoff[$job->attempts - 1] ?? end($backoff);
+        } else if (is_int($backoff)) {
+            $delay = $backoff;
+        }
+        return $delay;
     }
 
     /**
@@ -73,7 +92,7 @@ class Queue {
      * @param QueueManager $queue The QueueManager instance.
      * @return void
      */
-    public static function deleteJob(array $job, QueueManager $queue): void {
+    private static function deleteJob(array $job, QueueManager $queue): void {
         if (Arr::exists($job, 'id') && $job['id']) {
             $queue->delete($job['id']);
         }
@@ -85,7 +104,7 @@ class Queue {
      * @param string $jobClass The name of class to test.
      * @return void
      */
-    public static function isValidJob(string $jobClass): void {
+    private static function isValidJob(string $jobClass): void {
         if (!$jobClass || !class_exists($jobClass)) {
             throw new Exception("Invalid job class: " . ($jobClass ?? 'null'));
         }
@@ -113,7 +132,7 @@ class Queue {
      * @param string $jobName The name of the job.
      * @return string The content of the job class.
      */
-    public static function jobTemplate(string $jobName): string {
+    private static function jobTemplate(string $jobName): string {
         return '<?php
 namespace App\Jobs;
 
@@ -181,7 +200,7 @@ class '.$jobName.' implements QueueableJobInterface {
      * @param string $fileName The file and class name.
      * @return string The contents for the queue migration.
      */
-    public static function queueTemplate(string $fileName): string {
+    private static function queueTemplate(string $fileName): string {
         return '<?php
 namespace Database\Migrations;
 use Core\Lib\Database\Schema;
@@ -244,7 +263,7 @@ class '.$fileName.' extends Migration {
      *
      * @return void
      */
-    public static function shutdownSignals(): void {
+    private static function shutdownSignals(): void {
         pcntl_async_signals(true);
         pcntl_signal(SIGTERM, function() { 
             Tools::info("Worker shutting down...", "info"); 
@@ -254,6 +273,19 @@ class '.$fileName.' extends Migration {
             Tools::info("Worker interrupted...", "info"); 
             exit; 
         });
+    }
+
+    /**
+     * Updates information about attempts.
+     *
+     * @param QueueModel $job The job whose attempts we want to update.
+     * @return void
+     */
+    private static function updateAttempts(QueueModel $job): void {
+        $job->attempts += 1;
+        $decoded = json_decode($job->payload, true);
+        $decoded['attempts'] = $job->attempts;
+        $job->payload = json_encode($decoded);
     }
 
     /**
