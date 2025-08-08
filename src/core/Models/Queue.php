@@ -66,7 +66,7 @@ class Queue extends Model {
             } else {
                 self::updateAttempts($job);
                 $delay = self::calcRetryDelay($job, $payload);
-                $job = self::setAvailableAt($delay, $job);
+                $job->available_at = self::setAvailableAt($delay, $job);
             }
 
             $job->save();
