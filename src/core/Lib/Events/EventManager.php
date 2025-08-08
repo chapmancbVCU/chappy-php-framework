@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Events;
 
-use Core\Lib\Providers\EventServiceProvider as CoreEventServiceProvider;
-
 class EventManager {
     /** 
      * @var EventDispatcher|null 
@@ -16,7 +14,7 @@ class EventManager {
 
         // // Boot core provider
         $dispatcher = new EventDispatcher();
-        $providerClasses = require ROOT.DS.'config'.DS.'providers.php';
+        $providerClasses = require CHAPPY_BASE_PATH.DS.'config'.DS.'providers.php';
 
         foreach($providerClasses as $providerClass) {
             if(class_exists($providerClass)) {
