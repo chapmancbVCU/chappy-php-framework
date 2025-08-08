@@ -84,6 +84,12 @@ final class UserService {
         }
     }
 
+    public static function queueWelcomeMailer(int $user_id) {
+        $queue = new QueueManager();
+        $job = new SendWelcomeEmail(['user_id' => $user_id], 0);
+        $queue->push('default', $job->toPayload());
+    }
+
     /**
      * Sends E-mail to user when account is deactivated as appropriate.
      *
