@@ -20,11 +20,21 @@ class Queue extends Model {
     public $attempts;
     public $available_at;
     public $created_at;
+    public $exception;
+    public $failed_at;
     public $id;
     public $queue;
     public $reserved_at;
     public $payload;
+    public $updated_at;
 
+    /**
+     * Calculate delay when performing retry for a job.
+     *
+     * @param self $job The job to perform.
+     * @param array|null $payload Data related job.
+     * @return int The calculated delay.
+     */
     private static function calcRetryDelay(self $job, ?array $payload): int {
         $jobClass = $payload['job'] ?? null;
 
@@ -73,7 +83,12 @@ class Queue extends Model {
         }
     }
 
-    private static function failedAt() {
+    /**
+     * Logs message indicating job permanently failed and returns current timestamp.
+     *
+     * @return string Current timestamp.
+     */
+    private static function failedAt(): string {
         Tools::info('Job permanently failed and marked as failed.', 'warning');
         return DateTime::timeStamps();
     }
@@ -94,6 +109,12 @@ class Queue extends Model {
         ]);
     }
 
+    /**
+     * Returns record for job based on id found in associative array.
+     *
+     * @param array $queueJob An array containing information about a job.
+     * @return self|null The record if it exists or null.
+     */
     private static function findJob(array $queueJob): ?self {
         return Arr::exists($queueJob, 'id') 
             ? self::findById($queueJob['id']) 
@@ -122,10 +143,23 @@ class Queue extends Model {
         return false;
     }
 
+    /**
+     * Checks if class exists and that it implements the QueueableJobInterface.
+     *
+     * @param mixed $jobClass The name of the job class.
+     * @return bool True if class exists and implements correct interface.  
+     * Otherwise, we return false.
+     */
     private static function isQueueableClass(mixed $jobClass): bool {
         return $jobClass && class_exists($jobClass) && is_subclass_of($jobClass, QueueableJobInterface::class);
     }
 
+    /**
+     * Returns maximum allowable attempts.
+     *
+     * @param array $payload Information stored in payload array.
+     * @return int The maximum number of allowable attempts.
+     */
     private static function maxAttempts(array $payload): int {
         return $payload['max_attempts'] ?? Config::get('queue.max_attempts', 3);
     }
@@ -195,6 +229,13 @@ class Queue extends Model {
         return null;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param mixed $backoff
+     * @param self $job
+     * @return integer
+     */
     private static function resolveBackoffDelay(mixed $backoff, self $job): int {
         if(is_array($backoff)) {
             $delay = $backoff[$job->attempts - 1] ?? end($backoff);
