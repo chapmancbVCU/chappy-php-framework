@@ -8,7 +8,9 @@ use Core\Lib\Events\AccountDeactivated;
 use Core\Lib\Listeners\SendRegistrationEmail;
 use Core\Lib\Listeners\SendPasswordResetEmail;
 use Core\Lib\Events\UserPasswordResetRequested;
+use Core\Lib\Events\UserPasswordUpdated;
 use Core\Lib\Listeners\SendAccountDeactivatedEmail;
+use Core\Lib\Listeners\SendPasswordUpdateEmail;
 
 /**
  * Internal EventServiceProvider for builtin events.
@@ -27,7 +29,10 @@ class EventServiceProvider extends ServiceProvider {
         ],
         UserRegistered::class => [
             SendRegistrationEmail::class,
-    ],
+        ],
+        UserPasswordUpdated::class => [
+            SendPasswordUpdateEmail::class
+        ]
     ];
 
     /**
