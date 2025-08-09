@@ -65,14 +65,14 @@ class EventDispatcher {
 
     private function enqueueListener(string $listenerClass, object $instance, object $event): void {
         $opts = [
-            'delay'         => ($instance instanceof QueuePreferences) ? $instance->delay : 0,
-            'backoff'       => ($instance instanceof QueuePreferences) ? $instance->backoff() : 0,
-            'maxAttempts'   => ($instance instanceof QueuePreferences) ? $instance->maxAttempts() : 0
+            'delay'         => ($this->hasQueuePreferences($instance)) ? $instance->delay() : 0,
+            'backoff'       => ($this->hasQueuePreferences($instance)) ? $instance->backoff() : 0,
+            'maxAttempts'   => ($this->hasQueuePreferences($instance)) ? $instance->maxAttempts() : 0
         ];
 
         $job = QueuedListenerJob::from($listenerClass, $event, $opts);
         $queue = new QueueManager();
-        $queueName = ($instance instanceof QueuePreferences && method_exists($instance, 'viaQueue'))
+        $queueName = ($this->hasQueuePreferences($instance) && method_exists($instance, 'viaQueue'))
             ? ($instance->viaQueue() ?? 'default')
             : 'default';
         
@@ -85,5 +85,9 @@ class EventDispatcher {
             return true;
         }
         return false;
+    }
+
+    private function hasQueuePreferences(object $instance) {
+        return $instance instanceof QueuePreferences;
     }
 }
