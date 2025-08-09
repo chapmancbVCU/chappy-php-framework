@@ -16,7 +16,18 @@ final class QueuedListenerJob implements QueueableJobInterface {
     ) {}
 
     public static function from(string $listenerClass, object $event, array $opts = []): self {
+        $payload = method_exists($event, 'toArray') 
+            ? $event->toArray()
+            : get_object_vars($event);
 
+        return new self(
+            listenerClass:  $listenerClass,
+            eventClass:     $event::class,
+            eventPayload:   $payload,
+            delay:          (int)($opts['delay'] ?? 0),
+            backoff:        $opts['backoff'] ?? 0,
+            maxAttempts:    (int)($opts['maxAttempts'] ?? 0),
+        );
     }
 
     public function handle(): void {
