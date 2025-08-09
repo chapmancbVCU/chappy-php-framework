@@ -100,13 +100,14 @@ class Queue extends Model {
      * @return self|null
      */
     private static function findFirstWithLock(string $queueName): ?self {
-        return static::findFirst([
+        $job =  self::findFirst([
             'conditions' => 'queue = ? AND reserved_at IS NULL AND failed_at IS NULL AND available_at <= ?',
             'bind'       => [$queueName, date('Y-m-d H:i:s')],
             'order'      => 'id',
             'limit'      => 1,
             'lock'       => true
         ]);
+        return $job ?: null;
     }
 
     /**
@@ -238,11 +239,11 @@ class Queue extends Model {
      */
     private static function resolveBackoffDelay(mixed $backoff, self $job): int {
         if(is_array($backoff)) {
-            $delay = $backoff[$job->attempts - 1] ?? end($backoff);
+            return $backoff[$job->attempts - 1] ?? end($backoff);
         } else if (is_int($backoff)) {
-            $delay = $backoff;
+            return $backoff;
         }
-        return $delay;
+        return 10;
     }
 
     private static function setAvailableAt(int $delay, self $job) {
