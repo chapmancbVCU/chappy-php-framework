@@ -38,7 +38,17 @@ final class QueuedListenerJob implements QueueableJobInterface {
     }
 
     public function toPayload(): array {
-        return [];
+        return [
+            'job' => static::class,
+            'data' => [
+                'listener' => $this->listenerClass,
+                'event' => $this->eventClass,
+                'payload' => $this->eventPayload,
+                'delay' => $this->delay,
+                'backoff' => $this->backoff,
+                'maxAttempts' => $this->maxAttempts,
+            ],
+        ];
     }
 
     private function rehydrateEvent(): object {
