@@ -65,6 +65,7 @@ class Queue {
 namespace App\Jobs;
 
 use Core\Lib\Queue\QueueableJobInterface;
+use Core\Lib\Utilities\DateTime;
 
 class '.$jobName.' implements QueueableJobInterface {
     protected array $data;
@@ -98,7 +99,7 @@ class '.$jobName.' implements QueueableJobInterface {
         return [
             \'job\' => static::class,
             \'data\' => $this->data,
-            \'available_at\' => time() + $this->delay(),
+            \'available_at\' => DateTime::nowPlusSeconds($this->delay()),
             \'max_attempts\' => $this->maxAttempts()
         ];
     }
