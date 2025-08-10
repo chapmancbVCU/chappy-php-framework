@@ -207,4 +207,16 @@ class '.$eventName.' {
     }
 }';
     }
+
+    /**
+     * Checks if $eventName and $listerName was provided and that they are not the same.
+     *
+     * @param string $eventName The name of the event.
+     * @param string $listenerName The name of the listener.
+     * @return bool If True then both params were provided and not the same.  
+     * Otherwise, we return false.
+     */
+    public static function verifyListenerParams(string $eventName, string $listenerName): bool {
+        return $eventName && $listenerName && ($eventName != $listenerName);
+    }
 }
