@@ -67,7 +67,7 @@ class EventDispatcher {
         $opts = [
             'delay'         => ($this->hasQueuePreferences($instance)) ? $instance->delay() : 0,
             'backoff'       => ($this->hasQueuePreferences($instance)) ? $instance->backoff() : 0,
-            'maxAttempts'   => ($this->hasQueuePreferences($instance)) ? $instance->maxAttempts() : 0
+            'max_attempts'   => ($this->hasQueuePreferences($instance)) ? $instance->maxAttempts() : 0
         ];
 
         $job = QueuedListenerJob::from($listenerClass, $event, $opts);

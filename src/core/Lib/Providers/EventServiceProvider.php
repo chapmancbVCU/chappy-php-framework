@@ -29,8 +29,8 @@ class EventServiceProvider extends ServiceProvider {
             SendAccountDeactivatedEmail::class
         ],
         UserRegistered::class => [
-            SendRegistrationEmail::class,
-            // SendWelcomeEmailListener::class
+            // SendRegistrationEmail::class,
+            SendWelcomeEmailListener::class
         ],
         UserPasswordUpdated::class => [
             SendPasswordUpdateEmail::class

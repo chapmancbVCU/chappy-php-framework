@@ -2,32 +2,46 @@
 declare(strict_types=1);
 namespace Core\Lib\Queue\Jobs;
 
-use Core\Lib\Queue\QueueableJobInterface;
 use Core\Lib\Utilities\Config;
+use Core\Lib\Utilities\DateTime;
+use Core\Lib\Queue\QueueableJobInterface;
 
 final class QueuedListenerJob implements QueueableJobInterface {
-    public function __construct(
-        private string $listenerClass,
-        private string $eventClass,
-        private array $eventPayload,
-        private int $delay = 0,
-        private int|array $backoff = 0,
-        private int $maxAttempts = 0
-    ) {}
+
+    private string $listenerClass = '';
+    private string $eventClass = '';
+    private array  $eventPayload = [];
+    private int|array $backoff = 0;
+    private int $delay = 0;
+    private int $maxAttempts = 0;
+
+    // IMPORTANT: worker calls new Job($data)
+    public function __construct(array $data = [])
+    {
+        $this->listenerClass = $data['listener'] ?? '';
+        $eventField          = $data['event'] ?? '';
+        $this->eventClass    = is_string($eventField)
+            ? $eventField
+            : (is_array($eventField) ? (string)($eventField['class'] ?? '') : '');
+        $this->eventPayload  = $data['payload']  ?? [];
+        $this->backoff       = $data['backoff']  ?? 0;
+        $this->maxAttempts   = $data['max_attempts'] ?? 0;
+        $this->delay         = (int)($data['delay'] ?? 0);
+    }
 
     public static function from(string $listenerClass, object $event, array $opts = []): self {
-        $payload = method_exists($event, 'toArray') 
-            ? $event->toArray()
-            : get_object_vars($event);
+        $payload = method_exists($event, 'toPayload') 
+            ? $event->toPayload()
+            : (method_exists($event, 'toArray') ? $event->toArray() : get_object_vars($event));
 
-        return new self(
-            listenerClass:  $listenerClass,
-            eventClass:     $event::class,
-            eventPayload:   $payload,
-            delay:          (int)($opts['delay'] ?? 0),
-            backoff:        $opts['backoff'] ?? 0,
-            maxAttempts:    (int)($opts['maxAttempts'] ?? 0),
-        );
+        return new self([
+            'listener'      => $listenerClass,
+            'event'         => $event::class,
+            'payload'         => $payload,
+            'delay'         => (int)($opts['delay'] ?? 0),
+            'backoff '      => $opts['backoff'] ?? 0,
+            'max_attempts'    => (int)($opts['max_attempts'] ?? 0),
+        ]);
     }
 
     public function handle(): void {
@@ -57,25 +71,32 @@ final class QueuedListenerJob implements QueueableJobInterface {
                 'payload' => $this->eventPayload,
                 'delay' => $this->delay,
                 'backoff' => $this->backoff,
-                'maxAttempts' => $this->maxAttempts,
+                'max_attempts' => $this->maxAttempts,
             ],
+            'available_at' => DateTime::nowPlusSeconds($this->delay()),
+            'max_attempts' => $this->maxAttempts(),
         ];
     }
 
     private function rehydrateEvent(): object {
+        if (method_exists($this->eventClass, 'fromPayload')) {
+            return ($this->eventClass)::fromPayload($this->eventPayload);
+        }
+
+        // fallback ONLY for events with no-arg ctor + public props
         $event = new ($this->eventClass)();
-        foreach($this->eventPayload as $k => $v) { $event->$k = $v; }
+        foreach ($this->eventPayload as $k => $v) $event->$k = $v;
         return $event;
     }
 
     public static function __set_state(array $state): self {
-        return new self(
-            $state['listenerClass'],
-            $state['eventClass'],
-            $state['eventPayload'],
-            $state['delay'] ?? 0,
-            $state['backoff'] ?? 0,
-            $state['max_attempts' ?? 0]
-        );
+        return new self([
+            'listener'      => $state['listenerClass']   ?? '',
+            'event'         => $state['eventClass']      ?? '',
+            'payload'       => $state['eventPayload']    ?? [],
+            'delay'         => $state['delay']           ?? 0,
+            'backoff'       => $state['backoff']         ?? 0,
+            'max_attempts'  => $state['maxAttempts']     ?? 0,
+        ]);
     }
 }

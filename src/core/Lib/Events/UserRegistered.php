@@ -21,4 +21,17 @@ class UserRegistered {
         $this->user = $user;
         $this->shouldSendEmail = $shouldSendEmail;
     }
+
+    public function toPayload(): array {
+        return [
+            'user_id'         => (int)$this->user->id,
+            'shouldSendEmail' => $this->shouldSendEmail,
+        ];
+    }
+
+    public static function fromPayload(array $data): self {
+        $user = Users::findById((int)$data['user_id']);
+        $should = (bool)($data['shouldSendEmail'] ?? false);
+        return new self($user, $should);
+    }
 }
