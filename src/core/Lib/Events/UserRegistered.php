@@ -8,8 +8,8 @@ use App\Models\Users;
  * Simple DTO (Data Transfer Object) class for password reset event.
  */
 class UserRegistered {
-    public Users $user;
-    public bool $shouldSendEmail;
+    public $user;
+    public $shouldSendEmail;
     /**
      * Constructor
      *
