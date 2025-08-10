@@ -218,7 +218,7 @@ final class QueuedListenerJob implements QueueableJobInterface {
      * public properties are populated from payload keys.
      *
      * @return object The rehydrated event instance.
-     */c
+     */
     private function rehydrateEvent(): object {
         if (method_exists($this->eventClass, 'fromPayload')) {
             return ($this->eventClass)::fromPayload($this->eventPayload);
