@@ -23,6 +23,12 @@ class UserRegistered {
         $this->shouldSendEmail = $shouldSendEmail;
     }
 
+    /**
+     * Adds instance variables to payload.
+     *
+     * @return array An associative array containing values of instance 
+     * variables.
+     */
     public function toPayload(): array {
         return [
             'user_id'         => (int)$this->user->id,
@@ -30,6 +36,13 @@ class UserRegistered {
         ];
     }
 
+    /**
+     * Retrieves information from payload array and returns new instance of 
+     * this class.
+     *
+     * @param array $data The payload array.
+     * @return self New instance of this class.
+     */
     public static function fromPayload(array $data): self {
         $user = Users::findById((int)$data['user_id']);
         $should = (bool)($data['shouldSendEmail'] ?? false);
