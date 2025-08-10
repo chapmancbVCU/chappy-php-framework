@@ -1,13 +1,15 @@
 <?php
 namespace Core\Lib\Listeners;
 
+use Core\Services\UserService;
 use Core\Lib\Events\UserRegistered;
+use Core\Services\NotificationService;
 use Core\Lib\Events\Contracts\ShouldQueue;
 use Core\Lib\Events\Contracts\QueuePreferences;
-use Core\Services\UserService;
 
 class SendWelcomeEmailListener implements ShouldQueue, QueuePreferences {
     public function handle(UserRegistered $event) : void {
+        NotificationService::sendUserRegistrationNotification($event->user);
         UserService::queueWelcomeMailer((int)$event->user->id, $this->viaQueue());
     }
 
