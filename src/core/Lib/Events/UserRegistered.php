@@ -5,7 +5,8 @@ namespace Core\Lib\Events;
 use App\Models\Users;
 
 /**
- * Simple DTO (Data Transfer Object) class for password reset event.
+ * Simple DTO (Data Transfer Object) class for queueing new account 
+ * E-mail event.
  */
 class UserRegistered {
     public $user;
