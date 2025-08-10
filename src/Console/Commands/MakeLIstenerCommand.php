@@ -41,6 +41,11 @@ class MakeListenerCommand extends Command
         $listenerName = Str::ucfirst($input->getArgument('listener-name'));
         $eventName = Str::ucfirst($input->getOption('event'));
 
+        if(!$eventName) {
+            Tools::info('Please provide name of the event', 'warning', 'yellow');
+            return Command::FAILURE;
+        }
+        
         if($eventName && $listenerName && ($eventName != $listenerName)) {
             return Events::makeListener($eventName, $listenerName);
         }
