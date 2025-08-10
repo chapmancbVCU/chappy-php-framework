@@ -1,8 +1,9 @@
 <?php
 namespace Core\Lib\Notifications;
 
-use Core\Lib\Notifications\Notification;
 use App\Models\Users;
+use Core\Lib\Utilities\DateTime;
+use Core\Lib\Notifications\Notification;
 
 class UserRegistered extends Notification
 {
@@ -30,7 +31,7 @@ class UserRegistered extends Notification
             'user_id'   => $this->user->id,
             'username'  => $this->user->username ?? $this->user->email,
             'message'   => "A new user has registered: {$this->user->username}",
-            'registered_at' => date('Y-m-d H:i:s')
+            'registered_at' => DateTime::timeStamps()
         ];
     }
 }

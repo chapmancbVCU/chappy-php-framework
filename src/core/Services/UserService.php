@@ -4,13 +4,14 @@ namespace Core\Services;
 
 use Core\Input;
 use App\Models\Users;
+use App\Jobs\SendWelcomeEmail;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
-use Core\Lib\Events\EventManager;
-use Core\Lib\Events\UserPasswordResetRequested;
-use Core\Lib\Events\AccountDeactivated;
 use Core\Lib\Queue\QueueManager;
-use App\Jobs\SendWelcomeEmail;
+use Core\Lib\Utilities\DateTime;
+use Core\Lib\Events\EventManager;
+use Core\Lib\Events\AccountDeactivated;
+use Core\Lib\Events\UserPasswordResetRequested;
 
 /**
  * Provides functions for managing users.
@@ -84,13 +85,13 @@ final class UserService {
         }
     }
 
-    public static function queueWelcomeMailer(int $user_id, string $queueName) {
+    public static function queueWelcomeMailer(int $user_id, string $queueName = 'default') {
         $queue = new QueueManager();
         $job   = new SendWelcomeEmail(['user_id' => $user_id], 0); // delay=0
 
         $payload = $job->toPayload();
         // Fix DATETIME format
-        $payload['available_at'] = \Core\Lib\Utilities\DateTime::nowPlusSeconds($job->delay());
+        $payload['available_at'] = DateTime::nowPlusSeconds($job->delay());
 
         $queue->push($payload, $queueName);
     }
