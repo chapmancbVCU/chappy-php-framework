@@ -32,7 +32,7 @@ final class QueuedListenerJob implements QueueableJobInterface {
     public static function from(string $listenerClass, object $event, array $opts = []): self {
         $payload = method_exists($event, 'toPayload') 
             ? $event->toPayload()
-            : (method_exists($event, 'toArray') ? $event->toArray() : get_object_vars($event));
+            : [];
 
         return new self([
             'listener'      => $listenerClass,
