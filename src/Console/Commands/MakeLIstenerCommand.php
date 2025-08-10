@@ -1,12 +1,13 @@
 <?php
 namespace Console\Commands;
 
+use Console\Helpers\Tools;
 use Console\Helpers\Events;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -40,9 +41,10 @@ class MakeListenerCommand extends Command
         $listenerName = Str::ucfirst($input->getArgument('listener-name'));
         $eventName = Str::ucfirst($input->getOption('event'));
 
-        if($eventName && $listenerName) {
+        if($eventName && $listenerName && ($eventName != $listenerName)) {
             return Events::makeListener($eventName, $listenerName);
         }
+        Tools::info('Event and listener names should not be the same', 'warning', 'yellow');
         return Command::FAILURE;
     }
 }
