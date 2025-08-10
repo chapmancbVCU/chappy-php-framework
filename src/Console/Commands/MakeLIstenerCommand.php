@@ -26,7 +26,8 @@ class MakeListenerCommand extends Command
             ->setDescription('Generates a new listener class')
             ->setHelp('php console make:listener <listener-name>')
             ->addArgument('listener-name', InputArgument::REQUIRED, 'Pass the name for the new listener')
-            ->addOption('event', null, InputOption::VALUE_REQUIRED, 'Event name for listener', false);
+            ->addOption('event', null, InputOption::VALUE_REQUIRED, 'Event name for listener', false)
+            ->addOption('queue', null, InputOption::VALUE_NONE, 'Version of class for queues');
     }
 
     /**
@@ -45,11 +46,20 @@ class MakeListenerCommand extends Command
             Tools::info('Please provide name of the event', 'warning', 'yellow');
             return Command::FAILURE;
         }
-        
-        if($eventName && $listenerName && ($eventName != $listenerName)) {
-            return Events::makeListener($eventName, $listenerName);
+
+        if(!Events::verifyListenerParams($eventName, $listenerName)) {
+            Tools::info(
+                'Either event option was not provided or both event and listener names are the same', 
+                'warning', 
+                'yellow'
+            );
+            return Command::FAILURE;
         }
-        Tools::info('Event and listener names should not be the same', 'warning', 'yellow');
-        return Command::FAILURE;
+        
+        $queue = $input->getOption('queue');
+        if($queue) {
+            return Events::makeListener($eventName, $listenerName, $queue);    
+        }
+        return Events::makeListener($eventName, $listenerName);
     }
 }
