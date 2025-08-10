@@ -33,33 +33,7 @@ class EventDispatcher {
         if(empty($this->listeners[$eventName])) return;
 
         foreach($this->listeners[$eventName] as $listener) {
-            // Case 1: "Listener\FQCN"
-            if(is_string($listener)) {
-                $listenerClass = $listener;
-                $instance = new $listenerClass();
-
-                if ($this->isEnqueueListener($listenerClass, $instance, $event)) {
-                    continue; // was queued, skip sync execution
-                }
-
-                // Assume handle(UserEvent $e)
-                $instance->handle($event);
-                continue;
-            }
-
-            // Case 2: [$classOrObj, 'method']
-            if(is_array($listener) && count($listener) === 2) {
-                [$target, $method] = $listener;
-                $listenerClass = is_object($target) ? get_class($target) : (string)$target;
-                $instance = is_object($target) ? $target : new $listenerClass();
-
-                if ($this->isEnqueueListener($listenerClass, $instance, $event)) {
-                    continue; // was queued, skip sync execution
-                }
-
-                $instance->$method($event);
-                continue;
-            }
+            $this->handleListener($listener, $event);
         }
     }
 
@@ -110,6 +84,32 @@ class EventDispatcher {
     }
 
     /**
+     * Handle a registered listener in any supported shape.
+     *
+     * Supported forms:
+     *  - string FQCN: "App\Listeners\SendWelcomeEmail" (calls handle())
+     *  - array callable: [FQCN|object, 'method'] (calls given method)
+     *
+     * @param mixed  $listener The listener definition (string FQCN or [target, method]).
+     * @param object $event    The event instance being dispatched.
+     *
+     * @return void
+     */
+    private function handleListener(mixed $listener, object $event): void {
+        // Case 1: "Listener\FQCN"
+        if (is_string($listener)) {
+            $this->processClassString($listener, $event);
+            return;
+        }
+
+        // Case 2: [$classOrObj, 'method']
+        if (is_array($listener) && count($listener) === 2) {
+            $this->processCallableArray($listener, $event);
+            return;
+        }      
+    }
+
+    /**
      * Check if a listener provides custom queue preferences.
      *
      * @param object $instance The instantiated listener object.
@@ -118,6 +118,48 @@ class EventDispatcher {
      */
     private function hasQueuePreferences(object $instance) {
         return $instance instanceof QueuePreferences;
+    }
+
+    /**
+     * Process a listener provided as [FQCN|object, 'method'].
+     *
+     * @param array  $listener A two-item array: [FQCN|string|object $target, string $method].
+     * @param object $event     The event instance being dispatched.
+     *
+     * @return void
+     */
+    private function processCallableArray(array $listener, object $event): void {
+        [$target, $method] = $listener;
+        $listenerClass = is_object($target) ? get_class($target) : (string)$target;
+        $instance = is_object($target) ? $target : new $listenerClass();
+
+        // Queued, skip sync execution
+        if ($this->isEnqueueListener($listenerClass, $instance, $event)) {
+            return;
+        }
+
+        $instance->$method($event);
+    }
+
+    /**
+     * Process a listener provided as a fully-qualified class name.
+     * Assumes a conventional handle($event) method.
+     *
+     * @param string $listenerClass Fully qualified class name of the listener.
+     * @param object $event         The event instance being dispatched.
+     *
+     * @return void
+     */
+    private function processClassString(string $listenerClass, object $event): void {
+        $instance = new $listenerClass();
+
+        // Queued, skip sync execution
+        if($this->isEnqueueListener($listenerClass, $instance, $event)) {
+            return;
+        }
+
+        // Conventional handler
+        $instance->handle($event);
     }
 
     /**
