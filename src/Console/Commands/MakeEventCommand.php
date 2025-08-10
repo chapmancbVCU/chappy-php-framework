@@ -6,6 +6,7 @@ use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -23,7 +24,8 @@ class MakeEventCommand extends Command
         $this->setName('make:event')
             ->setDescription('Generates a new event class')
             ->setHelp('php console make:event <event-name>')
-            ->addArgument('event-name', InputArgument::REQUIRED, 'Pass the name for the new event');
+            ->addArgument('event-name', InputArgument::REQUIRED, 'Pass the name for the new event')
+            ->addOption('queue', null, InputOption::VALUE_NONE, 'Version of class for queues');
     }
 
     /**
@@ -36,6 +38,10 @@ class MakeEventCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $eventName = Str::ucfirst($input->getArgument('event-name'));
+        $queue = $input->getOption('queue');
+        if($queue) {
+            return Events::makeEvent($eventName, $queue);
+        }
         return Events::makeEvent($eventName);
     }
 }

@@ -109,16 +109,19 @@ class '.$providerName.' extends ServiceProvider {
      * Creates a new event class.
      *
      * @param string $eventName The name for the event.
+     * @param bool $queue If true then function creates version of file for 
+     * queues.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeEvent(string $eventName): int {
+    public static function makeEvent(string $eventName, bool $queue = false): int {
         Tools::pathExists(self::$eventPath);
         $fullPath = self::$eventPath.$eventName.'.php';
-        return Tools::writeFile(
-            $fullPath,
-            self::eventTemplate($eventName),
-            'Event'
-        );
+       
+        $content = ($queue) 
+            ? self::queueEventTemplate($eventName) 
+            : self::eventTemplate($eventName);
+
+        return Tools::writeFile($fullPath, $content,'Event');
     }
 
     /**
@@ -152,5 +155,56 @@ class '.$providerName.' extends ServiceProvider {
             self::eventServiceProviderTemplate($providerName),
             'Provider'
         );
+    }
+
+    /**
+     * Returns template for event class when queue flag is set.
+     *
+     * @param string $eventName The name of the event.
+     * @return string The contents of the event class.
+     */
+    public static function queueEventTemplate(string $eventName): string {
+        return '<?php
+namespace Core\Lib\Events;
+
+use App\Models\Users;
+
+/**
+ * Document class here.
+ */
+class '.$eventName.' {
+    public $user;
+
+    /**
+     * Constructor
+     *
+     * @param User $user User associated with event.
+     */
+    public function __construct(Users $user) {
+        $this->user = $user;
+    }
+
+    /**
+     * Adds instance variables to payload.
+     *
+     * @return array An associative array containing values of instance 
+     * variables.
+     */
+    public function toPayload(): array {
+        return [];
+    }
+
+    /**
+     * Retrieves information from payload array and returns new instance of 
+     * this class.
+     *
+     * @param array $data The payload array.
+     * @return self New instance of this class.
+     */
+    public static function fromPayload(array $data): self {
+        $user = Users::findById((int)$data[\'user_id\']);
+        return new self($user);
+    }
+}';
     }
 }
