@@ -70,7 +70,7 @@ class QueueManager {
             'queued_at'=> date('Y-m-d H:i:s')
         ];
 
-        $this->push($queueName, $payload);
+        $this->push($payload, $queueName);
     }
 
     /**
@@ -84,7 +84,7 @@ class QueueManager {
      *
      * @return void
      */
-    public function push(string $queue, array $payload): void {
+    public function push(array $payload, string $queue = 'default'): void {
         $this->driver->push($queue, $payload);
     }
 

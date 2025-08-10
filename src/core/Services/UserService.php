@@ -84,7 +84,7 @@ final class UserService {
         }
     }
 
-    public static function queueWelcomeMailer(int $user_id) {
+    public static function queueWelcomeMailer(int $user_id, string $queueName) {
         $queue = new QueueManager();
         $job   = new SendWelcomeEmail(['user_id' => $user_id], 0); // delay=0
 
@@ -92,7 +92,7 @@ final class UserService {
         // Fix DATETIME format
         $payload['available_at'] = \Core\Lib\Utilities\DateTime::nowPlusSeconds($job->delay());
 
-        $queue->push('mail', $payload);
+        $queue->push($payload, $queueName);
     }
 
     /**

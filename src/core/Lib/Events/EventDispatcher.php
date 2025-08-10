@@ -76,7 +76,7 @@ class EventDispatcher {
             ? ($instance->viaQueue() ?? 'default')
             : 'default';
         
-        $queue->push($queueName, $job->toPayload(), $job->delay());
+        $queue->push($job->toPayload(), $queueName, $job->delay());
     }
 
     private function isEnqueueListener(string $listenerClass, object $instance, object $event): bool {

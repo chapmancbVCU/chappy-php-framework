@@ -8,7 +8,7 @@ use Core\Services\UserService;
 
 class SendWelcomeEmailListener implements ShouldQueue, QueuePreferences {
     public function handle(UserRegistered $event) : void {
-        UserService::queueWelcomeMailer((int)$event->user->id);
+        UserService::queueWelcomeMailer((int)$event->user->id, $this->viaQueue());
     }
 
     public function viaQueue(): ?string { return 'mail'; }
