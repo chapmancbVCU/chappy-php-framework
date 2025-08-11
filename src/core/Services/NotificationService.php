@@ -8,7 +8,12 @@ use Core\Lib\Notifications\UserRegistered;
 
 class NotificationService {
 
-    public static function flashUnreadNotifications() {
+    /**
+     * Adds notification information to Session Messages.
+     *
+     * @return void
+     */
+    public static function flashUnreadNotifications(): void {
         $admin = AuthService::currentUser();
         $messages = [];
         foreach ($admin->notifications() as $notification) {
