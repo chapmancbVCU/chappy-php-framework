@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Core\Lib\Events;
 
+/**
+ * Manages the registration and dispatching of events.
+ */
 class EventManager {
     /** 
      * @var EventDispatcher|null 
