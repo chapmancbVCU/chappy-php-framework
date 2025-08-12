@@ -4,6 +4,7 @@ use Dotenv\Dotenv;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Events\EventManager;
+use Core\Lib\Notifications\NotificationManager;
 
 // Define CHAPPY_ROOT (framework root)
 if (!defined('CHAPPY_ROOT')) {
@@ -33,5 +34,6 @@ $dotenv->load();
 Env::load($envPath);
 Config::load(CHAPPY_BASE_PATH . '/config');
 
-// Initialize Events/Listeners
+// Initialize Events/Listeners and notifications
 EventManager::boot();
+NotificationManager::boot();
