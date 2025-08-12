@@ -11,6 +11,11 @@ class EventManager {
      */
     protected static ?EventDispatcher $dispatcher = null;
 
+    /**
+     * Boots event service upon application start.
+     *
+     * @return void
+     */
     public static function boot(): void {
         // Only boot once
         if(self::$dispatcher !== null) return;
