@@ -32,14 +32,27 @@ final class DatabaseChannel implements Channel {
     /**
      * Persist the notification for the given notifiable entity.
      *
-     * @param object $notifiable   The entity receiving the notification (uses Notifiable, must expose an `id`).
-     * @param object $notification The notification instance being delivered.
-     * @param array<string,mixed>|null $payload
-     *        Structured data to store in the `data` column (will be JSON-encoded).
+     * Accepts `mixed` per the Channel interface, but expects:
+     * - $notifiable: an object (typically using the Notifiable trait) exposing a public `id` (int|string).
+     * - $notification: an instance of \Core\Lib\Notifications\Notification.
+     * - $payload: array data produced by toDatabase(), or null.
+     *
+     * @param mixed $notifiable
+     * @param mixed $notification
+     * @param mixed $payload
+     *
+     * @phpstan-param object $notifiable
+     * @phpstan-param \Core\Lib\Notifications\Notification $notification
+     * @phpstan-param array<string,mixed>|null $payload
+     *
+     * @psalm-param object $notifiable
+     * @psalm-param \Core\Lib\Notifications\Notification $notification
+     * @psalm-param array<string,mixed>|null $payload
      *
      * @return void
      */
-    public function send($notifiable, $notification, $payload): void {
+    #[\Override] // PHP 8.3+ (optional): ensures the signature matches the interface
+    public function send(mixed $notifiable, mixed $notification, mixed $payload): void {
         $record = new Notifications();
         $record->id = Uuid::uuid4()->toString();
         $record->type = get_class($notification);
