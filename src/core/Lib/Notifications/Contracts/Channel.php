@@ -2,9 +2,26 @@
 declare(strict_types=1);
 namespace Core\Lib\Notifications\Contracts;
 
+/**
+ * Contract for delivering notifications over a specific transport (database, mail, SMS, etc).
+ *
+ * Implementations should:
+ * - Accept a notifiable entity and a notification instance.
+ * - Consume the payload produced by the corresponding toX() method (e.g., toDatabase(), toMail()).
+ * - Perform the side-effecting delivery and throw on failure (so callers can log/retry).
+ *
+ * @template TNotifiable of object
+ * @template TNotification of Notification
+ *
+ * @see \Core\Lib\Notifications\Notification::via()
+ * @see \Core\Lib\Notifications\Notifiable::notify()
+ */
 interface Channel {
     /**
-     * 
+     * Deliver the notification for this channel.
+     *
+     * Implementations SHOULD be idempotent when possible, or document non-idempotent behavior.
+     * If delivery fails, throw an exception to allow the caller (or a queue worker) to handle retries.
      *
      * @param mixed $notifiable The user/entity receiving the notification.
      * @param mixed $notification The notification instance.
