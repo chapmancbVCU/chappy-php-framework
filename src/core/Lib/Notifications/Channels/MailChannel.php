@@ -63,8 +63,8 @@ final class MailChannel implements Channel {
      * @param array $payload The payload for the notification.
      * @return bool True if template.  Otherwise, we return false.
      */
-    private function isTemplate(array $payload) {
-        isset($payload['template']) && !isset($payload['html']);
+    private function isTemplate(array $payload): bool {
+        return isset($payload['template']) && !isset($payload['html']);
     }
 
     /**
