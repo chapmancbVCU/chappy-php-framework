@@ -27,7 +27,7 @@ abstract class AbstractMailer {
      * @param string $templatePath The path to the template.
      * @param string|null $styles Name of stylesheet file.
      * @param string|null $stylesPath The path to the stylesheet.
-     * @return boolean
+     * @return bool True if successful.  Otherwise, we return false.
      */
     public function buildAndSend(
         ?string $layout = null,
