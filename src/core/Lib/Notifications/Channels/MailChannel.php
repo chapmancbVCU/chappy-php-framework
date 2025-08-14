@@ -77,6 +77,29 @@ final class MailChannel implements Channel {
     }
 
     /**
+     * Setups notification with html and with text optional.
+     *
+     * @param array $payload The payload for the notification.
+     * @param string $subject The subject for the E-mail.
+     * @param string $to The recipient for the E-mail.
+     * @return void
+     */
+    private function notifyWithHTML(array $payload, string $subject, string $to): void {
+        $html = (string)$payload['html'];
+        $text = array_key_exists('text', $payload) ? (string)$payload['text'] : null;
+        $templateForLog = $payload['template'] ?? null;
+        $attachments= (array)($payload['attachments'] ?? []);
+
+        $ok = $text !== null
+            ? $this->service->sendWithText($to, $subject, $html, $text, $templateForLog, $attachments)
+            : $this->service->send($to, $subject, $html, $templateForLog, $attachments);
+
+        if(!$ok) {
+            throw new RuntimeException('MailerService::send()/sendWithText() returned');
+        }
+    }
+
+    /**
      * Setups notification with mail template.
      *
      * @param array $payload The payload for the notification.
@@ -170,18 +193,7 @@ final class MailChannel implements Channel {
 
         // Raw HTML (with optional text)
         if(isset($payload['html'])) {
-            $html = (string)$payload['html'];
-            $text = array_key_exists('text', $payload) ? (string)$payload['text'] : null;
-            $templateForLog = $payload['template'] ?? null;
-            $attachments= (array)($payload['attachments'] ?? []);
-
-            $ok = $text !== null
-                ? $this->service->sendWithText($to, $subject, $html, $text, $templateForLog, $attachments)
-                : $this->service->send($to, $subject, $html, $templateForLog, $attachments);
-
-            if(!$ok) {
-                throw new RuntimeException('MailerService::send()/sendWithText() returned');
-            }
+            $this->notifyWithHTML($payload, $to, $subject);
             return;
         }
 
