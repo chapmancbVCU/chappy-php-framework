@@ -76,7 +76,15 @@ final class MailChannel implements Channel {
         return 'mail';
     }
 
-    private function notifyWithTemplate(array $payload, string $subject, string $to) {
+    /**
+     * Setups notification with mail template.
+     *
+     * @param array $payload The payload for the notification.
+     * @param string $subject The subject for the E-mail.
+     * @param string $to The recipient for the E-mail.
+     * @return void
+     */
+    private function notifyWithTemplate(array $payload, string $subject, string $to): void {
         $ok = $this->service->sendTemplate(
             $to,
             $subject,
