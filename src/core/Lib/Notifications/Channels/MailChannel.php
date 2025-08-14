@@ -58,6 +58,16 @@ final class MailChannel implements Channel {
     }
 
     /**
+     * Determines if mail will be using a template.
+     *
+     * @param array $payload The payload for the notification.
+     * @return bool True if template.  Otherwise, we return false.
+     */
+    private function isTemplate(array $payload) {
+        isset($payload['template']) && !isset($payload['html']);
+    }
+
+    /**
      * Short channel name used in Notification::via().
      *
      * @return string The channel identifier, always "mail".
@@ -145,7 +155,7 @@ final class MailChannel implements Channel {
         $subject = (string)($payload['subject'] ?? 'Notification');
 
         // Template mode
-        if(isset($payload['template']) && !isset($payload['html'])) {
+        if($this->isTemplate($payload)) {
             $this->notifyWithTemplate($payload, $to, $subject);
             return;
         }
