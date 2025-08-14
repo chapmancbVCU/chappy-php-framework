@@ -19,7 +19,7 @@ class UserRegistered extends Notification
      */
     public function via($notifiable): array
     {
-        return ['database']; // we only use database for now
+        return ['database', 'mail']; // we only use database for now
     }
 
     /**
@@ -32,6 +32,15 @@ class UserRegistered extends Notification
             'username'  => $this->user->username ?? $this->user->email,
             'message'   => "A new user has registered: {$this->user->username}",
             'registered_at' => DateTime::timeStamps()
+        ];
+    }
+
+    public function toMail($notifiable): array {
+        return [
+            'to' => 'chad.chapman2010+admin@gmail.com',
+            'subject' => 'New user sign up',
+            'html' => "<p>New user has registered: {$this->user->username}</p>",
+            'text' => "New user has registered {$this->user->username}"
         ];
     }
 }
