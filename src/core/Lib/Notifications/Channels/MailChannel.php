@@ -66,6 +66,25 @@ final class MailChannel implements Channel {
         return 'mail';
     }
 
+    private function notifyWithTemplate(array $payload, string $subject, string $to) {
+        $ok = $this->service->sendTemplate(
+            $to,
+            $subject,
+            (string)$payload['template'],
+            (array)($payload['data'] ?? []),
+            $payload['layout'] ?? null,
+            (array)($payload['attachments'] ?? []),
+            $payload['layoutPath'] ?? null,
+            $payload['templatePath'] ?? null,
+            $payload['styles'] ?? null,
+            $payload['stylesPath'] ?? null
+        );
+
+        if(!$ok) {
+            throw new RuntimeException('MailerService::sendTemplate returned false.');
+        }
+    }
+
     /**
      * Ensure the notifiable is the expected user type for AbstractMailer.
      *
@@ -127,22 +146,7 @@ final class MailChannel implements Channel {
 
         // Template mode
         if(isset($payload['template']) && !isset($payload['html'])) {
-            $ok = $this->service->sendTemplate(
-                $to,
-                $subject,
-                (string)$payload['template'],
-                (array)($payload['data'] ?? []),
-                $payload['layout'] ?? null,
-                (array)($payload['attachments'] ?? []),
-                $payload['layoutPath'] ?? null,
-                $payload['templatePath'] ?? null,
-                $payload['styles'] ?? null,
-                $payload['stylesPath'] ?? null
-            );
-
-            if(!$ok) {
-                throw new RuntimeException('MailerService::sendTemplate returned false.');
-            }
+            $this->notifyWithTemplate($payload, $to, $subject);
             return;
         }
 
