@@ -122,7 +122,7 @@ class MailerService {
      * @param string $to The recipient.
      * @param string $subject The E-mail's subject.
      * @param string $htmlBody The E-mail's content.
-     * @param string|null $template The content if it exists.
+     * @param string|null $template The template if it exists.
      * @return bool True if sent, otherwise we return false.
      */
     public function send(string $to, string $subject, string $htmlBody, ?string $template = null, array $attachments = []): bool {
@@ -173,7 +173,7 @@ class MailerService {
      *
      * @param string $to The recipient.
      * @param string $subject The E-mail's subject.
-     * @param string $template The name of the template.
+     * @param string $template The template if it exists.
      * @param array $data Any data that the template uses.
      * @param string|null $layout The layout if it exists.
      * @param array $attachments An array containing information about 
@@ -216,7 +216,7 @@ class MailerService {
      * @param string $subject The E-mail's subject.
      * @param string $htmlBody The E-mail's HTML content.
      * @param string $textBody The E-mail's text content.
-     * @param string|null $template The content if it exists.
+     * @param string|null $template The template if it exists.
      * @return bool True if sent, otherwise we return false.
      */
     public function sendWithText(string $to, string $subject, string $htmlBody, string $textBody, ?string $template = null, array $attachments = []): bool {
