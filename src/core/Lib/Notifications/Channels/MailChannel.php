@@ -77,6 +77,24 @@ final class MailChannel implements Channel {
     }
 
     /**
+     * Setups notification using buildAndSend
+     *
+     * @param object $mailer The mailer class object.
+     * @param array $payload The payload for the notification.
+     * @return bool True if successful.  Otherwise, we return false.
+     */
+    private function notifyWithBuildAndSend(object $mailer, array $payload): bool {
+        return $mailer->buildAndSend(
+            $payload['layout'] ?? null,
+            (array)($payload['attachments']) ?? null,
+            $payload['layoutPath'] ?? null,
+            $payload['templatePath'] ?? null,
+            $payload['styles'] ?? null,
+            $payload['stylesPath'] ?? null
+        );
+    }
+    
+    /**
      * Setups notification with html and with text optional.
      *
      * @param array $payload The payload for the notification.
@@ -228,14 +246,7 @@ final class MailChannel implements Channel {
 
         // Fallback: construct and call buildAndSend(...) with optional overrides.
         $mailer = new $mailerClass($this->requireUser($notifiable));
-        $ok = $mailer->buildAndSend(
-            $payload['layout'] ?? null,
-            (array)($payload['attachments']) ?? null,
-            $payload['layoutPath'] ?? null,
-            $payload['templatePath'] ?? null,
-            $payload['styles'] ?? null,
-            $payload['stylesPath'] ?? null
-        );
+        $ok = $this->notifyWithBuildAndSend($mailer, $payload);
 
         if(!$ok) {
             throw new RuntimeException(("{$mailerClass}::buildAndSend() returned false."));
