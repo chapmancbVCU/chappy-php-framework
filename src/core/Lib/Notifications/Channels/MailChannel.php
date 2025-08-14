@@ -84,7 +84,17 @@ final class MailChannel implements Channel {
      * Resolve recipient email from the notifiable.
      */
     private function route(mixed $notifiable): string {
-        return '';
+        if(method_exists($notifiable, 'routeNotificationForMail')) {
+            $email = $notifiable->routeNotificationForMail();
+            if(is_string($email) && $email !== '') {
+                return $email;
+            }
+        }
+
+        if(isset($notifiable->email) && is_string($notifiable->email) && $notifiable->email) {
+            return $notifiable->email;
+        }
+        throw new InvalidArgumentException("No email route found for notifiable entity.");
     }
 
     /**
