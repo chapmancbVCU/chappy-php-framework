@@ -5,6 +5,12 @@ namespace Core\Lib\Notifications\Channels;
 use Core\Lib\Notifications\Contracts\Channel;
 use Core\Models\Notifications;
 use Ramsey\Uuid\Uuid;
+use Core\Lib\Notifications\Notification as BaseNotification;
+use Core\Lib\Notifications\Exceptions\{
+    InvalidPayloadException,
+    NotifiableRoutingException,
+    ChannelSendFailedException
+};
 
 /**
  * Database-backed notification channel.
@@ -49,17 +55,38 @@ final class DatabaseChannel implements Channel {
      * @psalm-param \Core\Lib\Notifications\Notification $notification
      * @psalm-param array<string,mixed>|null $payload
      *
+     * @throws InvalidPayloadException|NotifiableRoutingException|InvalidPayloadException|ChannelSendFailedException
      * @return void
      */
     #[\Override] // PHP 8.3+ (optional): ensures the signature matches the interface
     public function send(mixed $notifiable, mixed $notification, mixed $payload): void {
-        $record = new Notifications();
-        $record->id = Uuid::uuid4()->toString();
-        $record->type = get_class($notification);
-        $record->notifiable_type = get_class($notifiable);
-        $record->notifiable_id = $notifiable->id;
-        $record->data = json_encode($payload);
-        $record->read_at = null;
-        $record->save();
+        if(!($notification instanceof BaseNotification)) {
+            throw new InvalidPayloadException('DatabaseChannel expects a Notification instance');
+        }
+        if(!is_object($notifiable) || !isset($notifiable->id)) {
+            throw new NotifiableRoutingException("Notifiable must expose a public 'id' for DatabaseChannel");
+        }
+        if(!is_array($payload) && $payload !== null) {
+            throw new InvalidPayloadException('DatabaseChannel expects array|null payload.');
+        }
+
+        try {
+            $record = new Notifications();
+            $record->id = Uuid::uuid4()->toString();
+            $record->type = get_class($notification);
+            $record->notifiable_type = get_class($notifiable);
+            $record->notifiable_id = $notifiable->id;
+            $record->data = json_encode($payload);
+            $record->read_at = null;
+            $record->save();
+        } catch(\Throwable $e) {
+            throw new ChannelSendFailedException(
+                channel: self::name(),
+                notificationClass: get_class($notification),
+                notifiableId: $notifiable->id ?? null,
+                message: 'Database persist failed',
+                previous: $e
+            );
+        }
     }
 }
