@@ -5,7 +5,7 @@ namespace Core\Lib\Notifications\Channels;
 use Core\Lib\Mail\AbstractMailer;
 use Core\Lib\Notifications\Contracts\Channel;
 use Core\Lib\Notifications\Notification;
-use Core\Lib\Notifications\Exceptions{
+use Core\Lib\Notifications\Exceptions\{
     InvalidPayloadException,
     NotifiableRoutingException,
     ChannelSendFailedException
@@ -266,7 +266,7 @@ final class MailChannel implements Channel {
         if(method_exists($mailerClass, 'sendTo')) {
             $ok = $mailerClass::sendTo($this->requireUser($notifiable));
             if(!$ok) {
-                throw new ChannelSendFailedException("{$mailerClass}::sendTo() returned false.");
+                throw new ChannelSendFailedException(self::name(), $mailerClass, $notifiable->id ?? null, 'CustomMailer::sendTo() returned false');
             }
             return;
         }
@@ -276,7 +276,7 @@ final class MailChannel implements Channel {
         $ok = $this->notifyWithBuildAndSend($mailer, $payload);
 
         if(!$ok) {
-            throw new ChannelSendFailedException(("{$mailerClass}::buildAndSend() returned false."));
+            throw new ChannelSendFailedException(self::name(), $mailerClass, $notifiable->id ?? null, 'CustomMailer::buildAndSend() returned false');
         }
     }
 }
