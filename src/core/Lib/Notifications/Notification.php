@@ -27,9 +27,19 @@ abstract class Notification {
     }
 
     /**
+     * Representation of the notification in logging.
+     *
+     * @param mixed $notifiable The notifiable entity.
+     * @return string
+     */
+    public function toLog($notifiable): string {
+        return '';
+    }
+
+    /**
      * Representation of the notification in mail.
      *
-     * @param [type] $notifiable
+     * @param mixed $notifiable The notifiable entity
      * @return void
      */
     public function toMail($notifiable) {
