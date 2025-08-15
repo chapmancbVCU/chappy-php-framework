@@ -2,7 +2,12 @@
 namespace Core\Lib\Notifications;
 
 use App\Models\Users;
+use Core\Lib\Mail\Attachments;
+use Core\Services\AuthService;
+use Core\Lib\Mail\MailerService;
+use Core\Lib\Mail\WelcomeMailer;
 use Core\Lib\Utilities\DateTime;
+use Core\Models\EmailAttachments;
 use Core\Lib\Notifications\Notification;
 
 class UserRegistered extends Notification
@@ -36,11 +41,34 @@ class UserRegistered extends Notification
     }
 
     public function toMail($notifiable): array {
+        // Raw 
+        // return [
+        //     'subject' => 'New user sign up',
+        //     'html'    => "<p>New user has registered: {$this->user->username}</p>",
+        // ];
+
+        // Raw + text
         return [
-            'to' => 'chad.chapman2010+admin@gmail.com',
             'subject' => 'New user sign up',
             'html' => "<p>New user has registered: {$this->user->username}</p>",
             'text' => "New user has registered {$this->user->username}"
         ];
+
+        // Mailer class
+        // return [ 'mailer' => NewUserRegisteredMailer::class];
+
+        // Attachment with template
+        // $attachment = EmailAttachments::findById(2);
+        // return [
+        //     'subject' => 'New user registered',
+        //     'template' => 'new_user_registered',
+        //     'data' => ['user' => $this->user],
+        //     'layout' => 'default',
+        //     'styles' => 'default',
+        //     'attachments' => Attachments::content($attachment),
+        //     'layoutPath' => MailerService::FRAMEWORK_LAYOUT_PATH,
+        //     'templatePath' => MailerService::FRAMEWORK_TEMPLATE_PATH,
+        //     'stylesPath' => MailerService::FRAMEWORK_STYLES_PATH
+        // ];
     }
 }
