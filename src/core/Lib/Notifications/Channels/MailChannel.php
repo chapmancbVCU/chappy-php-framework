@@ -5,9 +5,12 @@ namespace Core\Lib\Notifications\Channels;
 use Core\Lib\Mail\AbstractMailer;
 use Core\Lib\Notifications\Contracts\Channel;
 use Core\Lib\Notifications\Notification;
+use Core\Lib\Notifications\Exceptions{
+    InvalidPayloadException,
+    NotifiableRoutingException,
+    ChannelSendFailedException
+};
 use Core\Lib\Mail\MailerService;        // <- your service
-use RuntimeException;
-use InvalidArgumentException;
 
 /**
  * Notification channel that sends email via the framework MailerService
@@ -111,7 +114,7 @@ final class MailChannel implements Channel {
         $ok = $this->sendWithHTML($to, $subject, $html, $text, $template, $attachments);
 
         if(!$ok) {
-            throw new RuntimeException('MailerService::send()/sendWithText() returned');
+            throw new ChannelSendFailedException('MailerService::send()/sendWithText() returned');
         }
     }
 
@@ -138,7 +141,7 @@ final class MailChannel implements Channel {
         );
 
         if(!$ok) {
-            throw new RuntimeException('MailerService::sendTemplate returned false.');
+            throw new ChannelSendFailedException('MailerService::sendTemplate returned false.');
         }
     }
 
@@ -151,7 +154,7 @@ final class MailChannel implements Channel {
         if($notifiable instanceof \App\Models\Users) {
             return $notifiable;
         }
-        throw new InvalidArgumentException(
+        throw new InvalidPayloadException(
             'Custom mailers require the notifiable to be an instance of \App\Models\Users.'
         );
     }
@@ -170,7 +173,7 @@ final class MailChannel implements Channel {
         if(isset($notifiable->email) && is_string($notifiable->email) && $notifiable->email) {
             return $notifiable->email;
         }
-        throw new InvalidArgumentException("No email route found for notifiable entity.");
+        throw new NotifiableRoutingException("No email route found for notifiable entity.");
     }
 
     /**
@@ -187,7 +190,7 @@ final class MailChannel implements Channel {
     #[\Override]
     public function send(mixed $notifiable, mixed $notification, mixed $payload): void {
         if(!($notification instanceof Notification)) {
-            throw new InvalidArgumentException('MailChannel expects a Notification instance.');
+            throw new InvalidPayloadException('MailChannel expects a Notification instance.');
         }
 
         $payload = is_array($payload) ? $payload : [];
@@ -213,7 +216,7 @@ final class MailChannel implements Channel {
             return;
         }
 
-        throw new InvalidArgumentException(
+        throw new InvalidPayloadException(
             'Mail payload must include one of: "template", "html", or "mailer".'
         );
     }
@@ -253,17 +256,17 @@ final class MailChannel implements Channel {
     private function sendWithCustomMailer(object $notifiable, array $payload): void {
         $mailerClass = (string)$payload['mailer'];
         if(!class_exists($mailerClass)) {
-            throw new InvalidArgumentException("Mailer class not found: {$mailerClass}");
+            throw new InvalidPayloadException("Mailer class not found: {$mailerClass}");
         }
         if(!is_subclass_of($mailerClass, AbstractMailer::class)) {
-            throw new InvalidArgumentException("Mailer must extend " . AbstractMailer::class);
+            throw new InvalidPayloadException("Mailer must extend " . AbstractMailer::class);
         }
 
         // Prefer conventional static sendTo($user)
         if(method_exists($mailerClass, 'sendTo')) {
             $ok = $mailerClass::sendTo($this->requireUser($notifiable));
             if(!$ok) {
-                throw new RuntimeException("{$mailerClass}::sendTo() returned false.");
+                throw new ChannelSendFailedException("{$mailerClass}::sendTo() returned false.");
             }
             return;
         }
@@ -273,7 +276,7 @@ final class MailChannel implements Channel {
         $ok = $this->notifyWithBuildAndSend($mailer, $payload);
 
         if(!$ok) {
-            throw new RuntimeException(("{$mailerClass}::buildAndSend() returned false."));
+            throw new ChannelSendFailedException(("{$mailerClass}::buildAndSend() returned false."));
         }
     }
 }
