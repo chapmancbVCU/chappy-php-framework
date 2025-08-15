@@ -8,11 +8,11 @@ use Core\Lib\Mail\WelcomeMailer;
 use Core\Services\NotificationService;
 
 /**
- * Class for sending password reset E-mail.
+ * Class for sending user registered E-mail.
  */
 class SendRegistrationEmail {
     /**
-     * Handles event for sending password reset E-mail.
+     * Handles event for sending user registered E-mail.
      *
      * @param UserRegistered $event The event.
      * @return void
