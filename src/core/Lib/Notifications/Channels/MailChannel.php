@@ -79,11 +79,11 @@ final class MailChannel implements Channel {
     /**
      * Setups notification using buildAndSend
      *
-     * @param object $mailer The mailer class object.
+     * @param AbstractMailer $mailer The mailer class object.
      * @param array $payload The payload for the notification.
      * @return bool True if successful.  Otherwise, we return false.
      */
-    private function notifyWithBuildAndSend(object $mailer, array $payload): bool {
+    private function notifyWithBuildAndSend(AbstractMailer $mailer, array $payload): bool {
         return $mailer->buildAndSend(
             $payload['layout'] ?? null,
             (array)($payload['attachments']) ?? null,
@@ -105,12 +105,10 @@ final class MailChannel implements Channel {
     private function notifyWithHTML(array $payload, string $subject, string $to): void {
         $html = (string)$payload['html'];
         $text = array_key_exists('text', $payload) ? (string)$payload['text'] : null;
-        $templateForLog = $payload['template'] ?? null;
+        $template = $payload['template'] ?? null;
         $attachments= (array)($payload['attachments'] ?? []);
 
-        $ok = $text !== null
-            ? $this->service->sendWithText($to, $subject, $html, $text, $templateForLog, $attachments)
-            : $this->service->send($to, $subject, $html, $templateForLog, $attachments);
+        $ok = $this->sendWithHTML($to, $subject, $html, $text, $template, $attachments);
 
         if(!$ok) {
             throw new RuntimeException('MailerService::send()/sendWithText() returned');
@@ -205,19 +203,45 @@ final class MailChannel implements Channel {
 
         // Template mode
         if($this->isTemplate($payload)) {
-            $this->notifyWithTemplate($payload, $to, $subject);
+            $this->notifyWithTemplate($payload, $subject, $to);
             return;
         }
 
         // Raw HTML (with optional text)
         if(isset($payload['html'])) {
-            $this->notifyWithHTML($payload, $to, $subject);
+            $this->notifyWithHTML($payload, $subject, $to);
             return;
         }
 
         throw new InvalidArgumentException(
             'Mail payload must include one of: "template", "html", or "mailer".'
         );
+    }
+
+    /**
+     * Sends notification through send function of MailerService or if 
+     * text body exists it uses sendWithText.
+     *
+     * @param string $to The recipient for the E-mail.
+     * @param string $subject The subject for the E-mail.
+     * @param string $html The E-mail's content.
+     * @param string|null $text The E-mail's text content.
+     * @param string|null $template The template if it exists.
+     * @param array $attachments An array containing information about 
+     * attachments.
+     * @return boolean
+     */
+    private function sendWithHTML(
+        string $to,
+        string $subject,
+        string $html,
+        ?string $text = null,
+        ?string $template = null,
+        array $attachments = []
+    ): bool {
+        return $text !== null
+            ? $this->service->sendWithText($to, $subject, $html, $text, $template, $attachments)
+            : $this->service->send($to, $subject, $html, $template, $attachments);
     }
 
     /**
