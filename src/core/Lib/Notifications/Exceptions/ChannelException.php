@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Core\Lib\Notifications\Exceptions;
 
 /**
- * Handles exceptions related to invalid channels.  Extends the 
+ * Handles exceptions related to channels.  Extends the 
  * NotificationException class.
  */
 class ChannelException extends NotificationException {
