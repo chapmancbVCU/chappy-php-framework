@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Notifications;
 
 use Core\Lib\Notifications\Contracts\Channel;
+use Core\Lib\Notifications\Exceptions\UnregisteredChannelException;
 use RuntimeException;
 
 /**
@@ -61,7 +62,9 @@ final class ChannelRegistry {
      */
     public static function resolve(string $name): Channel {
         if(!isset(self::$map[$name])) {
-            throw new RuntimeException("Unsupported notification channel: {$name}");
+            throw new UnregisteredChannelException(
+                'registry', 
+                "Unsupported notification channel {$name}");
         }
         return new self::$map[$name]();
     }
