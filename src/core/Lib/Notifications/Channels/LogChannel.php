@@ -47,18 +47,36 @@ final class LogChannel implements Channel {
      *
      * @return void
      */
-    public function send(object $notifiable, Notification $notification, mixed $payload): void {
-        $log = [];
+    public function send(object $notifiable, Notification $notification, mixed $payload): void
+    {
+        // Keep the objects; just capture class names for logging
+        $notificationClass = get_class($notification);
+        $notifiableClass   = get_class($notifiable);
 
+        // Structured data: prefer the notification payload; fallback to provided payload if empty
+        $data = $notification->toArray($notifiable);
+        if (empty($data) && is_array($payload)) {
+            $data = $payload;
+        }
 
-        $log['message'] = method_exists($notification, 'toLog')
-            ? $notification->toLog($notifiable)
-            : (method_exists($notification, 'toArray') 
-                ? $notification->toArray($notifiable) 
-                : [(string)$notifiable]);
+        // Human-friendly message: use toLog(); if empty, fall back to a reasonable default
+        $message = $notification->toLog($notifiable);
+        if ($message === '') {
+            $message = isset($data['message']) && is_string($data['message'])
+                ? $data['message']
+                : sprintf('Notification %s for %s', $notificationClass, $notifiableClass);
+        }
 
-        $log['notifiable'] = is_object($notifiable) ? get_class($notifiable) : $notifiable;
-        
-        Logger::log(json_encode($log, JSON_PRETTY_PRINT), 'info');
+        $log = [
+            'notification' => $notificationClass,
+            'notifiable'   => $notifiableClass,
+            'message'      => $message,
+            'data'         => $data,
+        ];
+
+        Logger::log(
+            json_encode($log, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            'info'
+        );
     }
 }
