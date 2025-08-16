@@ -8,7 +8,12 @@ namespace Core\Lib\Notifications;
  */
 abstract class Notification {
 
-    public static function channels() {
+    /**
+     * Get an array of available channels.
+     *
+     * @return array The array of channels.
+     */
+    public static function channels(): array {
         return Channel::cases();
     }
 
