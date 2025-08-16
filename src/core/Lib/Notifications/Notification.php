@@ -74,6 +74,6 @@ abstract class Notification {
      * @return list<'database'|'mail'|'log'>
      */
     public function via(object $notifiable): array {
-        return ['database'];
+        return [Channel::DATABASE];
     }
 }
