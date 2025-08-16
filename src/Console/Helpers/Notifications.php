@@ -2,10 +2,47 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Core\Lib\Notifications\Notification;
 /**
  * Supports commands related to notifications.
  */
 class Notifications {
+    /**
+     * Undocumented function
+     *
+     * @param InputInterface $input
+     * @return void
+     */
+    public static function channelOptions(InputInterface $input) {
+        $channelsFromInput = $input->getOption('channel');
+        $all = Notification::channelValues();
+
+        if($channelsFromInput === null || $channelsFromInput === '') {
+            return $all;
+        }
+
+        // Split on commas (tolerate spaces), normalize to lowercase, drop empties
+        $tokens = preg_split('/\s*,\s*/', $channelsFromInput, -1, PREG_SPLIT_NO_EMPTY);
+        $tokens = array_map(static fn($s) => strtolower($s), $tokens);
+
+        // Special alias
+        if (in_array('all', $tokens, true)) {
+            return $all;
+        }
+
+        // Validate + dedupe
+        $invalid = array_diff($tokens, $all);
+        if (!empty($invalid)) {
+            throw new \InvalidArgumentException(
+                'Unknown channel(s): ' . implode(', ', $invalid) .
+                '. Allowed: ' . implode(', ', $all) . ' or "all".'
+            );
+        }
+
+        return array_values(array_unique($tokens));
+    }
+
     /**
      * Template for notifications migration.
      *
