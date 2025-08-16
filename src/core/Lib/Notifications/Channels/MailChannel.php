@@ -105,7 +105,7 @@ final class MailChannel implements Channel {
      * @param string $to The recipient for the E-mail.
      * @return void
      */
-    private function notifyWithHTML(array $payload, string $subject, string $to): void {
+    private function notifyWithHTML(mixed $notification, array $payload, string $subject, string $to): void {
         $html = (string)$payload['html'];
         $text = array_key_exists('text', $payload) ? (string)$payload['text'] : null;
         $template = $payload['template'] ?? null;
@@ -114,7 +114,12 @@ final class MailChannel implements Channel {
         $ok = $this->sendWithHTML($to, $subject, $html, $text, $template, $attachments);
 
         if(!$ok) {
-            throw new ChannelSendFailedException('MailerService::send()/sendWithText() returned');
+            throw new ChannelSendFailedException(
+                channel: self::name(),
+                notificationClass: get_class($notification),
+                notifiableId: null,
+                message: 'MailerService::send()/sendWithText() returned'
+            );
         }
     }
 
@@ -126,7 +131,7 @@ final class MailChannel implements Channel {
      * @param string $to The recipient for the E-mail.
      * @return void
      */
-    private function notifyWithTemplate(array $payload, string $subject, string $to): void {
+    private function notifyWithTemplate(mixed $notification, array $payload, string $subject, string $to): void {
         $ok = $this->service->sendTemplate(
             $to,
             $subject,
@@ -141,16 +146,22 @@ final class MailChannel implements Channel {
         );
 
         if(!$ok) {
-            throw new ChannelSendFailedException('MailerService::sendTemplate returned false.');
+            throw new ChannelSendFailedException(
+                channel: self::name(),
+                notificationClass: get_class($notification),
+                notifiableId: null,
+                message: 'MailerService::sendTemplate returned false.'
+            );
         }
     }
 
     /**
      * Ensure the notifiable is the expected user type for AbstractMailer.
-     *
+     * 
+     * @param object $notifiable The user/entity receiving the notification.
      * @return \App\Models\Users
      */
-    private static function requireUser(mixed $notifiable): object {
+    private static function requireUser(object $notifiable): object {
         if($notifiable instanceof \App\Models\Users) {
             return $notifiable;
         }
@@ -161,8 +172,11 @@ final class MailChannel implements Channel {
 
     /**
      * Resolve recipient email from the notifiable.
+     * 
+     * @param object $notifiable The user/entity receiving the notification.
+     * @return string The recipient of the E-mail
      */
-    private function route(mixed $notifiable): string {
+    private function route(object $notifiable): string {
         if(method_exists($notifiable, 'routeNotificationForMail')) {
             $email = $notifiable->routeNotificationForMail();
             if(is_string($email) && $email !== '') {
@@ -177,18 +191,19 @@ final class MailChannel implements Channel {
     }
 
     /**
-     * @param mixed $notifiable
-     * @param mixed $notification
-     * @param mixed $payload
+     * @param object $notifiable The user/entity receiving the notification.
+     * @param Notification $notification The notification instance.
+     * @param mixed $payload Usually the result of toX() (array/DTO)
      *
      * @phpstan-param object $notifiable
      * @phpstan-param Notification $notification
      * @phpstan-param array<string,mixed>|null $payload
      *
      * @throws InvalidArgumentException|RuntimeException
+     * @return void
      */
     #[\Override]
-    public function send(mixed $notifiable, mixed $notification, mixed $payload): void {
+    public function send(object $notifiable, Notification $notification, mixed $payload): void {
         if(!($notification instanceof Notification)) {
             throw new InvalidPayloadException('MailChannel expects a Notification instance.');
         }
@@ -206,13 +221,13 @@ final class MailChannel implements Channel {
 
         // Template mode
         if($this->isTemplate($payload)) {
-            $this->notifyWithTemplate($payload, $subject, $to);
+            $this->notifyWithTemplate($notification, $payload, $subject, $to);
             return;
         }
 
         // Raw HTML (with optional text)
         if(isset($payload['html'])) {
-            $this->notifyWithHTML($payload, $subject, $to);
+            $this->notifyWithHTML($notification, $payload, $subject, $to);
             return;
         }
 
@@ -232,7 +247,7 @@ final class MailChannel implements Channel {
      * @param string|null $template The template if it exists.
      * @param array $attachments An array containing information about 
      * attachments.
-     * @return boolean
+     * @return bool
      */
     private function sendWithHTML(
         string $to,
@@ -251,7 +266,7 @@ final class MailChannel implements Channel {
      * Handle AbstractMailer subclasses.
      *
      * @param object $notifiable Must be compatible with the mailer constructor (expects \App\Models\Users)
-     * @param array<string,mixed> $payload
+     * @param array<string,mixed> $payload Usually the result of toX() (array/DTO)
      */
     private function sendWithCustomMailer(object $notifiable, array $payload): void {
         $mailerClass = (string)$payload['mailer'];
