@@ -8,6 +8,7 @@ use Core\Lib\Notifications\Notification;
  * Supports commands related to notifications.
  */
 class Notifications {
+    protected static string $notificationsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
     /**
      * Undocumented function
      *
@@ -41,6 +42,10 @@ class Notifications {
         }
 
         return array_values(array_unique($tokens));
+    }
+
+    public static function makeNotification() {
+
     }
 
     /**
