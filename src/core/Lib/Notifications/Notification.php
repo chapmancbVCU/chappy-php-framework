@@ -9,40 +9,40 @@ namespace Core\Lib\Notifications;
 abstract class Notification {
     /**
      * The delivery channels (e.g. ['database', 'mail']).
-     * @param mixed $notifiable The notifiable entity (e.g. a User instance)
-     * @return array
+     *@param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return list<'database'|'mail'|'log'>
      */
-    public function via($notifiable): array {
+    public function via(object $notifiable): array {
         return ['database'];
     }
 
     /**
      * Representation of the notification in the database.
      *
-     * @param mixed $notifiable The notifiable entity.
-     * @return array
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return array<string,mixed>
      */
-    public function toDatabase($notifiable): array {
+    public function toDatabase(object $notifiable): array {
         return [];
     }
 
     /**
      * Representation of the notification in logging.
      *
-     * @param mixed $notifiable The notifiable entity.
-     * @return string
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return string Contents for the log.
      */
-    public function toLog($notifiable): string {
+    public function toLog(object $notifiable): string {
         return '';
     }
 
     /**
      * Representation of the notification in mail.
      *
-     * @param mixed $notifiable The notifiable entity
-     * @return void
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return array array<string,mixed>
      */
-    public function toMail($notifiable) {
+    public function toMail(object $notifiable): array {
         return [];
     }
 }
