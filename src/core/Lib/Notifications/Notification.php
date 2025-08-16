@@ -7,9 +7,19 @@ namespace Core\Lib\Notifications;
  * Extend this for each specific notification type.
  */
 abstract class Notification {
-    public const DATABASE = 'database';
-    public const LOG = 'log';
-    public const MAIL = 'mail';
+
+    public static function channels() {
+        return Channel::cases();
+    }
+
+    /**
+     * Returns list of all channels as an array of strings.
+     *
+     * @return list<string> An array of channels as strings.
+     */
+    public static function channelValues(): array {
+        return array_map(static fn(Channel $c) => $c->value, Channel::cases());
+    }
 
     /**
      * Generic array representation (fallback for logging, webhooks, etc.).
