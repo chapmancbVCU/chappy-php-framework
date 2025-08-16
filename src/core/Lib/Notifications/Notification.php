@@ -7,9 +7,9 @@ namespace Core\Lib\Notifications;
  * Extend this for each specific notification type.
  */
 abstract class Notification {
-    protected const DATABASE = 'database';
-    protected const LOG = 'log';
-    protected const MAIL = 'mail';
+    public const DATABASE = 'database';
+    public const LOG = 'log';
+    public const MAIL = 'mail';
     
     /**
      * The delivery channels (e.g. ['database', 'mail']).
