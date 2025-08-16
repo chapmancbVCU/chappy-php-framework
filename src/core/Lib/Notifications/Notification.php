@@ -7,6 +7,10 @@ namespace Core\Lib\Notifications;
  * Extend this for each specific notification type.
  */
 abstract class Notification {
+    protected const DATABASE = 'database';
+    protected const LOG = 'log';
+    protected const MAIL = 'mail';
+    
     /**
      * The delivery channels (e.g. ['database', 'mail']).
      *@param object $notifiable Any model/object that uses the Notifiable trait.
