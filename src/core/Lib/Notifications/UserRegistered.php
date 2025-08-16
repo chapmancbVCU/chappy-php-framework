@@ -85,6 +85,6 @@ class UserRegistered extends Notification
      */
     public function via(object $notifiable): array
     {
-        return [self::DATABASE, self::LOG, self::MAIL];
+        return Notification::channelValues();
     }
 }
