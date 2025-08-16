@@ -44,7 +44,7 @@ final class DatabaseChannel implements Channel {
      * - $notification: an instance of \Core\Lib\Notifications\Notification.
      * - $payload: array data produced by toDatabase(), or null.
      *
-     * @param object $notifiable $notifiable The user/entity receiving the notification.
+     * @param object $notifiable The user/entity receiving the notification.
      * @param Notification $notification The notification instance.
      * @param mixed $payload Usually the result of toX() (array/DTO)
      *
