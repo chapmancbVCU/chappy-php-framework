@@ -20,14 +20,6 @@ class UserRegistered extends Notification
     }
 
     /**
-     * Specify which channels to deliver to.
-     */
-    public function via(object $notifiable): array
-    {
-        return [self::DATABASE, self::LOG, self::MAIL];
-    }
-
-    /**
      * Data stored in the notifications table.
      */
     public function toDatabase(object $notifiable): array
@@ -86,5 +78,13 @@ class UserRegistered extends Notification
         //     'templatePath' => MailerService::FRAMEWORK_TEMPLATE_PATH,
         //     'stylesPath' => MailerService::FRAMEWORK_STYLES_PATH
         // ];
+    }
+
+    /**
+     * Specify which channels to deliver to.
+     */
+    public function via(object $notifiable): array
+    {
+        return [self::DATABASE, self::LOG, self::MAIL];
     }
 }
