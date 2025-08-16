@@ -39,7 +39,7 @@ final class ChannelRegistry {
      *
      * Call this during application boot (e.g., in a service provider).
      *
-     * @param non-empty-string $name         Short identifier used in Notification::via(), e.g. "database".
+     * @param non-empty-string $name Short identifier used in Notification::via(), e.g. "database".
      * @param class-string<Channel> $channelClass Fully-qualified class name implementing {@see Channel}.
      *
      * @return void
