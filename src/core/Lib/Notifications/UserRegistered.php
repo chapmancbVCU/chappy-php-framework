@@ -22,15 +22,15 @@ class UserRegistered extends Notification
     /**
      * Specify which channels to deliver to.
      */
-    public function via($notifiable): array
+    public function via(object $notifiable): array
     {
-        return ['database', 'mail', 'log']; // we only use database for now
+        return [self::DATABASE, self::LOG, self::MAIL];
     }
 
     /**
      * Data stored in the notifications table.
      */
-    public function toDatabase($notifiable): array
+    public function toDatabase(object $notifiable): array
     {
         return [
             'user_id'   => $this->user->id,
@@ -46,7 +46,7 @@ class UserRegistered extends Notification
      * @param [type] $notifiable
      * @return string
      */
-    public function toLog($notifiable): string {
+    public function toLog(object $notifiable): string {
         return "A new user has registered: {$this->user->username}";
     }
 
@@ -56,7 +56,7 @@ class UserRegistered extends Notification
      * @param [type] $notifiable
      * @return array
      */
-    public function toMail($notifiable): array {
+    public function toMail(object $notifiable): array {
         // Raw 
         // return [
         //     'subject' => 'New user sign up',
