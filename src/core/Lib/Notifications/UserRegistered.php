@@ -24,7 +24,7 @@ class UserRegistered extends Notification
      */
     public function via($notifiable): array
     {
-        return ['database', 'mail']; // we only use database for now
+        return ['database', 'mail', 'log']; // we only use database for now
     }
 
     /**
@@ -40,6 +40,22 @@ class UserRegistered extends Notification
         ];
     }
 
+    /**
+     * Logs notification to log file.
+     *
+     * @param [type] $notifiable
+     * @return string
+     */
+    public function toLog($notifiable): string {
+        return "A new user has registered: {$this->user->username}";
+    }
+
+    /**
+     * Handles notification via E-mail.
+     *
+     * @param [type] $notifiable
+     * @return array
+     */
     public function toMail($notifiable): array {
         // Raw 
         // return [
