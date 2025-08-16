@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Notifications\Channels;
 
 use Core\Lib\Logging\Logger;
+use Core\Lib\Notifications\Notification;
 use Core\Lib\Notifications\Contracts\Channel;
 
 
@@ -37,16 +38,16 @@ final class LogChannel implements Channel {
      *
      * The output is encoded as JSON and written at INFO level.
      *
-     * @param mixed $notifiable   The entity that is receiving the notification
+     * @param object $notifiable   The entity that is receiving the notification
      *                            (e.g., a User model instance or identifier).
-     * @param mixed $notification The notification instance being sent. Must
+     * @param Notification $notification The notification instance being sent. Must
      *                            optionally implement `toLog()` or `toArray()`.
      * @param mixed $payload      Additional payload or metadata provided by
      *                            the dispatcher (e.g., context or overrides).
      *
      * @return void
      */
-    public function send(mixed $notifiable, mixed $notification, mixed $payload): void {
+    public function send(object $notifiable, Notification $notification, mixed $payload): void {
         $log = [];
 
 
