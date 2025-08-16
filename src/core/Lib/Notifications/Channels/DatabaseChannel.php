@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Notifications\Channels;
 
 use Core\Lib\Notifications\Contracts\Channel;
+use Core\Lib\Notifications\Notification;
 use Core\Models\Notifications;
 use Ramsey\Uuid\Uuid;
 use Core\Lib\Notifications\Notification as BaseNotification;
@@ -43,9 +44,9 @@ final class DatabaseChannel implements Channel {
      * - $notification: an instance of \Core\Lib\Notifications\Notification.
      * - $payload: array data produced by toDatabase(), or null.
      *
-     * @param mixed $notifiable
-     * @param mixed $notification
-     * @param mixed $payload
+     * @param object $notifiable $notifiable The user/entity receiving the notification.
+     * @param Notification $notification The notification instance.
+     * @param mixed $payload Usually the result of toX() (array/DTO)
      *
      * @phpstan-param object $notifiable
      * @phpstan-param \Core\Lib\Notifications\Notification $notification
@@ -59,7 +60,7 @@ final class DatabaseChannel implements Channel {
      * @return void
      */
     #[\Override] // PHP 8.3+ (optional): ensures the signature matches the interface
-    public function send(mixed $notifiable, mixed $notification, mixed $payload): void {
+    public function send(object $notifiable, Notification $notification, mixed $payload): void {
         if(!($notification instanceof BaseNotification)) {
             throw new InvalidPayloadException('DatabaseChannel expects a Notification instance');
         }
