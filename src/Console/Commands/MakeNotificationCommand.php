@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Queue;
+use Console\Helpers\Notifications;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -45,6 +45,9 @@ class MakeNotificationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $notificationName = $input->getArgument('notification-name');
+        $channels = Notifications::channelOptions($input);
+        
         return Command::SUCCESS;
     }
 }
