@@ -10,14 +10,17 @@ abstract class Notification {
     public const DATABASE = 'database';
     public const LOG = 'log';
     public const MAIL = 'mail';
-    
+
     /**
-     * The delivery channels (e.g. ['database', 'mail']).
-     *@param object $notifiable Any model/object that uses the Notifiable trait.
-     * @return list<'database'|'mail'|'log'>
+     * Generic array representation (fallback for logging, webhooks, etc.).
+     * By default, defer to the database payload.
+     *
+     * @param object $notifiable
+     * @return array<string,mixed>
      */
-    public function via(object $notifiable): array {
-        return ['database'];
+    public function toArray(object $notifiable): array
+    {
+        return $this->toDatabase($notifiable);
     }
 
     /**
@@ -48,5 +51,14 @@ abstract class Notification {
      */
     public function toMail(object $notifiable): array {
         return [];
+    }
+
+    /**
+     * The delivery channels (e.g. ['database', 'mail']).
+     *@param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return list<'database'|'mail'|'log'>
+     */
+    public function via(object $notifiable): array {
+        return ['database'];
     }
 }
