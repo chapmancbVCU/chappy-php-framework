@@ -42,4 +42,24 @@ class Notifications extends Model {
         return false;
     }
 
+    public static function notificationsToPrune(int $days, bool $onlyRead = false): int {
+        if ($days < 1) {
+            throw new \InvalidArgumentException('Days must be >= 1');
+        }
+
+        // UTC + stable format
+        $cutoff = (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))
+            ->modify("-{$days} days")
+            ->format('Y-m-d H:i:s');
+
+        $db = static::getDb(); // or DB::getInstance()
+
+        $where = $onlyRead
+            ? 'read_at IS NOT NULL AND created_at < ?'
+            : 'created_at < ?';
+
+        $db->query("DELETE FROM " . static::$_table . " WHERE {$where}", [$cutoff]);
+
+        return $db->count(); // number of rows deleted
+    }
 }
