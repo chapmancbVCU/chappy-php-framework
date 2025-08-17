@@ -126,11 +126,12 @@ class '.$fileName.' extends Migration {
      * @return string The channels formatted for use in via function.
      */
     private static function setViaList(?array $channels): string  {
-        if((sizeof($channels) === Channel::size() || (sizeof($channels) == 0))) {
+        $channelArraySize = sizeof($channels);
+        
+        if(($channelArraySize === Channel::size() || ($channelArraySize == 0))) {
             return 'Notification::channelValues()';
         }
 
-        $channelArraySize = sizeof($channels);
         $channelList = '[';
         for($i = 0; $i < $channelArraySize; $i++) {
             $channelList .= 'Channel::' . Str::upper($channels[$i]);
