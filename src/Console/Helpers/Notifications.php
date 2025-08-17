@@ -2,10 +2,12 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Channel;
 use Core\Lib\Notifications\Notification;
+use Core\Models\Notifications as NotificationModel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 /**
@@ -100,6 +102,7 @@ class '.$fileName.' extends Migration {
             $table->text(\'data\');
             $table->timestamp(\'read_at\')->nullable();
             $table->timestamps();
+            $table->index(\'created_at\');
             $table->index(\'notifiable_type\');
             $table->index(\'notifiable_id\');
         });
@@ -158,6 +161,13 @@ class '.$notificationName.' extends Notification {
 
     '.$classFunctions.'
 }';
+    }
+
+    public static function prune(int $days): int {
+        $recordsDeleted = NotificationModel::notificationsToPrune($days);
+        $message = "{$recordsDeleted} has been deleted";
+        Tools::info($message, 'info');
+        return Command::SUCCESS;
     }
 
     /**
