@@ -12,11 +12,13 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class Notifications {
     protected static string $notificationsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
+    
     /**
-     * Undocumented function
+     * Builds an array using input option --channel
      *
-     * @param InputInterface $input
-     * @return void
+     * @param InputInterface $input The input.
+     * @return array An array containing channels provided with --channel 
+     * option.
      */
     public static function channelOptions(InputInterface $input): array {
         $channelsFromInput = $input->getOption('channel');
