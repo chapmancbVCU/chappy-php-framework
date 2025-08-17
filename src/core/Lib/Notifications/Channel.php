@@ -10,4 +10,13 @@ enum Channel: string{
     case DATABASE = 'database';
     case LOG      = 'log';
     case MAIL     = 'mail';
+
+    /**
+     * Retrieves the number of cases in enum Channel.
+     *
+     * @return int The number of cases in enum Channel.
+     */
+    public static function size(): int {
+        return count(self::cases());
+    }
 }
