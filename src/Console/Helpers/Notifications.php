@@ -142,7 +142,7 @@ use App\Models\Users;
 use Core\Lib\Notifications\Notification;
 
 /**
- * Document class here.
+ * '.$notificationName.' notification.
  */
 class '.$notificationName.' extends Notification {
     protected $user;
@@ -194,10 +194,15 @@ class '.$notificationName.' extends Notification {
     * Data stored in the notifications table.
     *
     * @param object $notifiable Any model/object that uses the Notifiable trait.
-    * @return array array<string,mixed>
+    * @return array<string,mixed>
     */
     public function toDatabase(object $notifiable): array {
-        return [];
+        return [
+            \'user_id\'   => (int)$this->user->id,
+            \'username\'  => $this->user->username ?? $this->user->email,
+            \'message\'   => "Temp notification for user #{$this->user->id}",
+            \'created_at\'=> \Core\Lib\Utilities\DateTime::timeStamps(), // optional
+        ];
     }';
     }
 
@@ -228,7 +233,7 @@ class '.$notificationName.' extends Notification {
     * Handles notification via E-mail.
     *
     * @param object $notifiable Any model/object that uses the Notifiable trait.
-    * @return array array<string,mixed>
+    * @return array<string,mixed>
     */
     public function toMail(object $notifiable): array {
         return [];
@@ -245,7 +250,7 @@ class '.$notificationName.' extends Notification {
     * Specify which channels to deliver to.
     * 
     * @param object $notifiable Any model/object that uses the Notifiable trait.
-    * @return array array<string,mixed>
+    * @return list<channel>
     */
     public function via(object $notifiable): array {
         return '.$channelList.';
