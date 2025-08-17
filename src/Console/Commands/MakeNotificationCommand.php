@@ -45,7 +45,7 @@ class MakeNotificationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $notificationName = $input->getArgument('notification-name');
+        $notificationName = Str::ucfirst($input->getArgument('notification-name'));
         $channels = Notifications::channelOptions($input);
         return Notifications::makeNotification($channels, $notificationName);
     }
