@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Channel;
 use Core\Lib\Notifications\Notification;
@@ -52,8 +53,21 @@ class Notifications {
     public static function makeNotification(?array $channels, string $notificationName) {
         $channelList = self::setViaList($channels);
         $via = self::viaTemplate($channelList);
-        dd($via);
-        return Command::SUCCESS;
+
+        $classFunctions = '';
+        $channels = Arr::sort($channels);
+        $class = \Console\Helpers\Notifications::class;
+        for($i = 0; $i < sizeof($channels); $i++) {
+            $functionName = 'to'. Str::ucfirst($channels[$i]) . 'Template';
+            $classFunctions .= call_user_func([$class, $functionName]) . "\n\n";
+        }
+
+        $classFunctions .= $via;
+        $content = self::notificationTemplate($classFunctions, $notificationName);
+        $fullPath = self::$notificationsPath.$notificationName.'.php';
+        Tools::pathExists(self::$notificationsPath);
+
+        return Tools::writeFile($fullPath, $content, 'Notification');
     }
 
     /**
@@ -119,6 +133,35 @@ class '.$fileName.' extends Migration {
         );
     }
 
+    private static function notificationTemplate(
+        string $classFunctions, 
+        string $notificationName
+    ): string {
+        return '<?php
+namespace Core\Lib\Notifications;
+
+use App\Models\Users;
+use Core\Lib\Notifications\Notification;
+
+/**
+ * Document class here.
+ */
+class '.$notificationName.' extends Notification {
+    protected $user;
+
+    /**
+     * Undocumented function
+     *
+     * @param Users $user
+     */
+    public function __construct(Users $user) {
+        $this->user = $user;
+    }
+
+    '.$classFunctions.'
+}';
+    }
+
     /**
      * Formats list of channels for via function.
      *
@@ -150,15 +193,14 @@ class '.$fileName.' extends Migration {
      */
     private static function toDatabaseTemplate(): string {
         return '/**
-* Data stored in the notifications table.
-*
-* @param object $notifiable Any model/object that uses the Notifiable trait.
+    * Data stored in the notifications table.
+    *
+    * @param object $notifiable Any model/object that uses the Notifiable trait.
     * @return array array<string,mixed>
-*/
-public function toDatabase(object $notifiable): array
-{
-    return [];
-}';
+    */
+    public function toDatabase(object $notifiable): array {
+        return [];
+    }';
     }
 
     /**
@@ -167,15 +209,15 @@ public function toDatabase(object $notifiable): array
      * @return string The contents of the toLog function.
      */
     private static function toLogTemplate(): string {
-        return '/**
+        return '    /**
     * Logs notification to log file.
     *
     * @param object $notifiable Any model/object that uses the Notifiable trait.
     * @return string Contents for the log.
     */
-public function toLog(object $notifiable): string {
-    return "";
-}';
+    public function toLog(object $notifiable): string {
+        return "";
+    }';
     }
 
     /**
@@ -184,15 +226,15 @@ public function toLog(object $notifiable): string {
      * @return string The contents of the toMail function.
      */
     private static function toMailTemplate(): string {
-        return '/**
-* Handles notification via E-mail.
-*
-* @param object $notifiable Any model/object that uses the Notifiable trait.
-* @return array array<string,mixed>
-*/
-public function toMail(object $notifiable): array {
-    return [];
-}';
+        return '    /**
+    * Handles notification via E-mail.
+    *
+    * @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @return array array<string,mixed>
+    */
+    public function toMail(object $notifiable): array {
+        return [];
+    }';
     }
 
     /**
@@ -201,15 +243,14 @@ public function toMail(object $notifiable): array {
      * @return string The contents of the via function.
      */
     private static function viaTemplate(string $channelList): string {
-        return '/**
-* Specify which channels to deliver to.
-* 
-* @param object $notifiable Any model/object that uses the Notifiable trait.
-* @return array array<string,mixed>
-*/
-public function via(object $notifiable): array
-{
-    return '.$channelList.';
-}';
+        return '    /**
+    * Specify which channels to deliver to.
+    * 
+    * @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @return array array<string,mixed>
+    */
+    public function via(object $notifiable): array {
+        return '.$channelList.';
+    }';
     }
 }
