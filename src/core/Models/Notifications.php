@@ -42,6 +42,26 @@ class Notifications extends Model {
         return false;
     }
 
+    /**
+     * Permanently delete old notifications from this model's table.
+     *
+     * Computes a UTC cutoff timestamp for the given number of days and issues a
+     * single parameterized DELETE against {@see static::$_table}. When $onlyRead
+     * is true, only notifications that have been marked as read (`read_at IS NOT NULL`)
+     * are pruned; otherwise all notifications older than the cutoff are removed.
+     *
+     * Performance note: add an index on `created_at` (and optionally `(read_at, created_at)`)
+     * to keep this operation fast on large tables.
+     *
+     * @param int  $days      Number of days to retain. Rows with `created_at` earlier than
+     *                        now minus this many days are deleted. Must be >= 1.
+     * @param bool $onlyRead  When true, restricts pruning to rows where `read_at` is not null.
+     *                        Defaults to false (delete both read and unread).
+     *
+     * @return int Number of rows deleted.
+     *
+     * @throws \InvalidArgumentException If $days is less than 1.
+     */
     public static function notificationsToPrune(int $days, bool $onlyRead = false): int {
         if ($days < 1) {
             throw new \InvalidArgumentException('Days must be >= 1');
