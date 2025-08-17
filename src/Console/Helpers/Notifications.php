@@ -2,8 +2,11 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
-use Symfony\Component\Console\Input\InputInterface;
+use Core\Lib\Utilities\Str;
+use Core\Lib\Notifications\Channel;
 use Core\Lib\Notifications\Notification;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
 /**
  * Supports commands related to notifications.
  */
@@ -15,7 +18,7 @@ class Notifications {
      * @param InputInterface $input
      * @return void
      */
-    public static function channelOptions(InputInterface $input) {
+    public static function channelOptions(InputInterface $input): array {
         $channelsFromInput = $input->getOption('channel');
         $all = Notification::channelValues();
 
@@ -44,8 +47,11 @@ class Notifications {
         return array_values(array_unique($tokens));
     }
 
-    public static function makeNotification() {
-
+    public static function makeNotification(?array $channels, string $notificationName) {
+        $channelList = self::setViaList($channels);
+        $via = self::viaTemplate($channelList);
+        dd($via);
+        return Command::SUCCESS;
     }
 
     /**
@@ -109,5 +115,78 @@ class '.$fileName.' extends Migration {
             self::migrationTemplate($fileName),
             'Notifications migration'
         );
+    }
+
+    /**
+     * Formats list of channels for via function.
+     *
+     * @param array|null $channels The channels for the notification class.
+     * @return string The channels formatted for use in via function.
+     */
+    private static function setViaList(?array $channels): string  {
+        if(sizeof($channels) === Channel::size()) {
+            return 'Notification::channelValues()';
+        }
+
+        $channelList = '[';
+        for($i = 0; $i < sizeof($channels); $i++) {
+            $channelList .= 'Channel::' . Str::upper($channels[$i]);
+            if($i < sizeof($channels) - 1) {
+                $channelList .= ', ';
+            }
+        }
+
+        $channelList .= ']';
+        return $channelList;
+    }
+
+    private static function toDatabaseTemplate(): string {
+        return '/**
+* Data stored in the notifications table.
+*
+* @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @return array array<string,mixed>
+*/
+public function toDatabase(object $notifiable): array
+{
+    return [];
+}';
+    }
+
+    private static function toLogTemplate(): string {
+        return '/**
+    * Logs notification to log file.
+    *
+    * @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @return string Contents for the log.
+    */
+public function toLog(object $notifiable): string {
+    return "";
+}';
+    }
+
+    private static function toMailTemplate(): string {
+        return '/**
+* Handles notification via E-mail.
+*
+* @param object $notifiable Any model/object that uses the Notifiable trait.
+* @return array array<string,mixed>
+*/
+public function toMail(object $notifiable): array {
+    return [];
+}';
+    }
+
+    private static function viaTemplate(string $channelList): string {
+        return '/**
+* Specify which channels to deliver to.
+* 
+* @param object $notifiable Any model/object that uses the Notifiable trait.
+* @return array array<string,mixed>
+*/
+public function via(object $notifiable): array
+{
+    return '.$channelList.';
+}';
     }
 }
