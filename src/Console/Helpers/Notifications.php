@@ -185,7 +185,7 @@ class '.$notificationName.' extends Notification {
 
         $channelList = '[';
         for($i = 0; $i < $channelArraySize; $i++) {
-            $channelList .= 'Channel::' . Str::upper($channels[$i]);
+            $channelList .= 'Channel::' . Str::upper($channels[$i]) . '->value';
             if($i < $channelArraySize - 1) {
                 $channelList .= ', ';
             }
