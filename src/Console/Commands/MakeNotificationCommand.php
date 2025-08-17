@@ -47,7 +47,6 @@ class MakeNotificationCommand extends Command
     {
         $notificationName = $input->getArgument('notification-name');
         $channels = Notifications::channelOptions($input);
-        
-        return Command::SUCCESS;
+        return Notifications::makeNotification($channels, $notificationName);
     }
 }
