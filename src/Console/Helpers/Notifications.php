@@ -51,18 +51,16 @@ class Notifications {
     }
 
     public static function makeNotification(?array $channels, string $notificationName) {
-        $channelList = self::setViaList($channels);
-        $via = self::viaTemplate($channelList);
-
+        $sortedChannels = Arr::sort($channels);
         $classFunctions = '';
-        $channels = Arr::sort($channels);
         $class = \Console\Helpers\Notifications::class;
-        for($i = 0; $i < sizeof($channels); $i++) {
-            $functionName = 'to'. Str::ucfirst($channels[$i]) . 'Template';
+
+        foreach($sortedChannels as $channel) {
+            $functionName = 'to'. Str::ucfirst($channel) . 'Template';
             $classFunctions .= call_user_func([$class, $functionName]) . "\n\n";
         }
 
-        $classFunctions .= $via;
+        $classFunctions .= self::viaTemplate(self::setViaList($sortedChannels));
         $content = self::notificationTemplate($classFunctions, $notificationName);
         $fullPath = self::$notificationsPath.$notificationName.'.php';
         Tools::pathExists(self::$notificationsPath);
