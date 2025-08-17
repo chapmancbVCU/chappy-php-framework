@@ -143,6 +143,11 @@ class '.$fileName.' extends Migration {
         return $channelList .= ']';
     }
 
+    /**
+     * Returns contents for the toDatabase function.
+     *
+     * @return string The contents of the toDatabase function.
+     */
     private static function toDatabaseTemplate(): string {
         return '/**
 * Data stored in the notifications table.
@@ -156,6 +161,11 @@ public function toDatabase(object $notifiable): array
 }';
     }
 
+    /**
+     * Returns contents for the toLog function.
+     *
+     * @return string The contents of the toLog function.
+     */
     private static function toLogTemplate(): string {
         return '/**
     * Logs notification to log file.
@@ -168,6 +178,11 @@ public function toLog(object $notifiable): string {
 }';
     }
 
+    /**
+     * Returns contents for the toMail function.
+     *
+     * @return string The contents of the toMail function.
+     */
     private static function toMailTemplate(): string {
         return '/**
 * Handles notification via E-mail.
@@ -180,7 +195,11 @@ public function toMail(object $notifiable): array {
 }';
     }
 
-    
+    /**
+     * Returns contents for the via function.
+     *
+     * @return string The contents of the via function.
+     */
     private static function viaTemplate(string $channelList): string {
         return '/**
 * Specify which channels to deliver to.
