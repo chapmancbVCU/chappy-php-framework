@@ -128,10 +128,11 @@ class '.$fileName.' extends Migration {
             return 'Notification::channelValues()';
         }
 
+        $channelArraySize = sizeof($channels);
         $channelList = '[';
-        for($i = 0; $i < sizeof($channels); $i++) {
+        for($i = 0; $i < $channelArraySize; $i++) {
             $channelList .= 'Channel::' . Str::upper($channels[$i]);
-            if($i < sizeof($channels) - 1) {
+            if($i < $channelArraySize - 1) {
                 $channelList .= ', ';
             }
         }
@@ -177,6 +178,7 @@ public function toMail(object $notifiable): array {
 }';
     }
 
+    
     private static function viaTemplate(string $channelList): string {
         return '/**
 * Specify which channels to deliver to.
