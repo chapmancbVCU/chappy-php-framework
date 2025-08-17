@@ -126,7 +126,7 @@ class '.$fileName.' extends Migration {
      * @return string The channels formatted for use in via function.
      */
     private static function setViaList(?array $channels): string  {
-        if(sizeof($channels) === Channel::size()) {
+        if((sizeof($channels) === Channel::size() || (sizeof($channels) == 0))) {
             return 'Notification::channelValues()';
         }
 
