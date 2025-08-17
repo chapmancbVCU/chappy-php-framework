@@ -21,6 +21,9 @@ class UserRegistered extends Notification
 
     /**
      * Data stored in the notifications table.
+     * 
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return array array<string,mixed>
      */
     public function toDatabase(object $notifiable): array
     {
@@ -35,8 +38,8 @@ class UserRegistered extends Notification
     /**
      * Logs notification to log file.
      *
-     * @param [type] $notifiable
-     * @return string
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return string Contents for the log.
      */
     public function toLog(object $notifiable): string {
         return "A new user has registered: {$this->user->username}";
@@ -45,8 +48,8 @@ class UserRegistered extends Notification
     /**
      * Handles notification via E-mail.
      *
-     * @param [type] $notifiable
-     * @return array
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return array array<string,mixed>
      */
     public function toMail(object $notifiable): array {
         // Raw 
@@ -82,6 +85,9 @@ class UserRegistered extends Notification
 
     /**
      * Specify which channels to deliver to.
+     * 
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return array array<string,mixed>
      */
     public function via(object $notifiable): array
     {
