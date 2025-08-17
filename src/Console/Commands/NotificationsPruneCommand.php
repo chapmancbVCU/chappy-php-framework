@@ -22,7 +22,7 @@ class NotificationsPruneCommand extends Command
         $this->setName('notifications:prune')
             ->setDescription('Prunes old notifications from database')
             ->setHelp('Run php console notifications:prune')
-            ->addOption('days', null, InputOption::VALUE_NONE, 'Days to retain', 90);
+            ->addOption('days', null, InputOption::VALUE_REQUIRED, 'Days to retain', 90);
     }
  
     /**
