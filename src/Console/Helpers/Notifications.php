@@ -140,8 +140,7 @@ class '.$fileName.' extends Migration {
             }
         }
 
-        $channelList .= ']';
-        return $channelList;
+        return $channelList .= ']';
     }
 
     private static function toDatabaseTemplate(): string {
