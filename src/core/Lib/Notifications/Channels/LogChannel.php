@@ -45,25 +45,29 @@ final class LogChannel implements Channel {
     }
 
     /**
-     * Returns array of control keys.
+     * Return the list of control keys that will be stripped from the data bag.
      *
-     * @return array The control keys array.
+     * @return list<string>
+     *
+     * @internal Exposed for testing and reuse; not part of the public channel API.
      */
     private static function controlKeys(): array {
         return self::CONTROL_KEYS;
     }
 
     /**
-     *  Build a "data" bag:
-     *  Start from payload (minus control keys)
-     *  Merge with notification->toArray($notifiable) (so both are visible)
+     * Build the consolidated "data" bag for logging.
      *
-     * @param object $notifiable $notifiable The entity that is receiving the notification
-     * (e.g., a User model instance or identifier).
-     * @param Notification $notification $notification $notification The notification instance being sent. Must
-     * optionally implement `toLog()` or `toArray()`.
-     * @param array $payloadArr They array created from notification's payload.
-     * @return array An array containing data for log.
+     * Strategy:
+     *  1) Start with the notification’s {@see Notification::toArray()} result.
+     *  2) Merge in the payload array *minus* control keys, allowing payload
+     *     to override keys from step 1 so per‑send overrides are visible.
+     *
+     * @param object       $notifiable   The entity receiving the notification.
+     * @param Notification $notification The notification instance.
+     * @param array<string,mixed> $payloadArr Payload provided to the channel.
+     *
+     * @return array<string,mixed> Final data bag to include under "data".
      */
     private static function logData(object $notifiable, Notification $notification, array $payloadArr): array {
         $controlKeys = self::controlKeys();
@@ -84,17 +88,22 @@ final class LogChannel implements Channel {
     }
 
     /**
-     * Generates message for log.
+     * Determine the human‑readable message to log.
      *
-     * @param array $data Information associated with notification.
-     * @param object $notifiable The entity that is receiving the notification
-     * (e.g., a User model instance or identifier).
-     * @param string $notifiableClass The name of the notifiable class.
-     * @param Notification $notification $notification The notification instance being sent. Must
-     * optionally implement `toLog()` or `toArray()`.
-     * @param string $notificationClass The name of the notification class.
-     * @param string $payloadMessage Messages obtained from payload.
-     * @return string The message for the notification.
+     * Priority:
+     *  1) Non‑null payload‑provided message (already normalized to string)
+     *  2) Notification‑provided {@see Notification::toLog()} string
+     *  3) "data['message']" if present and string
+     *  4) A synthesized "Notification X for Y" fallback
+     *
+     * @param array<string,mixed> $data               Final data bag (may contain 'message').
+     * @param object              $notifiable         The notifiable entity.
+     * @param class-string        $notifiableClass    Class name of the notifiable.
+     * @param Notification        $notification       The notification instance.
+     * @param class-string        $notificationClass  Class name of the notification.
+     * @param string|null         $payloadMessage     Message extracted from payload, if any.
+     *
+     * @return string Human‑readable message to include in the log entry.
      */
     private static function logMessage(
         array $data, 
@@ -128,6 +137,25 @@ final class LogChannel implements Channel {
     }
 
     /**
+     * Extract a string message from the payload, if present.
+     *
+     * Accepts either a string or any JSON‑serializable value under the "message"
+     * key. Non‑string values are JSON‑encoded with unicode and slashes preserved.
+     *
+     * @param array<string,mixed> $payloadArr The payload provided to the channel.
+     *
+     * @return string|null A normalized message string or null if no message key exists.
+     */
+    private static function payloadMessage(array $payloadArr): string {
+        if(array_key_exists('message', $payloadArr)) {
+            $payloadMessage = is_string($payloadArr['message'])
+            ? $payloadArr['message']
+            : json_encode($payloadArr['message'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        }
+        return $payloadMessage;
+    }
+
+    /**
      * Send the given notification to the log.
      *
      * If the notification implements a `toLog()` method, its return
@@ -157,14 +185,7 @@ final class LogChannel implements Channel {
         $level = isset($payloadArr['level']) ? (string)$payloadArr['level'] : 'info';
         $meta = $payloadArr['_meta'] ?? $payloadArr['meta'] ?? [];
 
-        $payloadMessage = null;
-        if(array_key_exists('message', $payloadArr)) {
-            $payloadMessage = is_string($payloadArr['message'])
-            ? $payloadArr['message']
-            : json_encode($payloadArr['message'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        }
-
-        
+        $payloadMessage = self::payloadMessage($payloadArr);
         $data = self::logData($notifiable, $notification, $payloadArr);
 
         $message = self::logMessage(
