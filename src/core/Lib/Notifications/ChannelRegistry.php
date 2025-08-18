@@ -36,6 +36,26 @@ final class ChannelRegistry {
     private static array $map = [];
 
     /**
+     * Return array of channel classes.
+     *
+     * @return array<string, class-string<Channel>> The array of channel 
+     * classes.
+     */
+    public static function all(): array {
+        return self::$map;
+    }
+
+    /**
+     * Checks if channel name exists.
+     *
+     * @param string $name The name of the channel to check.
+     * @return bool True if channel name exist.  Otherwise, we return false.
+     */
+    public static function has(string $name): bool {
+        return isset(self::$map[Str::lower($name)]);
+    }
+
+    /**
      * Register (or override) a channel implementation under a short name.
      *
      * Call this during application boot (e.g., in a service provider).
