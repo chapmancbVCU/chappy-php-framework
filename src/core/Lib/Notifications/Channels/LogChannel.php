@@ -41,6 +41,39 @@ final class LogChannel implements Channel {
             'meta'         => $meta
         ];
     }
+
+    /**
+     * Generates message for log.
+     *
+     * @param array $data Information associated with notification.
+     * @param object $notifiable The entity that is receiving the notification
+     * (e.g., a User model instance or identifier).
+     * @param string $notifiableClass The name of the notifiable class.
+     * @param Notification $notification $notification The notification instance being sent. Must
+     * optionally implement `toLog()` or `toArray()`.
+     * @param string $notificationClass The name of the notification class.
+     * @param string $payloadMessage Messages obtained from payload.
+     * @return string The message for the notification.
+     */
+    private static function logMessage(
+        array $data, 
+        object $notifiable,
+        string $notifiableClass, 
+        Notification $notification,
+        string $notificationClass,
+        string $payloadMessage
+    ): string {
+        $message = $payloadMessage ?? $notification->toLog($notifiable);
+        if($message === '' || $message == null) {
+            if(isset($data['message']) && is_string($data['message'])) {
+                $message = $data['message'];
+            } else {
+                $message = sprintf('Notification %s for %s', $notificationClass, $notifiableClass);
+            }
+        }
+        return $message;
+    }
+
     /**
      * Returns the canonical name of the channel.
      *
@@ -107,14 +140,14 @@ final class LogChannel implements Channel {
             $data = array_merge($data, $payloadData);
         }
 
-        $message = $payloadMessage ?? $notification->toLog($notifiable);
-        if($message === '' || $message == null) {
-            if(isset($data['message']) && is_string($data['message'])) {
-                $message = $data['message'];
-            } else {
-                $message = sprintf('Notification %s for %s', $notificationClass, $notifiableClass);
-            }
-        }
+        $message = self::logMessage(
+            $data,
+            $notifiable,
+            $notifiableClass, 
+            $notification,
+            $notificationClass,
+            $payloadMessage
+        );
 
         $log = self::configureLog($data, $message, $meta, $notifiableClass, $notificationClass);
         Logger::log(
