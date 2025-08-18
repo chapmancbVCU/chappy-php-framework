@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Lib\Notifications;
 
+use Core\Lib\Utilities\Str;
 use Core\Models\Notifications;
 use Core\Lib\Notifications\ChannelRegistry;
 
@@ -53,21 +54,28 @@ trait Notifiable {
     ): void {
         $resolved = $channels ?? $notification->via($this);
 
-        foreach($resolved as $channel) {
+        foreach ($resolved as $channel) {
             $name = $channel instanceof \Core\Lib\Notifications\Channel ? $channel->value : (string)$channel;
             $toMethod = 'to' . ucfirst($name);
 
             $messagePayload = method_exists($notification, $toMethod)
                 ? $notification->{$toMethod}($this)
                 : null;
-            
-            $combinedPayload = [
-                'message' => $messagePayload,
-                'meta' => $payload
-            ];
+
+            // ✅ Keep array payloads top-level (mail/database), wrap only strings (log, etc.)
+            if (is_array($messagePayload)) {
+                $channelPayload = $messagePayload;                // preserve expected keys
+                if (!empty($payload)) {
+                    // attach overrides/metadata without colliding with channel keys
+                    $channelPayload['_meta'] = ($channelPayload['_meta'] ?? []) + $payload;
+                }
+            } else {
+                // string/int/bool/null → normalize to a message field
+                $channelPayload = ['message' => $messagePayload] + ($payload ?: []);
+            }
 
             $driver = ChannelRegistry::resolve($name);
-            $driver->send($this, $notification, $combinedPayload);
+            $driver->send($this, $notification, $channelPayload);
         }
     }
 
