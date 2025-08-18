@@ -16,6 +16,8 @@ use Core\Lib\Notifications\Contracts\Channel;
  * JSON structure and writes it to the configured Logger.
  */
 final class LogChannel implements Channel {
+    private const CONTROL_KEYS = ['message','level','log_channel','_meta','meta'];
+
     /**
      * Configures log array
      *
@@ -40,6 +42,45 @@ final class LogChannel implements Channel {
             'data'         => $data,
             'meta'         => $meta
         ];
+    }
+
+    /**
+     * Returns array of control keys.
+     *
+     * @return array The control keys array.
+     */
+    private static function controlKeys(): array {
+        return self::CONTROL_KEYS;
+    }
+
+    /**
+     *  Build a "data" bag:
+     *  Start from payload (minus control keys)
+     *  Merge with notification->toArray($notifiable) (so both are visible)
+     *
+     * @param object $notifiable $notifiable The entity that is receiving the notification
+     * (e.g., a User model instance or identifier).
+     * @param Notification $notification $notification $notification The notification instance being sent. Must
+     * optionally implement `toLog()` or `toArray()`.
+     * @param array $payloadArr They array created from notification's payload.
+     * @return array An array containing data for log.
+     */
+    private static function logData(object $notifiable, Notification $notification, array $payloadArr): array {
+        $controlKeys = self::controlKeys();
+        $payloadData = array_diff_key($payloadArr, array_flip($controlKeys));
+        $notifyArr = $notification->toArray($notifiable);
+        $data = [];
+
+        if(is_array($notifyArr) && !empty($notifyArr)) {
+            $data = $notifyArr;
+        }
+
+        if(!empty($payloadData)) {
+            // Payload wins on key collisions so per-send overrides show up
+            $data = array_merge($data, $payloadData);
+        }
+
+        return $data;
     }
 
     /**
@@ -123,22 +164,8 @@ final class LogChannel implements Channel {
             : json_encode($payloadArr['message'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
         }
 
-        // Build a "data" bag:
-        // - Start from payload (minus control keys)
-        // - Merge with notification->toArray($notifiable) (so both are visible)
-        $controlKeys = ['message', 'level', 'log_channel', '_meta', 'meta'];
-        $payloadData = array_diff_key($payloadArr, array_flip($controlKeys));
-        $notifyArr = $notification->toArray($notifiable);
-        $data = [];
-
-        if(is_array($notifyArr) && !empty($notifyArr)) {
-            $data = $notifyArr;
-        }
-
-        if(!empty($payloadData)) {
-            // Payload wins on key collisions so per-send overrides show up
-            $data = array_merge($data, $payloadData);
-        }
+        
+        $data = self::logData($notifiable, $notification, $payloadArr);
 
         $message = self::logMessage(
             $data,
