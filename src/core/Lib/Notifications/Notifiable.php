@@ -10,6 +10,7 @@ trait Notifiable {
         $channels = $notification->via($this);
 
         foreach($channels as $channel) {
+            $channel instanceof \Core\Lib\Notifications\Channel ? $channel->value : (string)$channel;
             $toMethod = 'to' . ucfirst($channel);
             $payload = method_exists($notification, $toMethod)
                 ? $notification->{$toMethod}($this)
