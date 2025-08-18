@@ -17,6 +17,31 @@ use Core\Lib\Notifications\Contracts\Channel;
  */
 final class LogChannel implements Channel {
     /**
+     * Configures log array
+     *
+     * @param array $data Information associated with notification.
+     * @param string $message Messages sent for logging.
+     * @param array $meta Any meta data that is available.
+     * @param string $notifiableClass The name of the notifiable class.
+     * @param string $notificationClass The name of the notification class.
+     * @return array The log array.
+     */
+    private static function configureLog(
+        array $data, 
+        string $message, 
+        array $meta, 
+        string $notifiableClass, 
+        string $notificationClass
+    ): array {
+        return [
+            'notification' => $notificationClass,
+            'notifiable'   => $notifiableClass,
+            'message'      => $message,
+            'data'         => $data,
+            'meta'         => $meta
+        ];
+    }
+    /**
      * Returns the canonical name of the channel.
      *
      * Used by the notification dispatcher to identify this channel
@@ -53,30 +78,48 @@ final class LogChannel implements Channel {
         $notificationClass = get_class($notification);
         $notifiableClass   = get_class($notifiable);
 
-        // Structured data: prefer the notification payload; fallback to provided payload if empty
-        $data = $notification->toArray($notifiable);
-        if (empty($data) && is_array($payload)) {
-            $data = $payload;
+        // Extract overrides/metadata from payload (if provided)
+        $payloadArr = is_array($payload) ? $payload : [];
+        $level = isset($payloadArr['level']) ? (string)$payloadArr['level'] : 'info';
+        $meta = $payloadArr['_meta'] ?? $payloadArr['meta'] ?? [];
+
+        $payloadMessage = null;
+        if(array_key_exists('message', $payloadArr)) {
+            $payloadMessage = is_string($payloadArr['message'])
+            ? $payloadArr['message']
+            : json_encode($payloadArr['message'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
         }
 
-        // Human-friendly message: use toLog(); if empty, fall back to a reasonable default
-        $message = $notification->toLog($notifiable);
-        if ($message === '') {
-            $message = isset($data['message']) && is_string($data['message'])
-                ? $data['message']
-                : sprintf('Notification %s for %s', $notificationClass, $notifiableClass);
+        // Build a "data" bag:
+        // - Start from payload (minus control keys)
+        // - Merge with notification->toArray($notifiable) (so both are visible)
+        $controlKeys = ['message', 'level', 'log_channel', '_meta', 'meta'];
+        $payloadData = array_diff_key($payloadArr, array_flip($controlKeys));
+        $notifyArr = $notification->toArray($notifiable);
+        $data = [];
+
+        if(is_array($notifyArr) && !empty($notifyArr)) {
+            $data = $notifyArr;
         }
 
-        $log = [
-            'notification' => $notificationClass,
-            'notifiable'   => $notifiableClass,
-            'message'      => $message,
-            'data'         => $data,
-        ];
+        if(!empty($payloadData)) {
+            // Payload wins on key collisions so per-send overrides show up
+            $data = array_merge($data, $payloadData);
+        }
 
+        $message = $payloadMessage ?? $notification->toLog($notifiable);
+        if($message === '' || $message == null) {
+            if(isset($data['message']) && is_string($data['message'])) {
+                $message = $data['message'];
+            } else {
+                $message = sprintf('Notification %s for %s', $notificationClass, $notifiableClass);
+            }
+        }
+
+        $log = self::configureLog($data, $message, $meta, $notifiableClass, $notificationClass);
         Logger::log(
             json_encode($log, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            'info'
+            $level
         );
     }
 }
