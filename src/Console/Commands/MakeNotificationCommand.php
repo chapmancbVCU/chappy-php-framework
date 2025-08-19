@@ -29,7 +29,7 @@ class MakeNotificationCommand extends Command
                 InputArgument::REQUIRED, 
                 'Pass the name for the new notification'
             )->addOption(
-                'channel', 
+                'channels', 
                 null, 
                 InputOption::VALUE_REQUIRED, 
                 'Comma separated list of channel names'

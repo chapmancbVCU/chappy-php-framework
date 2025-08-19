@@ -25,7 +25,7 @@ class Notifications {
      * option.
      */
     public static function channelOptions(InputInterface $input): array {
-        $channelsFromInput = $input->getOption('channel');
+        $channelsFromInput = $input->getOption('channels');
         $all = Notification::channelValues();
 
         if($channelsFromInput === null || $channelsFromInput === '') {
