@@ -178,6 +178,13 @@ class '.$notificationName.' extends Notification {
 }';
     }
 
+    /**
+     * Performs pruning of old notifications.
+     *
+     * @param int $days The number of days past to prune.  Any 
+     * records older will be pruned.
+     * @return int A value that indicates success, invalid, or failure. 
+     */
     public static function prune(int $days): int {
         $recordsDeleted = NotificationModel::notificationsToPrune($days);
         $message = "{$recordsDeleted} has been deleted";
