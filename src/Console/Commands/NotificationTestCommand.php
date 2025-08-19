@@ -22,14 +22,34 @@ class NotificationTestCommand extends Command
     protected function configure(): void
     {
         $this->setName('notification:test')
-            ->setDescription('Tests a notification')
+            ->setDescription('Tests a notification through a specified channel')
             ->setHelp('php console notification:test <notification-name>')
             ->addArgument(
                 'notification-name', 
                 InputArgument::REQUIRED, 
                 'Pass the name for the notification to test'
             )
-            ->addOption('queue', null, InputOption::VALUE_NONE, 'Version of class for queues');
+            ->addOption(
+                'user', 
+                null, 
+                InputOption::VALUE_NONE, 
+                'User id or E-mail')
+            ->addOption(
+                'channels', 
+                null, 
+                InputOption::VALUE_REQUIRED, 
+                'Comma separated list of channel names'
+            )->addOption(
+                'dry-run', 
+                null, 
+                InputOption::VALUE_NONE, 
+                'Do not send, just output'
+            )->addOption(
+                'with', 
+                null, 
+                InputOption::VALUE_REQUIRED, 
+                'Key:value pairs, comma-separated'
+            );
     }
 
     /**
