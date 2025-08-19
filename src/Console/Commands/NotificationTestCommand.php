@@ -1,12 +1,14 @@
 <?php
 namespace Console\Commands;
 
+use Console\Helpers\Tools;
 use Console\Helpers\Events;
 use Core\Lib\Utilities\Str;
+use Console\Helpers\Notifications;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -61,6 +63,13 @@ class NotificationTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $notificationName = $input->getArgument('notification-name');
+        $className = Notifications::notificationClass($notificationName);
+
+        if(!Notifications::notificationClassExists($className)) {
+            Tools::info("The {$className} does not exist.", 'warning', 'yellow');
+            return Command::FAILURE;
+        }
         return Command::SUCCESS;
     }
 }
