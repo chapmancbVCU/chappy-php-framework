@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports commands related to notifications.
  */
 class Notifications {
+    public const NOTIFICATION_NAMESPACE = "App\\Notifications\\";
     public const NOTIFICATION_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
     
     /**
