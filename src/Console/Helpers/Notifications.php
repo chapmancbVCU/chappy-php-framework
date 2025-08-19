@@ -52,7 +52,14 @@ class Notifications {
         return array_values(array_unique($tokens));
     }
 
-    public static function makeNotification(?array $channels, string $notificationName) {
+    /**
+     * Generates a new notification class.
+     *
+     * @param array|null $channels The channels for the notification.
+     * @param string $notificationName The name of the notification
+     * @return int A value that indicates success, invalid, or failure. 
+     */
+    public static function makeNotification(?array $channels, string $notificationName): int {
         $sortedChannels = Arr::sort($channels);
         $classFunctions = '';
         $class = \Console\Helpers\Notifications::class;
@@ -134,6 +141,13 @@ class '.$fileName.' extends Migration {
         );
     }
 
+    /**
+     * Generates the main template for the notification class.
+     *
+     * @param string $classFunctions The functions to be included.
+     * @param string $notificationName The name of the notification class.
+     * @return string The contents of the notification class.
+     */
     private static function notificationTemplate(
         string $classFunctions, 
         string $notificationName
