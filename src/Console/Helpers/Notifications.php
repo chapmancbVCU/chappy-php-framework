@@ -129,6 +129,19 @@ class '.$fileName.' extends Migration {
     }
 
     /**
+     * Returns name of notification class concatenated to namespace.
+     *
+     * @param string $notificationName The name of the notification class.
+     * @return string The name of the notification class concatenated to 
+     * namespace.
+     */
+    public static function notificationClass(string $notificationName): string {
+        return str_starts_with($notificationName, '\\')
+            ? ltrim($notificationName, '\\')
+            : self::NOTIFICATION_NAMESPACE.$notificationName;
+    }
+
+    /**
      * Creates new notifications migration.
      *
      * @return int A value that indicates success, invalid, or failure.
