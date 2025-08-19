@@ -142,6 +142,17 @@ class '.$fileName.' extends Migration {
     }
 
     /**
+     * Determines if namespaced notification class exists.
+     *
+     * @param string $className The name of the notification class to test if 
+     * it exists.
+     * @return bool True if it exists and false if not.
+     */
+    public static function notificationClassExists(string $className): bool {
+        return class_exists($className) ? true : false;
+    }
+
+    /**
      * Creates new notifications migration.
      *
      * @return int A value that indicates success, invalid, or failure.
