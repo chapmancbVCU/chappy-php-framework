@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports commands related to notifications.
  */
 class Notifications {
-    protected static string $notificationsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
+    public const NOTIFICATION_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
     
     /**
      * Builds an array using input option --channel
@@ -71,8 +71,8 @@ class Notifications {
 
         $classFunctions .= self::viaTemplate(self::setViaList($sortedChannels));
         $content = self::notificationTemplate($classFunctions, $notificationName);
-        $fullPath = self::$notificationsPath.$notificationName.'.php';
-        Tools::pathExists(self::$notificationsPath);
+        $fullPath = self::NOTIFICATION_PATH.$notificationName.'.php';
+        Tools::pathExists(self::NOTIFICATION_PATH);
 
         return Tools::writeFile($fullPath, $content, 'Notification');
     }
