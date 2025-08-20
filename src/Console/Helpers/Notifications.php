@@ -33,6 +33,7 @@ class Notifications {
             'dry_run' => $input->getOption('dry-run'),
         ], $overrides);
     }
+
     /**
      * Builds an array using input option --channel
      *
@@ -67,6 +68,34 @@ class Notifications {
         }
 
         return array_values(array_unique($tokens));
+    }
+
+    /**
+     * Performs dry run.
+     *
+     * @param Notifiable $notifiable    The entity that is receiving the notification
+     *                                  (e.g., a User model instance or identifier).
+     * @param Notification $notification $notification The notification instance being sent. Must
+     *                                  optionally implement `toLog()` or `toArray()`.
+     * @param array $payload            Additional payload or metadata provided by
+     *                                  the dispatcher (e.g., context or overrides).
+     * @return boolean
+     */
+    public static function dryRun(
+        Notifiable $notifiable, 
+        Notification $notification, 
+        array $payload
+    ): bool {
+        if($payload['dry_run']) {
+            $output = "<info>[DRY-RUN]</info> Would send ".get_class($notification)
+                ." to ".(is_object($notifiable) ? get_class($notifiable) : $notifiable)
+                ." via [".implode(',', $channels ?? $notification->via($notifiable))."]";
+            
+            Tools::info($output);
+            Tools::info(json_encode($payload, JSON_PRETTY_PRINT));
+            return true;
+        }
+        return false;
     }
 
     /**
