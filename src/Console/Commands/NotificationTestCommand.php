@@ -72,6 +72,8 @@ class NotificationTestCommand extends Command
         }
 
         $channels = Notifications::resolveChannelsOverride($input);
+        $overrides = Notifications::resolveOverridesFromWith($input);
+        
         return Command::SUCCESS;
     }
 }

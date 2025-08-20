@@ -203,6 +203,29 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
+     * Resolves overrides from --with
+     *
+     * @param InputInterface $input The input.
+     * @return array An associative array containing overrides.
+     */
+    public static function resolveOverridesFromWith(InputInterface $input): array {
+        $kv = $input->getOption('with')
+            ? array_map('trim', explode(',', $input->getOption('with')))
+            : [];
+        
+        $overrides = [];
+
+        foreach($kv as $pair){
+            if(str_contains($pair, ':')) {
+                [$k, $v] = explode(':', $pair, 2);
+                $overrides[$k] = $v;
+            }
+        }
+
+        return $overrides;
+    }
+
+    /**
      * Performs pruning of old notifications.
      *
      * @param int $days The number of days past to prune.  Any 
