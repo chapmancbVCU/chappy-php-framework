@@ -81,7 +81,7 @@ class NotificationTestCommand extends Command
             return Command::SUCCESS;
         }
 
-        
+        Notifications::sendViaNotifiable($channels, $notifiable, $notification, $payload);
         return Command::SUCCESS;
     }
 }

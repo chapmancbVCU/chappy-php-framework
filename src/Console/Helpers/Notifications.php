@@ -345,6 +345,31 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
+     * Performs notification step.
+     *
+     * @param array $channels     The list of channels to use for notification.
+     * @param object $notifiable   The entity that is receiving the notification
+     *                            (e.g., a User model instance or identifier).
+     * @param Notification $notification The notification instance being sent. Must
+     *                            optionally implement `toLog()` or `toArray()`.
+     * @param mixed $payload      Additional payload or metadata provided by
+     *                            the dispatcher (e.g., context or overrides).
+     * @return void
+     */
+    public static function sendViaNotifiable(
+        array $channels,
+        Notifiable $notifiable,
+        Notification $notification,
+        array $payload
+    ): void {
+        if(is_object($notifiable) && method_exists($notifiable, 'notify')) {
+            $notifiable->notify($notification, $channels, $payload);
+        } else {
+            $notification->toLog((object)['id' => $notifiable]);
+        }
+    }
+
+    /**
      * Formats list of channels for via function.
      *
      * @param array|null $channels The channels for the notification class.
