@@ -217,6 +217,18 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
+     * Resolves channels from arguments.
+     *
+     * @param InputInterface $input The input.
+     * @return array|null Array of channels.
+     */
+    public static function resolveChannelsOverride(InputInterface $input): array|null {
+        return $input->getOption('channels')
+            ? array_map('trim', explode(',', $input->getOption('channels')))
+            : null;     //null => use via()
+    }
+
+    /**
      * Formats list of channels for via function.
      *
      * @param array|null $channels The channels for the notification class.

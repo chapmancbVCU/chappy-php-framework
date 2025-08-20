@@ -70,6 +70,8 @@ class NotificationTestCommand extends Command
             Tools::info("The {$className} does not exist.", 'warning', 'yellow');
             return Command::FAILURE;
         }
+
+        $channels = Notifications::resolveChannelsOverride($input);
         return Command::SUCCESS;
     }
 }
