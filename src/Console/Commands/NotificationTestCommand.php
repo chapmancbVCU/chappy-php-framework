@@ -34,7 +34,7 @@ class NotificationTestCommand extends Command
             ->addOption(
                 'user', 
                 null, 
-                InputOption::VALUE_NONE, 
+                InputOption::VALUE_REQUIRED, 
                 'User id, email, or username')
             ->addOption(
                 'channels', 
@@ -77,7 +77,7 @@ class NotificationTestCommand extends Command
         $notification = new $className();
         $payload = Notifications::buildPayload($input, $overrides);
 
-        if(Notifications::dryRun($notifiable, $notification, $payload)) {
+        if(Notifications::dryRun($channels, $notifiable, $notification, $payload)) {
             return Command::SUCCESS;
         }
 

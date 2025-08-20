@@ -73,7 +73,8 @@ class Notifications {
     /**
      * Performs dry run.
      *
-     * @param Notifiable $notifiable    The entity that is receiving the notification
+     * @param array $channels     The list of channels to use for notification.
+     * @param object|string $notifiable The entity that is receiving the notification
      *                                  (e.g., a User model instance or identifier).
      * @param Notification $notification $notification The notification instance being sent. Must
      *                                  optionally implement `toLog()` or `toArray()`.
@@ -82,7 +83,8 @@ class Notifications {
      * @return boolean
      */
     public static function dryRun(
-        Notifiable $notifiable, 
+        array $channels,
+        object|string $notifiable, 
         Notification $notification, 
         array $payload
     ): bool {
@@ -101,28 +103,17 @@ class Notifications {
     /**
      * Finds user/notifiable record in database.
      *
-     * @param string $user The id, username, or E-mail.
+     * @param string|null $user The id, username, or E-mail.
      * @return Users The user to be notified.
      */
-    private static function findUser(string $user): Users {
-        if(is_int($user)) {
+    private static function findUser(string $user): ?Users {
+        if(is_numeric((int)$user)) {
             return Users::findById($user);
         }
         
-        $params = [];
-        if(is_string($user)) {
-            if(Str::contains($user, '@')) {
-                $params = [
-                    'conditions' => 'email = ?',
-                    'bind' => [$user]
-                ];
-            } else {
-                $params = [
-                    'conditions' => 'username = ?',
-                    'bind' => [$user]
-                ];
-            }
-        }
+        $params = str_contains($user, '@')
+            ? ['conditions' => 'email = ?', 'bind' => [$user]]
+            : ['conditions' => 'username = ?', 'bind' => [$user]];
 
         return Users::findFirst($params);
     }
@@ -280,10 +271,10 @@ class '.$notificationName.' extends Notification {
      * Resolves notifiable instance.
      *
      * @param InputInterface $input The input.
-     * @return Notifiable The entity that is receiving the notification
+     * @return object|string The entity that is receiving the notification
      *                            (e.g., a User model instance or identifier).
      */
-    public static function resolveNotifiable(InputInterface $input): Notifiable {
+    public static function resolveNotifiable(InputInterface $input): object|string {
         $userOpt = $input->getOption('user');
         if(!$userOpt) {
             Tools::info('No --user provided; using a dummy notifiable string', 'info');
@@ -347,8 +338,8 @@ class '.$notificationName.' extends Notification {
     /**
      * Performs notification step.
      *
-     * @param array $channels     The list of channels to use for notification.
-     * @param object $notifiable   The entity that is receiving the notification
+     * @param array|null $channels The list of channels to use for notification.
+     * @param object|string       $notifiable   The entity that is receiving the notification
      *                            (e.g., a User model instance or identifier).
      * @param Notification $notification The notification instance being sent. Must
      *                            optionally implement `toLog()` or `toArray()`.
@@ -357,8 +348,8 @@ class '.$notificationName.' extends Notification {
      * @return void
      */
     public static function sendViaNotifiable(
-        array $channels,
-        Notifiable $notifiable,
+        ?array $channels,
+        object|string $notifiable,
         Notification $notification,
         array $payload
     ): void {
@@ -459,7 +450,7 @@ class '.$notificationName.' extends Notification {
     * Specify which channels to deliver to.
     * 
     * @param object $notifiable Any model/object that uses the Notifiable trait.
-    * @return list<channel>
+    * @return list<\'database\'|\'mail\'|\'log\'
     */
     public function via(object $notifiable): array {
         return '.$channelList.';
