@@ -20,6 +20,20 @@ class Notifications {
     public const NOTIFICATION_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
     
     /**
+     * Build payload for test command.
+     *
+     * @param InputInterface $input The input.
+     * @param array $overrides Any overrides if they exist.
+     * @return array The payload for the notification.
+     */
+    public static function buildPayload(InputInterface $input, array $overrides): array {
+        return array_merge([
+            'level'   => 'info',
+            'tags'    => ['cli','test'],
+            'dry_run' => $input->getOption('dry-run'),
+        ], $overrides);
+    }
+    /**
      * Builds an array using input option --channel
      *
      * @param InputInterface $input The input.

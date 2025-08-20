@@ -75,8 +75,8 @@ class NotificationTestCommand extends Command
         $overrides = Notifications::resolveOverridesFromWith($input);
         $notifiable = Notifications::resolveNotifiable($input);
         $notification = new $className();
+        $payload = Notifications::buildPayload($input, $overrides);
 
-        
         return Command::SUCCESS;
     }
 }
