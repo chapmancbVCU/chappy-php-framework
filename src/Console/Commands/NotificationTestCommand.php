@@ -35,7 +35,7 @@ class NotificationTestCommand extends Command
                 'user', 
                 null, 
                 InputOption::VALUE_NONE, 
-                'User id or E-mail')
+                'User id, email, or username')
             ->addOption(
                 'channels', 
                 null, 
@@ -73,6 +73,9 @@ class NotificationTestCommand extends Command
 
         $channels = Notifications::resolveChannelsOverride($input);
         $overrides = Notifications::resolveOverridesFromWith($input);
+        $notifiable = Notifications::resolveNotifiable($input);
+        $notification = new $className();
+
         
         return Command::SUCCESS;
     }

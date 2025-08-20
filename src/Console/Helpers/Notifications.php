@@ -6,9 +6,11 @@ use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Channel;
+use Core\Lib\Notifications\Notifiable;
 use Core\Lib\Notifications\Notification;
-use Core\Models\Notifications as NotificationModel;
 use Symfony\Component\Console\Command\Command;
+use Core\Models\Notifications as NotificationModel;
+use App\Models\Users;
 use Symfony\Component\Console\Input\InputInterface;
 /**
  * Supports commands related to notifications.
@@ -51,6 +53,35 @@ class Notifications {
         }
 
         return array_values(array_unique($tokens));
+    }
+
+    /**
+     * Finds user/notifiable record in database.
+     *
+     * @param string $user The id, username, or E-mail.
+     * @return Users The user to be notified.
+     */
+    private static function findUser(string $user): Users {
+        if(is_int($user)) {
+            return Users::findById($user);
+        }
+        
+        $params = [];
+        if(is_string($user)) {
+            if(Str::contains($user, '@')) {
+                $params = [
+                    'conditions' => 'email = ?',
+                    'bind' => [$user]
+                ];
+            } else {
+                $params = [
+                    'conditions' => 'username = ?',
+                    'bind' => [$user]
+                ];
+            }
+        }
+
+        return Users::findFirst($params);
     }
 
     /**
@@ -200,6 +231,25 @@ class '.$notificationName.' extends Notification {
 
     '.$classFunctions.'
 }';
+    }
+
+    /**
+     * Resolves notifiable instance.
+     *
+     * @param InputInterface $input The input.
+     * @return Notifiable The entity that is receiving the notification
+     *                            (e.g., a User model instance or identifier).
+     */
+    public static function resolveNotifiable(InputInterface $input): Notifiable {
+        $userOpt = $input->getOption('user');
+        if(!$userOpt) {
+            Tools::info('No --user provided; using a dummy notifiable string', 'info');
+            $notifiable = 'dummy';
+        } else {
+            $notifiable = self::findUser($userOpt) ?? 'dummy';
+        }
+
+        return $notifiable;
     }
 
     /**
