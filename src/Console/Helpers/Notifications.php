@@ -278,12 +278,9 @@ class '.$notificationName.' extends Notification {
         $userOpt = $input->getOption('user');
         if(!$userOpt) {
             Tools::info('No --user provided; using a dummy notifiable string', 'info');
-            $notifiable = 'dummy';
-        } else {
-            $notifiable = self::findUser($userOpt) ?? 'dummy';
-        }
-
-        return $notifiable;
+            return 'dummy';
+        }   
+        return self::findUser($userOpt) ?? 'dummy';
     }
 
     /**
