@@ -352,8 +352,16 @@ class '.$notificationName.' extends Notification {
     ): void {
         if(is_object($notifiable) && method_exists($notifiable, 'notify')) {
             $notifiable->notify($notification, $channels, $payload);
+            return;
+        } 
+
+        // Fallback: simulate log-only
+        $simChannels = $channels ?? $notification->via((object)['id' => (string)$notifiable]);
+        if (in_array('log', $simChannels, true)) {
+            // If you have a LogChannel handy, you could resolve and call it here.
+            Tools::info('[SIMULATED] log: '.$notification->toLog((object)['id'=>(string)$notifiable]));
         } else {
-            $notification->toLog((object)['id' => $notifiable]);
+            Tools::info('[SKIPPED] no deliverable channel for non-object notifiable');
         }
     }
 
