@@ -16,15 +16,23 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports commands related to notifications.
  */
 class Notifications {
+    /** @var non-empty-string Namespace prefix where app notifications live. */
     public const NOTIFICATION_NAMESPACE = "App\\Notifications\\";
+
+    /** @var non-empty-string Absolute path where app notifications are stored. */
     public const NOTIFICATION_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Notifications'.DS;
     
     /**
-     * Build payload for test command.
+     * Build the per-send payload for the test command.
      *
-     * @param InputInterface $input The input.
-     * @param array $overrides Any overrides if they exist.
-     * @return array The payload for the notification.
+     * Default fields:
+     *  - level: "info"
+     *  - tags:  ["cli","test"]
+     *  - dry_run: boolean (from --dry-run)
+     *
+     * @param InputInterface          $input     Console input (expects option "dry-run").
+     * @param array<string,mixed>     $overrides Arbitrary key/value overrides (takes precedence).
+     * @return array<string,mixed>               Merged payload passed to channels.
      */
     public static function buildPayload(InputInterface $input, array $overrides): array {
         return array_merge([
@@ -35,11 +43,19 @@ class Notifications {
     }
 
     /**
-     * Builds an array using input option --channel
+     * Resolve the --channels option into a normalized list of channels.
      *
-     * @param InputInterface $input The input.
-     * @return array An array containing channels provided with --channel 
-     * option.
+     * Behavior:
+     * - If the option is omitted or empty, returns ALL enum channel values
+     *   (use {@see resolveChannelsOverride()} if you prefer NULL to defer to via()).
+     * - Accepts a comma-separated list, whitespace tolerated.
+     * - Accepts the special token "all" to mean all channel enum values.
+     * - Validates unknown names and deduplicates while preserving order.
+     *
+     * @param InputInterface $input Console input (expects option "channels").
+     * @return list<string>         Normalized channel names (e.g., ['database','log']).
+     *
+     * @throws \InvalidArgumentException on unknown channel names.
      */
     public static function channelOptions(InputInterface $input): array {
         $channelsFromInput = $input->getOption('channels');
@@ -71,16 +87,13 @@ class Notifications {
     }
 
     /**
-     * Performs dry run.
+     * Perform a dry-run (no delivery). Prints the intended action and payload.
      *
-     * @param array $channels     The list of channels to use for notification.
-     * @param object|string $notifiable The entity that is receiving the notification
-     *                                  (e.g., a User model instance or identifier).
-     * @param Notification $notification $notification The notification instance being sent. Must
-     *                                  optionally implement `toLog()` or `toArray()`.
-     * @param array $payload            Additional payload or metadata provided by
-     *                                  the dispatcher (e.g., context or overrides).
-     * @return boolean
+     * @param object|string $notifiable  Notifiable instance or a sentinel string (e.g., "dummy").
+     * @param Notification  $notification The notification instance.
+     * @param array<string,mixed> $payload Payload merged from defaults and overrides.
+     * @param list<string>|null $channels  Channels override (NULL → will use via()).
+     * @return bool                       TRUE if dry-run occurred; FALSE otherwise.
      */
     public static function dryRun(
         array $channels,
@@ -101,10 +114,10 @@ class Notifications {
     }
 
     /**
-     * Finds user/notifiable record in database.
+     * Find a user/notifiable record by numeric id, email, or username.
      *
-     * @param string|null $user The id, username, or E-mail.
-     * @return Users The user to be notified.
+     * @param non-empty-string $user String token from CLI (id|email|username).
+     * @return Users|null            The matched user or NULL if not found.
      */
     private static function findUser(string $user): ?Users {
         if(is_numeric((int)$user)) {
@@ -119,11 +132,15 @@ class Notifications {
     }
 
     /**
-     * Generates a new notification class.
+     * Generate a new notification class file into {@see self::NOTIFICATION_PATH}.
      *
-     * @param array|null $channels The channels for the notification.
-     * @param string $notificationName The name of the notification
-     * @return int A value that indicates success, invalid, or failure. 
+     * The generated class includes channel methods (toX) for the provided list,
+     * plus a via() that references those channels. If $channels is NULL or empty,
+     * all enum channel values are used.
+     *
+     * @param list<string>|null $channels       Channel names to scaffold (e.g., ['database','log']).
+     * @param non-empty-string  $notificationName Class name (without namespace).
+     * @return int                              A Tools::writeFile status code.
      */
     public static function makeNotification(?array $channels, string $notificationName): int {
         $sortedChannels = Arr::sort($channels);
@@ -144,10 +161,10 @@ class Notifications {
     }
 
     /**
-     * Template for notifications migration.
+     * Template for the notifications migration class file.
      *
-     * @param string $fileName The file and class name.
-     * @return string The contents for the notifications migration.
+     * @param non-empty-string $fileName The base filename/classname to use.
+     * @return string                    The complete PHP contents of the migration.
      */
     public static function migrationTemplate(string $fileName): string {
         return '<?php
@@ -194,11 +211,10 @@ class '.$fileName.' extends Migration {
     }
 
     /**
-     * Returns name of notification class concatenated to namespace.
+     * Build a fully-qualified notification class name.
      *
-     * @param string $notificationName The name of the notification class.
-     * @return string The name of the notification class concatenated to 
-     * namespace.
+     * @param non-empty-string $notificationName Short class name or FQCN (leading backslash allowed).
+     * @return class-string<Notification>        FQCN of the notification.
      */
     public static function notificationClass(string $notificationName): string {
         return str_starts_with($notificationName, '\\')
@@ -207,20 +223,19 @@ class '.$fileName.' extends Migration {
     }
 
     /**
-     * Determines if namespaced notification class exists.
+     * Determine if a notification class exists.
      *
-     * @param string $className The name of the notification class to test if 
-     * it exists.
-     * @return bool True if it exists and false if not.
+     * @param class-string $className FQCN to check.
+     * @return bool                   TRUE if loadable; FALSE otherwise.
      */
     public static function notificationClassExists(string $className): bool {
         return class_exists($className) ? true : false;
     }
 
     /**
-     * Creates new notifications migration.
+     * Create a new notifications migration file on disk.
      *
-     * @return int A value that indicates success, invalid, or failure.
+     * @return int A Tools::writeFile status code.
      */
     public static function notificationsMigration(): int {
         $fileName = Migrate::fileName();
@@ -232,11 +247,11 @@ class '.$fileName.' extends Migration {
     }
 
     /**
-     * Generates the main template for the notification class.
+     * Generate the PHP contents for a notification class.
      *
-     * @param string $classFunctions The functions to be included.
-     * @param string $notificationName The name of the notification class.
-     * @return string The contents of the notification class.
+     * @param string           $classFunctions   Concatenated channel method bodies + via().
+     * @param non-empty-string $notificationName Class name (no namespace).
+     * @return string                            Full PHP file contents for the notification class.
      */
     private static function notificationTemplate(
         string $classFunctions, 
@@ -268,11 +283,10 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Resolves notifiable instance.
+     * Resolve a notifiable instance (or a sentinel string) from CLI input.
      *
-     * @param InputInterface $input The input.
-     * @return object|string The entity that is receiving the notification
-     *                            (e.g., a User model instance or identifier).
+     * @param InputInterface $input Console input (expects option "user").
+     * @return object|string        A model instance or "dummy" if none found/provided.
      */
     public static function resolveNotifiable(InputInterface $input): object|string {
         $userOpt = $input->getOption('user');
@@ -284,10 +298,10 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Resolves overrides from --with
+     * Parse overrides from the --with option (key:value,key2:value2).
      *
-     * @param InputInterface $input The input.
-     * @return array An associative array containing overrides.
+     * @param InputInterface             $input Console input (expects option "with").
+     * @return array<string,string>             Flattened k=>v overrides.
      */
     public static function resolveOverridesFromWith(InputInterface $input): array {
         $kv = $input->getOption('with')
@@ -307,11 +321,10 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Performs pruning of old notifications.
+     * Prune old notifications using the model layer.
      *
-     * @param int $days The number of days past to prune.  Any 
-     * records older will be pruned.
-     * @return int A value that indicates success, invalid, or failure. 
+     * @param int $days Number of days to retain; older rows are deleted.
+     * @return int      Command::SUCCESS on completion.
      */
     public static function prune(int $days): int {
         $recordsDeleted = NotificationModel::notificationsToPrune($days);
@@ -321,10 +334,12 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Resolves channels from arguments.
+     * Resolve a channels override list from CLI input.
      *
-     * @param InputInterface $input The input.
-     * @return array|null Array of channels.
+     * If the option is omitted/empty, returns NULL so callers can defer to via().
+     *
+     * @param InputInterface    $input Console input (expects option "channels").
+     * @return list<string>|null       Normalized channels or NULL to defer.
      */
     public static function resolveChannelsOverride(InputInterface $input): array|null {
         return $input->getOption('channels')
@@ -333,15 +348,12 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Performs notification step.
+     * Deliver a notification via a notifiable (or simulate if notifiable is not an object).
      *
-     * @param array|null $channels The list of channels to use for notification.
-     * @param object|string       $notifiable   The entity that is receiving the notification
-     *                            (e.g., a User model instance or identifier).
-     * @param Notification $notification The notification instance being sent. Must
-     *                            optionally implement `toLog()` or `toArray()`.
-     * @param mixed $payload      Additional payload or metadata provided by
-     *                            the dispatcher (e.g., context or overrides).
+     * @param list<string>|null $channels    Channel override (NULL → use via()).
+     * @param object|string     $notifiable  Notifiable instance or a sentinel string.
+     * @param Notification      $notification The notification instance.
+     * @param array<string,mixed> $payload   Per-send payload/overrides.
      * @return void
      */
     public static function sendViaNotifiable(
@@ -366,10 +378,13 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Formats list of channels for via function.
+     * Format a list of channels into PHP code suitable for a generated via() method.
      *
-     * @param array|null $channels The channels for the notification class.
-     * @return string The channels formatted for use in via function.
+     * If the provided list is empty or equals the full enum size, returns the literal
+     * string "Notification::channelValues()" to keep the generated class concise.
+     *
+     * @param list<string>|null $channels Channel names to embed.
+     * @return non-empty-string           PHP expression to place inside via().
      */
     private static function setViaList(?array $channels): string  {
         $channelArraySize = sizeof($channels);
@@ -390,9 +405,9 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Returns contents for the toDatabase function.
+     * Template for a toDatabase() method body within a scaffolded notification.
      *
-     * @return string The contents of the toDatabase function.
+     * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function toDatabaseTemplate(): string {
         return '/**
@@ -412,9 +427,9 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Returns contents for the toLog function.
+     * Template for a toLog() method body within a scaffolded notification.
      *
-     * @return string The contents of the toLog function.
+     * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function toLogTemplate(): string {
         return '    /**
@@ -429,9 +444,9 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Returns contents for the toMail function.
+     * Template for a toMail() method body within a scaffolded notification.
      *
-     * @return string The contents of the toMail function.
+     * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function toMailTemplate(): string {
         return '    /**
@@ -446,9 +461,10 @@ class '.$notificationName.' extends Notification {
     }
 
     /**
-     * Returns contents for the via function.
+     * Template for the via() method within a scaffolded notification.
      *
-     * @return string The contents of the via function.
+     * @param non-empty-string $channelList PHP expression representing the channel list.
+     * @return non-empty-string             PHP code snippet for inclusion.
      */
     private static function viaTemplate(string $channelList): string {
         return '    /**
