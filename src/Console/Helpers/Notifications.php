@@ -12,8 +12,13 @@ use Symfony\Component\Console\Command\Command;
 use Core\Models\Notifications as NotificationModel;
 use App\Models\Users;
 use Symfony\Component\Console\Input\InputInterface;
+
 /**
- * Supports commands related to notifications.
+ * Utilities that support console commands related to Notifications:
+ * - Resolving notifiables and channels from CLI options
+ * - Building per-send payloads/overrides
+ * - Scaffolding notification classes and the notifications migration
+ * - Performing dry-runs and actual sends via a notifiable
  */
 class Notifications {
     /** @var non-empty-string Namespace prefix where app notifications live. */
