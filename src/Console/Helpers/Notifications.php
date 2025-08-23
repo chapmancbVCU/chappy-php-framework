@@ -101,10 +101,10 @@ class Notifications {
      * @return bool                       TRUE if dry-run occurred; FALSE otherwise.
      */
     public static function dryRun(
-        array $channels,
         object|string $notifiable, 
         Notification $notification, 
-        array $payload
+        array $payload,
+        ?array $channels,
     ): bool {
         if($payload['dry_run']) {
             $output = "<info>[DRY-RUN]</info> Would send ".get_class($notification)
@@ -346,7 +346,7 @@ class '.$notificationName.' extends Notification {
      * @param InputInterface    $input Console input (expects option "channels").
      * @return list<string>|null       Normalized channels or NULL to defer.
      */
-    public static function resolveChannelsOverride(InputInterface $input): array|null {
+    public static function resolveChannelsOverride(InputInterface $input): ?array {
         return $input->getOption('channels')
             ? array_map('trim', explode(',', $input->getOption('channels')))
             : null;     //null => use via()
@@ -362,10 +362,10 @@ class '.$notificationName.' extends Notification {
      * @return void
      */
     public static function sendViaNotifiable(
-        ?array $channels,
         object|string $notifiable,
         Notification $notification,
-        array $payload
+        array $payload,
+        ?array $channels
     ): void {
         if(is_object($notifiable) && method_exists($notifiable, 'notify')) {
             $notifiable->notify($notification, $channels, $payload);

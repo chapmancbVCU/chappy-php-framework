@@ -77,11 +77,11 @@ class NotificationTestCommand extends Command
         $notification = new $className();
         $payload = Notifications::buildPayload($input, $overrides);
 
-        if(Notifications::dryRun($channels, $notifiable, $notification, $payload)) {
+        if(Notifications::dryRun($notifiable, $notification, $payload, $channels)) {
             return Command::SUCCESS;
         }
 
-        Notifications::sendViaNotifiable($channels, $notifiable, $notification, $payload);
+        Notifications::sendViaNotifiable($notifiable, $notification, $payload, $channels);
         return Command::SUCCESS;
     }
 }
