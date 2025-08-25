@@ -2,8 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Tools;
-use Console\Helpers\Events;
-use Core\Lib\Utilities\Str;
 use Console\Helpers\Notifications;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
