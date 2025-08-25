@@ -106,16 +106,23 @@ class Notifications {
         array $payload,
         ?array $channels,
     ): bool {
-        if($payload['dry_run']) {
-            $output = "<info>[DRY-RUN]</info> Would send ".get_class($notification)
-                ." to ".(is_object($notifiable) ? get_class($notifiable) : $notifiable)
-                ." via [".implode(',', $channels ?? $notification->via($notifiable))."]";
-            
-            Tools::info($output);
-            Tools::info(json_encode($payload, JSON_PRETTY_PRINT));
-            return true;
+        if(empty($payload['dry_run'])) {
+            return false;
         }
-        return false;
+
+        $resolvedChannels = $channels ?? $notification->via(
+            is_object($notifiable) ? $notifiable : (object)['id' => (string)$notifiable]
+        );
+
+        $target = is_object($notifiable) ? get_class($notifiable) : (string)$notifiable;
+
+        Tools::info(
+            "[DRY-RUN] Would send " . get_class($notification) .
+            " to {$target} via [" . implode(',', $resolvedChannels) . "]"
+        );
+        Tools::info(json_encode($payload, JSON_PRETTY_PRINT));
+
+        return true;
     }
 
     /**
