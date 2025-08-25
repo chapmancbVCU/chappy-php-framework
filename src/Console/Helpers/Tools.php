@@ -93,7 +93,13 @@ class Tools {
         }
     }
 
-    public static function setOutput(OutputInterface $output): void{
+    /**
+     * Enables output for symfony.
+     *
+     * @param OutputInterface $output Symfony output.
+     * @return void
+     */
+    public static function setOutput(OutputInterface $output): void {
         self::$output = $output;
     }
 
