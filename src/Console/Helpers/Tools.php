@@ -7,11 +7,14 @@ use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Contains functions for miscellaneous tasks.
  */
 class Tools {
+    private static ?OutputInterface $output = null;
+
     /**
      * Returns dashed border.
      *
@@ -37,6 +40,10 @@ class Tools {
      * @return void
      */
     public static function info(string $message, string $level = 'info', ?string $background = null, ?string $text = null): void {
+        if (self::$output) {
+            self::$output->writeln($message);
+        }
+
         // Load default colors from .env if not provided
         $background = $background ?? Env::get('BACKGROUND_COLOR', 'green'); // Default: green
         $text = $text ?? Env::get('TEXT_COLOR', 'light-grey'); // Default: light-grey
@@ -84,6 +91,10 @@ class Tools {
         if(!is_dir($path)) {
             mkdir($path, $permissions, $recursive);
         }
+    }
+
+    public static function setOutput(OutputInterface $output): void{
+        self::$output = $output;
     }
 
     /**
