@@ -270,7 +270,7 @@ class '.$fileName.' extends Migration {
         string $notificationName
     ): string {
         return '<?php
-namespace Core\Lib\Notifications;
+namespace App\Notifications;
 
 use App\Models\Users;
 use Core\Lib\Notifications\Notification;
