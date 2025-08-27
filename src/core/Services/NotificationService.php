@@ -9,14 +9,15 @@ use Core\Lib\Notifications\UserRegistered;
 class NotificationService {
 
     /**
-     * Adds notification information to Session Messages.
+     * Adds notification information to Session Messages for currently logged 
+     * in user.
      *
      * @return void
      */
     public static function flashUnreadNotifications(): void {
-        $admin = AuthService::currentUser();
+        $user = AuthService::currentUser();
         $messages = [];
-        foreach ($admin->notifications() as $notification) {
+        foreach ($user->notifications() as $notification) {
             $data = json_decode($notification->data, true);
             if (isset($data['message'])) {
                 $messages[] = $data['message'];
