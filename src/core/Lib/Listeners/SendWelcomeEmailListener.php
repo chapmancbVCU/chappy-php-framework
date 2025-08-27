@@ -11,7 +11,7 @@ use Core\Lib\Events\Contracts\QueuePreferences;
 
 class SendWelcomeEmailListener implements ShouldQueue, QueuePreferences {
     public function handle(UserRegistered $event) : void {
-        NotificationService::notifyAdmins(new UserRegisteredNotification($event->user));
+        NotificationService::notifyUsers(new UserRegisteredNotification($event->user));
         UserService::queueWelcomeMailer((int)$event->user->id, $this->viaQueue());
     }
 

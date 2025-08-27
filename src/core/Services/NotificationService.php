@@ -31,20 +31,22 @@ class NotificationService {
     }
 
     /**
-     * Sends notifications to admin users.
+     * Sends notifications to users with a particular group.
      *
-     * @param object $notification The notification to be sent to admin users.
+     * @param object $notification The notification to be sent to users.
+     * @param string $userGroup The ACL group that will receive notifications.  
+     * The default value is 'Admin'.
      * @return void
      */
-    public static function notifyAdmins(object $notification): void {
-        $admins = Users::find([
+    public static function notifyUsers(object $notification, string $userGroup = 'Admin'): void {
+        $users = Users::find([
             'conditions' => 'deleted = ?',
             'bind' => [0]
         ]);
 
-        foreach($admins as $admin) {
-            if($admin->hasAcl('Admin')) {
-                $admin->notify($notification);
+        foreach($users as $user) {
+            if($user->hasAcl($userGroup)) {
+                $user->notify($notification);
             }
         }
     }
