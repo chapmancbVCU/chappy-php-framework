@@ -4,8 +4,10 @@ namespace Core\Services;
 
 use App\Models\Users;
 use Core\Models\Notifications;
-use Core\Lib\Notifications\UserRegistered;
 
+/**
+ * Supports tasks related to notifications.
+ */
 class NotificationService {
 
     /**
