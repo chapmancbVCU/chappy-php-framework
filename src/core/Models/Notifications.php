@@ -28,13 +28,24 @@ class Notifications extends Model {
         $this->timeStamps();
     }
 
+    /**
+     * Mark notification record as read.
+     *
+     * @return void
+     */
     public function markAsRead(): void {
         $this->read_at = date('Y-m-d H:i:s');
         $this->save();
     }
 
+    /**
+     * Mark notification record as read by id.
+     *
+     * @param string|int $id Id of notification to mark as read.
+     * @return bool True if record is saved.  Otherwise we return false.
+     */
     public static function markAsReadById(string|int $id): bool {
-    $record = self::findFirst(['conditions' => 'id = ?', 'bind' => [$id]]);
+        $record = self::findFirst(['conditions' => 'id = ?', 'bind' => [$id]]);
         if ($record) {
             $record->read_at = date('Y-m-d H:i:s');
             return $record->save();
