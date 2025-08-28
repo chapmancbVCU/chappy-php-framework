@@ -11,7 +11,6 @@ use Core\Lib\Events\UserPasswordResetRequested;
 use Core\Lib\Events\UserPasswordUpdated;
 use Core\Lib\Listeners\SendAccountDeactivatedEmail;
 use Core\Lib\Listeners\SendPasswordUpdateEmail;
-use Core\Lib\Listeners\SendWelcomeEmailListener;
 
 /**
  * Internal EventServiceProvider for builtin events.
@@ -30,7 +29,6 @@ class EventServiceProvider extends ServiceProvider {
         ],
         UserRegistered::class => [
             SendRegistrationEmail::class,
-            // SendWelcomeEmailListener::class
         ],
         UserPasswordUpdated::class => [
             SendPasswordUpdateEmail::class
