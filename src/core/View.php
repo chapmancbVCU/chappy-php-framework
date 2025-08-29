@@ -125,6 +125,20 @@ class View extends stdClass {
         }
     }
 
+    public function renderJsx(string $component, array $props = [], string $entry = 'resources/js/app.jsx'): void
+    {
+        // allow existing controller style ($this->view->props) to keep working
+        if (empty($props) && isset($this->props) && is_array($this->props)) {
+            $props = $this->props;
+        }
+
+        $this->component = $component; // e.g., 'Home' or 'Admin/Users'
+        $this->props     = $props;
+        $this->entry     = $entry;     // allow swapping bundles if you add more
+
+        // Reuse your normal renderer with a single host template
+        $this->render('react.host');   // maps to resources/view/react/host.php
+    }
     /**
      * Renders a single widget view file with given data.
      *
