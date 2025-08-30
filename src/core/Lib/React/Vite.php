@@ -5,6 +5,13 @@ namespace Core\Lib\React;
 
 final class Vite
 {
+    public static function csrfToken(): string {
+        $html = csrf();
+        if(preg_match('/value="([^"]+)"/', (string)$html, $m)) {
+            $token = $m[1];
+        }
+        return htmlspecialchars($token, ENT_QUOTES, 'UTF-8');
+    }
     
     private static function devServerRunning(string $devServer): bool
     {
