@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Core\Lib\React;
 
+/**
+ * Supports operations for Vite.
+ */
 final class Vite
 {
     public static function csrfToken(): string {
@@ -12,7 +15,7 @@ final class Vite
         }
         return htmlspecialchars($token, ENT_QUOTES, 'UTF-8');
     }
-    
+
     private static function devServerRunning(string $devServer): bool
     {
         // Cheap check: try opening the HMR endpoint
