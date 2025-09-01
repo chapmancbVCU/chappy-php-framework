@@ -137,9 +137,9 @@ class View extends stdClass {
         $this->entry     = $entry;     // allow swapping bundles if you add more
 
         // Reuse your normal renderer with a single host template
-        $this->render('react.host');   // maps to resources/view/react/host.php
+        $this->render('react.host', true);   // maps to resources/view/react/host.php
     }
-    
+
     /**
      * Renders a single widget view file with given data.
      *
