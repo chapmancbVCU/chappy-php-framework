@@ -55,9 +55,11 @@ final class ACL extends Model {
     /**
      * Check if ACL is assigned to any users
      *
-     * @return bool
+     * @return bool True if is in use.  Otherwise, we return false.
      */
     public function isAssignedToUsers(): bool {
+
+        if($this->isNew()) return false;
         return self::getDb()->valueExistsInColumn('users', 'acl', $this->acl);
     }
 
