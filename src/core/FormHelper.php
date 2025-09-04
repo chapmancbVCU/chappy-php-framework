@@ -428,7 +428,7 @@ class FormHelper {
         $id = Str::replace('[]','',$name);
 
         $html = '<div' . $divString . '>';
-        $html .= '<label class="control-label" for="'.$id.'">'.$label.'</label>';
+        $html .= '<label class="form-label" for="'.$id.'">'.$label.'</label>';
         $html .= '<input type="'.$type.'" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
@@ -580,7 +580,7 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]' ,'' ,$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
+        $html .= '<label for="'.$id.'" class="form-label">' . $label . '</label>';
         $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options, $value).'</select>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
@@ -738,7 +738,7 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]','',$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
+        $html .= '<label for="'.$id.'" class="form-label">' . $label . '</label>';
         $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
