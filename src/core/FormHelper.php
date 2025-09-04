@@ -89,7 +89,7 @@ class FormHelper {
 
     /**
      * Generates a div containing an input of type checkbox with the label to 
-     * the left that is not part of a group.
+     * the left.
      *
      * An example function call is shown below:
      * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'], $this->displayErrors);
@@ -150,7 +150,7 @@ class FormHelper {
 
     /**
      * Generates a div containing an input of type checkbox with the label to 
-     * the right that is not part of a group.
+     * the right.
      *
      * An example function call is shown below:
      * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1'], $this->displayErrors);
