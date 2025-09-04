@@ -138,7 +138,7 @@ class FormHelper {
         $id = Str::replace('[]', '', $name); // Ensure unique ID
     
         $html = '<div' . $divString . '>';
-        $html .= '<label for="' . htmlspecialchars($id) . '">';
+        $html .= '<label class="form-label" for="' . htmlspecialchars($id) . '">';
         $html .= htmlspecialchars($label) . ' ';
         $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . ' />';
         $html .= '</label>';
@@ -198,7 +198,7 @@ class FormHelper {
         $id = Str::replace('[]', '', $name); // Ensure unique ID
     
         $html = '<div' . $divString . '>';
-        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
+        $html .= '<input class="form-label" type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
         $html .= '<label for="' . htmlspecialchars($id) . '">' . htmlspecialchars($label) . '</label>';
         $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
         $html .= '</div>';
@@ -311,7 +311,7 @@ class FormHelper {
         $inputString = self::stringifyAttrs(($inputAttrs));
         
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$name.'">'.$label.'</label>';
+        $html .= '<label class="form-label" for="'.$name.'">'.$label.'</label>';
         $html .= '<input type="email" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' placeholder="joe@example.com" />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
@@ -520,7 +520,7 @@ class FormHelper {
 
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
-        return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
+        return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label" for="'.$id.'">'.$label.'</label> ';
     }
     
     /**
@@ -580,7 +580,7 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]' ,'' ,$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$id.'" class="form-label">' . $label . '</label>';
+        $html .= '<label class="form-label" for="'.$id.'" class="form-label">' . $label . '</label>';
         $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options, $value).'</select>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
@@ -690,7 +690,7 @@ class FormHelper {
 
         // Build field
         $html = '<div' . $divString . '>';
-        $html .= '<label for="' . $name . '">' . $label . '</label>';
+        $html .= '<label class="form-label" for="' . $name . '">' . $label . '</label>';
         $html .= '<input type="tel" id="' . $name . '" name="' . $name . '" value="' . $value . '" ' . $inputString . ' />';
         $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
         $html .= '</div>';
@@ -738,7 +738,7 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]','',$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$id.'" class="form-label">' . $label . '</label>';
+        $html .= '<label class="form-label" for="'.$id.'" class="form-label">' . $label . '</label>';
         $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
