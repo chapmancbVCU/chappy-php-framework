@@ -496,12 +496,11 @@ class FormHelper {
      * 
      * @param string $label Sets the label for this input.
      * @param string $id The id attribute for the radio input element.
-     * @param string $name Sets the value for the name, for, and id attributes 
+     * @param string $name Sets the value for the name attribute 
      * for this input.
      * @param string $value The value we want to set.  We can use this to set 
-     * the value of the value attribute during form validation.  Default value 
-     * is the empty string.  It can be set with values during form validation 
-     * and forms used for editing records.
+     * the value of the value attribute during form validation.  It can be 
+     * set with values during form validation and forms used for editing records.
      * @param bool $checked The value for the checked attribute.  If true 
      * this attribute will be set as checked="checked".  The default value is 
      * false.  It can be set with values during form validation and forms 
