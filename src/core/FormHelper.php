@@ -440,7 +440,7 @@ class FormHelper {
      *
      * @param array $options An array of options for the select.
      * @param string|int|null $selectedValue The currently selected value.
-     * @return void
+     * @return string The HTML element for select with correct value displayed.
      */
     public static function optionsForSelect(array $options, string|int|null $selectedValue): string {
         $html = "";
