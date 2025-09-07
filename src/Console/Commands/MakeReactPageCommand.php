@@ -24,7 +24,8 @@ class MakeReactPageCommand extends Command {
         $this->setName('react:page')
             ->setDescription('Generates a new React Page')
             ->setHelp('php console react:page <directory_name>.<page_name>')
-            ->addArgument('page-name', InputArgument::REQUIRED, 'Pass name of directory and React page');
+            ->addArgument('page-name', InputArgument::REQUIRED, 'Pass name of directory and React page')
+            ->addOption('named', null, InputOption::VALUE_NONE, 'Creates as a named export');
     }
 
     /**
