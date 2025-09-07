@@ -4,5 +4,5 @@
  * @returns The full path to the asset.
  */
 export default function asset(path) {
-    return import.meta.env.VITE_APP_DOMAIN + path;
+    return import.meta.env.VITE_S3_BUCKET + path;
 }
