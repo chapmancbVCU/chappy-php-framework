@@ -35,7 +35,13 @@ class MakeLayoutCommand extends Command {
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'menu_acl json file for menus and layouts',
-                false);
+                false)
+            ->addOption(
+                'react',
+                null,
+                InputOption::VALUE_NONE,
+                'Make view compatible with React.js'
+            );
     }
 
     /**
@@ -51,7 +57,8 @@ class MakeLayoutCommand extends Command {
         $layoutName = $input->getArgument('layout-name');
         $menu = $input->getOption('menu');
         $menuAcl = $input->getOption('menu-acl');
-
+        $react = $input->getOption('react');
+    
         // Process menu-acl input
         if($menuAcl === false) {
             Tools::info('--menu-acl argument not set so we ignore operation', 'blue');
@@ -64,11 +71,11 @@ class MakeLayoutCommand extends Command {
         // Process menu input
         if($menu === false) {
             Tools::info('--menu argument not set so we ignore operation', 'blue');
-            return View::makeLayout($layoutName);
+            return View::makeLayout($layoutName, 'main', $react);
         }
         else if($menu === null) {
             View::makeMenu($layoutName);
-            return View::makeLayout($layoutName, $layoutName);
+            return View::makeLayout($layoutName, $layoutName, $react);
         } else {
             Tools::info('--menu does not accept an argument', 'debug', 'red');
             return Command::FAILURE;
