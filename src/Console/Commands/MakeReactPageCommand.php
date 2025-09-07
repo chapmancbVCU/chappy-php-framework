@@ -3,7 +3,9 @@ namespace Console\Commands;
 
 use Console\Helpers\View;
 use Console\Helpers\Tools;
+use Chappy\Console\Helpers\React;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -37,19 +39,19 @@ class MakeReactPageCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $viewArray = explode(".", $input->getArgument('view-name'));
-
-        if (sizeof($viewArray) !== 2) {
+        $pageArray = explode(".", $input->getArgument('page-name'));
+        $named = $input->getOption('named');
+        if (sizeof($pageArray) !== 2) {
             Tools::info(
-                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<view_name>',
+                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<page_name>',
                 'debug',
                 'red'
             );
             return Command::FAILURE;
         }
 
-        $directory = ROOT . DS . 'resources' . DS . 'views' . DS . $viewArray[0];
-        $filePath = $directory . DS . $viewArray[1].'.php';
+        $directory = React::PAGE_PATH . $pageArray[0];
+        $filePath = $directory . DS . $pageArray[1].'.php';
         $helper = new QuestionHelper(); // <-- Manual instantiation to avoid `getHelper()` issues
 
         // Debug to check if helper exists
