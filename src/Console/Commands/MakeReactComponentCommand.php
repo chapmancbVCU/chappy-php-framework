@@ -40,6 +40,7 @@ class MakeReactComponentCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $componentName = $input->getArgument('component-name');
-        return React::makeComponent($componentName);
+        $named = $input->getOption('named');
+        return React::makeComponent($componentName, $named);
     }
 }
