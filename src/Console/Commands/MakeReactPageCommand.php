@@ -21,10 +21,10 @@ class MakeReactPageCommand extends Command {
      */
     protected function configure(): void
     {
-        $this->setName('make:view')
-            ->setDescription('Generates a new view')
-            ->setHelp('php console make:view <directory_name>.<view_name>')
-            ->addArgument('view-name', InputArgument::REQUIRED, 'Pass name of directory and view');
+        $this->setName('react:page')
+            ->setDescription('Generates a new React Page')
+            ->setHelp('php console react:page <directory_name>.<page_name>')
+            ->addArgument('page-name', InputArgument::REQUIRED, 'Pass name of directory and React page');
     }
 
     /**
