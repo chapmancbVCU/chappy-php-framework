@@ -15,7 +15,7 @@ class React {
      * @return string The contents of the component.
      */
     public static function defaultComponentTemplate(string $componentName): string {
-        return 'import React from "react"
+        return 'import React from "react";
 function '.$componentName.'() {
 
     return (
@@ -34,7 +34,7 @@ export default '.$componentName.';';
      * @return string The contents of the component.
      */
     public static function namedComponentTemplate(string $componentName): string {
-        return 'import React from "react"
+        return 'import React from "react";
 export const '.$componentName.' = () => {
 
     return (
