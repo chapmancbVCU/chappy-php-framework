@@ -51,7 +51,7 @@ class MakeReactPageCommand extends Command {
         }
 
         $directory = React::PAGE_PATH . $pageArray[0];
-        $filePath = $directory . DS . $pageArray[1].'.php';
+        $filePath = $directory . DS . $pageArray[1].'.jsx';
         $helper = new QuestionHelper(); // <-- Manual instantiation to avoid `getHelper()` issues
 
         // Debug to check if helper exists
