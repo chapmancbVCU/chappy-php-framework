@@ -52,7 +52,7 @@ class MakeReactPageCommand extends Command {
         }
 
         $directory = React::PAGE_PATH . $pageArray[0];
-        $pageName = Str::lcfirst($pageArray[1]);
+        $pageName = Str::ucfirst($pageArray[1]);
         $filePath = $directory . DS . $pageName.'.jsx';
         $helper = new QuestionHelper(); // <-- Manual instantiation to avoid `getHelper()` issues
 
