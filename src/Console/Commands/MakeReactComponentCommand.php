@@ -8,6 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Helper\QuestionHelper;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
@@ -25,7 +26,8 @@ class MakeReactComponentCommand extends Command {
         $this->setName('react:component')
             ->setDescription('Generates a new React.js component')
             ->setHelp('php console react:component <directory_name>.<component_name>')
-            ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new React.js component');
+            ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new React.js component')
+            ->addOption('named', null, InputOption::VALUE_NONE, 'Creates as a named export');
     }
 
     /**
