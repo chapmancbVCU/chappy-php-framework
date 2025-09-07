@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\Helpers\View;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Chappy\Console\Helpers\React;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -51,7 +52,8 @@ class MakeReactPageCommand extends Command {
         }
 
         $directory = React::PAGE_PATH . $pageArray[0];
-        $filePath = $directory . DS . $pageArray[1].'.jsx';
+        $pageName = Str::lcfirst($pageArray[1]);
+        $filePath = $directory . DS . $pageName.'.jsx';
         $helper = new QuestionHelper(); // <-- Manual instantiation to avoid `getHelper()` issues
 
         // Debug to check if helper exists
@@ -76,6 +78,6 @@ class MakeReactPageCommand extends Command {
             }
         }
 
-        return React::makePage($filePath, $pageArray[1], $named);
+        return React::makePage($filePath, $pageName, $named);
     }
 }
