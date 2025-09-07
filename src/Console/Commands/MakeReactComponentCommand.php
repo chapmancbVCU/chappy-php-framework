@@ -1,19 +1,15 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\View;
-use Console\Helpers\Tools;
 use Chappy\Console\Helpers\React;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
- * Implements command for making a new view file.
+ * Implements command for making a new react component.
  */
 class MakeReactComponentCommand extends Command {
     /**
