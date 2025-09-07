@@ -27,6 +27,12 @@ function '.$componentName.'() {
 export default '.$componentName.';';
     }
 
+    /**
+     * Generates a named export component.
+     *
+     * @param string $componentName The name of the component.
+     * @return string The contents of the component.
+     */
     public static function namedComponentTemplate(string $componentName): string {
         return 'import React from "react"
 export const '.$componentName.' = () => {
