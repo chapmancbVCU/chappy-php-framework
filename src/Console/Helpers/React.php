@@ -8,6 +8,12 @@ use Core\Lib\Utilities\Str;
 class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
 
+    /**
+     * Generates a component with default export.
+     *
+     * @param string $componentName The name of the component.
+     * @return string The contents of the component.
+     */
     public static function defaultComponentTemplate(string $componentName): string {
         return 'import React from "react"
 function '.$componentName.'() {
