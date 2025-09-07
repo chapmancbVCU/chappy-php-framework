@@ -1,27 +1,27 @@
 <div>
     <h4 class="text-center">Password Requirements</h4>
     <ul class="pl-3">
-        <?php if (env('SET_PW_MIN_LENGTH', false)): ?>
+        <?php if (env('SET_PW_MIN_LENGTH', false) === 'true'): ?>
             <li>Minimum <?= env('PW_MIN_LENGTH', 12) ?> characters in length</li>
         <?php endif; ?>
 
-        <?php if (env('SET_PW_MAX_LENGTH', false)): ?>
+        <?php if (env('SET_PW_MAX_LENGTH', false) === 'true'): ?>
             <li>Maximum of <?= env('PW_MAX_LENGTH', 30) ?> characters in length</li>
         <?php endif; ?>
 
-        <?php if (env('PW_UPPER_CHAR', false)): ?>
+        <?php if (env('PW_UPPER_CHAR', false) === 'true'): ?>
             <li>At least 1 upper case character</li>
         <?php endif; ?>
 
-        <?php if (env('PW_LOWER_CHAR', false)): ?>
+        <?php if (env('PW_LOWER_CHAR', false) === 'true'): ?>
             <li>At least 1 lower case character</li>
         <?php endif; ?>
 
-        <?php if (env('PW_NUM_CHAR', false)): ?>
+        <?php if (env('PW_NUM_CHAR', false) === 'true'): ?>
             <li>At least 1 number</li>
         <?php endif; ?>
 
-        <?php if (env('PW_SPECIAL_CHAR', false)): ?>
+        <?php if (env('PW_SPECIAL_CHAR', false) === 'true'): ?>
             <li>Must contain at least 1 special character</li>
         <?php endif; ?>  
 
