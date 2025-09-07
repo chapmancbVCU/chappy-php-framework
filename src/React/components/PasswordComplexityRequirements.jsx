@@ -1,6 +1,11 @@
 import React from "react";
+
+/**
+ * Generates component listing password complexity requirements.
+ * @returns {HTMLDivElement} Component containing list of password 
+ * complexity requirements.
+ */
 export const PasswordComplexityRequirements = () => {
-    const setMinLength = import.meta.env.VITE_SET_PW_MIN_LENGTH === 'true'
     return (
         <div>
             <h4 className="text-center">Password Requirements</h4>
