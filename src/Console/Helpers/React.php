@@ -61,7 +61,11 @@ export const '.$componentName.' = () => {
         return Tools::writeFile($componentPath, $content, 'React component');
     }
 
-    public static function makePage(string $pageName, bool $named = false): int {
+    public static function makePage(string $filePath, string $pageName, bool $named = false): int {
+        $content = ($named)
+            ? self::namedComponentTemplate($pageName) 
+            : self::defaultComponentTemplate($pageName);
 
+        return Tools::writeFile($filePath, $content, 'React page');
     }
 }
