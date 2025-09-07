@@ -147,7 +147,7 @@ final class UserService {
      * Assist in toggling reset_password field.
      *
      * @param Users $user The user whose status we want to set.
-     * @param Input $request The request.
+     * @param Input $request The request.z
      * @param int|null $currentReset Value of $user->reset_password before post.
      * @return int 1 if reset_password is 'on', otherwise we return 0.
      */
@@ -163,9 +163,9 @@ final class UserService {
      * @param Input $request The request.
      * @return bool True if password is updated, otherwise false
      */
-    public static function updatePassword(Users $user, Input $request): bool {
+    public static function updatePassword(Users $user, Input $request): Users|bool {
         if(!password_verify($request->get('current_password'), $user->password)) {
-            return false;
+            $user->addErrorMessage('password', 'You entered wrong password');
         }
 
         $user->assign($request->get(), Users::blackListedFormKeys);
