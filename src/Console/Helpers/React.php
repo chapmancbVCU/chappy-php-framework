@@ -53,11 +53,15 @@ export const '.$componentName.' = () => {
      * component is generated.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeComponent(string $componentName, bool $named): int {
+    public static function makeComponent(string $componentName, bool $named = false): int {
         $componentPath = self::COMPONENT_PATH.Str::lcfirst($componentName).'.jsx';
         $content = ($named) 
             ? self::namedComponentTemplate($componentName) 
             : self::defaultComponentTemplate($componentName);
         return Tools::writeFile($componentPath, $content, 'React component');
+    }
+
+    public static function makePage(string $pageName, bool $named = false): int {
+
     }
 }
