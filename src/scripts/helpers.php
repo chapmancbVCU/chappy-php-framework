@@ -14,10 +14,14 @@ if (!function_exists('asset')) {
      * Retrieves publicly available asset. 
      *
      * @param string $path Path to the asset.
+     * @param bool $local If true use APP_DOMAIN instead of S3_BUCKET.
      * @return string The full path.
      */
-    function asset(string $path): string {
-        return rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . ltrim($path, '/');
+    function asset(string $path, bool $local = false): string {
+        if($local) {
+            return rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . ltrim($path, '/');    
+        }
+        return rtrim(Env::get('S3_BUCKET', '/'), '/') . '/' . ltrim($path, '/');
     }
 }
 
