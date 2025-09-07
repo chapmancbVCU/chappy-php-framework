@@ -42,8 +42,7 @@ export const '.$componentName.' = () => {
         
         </>
     );
-}        
-';
+}';
     }
 
     /**
