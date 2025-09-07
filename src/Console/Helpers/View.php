@@ -136,16 +136,10 @@ class View {
      */
     public static function makeLayout(string $layoutName, string $menuName = 'main', $react = false): int {
         $layoutPath = ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.Str::lcfirst($layoutName).".php";
-        if($react) {
-            return Tools::writeFile(
-              $layoutPath, 
-              self::reactLayout($menuName), 
-              'React compatible Layout'
-            );
-        }
+        $content = ($react) ? self::reactLayout($menuName) : self::layout($menuName);
         return Tools::writeFile(
             $layoutPath, 
-            self::layout($menuName), 
+            $content, 
             'Layout'
         );
     }
