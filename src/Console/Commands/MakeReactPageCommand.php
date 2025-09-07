@@ -76,6 +76,6 @@ class MakeReactPageCommand extends Command {
             }
         }
 
-        return View::makeView($filePath);
+        return React::makePage($filePath, $named);
     }
 }
