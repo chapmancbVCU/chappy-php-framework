@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Chappy\Console\Helpers;
 
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 
 class React {
@@ -32,6 +33,10 @@ export const '.$componentName.' = () => {
     }
 
     public static function makeComponent(string $componentName, bool $named): int {
-        return Command::SUCCESS;
+        $componentPath = self::COMPONENT_PATH.$componentName.'.jsx';
+        $content = ($named) 
+            ? self::namedComponentTemplate($componentName) 
+            : self::defaultComponentTemplate($componentName);
+        return Tools::writeFile($componentPath, $content, 'React component');
     }
 }
