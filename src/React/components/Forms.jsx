@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { getCsrf } from '@chappy/utils/csrf';
 import { Editor } from '@tinymce/tinymce-react';
-import { appendErrorClass, htmlspecialchars, formatId, normalizeAttrs } from '@/utils/form';
+import { appendErrorClass, htmlspecialchars, formatId, normalizeAttrs } from '@chappy/utils/form';
 import tinymce from '@chappy/utils/tinyMCEBootstrap'
 import contentCssUrl from 'tinymce/skins/content/default/content.min.css?url'; 
 
