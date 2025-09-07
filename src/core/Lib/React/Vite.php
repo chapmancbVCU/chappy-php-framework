@@ -8,6 +8,11 @@ namespace Core\Lib\React;
  */
 final class Vite
 {
+    /**
+     * Extracts value of csrf_token from hidden element.
+     *
+     * @return string The csrf_token.
+     */
     public static function csrfToken(): string {
         $html = csrf();
         if(preg_match('/value="([^"]+)"/', (string)$html, $m)) {
@@ -16,6 +21,12 @@ final class Vite
         return htmlspecialchars($token, ENT_QUOTES, 'UTF-8');
     }
 
+    /**
+     * Determines if dev server is running.
+     *
+     * @param string $devServer 'http://localhost:5173'
+     * @return bool True if it is running, otherwise we return false.
+     */
     private static function devServerRunning(string $devServer): bool
     {
         // Cheap check: try opening the HMR endpoint
@@ -28,6 +39,13 @@ final class Vite
         return false;
     }
 
+    /**
+     * Adds dev tags.
+     *
+     * @param string $entry Relative path from project root (e.g. 'resources/js/app.jsx')
+     * @param string $devServer 'http://localhost:5173'
+     * @return string The dev tags.
+     */
     private static function devTags(string $entry, string $devServer): string
     {
         $hmr   = $devServer . '/@vite';
@@ -38,10 +56,22 @@ final class Vite
 HTML;
     }
 
+    /**
+     * Checks if we are in development mode.
+     *
+     * @return bool True if in development mode, otherwise we return false.
+     */
     public static function isDev() {
         $env = env('APP_ENV', 'production');
         return Vite::viteIsRunning() || in_array($env, ['local','dev','development'], true);
     }
+
+    /**
+     * Adds production tags.
+     *
+     * @param string $entry Relative path from project root (e.g. 'resources/js/app.jsx')
+     * @return string The prod tags.
+     */
     private static function prodTags(string $entry): string
     {
         $manifestPath = __DIR__ . '/../../public/build/manifest.json';
@@ -95,8 +125,13 @@ HTML;
             : self::prodTags($entry);
     }
 
-    // Treat as dev if Vite's dev server is reachable,
-    // OR if your env explicitly says dev-ish.
+    /**
+     * Treat as dev if Vite's dev server is reachable,
+     * OR if your env explicitly says dev-ish.
+     *
+     * @param string $devBase 'http://localhost:5173'
+     * @return bool True if Vite is running, otherwise we return false.
+     */
     public static function viteIsRunning(string $devBase = 'http://localhost:5173'): bool {
         $url = rtrim($devBase, '/') . '/@vite/client';
         $ctx = stream_context_create(['http' => ['method' => 'HEAD', 'timeout' => 0.25]]);
