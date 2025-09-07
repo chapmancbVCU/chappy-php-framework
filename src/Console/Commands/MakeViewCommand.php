@@ -73,6 +73,6 @@ class MakeViewCommand extends Command {
             }
         }
 
-        return View::makeView($filePath, $viewArray[1], $named);
+        return View::makeView($filePath);
     }
 }
