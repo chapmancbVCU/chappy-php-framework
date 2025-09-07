@@ -1,5 +1,5 @@
 import React from "react";
-export const PasswordComplexityRequirements = () =>{
+export const PasswordComplexityRequirements = () => {
     return (
         <div>
             <h4 className="text-center">Password Requirements</h4>

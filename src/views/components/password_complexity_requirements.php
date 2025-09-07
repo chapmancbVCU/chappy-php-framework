@@ -1,5 +1,5 @@
 <div>
-    <h4>Password Requirements</h4>
+    <h4 class="text-center">Password Requirements</h4>
     <ul class="pl-3">
         <?php if (env('SET_PW_MIN_LENGTH', false)): ?>
             <li>Minimum <?= env('PW_MIN_LENGTH', 12) ?> characters in length</li>
