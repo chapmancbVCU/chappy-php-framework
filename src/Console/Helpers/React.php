@@ -34,6 +34,14 @@ export const '.$componentName.' = () => {
 ';
     }
 
+    /**
+     * Generates component under 'resources/js/components'.
+     *
+     * @param string $componentName The name of the component.
+     * @param bool $named Boolean flag to determine if named or default 
+     * component is generated.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeComponent(string $componentName, bool $named): int {
         $componentPath = self::COMPONENT_PATH.Str::lcfirst($componentName).'.jsx';
         $content = ($named) 
