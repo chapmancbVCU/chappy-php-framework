@@ -5,7 +5,7 @@ namespace Chappy\Console\Helpers;
 use Symfony\Component\Console\Command\Command;
 
 class React {
-
+    public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'components'.DS;
     public static function defaultComponentTemplate(string $componentName): string {
         return 'import React from "react"
 function '.$componentName.'() {
