@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Implements command for making a new react component.
  */
-class MakeReactComponentCommand extends Command {
+class MakeReactUtilCommand extends Command {
     /**
      * Configures the command.
      *
@@ -19,11 +19,10 @@ class MakeReactComponentCommand extends Command {
      */
     protected function configure(): void
     {
-        $this->setName('react:component')
-            ->setDescription('Generates a new React.js component')
-            ->setHelp('php console react:component <directory_name>.<component_name>')
-            ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new React.js component')
-            ->addOption('named', null, InputOption::VALUE_NONE, 'Creates as a named export');
+        $this->setName('react:util')
+            ->setDescription('Generates a new React.js supporting utility')
+            ->setHelp('php console react:util <component_name>')
+            ->addArgument('utility-name', InputArgument::REQUIRED, 'Pass the name for the new React.js utility');
     }
 
     /**
