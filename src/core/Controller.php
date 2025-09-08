@@ -52,6 +52,21 @@ class Controller extends Application {
     }
 
     /**
+     * Makes JSON Response for error payloads.
+     *
+     * @param string $message The error message.
+     * @param integer $status The status code.
+     * @param array $errors The array of errors.
+     * @return void
+     */
+    public function jsonError(string $message, int $status = 400, array $errors = []): void {
+        $this->jsonResponse(
+            ['success' => false, 'message' => $message, 'errors' => $errors], 
+            $status
+        );
+    }
+
+    /**
      * Captures the current View instance during testing so that test assertions
      * (e.g., assertViewContains) can access view-bound variables.
      *
