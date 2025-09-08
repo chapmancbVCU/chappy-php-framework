@@ -34,8 +34,7 @@ class MakeReactUtilCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $componentName = $input->getArgument('component-name');
-        $named = $input->getOption('named');
-        return React::makeComponent($componentName, $named);
+        $utilityName = $input->getArgument('utility-name');
+        return React::makeUtility($utilityName);
     }
 }
