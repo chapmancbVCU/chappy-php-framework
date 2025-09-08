@@ -79,4 +79,10 @@ export const '.$componentName.' = () => {
 
         return Tools::writeFile($filePath, $content, 'React page');
     }
+
+    public static function makeUtility(string $utilityName): int {
+        Tools::pathExists(self::UTILS_PATH);
+        $filePath = self::UTILS_PATH.$utilityName.'.js';
+        return Tools::writeFile($filePath, '', 'JavaScript utility');
+    }
 }
