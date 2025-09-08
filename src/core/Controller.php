@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Core;
+use Throwable;
 use Core\Application;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Testing\ApplicationTestCase;
@@ -42,12 +43,29 @@ class Controller extends Application {
      */
     public function jsonResponse(mixed $data, int $status = 200, array $extraHeaders = []): void {
         // CORS - keep '*' only for public, no-credentials endpoints
+        $headers = [
+            'Access-Control-Allow-Origin'   => '*',
+            'Content-Type'                  => 'application/json; charset=UTF-8',
+            'Cache-control'                 => 'no-store'
+        ]  + $extraHeaders;
 
+        foreach($headers as $k => $v) {
+            header("$k: $v");
+        }
 
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        http_response_code(200);
-        echo json_encode($res);
+        http_response_code($status);
+
+        $flags = JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE;
+        if(env('APP_ENV', 'production') !== 'production') {
+            $flags |= JSON_PRETTY_PRINT;
+        }
+
+        try {
+            echo json_encode($data, $flags | JSON_THROW_ON_ERROR);
+        } catch(Throwable $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'JSON encoding error'], $flags);
+        }
         exit;
     }
 
