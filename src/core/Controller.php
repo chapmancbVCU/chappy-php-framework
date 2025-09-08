@@ -90,4 +90,18 @@ class Controller extends Application {
      * @return void
      */
     public function onConstruct(): void {}
+
+    /**
+     * Respond to CORS preflight.
+     *
+     * @return void
+     */
+    public function preflight(): void
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-CSRF-Token');
+        http_response_code(204);
+        exit;
+    }
 }
