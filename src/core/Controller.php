@@ -37,10 +37,13 @@ class Controller extends Application {
     /**
      * Sample jsonResponse for supporting AJAX requests.
      *
-     * @param mixed $res The JSON response.
+     * @param mixed $data The JSON response.
      * @return void
      */
-    public function jsonResponse(mixed $res): void {
+    public function jsonResponse(mixed $data, int $status = 200, array $extraHeaders = []): void {
+        // CORS - keep '*' only for public, no-credentials endpoints
+
+
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         http_response_code(200);
