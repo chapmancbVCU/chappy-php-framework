@@ -9,7 +9,7 @@ class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
     public const PAGE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'pages'.DS;
     public const UTILS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'utils'.DS;
-    
+
     /**
      * Generates a component with default export.
      *
@@ -63,6 +63,15 @@ export const '.$componentName.' = () => {
         return Tools::writeFile($componentPath, $content, 'React component');
     }
 
+    /**
+     * Generates a page view component under 'resources/js/pages/<group_name>'.
+     *
+     * @param string $filePath Full path for new page component.
+     * @param string $pageName Name of the page component.
+     * @param boolean $named Boolean flag to determine if named or default 
+     * component is generated.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makePage(string $filePath, string $pageName, bool $named = false): int {
         $content = ($named)
             ? self::namedComponentTemplate($pageName) 
