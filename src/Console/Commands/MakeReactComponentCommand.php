@@ -21,7 +21,7 @@ class MakeReactComponentCommand extends Command {
     {
         $this->setName('react:component')
             ->setDescription('Generates a new React.js component')
-            ->setHelp('php console react:component <directory_name>.<component_name>')
+            ->setHelp('php console react:component <component_name>')
             ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new React.js component')
             ->addOption('named', null, InputOption::VALUE_NONE, 'Creates as a named export');
     }
