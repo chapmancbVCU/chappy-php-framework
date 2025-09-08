@@ -80,6 +80,13 @@ export const '.$componentName.' = () => {
         return Tools::writeFile($filePath, $content, 'React page');
     }
 
+    /**
+     * Generates a JavaScript file under 'resources/js/utils' to be 
+     * use as support file with React.js front-end.
+     *
+     * @param string $utilityName The name of the utility file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeUtility(string $utilityName): int {
         Tools::pathExists(self::UTILS_PATH);
         $filePath = self::UTILS_PATH.$utilityName.'.js';
