@@ -56,7 +56,7 @@ export const '.$componentName.' = () => {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeComponent(string $componentName, bool $named = false): int {
-        $componentPath = self::COMPONENT_PATH.Str::lcfirst($componentName).'.jsx';
+        $componentPath = self::COMPONENT_PATH.Str::ucfirst($componentName).'.jsx';
         $content = ($named) 
             ? self::namedComponentTemplate($componentName) 
             : self::defaultComponentTemplate($componentName);
