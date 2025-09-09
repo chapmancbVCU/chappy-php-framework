@@ -7,21 +7,21 @@ namespace Core\Lib\Http;
  */
 class Api {
     protected string $baseUrl;
+    protected string $cacheDir;
     protected array $defaultHeaders = [];
     protected array $defaultQuery = [];
-    protected int $timeout;
     protected int $defaultTtl;
-    protected string $cacheDir;
+    protected int $timeout;
 
     private CONST CACHE_DIRECTORY = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'cache';
 
     public function construct(
         string $baseUrl,
+        string $cacheNamespace = 'api',
         array $defaultHeaders = ['Accept' => 'application/json'],
         array $defaultQuery,
-        int $timeout = 6,
         int $defaultTtl = 0,
-        string $cacheNamespace = 'api'
+        int $timeout = 6
     ) {
         $this->baseUrl = $baseUrl;
         $this->defaultHeaders = $defaultHeaders;
@@ -32,5 +32,18 @@ class Api {
         $rootCache = defined('CHAPPY_BASE_PATH') ? self::CACHE_DIRECTORY : sys_get_temp_dir();
         $this->cacheDir = $rootCache . DS . $cacheNamespace;
         if (!is_dir($this->cacheDir)) @mkdir($this->cacheDir, 0775, true);
+    }
+
+    /**
+     * Build an absolute URL with merged default + per-call query.
+     *
+     * @param string $path The path.
+     * @param array $query The per-call query.
+     * @return string The absolute URL
+     */
+    protected function buildURL(string $path, array $query): string {
+        $q = $this->defaultQuery + $query;
+        $qs = $q ? ('?' . http_build_query($q)) : '';
+        return $this->baseUrl . $path . $qs;
     }
 }
