@@ -41,9 +41,19 @@ class Api {
      * @param array $query The per-call query.
      * @return string The absolute URL
      */
-    protected function buildURL(string $path, array $query): string {
+    protected function buildUrl(string $path, array $query): string {
         $q = $this->defaultQuery + $query;
         $qs = $q ? ('?' . http_build_query($q)) : '';
         return $this->baseUrl . $path . $qs;
+    }
+
+    /**
+     * Caching helpers (GET only)
+     *
+     * @param string
+     * @return string
+     */
+    protected function cacheFile(string $url): string {
+        return $this->cacheDir . DS . 'cache_' . md5($url) . '.json';
     }
 }
