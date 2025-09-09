@@ -65,4 +65,11 @@ class Api {
 
         return $out;
     }
+
+    protected function writeCache(string $url, array $data): void {
+        @file_put_contents(
+            $this->cacheFile($url),
+            json_encode($data, JSON_UNESCAPED_UNICODE)
+        );
+    }
 }
