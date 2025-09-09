@@ -56,4 +56,13 @@ class Api {
     protected function cacheFile(string $url): string {
         return $this->cacheDir . DS . 'cache_' . md5($url) . '.json';
     }
+
+    protected function flattenHeaders(array $headers): array {
+        $out = [];
+        foreach($headers as $k => $v) {
+            $out[] = "{$k}: {$v}";
+        }
+
+        return $out;
+    }
 }
