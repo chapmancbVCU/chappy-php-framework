@@ -42,7 +42,7 @@ class Api {
      * @return string The absolute URL
      */
     protected function buildUrl(string $path, array $query): string {
-        $q = $this->defaultQuery + $query;
+        $q = array_merge($this->defaultQuery, $query);
         $qs = $q ? ('?' . http_build_query($q)) : '';
         return $this->baseUrl . $path . $qs;
     }
@@ -85,13 +85,14 @@ class Api {
 
     public function post(string $path, array $body = [], array $query = [], array $headers = []): array {
         $url = $this->buildUrl($path, $query);
-        $headers = ['Content-type' => 'application/json'] + $headers;
-        return $this->requestJson(
-            'POST',
-            $url,
-            json_encode($body, JSON_UNESCAPED_UNICODE),
-            $headers
-        );
+        $headers = ['Content-Type' => 'application/json'] + $headers;
+
+        $payload = json_encode($body, JSON_UNESCAPED_UNICODE);
+        if($payload === false) {
+            throw new \RuntimeException('Failed to JSON-encode POST body.');
+        }
+
+        return $this->requestJson('POST', $url, $payload, $headers);
     }
 
     protected function readCache(string $url, int $ttl): ?array {
@@ -109,7 +110,8 @@ class Api {
 
         $ch = curl_init($url);
         curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => $method,
+            CURLOPT_CUSTOMREQUEST  => $method,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_TIMEOUT        => $this->timeout,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
