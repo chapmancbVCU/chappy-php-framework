@@ -10,6 +10,7 @@ class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
     public const PAGE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'pages'.DS;
     public const UTILS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'utils'.DS;
+    
     /**
      * Generates a component with default export.
      *
@@ -27,16 +28,6 @@ function '.$componentName.'() {
     );
 }        
 export default '.$componentName.';';
-    }
-
-    private static function installNpmPackages(): void {
-        shell_exec('npm i react react-dom');
-        shell_exec('npm i -D @vitejs/plugin-react');
-        shell_exec('npm i dompurify');
-        shell_exec('npm i jquery jquery-ui-dist ');
-        shell_exec('npm i tinymce');
-
-        Tools::info("npm packages have been installed");
     }
 
     /**
@@ -101,10 +92,5 @@ export const '.$componentName.' = () => {
         Tools::pathExists(self::UTILS_PATH);
         $filePath = self::UTILS_PATH.$utilityName.'.js';
         return Tools::writeFile($filePath, '', 'JavaScript utility');
-    }
-
-    public static function react(): int {
-
-        return Command::SUCCESS;
     }
 }
