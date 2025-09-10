@@ -104,6 +104,44 @@ class Api {
         return is_array($data) ? $data : null;
     }
 
+    protected function requestJson(string $method, string $url, ?string $body, array $headers): array {
+        $flatHeaders = $this->flattenHeaders($this->defaultHeaders + $headers);
+
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_TIMEOUT        => $this->timeout,
+            CURLOPT_CONNECTTIMEOUT => $this->timeout,
+            CURLOPT_HTTPHEADER     => $flatHeaders,
+        ]);
+
+        if($body !== null) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        }
+
+        $resp = curl_exec($ch);
+        $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $err = curl_error($ch);
+        curl_close($ch);
+
+        if($resp === false) {
+            throw new \RuntimeException("Upstream request failed: {$err}");
+        }
+
+        $data = json_decode((string)$body, true);
+        if(!is_array($data)) {
+            throw new \RuntimeException("Invalid JSON from upstream (HTTP {$code}).");
+        }
+
+        if($code >= 400) {
+            $msg = $data['message'] ?? 'Upstream error';
+            throw new \RuntimeException($msg, $code);
+        }
+
+        return $data;
+    }
+
     protected function writeCache(string $url, array $data): void {
         @file_put_contents(
             $this->cacheFile($url),
