@@ -83,6 +83,17 @@ class Api {
         return $data;
     }
 
+    public function post(string $path, array $body = [], array $query = [], array $headers = []): array {
+        $url = $this->buildUrl($path, $query);
+        $headers = ['Content-type' => 'application/json'] + $headers;
+        return $this->requestJson(
+            'POST',
+            $url,
+            json_encode($body, JSON_UNESCAPED_UNICODE),
+            $headers
+        );
+    }
+
     protected function readCache(string $url, int $ttl): ?array {
         $file = $this->cacheFile($url);
         if(!is_file($file)) return null;
