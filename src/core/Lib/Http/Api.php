@@ -66,6 +66,16 @@ class Api {
         return $out;
     }
 
+    protected function readCache(string $url, int $ttl): ?array {
+        $file = $this->cacheFile($url);
+        if(!is_file($file)) return null;
+        if(time() - filemtime($file) > $ttl) return null;
+
+        $raw = file_get_contents($file);
+        $data = json_decode((string)$raw, true);
+        return is_array($data) ? $data : null;
+    }
+
     protected function writeCache(string $url, array $data): void {
         @file_put_contents(
             $this->cacheFile($url),
