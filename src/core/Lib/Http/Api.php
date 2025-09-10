@@ -13,17 +13,17 @@ class Api {
     protected int $defaultTtl;
     protected int $timeout;
 
-    private CONST CACHE_DIRECTORY = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'cache';
+    private const CACHE_DIRECTORY = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'cache';
 
-    public function construct(
+    public function __construct(
         string $baseUrl,
         string $cacheNamespace = 'api',
         array $defaultHeaders = ['Accept' => 'application/json'],
-        array $defaultQuery,
+        array $defaultQuery = [],
         int $defaultTtl = 0,
         int $timeout = 6
     ) {
-        $this->baseUrl = $baseUrl;
+        $this->baseUrl = rtrim($baseUrl, '/');;
         $this->defaultHeaders = $defaultHeaders;
         $this->defaultQuery = $defaultQuery;
         $this->timeout = $timeout;
@@ -109,7 +109,7 @@ class Api {
 
         $ch = curl_init($url);
         curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_RETURNTRANSFER => $method,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_TIMEOUT        => $this->timeout,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
@@ -129,7 +129,7 @@ class Api {
             throw new \RuntimeException("Upstream request failed: {$err}");
         }
 
-        $data = json_decode((string)$body, true);
+        $data = json_decode((string)$resp, true);
         if(!is_array($data)) {
             throw new \RuntimeException("Invalid JSON from upstream (HTTP {$code}).");
         }
