@@ -66,6 +66,23 @@ class Api {
         return $out;
     }
 
+    public function get(string $path, array $query = [], ?int $ttl = null): array {
+        $ttl = $ttl ?? $this->defaultTtl;
+        $url = $this->buildUrl($path, $query);
+
+        if($ttl > 0) {
+            $hit = $this->readCache($url, $ttl);
+            if($hit !== null) return $hit;
+        }
+
+        $data = $this->requestJson('GET', $url, null, []);
+        if($ttl > 0) {
+            $this->writeCache($url, $data);
+        }
+
+        return $data;
+    }
+
     protected function readCache(string $url, int $ttl): ?array {
         $file = $this->cacheFile($url);
         if(!is_file($file)) return null;
