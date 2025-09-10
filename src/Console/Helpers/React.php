@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace Chappy\Console\Helpers;
+namespace Console\Console\Helpers;
 
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
+use Symfony\Component\Console\Command\Command;
 
 class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
@@ -91,5 +92,10 @@ export const '.$componentName.' = () => {
         Tools::pathExists(self::UTILS_PATH);
         $filePath = self::UTILS_PATH.$utilityName.'.js';
         return Tools::writeFile($filePath, '', 'JavaScript utility');
+    }
+
+    public static function react(): int {
+
+        return Command::SUCCESS;
     }
 }
