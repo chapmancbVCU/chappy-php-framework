@@ -4,12 +4,13 @@ namespace Console\Console\Helpers;
 
 class ReactStubs {
     public function profileImageSorter(): string {
-        return 'import React, { useEffect, useRef, useState } from \'react\';
-import $ from \'jquery\';
-import \'jquery-ui-dist/jquery-ui.css\';
-import { getCsrf } from \'@chappy/utils/csrf\';
-import \'@css/profileImage.css\';
-import asset from \'@chappy/utils/asset\';
+        return <<<'JSX'
+        import React, { useEffect, useRef, useState } from 'react';
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui.css';
+import { getCsrf } from '@chappy/utils/csrf';
+import '@css/profileImage.css';
+import asset from '@chappy/utils/asset';
 
 /**
  * A single profile image row used by the sorter.
@@ -24,7 +25,7 @@ import asset from \'@chappy/utils/asset\';
  * @typedef {Object} ProfileImageSorterProps
  * @property {ProfileImage[]} [initialImages=[]]
  *   Initial list of images to display and sort.
- * @property {string} [deleteEndpoint=\'/profile/deleteImage\']
+ * @property {string} [deleteEndpoint='/profile/deleteImage']
  *   Endpoint that deletes an image. Expects `POST image_id, csrf_token`
  *   and returns JSON `{ success: boolean, model_id?: string|number }`.
  */
@@ -41,7 +42,7 @@ import asset from \'@chappy/utils/asset\';
  */
 export default function ProfileImageSorter({
     initialImages = [],
-    deleteEndpoint = \'/profile/deleteImage\',
+    deleteEndpoint = '/profile/deleteImage',
 }) {
     /** 
      * The working list of images shown in the UI. 
@@ -70,17 +71,17 @@ export default function ProfileImageSorter({
         let destroyed = false;
 
         (async () => {
-            await import(\'jquery-ui-dist/jquery-ui\');
+            await import('jquery-ui-dist/jquery-ui');
 
             if (destroyed) return;
 
             const $el = $(el);
-            if ($el.data(\'ui-sortable\')) {
-                $el.sortable(\'refresh\');
+            if ($el.data('ui-sortable')) {
+                $el.sortable('refresh');
             } else {
                 $el.sortable({
-                axis: \'x\',
-                placeholder: \'sortable-placeholder\',
+                axis: 'x',
+                placeholder: 'sortable-placeholder',
                 update: updateHidden,
                 });
             }
@@ -91,7 +92,7 @@ export default function ProfileImageSorter({
 
         return () => {
             destroyed = true;
-            try { $(el).sortable(\'destroy\'); } catch {}
+            try { $(el).sortable('destroy'); } catch {}
         };
     }, [images.length]);
 
@@ -101,7 +102,7 @@ export default function ProfileImageSorter({
      * @returns {void}
      */
     function updateHidden() {
-        const arr = $(listRef.current).sortable(\'toArray\');
+        const arr = $(listRef.current).sortable('toArray');
         if (sortedRef.current) sortedRef.current.value = JSON.stringify(arr);
     }
 
@@ -112,12 +113,12 @@ export default function ProfileImageSorter({
      * @returns {Promise<void>}
      */
     async function handleDelete(id) {
-        if (!confirm(\'Are you sure? This cannot be undone!\')) return;
+        if (!confirm('Are you sure? This cannot be undone!')) return;
         const fd = new FormData();
-        fd.append(\'image_id\', id);
-        fd.append(\'csrf_token\', getCsrf());
+        fd.append('image_id', id);
+        fd.append('csrf_token', getCsrf());
 
-        const res = await fetch(deleteEndpoint, { method: \'POST\', body: fd, credentials: \'same-origin\' });
+        const res = await fetch(deleteEndpoint, { method: 'POST', body: fd, credentials: 'same-origin' });
         let data = null; 
         try { 
             data = await res.json(); 
@@ -126,7 +127,7 @@ export default function ProfileImageSorter({
         if (data?.success) {
             // Remove from UI, `useEffect` will refresh hidden order
             setImages(prev => prev.filter(img => img.id !== id));
-            window.alert?.(\'Image Deleted.\');
+            window.alert?.('Image Deleted.');
         }
     }
 
@@ -140,7 +141,7 @@ export default function ProfileImageSorter({
                     <button type="button" className="btn btn-danger btn-sm mb-2" onClick={() => handleDelete(img.id)}>
                     <i className="fa fa-times" />
                     </button>
-                    <div className={`edit-image-wrapper ${img.sort === 0 ? \'current-profile-img\' : \'\'}`} data-id={img.id}>
+                    <div className={`edit-image-wrapper ${img.sort === 0 ? 'current-profile-img' : ''}`} data-id={img.id}>
                     <img src={asset(img.url)} alt="" />
                     </div>
                 </div>
@@ -148,6 +149,7 @@ export default function ProfileImageSorter({
             </div>
         </>
     );
-}';
+}
+JSX;
     }
 }
