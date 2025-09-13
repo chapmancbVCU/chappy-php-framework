@@ -174,6 +174,26 @@ JSX;
     }
 
     /**
+     * Stub for restoring required error/NotFound.jsx page component if 
+     * accidentally deleted.
+     *
+     * @return string Contents of the error/NotFound.jsx page component.
+     */
+    public static function errorNotFound(): string {
+        return <<<'JSX'
+import React from "react";
+
+/**
+ * Renders error page with "The view was not found message".
+ * @returns {JSX.Element} H1 element with "The view was not found" message.
+ */
+export default function NotFound() {
+    return <h1 className="text-center">The was not found</h1>
+}
+JSX;
+    }
+
+    /**
      * Stub for home/Index.jsx page component.
      *
      * @return string The contents of the home/Index.jsx page component.
