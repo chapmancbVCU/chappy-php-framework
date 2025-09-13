@@ -36,7 +36,7 @@ export default '.$componentName.';';
         $path = self::PAGE_PATH.'home'.DS;
         Tools::pathExists($path);
 
-        Tools::writeFile($path.'Index.jsx', HelpersReactStubs)
+        return Tools::writeFile($path.'Index.jsx', ReactStubs::homeIndex(), 'Home.index');
     }
 
     /**
