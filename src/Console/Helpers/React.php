@@ -13,6 +13,20 @@ class React {
     public const UTILS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'utils'.DS;
     
     /**
+     * Generates the auth jsx components.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function authComponents(): int {
+        $path = self::PAGE_PATH.'auth'.DS;
+        Tools::pathExists($path);
+
+        Tools::writeFile($path.'Login.jsx', ReactStubs::authLogin(), 'auth/Login.jsx');
+        Tools::writeFile($path.'Register.jsx', ReactStubs::authRegister(), 'auth/Register.jsx');
+        return Command::SUCCESS;
+    }
+
+    /**
      * Generates a component with default export.
      *
      * @param string $componentName The name of the component.
@@ -40,7 +54,7 @@ export default '.$componentName.';';
         $path = self::PAGE_PATH.'error'.DS;
         Tools::pathExists($path);
 
-        return Tools::writeFile($path.'NotFound.jsx', ReactStubs::errorNotFound(), 'Error.NotFound');
+        return Tools::writeFile($path.'NotFound.jsx', ReactStubs::errorNotFound(), 'error/NotFound.jsx');
     }
 
     /**
@@ -52,7 +66,7 @@ export default '.$componentName.';';
         $path = self::PAGE_PATH.'home'.DS;
         Tools::pathExists($path);
 
-        return Tools::writeFile($path.'Index.jsx', ReactStubs::homeIndex(), 'Home.index');
+        return Tools::writeFile($path.'Index.jsx', ReactStubs::homeIndex(), 'home/index.jsx');
     }
 
     /**
