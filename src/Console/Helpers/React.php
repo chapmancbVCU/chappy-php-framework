@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Console\Console\Helpers;
+namespace Console\Helpers;
 
+use Console\Helpers\ReactStubs;
 use Console\Helpers\Tools;
 use Console\Helpers\ReactStubs;
 use Core\Lib\Utilities\Str;
@@ -29,6 +30,13 @@ function '.$componentName.'() {
     );
 }        
 export default '.$componentName.';';
+    }
+
+    public static function homeComponent(): int {
+        $path = self::PAGE_PATH.'home'.DS;
+        Tools::pathExists($path);
+
+        Tools::writeFile($path.'Index.jsx', HelpersReactStubs)
     }
 
     /**
