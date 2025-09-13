@@ -188,7 +188,7 @@ import React from "react";
  * @returns {JSX.Element} H1 element with "The view was not found" message.
  */
 export default function NotFound() {
-    return <h1 className="text-center">The was not found</h1>
+    return <h1 className="text-center">The view was not found</h1>
 }
 JSX;
     }
