@@ -132,4 +132,19 @@ export const '.$componentName.' = () => {
         $filePath = self::UTILS_PATH.$utilityName.'.js';
         return Tools::writeFile($filePath, '', 'JavaScript utility');
     }
+
+    /**
+     * Generates the profile jsx components.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function profileComponents(): int {
+        $path = self::PAGE_PATH.'profile'.DS;
+        Tools::pathExists($path);
+
+        Tools::writeFile($path.'Edit.jsx', ReactStubs::profileEdit(), 'profile/Edit.jsx');
+        Tools::writeFile($path.'Index.jsx', ReactStubs::profileIndex(), 'profile/Index.jsx');
+        Tools::writeFile($path.'UpdatePassword.jsx', ReactStubs::profileUpdatePassword(), 'profile/UpdatePassword.jsx');
+        return Command::SUCCESS;
+    }
 }
