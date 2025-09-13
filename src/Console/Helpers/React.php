@@ -32,6 +32,18 @@ export default '.$componentName.';';
     }
 
     /**
+     * Generates the error/NotFound.jsx component.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function errorNotFoundComponent(): int {
+        $path = self::PAGE_PATH.'error'.DS;
+        Tools::pathExists($path);
+
+        return Tools::writeFile($path.'NotFound.jsx', ReactStubs::homeIndex(), 'Error.NotFound');
+    }
+
+    /**
      * Generates the home/Index.jsx component.
      *
      * @return int A value that indicates success, invalid, or failure.
