@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Console\Helpers;
 
 use Console\Helpers\Tools;
+use Console\Helpers\ReactStubs;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 
