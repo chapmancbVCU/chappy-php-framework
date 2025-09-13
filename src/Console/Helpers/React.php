@@ -40,7 +40,7 @@ export default '.$componentName.';';
         $path = self::PAGE_PATH.'error'.DS;
         Tools::pathExists($path);
 
-        return Tools::writeFile($path.'NotFound.jsx', ReactStubs::homeIndex(), 'Error.NotFound');
+        return Tools::writeFile($path.'NotFound.jsx', ReactStubs::errorNotFound(), 'Error.NotFound');
     }
 
     /**
