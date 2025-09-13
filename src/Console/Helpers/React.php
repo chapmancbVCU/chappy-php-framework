@@ -31,6 +31,11 @@ function '.$componentName.'() {
 export default '.$componentName.';';
     }
 
+    /**
+     * Generates the home/Index.jsx component.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function homeComponent(): int {
         $path = self::PAGE_PATH.'home'.DS;
         Tools::pathExists($path);
