@@ -3,6 +3,11 @@ declare(strict_types=1);
 namespace Console\Console\Helpers;
 
 class ReactStubs {
+    /**
+     * Stub for ProfileImageSorter.jsx component.
+     *
+     * @return string The contents of ProfileImageSorter.jsx file.
+     */
     public function profileImageSorter(): string {
         return <<<'JSX'
         import React, { useEffect, useRef, useState } from 'react';
