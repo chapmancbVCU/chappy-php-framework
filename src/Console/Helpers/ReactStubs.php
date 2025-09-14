@@ -209,11 +209,11 @@ import asset from '@chappy/utils/asset'
  * @returns {JSX.Element} The contents of Index view.
  */
 export default function Index({ user }) {
-const username = user.fname ?? 'Guest';
+const name = user.fname ?? 'Guest';
     return (
         <div className="container">
         <div className="text-center">
-            <h1 className="display-4">Hello, {username} 👋</h1>
+            <h1 className="display-4">Hello, {name} 👋</h1>
             <h1 className="display-4">Welcome to</h1>
             <div className="col-12 mx-auto text-center">
             <img className="w-50" src={asset("public/logo.png", true)} alt="Framework Logo" />
