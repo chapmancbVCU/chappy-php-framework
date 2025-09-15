@@ -25,7 +25,7 @@ export const Button = ({label, inputAttrs={}}) => {
  * @property {string} label The contents of the button's label.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @param {*} param0 
  * @returns 
@@ -55,8 +55,10 @@ export const ButtonBlock = ({label, inputAttrs, divAttrs}) => {
  * used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
  * @param {*} param0 
  * @returns 
  */
@@ -122,8 +124,10 @@ export const CheckBoxLeftLabel = ({
  * used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
  * @param {*} param0 
  * @returns 
  */
@@ -214,7 +218,7 @@ export const DisplayErrors = ({errors}) => {
  * and forms used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
@@ -296,7 +300,7 @@ const Hidden = ({
  * and forms used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
@@ -479,7 +483,7 @@ const RichText = ({
  * select option dropdown.  The default value is an empty array.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
@@ -539,7 +543,7 @@ const SelectOptions = ({option, fieldName}) => {
  * button.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @param {InputProps} param0 
  * @returns A surrounding div and the input element of type submit.
@@ -584,7 +588,7 @@ export const SubmitTag = ({label, inputAttrs={}}) => {
  * and forms used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
@@ -626,7 +630,7 @@ export const Tel = ({
  * and forms used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
