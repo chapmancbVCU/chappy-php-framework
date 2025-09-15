@@ -1,5 +1,5 @@
 /**
- * Retrieves assets from project.
+ * Retrieves assets from project or S3 bucket.
  * @param {string} path The path to the asset.
  * @param {bool} local If true use APP_DOMAIN instead of S3_BUCKET.
  * @returns The full path to the asset.
