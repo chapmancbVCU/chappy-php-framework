@@ -139,6 +139,14 @@ export const '.$componentName.' = () => {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function profileComponents(): int {
+        $componentPath = self::COMPONENT_PATH;
+        Tools::pathExists($componentPath);
+        Tools::writeFile(
+            $componentPath.'ProfileImageSorter.jsx',
+            ReactStubs::profileImageSorter(),
+            'components/ProfileImageSorter.jsx'
+        );
+
         $path = self::PAGE_PATH.'profile'.DS;
         Tools::pathExists($path);
 
