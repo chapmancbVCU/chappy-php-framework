@@ -466,6 +466,7 @@ const RichText = ({
 };
 
 /**
+ * Renders a select element with a list of options.
  * @property {string} label Sets the label for this input.
  * @property {string}  name Sets the value for the name, for, and id attributes 
  * for this input.
