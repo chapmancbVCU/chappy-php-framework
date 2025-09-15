@@ -405,7 +405,7 @@ const Radio = ({
  * and forms used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @property {object} outputAttrs The values used to set the class and other 
+ * @property {object} divAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
  * @property {Record<string,string[]>|string[]} [errors=[]] Error bag used by `errorMsg(errors, name)`.
  *
