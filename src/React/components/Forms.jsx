@@ -533,6 +533,7 @@ const SelectOptions = ({option, fieldName}) => {
 }
 
 /**
+ * Generates a div containing an input of type submit.
  * @property {string} label Sets the value of the text describing the 
  * button.
  * @property {object} inputAttrs The values used to set the class and other 
