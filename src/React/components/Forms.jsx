@@ -216,7 +216,7 @@ export const DisplayErrors = ({errors}) => {
  * attributes of the input string.  The default value is an empty object.
  * @property {object} outputAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
- * @property {Record<string, string[]>|string[]} [errors=[]]The errors object.  
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type email.
@@ -298,7 +298,7 @@ const Hidden = ({
  * attributes of the input string.  The default value is an empty object.
  * @property {object} outputAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
- * @property {Record<string, string[]>|string[]} [errors=[]]The errors object.  
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  * @param {InputProps} props
  * @returns {HTMLDListElement} A surrounding div and the input element.
@@ -585,7 +585,7 @@ export const SubmitTag = ({label, inputAttrs={}}) => {
  * attributes of the input string.  The default value is an empty object.
  * @property {object} outputAttrs The values used to set the class and other 
  * attributes of the surrounding div.  The default value is an empty object.
- * @property {Record<string, string[]>|string[]} [errors=[]]The errors object.  
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement}
