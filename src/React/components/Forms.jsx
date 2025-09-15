@@ -6,7 +6,8 @@ import tinymce from '@chappy/utils/tinyMCEBootstrap'
 import contentCssUrl from 'tinymce/skins/content/default/content.min.css?url'; 
 
 /**
- * Returns Button component with text set.
+ * Returns Button component with text set.  Supports ability to have functions 
+ * for event handlers
  * @property {string} label The contents of the button's label.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
@@ -20,7 +21,7 @@ export const Button = ({label, inputAttrs={}}) => {
 
 /**
  * Supports ability to create a styled button and styled surrounding div 
- * block.  Supports ability to have functions for event handlers".
+ * block.  Supports ability to have functions for event handlers.
  * @property {string} label The contents of the button's label.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
