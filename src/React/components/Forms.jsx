@@ -475,7 +475,7 @@ const RichText = ({
  * is the empty string.  It can be set with values during form validation 
  * and forms used for editing records.
  * @property {string} fieldName The name of the field in the model to use.
- * @property {array} The list of options we will use to populate the 
+ * @property {array} options The list of options we will use to populate the 
  * select option dropdown.  The default value is an empty array.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
