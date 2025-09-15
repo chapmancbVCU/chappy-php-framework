@@ -266,8 +266,8 @@ const FieldErrors = ({ errors = {}, name }) => {
 
 /**
  * Generates a hidden input element.
- * @property {string} The value for the name and id attributes.
- * @property {string|number} The value for the value attribute.
+ * @property {string} name The value for the name and id attributes.
+ * @property {string|number} value The value for the value attribute.
  * @param {InputProps} param0 
  * @returns {HTMLInputElement} The html input element with type hidden
  */
