@@ -270,9 +270,9 @@ JSX;
      *
      * @return string The contents of ProfileImageSorter.jsx file.
      */
-    public function profileImageSorter(): string {
+    public static function profileImageSorter(): string {
         return <<<'JSX'
-        import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.css';
 import { getCsrf } from '@chappy/utils/csrf';
