@@ -21,6 +21,66 @@ export function apiPut(path, body = {}, opts) {
   return apiRequest('PUT', path, { ...opts, body });
 }
 
+/**
+ * Core HTTP client for same-origin requests used by `apiGet/apiPost/...`.
+ *
+ * Behavior:
+ * - Builds a URL from `path` and optional `opts.query` (via `URLSearchParams`).
+ * - Sends `X-Requested-With: XMLHttpRequest` and includes cookies (`credentials: 'same-origin'`).
+ * - For non-GET requests, JSON-encodes `opts.body` unless it is `FormData`, `Blob`,
+ *   `ArrayBuffer`, `URLSearchParams`, or a `ReadableStream` (in which case the browser
+ *   sets the appropriate headers).
+ * - Parses JSON responses; on empty/no-content responses (e.g., 204/205/304/HEAD),
+ *   resolves to `{}`.
+ * - Throws an `Error` when the HTTP status is not OK (non-2xx) **or** when the JSON
+ *   payload contains `{ success: false }`. The error is annotated with `.status` and `.data`.
+ * - Supports cancellation via `AbortSignal` (see `opts.signal`).
+ *
+ * @template T
+ * @param {'GET'|'POST'|'PUT'|'PATCH'|'DELETE'|'HEAD'} method
+ *   HTTP verb to use.
+ * @param {string} path
+ *   Relative or absolute path on the same origin (e.g., `"/api/weather"`).
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   body?: any,
+ *   headers?: Record<string, string>,
+ *   signal?: AbortSignal
+ * }} [opts={}]
+ *   Optional request options.
+ *   - `query`: Key/value pairs appended to the URL. Arrays are supported.
+ *   - `body`: Request payload. If not one of the stream/multipart types listed above, it is JSON-encoded.
+ *   - `headers`: Extra headers to merge into the request (e.g., `{ 'X-CSRF-Token': getCsrf() }`).
+ *   - `signal`: Abort signal to cancel the request (integration-friendly with React effects/hooks).
+ *
+ * @returns {Promise<T | {}>}
+ *   Resolves with parsed JSON (`T`) or `{}` for no-content responses.
+ *
+ * @throws {Error & { status: number, data: any }}
+ *   Throws when `response.ok` is false or the payload has `success === false`.
+ *   May also reject with `"AbortError"` if the provided `signal` aborts the request.
+ *
+ * @example
+ * // GET with query params
+ * const wx = await apiRequest('GET', '/api/weather', {
+ *   query: { q: 'Austin', units: 'imperial' }
+ * });
+ *
+ * @example
+ * // POST JSON with CSRF header
+ * const created = await apiRequest('POST', '/api/items', {
+ *   body: { title: 'Book' },
+ *   headers: { 'X-CSRF-Token': getCsrf() }
+ * });
+ *
+ * @example
+ * // Abortable usage (e.g., inside a React effect)
+ * const ac = new AbortController();
+ * apiRequest('GET', '/api/search', { query: { q: term }, signal: ac.signal })
+ *   .then(setResults)
+ *   .catch(e => { if (e.name !== 'AbortError') console.error(e); });
+ * ac.abort(); // cancel if needed
+ */
 async function apiRequest(method, path, opts = {}) {
   const { query, body, headers, signal} = opts;
   const url = new URL(path, window.location.origin);
