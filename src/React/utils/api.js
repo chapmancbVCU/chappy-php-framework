@@ -1,3 +1,5 @@
+import { useEffect, useState, useRef } from 'react';
+
 /**
  * Performs a same-origin GET request and returns parsed JSON.
  *
@@ -37,28 +39,25 @@
  *   console.error(err.data);
  * }
  */
-export async function apiGet(path, { query } = {}) {
-    const url = new URL(path, window.location.origin);
+export async function apiGet(path, { query, signal } = {}) {
+  const url = new URL(path, window.location.origin);
+  if (query) url.search = new URLSearchParams(query).toString();
 
-    if(query) {
-        url.search = new URLSearchParams(query).toString();
-    }
+  const res = await fetch(url, {
+    credentials: 'same-origin',
+    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    signal
+  });
 
-    const response = await fetch(url, {
-        credentials: 'same-origin',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
-    });;
-
-    const json = await response.json().catch(() => ({}));
-
-    if(!response.ok || json?.success === false) {
-        const error = new Error(json?.message || response.statusText);
-        error.status = response.status;
-        error.data = json;
-        throw error;
-    }
-    return json;
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || json?.success === false) {
+    const err = new Error(json?.message || res.statusText);
+    err.status = res.status; err.data = json;
+    throw err;
+  }
+  return json;
 }
+
 
 /**
  * Sends a same-origin JSON **POST** request and returns the parsed JSON payload.
@@ -123,4 +122,34 @@ export async function apiPost(path, body = {}, { query } = {}) {
     throw err;
   }
   return json;
+}
+
+export function useAsync(asyncFn, deps = []) {
+  const [state, setState] = useState({ data: null, loading: true, error: null });
+  const abortRef = useRef(new AbortController());
+
+  useEffect(() => {
+    // new signal per run
+    abortRef.current.abort();
+    abortRef.current = new AbortController();
+
+    let alive = true;
+    setState({ data: null, loading: true, error: null });
+
+    (async () => {
+      try {
+        const data = await asyncFn({ signal: abortRef.current.signal });
+        if (alive) setState({ data, loading: false, error: null });
+      } catch (error) {
+        if (alive && error?.name !== 'AbortError') {
+          setState({ data: null, loading: false, error });
+        }
+      }
+    })();
+
+    return () => { alive = false; abortRef.current.abort(); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
+
+  return state; // { data, loading, error }
 }
