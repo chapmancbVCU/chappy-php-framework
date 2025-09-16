@@ -77,50 +77,76 @@ export async function apiGet(path, { query, signal } = {}) {
   return json;
 }
 
-
 /**
- * Sends a same-origin JSON **POST** request and returns the parsed JSON payload.
+ * Performs a same-origin **POST** request and returns parsed JSON.
  *
  * Behavior:
- * - Appends optional `query` params to the URL via `URLSearchParams`.
- * - Sends `Content-Type: application/json` and `X-Requested-With: XMLHttpRequest`.
- * - Uses `credentials: 'same-origin'` so cookies/CSRF tokens flow for your app.
+ * - Optionally merges `query` params into the URL via `URLSearchParams`.
+ * - Sends JSON with `Content-Type: application/json` and the header `X-Requested-With: XMLHttpRequest`.
+ * - Includes cookies (`credentials: 'same-origin'`) so session-based auth works.
+ * - Supports cancellation via `AbortSignal` (`options.signal`).
  * - Parses the response as JSON; if parsing fails, falls back to `{}`.
- * - Throws an `Error` when the HTTP status is not OK **or** the JSON includes `{ success: false }`.
+ * - Throws an `Error` when the HTTP status is not OK (non-2xx) **or** when the JSON payload contains `{ success: false }`.
  *   The thrown error includes `.status` (number) and `.data` (the parsed JSON).
  *
  * @template T
  * @param {string} path
- *   Relative or absolute path on the same origin (e.g., `"/api/weather"`).
- * @param {Record<string, any>} [body={}]
- *   Object to JSON-encode as the request body.
- * @param {{ query?: Record<string, string | number | boolean | string[] | number[] | boolean[]> }} [options]
+ *   Relative or absolute path on the same origin (e.g., `"/api/submit"`).
+ * @param {unknown} [body={}]
+ *   Arbitrary data to JSON-encode as the request body. Objects/arrays are typical.
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   signal?: AbortSignal,
+ *   headers?: Record<string, string>
+ * }} [options]
  *   Optional options object.
- *   - `query`: Key/value pairs to append to the URL query string.
+ *   - `query`: Key/value pairs to append to the URL (arrays supported).
+ *   - `signal`: An `AbortSignal` to cancel the request. If aborted, the promise rejects with a DOMException `"AbortError"`.
+ *   - `headers`: Extra headers to merge into the request (e.g., `{ 'X-CSRF-Token': getCsrf() }`).
  *
  * @returns {Promise<T>}
  *   Resolves with the parsed JSON payload typed as `T`.
  *
  * @throws {Error & { status: number, data: any }}
  *   Throws when `response.ok` is false or when the payload has `success === false`.
+ *   May also reject with `AbortError` if the provided `signal` aborts the request.
  *
  * @example
- * // Submit a login form
- * const result = await apiPost('/api/auth/login', {
- *   username: 'chad',
- *   password: 'secret'
+ * // Simple POST
+ * const res = await apiPost('/api/profile', { name: 'Ada' });
+ *
+ * @example
+ * // With query params and CSRF header
+ * const res = await apiPost('/api/items', { title: 'Book' }, {
+ *   query: { shelf: 'reading' },
+ *   headers: { 'X-CSRF-Token': getCsrf() }
  * });
  *
  * @example
- * // With query params and error handling
+ * // Abortable request with AbortController
+ * const ac = new AbortController();
+ * const p = apiPost('/api/upload', { fileId }, { signal: ac.signal });
+ * ac.abort(); // later, if needed
  * try {
- *   const data = await apiPost('/api/weather', { unit: 'imperial' }, { query: { q: 'Austin' } });
- * } catch (err) {
- *   console.error(err.status, err.message);
- *   console.error('Server payload:', err.data);
+ *   await p;
+ * } catch (e) {
+ *   if (e?.name === 'AbortError') {
+ *     // handle cancellation
+ *   }
  * }
+ *
+ * @example
+ * // With a reusable hook (useAsync)
+ * const state = useAsync(
+ *   ({ signal }) => apiPost('/api/login', creds, { signal }),
+ *   [JSON.stringify(creds)]
+ * );
  */
-export async function apiPost(path, body = {}, { query } = {}) {
+export async function apiPost(
+  path,
+  body = {},
+  { query, signal, headers } = {}
+) {
   const url = new URL(path, window.location.origin);
   if (query) url.search = new URLSearchParams(query).toString();
 
@@ -129,19 +155,23 @@ export async function apiPost(path, body = {}, { query } = {}) {
     credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
+      'X-Requested-With': 'XMLHttpRequest',
+      ...(headers || {}),
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    signal, // ✅ enables abort via useAsync
   });
 
   const json = await res.json().catch(() => ({}));
   if (!res.ok || json?.success === false) {
     const err = new Error(json?.message || res.statusText);
-    err.status = res.status; err.data = json;
+    err.status = res.status;
+    err.data = json;
     throw err;
   }
   return json;
 }
+
 
 /**
  * React hook to run an async function and manage `{ data, loading, error }` state,
