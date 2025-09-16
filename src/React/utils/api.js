@@ -47,7 +47,7 @@ async function apiRequest(method, path, opts = {}) {
       body instanceof Blob ||
       body instanceof ArrayBuffer ||
       body instanceof URLSearchParams ||
-      body instanceof ReadableStream;
+      (typeof ReadableStream !== 'undefined' && body instanceof ReadableStream);
 
     if(isMultipart) {
       init.body = body;
@@ -60,16 +60,16 @@ async function apiRequest(method, path, opts = {}) {
   const res = await fetch(url, init);
 
   // Handle 204/empty responses gracefully.
+  const noBodyStatus = res.status === 204 || res.status === 205 || res.status === 304 || init.method === 'HEAD';
   let json = {};
-  const hasBody =
-    res.status !== 204 &&
-    (res.headers.get('content-length') === null || res.headers.get('content-length') !== '0');
-
-  if(hasBody) {
-    json = await res.json().catch(() => ({}));
+  if (!noBodyStatus) {
+    const ct = res.headers.get('content-type') || '';
+    if (ct.includes('application/json') || ct.endsWith('+json')) {
+      json = await res.json().catch(() => ({}));
+    }
   }
 
-  if(!res.ok || /** @type {any} */ (json)?.success == false) {
+  if(!res.ok || /** @type {any} */ (json)?.success === false) {
     const err = new Error(/** @type {any} */ (json)?.message || res.statusText);
     // @ts-ignore annotate for consumers
     err.status = res.status;
