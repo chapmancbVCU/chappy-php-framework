@@ -1,22 +1,104 @@
 import { useEffect, useState, useRef } from 'react';
 
+/**
+ * DELETE request helper.
+ * Passes a body only if provided (some APIs allow body on DELETE).
+ * See `apiRequest` for error semantics and options.
+ *
+ * @template T
+ * @param {string} path
+ *   Relative/absolute same-origin path (e.g., "/api/item/123").
+ * @param {any} [body]
+ *   Optional payload (JSON-encoded unless a FormData/Blob/etc.).
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   headers?: Record<string, string>,
+ *   signal?: AbortSignal
+ * }} [opts]
+ *   Query params, extra headers, and optional AbortSignal.
+ * @returns {Promise<T>}
+ *   Resolves with parsed JSON; rejects with Error annotated with `.status` and `.data` on failure.
+ */
 export function apiDelete(path, body, opts) {
   // Some APIs accept a body with DELETE; pass it only if given.
   return apiRequest('DELETE', path, body == null ? opts : { ...opts, body });
 }
 
+/**
+ * GET request helper.
+ * Merges optional `opts.query` into the URL.
+ * See `apiRequest` for error semantics and options.
+ *
+ * @template T
+ * @param {string} path
+ *   Relative/absolute same-origin path (e.g., "/api/weather").
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   headers?: Record<string, string>,
+ *   signal?: AbortSignal
+ * }} [opts]
+ *   Query params, extra headers, and optional AbortSignal.
+ * @returns {Promise<T>}
+ *   Resolves with parsed JSON; rejects with Error annotated with `.status` and `.data` on failure.
+ */
 export async function apiGet(path, opts) {
   return apiRequest('GET', path, opts);
 }
 
+/**
+ * PATCH request helper.
+ * JSON-encodes `body` unless it is FormData/Blob/etc.
+ * See `apiRequest` for error semantics and options.
+ *
+ * @template T
+ * @param {string} path
+ * @param {any} [body={}]
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   headers?: Record<string, string>,
+ *   signal?: AbortSignal
+ * }} [opts]
+ * @returns {Promise<T>}
+ */
 export function apiPatch(path, body = {}, opts) {
   return apiRequest('PATCH', path, { ...opts, body });
 }
 
+/**
+ * POST request helper.
+ * JSON-encodes `body` unless it is FormData/Blob/etc.
+ * See `apiRequest` for error semantics and options.
+ *
+ * @template T
+ * @param {string} path
+ * @param {any} [body={}]
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   headers?: Record<string, string>,
+ *   signal?: AbortSignal
+ * }} [opts]
+ * @returns {Promise<T>}
+ */
 export function apiPost(path, body = {}, opts) {
   return apiRequest('POST', path, { ...opts, body });
 }
 
+
+/**
+ * PUT request helper.
+ * JSON-encodes `body` unless it is FormData/Blob/etc.
+ * See `apiRequest` for error semantics and options.
+ *
+ * @template T
+ * @param {string} path
+ * @param {any} [body={}]
+ * @param {{
+ *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
+ *   headers?: Record<string, string>,
+ *   signal?: AbortSignal
+ * }} [opts]
+ * @returns {Promise<T>}
+ */
 export function apiPut(path, body = {}, opts) {
   return apiRequest('PUT', path, { ...opts, body });
 }
