@@ -1,177 +1,86 @@
 import { useEffect, useState, useRef } from 'react';
 
-/**
- * Performs a same-origin GET request and returns parsed JSON.
- *
- * Behavior:
- * - Merges optional `query` params into the URL via `URLSearchParams`.
- * - Sends the `X-Requested-With: XMLHttpRequest` header and includes cookies (`credentials: 'same-origin'`).
- * - Supports request cancellation via an `AbortSignal` (`options.signal`).
- * - Parses the response as JSON; if parsing fails, falls back to `{}`.
- * - Throws an `Error` when the HTTP status is not OK (non-2xx) **or** when the JSON payload contains `{ success: false }`.
- *   The thrown error includes `.status` (number) and `.data` (the parsed JSON).
- *
- * @template T
- * @param {string} path
- *   Relative or absolute path on the same origin (e.g., `"/api/weather"`).
- * @param {{
- *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
- *   signal?: AbortSignal
- * }} [options]
- *   Optional options object.
- *   - `query`: Key/value pairs to append to the URL. Arrays are supported and will be serialized by `URLSearchParams`.
- *   - `signal`: An `AbortSignal` to cancel the request. If aborted, the promise rejects with a DOMException whose `name` is `"AbortError"`.
- *
- * @returns {Promise<T>}
- *   Resolves with the parsed JSON payload typed as `T`.
- *
- * @throws {Error & { status: number, data: any }}
- *   Throws when `response.ok` is false or when the payload has `success === false`.
- *   May also reject with a DOMException `"AbortError"` if the provided `signal` aborts the request.
- *
- * @example
- * // Simple GET with query params
- * const data = await apiGet('/api/weather', {
- *   query: { q: 'Austin', units: 'imperial' }
- * });
- *
- * @example
- * // Abortable request with AbortController
- * const ac = new AbortController();
- * const p = apiGet('/api/weather', { query: { q: 'Austin' }, signal: ac.signal });
- * ac.abort(); // later, if needed
- * try {
- *   await p;
- * } catch (e) {
- *   if (e?.name === 'AbortError') {
- *     // handle cancellation
- *   }
- * }
- *
- * @example
- * // Error handling pattern
- * try {
- *   const user = await  @type {ReturnType<typeof apiGet>}  (apiGet('/api/me'));
- * } catch (err) {
- *   console.error(err.status, err.message);
- *   // Optional: inspect server payload
- *   console.error(err.data);
- * }
- */
-export async function apiGet(path, { query, signal } = {}) {
-  const url = new URL(path, window.location.origin);
-  if (query) url.search = new URLSearchParams(query).toString();
-
-  const res = await fetch(url, {
-    credentials: 'same-origin',
-    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-    signal
-  });
-
-  const json = await res.json().catch(() => ({}));
-  if (!res.ok || json?.success === false) {
-    const err = new Error(json?.message || res.statusText);
-    err.status = res.status; err.data = json;
-    throw err;
-  }
-  return json;
+export function apiDelete(path, body, opts) {
+  // Some APIs accept a body with DELETE; pass it only if given.
+  return apiRequest('DELETE', path, body == null ? opts : { ...opts, body });
 }
 
-/**
- * Performs a same-origin **POST** request and returns parsed JSON.
- *
- * Behavior:
- * - Optionally merges `query` params into the URL via `URLSearchParams`.
- * - Sends JSON with `Content-Type: application/json` and the header `X-Requested-With: XMLHttpRequest`.
- * - Includes cookies (`credentials: 'same-origin'`) so session-based auth works.
- * - Supports cancellation via `AbortSignal` (`options.signal`).
- * - Parses the response as JSON; if parsing fails, falls back to `{}`.
- * - Throws an `Error` when the HTTP status is not OK (non-2xx) **or** when the JSON payload contains `{ success: false }`.
- *   The thrown error includes `.status` (number) and `.data` (the parsed JSON).
- *
- * @template T
- * @param {string} path
- *   Relative or absolute path on the same origin (e.g., `"/api/submit"`).
- * @param {unknown} [body={}]
- *   Arbitrary data to JSON-encode as the request body. Objects/arrays are typical.
- * @param {{
- *   query?: Record<string, string | number | boolean | string[] | number[] | boolean[]>,
- *   signal?: AbortSignal,
- *   headers?: Record<string, string>
- * }} [options]
- *   Optional options object.
- *   - `query`: Key/value pairs to append to the URL (arrays supported).
- *   - `signal`: An `AbortSignal` to cancel the request. If aborted, the promise rejects with a DOMException `"AbortError"`.
- *   - `headers`: Extra headers to merge into the request (e.g., `{ 'X-CSRF-Token': getCsrf() }`).
- *
- * @returns {Promise<T>}
- *   Resolves with the parsed JSON payload typed as `T`.
- *
- * @throws {Error & { status: number, data: any }}
- *   Throws when `response.ok` is false or when the payload has `success === false`.
- *   May also reject with `AbortError` if the provided `signal` aborts the request.
- *
- * @example
- * // Simple POST
- * const res = await apiPost('/api/profile', { name: 'Ada' });
- *
- * @example
- * // With query params and CSRF header
- * const res = await apiPost('/api/items', { title: 'Book' }, {
- *   query: { shelf: 'reading' },
- *   headers: { 'X-CSRF-Token': getCsrf() }
- * });
- *
- * @example
- * // Abortable request with AbortController
- * const ac = new AbortController();
- * const p = apiPost('/api/upload', { fileId }, { signal: ac.signal });
- * ac.abort(); // later, if needed
- * try {
- *   await p;
- * } catch (e) {
- *   if (e?.name === 'AbortError') {
- *     // handle cancellation
- *   }
- * }
- *
- * @example
- * // With a reusable hook (useAsync)
- * const state = useAsync(
- *   ({ signal }) => apiPost('/api/login', creds, { signal }),
- *   [JSON.stringify(creds)]
- * );
- */
-export async function apiPost(
-  path,
-  body = {},
-  { query, signal, headers } = {}
-) {
-  const url = new URL(path, window.location.origin);
-  if (query) url.search = new URLSearchParams(query).toString();
+export async function apiGet(path, opts) {
+  return apiRequest('GET', path, opts);
+}
 
-  const res = await fetch(url, {
-    method: 'POST',
+export function apiPatch(path, body = {}, opts) {
+  return apiRequest('PATCH', path, { ...opts, body });
+}
+
+export function apiPost(path, body = {}, opts) {
+  return apiRequest('POST', path, { ...opts, body });
+}
+
+export function apiPut(path, body = {}, opts) {
+  return apiRequest('PUT', path, { ...opts, body });
+}
+
+async function apiRequest(method, path, opts = {}) {
+  const { query, body, headers, signal} = opts;
+  const url = new URL(path, window.location.origin);
+
+  if(query) {
+    url.search = new URLSearchParams(query).toString();
+  }
+
+  const isBodyAllowed = method !== 'GET' && method !== 'DELETE' ? true : body != null;
+  const init = {
+    method,
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       ...(headers || {}),
     },
-    body: JSON.stringify(body),
-    signal, // ✅ enables abort via useAsync
-  });
+    signal,
+  };
 
-  const json = await res.json().catch(() => ({}));
-  if (!res.ok || json?.success === false) {
-    const err = new Error(json?.message || res.statusText);
+  if(isBodyAllowed) {
+    // If body is FormData/Blob/URLSearchParams/etc., let the browser set headers.
+    const isMultipart =
+      body instanceof FormData ||
+      body instanceof Blob ||
+      body instanceof ArrayBuffer ||
+      body instanceof URLSearchParams ||
+      body instanceof ReadableStream;
+
+    if(isMultipart) {
+      init.body = body;
+    } else {
+      init.headers['Content-Type'] = 'application/json';
+      init.body = JSON.stringify(body);
+    }
+  }
+
+  const res = await fetch(url, init);
+
+  // Handle 204/empty responses gracefully.
+  let json = {};
+  const hasBody =
+    res.status !== 204 &&
+    (res.headers.get('content-length') === null || res.headers.get('content-length') !== '0');
+
+  if(hasBody) {
+    json = await res.json().catch(() => ({}));
+  }
+
+  if(!res.ok || /** @type {any} */ (json)?.success == false) {
+    const err = new Error(/** @type {any} */ (json)?.message || res.statusText);
+    // @ts-ignore annotate for consumers
     err.status = res.status;
+    // @ts-ignore annotate for consumers
     err.data = json;
     throw err;
   }
+
+  // @ts-ignore generic T
   return json;
 }
-
 
 /**
  * React hook to run an async function and manage `{ data, loading, error }` state,
