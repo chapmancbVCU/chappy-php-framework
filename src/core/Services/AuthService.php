@@ -77,7 +77,7 @@ class AuthService {
             $user->login_attempts = 0;
             $user->save();
             self::loginUser($user, $remember);
-            redirect('home');
+            redirect(env('DEFAULT_CONTROLLER'));
         }  else {
             if($user) {
                 $loginModel = self::loginAttempts($user, $loginModel, $mailer);
