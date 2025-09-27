@@ -1,4 +1,6 @@
 <?php use Core\Session; ?>
+<?php use Core\Lib\React\Vite; ?>
+<?php $isDev = Vite::isDev(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,13 +10,23 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$this->siteTitle()?></title>
     <link rel="icon" href="<?=env('APP_DOMAIN', '/')?>public/noun-mvc-5340614.png">
-    <?php if (env('APP_ENV', 'production') === 'local'): ?>
-        <script type="module" src="http://localhost:5173/@vite/client"></script>
-        <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
+    <?php if ($isDev): ?>
+      <!-- React Fast Refresh preamble -->
+      <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+      </script>
+
+      <!-- Vite HMR client + your React entry from DEV SERVER -->
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module" src="http://localhost:5173/resources/js/app.jsx"></script>
     <?php else: ?>
-      <!-- Production: Include compiled assets -->
+      <!-- PRODUCTION: hashed assets from manifest -->
       <link rel="stylesheet" href="<?= vite('resources/css/app.css') ?>">
-      <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
+      <script type="module" src="<?= vite('resources/js/app.jsx') ?>"></script>
     <?php endif; ?>
     <link rel="stylesheet" href="<?=env('APP_DOMAIN', '/')?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=env('APP_DOMAIN', '/')?>resources/css/alerts/alertMsg.min.css?v=<?=config('config.version')?>" media="screen" title="no title" charset="utf-8">
