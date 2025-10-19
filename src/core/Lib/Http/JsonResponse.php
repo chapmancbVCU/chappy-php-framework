@@ -14,7 +14,7 @@ trait JsonResponse {
         return true;
     }
 
-    public function get(string|null $input = null) {
+    public function get(string|null $input = null): array| string {
         $raw = file_get_contents('php://input') ?: '';
         $data = json_decode($raw, true);
         if(!$input) {
@@ -29,12 +29,15 @@ trait JsonResponse {
             }
             return $data;
         }
-
-        $value =  $data[$input];
-        if (Arr::isArray($value)) {
-            return Arr::map($value, [FormHelper::class, 'sanitize']);
+        if(isset($data[$input])) {
+            $value =  $data[$input];
+            if (Arr::isArray($value)) {
+                return Arr::map($value, [FormHelper::class, 'sanitize']);
+            }
+            return trim(FormHelper::sanitize($value));
         }
-        return trim(FormHelper::sanitize($value));
+
+        return '';
     }
 
     /**
