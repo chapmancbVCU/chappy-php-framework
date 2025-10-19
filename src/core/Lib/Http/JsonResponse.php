@@ -6,12 +6,13 @@ use Core\FormHelper;
 use Core\Lib\Logging\Logger;
 trait JsonResponse {
 
-    public function apiCsrfCheck() {
+    public function apiCsrfCheck(): bool {
         Logger::log($this->get('csrf_token'));
         if(!FormHelper::checkToken($this->get('csrf_input'))) {
-
-            return $this->jsonError('Corrupted token');
+            return false;
+            
         }
+        return true;
     }
 
     public function get(string|null $input = null) {
