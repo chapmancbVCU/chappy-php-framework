@@ -3,10 +3,19 @@ declare(strict_types=1);
 namespace Core\Lib\Http;
 use Throwable;
 use Core\FormHelper;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
+
+/**
+ * A trait that support operations related to APIs and their associated 
+ * JSON responses.
+ */
 trait JsonResponse {
 
+    /**
+     * Checks if CSRF token has been tampered with.
+     *
+     * @return bool True if token is valid, otherwise we return false.
+     */
     public function apiCsrfCheck(): bool {
         if(!FormHelper::checkToken($this->get('csrf_token'))) {
             return false; 
@@ -14,6 +23,14 @@ trait JsonResponse {
         return true;
     }
 
+    /**
+     * Supports operations related to handling POST and GET requests.  
+     * Similar in behavior to the get function from the Input class but for 
+     * JSON related operations.
+     *
+     * @param string|null $input Field name from POST/GET request, or null to get all
+     * @return array|string Sanitized input as array or string
+     */
     public function get(string|null $input = null): array| string {
         $raw = file_get_contents('php://input') ?: '';
         $data = json_decode($raw, true);
