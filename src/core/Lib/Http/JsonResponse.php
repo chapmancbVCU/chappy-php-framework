@@ -12,6 +12,7 @@ trait JsonResponse {
             return false;
             
         }
+        Logger::log("good token");
         return true;
     }
 
