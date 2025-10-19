@@ -4,7 +4,7 @@ namespace Core\Lib\Http;
 use Throwable;
 use Core\FormHelper;
 
-trait ApiInput {
+trait JsonResponse {
 
     // public function apiCsrfCheck() {
     //     if(!FormHelper::checkToken($csrf)) {
