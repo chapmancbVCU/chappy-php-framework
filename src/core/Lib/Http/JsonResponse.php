@@ -4,6 +4,7 @@ namespace Core\Lib\Http;
 use Throwable;
 use Core\FormHelper;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Arr;
 trait JsonResponse {
 
     public function apiCsrfCheck(): bool {
@@ -15,10 +16,25 @@ trait JsonResponse {
 
     public function get(string|null $input = null) {
         $raw = file_get_contents('php://input') ?: '';
-        $foo = json_decode($raw, true);
-        if(!$input) return $foo;
+        $data = json_decode($raw, true);
+        if(!$input) {
+            foreach($data as $field => $value) {
+                if(Arr::isArray($value)) {
+                    // Recursively sanitize arrays
+                    $data[$field] = Arr::map($value, [FormHelper::class, 'sanitize']);
+                } else {
+                    // Only trim if it's a string
+                    $data[$field] = trim(FormHelper::sanitize($value));
+                }
+            }
+            return $data;
+        }
 
-        return $foo[$input];
+        $value =  $data[$input];
+        if (Arr::isArray($value)) {
+            return Arr::map($value, [FormHelper::class, 'sanitize']);
+        }
+        return trim(FormHelper::sanitize($value));
     }
 
     /**
