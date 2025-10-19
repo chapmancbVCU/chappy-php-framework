@@ -19,7 +19,7 @@ trait JsonResponse {
         $foo = json_decode($raw, true);
         if(!$input) return $foo;
 
-        return $raw[$foo];
+        return $foo[$input];
     }
 
     /**
