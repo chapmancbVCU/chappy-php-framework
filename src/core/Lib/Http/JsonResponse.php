@@ -7,7 +7,7 @@ use Core\FormHelper;
 trait JsonResponse {
 
     public function apiCsrfCheck() {
-        if(!FormHelper::checkToken('csrf_input')) {
+        if(!FormHelper::checkToken($this->get('csrf_input'))) {
 
             return $this->jsonError('Corrupted token');
         }
