@@ -6,12 +6,19 @@ use Core\FormHelper;
 
 trait JsonResponse {
 
-    // public function apiCsrfCheck() {
-    //     if(!FormHelper::checkToken($csrf)) {
+    public function apiCsrfCheck() {
+        if(!FormHelper::checkToken('csrf_input')) {
 
-    //         return $this->jsonError('Corrupted token');
-    //     }
-    // }
+            return $this->jsonError('Corrupted token');
+        }
+    }
+
+    public function get(string|null $input = null) {
+        $raw = file_get_contents('php://input') ?: '';
+        if(!$input) return $raw;
+
+        return $raw[$input];
+    }
 
     /**
      * Makes JSON Response for error payloads.
