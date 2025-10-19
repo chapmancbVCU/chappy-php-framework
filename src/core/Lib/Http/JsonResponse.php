@@ -7,8 +7,8 @@ use Core\Lib\Logging\Logger;
 trait JsonResponse {
 
     public function apiCsrfCheck(): bool {
-        Logger::log($this->get('csrf_input'));
-        if(!FormHelper::checkToken($this->get('csrf_input'))) {
+        Logger::log($this->get('csrf_token'));
+        if(!FormHelper::checkToken($this->get('csrf_token'))) {
             Logger::log("corrupt token");
             return false;
             
