@@ -8,10 +8,10 @@ trait JsonResponse {
 
     public function apiCsrfCheck() {
         Logger::log($this->get('csrf_token'));
-        //if(!FormHelper::checkToken($this->get('csrf_input'))) {
+        if(!FormHelper::checkToken($this->get('csrf_input'))) {
 
-            //return $this->jsonError('Corrupted token');
-        //}
+            return $this->jsonError('Corrupted token');
+        }
     }
 
     public function get(string|null $input = null) {
