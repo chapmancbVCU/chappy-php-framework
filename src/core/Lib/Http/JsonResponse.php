@@ -16,9 +16,10 @@ trait JsonResponse {
 
     public function get(string|null $input = null) {
         $raw = file_get_contents('php://input') ?: '';
-        if(!$input) return $raw;
+        $foo = json_decode($raw, true);
+        if(!$input) return $foo;
 
-        return $raw[$input];
+        return $raw[$foo];
     }
 
     /**
