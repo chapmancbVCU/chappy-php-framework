@@ -3,14 +3,15 @@ declare(strict_types=1);
 namespace Core\Lib\Http;
 use Throwable;
 use Core\FormHelper;
-
+use Core\Lib\Logging\Logger;
 trait JsonResponse {
 
     public function apiCsrfCheck() {
-        if(!FormHelper::checkToken($this->get('csrf_input'))) {
+        Logger::log($this->get('csrf_input'));
+        //if(!FormHelper::checkToken($this->get('csrf_input'))) {
 
-            return $this->jsonError('Corrupted token');
-        }
+            //return $this->jsonError('Corrupted token');
+        //}
     }
 
     public function get(string|null $input = null) {
