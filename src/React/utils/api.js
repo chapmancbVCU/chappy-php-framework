@@ -24,6 +24,11 @@ export function apiDelete(path, body, opts) {
   return apiRequest('DELETE', path, body == null ? opts : { ...opts, body });
 }
 
+/**
+ * Reports errors related to api requests.
+ * @param {object} err Error response for request.
+ * @returns {string} The error message.
+ */
 export function apiError(err) {
   if (err?.response?.data) {
       const d = err.response.data;
