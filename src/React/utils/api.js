@@ -24,6 +24,18 @@ export function apiDelete(path, body, opts) {
   return apiRequest('DELETE', path, body == null ? opts : { ...opts, body });
 }
 
+export function apiError(err) {
+  if (err?.response?.data) {
+      const d = err.response.data;
+      if (d.message) return d.message;
+      if (d.error) return d.error;
+      if (d.errors && typeof d.errors === 'object') {
+          return Object.values(d.errors).flat().join(' ');
+      }
+  }
+  return err?.message || 'Something went wrong with your request.';
+}
+
 /**
  * GET request helper.
  * Merges optional `opts.query` into the URL.
