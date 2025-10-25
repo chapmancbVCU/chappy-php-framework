@@ -8,6 +8,7 @@ namespace Core\Lib\React;
  */
 final class Vite
 {
+    private static ?bool $cached = null;
     /**
      * Extracts value of csrf_token from hidden element.
      *
@@ -62,10 +63,63 @@ HTML;
      * @return bool True if in development mode, otherwise we return false.
      */
     public static function isDev() {
-        $env = env('APP_ENV', 'production');
-        return Vite::viteIsRunning() || in_array($env, ['local','dev','development'], true);
+        if (self::$cached !== null) return self::$cached;
+
+        // optional: short-circuit if you want APP_ENV to force prod
+        if (env('APP_ENV', 'production') === 'production') {
+            return self::$cached = false;
+        }
+
+        $host = '127.0.0.1';
+        $port = 5173;
+        $fp = @fsockopen($host, $port, $errno, $errstr, 0.05);
+        if (is_resource($fp)) {
+            fclose($fp);
+            return self::$cached = true;
+        }
+        return self::$cached = false;
     }
 
+    /**
+     * Resolve a JS/CSS entry via manifest in production.
+     * Example: vite('resources/js/app.jsx')
+     */
+    public static function asset(string $entry): string
+    {
+        if (self::isDev()) {
+            return "http://localhost:5173/{$entry}";
+        }
+
+        $manifest = CHAPPY_BASE_PATH . '/public/build/.vite/manifest.json';
+        $json = @file_get_contents($manifest);
+        if ($json === false) {
+            throw new \RuntimeException('Vite manifest not found: ' . $manifest);
+        }
+        $map = json_decode($json, true);
+        if (!isset($map[$entry])) {
+            throw new \RuntimeException("Vite entry '{$entry}' not found in manifest.");
+        }
+        return env('APP_DOMAIN', '/') . 'public/build/' . $map[$entry]['file'];
+    }
+
+    /**
+     * Return all CSS files for a given entry (if any) in production.
+     */
+    public static function css(string $entry): array
+    {
+        if (self::isDev()) return []; // dev injects CSS via HMR
+
+        $manifest = CHAPPY_BASE_PATH . '/public/build/.vite/manifest.json';
+        $json = @file_get_contents($manifest);
+        if ($json === false) return [];
+        $map = json_decode($json, true);
+        $css = $map[$entry]['css'] ?? [];
+        return array_map(
+            fn ($href) => env('APP_DOMAIN', '/') . 'public/build/' . $href,
+            $css
+        );
+    }
+    
     /**
      * Adds production tags.
      *
