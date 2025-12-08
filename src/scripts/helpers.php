@@ -218,25 +218,58 @@ if(!function_exists('route')) {
     }
 }
 
-if(!function_exists('vite')){
+if (!function_exists('vite')) {
     /**
-     * Generate the URL for a Vite asset.
+     * Generate the URL for a Vite-built asset.
      *
-     * @param string $asset Path to the asset (e.g., 'resources/js/app.js').
+     * In dev (APP_ENV=local/dev + Vite running), it falls back to the dev server.
+     * In production, it always uses the manifest under public/build/.
+     *
+     * @param string $asset Path to the asset (e.g. 'resources/js/app.jsx', 'resources/css/app.css').
      * @return string The URL to the asset.
      */
-    function vite(string $asset): string {
-        $devServer = 'http://localhost:5173';
-        $manifestPath = __DIR__ . '/../public/build/manifest.json';
-    
-        if (is_file($manifestPath)) {
-            $manifest = json_decode(file_get_contents($manifestPath), true);
-            if (isset($manifest[$asset])) {
-                return '/build/' . $manifest[$asset]['file'];
+    function vite(string $asset): string
+    {
+        // Project base (same as index.php root)
+        $base = defined('CHAPPY_BASE_PATH')
+            ? CHAPPY_BASE_PATH
+            : dirname(__DIR__, 1);
+
+        // Possible manifest locations
+        $candidates = [
+            $base . '/public/build/manifest.json',
+            $base . '/public/build/.vite/manifest.json',
+        ];
+
+        $manifest = null;
+        foreach ($candidates as $path) {
+            if (is_file($path)) {
+                $json = file_get_contents($path);
+                $data = json_decode($json ?: '[]', true);
+                if (is_array($data)) {
+                    $manifest = $data;
+                    break;
+                }
             }
         }
-    
-        return "$devServer/$asset";
+
+        $env = env('APP_ENV', 'production');
+        $publicBase = rtrim(env('APP_DOMAIN', '/'), '/');    // e.g. http://localhost:8000
+        $devServer  = 'http://localhost:5173';
+
+        // If manifest exists and has this asset, always use it.
+        if (is_array($manifest) && isset($manifest[$asset]['file'])) {
+            $file = $manifest[$asset]['file'];
+            // URLs like: http://localhost:8000/public/build/assets/...
+            return $publicBase . '/public/build/' . ltrim($file, '/');
+        }
+
+        // No manifest entry found. In dev-like envs, try the dev server.
+        if (in_array($env, ['local', 'dev', 'development'], true)) {
+            return rtrim($devServer, '/') . '/' . ltrim($asset, '/');
+        }
+
+        // In production with no manifest entry, better to fail "loudly" than leak localhost
+        return '';
     }
 }
-
