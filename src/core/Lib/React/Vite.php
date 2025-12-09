@@ -108,43 +108,55 @@ HTML;
      */
     private static function prodTags(string $entry): string
     {
-        $manifest = self::loadManifest();
-        if ($manifest === null) {
+        $base = defined('CHAPPY_BASE_PATH')
+            ? CHAPPY_BASE_PATH
+            : dirname(__DIR__, 5); // fallback to climb out of vendor
+        dump($base);
+        $manifestCandidates = [
+            $base . '/public/build/.vite/manifest.json',
+            $base . '/public/build/manifest.json',
+        ];
+
+        $manifest = null;
+        foreach ($manifestCandidates as $path) {
+            if (is_file($path)) {
+                $json = file_get_contents($path) ?: '[]';
+                $data = json_decode($json, true);
+                if (is_array($data)) {
+                    $manifest = $data;
+                    break;
+                }
+            }
+        }
+        
+        if (!$manifest) {
             return "<!-- Vite manifest not found. Run `npm run build`. -->";
         }
 
         $key = ltrim($entry, '/');
-
         if (!isset($manifest[$key])) {
             return "<!-- Entry {$key} not in manifest. -->";
         }
 
-        $publicBase = rtrim(env('APP_DOMAIN', '/'), '/'); // e.g. http://localhost:8000
-
+        $publicBase = rtrim(env('APP_DOMAIN', '/'), '/');
         $tags = [];
 
-        // JS entry
-        $file = $manifest[$key]['file'] ?? null;
-        if ($file) {
-            $src = $publicBase . '/public/build/' . ltrim($file, '/');
-            $tags[] = "<script type=\"module\" src=\"{$src}\"></script>";
-        }
+        $file = ltrim($manifest[$key]['file'], '/');
+        $tags[] = '<script type="module" src="' . $publicBase . '/public/build/' . $file . '"></script>';
 
-        // CSS from this entry
         if (!empty($manifest[$key]['css'])) {
             foreach ($manifest[$key]['css'] as $css) {
-                $href = $publicBase . '/public/build/' . ltrim($css, '/');
-                $tags[] = "<link rel=\"stylesheet\" href=\"{$href}\" />";
+                $css = ltrim($css, '/');
+                $tags[] = '<link rel="stylesheet" href="' . $publicBase . '/public/build/' . $css . '" />';
             }
         }
 
-        // Also include imported CSS chunks if present
         if (!empty($manifest[$key]['imports'])) {
             foreach ($manifest[$key]['imports'] as $import) {
                 if (isset($manifest[$import]['css'])) {
                     foreach ($manifest[$import]['css'] as $css) {
-                        $href = $publicBase . '/public/build/' . ltrim($css, '/');
-                        $tags[] = "<link rel=\"stylesheet\" href=\"{$href}\" />";
+                        $css = ltrim($css, '/');
+                        $tags[] = '<link rel="stylesheet" href="' . $publicBase . '/public/build/' . $css . '" />';
                     }
                 }
             }

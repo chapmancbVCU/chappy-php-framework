@@ -1,5 +1,5 @@
 <?php $this->start('head') ?>
-<?= Core\Lib\React\Vite::tags('resources/js/app.jsx'); ?>
+
 <?php $this->end(); ?>
 
 <?php $this->start('body') ?>

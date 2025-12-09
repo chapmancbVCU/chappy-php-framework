@@ -230,12 +230,12 @@ if (!function_exists('vite')) {
      */
     function vite(string $asset): string
     {
-        // Project base (same as index.php root)
+        // Base project root, same as index.php
         $base = defined('CHAPPY_BASE_PATH')
             ? CHAPPY_BASE_PATH
             : dirname(__DIR__, 1);
 
-        // Possible manifest locations
+        // Vite 6 writes manifest under .vite/ by default
         $candidates = [
             $base . '/public/build/manifest.json',
             $base . '/public/build/.vite/manifest.json',
@@ -253,23 +253,23 @@ if (!function_exists('vite')) {
             }
         }
 
-        $env = env('APP_ENV', 'production');
-        $publicBase = rtrim(env('APP_DOMAIN', '/'), '/');    // e.g. http://localhost:8000
+        $env        = env('APP_ENV', 'production');
+        $publicBase = rtrim(env('APP_DOMAIN', '/'), '/'); // e.g. '/', 'http://localhost:8000'
         $devServer  = 'http://localhost:5173';
 
-        // If manifest exists and has this asset, always use it.
+        // If manifest exists and has this asset key — always use it
         if (is_array($manifest) && isset($manifest[$asset]['file'])) {
             $file = $manifest[$asset]['file'];
-            // URLs like: http://localhost:8000/public/build/assets/...
             return $publicBase . '/public/build/' . ltrim($file, '/');
         }
 
-        // No manifest entry found. In dev-like envs, try the dev server.
+        // In dev-like envs, fall back to dev server
         if (in_array($env, ['local', 'dev', 'development'], true)) {
             return rtrim($devServer, '/') . '/' . ltrim($asset, '/');
         }
 
-        // In production with no manifest entry, better to fail "loudly" than leak localhost
+        // In production with no manifest entry, fail "quietly"
+        // rather than leaking localhost:5173
         return '';
     }
 }
