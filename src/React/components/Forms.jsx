@@ -179,8 +179,12 @@ export const CheckBoxRightLabel = ({
  * @param {string} name The name for the csrf token. 
  * @returns {HTMLInputElement} Input element of type hidden containing csrf token.
  */
-export const CSRF = ({ name = 'csrf_token' } = {}) => {
+export const csrfInput = ({ name = 'csrf_token' } = {}) => {
   return <input type="hidden" name={name} value={getCsrf()} />;
+}
+
+export const csrfToken = (e) => {
+    return e.target.csrf_token.value;
 }
 
 /**
