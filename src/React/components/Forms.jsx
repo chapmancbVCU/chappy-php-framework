@@ -179,11 +179,16 @@ export const CheckBoxRightLabel = ({
  * @param {string} name The name for the csrf token. 
  * @returns {HTMLInputElement} Input element of type hidden containing csrf token.
  */
-export const csrfInput = ({ name = 'csrf_token' } = {}) => {
+export const CSRFInput = ({ name = 'csrf_token' } = {}) => {
   return <input type="hidden" name={name} value={getCsrf()} />;
 }
 
-export const csrfToken = (e) => {
+/**
+ * Returns CSRF token that is used when a form is submitted.
+ * @param {Event} e The event associated with a form submission. 
+ * @returns The CSRF token string.
+ */
+export const CSRFToken = (e) => {
     return e.target.csrf_token.value;
 }
 
@@ -668,7 +673,8 @@ const Forms = {
     Button,
     CheckBoxLeftLabel,
     CheckBoxRightLabel,
-    CSRF, 
+    CSRFInput,
+    CSRFToken, 
     DisplayErrors, 
     Email,
     Hidden,
