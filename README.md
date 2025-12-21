@@ -20,6 +20,7 @@ Chappy.php is a modern PHP MVC framework focused on clarity, modularity, and rap
 
 ## ⚙️ Features
 
+- Native React.js View support
 - 💡 Lightweight & fast core
 - ✍️ Templating with layouts and components
 - 🔐 Built-in user authentication and ACL
