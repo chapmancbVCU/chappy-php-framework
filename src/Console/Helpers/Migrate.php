@@ -296,23 +296,24 @@ PHP;
      */
     public static function migrationUpdateClass(string $fileName, string $tableName): string {
         $tableName = Str::lower($tableName);
-        return '<?php
+        return<<<PHP
+<?php
 namespace Database\Migrations;
 use Core\Lib\Database\Schema;
 use Core\Lib\Database\Blueprint;
 use Core\Lib\Database\Migration;
 
 /**
- * Migration class for the '.$tableName.' table.
+ * Migration class for the {$tableName} table.
  */
-class '.$fileName.' extends Migration {
+class {$fileName} extends Migration {
     /**
      * Performs a migration for updating an existing table.
      *
      * @return void
      */
     public function up(): void {
-        Schema::table(\''.$tableName.'\', function (Blueprint $table) {
+        Schema::table('{$tableName}', function (Blueprint \$table) {
 
         });
     }
@@ -323,10 +324,10 @@ class '.$fileName.' extends Migration {
      * @return void
      */
     public function down(): void {
-        Schema::dropIfExists(\''.$tableName.'\');
+        Schema::dropIfExists('$tableName');
     }
 }
-';
+PHP;
     }
 
     /**
