@@ -89,7 +89,7 @@ class View {
       <?= \$this->content('body'); ?>
     </div>
   </body>
-</html>';
+</html>
 PHP;     
     }
 
