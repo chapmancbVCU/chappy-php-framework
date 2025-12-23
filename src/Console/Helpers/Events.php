@@ -44,35 +44,6 @@ class '.$eventName.'
     }
 
     /**
-     * Template for event listener class.
-     *
-     * @param string $eventName The name of the event.
-     * @param string $listenerName The name of the listener.
-     * @return string The content for the new listener class.
-     */
-    public static function listenerTemplate(string $eventName, string $listenerName): string {
-        return '<?php
-namespace App\Listeners;
-
-use App\Events\\'.$eventName.';
-
-/**
- * Add description for class here
- */
-class '.$listenerName.' {
-    /**
-     * Handle the event.
-     *
-     * @param '.$eventName.' $event The event.
-     * @return void
-     */
-    public function handle('.$eventName.' $event): void {
-        $user = $event->user;
-    }
-}';
-    }
-
-    /**
      * Template for event service provider.
      *
      * @param string $providerName The name of the event service provider.
@@ -106,6 +77,35 @@ class '.$providerName.' extends ServiceProvider {
     }
 
     /**
+     * Template for event listener class.
+     *
+     * @param string $eventName The name of the event.
+     * @param string $listenerName The name of the listener.
+     * @return string The content for the new listener class.
+     */
+    public static function listenerTemplate(string $eventName, string $listenerName): string {
+        return '<?php
+namespace App\Listeners;
+
+use App\Events\\'.$eventName.';
+
+/**
+ * Add description for class here
+ */
+class '.$listenerName.' {
+    /**
+     * Handle the event.
+     *
+     * @param '.$eventName.' $event The event.
+     * @return void
+     */
+    public function handle('.$eventName.' $event): void {
+        $user = $event->user;
+    }
+}';
+    }
+
+    /**
      * Creates a new event class.
      *
      * @param string $eventName The name for the event.
@@ -122,6 +122,22 @@ class '.$providerName.' extends ServiceProvider {
             : self::eventTemplate($eventName);
 
         return Tools::writeFile($fullPath, $content,'Event');
+    }
+
+    /**
+     * Creates a new event service provider.
+     *
+     * @param string $providerName The name for the event service provider.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeEventServiceProvider(string $providerName): int {
+        Tools::pathExists(self::$providerPath);
+        $fullPath = self::$providerPath.$providerName.'.php';
+        return Tools::writeFile(
+            $fullPath,
+            self::eventServiceProviderTemplate($providerName),
+            'Provider'
+        );
     }
 
     /**
@@ -143,22 +159,6 @@ class '.$providerName.' extends ServiceProvider {
 
 
         return Tools::writeFile($fullPath, $content,'Listener');
-    }
-
-    /**
-     * Creates a new event service provider.
-     *
-     * @param string $providerName The name for the event service provider.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function makeEventServiceProvider(string $providerName): int {
-        Tools::pathExists(self::$providerPath);
-        $fullPath = self::$providerPath.$providerName.'.php';
-        return Tools::writeFile(
-            $fullPath,
-            self::eventServiceProviderTemplate($providerName),
-            'Provider'
-        );
     }
 
     /**
