@@ -14,24 +14,25 @@ class Controller {
      * @return string The contents for a new controller.
      */
     public static function defaultTemplate(string $controllerName, string $layout): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Controllers;
 use Core\Controller;
 
 /**
  * Undocumented class
  */
-class '.$controllerName.'Controller extends Controller {
+class {$controllerName}Controller extends Controller {
     /**
      * Runs when the object is constructed.
      *
      * @return void
      */
     public function onConstruct(): void {
-        $this->view->setLayout(\''.$layout.'\');
+        \$this->view->setLayout('{$layout}');
     }
 }
-';
+PHP;
     }
 
     /**
