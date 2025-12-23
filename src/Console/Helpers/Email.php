@@ -31,7 +31,8 @@ class Email {
      * @return string The layout template.
      */
     public static function layoutTemplate(): string {
-        return '<!DOCTYPE html>
+        return <<<HTML
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -39,7 +40,8 @@ class Email {
 <body>
 
 </body>
-</html>';
+</html>
+HTML;
     }
 
     /**
