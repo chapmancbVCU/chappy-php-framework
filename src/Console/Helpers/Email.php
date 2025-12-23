@@ -51,15 +51,17 @@ HTML;
      * @return string The class' contents.
      */
     public static function mailerTemplate(string $mailerName): string {
-        $mailerName = Str::ucfirst($mailerName);
-        return '<?php
+        return <<<PHP
+<?php
 declare(strict_types=1);
 namespace App\CustomMailers;
+
+use core\Lib\Mail\AbstractMailer;
 
 /**
  * Document class
  */
-class '.$mailerName.'Mailer extends AbstractMailer {
+class {$mailerName} extends AbstractMailer {
     /**
      * Overrides getData from parent.
      *
@@ -75,7 +77,7 @@ class '.$mailerName.'Mailer extends AbstractMailer {
      * @return string The E-mail\'s subject.
      */
     protected function getSubject(): string {
-        return \'\';
+        return '';
     }
 
     /**
@@ -84,10 +86,10 @@ class '.$mailerName.'Mailer extends AbstractMailer {
      * @return string The template to be used.
      */
     protected function getTemplate(): string {
-        return \'\';
+        return '';
     }
 }      
-';
+PHP;
     }
 
     /**
@@ -122,7 +124,7 @@ class '.$mailerName.'Mailer extends AbstractMailer {
      */
     public static function makeMailer(InputInterface $input): int {
         Tools::pathExists(self::$mailerPath);
-        $mailerName = $input->getArgument('mailer-name');
+        $mailerName = Str::ucfirst($input->getArgument('mailer-name')) . 'Mailer';
         $mailerPath = self::$mailerPath . $mailerName . '.php';
         $content = self::mailerTemplate($mailerName);
         return Tools::writeFile($mailerPath, $content, "Custom mailer $mailerName");
