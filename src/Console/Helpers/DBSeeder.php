@@ -49,7 +49,8 @@ class DBSeeder {
     public static function seeder(string $seederName): string {
         $lcSeederName = Str::lcfirst($seederName);
         $ucSeederName = Str::ucfirst($seederName);
-        return '<?php
+        return <<<PHP
+<?php
 namespace Database\Seeders;
 
 use Faker\Factory as Faker;
@@ -57,36 +58,36 @@ use Core\Lib\Database\Seeder;
 use Console\Helpers\Tools;
 
 // Import your model
-use App\Models\\'.$ucSeederName.';
+use App\Models\\{$ucSeederName};
 
 /**
- * Seeder for '.$lcSeederName.' table.
+ * Seeder for {$ucSeederName} table.
  * 
  * @return void
  */
-class '.$ucSeederName.'TableSeeder extends Seeder {
+class {$ucSeederName}TableSeeder extends Seeder {
     /**
      * Runs the database seeder
      *
      * @return void
      */
     public function run(): void {
-        $faker = Faker::create();
+        \$faker = Faker::create();
         
         // Set number of records to create.
-        $numberOfRecords = 10;
-        $i = 0;
-        while($i < $numberOfRecords) {
-            $'.$lcSeederName.' = new '.$ucSeederName.'();
+        \$numberOfRecords = 10;
+        \$i = 0;
+        while(\$i < \$numberOfRecords) {
+            \${$ucSeederName} = new {$ucSeederName}();
             
 
-            if($'.$lcSeederName.'->save()) {
-                $i++;
+            if(\${$ucSeederName}->save()) {
+                \$i++;
             }
         }
-        Tools::info("Seeded '.$lcSeederName.' table.");
+        Tools::info("Seeded {$ucSeederName} table.");
     }
 }
-';
+PHP;
     }
 }
