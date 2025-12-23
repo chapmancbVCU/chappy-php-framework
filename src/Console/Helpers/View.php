@@ -181,7 +181,7 @@ PHP;
     public static function makeMenuAcl(string $menuName): int {
         return Tools::writeFile(
           ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
-          self::menuAcl($menuName),
+          self::menuAcl(Str::ucfirst($menuName)),
           "The menu_acl json"
         );
     }
@@ -274,12 +274,12 @@ PHP;
      * @return string The contents of the json menu acl file.
      */
     public static function menuAcl(string $menuName): string {
-        return '
+        return <<<JSON
 {
     "Home" : "home",
-    "'.ucfirst($menuName).'" : ""     
+    "{$menuName}" : ""     
 }      
-';
+JSON;
     }
 
     /**
