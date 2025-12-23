@@ -43,9 +43,10 @@ class View {
      * @return string The contents of the layout.
      */
     public static function layout(string $menuName): string {
-        return '<?php use Core\Session; ?>
+        return <<<PHP
+<?php use Core\Session; ?>
 <?php use Core\Lib\React\Vite; ?>
-<?php $isDev = Vite::isDev(); ?>
+<?php \$isDev = Vite::isDev(); ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -54,15 +55,15 @@ class View {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><?=$this->siteTitle()?></title>
-    <link rel="icon" href="<?= env(\'APP_DOMAIN\', \'/\')?>public/noun-mvc-5340614.png">
-    <?php if ($isDev): ?>
+    <title><?=\$this->siteTitle()?></title>
+    <link rel="icon" href="<?= env('APP_DOMAIN', '/')?>public/noun-mvc-5340614.png">
+    <?php if (\$isDev): ?>
       <!-- React Fast Refresh preamble -->
       <script type="module">
-        import RefreshRuntime from \'http://localhost:5173/@react-refresh\'
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
         RefreshRuntime.injectIntoGlobalHook(window)
-        window.$RefreshReg$ = () => {}
-        window.$RefreshSig$ = () => (type) => type
+        window.\$RefreshReg$ = () => {}
+        window.\$RefreshSig$ = () => (type) => type
         window.__vite_plugin_react_preamble_installed__ = true
       </script>
 
@@ -71,25 +72,26 @@ class View {
       <script type="module" src="http://localhost:5173/resources/js/app.jsx"></script>
     <?php else: ?>
       <!-- PRODUCTION: hashed assets from manifest -->
-      <link rel="stylesheet" href="<?= vite(\'resources/css/app.css\') ?>">
-      <script type="module" src="<?= vite(\'resources/js/app.jsx\') ?>"></script>
+      <link rel="stylesheet" href="<?= vite('resources/css/app.css') ?>">
+      <script type="module" src="<?= vite('resources/js/app.jsx') ?>"></script>
     <?php endif; ?>
-    <link rel="stylesheet" href="<?=env(\'APP_DOMAIN\', \'/\')?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=env(\'APP_DOMAIN\', \'/\')?>resources/css/alerts/alertMsg.min.css?v=<?=config(\'config.version\')?>" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=env(\'APP_DOMAIN\', \'/\')?>node_modules/@fortawesome/fontawesome-free/css/all.min.css" media="screen" title="no title" charset="utf-8">
-    <script src="<?=env(\'APP_DOMAIN\', \'/\')?>resources/js/alerts/alertMsg.min.js?v=<?=config(\'config.version\')?>"></script>
-    <?= $this->content(\'head\'); ?>
+    <link rel="stylesheet" href="<?=env('APP_DOMAIN', '/')?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=env('APP_DOMAIN', '/')?>resources/css/alerts/alertMsg.min.css?v=<?=config('config.version')?>" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=env('APP_DOMAIN', '/')?>node_modules/@fortawesome/fontawesome-free/css/all.min.css" media="screen" title="no title" charset="utf-8">
+    <script src="<?=env('APP_DOMAIN', '/')?>resources/js/alerts/alertMsg.min.js?v=<?=config('config.version')?>"></script>
+    <?= \$this->content('head'); ?>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <?php $this->component(\''.$menuName.'_menu\') ?>
+    <?php \$this->component('{$menuName}_menu') ?>
     <div class="container-fluid" style="min-height:calc(100% - 125px);">
       <?= Session::displayMessage() ?>
-      <?= $this->content(\'body\'); ?>
+      <?= \$this->content('body'); ?>
     </div>
   </body>
 </html>';
-    }       
+PHP;     
+    }
 
     /**
      * Writes card component to a file.
