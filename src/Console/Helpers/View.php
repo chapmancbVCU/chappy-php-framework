@@ -301,18 +301,19 @@ PHP;
      * @return string The content for the view file.
      */
     public static function viewContent(): string {
-        return '<?php $this->setSiteTitle("My title here"); ?>
+        return <<<PHP
+'<?php \$this->setSiteTitle("My title here"); ?>
 
 <!-- Head content between these two function calls.  Remove if not needed. -->
-<?php $this->start(\'head\'); ?>
+<?php \$this->start('head'); ?>
 
-<?php $this->end(); ?>
+<?php \$this->end(); ?>
 
 
 <!-- Body content between these two function calls. -->
-<?php $this->start(\'body\'); ?>
+<?php \$this->start('body'); ?>
 
-<?php $this->end(); ?>
-';
+<?php \$this->end(); ?>
+PHP;
     }
 }
