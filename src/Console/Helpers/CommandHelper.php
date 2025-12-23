@@ -66,7 +66,8 @@ PHP;
      * @return string The contents of the helper class.
      */
     public static function helperTemplate(string $helperName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Lib\Console\Helpers;
 
 use Symfony\Component\Console\Command\Command;
@@ -74,10 +75,10 @@ use Symfony\Component\Console\Command\Command;
 /**
  * 
  */
-class '. $helperName.' {
+class {$helperName} {
 
 }
-';
+PHP;
     }
 
     /**
