@@ -256,22 +256,23 @@ PHP;
      * @return string The contents of the new Migration class.
      */
     public static function migrationRenameClass(string $fileName, string $from, string $to): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace Database\Migrations;
 use Core\Lib\Database\Schema;
 use Core\Lib\Database\Migration;
 
 /**
- * Migration class for renaming the '.$from.' table.
+ * Migration class for renaming the {$from} table.
  */
-class '.$fileName.' extends Migration {
+class {$fileName} extends Migration {
     /**
      * Performs a migration for renaming an existing table.
      *
      * @return void
      */
     public function up(): void {
-        Schema::rename(\''.$from.'\', \''.$to.'\');
+        Schema::rename('{$from}', '{$to}');
     }
 
     /**
@@ -280,10 +281,10 @@ class '.$fileName.' extends Migration {
      * @return void
      */
     public function down(): void {
-        Schema::dropIfExists(\''.$to.'\');
+        Schema::dropIfExists('{$to}');
     }
 }
-';
+PHP;
     }
 
     /**
