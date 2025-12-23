@@ -173,7 +173,8 @@ PHP;
      * @return string The contents of the event class.
      */
     public static function queueEventTemplate(string $eventName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace Core\Lib\Events;
 
 use App\Models\Users;
@@ -181,16 +182,16 @@ use App\Models\Users;
 /**
  * Document class here.
  */
-class '.$eventName.' {
-    public $user;
+class {$eventName} {
+    public \$user;
 
     /**
      * Constructor
      *
-     * @param User $user User associated with event.
+     * @param User \$user User associated with event.
      */
-    public function __construct(Users $user) {
-        $this->user = $user;
+    public function __construct(Users \$user) {
+        \$this->user = \$user;
     }
 
     /**
@@ -207,14 +208,15 @@ class '.$eventName.' {
      * Retrieves information from payload array and returns new instance of 
      * this class.
      *
-     * @param array $data The payload array.
+     * @param array \$data The payload array.
      * @return self New instance of this class.
      */
-    public static function fromPayload(array $data): self {
-        $user = Users::findById((int)$data[\'user_id\']);
-        return new self($user);
+    public static function fromPayload(array \$data): self {
+        \$user = Users::findById((int)\$data['user_id']);
+        return new self(\$user);
     }
-}';
+}
+PHP;
     }
 
     public static function queueListenerTemplate(string $eventName, string $listenerName): string {
