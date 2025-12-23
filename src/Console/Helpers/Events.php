@@ -87,25 +87,27 @@ PHP;
      * @return string The content for the new listener class.
      */
     public static function listenerTemplate(string $eventName, string $listenerName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Listeners;
 
-use App\Events\\'.$eventName.';
+use App\Events\{$eventName};
 
 /**
  * Add description for class here
  */
-class '.$listenerName.' {
+class {$listenerName} {
     /**
      * Handle the event.
      *
-     * @param '.$eventName.' $event The event.
+     * @param {$eventName} \$event The event.
      * @return void
      */
-    public function handle('.$eventName.' $event): void {
-        $user = $event->user;
+    public function handle({$eventName} \$event): void {
+        \$user = \$event->user;
     }
-}';
+}
+PHP;
     }
 
     /**
