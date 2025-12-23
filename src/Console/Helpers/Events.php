@@ -18,7 +18,8 @@ class Events {
      * @return string The content for the new event class.
      */
     public static function eventTemplate(string $eventName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Events;
 
 use App\Models\Users;
@@ -26,21 +27,21 @@ use App\Models\Users;
 /**
  * Document class here.
  */
-class '.$eventName.'
+class {$eventName}
 {
-    public $user;
+    public \$user;
 
     /**
      * Constructor
      *
-     * @param User $user User associated with event.
+     * @param User \$user User associated with event.
      */
-    public function __construct(Users $user)
+    public function __construct(Users \$user)
     {
-        $this->user = $user;
+        \$this->user = \$user;
     }
 }
-';
+PHP;
     }
 
     /**
