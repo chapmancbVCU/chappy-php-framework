@@ -51,30 +51,32 @@ PHP;
      * @return string The content of the event service provider.
      */
     public static function eventServiceProviderTemplate(string $providerName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Providers;
 
 use Core\Lib\Events\EventDispatcher;
 use Core\Lib\Providers\ServiceProvider;
 
 /**
- * App namespace event service providers
+ * Provider for the {$providerName} service.
  */
-class '.$providerName.' extends ServiceProvider {
-    protected array $listen = [
+class {$providerName} extends ServiceProvider {
+    protected array \$listen = [
         // Add app-specific events here.
     ];
 
     /**
      * Register your events with the dispatcher.
      *
-     * @param EventDispatcher $dispatcher The dispatcher.
+     * @param EventDispatcher \$dispatcher The dispatcher.
      * @return void
      */
-    public function boot(EventDispatcher $dispatcher): void {
-        parent::boot($dispatcher);
+    public function boot(EventDispatcher \$dispatcher): void {
+        parent::boot(\$dispatcher);
     }
-}';
+}
+PHP;
     }
 
     /**
