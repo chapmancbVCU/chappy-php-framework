@@ -14,10 +14,12 @@ class View {
      * @return string The contents of a card component.
      */
     public static function cardComponent(): string {
-        return '<div class="card">
-  <div class="card-header"><?= $title ?></div>
-  <div class="card-body"><?= $slot ?></div>
-</div>';
+        return <<<HTML
+<div class="card">
+  <div class="card-header"><?= \$title ?></div>
+  <div class="card-body"><?= \$slot ?></div>
+</div>
+HTML;
   }
 
   /**
