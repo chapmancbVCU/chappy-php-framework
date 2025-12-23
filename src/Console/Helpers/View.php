@@ -31,11 +31,13 @@ HTML;
    */
     public static function formComponent(string $method, string $encType): string {
         $enctypeAttr = !empty($encType) ? ' enctype="'.$encType.'"' : '';
-        return '<?php use Core\FormHelper; ?>
-<form class="form" action=<?=$this->postAction?> method="'.$method.'"'.$enctypeAttr.'>
+        return <<<PHP
+<?php use Core\FormHelper; ?>
+<form class="form" action=<?=\$this->postAction?> method="{$method}"{$enctypeAttr}>
     <?= FormHelper::csrfInput() ?>
 
-</form>';
+</form>
+PHP;
     }
 
     /**
