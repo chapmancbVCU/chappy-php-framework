@@ -288,15 +288,16 @@ JSON;
      * @return string The content of the table component.
      */
     public static function tableComponent(): string {
-        return '<table class="table">
+        return <<<HTML
+<table class="table">
     <thead>
-        <tr><?= $headers ?></tr>
+        <tr><?= \$headers ?></tr>
     </thead>
     <tbody>
-        <?= $slot ?>
+        <?= \$slot ?>
     </tbody>
 </table>
-';
+HTML;
     }
 
     /**
