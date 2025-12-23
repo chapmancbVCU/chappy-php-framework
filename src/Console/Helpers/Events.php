@@ -220,25 +220,26 @@ PHP;
     }
 
     public static function queueListenerTemplate(string $eventName, string $listenerName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace Core\Lib\Listeners;
 
-use App\Events\\'.$eventName.';
+use App\Events\{$eventName};
 use Core\Lib\Events\Contracts\ShouldQueue;
 use Core\Lib\Events\Contracts\QueuePreferences;
 
 /**
  * Add description for class here
  */
-class '.$listenerName.' implements ShouldQueue, QueuePreferences {
+class {$listenerName} implements ShouldQueue, QueuePreferences {
     /**
      * Handle the event.
      *
-     * @param '.$eventName.' $event The event.
+     * @param {$eventName} \$event The event.
      * @return void
      */
-    public function handle('.$eventName.' $event) : void {
-        $user = $event->user;
+    public function handle({$eventName} \$event) : void {
+        \$user = \$event->user;
     }
 
     /**
@@ -247,7 +248,7 @@ class '.$listenerName.' implements ShouldQueue, QueuePreferences {
      * @return string|null
      */
     public function viaQueue(): ?string { 
-        return \'default\'; 
+        return 'default'; 
     }
 
     /**
@@ -277,7 +278,8 @@ class '.$listenerName.' implements ShouldQueue, QueuePreferences {
     public function maxAttempts(): int { 
         return 5; 
     }
-}';
+}
+PHP;
     }
 
     /**
