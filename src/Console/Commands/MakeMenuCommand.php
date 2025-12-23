@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Core\Lib\Utilities\Str;
 
 /**
  * Supports ability to generate a new menu file
@@ -35,6 +36,6 @@ class MakeMenuCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $menuName = $input->getArgument('menu-name');
-        return View::makeMenu($menuName);
+        return View::makeMenu(Str::lcfirst($menuName));
     }
 }
