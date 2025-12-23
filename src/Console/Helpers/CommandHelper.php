@@ -41,7 +41,7 @@ class {$commandName}Command extends Command {
      */
     protected function configure(): void
     {
-        //
+        \$this->setName('my-command');
     }
 
     /**
