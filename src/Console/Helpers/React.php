@@ -33,8 +33,9 @@ class React {
      * @return string The contents of the component.
      */
     public static function defaultComponentTemplate(string $componentName): string {
-        return 'import React from "react";
-function '.$componentName.'() {
+        return <<<JSX
+import React from "react";
+function {$componentName}() {
 
     return (
         <>
@@ -42,7 +43,8 @@ function '.$componentName.'() {
         </>
     );
 }        
-export default '.$componentName.';';
+export default {$componentName};
+JSX;
     }
 
     /**
@@ -76,15 +78,17 @@ export default '.$componentName.';';
      * @return string The contents of the component.
      */
     public static function namedComponentTemplate(string $componentName): string {
-        return 'import React from "react";
-export const '.$componentName.' = () => {
+        return <<<JSX
+import React from "react";
+export const {$componentName} = () => {
 
     return (
         <>
         
         </>
     );
-}';
+}
+JSX;
     }
 
     /**
