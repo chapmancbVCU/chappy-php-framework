@@ -269,29 +269,31 @@ PHP;
         string $classFunctions, 
         string $notificationName
     ): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Notifications;
 
 use App\Models\Users;
 use Core\Lib\Notifications\Notification;
 
 /**
- * '.$notificationName.' notification.
+ * {$notificationName} notification.
  */
-class '.$notificationName.' extends Notification {
-    protected $user;
+class {$notificationName} extends Notification {
+    protected \$user;
 
     /**
      * Undocumented function
      *
-     * @param Users $user
+     * @param Users \$user
      */
-    public function __construct(Users $user) {
-        $this->user = $user;
+    public function __construct(Users \$user) {
+        \$this->user = \$user;
     }
 
-    '.$classFunctions.'
-}';
+    {$classFunctions}
+}
+PHP;
     }
 
     /**
@@ -422,20 +424,22 @@ class '.$notificationName.' extends Notification {
      * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function toDatabaseTemplate(): string {
-        return '/**
+        return <<<PHP
+/**
     * Data stored in the notifications table.
     *
-    * @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @param object \$notifiable Any model/object that uses the Notifiable trait.
     * @return array<string,mixed>
     */
-    public function toDatabase(object $notifiable): array {
+    public function toDatabase(object \$notifiable): array {
         return [
-            \'user_id\'   => (int)$this->user->id,
-            \'username\'  => $this->user->username ?? $this->user->email,
-            \'message\'   => "Temp notification for user #{$this->user->id}",
-            \'created_at\'=> \Core\Lib\Utilities\DateTime::timeStamps(), // optional
+            'user_id'   => (int)\$this->user->id,
+            'username'  => \$this->user->username ?? \$this->user->email,
+            'message'   => "Temp notification for user #{\$this->user->id}",
+            'created_at'=> \Core\Lib\Utilities\DateTime::timeStamps(), // optional
         ];
-    }';
+    }
+PHP;
     }
 
     /**
@@ -444,15 +448,17 @@ class '.$notificationName.' extends Notification {
      * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function toLogTemplate(): string {
-        return '    /**
+        return <<<PHP
+    /**
     * Logs notification to log file.
     *
-    * @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @param object \$notifiable Any model/object that uses the Notifiable trait.
     * @return string Contents for the log.
     */
-    public function toLog(object $notifiable): string {
+    public function toLog(object \$notifiable): string {
         return "";
-    }';
+    }
+PHP;
     }
 
     /**
@@ -461,15 +467,17 @@ class '.$notificationName.' extends Notification {
      * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function toMailTemplate(): string {
-        return '    /**
+        return <<<PHP
+    /**
     * Handles notification via E-mail.
     *
-    * @param object $notifiable Any model/object that uses the Notifiable trait.
+    * @param object \$notifiable Any model/object that uses the Notifiable trait.
     * @return array<string,mixed>
     */
-    public function toMail(object $notifiable): array {
+    public function toMail(object \$notifiable): array {
         return [];
-    }';
+    }
+PHP;
     }
 
     /**
@@ -479,14 +487,16 @@ class '.$notificationName.' extends Notification {
      * @return non-empty-string             PHP code snippet for inclusion.
      */
     private static function viaTemplate(string $channelList): string {
-        return '    /**
+        return <<<PHP
+    /**
     * Specify which channels to deliver to.
     * 
-    * @param object $notifiable Any model/object that uses the Notifiable trait.
-    * @return list<\'database\'|\'mail\'|\'log\'
+    * @param object \$notifiable Any model/object that uses the Notifiable trait.
+    * @return list<'database'|'mail'|'log'
     */
-    public function via(object $notifiable): array {
-        return '.$channelList.';
-    }';
+    public function via(object \$notifiable): array {
+        return {$channelList};
+    }
+PHP;
     }
 }
