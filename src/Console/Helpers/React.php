@@ -101,7 +101,7 @@ JSX;
      */
     public static function makeComponent(string $componentName, bool $named = false): int {
         Tools::pathExists(self::COMPONENT_PATH);
-        $componentPath = self::COMPONENT_PATH.Str::ucfirst($componentName).'.jsx';
+        $componentPath = self::COMPONENT_PATH.$componentName.'.jsx';
         $content = ($named) 
             ? self::namedComponentTemplate($componentName) 
             : self::defaultComponentTemplate($componentName);
