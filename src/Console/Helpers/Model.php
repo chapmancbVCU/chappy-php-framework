@@ -14,23 +14,25 @@ class Model {
      * @return string The contents for a new model.
      */
     public static function makeModel(string $modelName): string {
-        return '<?php
+        $table = Str::lcfirst($modelName);
+        return <<<PHP
+<?php
 namespace App\Models;
 use Core\Model;
 
 /**
- * Implements features of the '.$modelName.' class.
+ * Implements features of the {$modelName} class.
  */
-class '.$modelName.' extends Model {
+class {$modelName} extends Model {
 
     // Fields you don\'t want saved on form submit
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static $_table = \''.Str::lcfirst($modelName).'\';
+    protected static \$_table = '{$table}';
 
     // Soft delete
-    // protected static $_softDelete = true;
+    // protected static \$_softDelete = true;
     
     // Fields from your database
 
@@ -52,7 +54,7 @@ class '.$modelName.' extends Model {
     }
 
     /**
-     * Performs validation for the '.$modelName.' model.
+     * Performs validation for the {$modelName} model.
      *
      * @return void
      */
@@ -60,7 +62,7 @@ class '.$modelName.' extends Model {
         // Implement your function
     }
 }
-';
+PHP;
     }
 
     /**
