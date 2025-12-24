@@ -61,21 +61,22 @@ class Queue {
      * @return string The content of the job class.
      */
     private static function jobTemplate(string $jobName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Jobs;
 
 use Core\Lib\Queue\QueueableJobInterface;
 use Core\Lib\Utilities\DateTime;
 
-class '.$jobName.' implements QueueableJobInterface {
-    protected array $data;
-    protected int $delayInSeconds;
-    protected int $maxAttempts;
+class {$jobName} implements QueueableJobInterface {
+    protected array \$data;
+    protected int \$delayInSeconds;
+    protected int \$maxAttempts;
 
-    public function __construct(array $data, int $delayInSeconds = 0, int $maxAttempts = 3) {
-        $this->data = $data;
-        $this->delayInSeconds = $delayInSeconds;
-        $this->maxAttempts = $maxAttempts;
+    public function __construct(array \$data, int \$delayInSeconds = 0, int \$maxAttempts = 3) {
+        \$this->data = \$data;
+        \$this->delayInSeconds = \$delayInSeconds;
+        \$this->maxAttempts = \$maxAttempts;
     }
 
     public function backoff(): int|array {
@@ -84,7 +85,7 @@ class '.$jobName.' implements QueueableJobInterface {
     }
 
     public function delay(): int {
-        return $this->delayInSeconds;
+        return \$this->delayInSeconds;
     }
 
     public function handle(): void {
@@ -92,19 +93,19 @@ class '.$jobName.' implements QueueableJobInterface {
     }
 
     public function maxAttempts(): int {
-        return $this->maxAttempts;
+        return \$this->maxAttempts;
     }
 
     public function toPayload(): array {
         return [
-            \'job\' => static::class,
-            \'data\' => $this->data,
-            \'available_at\' => DateTime::nowPlusSeconds($this->delay()),
-            \'max_attempts\' => $this->maxAttempts()
+            'job' => static::class,
+            'data' => \$this->data,
+            'available_at' => DateTime::nowPlusSeconds(\$this->delay()),
+            'max_attempts' => \$this->maxAttempts()
         ];
     }
 }
-';
+PHP;
     }
 
     /**
