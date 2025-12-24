@@ -85,14 +85,15 @@ class Test {
      * @return string The contents for the new TestCase class.
      */
     public static function makeFeatureTest(string $testName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace Tests\Feature;
 use Core\Lib\Testing\ApplicationTestCase;
 
 /**
  * Unit tests
  */
-class '.$testName.' extends ApplicationTestCase {
+class {$testName} extends ApplicationTestCase {
     /**
      * Example for testing home page.
      *
@@ -100,11 +101,11 @@ class '.$testName.' extends ApplicationTestCase {
      */
     public function test_homepage_loads_successfully(): void
     {
-        $response = $this->get(\'/\');
-        $response->assertStatus(200);
+        \$response = \$this->get('/');
+        \$response->assertStatus(200);
     }
 }
-';
+PHP;
     }
 
     /**
@@ -114,14 +115,15 @@ class '.$testName.' extends ApplicationTestCase {
      * @return string The contents for the new TestCase class.
      */
     public static function makeUnitTest(string $testName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace Tests\Unit;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests
  */
-class '.$testName.' extends TestCase {
+class {$testName} extends TestCase {
     /**
     * Example test.
     *
@@ -129,10 +131,10 @@ class '.$testName.' extends TestCase {
     */
     public function test_example(): void
     {
-        $this->assertTrue(true);
+        \$this->assertTrue(true);
     }
 }
-';
+PHP;
     }
 
     /**
