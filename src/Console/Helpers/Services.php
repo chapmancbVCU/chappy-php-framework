@@ -46,16 +46,18 @@ class Services {
      * @return string The template for the new Service class.
      */
     public static function servicesTemplate(string $serviceName): string {
-        return '<?php
+        return <<<PHP
+<?php
 namespace App\Services;
 
-use App\Models\\'.$serviceName.';
+use App\Models\\{$serviceName};
 
 /**
- * Service that supports the '.$serviceName.' model.
+ * Service that supports the {$serviceName} model.
  */
-class '.$serviceName.'Service {
+class {$serviceName}Service {
 
-}';
+}
+PHP;
     }
 }
