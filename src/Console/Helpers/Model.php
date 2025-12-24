@@ -72,32 +72,34 @@ PHP;
      * @return string The contents for a new model.
      */
     public static function makeUploadModel(string $modelName): string {
-        return '<?php
+        $table = Str::lcfirst($modelName);
+        return <<<PHP
+<?php
 namespace App\Models;
 use Core\Model;
 
 /**
- * Implements features of the '.$modelName.' class.
+ * Implements features of the {$modelName} class.
  */
-class '.$modelName.' extends Model {
+class {$modelName} extends Model {
 
     // Fields you don\'t want saved on form submit
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static $_table = \''.Str::lcfirst($modelName).'\';
+    protected static \$_table = '{$table}';
 
     // Soft delete
-    // protected static $_softDelete = true;
+    // protected static \$_softDelete = true;
     
     // List your allowed file types.
-    protected static $allowedFileTypes = [];
+    protected static \$allowedFileTypes = [];
     
     // Set your max file size.
-    protected static $maxAllowedFileSize = 5242880;
+    protected static \$maxAllowedFileSize = 5242880;
 
     // Set your file path.  Include your bucket if necessary.
-    protected static $_uploadPath = "";
+    protected static \$_uploadPath = "";
     
     // Fields from your database
 
@@ -119,22 +121,22 @@ class '.$modelName.' extends Model {
     }
 
     /**
-     * Getter function for $allowedFileTypes array
+     * Getter function for \$allowedFileTypes array
      *
-     * @return array $allowedFileTypes The array of allowed file types.
+     * @return array \$allowedFileTypes The array of allowed file types.
      */
     public static function getAllowedFileTypes(): array {
-        return self::$allowedFileTypes;
+        return self::\$allowedFileTypes;
     }
 
     /**
-     * Getter function for $maxAllowedFileSize.
+     * Getter function for \$maxAllowedFileSize.
      *
-     * @return int $maxAllowedFileSize The max file size for an individual 
+     * @return int \$maxAllowedFileSize The max file size for an individual 
      * file.
      */
     public static function getMaxAllowedFileSize(): int {
-        return self::$maxAllowedFileSize;
+        return self::\$maxAllowedFileSize;
     }
 
     /**
@@ -146,6 +148,6 @@ class '.$modelName.' extends Model {
         // Implement your function
     }
 }
-';
+PHP;
     }
 }
