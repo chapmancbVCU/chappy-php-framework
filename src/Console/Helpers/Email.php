@@ -95,7 +95,7 @@ PHP;
     /**
      * Generates a new E-mail.
      *
-     * @param InputInterface $input The input.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeEmail(InputInterface $input): int {
@@ -107,7 +107,7 @@ PHP;
     /**
      * Generates a new E-mail layout.
      *
-     * @param InputInterface $input The input.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeLayout(InputInterface $input): int {
@@ -119,7 +119,7 @@ PHP;
     /**
      * Generates a new custom mailer class.
      *
-     * @param InputInterface $input The input.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMailer(InputInterface $input): int {

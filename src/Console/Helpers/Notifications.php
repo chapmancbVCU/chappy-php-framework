@@ -2,11 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
-use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Channel;
-use Core\Lib\Notifications\Notifiable;
 use Core\Lib\Notifications\Notification;
 use Symfony\Component\Console\Command\Command;
 use Core\Models\Notifications as NotificationModel;
@@ -299,8 +297,8 @@ PHP;
     /**
      * Resolve a notifiable instance (or a sentinel string) from CLI input.
      *
-     * @param InputInterface $input Console input (expects option "user").
-     * @return object|string        A model instance or "dummy" if none found/provided.
+     * @param InputInterface $input CThe Symfony InputInterface object.
+     * @return object|string A model instance or "dummy" if none found/provided.
      */
     public static function resolveNotifiable(InputInterface $input): object|string {
         $userOpt = $input->getOption('user');
@@ -314,8 +312,8 @@ PHP;
     /**
      * Parse overrides from the --with option (key:value,key2:value2).
      *
-     * @param InputInterface             $input Console input (expects option "with").
-     * @return array<string,string>             Flattened k=>v overrides.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return array<string,string> Flattened k=>v overrides.
      */
     public static function resolveOverridesFromWith(InputInterface $input): array {
         $kv = $input->getOption('with')
@@ -338,7 +336,7 @@ PHP;
      * Prune old notifications using the model layer.
      *
      * @param int $days Number of days to retain; older rows are deleted.
-     * @return int      Command::SUCCESS on completion.
+     * @return int Command::SUCCESS on completion.
      */
     public static function prune(int $days): int {
         $recordsDeleted = NotificationModel::notificationsToPrune($days);
@@ -352,8 +350,8 @@ PHP;
      *
      * If the option is omitted/empty, returns NULL so callers can defer to via().
      *
-     * @param InputInterface    $input Console input (expects option "channels").
-     * @return list<string>|null       Normalized channels or NULL to defer.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return list<string>|null Normalized channels or NULL to defer.
      */
     public static function resolveChannelsOverride(InputInterface $input): ?array {
         return $input->getOption('channels')

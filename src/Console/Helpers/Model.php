@@ -10,7 +10,13 @@ use Symfony\Component\Console\Input\InputInterface;
 class Model {
     public const MODEL_PATH = ROOT.DS.'app'.DS.'Models'.DS;
 
-    public static function makeModel(InputInterface $input) {
+    /**
+     * Undocumented function
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeModel(InputInterface $input): int {
         $modelName = Str::ucfirst($input->getArgument('modelname'));
         $path = self::MODEL_PATH.$modelName.'.php';
 

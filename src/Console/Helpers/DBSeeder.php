@@ -14,7 +14,7 @@ class DBSeeder {
     /**
      * Creates a class for seeding a database.
      *
-     * @param InputInterface $input The input for getting name of seeder class.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeSeeder(InputInterface $input): int {

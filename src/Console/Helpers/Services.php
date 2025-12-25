@@ -14,7 +14,7 @@ class Services {
     /**
      * Creates new Services class.
      *
-     * @param InputInterface $inputThe input.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeService(InputInterface $input): int {

@@ -84,7 +84,7 @@ PHP;
     /**
      * Generates new class that extends Command.
      *
-     * @param InputInterface $input The name of the Command child class.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeCommand(InputInterface $input): int {
@@ -98,7 +98,7 @@ PHP;
      * Generates new class that contains functions that support multiple 
      * console commands.
      *
-     * @param InputInterface $input The name of the command helper class.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeHelper(InputInterface $input): int {
