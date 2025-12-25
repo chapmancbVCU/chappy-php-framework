@@ -40,7 +40,7 @@ class MakeViewCommand extends Command {
 
         if (sizeof($viewArray) !== 2) {
             Tools::info(
-                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<view_name>',
+                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
                 'debug',
                 'red'
             );
