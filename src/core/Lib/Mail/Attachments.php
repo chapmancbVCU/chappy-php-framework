@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
+use Core\Exceptions\FrameworkRuntimeException;
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Mime\Email;
 use Core\Models\EmailAttachments;
@@ -82,7 +83,7 @@ class Attachments {
         $path = $attachment->path;
     
         if (!file_exists($path)) {
-            throw new \RuntimeException("Attachment file not found: {$path}");
+            throw new FrameworkRuntimeException("Attachment file not found: {$path}");
         }
 
         return [
@@ -121,7 +122,7 @@ class Attachments {
         $path = $attachment->path;
     
         if (!file_exists($path)) {
-            throw new \RuntimeException("Attachment file not found: {$path}");
+            throw new FrameworkRuntimeException("Attachment file not found: {$path}");
         }
 
         return [
