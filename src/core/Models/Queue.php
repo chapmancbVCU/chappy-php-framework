@@ -4,6 +4,7 @@ use Core\DB;
 use Exception;
 use Core\Model;
 use Console\Helpers\Tools;
+use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
@@ -60,11 +61,11 @@ class Queue extends Model {
     /**
      * Handles tasks related to exceptions and retry of jobs.
      *
-     * @param Exception $e The exception.
+     * @param FrameworkException $e The exception.
      * @param array $job The array of jobs
      * @return void
      */
-    public static function exceptionMessaging(Exception $e, array $queueJob): void {
+    public static function exceptionMessaging(FrameworkException $e, array $queueJob): void {
         Tools::info("Job failed: " . $e->getMessage(), 'warning');
         $payload = $queueJob['payload'] ?? [];
         $job = self::findJob($queueJob);
@@ -223,7 +224,7 @@ class Queue extends Model {
             }
 
             $db->commit();
-        } catch (Exception $e) {
+        } catch (FrameworkException $e) {
             $db->rollBack();
             throw $e;
         }

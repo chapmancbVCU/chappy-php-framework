@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
-use Exception;
+
+use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Queue\QueueManager;
 use Core\Models\Queue as QueueModel;
@@ -34,7 +35,7 @@ class Queue {
      */
     private static function isValidJob(string $jobClass): void {
         if (!$jobClass || !class_exists($jobClass)) {
-            throw new Exception("Invalid job class: " . ($jobClass ?? 'null'));
+            throw new FrameworkException("Invalid job class: " . ($jobClass ?? 'null'));
         }
     }
 
@@ -230,7 +231,7 @@ PHP;
                     $instance->handle();
                     self::deleteJob($job, $queue);
 
-                } catch (Exception $e) {
+                } catch (FrameworkException $e) {
                     QueueModel::exceptionMessaging($e, $job);
                 }
             }
