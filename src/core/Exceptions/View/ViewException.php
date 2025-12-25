@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace Core\Exceptions;
+namespace Core\Exceptions\View;
+use Core\Exceptions\FrameworkException;
 
 /**
  * Handles exceptions related to views/layouts.  Extends the FrameworkException 
