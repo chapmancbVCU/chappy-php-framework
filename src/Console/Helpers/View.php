@@ -9,7 +9,7 @@ use Core\Lib\Utilities\Str;
  */
 class View {
     public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
-    
+    public const WIDGET_PATH = self::VIEW_PATH.'widgets'.DS;
     /**
      * Returns contents of a card component.
      *
