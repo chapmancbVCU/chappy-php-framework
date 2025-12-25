@@ -4,7 +4,6 @@ namespace Console\Helpers;
 
 use Console\Helpers\ReactStubs;
 use Console\Helpers\Tools;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 
 class React {

@@ -55,7 +55,7 @@ class Notifications {
      * - Accepts the special token "all" to mean all channel enum values.
      * - Validates unknown names and deduplicates while preserving order.
      *
-     * @param InputInterface $input Console input (expects option "channels").
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return list<string>         Normalized channel names (e.g., ['database','log']).
      *
      * @throws \InvalidArgumentException on unknown channel names.
@@ -297,7 +297,7 @@ PHP;
     /**
      * Resolve a notifiable instance (or a sentinel string) from CLI input.
      *
-     * @param InputInterface $input CThe Symfony InputInterface object.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return object|string A model instance or "dummy" if none found/provided.
      */
     public static function resolveNotifiable(InputInterface $input): object|string {
