@@ -47,32 +47,9 @@ class MakeViewCommand extends Command {
             return Command::FAILURE;
         }
 
-        $directory = ROOT . DS . 'resources' . DS . 'views' . DS . $viewArray[0];
+        $directory = View::VIEW_PATH.$viewArray[0];
         $filePath = $directory . DS . $viewArray[1].'.php';
-        $helper = new QuestionHelper(); // <-- Manual instantiation to avoid `getHelper()` issues
-
-        // Debug to check if helper exists
-        if (!$helper) {
-            Tools::info('Helper could not be instantiated.', 'debug', 'red');
-            return Command::FAILURE;
-        }
-
-        // Check if directory exists
-        if (!is_dir($directory)) {
-            $question = new ConfirmationQuestion(
-                "The directory '$directory' does not exist. Do you want to create it? (y/n) ", 
-                false
-            );
-
-            if ($helper->ask($input, $output, $question)) {
-                mkdir($directory, 0755, true);
-                Tools::info("Directory created: $directory", 'blue');
-            } else {
-                Tools::info('Operation canceled.', 'debug', 'blue');
-                return Command::FAILURE;
-            }
-        }
-
+        Tools::createDirWithPrompt($directory, $input, $output);
         return View::makeView($filePath);
     }
 }

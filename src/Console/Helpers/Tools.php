@@ -8,6 +8,10 @@ use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Helper\QuestionHelper;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * Contains functions for miscellaneous tasks.
@@ -22,6 +26,39 @@ class Tools {
      */
     public static function border(): string {
         return '--------------------------------------------------';
+    }
+
+    public static function createDirWithPrompt(
+        string $directory, 
+        InputInterface $cmdInput, 
+        OutputInterface $cmdOutput
+    ): int {
+        // Manual instantiation to avoid `getHelper()` issues
+        $helper = new QuestionHelper(); 
+
+        if (!$helper) {
+            Tools::info('Helper could not be instantiated.', 'debug', 'red');
+            return Command::FAILURE;
+        }
+
+        // Check if directory exists
+        if (!is_dir($directory)) {
+            $question = new ConfirmationQuestion(
+                "The directory '$directory' does not exist. Do you want to create it? (y/n) ", 
+                false
+            );
+
+            if ($helper->ask($cmdInput, $cmdOutput, $question)) {
+                // mkdir($directory, 0755, true);
+                Tools::pathExists($directory, 0755, true);
+                Tools::info("Directory created: $directory", 'blue');
+                return Command::SUCCESS;
+            } else {
+                Tools::info('Operation canceled.', 'debug', 'blue');
+                return Command::FAILURE;
+            }
+        }
+        return Command::FAILURE;
     }
 
     /**
