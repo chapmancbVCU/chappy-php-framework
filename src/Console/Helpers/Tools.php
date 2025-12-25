@@ -45,7 +45,7 @@ class Tools {
         $helper = new QuestionHelper(); 
 
         if (!$helper) {
-            Tools::info('Helper could not be instantiated.', 'debug', 'red');
+            self::info('Helper could not be instantiated.', 'debug', 'red');
             return Command::FAILURE;
         }
 
@@ -57,18 +57,48 @@ class Tools {
             );
 
             if ($helper->ask($cmdInput, $cmdOutput, $question)) {
-                // mkdir($directory, 0755, true);
-                Tools::pathExists($directory, 0755, true);
-                Tools::info("Directory created: $directory", 'blue');
+                self::pathExists($directory, 0755, true);
+                self::info("Directory created: $directory", 'blue');
                 return Command::SUCCESS;
             } else {
-                Tools::info('Operation canceled.', 'debug', 'blue');
+                self::info('Operation canceled.', 'debug', 'blue');
                 return Command::FAILURE;
             }
         }
         return Command::FAILURE;
     }
 
+    /**
+     * Checks if input is in dot notation.  If in dot notation the string is 
+     * placed in an array where the first index is the directory name.  The 
+     * second element is the file name.  The structure is shown below:
+     * 
+     * ["directory_name","file_name"]
+     * 
+     * 
+     * If not in the <directory_name>.<file_name> an error message is 
+     * displayed an a Command::FAILURE integer value is returned.
+     *
+     * @param string $inputName The name in <directory_name>.<file_name> format.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return array|integer An array containing the contents of the $inputName 
+     * variable.  If $inputName is not in correct format then Command::FAILURE 
+     * is returned.
+     */
+    public static function dotNotationVerify(string $inputName, InputInterface $input): array|int {
+        $viewArray = explode(".", $input->getArgument($inputName));
+
+        if (sizeof($viewArray) !== 2) {
+            Tools::info(
+                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
+                'debug',
+                'red'
+            );
+            return Command::FAILURE;
+        }
+        return $viewArray;
+    }
+    
     /**
      * Generates output messages for console commands.
      *
