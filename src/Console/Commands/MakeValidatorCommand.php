@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
  
-use Console\Helpers\Tools;
+use Console\Helpers\Validator;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -34,30 +34,6 @@ class MakeValidatorCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $validatorName = Str::ucfirst($input->getArgument('validator-name'));
-        
-        $content = '<?php
-namespace App\CustomValidators;
-use Core\Validators\CustomValidator;
-/**
- * Describe your validator class.
- */
-class '.$validatorName.'Validator extends CustomValidator {
-
-    /**
-     * Describe your function.
-     * 
-     * @return bool
-     */ 
-    public function runValidation(): bool {
-        // Implement your custom validator.
-    }
-}
-';
-        // Generate unit test class
-        return Tools::writeFile(
-            ROOT.DS.'app'.DS.'CustomValidators'.DS.$validatorName.'.php',
-            $content,
-            'Custom validator class'
-        );
+        Validator::makeValidator($validatorName);
     }
 }
