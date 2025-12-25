@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core;
 
 use Core\Exceptions\LayoutNotFoundException;
+use Core\Exceptions\ViewNotFoundException;
 use stdClass;
 use Exception;
 use Core\Lib\Utilities\ArraySet;
@@ -123,7 +124,7 @@ class View extends stdClass {
             require $viewPath;
             require $layoutPath;
         } else {
-            throw new Exception('The view "' . $viewName . '" does not exist');
+            throw new ViewNotFoundException('The view "' . $viewName . '" does not exist');
         }
     }
 
