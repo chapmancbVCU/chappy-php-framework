@@ -36,9 +36,12 @@ class MakeViewCommand extends Command {
     {
         $viewArray = Tools::dotNotationVerify('view-name', $input);
         if($viewArray == Command::FAILURE) return Command::FAILURE;
+
         $directory = View::VIEW_PATH.$viewArray[0];
         $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
+        
         if($isDirMade == Command::FAILURE) return Command::FAILURE;
+
         return View::makeView($directory . DS . $viewArray[1].'.php');
     }
 }
