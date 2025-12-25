@@ -2,10 +2,10 @@
 declare(strict_types=1);
 namespace Core;
 
+use Core\Exceptions\ComponentNotFoundException;
 use Core\Exceptions\LayoutNotFoundException;
 use Core\Exceptions\ViewNotFoundException;
 use stdClass;
-use Exception;
 use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Utilities\Env;
 
@@ -62,7 +62,7 @@ class View extends stdClass {
             self::FRAMEWORK_COMPONENT_PATH.$component.'.php';
         
         if(!file_exists($componentPath)) {
-            throw new Exception('The component "' . $component . '" does not exist');
+            throw new ComponentNotFoundException('The component "' . $component . '" does not exist');
         } else {
             require $componentPath;
         }
