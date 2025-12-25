@@ -6,9 +6,7 @@ use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * Implements command for making a new view file.
@@ -48,8 +46,7 @@ class MakeViewCommand extends Command {
         }
 
         $directory = View::VIEW_PATH.$viewArray[0];
-        $filePath = $directory . DS . $viewArray[1].'.php';
         Tools::createDirWithPrompt($directory, $input, $output);
-        return View::makeView($filePath);
+        return View::makeView($directory . DS . $viewArray[1].'.php');
     }
 }
