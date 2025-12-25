@@ -5,14 +5,34 @@ namespace Console\Helpers;
  * Supports ability to manage logs.
  */
 class Log {
+    private const LOG_PATH = ROOT.DS.'storage'.DS.'logs'.DS;
+
     /**
-     * Performs delete operation on log files
+     * Performs delete operation on log files.
      *
-     * @param string $message The message to be displayed.
-     * @param string $path The full path to the log file to be deleted.
+     * @param string $fileName The name of the log file.
      * @return void
      */
-    public static function delete(string $message, string $path): void {
-        if(unlink($path)) Tools::info($message, 'green');
+    private static function delete(string $fileName): void {
+        $path = self::LOG_PATH.$fileName;
+        if(!file_exists($path)) return;
+        if(unlink($path)) Tools::info($fileName.' succesfully cleared', 'green');
+    }
+
+    public static function deleteAllLogs() {
+        self::deleteAppLog();
+        self::deleteCliLog('cli.log');
+        self::deletePHPUnitLog('phpunit.log',);
+    }
+    public static function deleteAppLog(): void {
+        self::delete('app.log');
+    }
+
+    public static function deleteCliLog(): void {
+        self::delete('cli.log');
+    }
+
+    public static function deletePHPUnitLog(): void {
+        self::delete('phpunit.log');
     }
 }
