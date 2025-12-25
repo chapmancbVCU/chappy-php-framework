@@ -1,6 +1,7 @@
 <?php
 namespace Core\Validators;
-use \Exception;
+
+use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\ArraySet;
 /**
@@ -35,7 +36,7 @@ abstract class CustomValidator {
 
         // Validate field existence
         if (!$paramsArr->has('field')->result()) {
-            throw new Exception("You must add a 'field' to the params array.");
+            throw new FrameworkException("You must add a 'field' to the params array.");
         }
 
         $fieldData = $paramsArr->get('field')->result();
@@ -47,12 +48,12 @@ abstract class CustomValidator {
         }
 
         if (!property_exists($model, $this->field)) {
-            throw new Exception("The field '{$this->field}' must exist in the model.");
+            throw new FrameworkException("The field '{$this->field}' must exist in the model.");
         }
 
         // Validate message existence
         if (!$paramsArr->has('message')->result()) {
-            throw new Exception("You must add a 'message' to the params array.");
+            throw new FrameworkException("You must add a 'message' to the params array.");
         }
         $this->message = $paramsArr->get('message')->result();
 
@@ -66,7 +67,7 @@ abstract class CustomValidator {
 
         try {
             $this->success = $this->runValidation();
-        } catch (Exception $e) {
+        } catch (FrameworkException $e) {
             echo "Validation Exception on " . static::class . ": " . $e->getMessage() . "<br />";
         }
     }
