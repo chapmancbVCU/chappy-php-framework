@@ -3,6 +3,10 @@ declare(strict_types=1);
 namespace Core\Lib\Mail;
 
 use App\Models\Users;
+
+/**
+ * Describes specification for all mailers.
+ */
 abstract class AbstractMailer {
     protected string $layout = 'default';
     protected MailerService $mailer;
