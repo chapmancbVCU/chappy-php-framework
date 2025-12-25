@@ -39,25 +39,6 @@ class MakeTestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $testName = Str::ucfirst($input->getArgument('testname'));
-        
-        if(Test::testIfExists($testName)) {
-            return Command::FAILURE;
-        }
-
-        if($input->getOption('feature')) {
-            return Tools::writeFile(
-                ROOT.DS.'tests'.DS.'Feature'.DS.$testName.'.php',
-                Test::makeFeatureTest($testName),
-                'Test'
-            );
-        } else {
-            return Tools::writeFile(
-                ROOT.DS.'tests'.DS.'Unit'.DS.$testName.'.php',
-                Test::makeUnitTest($testName),
-                'Test'
-            );
-        }
-
-        return Command::FAILURE;
+        return Test::makeTest($testName, $input);
     }
 }

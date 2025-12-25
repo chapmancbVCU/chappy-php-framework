@@ -109,6 +109,36 @@ PHP;
     }
 
     /**
+     * Creates a new test class.  When --feature flag is provided a test 
+     * feature class is created.
+     *
+     * @param string $testName The name for the test.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeTest(string $testName, InputInterface $input): int {
+        if(Test::testIfExists($testName)) {
+            return Command::FAILURE;
+        }
+
+        if($input->getOption('feature')) {
+            return Tools::writeFile(
+                ROOT.DS.'tests'.DS.'Feature'.DS.$testName.'.php',
+                Test::makeFeatureTest($testName),
+                'Test'
+            );
+        } else {
+            return Tools::writeFile(
+                ROOT.DS.'tests'.DS.'Unit'.DS.$testName.'.php',
+                Test::makeUnitTest($testName),
+                'Test'
+            );
+        }
+
+        return Command::FAILURE;
+    }
+
+    /**
      * The template for a new Unit Test class that extends TestCase.
      *
      * @param string $testName The name of the TestCase class.
