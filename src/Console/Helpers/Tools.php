@@ -28,6 +28,14 @@ class Tools {
         return '--------------------------------------------------';
     }
 
+    /**
+     * Creates a directory.  It checks if it already exists.  If not, user is asked to confirm the want to create a new directory.
+     *
+     * @param string $directory The full path for the directory to be created.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function createDirWithPrompt(
         string $directory, 
         InputInterface $cmdInput, 
