@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Core\Lib\Events;
 
+use Core\Exceptions\FrameworkRuntimeException;
+
 /**
  * Manages the registration and dispatching of events.
  */
@@ -44,7 +46,7 @@ class EventManager {
     public static function dispatcher(): EventDispatcher
     {
         if (self::$dispatcher === null) {
-            throw new \RuntimeException('EventManager not booted. Call EventManager::boot() first.');
+            throw new FrameworkRuntimeException('EventManager not booted. Call EventManager::boot() first.');
         }
 
         return self::$dispatcher;
