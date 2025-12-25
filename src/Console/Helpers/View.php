@@ -8,6 +8,8 @@ use Core\Lib\Utilities\Str;
  * json files.
  */
 class View {
+    public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
+    
     /**
      * Returns contents of a card component.
      *
