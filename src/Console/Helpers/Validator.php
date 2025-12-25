@@ -20,7 +20,7 @@ use Core\Validators\CustomValidator;
 /**
  * Describe your validator class.
  */
-class '.$validatorName.'Validator extends CustomValidator {
+class {$validatorName}Validator extends CustomValidator {
 
     /**
      * Describe your function.

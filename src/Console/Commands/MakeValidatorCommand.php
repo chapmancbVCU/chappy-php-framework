@@ -34,6 +34,6 @@ class MakeValidatorCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $validatorName = Str::ucfirst($input->getArgument('validator-name'));
-        Validator::makeValidator($validatorName);
+        return Validator::makeValidator($validatorName);
     }
 }
