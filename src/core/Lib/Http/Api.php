@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Core\Lib\Http;
 
+use Core\Exceptions\API\APIException;
+
 /**
  * Lightweight HTTP JSON client with optional on-disk caching.
  *
@@ -134,7 +136,7 @@ class Api {
      * @param int|null            $ttl   Override cache TTL (seconds); null uses default; 0 disables caching
      * @return array<string,mixed>       Decoded JSON as an associative array
      *
-     * @throws \RuntimeException         On transport errors or invalid/upstream error JSON
+     * @throws APIException         On transport errors or invalid/upstream error JSON
      */
     public function get(string $path, array $query = [], ?int $ttl = null): array {
         $ttl = $ttl ?? $this->defaultTtl;
@@ -162,7 +164,7 @@ class Api {
      * @param array<string,string> $headers  Extra headers (merged over defaults)
      * @return array<string,mixed>           Decoded JSON as an associative array
      *
-     * @throws \RuntimeException             When JSON encoding fails or upstream returns an error
+     * @throws APIException             When JSON encoding fails or upstream returns an error
      */
     public function post(string $path, array $body = [], array $query = [], array $headers = []): array {
         $url = $this->buildUrl($path, $query);
@@ -170,7 +172,7 @@ class Api {
 
         $payload = json_encode($body, JSON_UNESCAPED_UNICODE);
         if($payload === false) {
-            throw new \RuntimeException('Failed to JSON-encode POST body.');
+            throw new APIException('Failed to JSON-encode POST body.');
         }
 
         return $this->requestJson('POST', $url, $payload, $headers);
@@ -202,7 +204,7 @@ class Api {
      * @param array<string,string> $headers Extra headers (merged over defaults)
      * @return array<string,mixed>          Decoded JSON as an associative array
      *
-     * @throws \RuntimeException            On transport errors, invalid JSON, or upstream HTTP >= 400
+     * @throws APIException            On transport errors, invalid JSON, or upstream HTTP >= 400
      */
     protected function requestJson(string $method, string $url, ?string $body, array $headers): array {
         $flatHeaders = $this->flattenHeaders($this->defaultHeaders + $headers);
@@ -227,17 +229,17 @@ class Api {
         curl_close($ch);
 
         if($resp === false) {
-            throw new \RuntimeException("Upstream request failed: {$err}");
+            throw new APIException("Upstream request failed: {$err}");
         }
 
         $data = json_decode((string)$resp, true);
         if(!is_array($data)) {
-            throw new \RuntimeException("Invalid JSON from upstream (HTTP {$code}).");
+            throw new APIException("Invalid JSON from upstream (HTTP {$code}).");
         }
 
         if($code >= 400) {
             $msg = $data['message'] ?? 'Upstream error';
-            throw new \RuntimeException($msg, $code);
+            throw new APIException($msg, $code);
         }
 
         return $data;
