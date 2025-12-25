@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Core;
+
+use Core\Exceptions\LayoutNotFoundException;
 use stdClass;
 use Exception;
 use Core\Lib\Utilities\ArraySet;
@@ -114,7 +116,7 @@ class View extends stdClass {
             self::FRAMEWORK_LAYOUT_PATH . $layoutString;
             
         if (!file_exists($layoutPath)) {
-            throw new Exception('The layout "' . $this->_layout . '" does not exist');
+            throw new LayoutNotFoundException('The layout "' . $this->_layout . '" does not exist');
         }
 
         if (file_exists($viewPath)) {
