@@ -38,14 +38,6 @@ class GenerateModelCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $modelName = Str::ucfirst($input->getArgument('modelname'));
-        $path = ROOT.DS.'app'.DS.'Models'.DS.$modelName.'.php';
-
-        if($input->getOption('upload')) {
-            return Tools::writeFile($path, Model::makeUploadModel($modelName), 'Model');
-        } else {
-            return Tools::writeFile($path, Model::makeModel($modelName), 'Model');
-        }
-
+        return Model::makeModel($input);
     }
 }

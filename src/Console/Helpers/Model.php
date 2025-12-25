@@ -2,18 +2,32 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 use Core\Lib\Utilities\Str;
+use Symfony\Component\Console\Input\InputInterface;
 
 /**
  * Helper class for model related console commands.
  */
 class Model {
+    public const MODEL_PATH = ROOT.DS.'app'.DS.'Models'.DS;
+
+    public static function makeModel(InputInterface $input) {
+        $modelName = Str::ucfirst($input->getArgument('modelname'));
+        $path = self::MODEL_PATH.$modelName.'.php';
+
+        if($input->getOption('upload')) {
+            return Tools::writeFile($path, self::uploadModelTemplate($modelName), 'Model');
+        } else {
+            return Tools::writeFile($path, self::modelTemplate($modelName), 'Model');
+        }
+    }
+
     /**
      * The default template for a new model class.
      *
      * @param string $modelName The name of the model.
      * @return string The contents for a new model.
      */
-    public static function makeModel(string $modelName): string {
+    public static function modelTemplate(string $modelName): string {
         $table = Str::lcfirst($modelName);
         return <<<PHP
 <?php
@@ -71,7 +85,7 @@ PHP;
      * @param string $modelName The name of the model.
      * @return string The contents for a new model.
      */
-    public static function makeUploadModel(string $modelName): string {
+    public static function uploadModelTemplate(string $modelName): string {
         $table = Str::lcfirst($modelName);
         return <<<PHP
 <?php
