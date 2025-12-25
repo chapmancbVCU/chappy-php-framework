@@ -34,19 +34,11 @@ class MakeViewCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $viewArray = explode(".", $input->getArgument('view-name'));
-
-        if (sizeof($viewArray) !== 2) {
-            Tools::info(
-                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
-                'debug',
-                'red'
-            );
-            return Command::FAILURE;
-        }
-
+        $viewArray = Tools::dotNotationVerify('view-name', $input);
+        if($viewArray == Command::FAILURE) return Command::FAILURE;
         $directory = View::VIEW_PATH.$viewArray[0];
-        Tools::createDirWithPrompt($directory, $input, $output);
+        $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
+        if($isDirMade == Command::FAILURE) return Command::FAILURE;
         return View::makeView($directory . DS . $viewArray[1].'.php');
     }
 }
