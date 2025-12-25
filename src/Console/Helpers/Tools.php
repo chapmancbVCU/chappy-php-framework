@@ -81,7 +81,7 @@ class Tools {
      *
      * @param string $inputName The name in <directory_name>.<file_name> format.
      * @param InputInterface $input The Symfony InputInterface object.
-     * @return array|integer An array containing the contents of the $inputName 
+     * @return array|int An array containing the contents of the $inputName 
      * variable.  If $inputName is not in correct format then Command::FAILURE 
      * is returned.
      */
@@ -98,7 +98,7 @@ class Tools {
         }
         return $viewArray;
     }
-    
+
     /**
      * Generates output messages for console commands.
      *
