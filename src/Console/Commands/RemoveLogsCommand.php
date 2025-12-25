@@ -46,44 +46,17 @@ class RemoveLogsCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if($input->getOption('app')) {
-            Log::delete(
-                'app.log successfully cleared',
-                ROOT.DS.'storage'.DS.'logs'.DS.'app.log'
-            );
-            return COMMAND::SUCCESS;
+            Log::deleteAppLog();
         } else if($input->getOption('cli')) {
-            Log::delete(
-                'cli.log successfully cleared',
-                ROOT.DS.'storage'.DS.'logs'.DS.'cli.log'
-            );
-            return COMMAND::SUCCESS;
+            Log::deleteCliLog('cli.log');
         } else if($input->getOption('unit')) {
-            Log::delete(
-                'phpunit.log successfully cleared',
-                ROOT.DS.'storage'.DS.'logs'.DS.'phpunit.log'
-            );
-            return COMMAND::SUCCESS;
+            Log::deletePHPUnitLog('phpunit.log',);
         } else if($input->getOption('all')) {
-            Log::delete(
-                'app.log successfully cleared',
-                ROOT.DS.'storage'.DS.'logs'.DS.'app.log'
-            );
-
-            Log::delete(
-                'cli.log successfully cleared',
-                ROOT.DS.'storage'.DS.'logs'.DS.'cli.log'
-            );
-
-            Log::delete(
-                'phpunit.log successfully cleared',
-                ROOT.DS.'storage'.DS.'logs'.DS.'phpunit.log'
-            );
-            return COMMAND::SUCCESS;
+            Log::deleteAllLogs();
+        } else {
+            Tools::info('There was an issue removing the log file', 'debug', 'red');
+            return COMMAND::FAILURE;
         }
-
-
-        // Always execute when there is a failure.
-        Tools::info('There was an issue removing the log file', 'debug', 'red');
-        return COMMAND::FAILURE;
+        return COMMAND::SUCCESS;
     }
 }
