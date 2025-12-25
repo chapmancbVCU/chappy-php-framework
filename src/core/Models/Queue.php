@@ -1,7 +1,6 @@
 <?php
 namespace Core\Models;
 use Core\DB;
-use Exception;
 use Core\Model;
 use Console\Helpers\Tools;
 use Core\Exceptions\FrameworkException;
@@ -206,7 +205,7 @@ class Queue extends Model {
      *                     if a job was reserved, or `null` if no available job
      *                     was found at this time.
      *
-     * @throws Exception If there is a database error during selection or update,
+     * @throws FrameworkException If there is a database error during selection or update,
      *                    the transaction is rolled back and the exception is rethrown.
      */
     public static function reserveNext(string $queueName): ?self {

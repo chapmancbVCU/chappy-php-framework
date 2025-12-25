@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Core\Lib\Http;
-use Throwable;
+
+use Core\Exceptions\FrameworkException;
 use Core\FormHelper;
 use Core\Lib\Utilities\Arr;
 
@@ -99,7 +100,7 @@ trait JsonResponse {
 
         try {
             echo json_encode($data, $flags | JSON_THROW_ON_ERROR);
-        } catch(Throwable $e) {
+        } catch(FrameworkException $e) {
             http_response_code(500);
             echo json_encode(['success' => false, 'message' => 'JSON encoding error'], $flags);
         }
