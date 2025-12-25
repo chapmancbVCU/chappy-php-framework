@@ -19,19 +19,40 @@ class Log {
         if(unlink($path)) Tools::info($fileName.' succesfully cleared', 'green');
     }
 
-    public static function deleteAllLogs() {
+    /**
+     * Deletes all logs.
+     *
+     * @return void
+     */
+    public static function deleteAllLogs(): void {
         self::deleteAppLog();
         self::deleteCliLog('cli.log');
         self::deletePHPUnitLog('phpunit.log',);
     }
+
+    /**
+     * Deletes app.log.
+     *
+     * @return void
+     */
     public static function deleteAppLog(): void {
         self::delete('app.log');
     }
 
+    /**
+     * Deletes cli.log.
+     *
+     * @return void
+     */
     public static function deleteCliLog(): void {
         self::delete('cli.log');
     }
 
+    /**
+     * Deletes phpunit.log.
+     *
+     * @return void
+     */
     public static function deletePHPUnitLog(): void {
         self::delete('phpunit.log');
     }
