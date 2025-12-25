@@ -36,43 +36,14 @@ class MakeWidgetCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $widgetArray = explode(".", $input->getArgument('widget-name'));
+        $widgetArray = Tools::dotNotationVerify('widget-name', $input);
+        if($widgetArray == Command::FAILURE) return Command::FAILURE;
+        
+        $directory = View::WIDGET_PATH . $widgetArray[0];
+        $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
+        
+        if($isDirMade == Command::FAILURE) return Command::FAILURE;
 
-        if (sizeof($widgetArray) !== 2) {
-            Tools::info(
-                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<view_widget>',
-                'debug',
-                'red'
-            );
-            return Command::FAILURE;
-        }
-
-        $directory = ROOT . DS . 'resources' . DS . 'views' . DS . 'widgets' . DS . $widgetArray[0];
-        $filePath = $directory . DS . $widgetArray[1].'.php';
-        $helper = new QuestionHelper(); // <-- Manual instantiation to avoid `getHelper()` issues
-
-        // Debug to check if helper exists
-        if (!$helper) {
-            Tools::info('Helper could not be instantiated.', 'debug', 'red');
-            return Command::FAILURE;
-        }
-
-        // Check if directory exists
-        if (!is_dir($directory)) {
-            $question = new ConfirmationQuestion(
-                "The directory '$directory' does not exist. Do you want to create it? (y/n) ", 
-                false
-            );
-
-            if ($helper->ask($input, $output, $question)) {
-                mkdir($directory, 0755, true);
-                Tools::info("Directory created: $directory", 'blue');
-            } else {
-                Tools::info('Operation canceled.', 'debug', 'blue');
-                return Command::FAILURE;
-            }
-        }
-
-        return View::makeWidget($filePath);
+        return View::makeWidget($directory . DS . $widgetArray[1].'.php');
     }
 }
