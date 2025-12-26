@@ -9,17 +9,17 @@ use Carbon\Carbon;
  * wrappers for those found in the Carbon class.
  */
 class DateTime {
-    const FORMAT_12_HOUR = 'Y-m-d h:i:s A';
-    const FORMAT_24_HOUR = 'Y-m-d H:i:s';
-    const FORMAT_HUMAN_READABLE = 'l, F j, Y g:i A';
-    const FORMAT_DATE_ONLY = 'Y-m-d';
-    const FORMAT_TIME_ONLY_12H = 'h:i A';
-    const FORMAT_TIME_ONLY_24H = 'H:i';
-    const FORMAT_FRIENDLY_DATE = 'F j, Y';
-    const FORMAT_DAY_DATE = 'l, M j';
-    const FORMAT_ISO_8601 = 'c';
-    const FORMAT_RFC_2822 = 'r';
-    const FORMAT_SQL_DATETIME = 'Y-m-d H:i:s';
+    public const FORMAT_12_HOUR = 'Y-m-d h:i:s A';
+    public const FORMAT_24_HOUR = 'Y-m-d H:i:s';
+    public const FORMAT_HUMAN_READABLE = 'l, F j, Y g:i A';
+    public const FORMAT_DATE_ONLY = 'Y-m-d';
+    public const FORMAT_TIME_ONLY_12H = 'h:i A';
+    public const FORMAT_TIME_ONLY_24H = 'H:i';
+    public const FORMAT_FRIENDLY_DATE = 'F j, Y';
+    public const FORMAT_DAY_DATE = 'l, M j';
+    public const FORMAT_ISO_8601 = 'c';
+    public const FORMAT_RFC_2822 = 'r';
+    public const FORMAT_SQL_DATETIME = 'Y-m-d H:i:s';
 
     /**
      * Returns string that describes time.  The results can be set using 
