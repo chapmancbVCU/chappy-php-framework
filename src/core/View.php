@@ -2,9 +2,9 @@
 declare(strict_types=1);
 namespace Core;
 
-use Core\Exceptions\ComponentNotFoundException;
-use Core\Exceptions\LayoutNotFoundException;
-use Core\Exceptions\ViewNotFoundException;
+use Core\Exceptions\View\ComponentNotFoundException;
+use Core\Exceptions\View\LayoutNotFoundException;
+use Core\Exceptions\View\ViewNotFoundException;
 use stdClass;
 use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Utilities\Env;
