@@ -20,12 +20,12 @@ class ErrorHandler {
     public static function initialize(): void {
         // Global Exception Handler
         set_exception_handler(function ($exception) {
-            Logger::log("Uncaught Exception: {$exception->getMessage()} | File: {$exception->getFile()} | Line: {$exception->getLine()}", 'error');
+            Logger::log("Uncaught Exception: {$exception->getMessage()} | File: {$exception->getFile()} | Line: {$exception->getLine()}", Logger::ERROR);
         });
 
         // Global Error Handler
         set_error_handler(function ($severity, $message, $file, $line) {
-            Logger::log("Fatal Error: [$severity] $message | File: $file | Line: $line", 'error');
+            Logger::log("Fatal Error: [$severity] $message | File: $file | Line: $line", Logger::ERROR);
         });
 
         // Shutdown Handler for Fatal Errors
@@ -39,7 +39,7 @@ class ErrorHandler {
                 if ($errorData->hasAny([E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR])->result()) {
                     Logger::log(
                         "Fatal Shutdown Error: {$errorData->get('message')->result()} | File: {$errorData->get('file')->result()} | Line: {$errorData->get('line')->result()}",
-                        'critical'
+                        Logger::CRITICAL
                     );
                 }
             }
