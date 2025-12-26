@@ -59,7 +59,7 @@ class Uploads {
      * @return void
      */
     protected function addErrorMessage(string $name, string $message): void {
-        Logger::log("Upload error: $message", 'error'); // Log validation errors
+        Logger::log("Upload error: $message", Logger::ERROR); // Log validation errors
         if (!isset($this->_errors[$name])) {
             $this->_errors[$name] = [];
         }
@@ -219,7 +219,7 @@ class Uploads {
     
         // ✅ Allow user to skip uploading a file without error
         if ($firstFile['error'] === UPLOAD_ERR_NO_FILE) {
-            Logger::log("No file uploaded. Skipping upload validation.", 'info');
+            Logger::log("No file uploaded. Skipping upload validation.", Logger::INFO);
             return;
         }
     
@@ -247,16 +247,16 @@ class Uploads {
      * @return void
      */
     public function upload($path, $uploadName, $fileName): void {
-        Logger::log("Attempting to upload file: $uploadName | Path: $path", 'info');
+        Logger::log("Attempting to upload file: $uploadName | Path: $path", Logger::INFO);
         if (!file_exists($path)) {
             mkdir($path);
         }
         
         $destination = $this->_bucket.$path.$uploadName;
         if(move_uploaded_file($fileName, $destination)) {
-            Logger::log("File uploaded successfully: $uploadName | Destination: $destination", 'info');
+            Logger::log("File uploaded successfully: $uploadName | Destination: $destination", Logger::INFO);
         } else {
-            Logger::log("File upload failed: Could not move $uploadName to $destination", 'error');
+            Logger::log("File upload failed: Could not move $uploadName to $destination", Logger::ERROR);
         }
     }
 
@@ -291,7 +291,7 @@ class Uploads {
     
             // ✅ Skip empty file slots (e.g. when no file was uploaded)
             if (empty($filePath)) {
-                Logger::log("Skipping empty file slot for: $fileName", 'warning');
+                Logger::log("Skipping empty file slot for: $fileName", Logger::WARNING);
                 continue;
             }
     
@@ -325,16 +325,16 @@ class Uploads {
     
             if ($file['error'] !== UPLOAD_ERR_OK) {
                 // optionally log or skip error files
-                Logger::log("Skipping file {$name} due to upload error code {$file['error']}", 'warning');
+                Logger::log("Skipping file {$name} due to upload error code {$file['error']}", Logger::WARNING);
                 continue;
             }
     
             if (!isset($file['size']) || !is_numeric($file['size'])) {
-                Logger::log("Skipping file {$name}: invalid size value.", 'warning');
+                Logger::log("Skipping file {$name}: invalid size value.", Logger::WARNING);
                 continue;
             }
     
-            Logger::log("Checking size of file {$name}: {$file['size']} bytes (limit: {$this->_maxAllowedSize})", 'debug');
+            Logger::log("Checking size of file {$name}: {$file['size']} bytes (limit: {$this->_maxAllowedSize})", Logger::DEBUG);
     
             if ($file['size'] > $this->_maxAllowedSize) {
                 $msg = "{$name} is over the max allowed size of " . $this->sizeMsg . ".";
