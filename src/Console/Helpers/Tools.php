@@ -64,7 +64,7 @@ class Tools {
                 return Command::FAILURE;
             }
         }
-        return Command::FAILURE;
+        return Command::SUCCESS;
     }
 
     /**
@@ -113,7 +113,7 @@ class Tools {
      * light-magenta.
      * @return void
      */
-    public static function info(string $message, string $level = 'info', ?string $background = null, ?string $text = null): void {
+    public static function info(string $message, string $level = Logger::INFO, ?string $background = null, ?string $text = null): void {
         if (self::$output) {
             self::$output->writeln($message);
         }
@@ -137,6 +137,11 @@ class Tools {
         $validLevels = ['info', 'debug', 'warning', 'error', 'critical', 'alert', 'emergency'];
         if (!Arr::exists($validLevels, Str::lower($level))) {
             $level = 'info'; // Default to 'info' if invalid level provided
+        }
+        if(Logger::severityLevelExists($level)) {
+            Logger::log("Exists");   
+        } else {
+            Logger::log("NOT Exists");  
         }
         Logger::log($message, $level);
 
@@ -188,7 +193,7 @@ class Tools {
     public static function writeFile(string $path, string $content, string $name): int {
         if(!file_exists($path)) {
             $resp = file_put_contents($path, $content);
-            Tools::info(ucfirst($name) . ' successfully created');
+            Tools::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
             Tools::info(ucfirst($name) . ' already exists', 'debug', 'red');
