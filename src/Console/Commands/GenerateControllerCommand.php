@@ -4,6 +4,7 @@ namespace Console\Commands;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Console\Helpers\Controller;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -55,11 +56,11 @@ class GenerateControllerCommand extends Command
         if($layoutInput === false) {
             $layout = 'default';
         } else if ($layoutInput === null) {
-            Tools::info('Please supply name of layout.', 'debug', 'red');
+            Tools::info('Please supply name of layout.', Logger::DEBUG, 'red');
             return Command::FAILURE;
         } else {
             if($layoutInput === '') {
-                Tools::info('Please supply name of layout.', 'debug', 'red');
+                Tools::info('Please supply name of layout.', Logger::DEBUG, 'red');
                 return Command::FAILURE;
             }
             $layout = Str::lower($layoutInput);
