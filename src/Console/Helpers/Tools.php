@@ -133,16 +133,6 @@ class Tools {
             'light-red' => '1;31', 'light-green' => '1;32', 'light-blue' => '1;34', 'light-magenta' => '1;35'
         ];
         
-        // Validate severity level and log to file.
-        $validLevels = ['info', 'debug', 'warning', 'error', 'critical', 'alert', 'emergency'];
-        if (!Arr::exists($validLevels, Str::lower($level))) {
-            $level = 'info'; // Default to 'info' if invalid level provided
-        }
-        if(Logger::severityLevelExists($level)) {
-            Logger::log("Exists");   
-        } else {
-            Logger::log("NOT Exists");  
-        }
         Logger::log($message, $level);
 
         // Perform console logging
@@ -196,7 +186,7 @@ class Tools {
             Tools::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
-            Tools::info(ucfirst($name) . ' already exists', 'debug', 'red');
+            Tools::info(ucfirst($name) . ' already exists', Logger::DEBUG, 'red');
             return Command::FAILURE;
         }
     }
