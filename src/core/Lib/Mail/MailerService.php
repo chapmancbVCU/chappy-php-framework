@@ -99,7 +99,7 @@ class MailerService {
             }, Arr::isAssoc($attachments) ? [$attachments] : $attachments);
         }
 
-        Logger::log(json_encode($log, JSON_PRETTY_PRINT), $status === 'failed' ? 'error' : 'info');
+        Logger::log(json_encode($log, JSON_PRETTY_PRINT), $status === 'failed' ? Logger::ERROR : Logger::INFO);
     }
 
     /**

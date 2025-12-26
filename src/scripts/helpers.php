@@ -140,7 +140,7 @@ if(!function_exists('logger')) {
      * @param string $level Describes the severity of the message.
      * @return void
      */
-    function logger(string $message, string $level = 'info') {
+    function logger(string $message, string $level = Logger::INFO) {
         Logger::log($message, $level);
     }
 }

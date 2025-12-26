@@ -84,7 +84,7 @@ class AuthService {
             }
             else {
                 $loginModel->addErrorMessage('username','There is an error with your username or password');
-                Logger::log('User failed to log in', 'warning');
+                Logger::log('User failed to log in', Logger::WARNING);
             }
         }
 
@@ -139,15 +139,15 @@ class AuthService {
         ]);
 
         if (!$user) {
-            Logger::log("Failed login attempt: Username '{$loginUser->username}' not found.", 'warning');
+            Logger::log("Failed login attempt: Username '{$loginUser->username}' not found.", Logger::WARNING);
         }
 
         if ($user->inactive == 1) {
-            Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", 'warning');
+            Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", Logger::WARNING);
         }
 
         Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $loginUser->id);
-        Logger::log("User {$user->id} ({$user->username}) logged in successfully.", 'info');
+        Logger::log("User {$user->id} ({$user->username}) logged in successfully.", Logger::INFO);
         
         if($rememberMe) {
             $hash = Str::md5(uniqid() . rand(0, 100));
@@ -158,7 +158,7 @@ class AuthService {
             $us = new UserSessions();
             $us->assign($fields);
             $us->save();
-            Logger::log("Remember Me token set for user {$user->id} ({$user->username}).", 'info');
+            Logger::log("Remember Me token set for user {$user->id} ({$user->username}).", Logger::INFO);
         }
     }
 
@@ -209,7 +209,7 @@ class AuthService {
             Cookie::delete(Env::get('REMEMBER_ME_COOKIE_NAME'));
         }
         $user::$currentLoggedInUser = null;
-        Logger::log("User {$user->id} ({$user->username}) logged out.", 'info');
+        Logger::log("User {$user->id} ({$user->username}) logged out.", Logger::INFO);
         return true;
     }
 
