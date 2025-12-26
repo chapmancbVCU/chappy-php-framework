@@ -15,7 +15,7 @@ class RestrictedController extends Controller {
      * @return void
      */
     public function badTokenAction(): void {
-        Logger::log('Your token is corrupted', 'danger');
+        Logger::log('Your token is corrupted', Logger::WARNING);
         $this->view->render('restricted.badToken', true, true);
     }
     
