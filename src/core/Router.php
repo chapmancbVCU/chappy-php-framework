@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 namespace Core;
-use Exception;
 use Core\Session;
 use App\Models\Users;
+use Core\Exceptions\FrameworkException;
 use Core\Services\ACLService;
 use Core\Services\AuthService;
 use Core\Lib\Utilities\Arr;
@@ -297,7 +297,7 @@ class Router {
             } else {
                 redirect('restricted.notFound', [$action_name, $controller_name]);
             }
-        } catch (Exception $e) {
+        } catch (FrameworkException $e) {
             Logger::log("Unhandled Exception in Router: " . $e->getMessage(), 'error');
             throw $e;
         }
