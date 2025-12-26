@@ -218,7 +218,7 @@ class Blueprint {
         $columnType = Str::upper($matches[2]);
 
         if ($this->dbDriver === 'sqlite' && Arr::exists(['TEXT', 'BLOB'], $columnType)) {
-            Logger::log("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.", 'warning');
+            Logger::log("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.", Logger::WARNING);
             return $this;
         }
 
