@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Core;
-use \Exception;
+
+use Core\Exceptions\FrameworkException;
 use Core\Session;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
@@ -303,7 +304,7 @@ class FormHelper {
 
         // Make sure placeholder is not an attribute.
         if(arr::exists($inputAttrs, 'placeholder')) {
-            throw new Exception('Can not accept placeholder attribute found in your $inputString array.');
+            throw new FrameworkException('Can not accept placeholder attribute found in your $inputString array.');
         }
 
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
