@@ -7,6 +7,15 @@ use Core\Lib\Utilities\Str;
  * Supports the ability to produce logging.
  */
 class Logger {
+    public const EMERGENCY = 'emergency';
+    public const ALERT = 'alert';
+    public const CRITICAL = 'critical';
+    public const ERROR = 'error';
+    public const WARNING = 'warning';
+    public const NOTICE = 'notice';
+    public const INFO = 'info';
+    public const DEBUG = 'debug';
+
     private static string $logFile;// = ROOT.DS.'storage'.DS.'logs'.DS.'app.log'; 
 
     /**
@@ -32,7 +41,7 @@ class Logger {
      * @param string $level Describes the severity of the message.
      * @return void
      */
-    public static function log(string $message, string $level = 'info'): void {
+    public static function log(string $message, string $level = self::INFO): void {
         if (!Env::get('DEBUG', false)) {
             return; // Skip logging if DEBUG is disabled
         }
