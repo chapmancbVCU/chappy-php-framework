@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Core\Lib\Logging\Logger;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Symfony\Component\Console\Command\Command;
@@ -30,7 +31,7 @@ class ProfileImageDir {
         }
 
         if($response == false) {
-            Tools::info('Failure ocurred when deleting images.', 'debug', 'red');
+            Tools::info('Failure ocurred when deleting images.', Logger::DEBUG, 'red');
             return Command::FAILURE;
         }
         Tools::info('All profile images have been deleted.');

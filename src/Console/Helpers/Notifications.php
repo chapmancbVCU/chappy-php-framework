@@ -303,7 +303,7 @@ PHP;
     public static function resolveNotifiable(InputInterface $input): object|string {
         $userOpt = $input->getOption('user');
         if(!$userOpt) {
-            Tools::info('No --user provided; using a dummy notifiable string', 'info');
+            Tools::info('No --user provided; using a dummy notifiable string');
             return 'dummy';
         }   
         return self::findUser($userOpt) ?? 'dummy';
@@ -341,7 +341,7 @@ PHP;
     public static function prune(int $days): int {
         $recordsDeleted = NotificationModel::notificationsToPrune($days);
         $message = "{$recordsDeleted} has been deleted";
-        Tools::info($message, 'info');
+        Tools::info($message);
         return Command::SUCCESS;
     }
 

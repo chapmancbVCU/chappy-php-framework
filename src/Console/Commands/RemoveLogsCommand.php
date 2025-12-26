@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\Log;
 use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -54,7 +55,7 @@ class RemoveLogsCommand extends Command {
         } else if($input->getOption('all')) {
             Log::deleteAllLogs();
         } else {
-            Tools::info('There was an issue removing the log file', 'debug', 'red');
+            Tools::info('There was an issue removing the log file', Logger::DEBUG, 'red');
             return COMMAND::FAILURE;
         }
         return COMMAND::SUCCESS;

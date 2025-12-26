@@ -4,6 +4,7 @@ namespace Core\Lib\Queue;
 
 use Predis\Client;
 use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
 
 /**
  * Implements the QueueDriverInterface.  This driver implements functions 
@@ -60,7 +61,7 @@ class RedisQueueDriver implements QueueDriverInterface {
      */
     public function release(string $queue, array $payload, int $delay = 0): void {
         if ($delay > 0) {
-            Tools::info("Redis release with delay uses `sleep({$delay})`. This blocks the worker. Consider switching to a scheduled queue or DB driver.", 'warning', 'yellow');
+            Tools::info("Redis release with delay uses `sleep({$delay})`. This blocks the worker. Consider switching to a scheduled queue or DB driver.", Logger::WARNING, 'yellow');
             sleep($delay);
         }
         $this->push($queue, $payload);

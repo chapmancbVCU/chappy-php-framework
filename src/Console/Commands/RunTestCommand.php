@@ -3,6 +3,7 @@ namespace Console\Commands;
 use Core\Helper;
 use Console\Helpers\Test;
 use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -99,7 +100,7 @@ class RunTestCommand extends Command
             return Command::SUCCESS;
         }
 
-        Tools::info("There was an issue running unit tests.  Check your command line input.", 'error', 'red');
+        Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, 'red');
         return Command::FAILURE;
     }
 }

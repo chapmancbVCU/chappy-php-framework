@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Core\Lib\Utilities\Str;
 use Console\Helpers\{Tools, View};
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -60,7 +61,7 @@ class MakeComponentCommand extends Command {
             return View::makeTableComponent($componentName);
         }
 
-        Tools::info('No component type selected', 'debug', 'red');
+        Tools::info('No component type selected', Logger::DEBUG, 'red');
         return Command::FAILURE;
     }
 }

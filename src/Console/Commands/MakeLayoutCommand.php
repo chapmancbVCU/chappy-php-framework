@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\View;
 use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -54,23 +55,23 @@ class MakeLayoutCommand extends Command {
     
         // Process menu-acl input
         if($menuAcl === false) {
-            Tools::info('--menu-acl argument not set so we ignore operation', 'blue');
+            Tools::info('--menu-acl argument not set so we ignore operation', Logger::INFO, 'blue');
         } else if($menuAcl === null) {
             View::makeMenuAcl($layoutName);
         } else {
-            Tools::info('--menu-acl does not accept an argument', 'debug', 'red');
+            Tools::info('--menu-acl does not accept an argument', Logger::DEBUG, 'red');
         }
 
         // Process menu input
         if($menu === false) {
-            Tools::info('--menu argument not set so we ignore operation', 'blue');
+            Tools::info('--menu argument not set so we ignore operation', Logger::INFO, 'blue');
             return View::makeLayout($layoutName, 'main');
         }
         else if($menu === null) {
             View::makeMenu($layoutName);
             return View::makeLayout($layoutName, $layoutName);
         } else {
-            Tools::info('--menu does not accept an argument', 'debug', 'red');
+            Tools::info('--menu does not accept an argument', Logger::DEBUG, 'red');
             return Command::FAILURE;
         }
     }

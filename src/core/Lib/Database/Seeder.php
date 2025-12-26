@@ -4,6 +4,8 @@ namespace Core\Lib\Database;
 
 use Core\DB;
 use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
+
 /**
  * Abstract class for seeders.
  */
@@ -42,7 +44,7 @@ abstract class Seeder {
             Tools::info("Running {$seederClass}");
             $seeder->run();
         } else {
-            Tools::info("Seeder class {$seederClass} not found.", 'error', 'red');
+            Tools::info("Seeder class {$seederClass} not found.", Logger::ERROR, 'red');
         }
     }
 }

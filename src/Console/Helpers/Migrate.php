@@ -10,6 +10,7 @@ use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
 use Console\Helpers\MigrationStatus;
 use Core\Exceptions\Console\ConsoleException;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -62,7 +63,7 @@ class Migrate {
             Tools::info("All tables dropped successfully.");
             return Command::SUCCESS;
         } catch(ConsoleException $e) {
-            Tools::info('Error dropping tables: ' . $e->getMessage(), 'danger');
+            Tools::info('Error dropping tables: ' . $e->getMessage(), Logger::ERROR);
             return Command::FAILURE;
         }
     }
@@ -186,16 +187,16 @@ class Migrate {
                     ]); 
                     $migrationsRun[] = $klassNamespace;
                 } else {
-                    Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'red');
+                    Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", Logger::ERROR, 'red');
                 }
             }
         }
 
         // Output result
         if (sizeof($migrationsRun) == 0) {
-            Tools::info('No new migrations to run.', 'debug', 'yellow');
+            Tools::info('No new migrations to run.', Logger::DEBUG, 'yellow');
         } else {
-            Tools::info('Migrations completed.  Check console logging for any warnings.', 'success', 'green');
+            Tools::info('Migrations completed.  Check console logging for any warnings.', Logger::INFO, 'green');
         }
 
         return Command::SUCCESS;
@@ -337,7 +338,7 @@ PHP;
      */
     public static function refresh(bool|int $step = false): int {
         if($step === true && !is_int($step)) {
-            Tools::info("Step must be an integer or set to false", 'error', 'yellow');
+            Tools::info("Step must be an integer or set to false", Logger::ERROR, 'yellow');
             return Command::FAILURE;
         }
 
@@ -351,7 +352,7 @@ PHP;
         }
 
         if($tableCount == 0) {
-            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
+            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, 'red');
             return Command::FAILURE;
         }
     
@@ -367,7 +368,7 @@ PHP;
                 $step = self::step($klassNamespace, $step);
                 if(is_int($step) && $step <= 0) return Command::SUCCESS; 
             } else {
-                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
+                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", Logger::ERROR, 'yellow');
             }
         }
     
@@ -379,7 +380,7 @@ PHP;
             $db->query("DROP TABLE IF EXISTS migrations;");
         }
     
-        Tools::info('All tables have been dropped.', 'success', 'green');
+        Tools::info('All tables have been dropped.', Logger::INFO, 'green');
         return Command::SUCCESS;
     }
 
@@ -393,19 +394,19 @@ PHP;
     public static function rollback(string|int|bool $batch = false): int {
         // Fail immediately if no batch value is set.
         if($batch === '') {
-            Tools::info('Please enter value for batch to roll back', 'error', 'red');
+            Tools::info('Please enter value for batch to roll back', Logger::ERROR, 'red');
             return Command::FAILURE;
         }
 
         if(!$batch) {
             $batch = DB::getInstance()->query('SELECT batch FROM migrations ORDER BY id DESC LIMIT 1')->first()->batch;
         } else if(!self::batchExists((int)$batch)){
-            Tools::info("The batch value of $batch does not exist", 'error', 'red');
+            Tools::info("The batch value of $batch does not exist", Logger::ERROR, 'red');
             return Command::FAILURE;
         }
 
         if(self::tableCount() == 0) {
-            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
+            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, 'red');
             return Command::FAILURE;
         }
 
@@ -440,7 +441,7 @@ PHP;
      */
     public static function rollbackStep(string|int $step): int {
         if($step === '') {
-            Tools::info('Please enter number of steps to roll back', 'error', 'red');
+            Tools::info('Please enter number of steps to roll back', Logger::ERROR, 'red');
             return Command::FAILURE;
         }
         return self::refresh((int)$step);
@@ -454,7 +455,7 @@ PHP;
     public static function status(): int {
         $migrationFiles = glob('database' . DS . 'migrations' . DS . '*.php');
         if(sizeof($migrationFiles) == 0) {
-            Tools::info("There are no existing migrations", 'debug', 'yellow');
+            Tools::info("There are no existing migrations", Logger::DEBUG, 'yellow');
         }
 
         $migrationStatus = [];
@@ -483,7 +484,7 @@ PHP;
             }
         }
 
-        Tools::info("Name ................................. Batch / Status", 'info','blue');
+        Tools::info("Name ................................. Batch / Status", Logger::INFO,'blue');
         foreach($migrationStatus as $status) {
             $name = $status->getName();
             $batch = $status->getBatch();
@@ -491,7 +492,7 @@ PHP;
             if($status->getStatus() == 'Ran') {
                 Tools::info("$name: ........................ [$batch] $state");
             } else {
-                Tools::info("$name ......................... Pending", 'info', 'yellow');
+                Tools::info("$name ......................... Pending", Logger::INFO, 'yellow');
             }
         }
         return Command::SUCCESS;
@@ -509,7 +510,7 @@ PHP;
      */
     private static function step(string $klassNamespace, bool|int $step = false): bool|int {
         $db = DB::getInstance();
-        Tools::info("Dropping table from: {$klassNamespace}", 'debug', 'yellow');
+        Tools::info("Dropping table from: {$klassNamespace}", Logger::DEBUG, 'yellow');
         $mig = new $klassNamespace();
         if(!$step && !is_int($step)) {
             $mig->down();

@@ -235,7 +235,7 @@ class Blueprint {
      */
     public function dropColumns(array|string $columns): void {
         if($columns === '' || (Arr::isArray($columns) && Arr::isEmpty($columns))) {
-            Tools::info('Column argument can\'t be an empty string or an empty array', 'debug', 'yellow');
+            Tools::info('Column argument can\'t be an empty string or an empty array', Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -249,7 +249,7 @@ class Blueprint {
             $last = end($columns);
             foreach($columns as $column) {
                 if($column === '') {
-                    Tools::info('Array contains empty string.', 'debug', 'yellow');
+                    Tools::info('Array contains empty string.', Logger::DEBUG, 'yellow');
                     continue;
                 }
                 $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column) || 
@@ -291,14 +291,14 @@ class Blueprint {
      */
     public function dropForeign(string $column, bool $preserveColumn = true): void {
         if ($column === '') {
-            Tools::info("Column argument can't be an empty string", 'debug', 'yellow');
+            Tools::info("Column argument can't be an empty string", Logger::DEBUG, 'yellow');
             return;
         }
 
         if ($this->dbDriver === 'mysql') {
             $result = $this->getForeignKey($column);
             if (!$result) {
-                Tools::info("No foreign key constraint found on column '{$column}'", 'debug', 'yellow');
+                Tools::info("No foreign key constraint found on column '{$column}'", Logger::DEBUG, 'yellow');
                 return;
             }
 
@@ -314,7 +314,7 @@ class Blueprint {
         } elseif ($this->dbDriver === 'sqlite') {
             // SQLite does not support DROP CONSTRAINT or ALTER TABLE DROP FOREIGN KEY.
             // You must recreate the table without the foreign key.
-            Tools::info("SQLite does not support dropping foreign keys directly. You must recreate the table.", 'debug', 'yellow');
+            Tools::info("SQLite does not support dropping foreign keys directly. You must recreate the table.", Logger::DEBUG, 'yellow');
         }
     }
 
@@ -406,12 +406,12 @@ class Blueprint {
      */
     public function dropUnique(string $column, bool $preserveColumn = false): void {
         if ($column === '') {
-            Tools::info("Column argument can't be an empty string", 'debug', 'yellow');
+            Tools::info("Column argument can't be an empty string", Logger::DEBUG, 'yellow');
             return;
         }
 
         if (!$this->isUnique($column)) {
-            Tools::info("'{$column}' does not have a unique constraint. Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$column}' does not have a unique constraint. Skipping operation.", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -426,7 +426,7 @@ class Blueprint {
             $result = DB::getInstance()->query($sql)->first();
 
             if (!$result) {
-                Tools::info("No unique index found for column '{$column}' on table '{$this->table}'", 'debug', 'yellow');
+                Tools::info("No unique index found for column '{$column}' on table '{$this->table}'", Logger::DEBUG, 'yellow');
                 return;
             }
 
@@ -463,7 +463,7 @@ class Blueprint {
                 }
             }
 
-            Tools::info("No unique index found for '{$column}' in SQLite table '{$this->table}'", 'debug', 'yellow');
+            Tools::info("No unique index found for '{$column}' in SQLite table '{$this->table}'", Logger::DEBUG, 'yellow');
         }
     }
 
@@ -625,7 +625,7 @@ class Blueprint {
         }
 
         if ($isForeignKey) {
-            Tools::info("Cannot modify FOREIGN KEY '{$column}' from '{$this->table}'.  If you are using the dropForeign function this message can be ignored.", 'debug', 'yellow');
+            Tools::info("Cannot modify FOREIGN KEY '{$column}' from '{$this->table}'.  If you are using the dropForeign function this message can be ignored.", Logger::DEBUG, 'yellow');
         }
 
         return $isForeignKey;
@@ -654,7 +654,7 @@ class Blueprint {
         }
 
         if($isIndex) {
-            Tools::info("Cannot modify the INDEX {$column} from {$this->table}.  If you are using the dropIndex function this message can be ignored.", 'debug', 'yellow');
+            Tools::info("Cannot modify the INDEX {$column} from {$this->table}.  If you are using the dropIndex function this message can be ignored.", Logger::DEBUG, 'yellow');
         }
         return $isIndex;
     }
@@ -684,7 +684,7 @@ class Blueprint {
         }
 
         if($isPrimaryKey) {
-            Tools::info("Cannot modify the PRIMARY KEY {$column} from {$this->table}.  If you are using the dropPrimaryKey function this message can be ignored.", 'debug', 'yellow');
+            Tools::info("Cannot modify the PRIMARY KEY {$column} from {$this->table}.  If you are using the dropPrimaryKey function this message can be ignored.", Logger::DEBUG, 'yellow');
         }
         return $isPrimaryKey;
     }
@@ -730,7 +730,7 @@ class Blueprint {
         }
 
         if ($isUnique) {
-            Tools::info("Cannot modify the UNIQUE constraint on {$column} from {$this->table}.  If you are using the dropUnique function this message can be ignored.", 'debug', 'yellow');
+            Tools::info("Cannot modify the UNIQUE constraint on {$column} from {$this->table}.  If you are using the dropUnique function this message can be ignored.", Logger::DEBUG, 'yellow');
         }
 
         return $isUnique;
@@ -783,7 +783,7 @@ class Blueprint {
      */
     public function renameColumn(string $from, string $to): void {
         if($from === '' || $to === '') {
-            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            Tools::info("Column names cannot be empty", Logger::DEBUG, 'yellow');
             return;
         }
         
@@ -795,7 +795,7 @@ class Blueprint {
             Db::getInstance()->query($sql);
             Tools::info("Column {$from} renamed to {$to}");
         } else {
-            Tools::info("The field {$from} is a constrained column.  Make sure you drop any constraints before renaming this column.", 'debug', 'yellow');
+            Tools::info("The field {$from} is a constrained column.  Make sure you drop any constraints before renaming this column.", Logger::DEBUG, 'yellow');
         }
     }
 
@@ -808,7 +808,7 @@ class Blueprint {
      */
     public function renameForeign(string $from, string $to): void {
         if($from === '' || $to === '') {
-            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            Tools::info("Column names cannot be empty", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -820,7 +820,7 @@ class Blueprint {
         if($isForeignKey) {
             $this->dropForeign($from, true);
         } else {
-            Tools::info("'{$from}' is not a foreign key.  Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$from}' is not a foreign key.  Skipping operation.", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -850,7 +850,7 @@ class Blueprint {
      */
     public function renameIndex(string $from, string $to): void {
         if($from === '' || $to === '') {
-            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            Tools::info("Column names cannot be empty", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -861,7 +861,7 @@ class Blueprint {
         if($isIndexed) {
             $this->dropIndex($from, true);
         } else {
-            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$from}' is not an indexed column.  Skipping operation.", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -885,7 +885,7 @@ class Blueprint {
      */
     public function renamePrimaryKey(string $from, string $to): void {
         if($from === '' || $to === '') {
-            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            Tools::info("Column names cannot be empty", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -896,7 +896,7 @@ class Blueprint {
         if($isPrimaryKey) {
             $this->dropPrimaryKey($from, true);
         } else {
-            Tools::info("'{$from}' is not a primary key.  Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$from}' is not a primary key.  Skipping operation.", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -920,7 +920,7 @@ class Blueprint {
      */
     public function renameUnique(string $from, string $to): void {
         if($from === '' || $to === '') {
-            Tools::info("Column names cannot be empty", 'debug', 'yellow');
+            Tools::info("Column names cannot be empty", Logger::DEBUG, 'yellow');
             return;
         }
 
@@ -931,7 +931,7 @@ class Blueprint {
         if($isUnique) {
             $this->dropUnique($from, true);
         } else {
-            Tools::info("'{$from}' does not have an unique constraint.  Skipping operation.", 'debug', 'yellow');
+            Tools::info("'{$from}' does not have an unique constraint.  Skipping operation.", Logger::DEBUG, 'yellow');
             return;
         }
 

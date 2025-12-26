@@ -4,6 +4,7 @@ namespace Console\Commands;
 use Console\Helpers\DBSeeder;
 use Console\Helpers\Tools;
 use Console\Helpers\Migrate;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -48,7 +49,7 @@ class MigrateRefreshCommand extends Command
             $status = Migrate::refresh();
         } else {
             if($step === '') {
-                Tools::info('Please enter number of migrations to roll back', 'error', 'red');
+                Tools::info('Please enter number of migrations to roll back', Logger::ERROR, 'red');
                 return Command::FAILURE;
             }
             $status = Migrate::refresh($step);

@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\Tools;
 use Console\Helpers\Migrate;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -45,7 +46,7 @@ class GenerateMigrationCommand extends Command
         } else if(!$input->getOption('rename') && !$input->getOption('update')){
             return Migrate::makeMigration($input);
         } else {
-            Tools::info('Cannot accept update and rename options at the same time.', 'error', 'red');
+            Tools::info('Cannot accept update and rename options at the same time.', Logger::ERROR, 'red');
             return Command::FAILURE;
         }
     }

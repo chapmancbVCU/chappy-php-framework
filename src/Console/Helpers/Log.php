@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
+
+use Core\Lib\Logging\Logger;
+
 /**
  * Supports ability to manage logs.
  */
@@ -16,7 +19,7 @@ class Log {
     private static function delete(string $fileName): void {
         $path = self::LOG_PATH.$fileName;
         if(!file_exists($path)) return;
-        if(unlink($path)) Tools::info($fileName.' succesfully cleared', 'green');
+        if(unlink($path)) Tools::info($fileName.' succesfully cleared', Logger::INFO, 'green');
     }
 
     /**

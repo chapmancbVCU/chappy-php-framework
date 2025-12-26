@@ -197,12 +197,12 @@ PHP;
      */
     private static function shutdownSignals(): void {
         pcntl_async_signals(true);
-        pcntl_signal(SIGTERM, function() { 
-            Tools::info("Worker shutting down...", "info"); 
+        pcntl_signal(SIGTERM, function() {
+            Tools::info("Worker shutting down..."); 
             exit; 
         });
-        pcntl_signal(SIGINT, function() { 
-            Tools::info("Worker interrupted...", "info"); 
+        pcntl_signal(SIGINT, function() {
+            Tools::info("Worker interrupted..."); 
             exit; 
         });
     }
@@ -216,13 +216,13 @@ PHP;
     public static function worker(int $maxIterations, string $queueName = 'default'): int {
         $queue = new QueueManager();
         self::shutdownSignals();
-        Tools::info("Worker started on queue: {$queueName}", "info");
+        Tools::info("Worker started on queue: {$queueName}");
         
         for($i = 0; $i < $maxIterations; $i++) {
             $job = $queue->pop($queueName);
             if ($job) {
                 try {
-                    Tools::info("Processing job: " . json_encode($job['payload']), 'info');
+                    Tools::info("Processing job: " . json_encode($job['payload']));
                     $payload = $job['payload'];
                     $jobClass = $payload['job'] ?? null;
                     $data = $payload['data'] ?? [];
