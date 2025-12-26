@@ -243,7 +243,7 @@ class Router {
 
             // Log only critical requests
             if (!empty($_GET) || in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT', 'DELETE']) || $userId === 'Guest') {
-                Logger::log("Request: $requestPath | User: $userId", 'info');
+                Logger::log("Request: $requestPath | User: $userId", Logger::INFO);
             }
 
             // Extract controller
@@ -274,11 +274,11 @@ class Router {
 
                 if (!isset($deniedAttempts[$key])) {
                     $deniedAttempts[$key] = 1;
-                    Logger::log("Access Denied: User '$userId' tried '$controller_name/$action_name'", 'warning');
+                    Logger::log("Access Denied: User '$userId' tried '$controller_name/$action_name'", Logger::WARNING);
                 } else {
                     $deniedAttempts[$key]++;
                     if ($deniedAttempts[$key] <= 3) {
-                        Logger::log("Repeated Access Denied: User '$userId' ($deniedAttempts[$key] times) on '$controller_name/$action_name'", 'warning');
+                        Logger::log("Repeated Access Denied: User '$userId' ($deniedAttempts[$key] times) on '$controller_name/$action_name'", Logger::WARNING);
                     }
                 }
 
@@ -298,7 +298,7 @@ class Router {
                 redirect('restricted.notFound', [$action_name, $controller_name]);
             }
         } catch (FrameworkException $e) {
-            Logger::log("Unhandled Exception in Router: " . $e->getMessage(), 'error');
+            Logger::log("Unhandled Exception in Router: " . $e->getMessage(), Logger::ERROR);
             throw $e;
         }
     }
