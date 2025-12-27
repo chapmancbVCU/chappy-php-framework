@@ -29,7 +29,7 @@ class Logger {
      */
     private static function init(): void {
         if (!defined('ROOT')) {
-            throw new \Exception("ROOT constant is not defined.");
+            throw new LoggerException("ROOT constant is not defined.");
         }
 
         // Determine log file location
