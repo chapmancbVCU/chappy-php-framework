@@ -46,7 +46,7 @@ class GenerateMigrationCommand extends Command
         } else if(!$input->getOption('rename') && !$input->getOption('update')){
             return Migrate::makeMigration($input);
         } else {
-            Tools::info('Cannot accept update and rename options at the same time.', Logger::ERROR, 'red');
+            Tools::info('Cannot accept update and rename options at the same time.', Logger::ERROR, Tools::BG_RED);
             return Command::FAILURE;
         }
     }

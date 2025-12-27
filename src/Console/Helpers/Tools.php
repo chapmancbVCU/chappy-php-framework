@@ -18,6 +18,15 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 class Tools {
     private static ?OutputInterface $output = null;
 
+    public const BG_BLACK = '40';
+    public const BG_RED = '41';
+    public const BG_GREEN = '42';
+    public const BG_YELLOW = '43';
+    public const BG_BLUE = '44';
+    public const BG_MAGENTA = '45';
+    public const BG_CYAN = '46';
+    public const BG_LIGHT_GREY = '47';
+
     /**
      * Returns dashed border.
      *
@@ -113,7 +122,7 @@ class Tools {
      * light-magenta.
      * @return void
      */
-    public static function info(string $message, string $level = Logger::INFO, ?string $background = null, ?string $text = null): void {
+    public static function info(string $message, string $level = Logger::INFO, string $background = self::BG_GREEN, ?string $text = null): void {
         if (self::$output) {
             self::$output->writeln($message);
         }
@@ -121,10 +130,10 @@ class Tools {
         // Load default colors from .env if not provided
         $background = $background ?? Env::get('BACKGROUND_COLOR', 'green'); // Default: green
         $text = $text ?? Env::get('TEXT_COLOR', 'light-grey'); // Default: light-grey
-        $backgroundColor = [
-            'black' => '40', 'red' => '41', 'green' => '42', 'yellow' => '43',
-            'blue' => '44', 'magenta' => '45', 'cyan' => '46', 'light-grey' => '47'
-        ];
+        // $backgroundColor = [
+        //     'black' => '40', 'red' => '41', 'green' => '42', 'yellow' => '43',
+        //     'blue' => '44', 'magenta' => '45', 'cyan' => '46', 'light-grey' => '47'
+        // ];
 
         $textColor = [
             'black' => '0;30', 'white' => '1;37', 'dark-grey' => '1;30', 'red' => '0;31',
@@ -136,8 +145,8 @@ class Tools {
         Logger::log($message, $level);
 
         // Perform console logging
-        if (Arr::exists($backgroundColor, $background) && Arr::exists($textColor, $text)) {
-            $output = "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n   ".$message."\n\e[0m\n";
+        if ($background && Arr::exists($textColor, $text)) {
+            $output = "\e[".$textColor[$text].";".$background."m\n\n   ".$message."\n\e[0m\n";
             fwrite(STDOUT, $output);
             fflush(STDOUT);
         } else {
@@ -186,7 +195,7 @@ class Tools {
             Tools::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
-            Tools::info(ucfirst($name) . ' already exists', Logger::DEBUG, 'red');
+            Tools::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED);
             return Command::FAILURE;
         }
     }

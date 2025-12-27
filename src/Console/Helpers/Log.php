@@ -19,7 +19,7 @@ class Log {
     private static function delete(string $fileName): void {
         $path = self::LOG_PATH.$fileName;
         if(!file_exists($path)) return;
-        if(unlink($path)) Tools::info($fileName.' succesfully cleared', Logger::INFO, 'green');
+        if(unlink($path)) Tools::info($fileName.' succesfully cleared', Logger::INFO);
     }
 
     /**

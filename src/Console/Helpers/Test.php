@@ -59,7 +59,7 @@ class Test {
         $featureTests = self::featureTests();
 
         if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
-            Tools::info("No test available to perform", Logger::DEBUG, 'yellow');
+            Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
 
@@ -294,7 +294,7 @@ PHP;
 
         // No such test class exists.
         if(!file_exists(self::UNIT_PATH.$testArg.'.php') && !file_exists(self::FEATURE_PATH.$testArg.'.php')) {
-            Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, 'yellow');
+            Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
         
@@ -327,7 +327,7 @@ PHP;
     public static function testIfExists(string $name): bool {
         $testName = $name.'.php';
         if(file_exists(self::FEATURE_PATH.$testName) || file_exists(self::UNIT_PATH.$testName)) {
-            Tools::info("File with the name '{$testName}' cannot exist in both test suites", Logger::ERROR, 'red');
+            Tools::info("File with the name '{$testName}' cannot exist in both test suites", Logger::ERROR, Tools::BG_RED);
             return true;
         }
         return false;
@@ -343,7 +343,7 @@ PHP;
     public static function testIfSame(string $name): bool {
         $testName = $name.'.php';
         if(file_exists(self::FEATURE_PATH.$testName) && file_exists(self::UNIT_PATH.$testName)) {
-            Tools::info("You have files with the same name in both test suites.  Cannot use built in filtering", Logger::ERROR, 'red');
+            Tools::info("You have files with the same name in both test suites.  Cannot use built in filtering", Logger::ERROR, Tools::BG_RED);
             return true;
         }
         return false;

@@ -31,7 +31,7 @@ class ProfileImageDir {
         }
 
         if($response == false) {
-            Tools::info('Failure ocurred when deleting images.', Logger::DEBUG, 'red');
+            Tools::info('Failure ocurred when deleting images.', Logger::DEBUG, Tools::BG_RED);
             return Command::FAILURE;
         }
         Tools::info('All profile images have been deleted.');

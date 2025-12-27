@@ -43,7 +43,7 @@ class QueueWorkerCommand extends Command
         $queueName = $input->getOption('queue');
 
         if($once && $max) {
-            Tools::info('You can only set one option at a time', Logger::WARNING, 'yellow');
+            Tools::info('You can only set one option at a time', Logger::WARNING, Tools::BG_YELLOW);
             return Command::FAILURE;
         } 
         

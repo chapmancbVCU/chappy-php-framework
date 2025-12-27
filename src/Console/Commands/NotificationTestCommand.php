@@ -67,7 +67,7 @@ class NotificationTestCommand extends Command
         $className = Notifications::notificationClass($notificationName);
 
         if(!Notifications::notificationClassExists($className)) {
-            Tools::info("The {$className} does not exist.", Logger::WARNING, 'yellow');
+            Tools::info("The {$className} does not exist.", Logger::WARNING, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
 

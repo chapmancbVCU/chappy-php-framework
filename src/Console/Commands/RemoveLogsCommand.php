@@ -55,7 +55,7 @@ class RemoveLogsCommand extends Command {
         } else if($input->getOption('all')) {
             Log::deleteAllLogs();
         } else {
-            Tools::info('There was an issue removing the log file', Logger::DEBUG, 'red');
+            Tools::info('There was an issue removing the log file', Logger::DEBUG, Tools::BG_RED);
             return COMMAND::FAILURE;
         }
         return COMMAND::SUCCESS;

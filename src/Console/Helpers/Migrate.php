@@ -187,16 +187,16 @@ class Migrate {
                     ]); 
                     $migrationsRun[] = $klassNamespace;
                 } else {
-                    Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", Logger::ERROR, 'red');
+                    Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", Logger::ERROR, Tools::BG_RED);
                 }
             }
         }
 
         // Output result
         if (sizeof($migrationsRun) == 0) {
-            Tools::info('No new migrations to run.', Logger::DEBUG, 'yellow');
+            Tools::info('No new migrations to run.', Logger::DEBUG, Tools::BG_YELLOW);
         } else {
-            Tools::info('Migrations completed.  Check console logging for any warnings.', Logger::INFO, 'green');
+            Tools::info('Migrations completed.  Check console logging for any warnings.', Logger::INFO);
         }
 
         return Command::SUCCESS;
@@ -338,7 +338,7 @@ PHP;
      */
     public static function refresh(bool|int $step = false): int {
         if($step === true && !is_int($step)) {
-            Tools::info("Step must be an integer or set to false", Logger::ERROR, 'yellow');
+            Tools::info("Step must be an integer or set to false", Logger::ERROR, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
 
@@ -347,12 +347,12 @@ PHP;
         $tableCount = self::tableCount();
     
         if(is_int($step) && $step >= $tableCount) {
-            Tools::info('The number of steps must not be greater than or equal to the number of tables.', 'error', 'yellow');
+            Tools::info('The number of steps must not be greater than or equal to the number of tables.', Logger::ERROR, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
 
         if($tableCount == 0) {
-            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, 'red');
+            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, Tools::BG_RED);
             return Command::FAILURE;
         }
     
@@ -368,7 +368,7 @@ PHP;
                 $step = self::step($klassNamespace, $step);
                 if(is_int($step) && $step <= 0) return Command::SUCCESS; 
             } else {
-                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", Logger::ERROR, 'yellow');
+                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", Logger::ERROR, Tools::BG_YELLOW);
             }
         }
     
@@ -380,7 +380,7 @@ PHP;
             $db->query("DROP TABLE IF EXISTS migrations;");
         }
     
-        Tools::info('All tables have been dropped.', Logger::INFO, 'green');
+        Tools::info('All tables have been dropped.', Logger::INFO);
         return Command::SUCCESS;
     }
 
@@ -394,19 +394,19 @@ PHP;
     public static function rollback(string|int|bool $batch = false): int {
         // Fail immediately if no batch value is set.
         if($batch === '') {
-            Tools::info('Please enter value for batch to roll back', Logger::ERROR, 'red');
+            Tools::info('Please enter value for batch to roll back', Logger::ERROR, Tools::BG_RED);
             return Command::FAILURE;
         }
 
         if(!$batch) {
             $batch = DB::getInstance()->query('SELECT batch FROM migrations ORDER BY id DESC LIMIT 1')->first()->batch;
         } else if(!self::batchExists((int)$batch)){
-            Tools::info("The batch value of $batch does not exist", Logger::ERROR, 'red');
+            Tools::info("The batch value of $batch does not exist", Logger::ERROR, Tools::BG_RED);
             return Command::FAILURE;
         }
 
         if(self::tableCount() == 0) {
-            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, 'red');
+            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, Tools::BG_RED);
             return Command::FAILURE;
         }
 
@@ -441,7 +441,7 @@ PHP;
      */
     public static function rollbackStep(string|int $step): int {
         if($step === '') {
-            Tools::info('Please enter number of steps to roll back', Logger::ERROR, 'red');
+            Tools::info('Please enter number of steps to roll back', Logger::ERROR, Tools::BG_RED);
             return Command::FAILURE;
         }
         return self::refresh((int)$step);
@@ -455,7 +455,7 @@ PHP;
     public static function status(): int {
         $migrationFiles = glob('database' . DS . 'migrations' . DS . '*.php');
         if(sizeof($migrationFiles) == 0) {
-            Tools::info("There are no existing migrations", Logger::DEBUG, 'yellow');
+            Tools::info("There are no existing migrations", Logger::DEBUG, Tools::BG_YELLOW);
         }
 
         $migrationStatus = [];
@@ -484,7 +484,7 @@ PHP;
             }
         }
 
-        Tools::info("Name ................................. Batch / Status", Logger::INFO,'blue');
+        Tools::info("Name ................................. Batch / Status", Logger::INFO, Tools::BG_BLUE);
         foreach($migrationStatus as $status) {
             $name = $status->getName();
             $batch = $status->getBatch();
@@ -492,7 +492,7 @@ PHP;
             if($status->getStatus() == 'Ran') {
                 Tools::info("$name: ........................ [$batch] $state");
             } else {
-                Tools::info("$name ......................... Pending", Logger::INFO, 'yellow');
+                Tools::info("$name ......................... Pending", Logger::INFO, Tools::BG_YELLOW);
             }
         }
         return Command::SUCCESS;
@@ -510,7 +510,7 @@ PHP;
      */
     private static function step(string $klassNamespace, bool|int $step = false): bool|int {
         $db = DB::getInstance();
-        Tools::info("Dropping table from: {$klassNamespace}", Logger::DEBUG, 'yellow');
+        Tools::info("Dropping table from: {$klassNamespace}", Logger::DEBUG, Tools::BG_YELLOW);
         $mig = new $klassNamespace();
         if(!$step && !is_int($step)) {
             $mig->down();

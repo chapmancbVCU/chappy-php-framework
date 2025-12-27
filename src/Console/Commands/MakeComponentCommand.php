@@ -61,7 +61,7 @@ class MakeComponentCommand extends Command {
             return View::makeTableComponent($componentName);
         }
 
-        Tools::info('No component type selected', Logger::DEBUG, 'red');
+        Tools::info('No component type selected', Logger::DEBUG, Tools::BG_RED);
         return Command::FAILURE;
     }
 }

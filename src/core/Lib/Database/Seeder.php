@@ -44,7 +44,7 @@ abstract class Seeder {
             Tools::info("Running {$seederClass}");
             $seeder->run();
         } else {
-            Tools::info("Seeder class {$seederClass} not found.", Logger::ERROR, 'red');
+            Tools::info("Seeder class {$seederClass} not found.", Logger::ERROR, Tools::BG_RED);
         }
     }
 }

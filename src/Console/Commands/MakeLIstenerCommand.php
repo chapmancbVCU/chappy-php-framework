@@ -44,7 +44,7 @@ class MakeListenerCommand extends Command
         $eventName = Str::ucfirst($input->getOption('event'));
 
         if(!$eventName) {
-            Tools::info('Please provide name of the event', Logger::WARNING, 'yellow');
+            Tools::info('Please provide name of the event', Logger::WARNING, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
 
@@ -52,7 +52,7 @@ class MakeListenerCommand extends Command
             Tools::info(
                 'Either event option was not provided or both event and listener names are the same', 
                 Logger::WARNING, 
-                'yellow'
+                Tools::BG_YELLOW
             );
             return Command::FAILURE;
         }
