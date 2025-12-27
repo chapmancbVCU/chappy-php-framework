@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports commands related to Services.
  */
 class Services {
-    protected static string $servicesPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Services'.DS;
+    private const SERVICES_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Services'.DS;
 
     /**
      * Creates new Services class.
@@ -18,25 +18,14 @@ class Services {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeService(InputInterface $input): int {
-        Tools::pathExists(self::$servicesPath);
+        Tools::pathExists(self::SERVICES_PATH);
         $serviceName = Str::ucfirst($input->getArgument('service-name'));
-        $servicePath = self::$servicesPath . $serviceName . 'Service.php';
+        $servicePath = self::SERVICES_PATH . $serviceName . 'Service.php';
         return Tools::writeFile(
             $servicePath, 
             self::servicesTemplate($serviceName), 
             "The service $serviceName"
         );
-    }
-
-    /**
-     * Creates directory for services if it does not exist.
-     *
-     * @return void
-     */
-    public static function servicesPath(): void {
-        if(!is_dir(self::$servicesPath)) {
-            mkdir(self::$servicesPath, 0755, true);
-        }
     }
 
     /**
