@@ -17,6 +17,6 @@ final class ConsoleException extends FrameworkException {
             0,
             $previous
         );
-        Logger::log($message);
+        Logger::log($message, Logger::ERROR);
     }
 }
