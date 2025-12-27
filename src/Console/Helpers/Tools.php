@@ -3,9 +3,6 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Core\Exceptions\Console\ConsoleException;
-use Core\Lib\Utilities\Arr;
-use Core\Lib\Utilities\Env;
-use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use ReflectionClass;
 use Symfony\Component\Console\Command\Command;
@@ -127,6 +124,30 @@ class Tools {
     }
 
     /**
+     * Checks if value for background color or text color matches list of 
+     * available constants.
+     *
+     * @param string $value The value of constant passed into info()
+     * @param string $type The type of value to determine what type of constant.
+     * @return bool True if $value matches a available constant for background 
+     * color or text color.
+     * 
+     * @throws ConsoleException Thrown when text and background colors are 
+     * passed into info() in the wrong order.  Prints message indicating issue.
+     */
+    private static function hasConstant(string $value, string $type) {
+        $reflectionClass = new ReflectionClass('Console\Helpers\Tools');
+        $constants = $reflectionClass->getConstants();
+        $constantKey = array_search($value, $constants);
+
+        if(!str_contains($constantKey, $type)) {
+            throw new ConsoleException("You are using an incorrect constant value for type $type.");
+        }
+        
+        return in_array($value, $constants);
+    }
+
+    /**
      * Generates output messages for console commands.
      *
      * @param string $message The message we want to show.
@@ -145,21 +166,6 @@ class Tools {
         if (self::$output) {
             self::$output->writeln($message);
         }
-
-        // Load default colors from .env if not provided
-        //$background = $background ?? Env::get('BACKGROUND_COLOR', 'green'); // Default: green
-        //$text = $text ?? Env::get('TEXT_COLOR', 'light-grey'); // Default: light-grey
-        // $backgroundColor = [
-        //     'black' => '40', 'red' => '41', 'green' => '42', 'yellow' => '43',
-        //     'blue' => '44', 'magenta' => '45', 'cyan' => '46', 'light-grey' => '47'
-        // ];
-
-        // $textColor = [
-        //     'black' => '0;30', 'white' => '1;37', 'dark-grey' => '1;30', 'red' => '0;31',
-        //     'green' => '0;32', 'brown' => '0;33', 'yellow' => '1;33', 'blue' => '0;34',
-        //     'magenta' => '0;35', 'cyan' => '0;36', 'light-cyan' => '1;36', 'light-grey' => '0;37',
-        //     'light-red' => '1;31', 'light-green' => '1;32', 'light-blue' => '1;34', 'light-magenta' => '1;35'
-        // ];
         
         Logger::log($message, $level);
 
@@ -173,23 +179,6 @@ class Tools {
             fwrite(STDOUT, $output);
             fflush(STDOUT);
         }
-    }
-
-    private static function hasConstant(string $value, string $type) {
-        $reflectionClass = new ReflectionClass('Console\Helpers\Tools');
-        $constants = $reflectionClass->getConstants();
-
-        $isValidType = false;
-        $typeMatch = array_search($value, $constants);
-        if(str_contains($typeMatch, $type)) {
-            $isValidType = true;
-        }
-
-        if(!$isValidType) {
-            throw new ConsoleException("You are using the wrong class of color for the text and/or background.");
-        }
-        if(in_array($value, $constants)) return true;
-        return false;
     }
 
     /**
@@ -231,7 +220,7 @@ class Tools {
             self::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
-            self::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED, self::TEXT_BLUE);
+            self::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED, self::BG_BLACK);
             return Command::FAILURE;
         }
     }
