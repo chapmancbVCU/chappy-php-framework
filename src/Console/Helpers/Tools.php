@@ -230,7 +230,7 @@ class Tools {
             self::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
-            self::info(ucfirst($name) . ' already exists', "afaf", self::BG_RED);
+            self::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED);
             return Command::FAILURE;
         }
     }
