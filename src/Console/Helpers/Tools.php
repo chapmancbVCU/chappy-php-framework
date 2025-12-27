@@ -138,15 +138,15 @@ class Tools {
      * indicating issue.
      */
     private static function hasConstant(string $value, string $type) {
-        $reflectionClass = new ReflectionClass('Console\Helpers\Tools');
+        $reflectionClass = new ReflectionClass(__CLASS__);
         $constants = $reflectionClass->getConstants();
         $constantKey = array_search($value, $constants);
 
         if($constantKey == false) {
-            throw new ConsoleException("Invalid background or text color.");
+            throw new ConsoleException("ConsoleException: Invalid background or text color.");
         }
         if(!str_contains($constantKey, $type)) {
-            throw new ConsoleException("You are using an incorrect constant value for type $type.");
+            throw new ConsoleException("ConsoleException: You are using an incorrect constant value for type $type.");
         }
         
         return in_array($value, $constants);
@@ -167,7 +167,12 @@ class Tools {
      * light-magenta.
      * @return void
      */
-    public static function info(string $message, string $level = Logger::INFO, string $background = self::BG_GREEN, string $text = self::TEXT_LIGHT_GREY): void {
+    public static function info(
+        string $message, 
+        string $level = Logger::INFO, 
+        string $background = self::BG_GREEN, 
+        string $text = self::TEXT_LIGHT_GREY
+    ): void {
         if (self::$output) {
             self::$output->writeln($message);
         }
@@ -225,7 +230,7 @@ class Tools {
             self::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
-            self::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED);
+            self::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::TEXT_BLACK);
             return Command::FAILURE;
         }
     }
