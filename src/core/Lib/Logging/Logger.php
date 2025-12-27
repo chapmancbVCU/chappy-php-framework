@@ -1,8 +1,12 @@
 <?php
 declare(strict_types=1);
 namespace Core\Lib\Logging;
+
+use Core\Exceptions\Logger\LoggerLevelException;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
+use ReflectionClass;
+
 /**
  * Supports the ability to produce logging.
  */
@@ -18,7 +22,7 @@ class Logger {
 
     private const string LOG_FILE_PATH = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS; 
     private static string $logFile;
-    
+
     /**
      * Initializes the log file based on the environment (CLI or Web).
      */
@@ -45,6 +49,14 @@ class Logger {
     public static function log(string $message, string $level = self::INFO): void {
         if (!Env::get('DEBUG', false)) {
             return; // Skip logging if DEBUG is disabled
+        }
+
+        $reflectionClass = new ReflectionClass(__CLASS__);
+        $constants = $reflectionClass->getConstants();
+        $constantKey = array_search($level, $constants);
+        if($constantKey == false) {
+            //self::log("LoggerException: Invalid severity level.");
+            throw new LoggerLevelException($level, "LoggerException: Invalid severity level: ");
         }
 
         if (!isset(self::$logFile)) {
