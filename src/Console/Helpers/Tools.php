@@ -133,13 +133,18 @@ class Tools {
      * color or text color.
      * 
      * @throws ConsoleException Thrown when text and background colors are 
-     * passed into info() in the wrong order.  Prints message indicating issue.
+     * passed into info() in the wrong order.  If a value is provided that 
+     * does not match a constant an exception is thrown.  Prints message 
+     * indicating issue.
      */
     private static function hasConstant(string $value, string $type) {
         $reflectionClass = new ReflectionClass('Console\Helpers\Tools');
         $constants = $reflectionClass->getConstants();
         $constantKey = array_search($value, $constants);
 
+        if($constantKey == false) {
+            throw new ConsoleException("Invalid background or text color.");
+        }
         if(!str_contains($constantKey, $type)) {
             throw new ConsoleException("You are using an incorrect constant value for type $type.");
         }
