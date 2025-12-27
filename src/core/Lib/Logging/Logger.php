@@ -45,6 +45,10 @@ class Logger {
      * written to a log file.
      * @param string $level Describes the severity of the message.
      * @return void
+     * 
+     * @throws LoggerLevelException If invalid severity level is provided an
+     * exception is thrown.  Exception message is presented to user and 
+     * written to log file.
      */
     public static function log(string $message, string $level = self::INFO): void {
         if (!Env::get('DEBUG', false)) {
