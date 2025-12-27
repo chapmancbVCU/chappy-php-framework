@@ -4,7 +4,6 @@ namespace Console\Helpers;
 
 use PDO;
 use Core\DB;
-use Exception;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
