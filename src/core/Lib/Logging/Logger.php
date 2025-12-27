@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Lib\Logging;
 
+use Core\Exceptions\Logger\LoggerException;
 use Core\Exceptions\Logger\LoggerLevelException;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
@@ -91,7 +92,10 @@ class Logger {
 
         // Debug: Check directory permissions
         if (!is_writable($logDir)) {
-            die("Error: Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4));
+            throw new LoggerException(
+                "Error: Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4)
+            );
+            //die("Error: Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4));
         }
 
         // Debug: Check file existence
@@ -102,14 +106,16 @@ class Logger {
 
         // Debug: Check if file is writable
         if (!is_writable(self::$logFile)) {
-            die("Error: Log file is not writable.");
+            throw new LoggerException("Error: Log file is not writable.");
+            // die("Error: Log file is not writable.");
         }
 
         // Write to log file
         $result = file_put_contents(self::$logFile, $logMessage, FILE_APPEND | LOCK_EX);
 
         if ($result === false) {
-            die("Error: Unable to write to log file.");
+            throw new LoggerException("Error: Unable to write to log file.");
+            // die("Error: Unable to write to log file.");
         }
         
     }
