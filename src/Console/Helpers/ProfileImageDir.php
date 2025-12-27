@@ -11,7 +11,7 @@ use Symfony\Component\Console\Command\Command;
  * Contains functions for creating and deleting the profile images directory.
  */
 class ProfileImageDir {
-    private static $_path = ROOT.DS.'storage'.DS.'app'.DS.'private'.DS .'profile_images';
+    private const IMAGES_PATH = ROOT.DS.'storage'.DS.'app'.DS.'private'.DS .'profile_images';
 
     /**
      * Performs rmdir operation on the profile images directory.
@@ -19,7 +19,7 @@ class ProfileImageDir {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function rmdirProfileImageDirectories(): int {
-        $it = new RecursiveDirectoryIterator(self::$_path, RecursiveDirectoryIterator::SKIP_DOTS);
+        $it = new RecursiveDirectoryIterator(self::IMAGES_PATH, RecursiveDirectoryIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($it,
                      RecursiveIteratorIterator::CHILD_FIRST);
         foreach($files as $file) {
