@@ -2,10 +2,12 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Core\Exceptions\Console\ConsoleException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
+use ReflectionClass;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -70,7 +72,7 @@ class Tools {
         $helper = new QuestionHelper(); 
 
         if (!$helper) {
-            self::info('Helper could not be instantiated.', 'debug', 'red');
+            self::info('Helper could not be instantiated.', Logger::DEBUG, self::BG_RED);
             return Command::FAILURE;
         }
 
@@ -83,10 +85,10 @@ class Tools {
 
             if ($helper->ask($cmdInput, $cmdOutput, $question)) {
                 self::pathExists($directory, 0755, true);
-                self::info("Directory created: $directory", 'blue');
+                self::info("Directory created: $directory", Logger::INFO, self::BG_BLUE);
                 return Command::SUCCESS;
             } else {
-                self::info('Operation canceled.', 'debug', 'blue');
+                self::info('Operation canceled.', Logger::DEBUG, self::BG_BLUE);
                 return Command::FAILURE;
             }
         }
@@ -114,10 +116,10 @@ class Tools {
         $viewArray = explode(".", $input->getArgument($inputName));
 
         if (sizeof($viewArray) !== 2) {
-            Tools::info(
+            self::info(
                 'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
-                'debug',
-                'red'
+                Logger::DEBUG,
+                self::BG_RED
             );
             return Command::FAILURE;
         }
@@ -162,7 +164,7 @@ class Tools {
         Logger::log($message, $level);
 
         // Perform console logging
-        if ($background && $text) {
+        if (self::hasConstant($background, "BG") && self::hasConstant($text, "TEXT")) {
             $output = "\e[".$text.";".$background."m\n\n   ".$message."\n\e[0m\n";
             fwrite(STDOUT, $output);
             fflush(STDOUT);
@@ -171,6 +173,23 @@ class Tools {
             fwrite(STDOUT, $output);
             fflush(STDOUT);
         }
+    }
+
+    private static function hasConstant(string $value, string $type) {
+        $reflectionClass = new ReflectionClass('Console\Helpers\Tools');
+        $constants = $reflectionClass->getConstants();
+
+        $isValidType = false;
+        $typeMatch = array_search($value, $constants);
+        if(str_contains($typeMatch, $type)) {
+            $isValidType = true;
+        }
+
+        if(!$isValidType) {
+            throw new ConsoleException("You are using the wrong class of color for the text and/or background.");
+        }
+        if(in_array($value, $constants)) return true;
+        return false;
     }
 
     /**
@@ -209,10 +228,10 @@ class Tools {
     public static function writeFile(string $path, string $content, string $name): int {
         if(!file_exists($path)) {
             $resp = file_put_contents($path, $content);
-            Tools::info(ucfirst($name) . ' successfully created', Logger::INFO);
+            self::info(ucfirst($name) . ' successfully created', Logger::INFO);
             return Command::SUCCESS;
         } else {
-            Tools::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED);
+            self::info(ucfirst($name) . ' already exists', Logger::DEBUG, self::BG_RED, self::TEXT_BLUE);
             return Command::FAILURE;
         }
     }
