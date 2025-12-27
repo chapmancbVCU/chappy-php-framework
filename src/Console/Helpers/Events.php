@@ -7,9 +7,9 @@ namespace Console\Helpers;
  * Supports operations related to Events/Listeners.
  */
 class Events {
-    protected static string $eventPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
-    protected static string $listenerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
-    protected static string $providerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
+    private const EVENT_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
+    private const LISTENER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
+    private const PROVIDER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
     /**
      * Template for new event.
@@ -119,8 +119,8 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeEvent(string $eventName, bool $queue = false): int {
-        Tools::pathExists(self::$eventPath);
-        $fullPath = self::$eventPath.$eventName.'.php';
+        Tools::pathExists(self::EVENT_PATH);
+        $fullPath = self::EVENT_PATH.$eventName.'.php';
        
         $content = ($queue) 
             ? self::queueEventTemplate($eventName) 
@@ -136,8 +136,8 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeEventServiceProvider(string $providerName): int {
-        Tools::pathExists(self::$providerPath);
-        $fullPath = self::$providerPath.$providerName.'.php';
+        Tools::pathExists(self::PROVIDER_PATH);
+        $fullPath = self::PROVIDER_PATH.$providerName.'.php';
         return Tools::writeFile(
             $fullPath,
             self::eventServiceProviderTemplate($providerName),
@@ -155,8 +155,8 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeListener(string $eventName, string $listenerName, bool $queue = false): int {
-        Tools::pathExists(self::$listenerPath);
-        $fullPath = self::$listenerPath.$listenerName.'.php';
+        Tools::pathExists(self::LISTENER_PATH);
+        $fullPath = self::LISTENER_PATH.$listenerName.'.php';
 
         $content = ($queue) 
             ? self::queueListenerTemplate($eventName, $listenerName) 
