@@ -8,6 +8,9 @@ use Core\Lib\Utilities\Str;
  * json files.
  */
 class View {
+    public const COMPONENTS_PATH = ROOT.DS.'resources'.DS.'views'.DS.'components'.DS;
+    public const CSS_PATH = ROOT.DS.'resources'.DS.'css'.DS;
+    public const LAYOUT_PATH = ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS;
     public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
     public const WIDGET_PATH = self::VIEW_PATH.'widgets'.DS;
     /**
@@ -107,7 +110,7 @@ PHP;
      */
     public static function makeCardComponent(string $componentName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($componentName).".php",
+            self::COMPONENTS_PATH.Str::lower($componentName).".php",
             self::cardComponent(),
             "Form component"
         );
@@ -121,7 +124,7 @@ PHP;
      */
     public static function makeCSS(string $fileName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'css'.DS.Str::lcfirst($fileName).".css", 
+            self::CSS_PATH.Str::lcfirst($fileName).".css", 
             '', 
             "CSS file '$fileName.css'"
         );
@@ -137,7 +140,7 @@ PHP;
      */
     public static function makeFormComponent(string $componentName, string $method, string $encType): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($componentName).".php",
+            self::COMPONENTS_PATH.Str::lower($componentName).".php",
             self::formComponent($method, $encType),
             "Form component"
         );
@@ -152,7 +155,7 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeLayout(string $layoutName, string $menuName = 'main'): int {
-        $layoutPath = ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.Str::lcfirst($layoutName).".php";
+        $layoutPath = self::LAYOUT_PATH.Str::lcfirst($layoutName).".php";
         return Tools::writeFile(
             $layoutPath, 
             self::layout($menuName), 
@@ -168,7 +171,7 @@ PHP;
      */
     public static function makeMenu(string $menuName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($menuName)."_menu.php",
+            self::COMPONENTS_PATH.Str::lower($menuName)."_menu.php",
             self::menu($menuName),
             "Menu file"
         );
@@ -196,7 +199,7 @@ PHP;
      */
     public static function makeTableComponent(string $componentName): int {
         return Tools::writeFile(
-            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.Str::lower($componentName).".php",
+            self::COMPONENTS_PATH.Str::lower($componentName).".php",
             self::tableComponent(),
             "Table component"
         );
