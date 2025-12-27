@@ -12,7 +12,7 @@ use Symfony\Component\Console\Command\Command;
  * Supports commands related to queues.
  */
 class Queue {
-    protected static string $jobsPath = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
+    private const JOBS_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
 
     /**
      * Deletes a job
@@ -116,8 +116,8 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeJob(string $jobName): int {
-        Tools::pathExists(self::$jobsPath);
-        $fullPath = self::$jobsPath.$jobName.'.php';
+        Tools::pathExists(self::JOBS_PATH);
+        $fullPath = self::JOBS_PATH.$jobName.'.php';
         return Tools::writeFile(
             $fullPath,
             self::jobTemplate($jobName),
