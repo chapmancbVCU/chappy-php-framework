@@ -55,8 +55,7 @@ class Logger {
         $constants = $reflectionClass->getConstants();
         $constantKey = array_search($level, $constants);
         if($constantKey == false) {
-            //self::log("LoggerException: Invalid severity level.");
-            throw new LoggerLevelException($level, "LoggerException: Invalid severity level: ");
+            throw new LoggerLevelException($level, "LoggerLevelException: Invalid severity level: ");
         }
 
         if (!isset(self::$logFile)) {
