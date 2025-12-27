@@ -27,6 +27,23 @@ class Tools {
     public const BG_CYAN = '46';
     public const BG_LIGHT_GREY = '47';
 
+    public const TEXT_BLACK = '0;30';
+    public const TEXT_WHITE = '1;37';
+    public const TEXT_DARK_GREY = '1;30';
+    public const TEXT_RED = '0;31';
+    public const TEXT_GREEN = '0;32';
+    public const TEXT_BROWN = '0;33';
+    public const TEXT_YELLOW = '1;33';
+    public const TEXT_BLUE = '0;34';
+    public const TEXT_MAGENTA = '0;35';
+    public const TEXT_CYAN = '0;36';
+    public const TEXT_LIGHT_CYAN = '1;36';
+    public const TEXT_LIGHT_GREY = '0;37';
+    public const TEXT_LIGHT_RED = '1;31';
+    public const TEXT_LIGHT_GREEN = '1;32';
+    public const TEXT_LIGHT_BLUE = '1;34';
+    public const TEXT_LIGHT_MAGENTA = '1;35'; 
+
     /**
      * Returns dashed border.
      *
@@ -122,31 +139,31 @@ class Tools {
      * light-magenta.
      * @return void
      */
-    public static function info(string $message, string $level = Logger::INFO, string $background = self::BG_GREEN, ?string $text = null): void {
+    public static function info(string $message, string $level = Logger::INFO, string $background = self::BG_GREEN, string $text = self::TEXT_LIGHT_GREY): void {
         if (self::$output) {
             self::$output->writeln($message);
         }
 
         // Load default colors from .env if not provided
-        $background = $background ?? Env::get('BACKGROUND_COLOR', 'green'); // Default: green
-        $text = $text ?? Env::get('TEXT_COLOR', 'light-grey'); // Default: light-grey
+        //$background = $background ?? Env::get('BACKGROUND_COLOR', 'green'); // Default: green
+        //$text = $text ?? Env::get('TEXT_COLOR', 'light-grey'); // Default: light-grey
         // $backgroundColor = [
         //     'black' => '40', 'red' => '41', 'green' => '42', 'yellow' => '43',
         //     'blue' => '44', 'magenta' => '45', 'cyan' => '46', 'light-grey' => '47'
         // ];
 
-        $textColor = [
-            'black' => '0;30', 'white' => '1;37', 'dark-grey' => '1;30', 'red' => '0;31',
-            'green' => '0;32', 'brown' => '0;33', 'yellow' => '1;33', 'blue' => '0;34',
-            'magenta' => '0;35', 'cyan' => '0;36', 'light-cyan' => '1;36', 'light-grey' => '0;37',
-            'light-red' => '1;31', 'light-green' => '1;32', 'light-blue' => '1;34', 'light-magenta' => '1;35'
-        ];
+        // $textColor = [
+        //     'black' => '0;30', 'white' => '1;37', 'dark-grey' => '1;30', 'red' => '0;31',
+        //     'green' => '0;32', 'brown' => '0;33', 'yellow' => '1;33', 'blue' => '0;34',
+        //     'magenta' => '0;35', 'cyan' => '0;36', 'light-cyan' => '1;36', 'light-grey' => '0;37',
+        //     'light-red' => '1;31', 'light-green' => '1;32', 'light-blue' => '1;34', 'light-magenta' => '1;35'
+        // ];
         
         Logger::log($message, $level);
 
         // Perform console logging
-        if ($background && Arr::exists($textColor, $text)) {
-            $output = "\e[".$textColor[$text].";".$background."m\n\n   ".$message."\n\e[0m\n";
+        if ($background && $text) {
+            $output = "\e[".$text.";".$background."m\n\n   ".$message."\n\e[0m\n";
             fwrite(STDOUT, $output);
             fflush(STDOUT);
         } else {
