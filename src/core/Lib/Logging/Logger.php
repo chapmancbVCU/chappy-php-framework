@@ -16,8 +16,9 @@ class Logger {
     public const INFO = 'info';
     public const DEBUG = 'debug';
 
-    private static string $logFile;// = ROOT.DS.'storage'.DS.'logs'.DS.'app.log'; 
-
+    private const string LOG_FILE_PATH = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS; 
+    private static string $logFile;
+    
     /**
      * Initializes the log file based on the environment (CLI or Web).
      */
@@ -27,7 +28,7 @@ class Logger {
         }
 
         // Determine log file location
-        self::$logFile = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS .
+        self::$logFile = self::LOG_FILE_PATH .
             (defined('PHPUNIT_RUNNING') ? 'phpunit.log' :
             (php_sapi_name() === 'cli' ? 'cli.log' : 'app.log'));
 
