@@ -10,9 +10,9 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports commands related to the MailerService.
  */
 class Email {
-    protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
-    protected static string $mailerPath = CHAPPY_BASE_PATH.DS.'app'.DS.'CustomMailers'.DS;
-    protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
+    private const LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    private const MAILER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'CustomMailers'.DS;
+    private const TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
 
     /**
      * Creates directory for layout if it does not exist.
@@ -20,8 +20,8 @@ class Email {
      * @return void
      */
     public static function layoutPath(): void {
-        if(!is_dir(self::$layoutPath)) {
-            mkdir(self::$layoutPath, 0755, true);
+        if(!is_dir(self::LAYOUT_PATH)) {
+            mkdir(self::LAYOUT_PATH, 0755, true);
         }
     }
 
@@ -99,8 +99,8 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeEmail(InputInterface $input): int {
-        Tools::pathExists(self::$templatePath);
-        $emailName = self::$templatePath . $input->getArgument('email-name') . '.php';
+        Tools::pathExists(self::TEMPLATE_PATH);
+        $emailName = self::TEMPLATE_PATH . $input->getArgument('email-name') . '.php';
         return Tools::writeFile($emailName, '', 'E-mail file');
     }
 
@@ -111,8 +111,8 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeLayout(InputInterface $input): int {
-        Tools::pathExists(self::$layoutPath);
-        $layoutName = self::$layoutPath . $input->getArgument('email-layout') . '.php';
+        Tools::pathExists(self::LAYOUT_PATH);
+        $layoutName = self::LAYOUT_PATH . $input->getArgument('email-layout') . '.php';
         return Tools::writeFile($layoutName, self::layoutTemplate(), 'E-mail layout');
     }
 
@@ -123,9 +123,9 @@ PHP;
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMailer(InputInterface $input): int {
-        Tools::pathExists(self::$mailerPath);
+        Tools::pathExists(self::MAILER_PATH);
         $mailerName = Str::ucfirst($input->getArgument('mailer-name')) . 'Mailer';
-        $mailerPath = self::$mailerPath . $mailerName . '.php';
+        $mailerPath = self::MAILER_PATH . $mailerName . '.php';
         $content = self::mailerTemplate($mailerName);
         return Tools::writeFile($mailerPath, $content, "Custom mailer $mailerName");
     }
