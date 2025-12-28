@@ -8,6 +8,12 @@ use Core\Lib\Logging\Logger;
  * Handles exceptions related to the console.
  */
 final class ConsoleException extends FrameworkException {
+    /**
+     * Creates new ConsoleException.
+     *
+     * @param string $message Optional short message to describe what happened.
+     * @param \Throwable|null $previous Optional underlying cause for exception chaining.
+     */
     public function __construct(
         string $message = "",
         ?\Throwable $previous = null
