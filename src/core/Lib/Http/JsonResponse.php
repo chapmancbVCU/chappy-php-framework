@@ -74,9 +74,11 @@ trait JsonResponse {
     }
 
     /**
-     * Sample jsonResponse for supporting AJAX requests.
+     * Main JSON Response function.
      *
      * @param mixed $data The JSON response.
+     * @param int $status The status code.
+     * @param array $extraHeaders Any extra headers.
      * @return void
      */
     public function jsonResponse(mixed $data, int $status = 200, array $extraHeaders = []): void {
