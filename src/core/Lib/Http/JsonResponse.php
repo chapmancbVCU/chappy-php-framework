@@ -74,7 +74,7 @@ trait JsonResponse {
     }
 
     /**
-     * Main JSON Response function.
+     * Sends a JSON response with headers and status code.
      *
      * @param mixed $data The JSON response.
      * @param int $status The status code.
