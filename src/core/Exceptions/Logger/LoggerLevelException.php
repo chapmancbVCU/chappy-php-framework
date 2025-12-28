@@ -7,6 +7,13 @@ use Core\Lib\Logging\Logger;
  * Handles exceptions related to Logger severity levels.
  */
 final class LoggerLevelException extends FrameworkRuntimeException {
+    /**
+     * Create a new LoggerLevelException.
+     *
+     * @param string $level The severity level.
+     * @param string $message Optional human-readable details.
+     * @param \Throwable|null $previous Optional underlying cause for exception chaining.
+     */
     public function __construct(
         public readonly string $level,
         string $message = "",
