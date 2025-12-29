@@ -9,7 +9,7 @@ use Console\Helpers\Tools;
 class Validator {
     private const VALIDATOR_PATH = ROOT.DS.'app'.DS.'CustomValidators'.DS;
     /**
-     * Venerates a new user defined validator class.
+     * Generates a new user defined validator class.
      *
      * @param string $validatorName Name for new validator class.
      * @return int A value that indicates success, invalid, or failure.
