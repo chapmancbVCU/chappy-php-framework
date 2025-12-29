@@ -21,7 +21,7 @@ class MakeCommand extends Command
     {
         $this->setName('make:command')
             ->setDescription('Generates a new command class')
-            ->setHelp('php console make:command <test_name>')
+            ->setHelp('php console make:command <command_name>')
             ->addArgument('command-name', InputArgument::REQUIRED, 'Pass the command\'s name.');
     }
 
