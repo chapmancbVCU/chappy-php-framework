@@ -29,7 +29,7 @@ class GenerateControllerCommand extends Command
             ->addOption(
                 'layout',
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_REQUIRED,
                 'Layout for views associated with controller.',
                 false)
             ->addOption(
@@ -75,7 +75,7 @@ class GenerateControllerCommand extends Command
 
         // Generate Controller class
         return Tools::writeFile(
-            ROOT.DS.'app'.DS.'Controllers'.DS.$controllerName.'Controller.php',
+            Controller::CONTROLLER_PATH.$controllerName.'Controller.php',
             $content,
             "Controller"
         );
