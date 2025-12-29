@@ -24,7 +24,7 @@ class GenerateModelCommand extends Command
     {
         $this->setName('make:model')
             ->setDescription('Generates a new model file!')
-            ->setHelp('Generates a new model file.')
+            ->setHelp('make:model <modelname>; add --upload for model configured to support file uploads.')
             ->addArgument('modelname', InputArgument::REQUIRED, 'Pass the model\'s name.')
             ->addOption('upload', null, InputOption::VALUE_NONE, 'Upload flag');
     }
