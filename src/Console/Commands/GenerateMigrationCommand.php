@@ -24,10 +24,10 @@ class GenerateMigrationCommand extends Command
     {
         $this->setName('make:migration')
             ->setDescription('Generates a Database Migration!')
-            ->setHelp('Generates a new Database Migration')
+            ->setHelp('make:migration <table_name>, --rename flag to rename table or --update flag for update table migration')
             ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.')
-            ->addOption('update', null, InputOption::VALUE_NONE, 'Update flag')
-            ->addOption('rename', null, InputOption::VALUE_REQUIRED, 'to', false);
+            ->addOption('update', null, InputOption::VALUE_NONE, 'Update table')
+            ->addOption('rename', null, InputOption::VALUE_REQUIRED, 'Rename table', false);
     }
  
     /**
@@ -39,15 +39,13 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if($input->getOption('update') && !$input->getOption('rename')) {
-            return Migrate::makeUpdateMigration($input);
-        } else if($input->getOption('rename') && !$input->getOption('update')) {
-            return Migrate::makeRenameMigration($input);
-        } else if(!$input->getOption('rename') && !$input->getOption('update')){
-            return Migrate::makeMigration($input);
-        } else {
+        if($input->getOption('update') && $input->getOption('rename')) {
             Tools::info('Cannot accept update and rename options at the same time.', Logger::ERROR, Tools::BG_RED);
             return Command::FAILURE;
         }
+
+        if($input->getOption('rename')) return Migrate::makeRenameMigration($input);
+        else if($input->getOption('update')) return Migrate::makeUpdateMigration($input);
+        else return Migrate::makeMigration($input);
     }
 }
