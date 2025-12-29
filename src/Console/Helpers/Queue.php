@@ -17,7 +17,7 @@ class Queue {
     /**
      * Deletes a job
      *
-     * @param int $jobId Id of the job to delete.
+     * @param array $job The job to be deleted.
      * @param QueueManager $queue The QueueManager instance.
      * @return void
      */
