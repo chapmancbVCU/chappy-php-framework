@@ -7,7 +7,7 @@ use Console\Helpers\Tools;
  * Supports operations for the make:validator command.
  */
 class Validator {
-    private const VALIDATOR_PATH = ROOT.DS.'app'.DS.'CustomValidators'.DS;
+    private const VALIDATOR_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Validators'.DS;
     /**
      * Generates a new user defined validator class.
      *
@@ -17,7 +17,7 @@ class Validator {
     public static function makeValidator($validatorName): int {
         Tools::pathExists(self::VALIDATOR_PATH);
         return Tools::writeFile(
-            self::VALIDATOR_PATH.$validatorName.'.php',
+            self::VALIDATOR_PATH.$validatorName.'Validator.php',
             self::validatorTemplate($validatorName),
             'Custom validator class'
         );
@@ -34,7 +34,7 @@ class Validator {
     private static function validatorTemplate($validatorName): string {
         return <<<PHP
 <?php
-namespace App\CustomValidators;
+namespace App\Lib\Validators;
 use Core\Validators\CustomValidator;
 /**
  * Describe your validator class.
