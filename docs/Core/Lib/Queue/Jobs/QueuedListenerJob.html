@@ -111,6 +111,65 @@ and invokes the listener.</li>
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_listenerClass">
+                                                            private                    string
+                                                                                
+                                    </td>
+                <td>$listenerClass</td>
+                <td class="last"><p>Fully-qualified class name of the listener to execute.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_eventClass">
+                                                            private                    string
+                                                                                
+                                    </td>
+                <td>$eventClass</td>
+                <td class="last"><p>Fully-qualified class name of the event to be rehydrated.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_eventPayload">
+                                                            private                    <abbr title="Core\Lib\Queue\Jobs\array&lt;string,mixed&gt;">array&lt;string,mixed&gt;</abbr>
+                                                                                
+                                    </td>
+                <td>$eventPayload</td>
+                <td class="last"><p>Serialized representation of the event's state.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_backoff">
+                                                            private                    int|<abbr title="Core\Lib\Queue\Jobs\array&lt;int,int&gt;">array&lt;int,int&gt;</abbr>
+                                                                                
+                                    </td>
+                <td>$backoff</td>
+                <td class="last"><p>Backoff delay(s) used between retry attempts.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_delay">
+                                                            private                    int
+                                                                                
+                                    </td>
+                <td>$delay</td>
+                <td class="last"><p>Initial delay before the job becomes available to workers (seconds).</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_maxAttempts">
+                                                            private                    int
+                                                                                
+                                    </td>
+                <td>$maxAttempts</td>
+                <td class="last"><p>Maximum number of attempts before the job is considered failed.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -187,6 +246,16 @@ and invokes the listener.</li>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    object
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_rehydrateEvent">rehydrateEvent</a>()
+        
+                                            <p><p>Rebuild the event instance from the stored payload.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;<a href="../../../../Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a>
                 </div>
                 <div class="col-md-8">
@@ -230,7 +299,7 @@ and invokes the listener.</li>
                     <tr>
                 <td>array</td>
                 <td>$data</td>
-                <td></td>
+                <td><p>Data for the listener.</p></td>
             </tr>
             </table>
 
@@ -280,7 +349,7 @@ serialize the event data; otherwise an empty array is stored.</p>
                     <tr>
                 <td>array</td>
                 <td>$opts</td>
-                <td></td>
+                <td><p>Get supported $opts keys.</p></td>
             </tr>
             </table>
 
@@ -290,7 +359,7 @@ serialize the event data; otherwise an empty array is stored.</p>
                     <table class="table table-condensed">
         <tr>
             <td><a href="../../../../Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></td>
-            <td></td>
+            <td><p>A new QueuedListenerJob.</p></td>
         </tr>
     </table>
 
@@ -468,6 +537,40 @@ serialize the event data; otherwise an empty array is stored.</p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_rehydrateEvent">
+        <div class="location">at line 222</div>
+        <code>                private    object
+    <strong>rehydrateEvent</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Rebuild the event instance from the stored payload.</p></p>                <p><p>If the event class defines a static fromPayload(array $data): self method,
+it will be used. Otherwise, a no-argument constructor is invoked and
+public properties are populated from payload keys.</p></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>object</td>
+            <td><p>The rehydrated event instance.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method___set_state">
         <div class="location">at line 239</div>
         <code>        static            <a href="../../../../Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a>
@@ -488,7 +591,7 @@ serialize the event data; otherwise an empty array is stored.</p>
                     <tr>
                 <td>array</td>
                 <td>$state</td>
-                <td></td>
+                <td><p>The available states.</p></td>
             </tr>
             </table>
 
@@ -498,7 +601,7 @@ serialize the event data; otherwise an empty array is stored.</p>
                     <table class="table table-condensed">
         <tr>
             <td><a href="../../../../Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></td>
-            <td></td>
+            <td><p>A new QueuedListenerJob object.</p></td>
         </tr>
     </table>
 

@@ -84,7 +84,7 @@ final class QueuedListenerJob implements QueueableJobInterface {
      *  - backoff (int|int[]): retry backoff seconds or array of per-attempt delays
      *  - max_attempts (int): max attempts before failure
      *
-     * @param array<string,mixed> $data
+     * @param array<string,mixed> $data Data for the listener.
      */
     public function __construct(array $data = [])
     {
@@ -112,9 +112,9 @@ final class QueuedListenerJob implements QueueableJobInterface {
      *
      * @param string $listenerClass Fully-qualified listener class name.
      * @param object $event         Event instance to serialize.
-     * @param array<string,mixed> $opts
+     * @param array<string,mixed> $opts Get supported $opts keys.
      *
-     * @return self
+     * @return self A new QueuedListenerJob.
      */
     public static function from(string $listenerClass, object $event, array $opts = []): self {
         $payload = method_exists($event, 'toPayload') 
@@ -233,8 +233,8 @@ final class QueuedListenerJob implements QueueableJobInterface {
     /**
      * Reconstruct a job from exported state (used by var_export()).
      *
-     * @param array<string,mixed> $state
-     * @return self
+     * @param array<string,mixed> $state The available states.
+     * @return self A new QueuedListenerJob object.
      */
     public static function __set_state(array $state): self {
         return new self([

@@ -263,11 +263,13 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Lib\Notifications\NotificationManager">NotificationManager</abbr>::boot</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/NotificationManager.html"><abbr title="Core\Lib\Notifications\NotificationManager">NotificationManager</abbr></a></em></dt>
                     <dd><p>Boots notification service on application start.</p></dd><dt><a href="Core/Lib/Providers/EventServiceProvider.html#method_boot">
 <abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr>::boot</a>() &mdash; <em>Method in class <a href="Core/Lib/Providers/EventServiceProvider.html"><abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr></a></em></dt>
-                    <dd><p>Register your events with the dispatcher.</p></dd><dt><a href="Core/Lib/Providers/NotificationServiceProvider.html#method_bootNotifications">
+                    <dd><p>Boot any services after registration.  Can be overridden.</p></dd><dt><a href="Core/Lib/Providers/NotificationServiceProvider.html#method_bootNotifications">
 <abbr title="Core\Lib\Providers\NotificationServiceProvider">NotificationServiceProvider</abbr>::bootNotifications</a>() &mdash; <em>Method in class <a href="Core/Lib/Providers/NotificationServiceProvider.html"><abbr title="Core\Lib\Providers\NotificationServiceProvider">NotificationServiceProvider</abbr></a></em></dt>
                     <dd><p>Register channels for notifications.</p></dd><dt><a href="Core/Lib/Providers/ServiceProvider.html#method_boot">
 <abbr title="Core\Lib\Providers\ServiceProvider">ServiceProvider</abbr>::boot</a>() &mdash; <em>Method in class <a href="Core/Lib/Providers/ServiceProvider.html"><abbr title="Core\Lib\Providers\ServiceProvider">ServiceProvider</abbr></a></em></dt>
-                    <dd><p>Boot any services after registration.  Can be overridden.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_backoff">
+                    <dd><p>Boot any services after registration.  Can be overridden.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_backoff">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#backoff</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Backoff delay(s) used between retry attempts.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_backoff">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::backoff</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Get the retry backoff delay(s).</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_backoff">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::backoff</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
@@ -510,7 +512,9 @@ then warnings are presented to the user.</p></dd><dt><a href="Core/Lib/Database/
                     <dd><p>Implements the QueueDriverInterface.  This driver implements functions
 that support database queue operations.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html#method_delete">
 <abbr title="Core\Lib\Queue\DatabaseQueueDriver">DatabaseQueueDriver</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/DatabaseQueueDriver.html"><abbr title="Core\Lib\Queue\DatabaseQueueDriver">DatabaseQueueDriver</abbr></a></em></dt>
-                    <dd><p>Deletes a job from the queue.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_delay">
+                    <dd><p>Deletes a job from the queue.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_delay">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#delay</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Initial delay before the job becomes available to workers (seconds).</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_delay">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::delay</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Get the initial delay (in seconds) before the job becomes available.</p></dd><dt><a href="Core/Lib/Queue/QueueDriverInterface.html#method_delete">
 <abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueDriverInterface.html"><abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr></a></em></dt>
@@ -605,7 +609,11 @@ variable.</p></dd><dt><a href="Core/DB.html#method_error">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::errorReporting</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Processes list of errors associated with uploads and makes them
 presentable to user during validation.</p></dd><dt><a href="Core/Lib/Providers/EventServiceProvider.html"><abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Providers.html">Core\Lib\Providers</a></em></dt>
-                    <dd><p>Internal EventServiceProvider for builtin events.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_except">
+                    <dd><p>Internal EventServiceProvider for builtin events.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_eventClass">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#eventClass</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Fully-qualified class name of the event to be rehydrated.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_eventPayload">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#eventPayload</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Serialized representation of the event's state.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_except">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::except</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Get all items except the specified keys.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_exists">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::exists</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1043,7 +1051,15 @@ JSON responses.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_json
 <abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr>::logData</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a></em></dt>
                     <dd><p>Build the consolidated &quot;data&quot; bag for logging.</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html#method_logMessage">
 <abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr>::logMessage</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a></em></dt>
-                    <dd><p>Determine the human‑readable message to log.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_last">
+                    <dd><p>Determine the human‑readable message to log.</p></dd><dt>$<a href="Core/Lib/Providers/EventServiceProvider.html#property_listen">
+<abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr>#listen</a> &mdash; <em>Property in class <a href="Core/Lib/Providers/EventServiceProvider.html"><abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr></a></em></dt>
+                    <dd><p>The event listener mappings for the application's built-in framework
+events.</p></dd><dt>$<a href="Core/Lib/Providers/ServiceProvider.html#property_listen">
+<abbr title="Core\Lib\Providers\ServiceProvider">ServiceProvider</abbr>#listen</a> &mdash; <em>Property in class <a href="Core/Lib/Providers/ServiceProvider.html"><abbr title="Core\Lib\Providers\ServiceProvider">ServiceProvider</abbr></a></em></dt>
+                    <dd><p>The event listener mappings for the application's built-in framework
+events.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_listenerClass">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#listenerClass</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Fully-qualified class name of the listener to execute.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_last">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::last</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Get the last element that passes a given test.</p></dd><dt><a href="Core/Lib/Utilities/ArraySet.html#method_last">
 <abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr>::last</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/ArraySet.html"><abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr></a></em></dt>
@@ -1220,7 +1236,9 @@ feature class is created.</p></dd><dt><a href="Console/Helpers/Test.html#method_
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::mailLogger</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
                     <dd><p>Logs each attempt at sending an E-mail.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Notification channel that sends email via the framework MailerService
-and/or AbstractMailer-based custom mailers.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_maxAttempts">
+and/or AbstractMailer-based custom mailers.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_maxAttempts">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#maxAttempts</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Maximum number of attempts before the job is considered failed.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_maxAttempts">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Get the maximum number of attempts for this job.</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_maxAttempts">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
@@ -1580,7 +1598,9 @@ element.  Compatible with radio button groups.</p></dd><dt><a href="Core/Lib/Dat
                     <dd><p>Default function to register bindings or event listeners.  Can
 be overridden.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html#method_release">
 <abbr title="Core\Lib\Queue\DatabaseQueueDriver">DatabaseQueueDriver</abbr>::release</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/DatabaseQueueDriver.html"><abbr title="Core\Lib\Queue\DatabaseQueueDriver">DatabaseQueueDriver</abbr></a></em></dt>
-                    <dd><p>Releases a job back onto the queue after a failure or delay.</p></dd><dt><a href="Core/Lib/Queue/QueueDriverInterface.html#method_release">
+                    <dd><p>Releases a job back onto the queue after a failure or delay.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_rehydrateEvent">
+<abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::rehydrateEvent</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
+                    <dd><p>Rebuild the event instance from the stored payload.</p></dd><dt><a href="Core/Lib/Queue/QueueDriverInterface.html#method_release">
 <abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr>::release</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueDriverInterface.html"><abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr></a></em></dt>
                     <dd><p>Releases a job back onto the queue after a failure or delay.</p></dd><dt><a href="Core/Lib/Queue/QueueManager.html#method_release">
 <abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr>::release</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueManager.html"><abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr></a></em></dt>

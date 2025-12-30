@@ -9,6 +9,11 @@ use Core\Lib\Events\EventDispatcher;
  * Abstract class for event service providers.
  */
 abstract class ServiceProvider {
+    /**
+     * The event listener mappings for the application's built-in framework 
+     * events.
+     * @var array
+     */
     protected array $listen = [];
 
     /**
@@ -23,7 +28,7 @@ abstract class ServiceProvider {
 
     /**
      * Boot any services after registration.  Can be overridden.
-     *
+     * @param EventDispatcher $dispatcher The dispatcher.
      * @return void
      */
     public function boot(EventDispatcher $dispatcher): void {
