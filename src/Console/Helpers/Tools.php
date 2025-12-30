@@ -137,7 +137,7 @@ class Tools {
      * does not match a constant an exception is thrown.  Prints message 
      * indicating issue.
      */
-    private static function hasConstant(string $value, string $type) {
+    private static function hasConstant(string $value, string $type): bool {
         $reflectionClass = new ReflectionClass(__CLASS__);
         $constants = $reflectionClass->getConstants();
         $constantKey = array_search($value, $constants);
