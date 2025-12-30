@@ -1030,7 +1030,9 @@ JSON responses.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_json
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::log</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
                     <dd><p>Performs operations for adding content to log files.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_layout">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#layout</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
-                    <dd><p>The layout to be used with email.</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
+                    <dd><p>The layout to be used with email.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_layoutPath">
+<abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::layoutPath</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
+                    <dd><p>Supports ability to use alternative layout paths.</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Notification channel that writes notifications to the application log.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_last">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::last</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Get the last element that passes a given test.</p></dd><dt><a href="Core/Lib/Utilities/ArraySet.html#method_last">
@@ -1202,7 +1204,11 @@ feature class is created.</p></dd><dt><a href="Console/Helpers/Test.html#method_
                     <dd><p>The mailer service object sending the mail.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_mime">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::mime</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
                     <dd><p>Returns the MIME type for a given file extension.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
-                    <dd><p>Supports E-mail infrastructure for this framework.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
+                    <dd><p>Supports E-mail infrastructure for this framework.</p></dd><dt>$<a href="Core/Lib/Mail/MailerService.html#property_mailer">
+<abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>#mailer</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
+                    <dd><p>Mailer object.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_mailLogger">
+<abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::mailLogger</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
+                    <dd><p>Logs each attempt at sending an E-mail.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Notification channel that sends email via the framework MailerService
 and/or AbstractMailer-based custom mailers.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_maxAttempts">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
@@ -1539,7 +1545,9 @@ element.  Compatible with radio button groups.</p></dd><dt><a href="Core/Lib/Dat
 <abbr title="Core\Lib\Http\Api">Api</abbr>::readCache</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Read a cached JSON response for a URL if it exists and is fresh.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_requestJson">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::requestJson</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
-                    <dd><p>Core HTTP request using cURL that decodes JSON and throws on errors.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_register">
+                    <dd><p>Core HTTP request using cURL that decodes JSON and throws on errors.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_renderTemplateFile">
+<abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::renderTemplateFile</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
+                    <dd><p>Renders template file.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_register">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::register</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
                     <dd><p>Register (or override) a channel implementation under a short name.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_resolve">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::resolve</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
@@ -1893,7 +1901,11 @@ for setting  attribute tags in the form section.</p></dd><dt><a href="Core/Lib/D
 <abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr>::toPayload</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/UserRegistered.html"><abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr></a></em></dt>
                     <dd><p>Adds instance variables to payload.</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_timeout">
 <abbr title="Core\Lib\Http\Api">Api</abbr>#timeout</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
-                    <dd><p>Connection/overall timeout in seconds.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_toArray">
+                    <dd><p>Connection/overall timeout in seconds.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_template">
+<abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::template</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
+                    <dd><p>Prepares E-mail content based on template to be sent.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_templatePath">
+<abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::templatePath</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
+                    <dd><p>Supports ability to use alternative template paths.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_toArray">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::toArray</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
                     <dd><p>Generic array representation (fallback for logging, webhooks, etc.).</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_toDatabase">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::toDatabase</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>

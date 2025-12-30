@@ -107,7 +107,7 @@
                                                                                                                         FRAMEWORK_LAYOUT_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Path to framework's layouts.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -116,7 +116,7 @@
                                                                                                                         FRAMEWORK_TEMPLATE_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Path to framework's templates.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -125,13 +125,54 @@
                                                                                                                         FRAMEWORK_STYLES_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Path to framework styles.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        LAYOUT_PATH
+                                    </td>
+                <td class="last">
+                    <p><em><p>Path to user defined layouts.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        STYLES_PATH
+                                    </td>
+                <td class="last">
+                    <p><em><p>Path to user defined styles.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        TEMPLATE_PATH
+                                    </td>
+                <td class="last">
+                    <p><em><p>Path to user defined templates.</p></em></p>
                     <p></p>
                 </td>
             </tr>
             </table>
 
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_mailer">
+                                        protected                                        <abbr title="Symfony\Component\Mailer\Mailer">Mailer</abbr>
+                                                                                
+                                    </td>
+                <td>$mailer</td>
+                <td class="last"><p>Mailer object.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -144,6 +185,36 @@
                     <a href="#method___construct">__construct</a>()
         
                                             <p><p>Creates a new mailer.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_layoutPath">layoutPath</a>(string|null $layoutPath = null)
+        
+                                            <p><p>Supports ability to use alternative layout paths.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_mailLogger">mailLogger</a>(string $status, string $to, string $subject, string $htmlBody, string|null $textBody = null, string|null $template = null, string|null $error = null, array|null $attachments = null)
+        
+                                            <p><p>Logs each attempt at sending an E-mail.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_renderTemplateFile">renderTemplateFile</a>(string $path, array $data = [])
+        
+                                            <p><p>Renders template file.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -177,6 +248,26 @@ and/or css stylesheet.</p></p>                </div>
                                             <p><p>Sends a text E-mail.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_template">template</a>(string $view, array $data = [], string|null $layout = null, string|null $layoutPath = null, string $templatePath, string|null $styles = null, string|null $stylesPath = null)
+        
+                                            <p><p>Prepares E-mail content based on template to be sent.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_templatePath">templatePath</a>(string|null $templatePath = null)
+        
+                                            <p><p>Supports ability to use alternative template paths.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -185,7 +276,7 @@ and/or css stylesheet.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 30</div>
+        <div class="location">at line 37</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -207,8 +298,175 @@ and/or css stylesheet.</p></p>                </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_layoutPath">
+        <div class="location">at line 50</div>
+        <code>        static    protected        string
+    <strong>layoutPath</strong>(string|null $layoutPath = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Supports ability to use alternative layout paths.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|null</td>
+                <td>$layoutPath</td>
+                <td><p>The path to the layout.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>If parameter is null then constant is used.  Otherwise,
+the value of the parameter is used.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_mailLogger">
+        <div class="location">at line 67</div>
+        <code>            protected        void
+    <strong>mailLogger</strong>(string $status, string $to, string $subject, string $htmlBody, string|null $textBody = null, string|null $template = null, string|null $error = null, array|null $attachments = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Logs each attempt at sending an E-mail.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$status</td>
+                <td><p>The status of the attempt to send E-mail.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>he recipient.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$subject</td>
+                <td><p>The E-mail's subject.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$htmlBody</td>
+                <td><p>The E-mail's content</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$textBody</td>
+                <td><p>The E-mail's text content.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$template</td>
+                <td><p>The name of the template.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$error</td>
+                <td><p>Reported errors for a send attempt.</p></td>
+            </tr>
+                    <tr>
+                <td>array|null</td>
+                <td>$attachments</td>
+                <td><p>An array of attachments.  Default value is empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_renderTemplateFile">
+        <div class="location">at line 120</div>
+        <code>            protected        string
+    <strong>renderTemplateFile</strong>(string $path, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders template file.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td><p>Path to the template.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Any data that needs to be passed to the view.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The template's content.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 128</div>
+        <div class="location">at line 137</div>
         <code>                    bool
     <strong>send</strong>(string $to, string $subject, string $htmlBody, string|null $template = null, array $attachments = [])
         </code>
@@ -247,7 +505,7 @@ and/or css stylesheet.</p></p>                </div>
                     <tr>
                 <td>array</td>
                 <td>$attachments</td>
-                <td></td>
+                <td><p>An array of attachments.  Default value is empty array.</p></td>
             </tr>
             </table>
 
@@ -270,7 +528,7 @@ and/or css stylesheet.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendTemplate">
-        <div class="location">at line 187</div>
+        <div class="location">at line 196</div>
         <code>                    bool
     <strong>sendTemplate</strong>(string $to, string $subject, string $template, array $data, string|null $layout = null, array $attachments = [], string|null $layoutPath = null, string|null $templatePath = null, string|null $styles = null, string|null $stylesPath = null)
         </code>
@@ -359,7 +617,7 @@ attachments.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWithText">
-        <div class="location">at line 222</div>
+        <div class="location">at line 232</div>
         <code>                    bool
     <strong>sendWithText</strong>(string $to, string $subject, string $htmlBody, string $textBody, string|null $template = null, array $attachments = [])
         </code>
@@ -403,7 +661,7 @@ attachments.</p></td>
                     <tr>
                 <td>array</td>
                 <td>$attachments</td>
-                <td></td>
+                <td><p>An array of attachments.  Default value is empty array.</p></td>
             </tr>
             </table>
 
@@ -414,6 +672,121 @@ attachments.</p></td>
         <tr>
             <td>bool</td>
             <td><p>True if sent, otherwise we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_template">
+        <div class="location">at line 287</div>
+        <code>            protected        string
+    <strong>template</strong>(string $view, array $data = [], string|null $layout = null, string|null $layoutPath = null, string $templatePath, string|null $styles = null, string|null $stylesPath = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Prepares E-mail content based on template to be sent.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$view</td>
+                <td><p>The name of the template.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Any data that the template uses.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$layout</td>
+                <td><p>The layout if it exists.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$layoutPath</td>
+                <td><p>The path to the layout.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$templatePath</td>
+                <td><p>The path to the template.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$styles</td>
+                <td><p>The name of styles file.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$stylesPath</td>
+                <td><p>Either framework or custom location.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The E-mail's contents.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_templatePath">
+        <div class="location">at line 329</div>
+        <code>        static    protected        string
+    <strong>templatePath</strong>(string|null $templatePath = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Supports ability to use alternative template paths.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|null</td>
+                <td>$templatePath</td>
+                <td><p>The path to the template.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>If parameter is null then constant is used.  Otherwise,
+the value of the parameter is used.</p></td>
         </tr>
     </table>
 

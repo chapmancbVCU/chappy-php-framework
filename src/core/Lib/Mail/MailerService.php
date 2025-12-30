@@ -16,12 +16,19 @@ use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
  * Supports E-mail infrastructure for this framework.
  */
 class MailerService {
+    /** Path to framework's layouts. */
     public const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    /** Path to framework's templates. */
     public const FRAMEWORK_TEMPLATE_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
+    /** Path to framework styles. */
     public const FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
+    /** Path to user defined layouts. */
     public const LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    /** Mailer object. */
     protected Mailer $mailer;
+    /** Path to user defined styles. */
     public const STYLES_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
+    /** Path to user defined templates. */
     public const TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
     
     /**
@@ -54,6 +61,7 @@ class MailerService {
      * @param string|null $textBody The E-mail's text content.
      * @param string|null $template The name of the template.
      * @param string|null $error Reported errors for a send attempt.
+     * @param array $attachments An array of attachments.  Default value is empty array.
      * @return void
      */
     protected function mailLogger(
@@ -123,6 +131,7 @@ class MailerService {
      * @param string $subject The E-mail's subject.
      * @param string $htmlBody The E-mail's content.
      * @param string|null $template The template if it exists.
+     * @param array $attachments An array of attachments.  Default value is empty array.
      * @return bool True if sent, otherwise we return false.
      */
     public function send(string $to, string $subject, string $htmlBody, ?string $template = null, array $attachments = []): bool {
@@ -217,6 +226,7 @@ class MailerService {
      * @param string $htmlBody The E-mail's HTML content.
      * @param string $textBody The E-mail's text content.
      * @param string|null $template The template if it exists.
+     * @param array $attachments An array of attachments.  Default value is empty array.
      * @return bool True if sent, otherwise we return false.
      */
     public function sendWithText(string $to, string $subject, string $htmlBody, string $textBody, ?string $template = null, array $attachments = []): bool {
@@ -270,6 +280,8 @@ class MailerService {
      * @param string|null $layout The layout if it exists.
      * @param string|null $layoutPath The path to the layout.
      * @param string $templatePath The path to the template.
+     * @param string $styles The name of styles file.
+     * @param string $stylesPath Either framework or custom location.
      * @return string The E-mail's contents.
      */
     protected function template(
