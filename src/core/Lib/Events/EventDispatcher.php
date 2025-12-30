@@ -7,6 +7,9 @@ use Core\Lib\Events\Contracts\ShouldQueue;
 use Core\Lib\Queue\Jobs\QueuedListenerJob;
 use Core\Lib\Queue\QueueManager;
 
+/**
+ * Handles operations related to dispatching events.
+ */
 class EventDispatcher {
     protected array $listeners = [];
 

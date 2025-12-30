@@ -97,9 +97,25 @@
     
         
 
+            <div class="description">
+            <p><p>Handles operations related to dispatching events.</p></p>                    </div>
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_listeners">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$listeners</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -124,6 +140,76 @@
                                             <p><p>Dispatches an event</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_enqueueListener">enqueueListener</a>(string $listenerClass, object $instance, object $event)
+        
+                                            <p><p>Enqueue an event listener for asynchronous execution.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isEnqueueListener">isEnqueueListener</a>(string $listenerClass, object $instance, object $event)
+        
+                                            <p><p>Determine if the listener should be enqueued and enqueue it if applicable.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_handleListener">handleListener</a>(mixed $listener, object $event)
+        
+                                            <p><p>Handle a registered listener in any supported shape.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_hasQueuePreferences">hasQueuePreferences</a>(object $instance)
+        
+                                            <p><p>Check if a listener provides custom queue preferences.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_processCallableArray">processCallableArray</a>(array $listener, object $event)
+        
+                                            <p><p>Process a listener provided as [FQCN|object, 'method'].</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_processClassString">processClassString</a>(string $listenerClass, object $event)
+        
+                                            <p><p>Process a listener provided as a fully-qualified class name.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setQueueName">setQueueName</a>(object $instance)
+        
+                                            <p><p>Resolve the queue name for a queued listener or job.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -132,7 +218,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_listen">
-        <div class="location">at line 20</div>
+        <div class="location">at line 23</div>
         <code>                    void
     <strong>listen</strong>(string $eventName, <abbr title="Core\Lib\Events\callable|string|array">callable|string|array</abbr> $listener)
         </code>
@@ -179,7 +265,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_dispatch">
-        <div class="location">at line 30</div>
+        <div class="location">at line 33</div>
         <code>                    void
     <strong>dispatch</strong>(object $event)
         </code>
@@ -209,6 +295,345 @@
         <tr>
             <td>void</td>
             <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_enqueueListener">
+        <div class="location">at line 56</div>
+        <code>                private    void
+    <strong>enqueueListener</strong>(string $listenerClass, object $instance, object $event)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enqueue an event listener for asynchronous execution.</p></p>                <p><p>Builds a job payload from the listener and event, applies queue preferences
+(delay, backoff, max attempts) if the listener implements {\Core\Lib\Events\Contracts\QueuePreferences},
+and pushes the job to the specified queue via the {\Core\Lib\Queue\QueueManager}.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$listenerClass</td>
+                <td><p>Fully qualified class name of the listener.</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$instance</td>
+                <td><p>The instantiated listener object.</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$event</td>
+                <td><p>The event object being dispatched.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isEnqueueListener">
+        <div class="location">at line 81</div>
+        <code>                private    bool
+    <strong>isEnqueueListener</strong>(string $listenerClass, object $instance, object $event)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determine if the listener should be enqueued and enqueue it if applicable.</p></p>                <p><p>If the listener implements {\Core\Lib\Events\Contracts\ShouldQueue}, it will be dispatched to
+the queue system instead of being executed immediately.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$listenerClass</td>
+                <td><p>Fully qualified class name of the listener.</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$instance</td>
+                <td><p>The instantiated listener object.</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$event</td>
+                <td><p>The event object being dispatched.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the listener was enqueued, false otherwise.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_handleListener">
+        <div class="location">at line 101</div>
+        <code>                private    void
+    <strong>handleListener</strong>(mixed $listener, object $event)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Handle a registered listener in any supported shape.</p></p>                <p><p>Supported forms:</p>
+<ul>
+<li>string FQCN: &quot;App\Listeners\SendWelcomeEmail&quot; (calls handle())</li>
+<li>array callable: [FQCN|object, 'method'] (calls given method)</li>
+</ul></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$listener</td>
+                <td><p>The listener definition (string FQCN or [target, method]).</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$event</td>
+                <td><p>The event instance being dispatched.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasQueuePreferences">
+        <div class="location">at line 122</div>
+        <code>                private    bool
+    <strong>hasQueuePreferences</strong>(object $instance)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Check if a listener provides custom queue preferences.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$instance</td>
+                <td><p>The instantiated listener object.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the listener implements {\Core\Lib\Events\Contracts\QueuePreferences}, false otherwise.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_processCallableArray">
+        <div class="location">at line 134</div>
+        <code>                private    void
+    <strong>processCallableArray</strong>(array $listener, object $event)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Process a listener provided as [FQCN|object, 'method'].</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$listener</td>
+                <td><p>A two-item array: [FQCN|string|object $target, string $method].</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$event</td>
+                <td><p>The event instance being dispatched.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_processClassString">
+        <div class="location">at line 156</div>
+        <code>                private    void
+    <strong>processClassString</strong>(string $listenerClass, object $event)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Process a listener provided as a fully-qualified class name.</p></p>                <p><p>Assumes a conventional handle($event) method.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$listenerClass</td>
+                <td><p>Fully qualified class name of the listener.</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$event</td>
+                <td><p>The event instance being dispatched.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setQueueName">
+        <div class="location">at line 180</div>
+        <code>                private    string
+    <strong>setQueueName</strong>(object $instance)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resolve the queue name for a queued listener or job.</p></p>                <p><p>If the given instance implements {\Core\Lib\Events\Contracts\QueuePreferences} and defines
+a {<a href="../../../Core/Lib/Events/Contracts/QueuePreferences.html">\Core\Lib\Events\Contracts\QueuePreferences::viaQueue()}</a> method, its return value will
+be used as the queue name. If <code>viaQueue()</code> returns null or the method
+does not exist, the queue name defaults to &quot;default&quot;.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$instance</td>
+                <td><p>The listener or job instance.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The resolved queue name.</p></td>
         </tr>
     </table>
 

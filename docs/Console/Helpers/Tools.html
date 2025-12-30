@@ -321,6 +321,20 @@
             </table>
 
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_output">
+                    static                                        private                    <abbr title="Console\Helpers\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>|null
+                                                                                
+                                    </td>
+                <td>$output</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -355,6 +369,17 @@
                                             <p><p>Checks if input is in dot notation.  If in dot notation the string is
 placed in an array where the first index is the directory name.  The
 second element is the file name.  The structure is shown below:</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_hasConstant">hasConstant</a>(string $value, string $type)
+        
+                                            <p><p>Checks if value for background color or text color matches list of
+available constants.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -534,6 +559,64 @@ is returned.</p></td>
     </table>
 
             
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasConstant">
+        <div class="location">at line 140</div>
+        <code>        static        private    bool
+    <strong>hasConstant</strong>(string $value, string $type)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if value for background color or text color matches list of
+available constants.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$value</td>
+                <td><p>The value of constant passed into info()</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$type</td>
+                <td><p>The type of value to determine what type of constant.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if $value matches a available constant for background
+color or text color.</p></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Exceptions/Console/ConsoleException.html"><abbr title="Core\Exceptions\Console\ConsoleException">ConsoleException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
