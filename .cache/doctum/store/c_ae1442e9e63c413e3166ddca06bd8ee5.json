@@ -1,0 +1,116 @@
+{
+    "name": "Core\\Models\\Login",
+    "line": 9,
+    "short_desc": "Extends the Model class.  Supports functions for the Login model.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Models",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Models\/Login.php",
+    "relative_file": null,
+    "hash": "73975c8e85d45f28588d17fccca828f7c74dbbd2",
+    "parent": "Core\\Model",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Model": "Core\\Model",
+        "RequiredValidator": "Core\\Validators\\RequiredValidator"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "password": {
+            "name": "password",
+            "line": 10,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "remember_me": {
+            "name": "remember_me",
+            "line": 11,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "username": {
+            "name": "username",
+            "line": 13,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        }
+    },
+    "methods": {
+        "getRememberMeChecked": {
+            "name": "getRememberMeChecked",
+            "line": 21,
+            "short_desc": "Returns result for remember me checkbox so user stays logged in if it's\nchecked.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "The value for remember_me checkbox.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "validator": {
+            "name": "validator",
+            "line": 30,
+            "short_desc": "Performs form validation checks for the login screen.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

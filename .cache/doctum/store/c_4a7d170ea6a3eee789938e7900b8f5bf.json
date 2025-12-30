@@ -1,0 +1,26 @@
+{
+    "name": "Core\\Exceptions\\View\\ComponentNotFoundException",
+    "line": 9,
+    "short_desc": "Class to handle events related to components not being found.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Exceptions\\View",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Exceptions\/View\/ComponentNotFoundException.php",
+    "relative_file": null,
+    "hash": "7f9951361703e1c5393fbb7ca5c52e777afbfba3",
+    "parent": "Core\\Exceptions\\View\\ViewException",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "ViewException": "Core\\Exceptions\\View\\ViewException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Console\\Commands\\MakeViewCommand",
+    "line": 14,
+    "short_desc": "Implements command for making a new view file.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MakeViewCommand.php",
+    "relative_file": null,
+    "hash": "fdb32cea2801aadcf14a380901ee3f838b01dfcd",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "View": "Console\\Helpers\\View",
+        "Tools": "Console\\Helpers\\Tools",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

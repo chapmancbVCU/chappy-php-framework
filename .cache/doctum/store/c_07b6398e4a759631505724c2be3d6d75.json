@@ -1,0 +1,120 @@
+{
+    "name": "Console\\Helpers\\Log",
+    "line": 10,
+    "short_desc": "Supports ability to manage logs.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Helpers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Helpers\/Log.php",
+    "relative_file": null,
+    "hash": "b925b195c665354b380fa9ea689d91718e1645a2",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Logger": "Core\\Lib\\Logging\\Logger"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "deleteAllLogs": {
+            "name": "deleteAllLogs",
+            "line": 30,
+            "short_desc": "Deletes all logs.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "deleteAppLog": {
+            "name": "deleteAppLog",
+            "line": 41,
+            "short_desc": "Deletes app.log.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "deleteCliLog": {
+            "name": "deleteCliLog",
+            "line": 50,
+            "short_desc": "Deletes cli.log.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "deletePHPUnitLog": {
+            "name": "deletePHPUnitLog",
+            "line": 59,
+            "short_desc": "Deletes phpunit.log.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "LOG_PATH": {
+            "name": "LOG_PATH",
+            "line": 11,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        }
+    }
+}

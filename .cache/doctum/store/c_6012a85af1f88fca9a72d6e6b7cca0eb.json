@@ -1,0 +1,274 @@
+{
+    "name": "Core\\Lib\\Notifications\\Notification",
+    "line": 9,
+    "short_desc": "Base Notification class similar to Laravel's.",
+    "long_desc": "Extend this for each specific notification type.",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Notifications",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Notifications\/Notification.php",
+    "relative_file": null,
+    "hash": "6a88a70b8c5adf4840e06fb786be60ec8d5edab0",
+    "parent": null,
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "channels": {
+            "name": "channels",
+            "line": 16,
+            "short_desc": "Get an array of available channels.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "The array of channels.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "channelValues": {
+            "name": "channelValues",
+            "line": 25,
+            "short_desc": "Returns list of all channels as an array of strings.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "An array of channels as strings.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "toArray": {
+            "name": "toArray",
+            "line": 36,
+            "short_desc": "Generic array representation (fallback for logging, webhooks, etc.).",
+            "long_desc": "By default, defer to the database payload.",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 36,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "toDatabase": {
+            "name": "toDatabase",
+            "line": 47,
+            "short_desc": "Representation of the notification in the database.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 47,
+                    "short_desc": "Any model\/object that uses the Notifiable trait.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "toLog": {
+            "name": "toLog",
+            "line": 57,
+            "short_desc": "Representation of the notification in logging.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Contents for the log.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 57,
+                    "short_desc": "Any model\/object that uses the Notifiable trait.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "toMail": {
+            "name": "toMail",
+            "line": 67,
+            "short_desc": "Representation of the notification in mail.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "array<string,mixed>",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 67,
+                    "short_desc": "Any model\/object that uses the Notifiable trait.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "via": {
+            "name": "via",
+            "line": 76,
+            "short_desc": "The delivery channels (e.g. ['database', 'mail']).",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [
+                "The hint on \"via\" at @return is invalid: \"list<'database'|'mail'|'log'>\""
+            ],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 76,
+                    "short_desc": "Any model\/object that uses the Notifiable trait.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

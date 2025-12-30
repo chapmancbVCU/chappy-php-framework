@@ -1,0 +1,227 @@
+{
+    "name": "Core\\Cookie",
+    "line": 8,
+    "short_desc": "Manages cookies used by this application.  The $_COOKIE superglobal\nvariable is an associative array.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Cookie.php",
+    "relative_file": null,
+    "hash": "465fd6bdb1e473babd9fc93040724b9aa750be68",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "delete": {
+            "name": "delete",
+            "line": 16,
+            "short_desc": "Deletes a cookie from the $_COOKIE superglobal variable.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 16,
+                    "short_desc": "The name of the cookie we want to remove.  Also\nknown as the constant REMEMBER_ME_COOKIE_NAME.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "get": {
+            "name": "get",
+            "line": 29,
+            "short_desc": "The name of the cookie we want to work with that is found in the\n$_COOKIE superglobal.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\string|int",
+                    false
+                ]
+            ],
+            "hint_desc": "The name of the cookie specified in the $name parameter.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 29,
+                    "short_desc": "The cookie identification string we want to\nretrieve from the $_COOKIE superglobal.  Also known as the constant\nREMEMBER_ME_COOKIE_NAME.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "exists": {
+            "name": "exists",
+            "line": 42,
+            "short_desc": "Checks if a particular cookie exists in the $_COOKIE superglobal\nvariable.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if the cookie exists.  Otherwise false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 42,
+                    "short_desc": "The cookie identification string we want to check\nif it exists in the $_COOKIE superglobal variable.  Also known as the\nconstant REMEMBER_ME_COOKIE_NAME.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "set": {
+            "name": "set",
+            "line": 58,
+            "short_desc": "Sets a cookie to the $_COOKIE superglobal variable.  Information that\nit needs are its name, a value, and the amount of time we want this\ncookie to exist.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if the cookie is successfully set.  Otherwise it\nreturns false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 58,
+                    "short_desc": "The value for REMEMBER_ME_COOKIE_NAME constant.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "value": {
+                    "name": "value",
+                    "line": 58,
+                    "short_desc": "The value of the cookie unique to this session.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "expiry": {
+                    "name": "expiry",
+                    "line": 58,
+                    "short_desc": "The amount of time we want this cookie to exist\nbefore it expires.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

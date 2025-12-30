@@ -1,0 +1,32 @@
+{
+    "name": "Console\\Commands\\QueueWorkerCommand",
+    "line": 15,
+    "short_desc": "Executes a queue worker",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/QueueWorkerCommand.php",
+    "relative_file": null,
+    "hash": "70ed89675b1e4a7818f2ee6b5125260f65ae9252",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Queue": "Console\\Helpers\\Queue",
+        "Tools": "Console\\Helpers\\Tools",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

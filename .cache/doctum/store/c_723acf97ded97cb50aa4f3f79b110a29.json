@@ -1,0 +1,226 @@
+{
+    "name": "Core\\Models\\ACL",
+    "line": 9,
+    "short_desc": "Describes ACL model.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Models",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Models\/ACL.php",
+    "relative_file": null,
+    "hash": "6dfcbe3e91ae503f3405dfa154f0fdd7d7f87910",
+    "parent": "Core\\Model",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Model": "Core\\Model"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "acl": {
+            "name": "acl",
+            "line": 10,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "created_at": {
+            "name": "created_at",
+            "line": 12,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "deleted": {
+            "name": "deleted",
+            "line": 13,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Scalar_LNumber",
+                "attributes": {
+                    "startLine": 13,
+                    "endLine": 13,
+                    "rawValue": "0",
+                    "kind": 10
+                },
+                "value": 0
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "id": {
+            "name": "id",
+            "line": 14,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "updated_at": {
+            "name": "updated_at",
+            "line": 17,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        }
+    },
+    "methods": {
+        "beforeSave": {
+            "name": "beforeSave",
+            "line": 25,
+            "short_desc": "Implements beforeSave function described in Model parent class.",
+            "long_desc": "Ensures timestamps are created and updated.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getOptionsForForm": {
+            "name": "getOptionsForForm",
+            "line": 38,
+            "short_desc": "Generates list of ACL options based on ACL table.  Compatible with\ndropdown and checkbox group elements.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "$aclArray The array containing ACLs from ACL table.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getACLs": {
+            "name": "getACLs",
+            "line": 51,
+            "short_desc": "Retrieves list of all ACLs sorted by the acl field.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "The list of ACLs that is returned from the database.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isAssignedToUsers": {
+            "name": "isAssignedToUsers",
+            "line": 60,
+            "short_desc": "Check if ACL is assigned to any users",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if is in use.  Otherwise, we return false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "validator": {
+            "name": "validator",
+            "line": 71,
+            "short_desc": "Ensures fields are required and unique.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "blackList": {
+            "name": "blackList",
+            "line": 11,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 1,
+            "tags": []
+        }
+    }
+}

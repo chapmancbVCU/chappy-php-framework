@@ -1,0 +1,66 @@
+{
+    "name": "Core\\Lib\\Database\\Seeder",
+    "line": 12,
+    "short_desc": "Abstract class for seeders.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Database",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Database\/Seeder.php",
+    "relative_file": null,
+    "hash": "6d9e869261e0e1ed5d2d57113cae07c882882af7",
+    "parent": null,
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "DB": "Core\\DB",
+        "Tools": "Console\\Helpers\\Tools",
+        "Logger": "Core\\Lib\\Logging\\Logger"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 24,
+            "short_desc": "Constructor for Seeder class.  Primary role is to get DB instance.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "run": {
+            "name": "run",
+            "line": 33,
+            "short_desc": "All seeders must implement the run method.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 17,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

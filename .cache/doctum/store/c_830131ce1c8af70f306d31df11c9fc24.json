@@ -1,0 +1,33 @@
+{
+    "name": "Console\\Commands\\NotificationTestCommand",
+    "line": 16,
+    "short_desc": "Supports operations for testing a notification.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/NotificationTestCommand.php",
+    "relative_file": null,
+    "hash": "bbe868d5b348acb555067df334571eecfd579e11",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Tools": "Console\\Helpers\\Tools",
+        "Notifications": "Console\\Helpers\\Notifications",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

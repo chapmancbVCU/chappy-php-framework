@@ -1,0 +1,32 @@
+{
+    "name": "Console\\Commands\\MakeComponentCommand",
+    "line": 16,
+    "short_desc": "Supports ability to create components.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MakeComponentCommand.php",
+    "relative_file": null,
+    "hash": "a4cca660ec391481837d8e0c4a7e80b10baf507c",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

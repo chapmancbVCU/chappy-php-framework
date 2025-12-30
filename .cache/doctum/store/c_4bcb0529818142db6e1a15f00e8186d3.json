@@ -1,0 +1,30 @@
+{
+    "name": "Console\\Commands\\MakeServiceCommand",
+    "line": 13,
+    "short_desc": "Generates a new custom mailer.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MakeServiceCommand.php",
+    "relative_file": null,
+    "hash": "d77c5f4265e12bd86e56f6a275517ce3bf8cefca",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Services": "Console\\Helpers\\Services",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

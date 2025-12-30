@@ -1,0 +1,69 @@
+{
+    "name": "Core\\Lib\\Listeners\\SendRegistrationEmail",
+    "line": 11,
+    "short_desc": "Class for sending user registered E-mail.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Listeners",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Listeners\/SendRegistrationEmail.php",
+    "relative_file": null,
+    "hash": "5c28385fcdfe8689e26dc74c79d2c431d45b6b40",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "UserRegistered": "Core\\Lib\\Events\\UserRegistered",
+        "WelcomeMailer": "Core\\Lib\\Mail\\WelcomeMailer"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "handle": {
+            "name": "handle",
+            "line": 18,
+            "short_desc": "Handles event for sending user registered E-mail.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "event": {
+                    "name": "event",
+                    "line": 18,
+                    "short_desc": "The event.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Lib\\Events\\UserRegistered",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

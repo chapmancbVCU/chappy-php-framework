@@ -1,0 +1,62 @@
+{
+    "namespace": "",
+    "name": "logger",
+    "line": 170,
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/scripts\/helpers.php",
+    "relative_file": null,
+    "short_desc": "Performs operations for adding content to log files.",
+    "long_desc": "",
+    "hint": [
+        [
+            "void",
+            false
+        ]
+    ],
+    "hint_desc": "",
+    "tags": [],
+    "modifiers": 0,
+    "is_by_ref": "",
+    "is_intersection_type": false,
+    "exceptions": [],
+    "errors": [],
+    "parameters": {
+        "message": {
+            "name": "message",
+            "line": 170,
+            "short_desc": "The description of an event that is being\nwritten to a log file.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": null,
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "level": {
+            "name": "level",
+            "line": 170,
+            "short_desc": "Describes the severity of the message.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "Logger::INFO",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        }
+    }
+}

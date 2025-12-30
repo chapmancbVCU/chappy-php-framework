@@ -1,0 +1,737 @@
+{
+    "name": "Console\\Helpers\\Notifications",
+    "line": 21,
+    "short_desc": "Utilities that support console commands related to Notifications:\n- Resolving notifiables and channels from CLI options\n- Building per-send payloads\/overrides\n- Scaffolding notification classes and the notifications migration\n- Performing dry-runs and actual sends via a notifiable",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Helpers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Helpers\/Notifications.php",
+    "relative_file": null,
+    "hash": "24c2ea0711ef9c175aae9beab3ea3cd1de06e3f6",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Arr": "Core\\Lib\\Utilities\\Arr",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Channel": "Core\\Lib\\Notifications\\Channel",
+        "Notification": "Core\\Lib\\Notifications\\Notification",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "NotificationModel": "Core\\Models\\Notifications",
+        "Users": "App\\Models\\Users",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "buildPayload": {
+            "name": "buildPayload",
+            "line": 40,
+            "short_desc": "Build the per-send payload for the test command.",
+            "long_desc": "Default fields:\n- level: \"info\"\n- tags:  [\"cli\",\"test\"]\n- dry_run: boolean (from --dry-run)",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Merged payload passed to channels.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 40,
+                    "short_desc": "Console input (expects option \"dry-run\").",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "overrides": {
+                    "name": "overrides",
+                    "line": 40,
+                    "short_desc": "Arbitrary key\/value overrides (takes precedence).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "channelOptions": {
+            "name": "channelOptions",
+            "line": 63,
+            "short_desc": "Resolve the --channels option into a normalized list of channels.",
+            "long_desc": "Behavior:\n- If the option is omitted or empty, returns ALL enum channel values\n  (use {@see \\Console\\Helpers\\resolveChannelsOverride()} if you prefer NULL to defer to via()).\n- Accepts a comma-separated list, whitespace tolerated.\n- Accepts the special token \"all\" to mean all channel enum values.\n- Validates unknown names and deduplicates while preserving order.",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Normalized channel names (e.g., ['database','log']).",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\InvalidArgumentException",
+                    "on unknown channel names."
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 63,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "dryRun": {
+            "name": "dryRun",
+            "line": 101,
+            "short_desc": "Perform a dry-run (no delivery). Prints the intended action and payload.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "TRUE if dry-run occurred; FALSE otherwise.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 102,
+                    "short_desc": "Notifiable instance or a sentinel string (e.g., \"dummy\").",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Console\\Helpers\\object|string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "notification": {
+                    "name": "notification",
+                    "line": 103,
+                    "short_desc": "The notification instance.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Lib\\Notifications\\Notification",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "payload": {
+                    "name": "payload",
+                    "line": 104,
+                    "short_desc": "Payload merged from defaults and overrides.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "channels": {
+                    "name": "channels",
+                    "line": 105,
+                    "short_desc": "Channels override (NULL \u2192 will use via()).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "makeNotification": {
+            "name": "makeNotification",
+            "line": 155,
+            "short_desc": "Generate a new notification class file into {@see self::NOTIFICATION_PATH}.",
+            "long_desc": "The generated class includes channel methods (toX) for the provided list,\nplus a via() that references those channels. If $channels is NULL or empty,\nall enum channel values are used.",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A Tools::writeFile status code.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "channels": {
+                    "name": "channels",
+                    "line": 155,
+                    "short_desc": "Channel names to scaffold (e.g., ['database','log']).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "notificationName": {
+                    "name": "notificationName",
+                    "line": 155,
+                    "short_desc": "Class name (without namespace).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "migrationTemplate": {
+            "name": "migrationTemplate",
+            "line": 179,
+            "short_desc": "Template for the notifications migration class file.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The complete PHP contents of the migration.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fileName": {
+                    "name": "fileName",
+                    "line": 179,
+                    "short_desc": "The base filename\/classname to use.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "notificationClass": {
+            "name": "notificationClass",
+            "line": 229,
+            "short_desc": "Build a fully-qualified notification class name.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "FQCN of the notification.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notificationName": {
+                    "name": "notificationName",
+                    "line": 229,
+                    "short_desc": "Short class name or FQCN (leading backslash allowed).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "notificationClassExists": {
+            "name": "notificationClassExists",
+            "line": 241,
+            "short_desc": "Determine if a notification class exists.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "TRUE if loadable; FALSE otherwise.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "className": {
+                    "name": "className",
+                    "line": 241,
+                    "short_desc": "FQCN to check.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "notificationsMigration": {
+            "name": "notificationsMigration",
+            "line": 250,
+            "short_desc": "Create a new notifications migration file on disk.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A Tools::writeFile status code.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "resolveNotifiable": {
+            "name": "resolveNotifiable",
+            "line": 303,
+            "short_desc": "Resolve a notifiable instance (or a sentinel string) from CLI input.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Console\\Helpers\\object|string",
+                    false
+                ]
+            ],
+            "hint_desc": "A model instance or \"dummy\" if none found\/provided.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 303,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "resolveOverridesFromWith": {
+            "name": "resolveOverridesFromWith",
+            "line": 318,
+            "short_desc": "Parse overrides from the --with option (key:value,key2:value2).",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Flattened k=>v overrides.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 318,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "prune": {
+            "name": "prune",
+            "line": 341,
+            "short_desc": "Prune old notifications using the model layer.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "Command::SUCCESS on completion.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "days": {
+                    "name": "days",
+                    "line": 341,
+                    "short_desc": "Number of days to retain; older rows are deleted.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "resolveChannelsOverride": {
+            "name": "resolveChannelsOverride",
+            "line": 356,
+            "short_desc": "Resolve a channels override list from CLI input.",
+            "long_desc": "If the option is omitted\/empty, returns NULL so callers can defer to via().",
+            "hint": [
+                [
+                    "array",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "hint_desc": "Normalized channels or NULL to defer.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 356,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "sendViaNotifiable": {
+            "name": "sendViaNotifiable",
+            "line": 371,
+            "short_desc": "Deliver a notification via a notifiable (or simulate if notifiable is not an object).",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 372,
+                    "short_desc": "Notifiable instance or a sentinel string.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Console\\Helpers\\object|string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "notification": {
+                    "name": "notification",
+                    "line": 373,
+                    "short_desc": "The notification instance.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Lib\\Notifications\\Notification",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "payload": {
+                    "name": "payload",
+                    "line": 374,
+                    "short_desc": "Per-send payload\/overrides.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "channels": {
+                    "name": "channels",
+                    "line": 375,
+                    "short_desc": "Channel override (NULL \u2192 use via()).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "NOTIFICATION_NAMESPACE": {
+            "name": "NOTIFICATION_NAMESPACE",
+            "line": 23,
+            "short_desc": "",
+            "long_desc": "",
+            "modifiers": 1,
+            "tags": []
+        },
+        "NOTIFICATION_PATH": {
+            "name": "NOTIFICATION_PATH",
+            "line": 26,
+            "short_desc": "",
+            "long_desc": "",
+            "modifiers": 1,
+            "tags": []
+        }
+    }
+}

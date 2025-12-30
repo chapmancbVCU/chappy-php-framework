@@ -1,0 +1,192 @@
+{
+    "name": "Core\\Lib\\Notifications\\Channels\\MailChannel",
+    "line": 58,
+    "short_desc": "Notification channel that sends email via the framework MailerService\nand\/or AbstractMailer-based custom mailers.",
+    "long_desc": "Supported payload shapes (returned by Notification::toMail()):\n\n1) Template mode (MailerService::sendTemplate)\n   [\n     \/\/ 'to' => 'user@example.com',            \/\/ optional; auto-routes from notifiable if omitted\n     'subject'     => 'Subject',\n     'template'    => 'welcome',\n     'data'        => ['user' => $user],\n     'layout'      => 'default',               \/\/ optional\n     'attachments' => [...],                   \/\/ optional (use Attachments::content\/path helpers)\n     'layoutPath'  => null,                    \/\/ optional\n     'templatePath'=> null,                    \/\/ optional\n     'styles'      => 'default',               \/\/ optional\n     'stylesPath'  => null,                    \/\/ optional\n   ]\n\n2) Raw HTML (MailerService::send \/ sendWithText)\n   [\n     \/\/ 'to' => 'user@example.com',            \/\/ optional; auto-route\n     'subject'     => 'Subject',\n     'html'        => '<p>Hello<\/p>',\n     'text'        => 'Hello',                 \/\/ optional -> triggers sendWithText()\n     'template'    => 'welcome',               \/\/ optional: used only for logging\n     'attachments' => [...],                   \/\/ optional\n   ]\n\n3) Custom mailer (AbstractMailer subclass)\n   [\n     'mailer'      => \\Core\\Lib\\Mail\\WelcomeMailer::class,\n     \/\/ The mailer can implement a static sendTo(\\App\\Models\\Users $user): bool\n     \/\/ If not, we construct it and call buildAndSend(...) with optional overrides:\n     'layout'      => null,\n     'attachments' => [],\n     'layoutPath'  => null,\n     'templatePath'=> null,\n     'styles'      => null,\n     'stylesPath'  => null,\n   ]",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Notifications\\Channels",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Notifications\/Channels\/MailChannel.php",
+    "relative_file": null,
+    "hash": "e304768ab3291505f09968fa74c3205a0a201f6e",
+    "parent": null,
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "AbstractMailer": "Core\\Lib\\Mail\\AbstractMailer",
+        "Channel": "Core\\Lib\\Notifications\\Contracts\\Channel",
+        "Notification": "Core\\Lib\\Notifications\\Notification",
+        "MailerService": "Core\\Lib\\Mail\\MailerService"
+    },
+    "errors": [],
+    "interfaces": {
+        "Core\\Lib\\Notifications\\Contracts\\Channel": "Core\\Lib\\Notifications\\Contracts\\Channel"
+    },
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 59,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "service": {
+                    "name": "service",
+                    "line": 59,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\Lib\\Notifications\\Channels\\Core\\Lib\\Mail\\MailerService",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 4,
+                    "default": "null",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "name": {
+            "name": "name",
+            "line": 78,
+            "short_desc": "Short channel name used in Notification::via().",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The name of the channel.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "send": {
+            "name": "send",
+            "line": 205,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "phpstan-param": [
+                    [
+                        "object",
+                        "$notifiable"
+                    ],
+                    [
+                        "Notification",
+                        "$notification"
+                    ],
+                    [
+                        "array<string,mixed>|null",
+                        "$payload"
+                    ]
+                ]
+            },
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\Core\\Lib\\Notifications\\Channels\\InvalidArgumentException|\\Core\\Lib\\Notifications\\Channels\\RuntimeException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 206,
+                    "short_desc": "The user\/entity receiving the notification.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "notification": {
+                    "name": "notification",
+                    "line": 206,
+                    "short_desc": "The notification instance.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Lib\\Notifications\\Notification",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "payload": {
+                    "name": "payload",
+                    "line": 206,
+                    "short_desc": "Usually the result of toX() (array\/DTO)",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "mixed",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

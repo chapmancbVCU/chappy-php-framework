@@ -1,0 +1,32 @@
+{
+    "name": "Console\\Commands\\RemoveLogsCommand",
+    "line": 15,
+    "short_desc": "Supports ability to delete log file.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/RemoveLogsCommand.php",
+    "relative_file": null,
+    "hash": "b88a0bb77ebf67fdb350db5aa2411c06a24ddc0b",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Log": "Console\\Helpers\\Log",
+        "Tools": "Console\\Helpers\\Tools",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

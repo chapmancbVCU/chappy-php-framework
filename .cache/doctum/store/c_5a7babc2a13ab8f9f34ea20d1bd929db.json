@@ -1,0 +1,250 @@
+{
+    "name": "Core\\Lib\\Queue\\QueueDriverInterface",
+    "line": 12,
+    "short_desc": "Interface QueueDriverInterface",
+    "long_desc": "Defines the contract for a queue driver implementation.\nA queue driver is responsible for pushing, popping, releasing,\nand deleting jobs from a queue backend (e.g., database, Redis).",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Queue",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Queue\/QueueDriverInterface.php",
+    "relative_file": null,
+    "hash": "820ffb9e7771ef3f6f3d33e386e433e8cdc1cf9f",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": true,
+    "is_read_only": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "delete": {
+            "name": "delete",
+            "line": 19,
+            "short_desc": "Deletes a job from the queue.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "jobId": {
+                    "name": "jobId",
+                    "line": 19,
+                    "short_desc": "The unique identifier of the job to delete.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "mixed",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "pop": {
+            "name": "pop",
+            "line": 27,
+            "short_desc": "Retrieves and reserves the next available job from the specified queue.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "hint_desc": "The job payload as an associative array, or null if no job is available.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "queue": {
+                    "name": "queue",
+                    "line": 27,
+                    "short_desc": "The name of the queue to pop from.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "push": {
+            "name": "push",
+            "line": 36,
+            "short_desc": "Pushes a new job onto the specified queue.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "queue": {
+                    "name": "queue",
+                    "line": 36,
+                    "short_desc": "The name of the queue to push the job to.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "payload": {
+                    "name": "payload",
+                    "line": 36,
+                    "short_desc": "The job payload, typically containing the class name and data.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "release": {
+            "name": "release",
+            "line": 46,
+            "short_desc": "Releases a job back onto the queue after a failure or delay.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "queue": {
+                    "name": "queue",
+                    "line": 46,
+                    "short_desc": "The name of the queue to release the job to.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "payload": {
+                    "name": "payload",
+                    "line": 46,
+                    "short_desc": "The job payload to requeue.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "delay": {
+                    "name": "delay",
+                    "line": 46,
+                    "short_desc": "Delay in seconds before the job becomes available again.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "0",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

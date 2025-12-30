@@ -1,0 +1,667 @@
+{
+    "name": "Core\\Lib\\FileSystem\\Uploads",
+    "line": 10,
+    "short_desc": "Provides support for file uploads.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\FileSystem",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/FileSystem\/Uploads.php",
+    "relative_file": null,
+    "hash": "eec485339ae85685acf3820ed17bfea237936d0f",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Model": "Core\\Model",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "InvalidArgumentException": "InvalidArgumentException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 35,
+            "short_desc": "Creates instance of Uploads class.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "files": {
+                    "name": "files",
+                    "line": 36,
+                    "short_desc": "Array of files to be uploaded.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\Lib\\FileSystem\\array|string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "fileTypes": {
+                    "name": "fileTypes",
+                    "line": 37,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "maxAllowedSize": {
+                    "name": "maxAllowedSize",
+                    "line": 38,
+                    "short_desc": "Maximum allowable size for a particular\nfile.  This can vary depending on requirements.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "bucket": {
+                    "name": "bucket",
+                    "line": 39,
+                    "short_desc": "The location where the files will be stored.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "sizeMsg": {
+                    "name": "sizeMsg",
+                    "line": 40,
+                    "short_desc": "The message describing the maximum allowable\nsize usually described as <size_as_an_int><bytes|mb|gb> (e.g.: 5mb).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "mode": {
+                    "name": "mode",
+                    "line": 41,
+                    "short_desc": "A constant to set whether or not we are\nworking with a single file upload or an array regarding form setup.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "errorReporting": {
+            "name": "errorReporting",
+            "line": 78,
+            "short_desc": "Processes list of errors associated with uploads and makes them\npresentable to user during validation.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "errors": {
+                    "name": "errors",
+                    "line": 78,
+                    "short_desc": "The errors, if any are detected will be an array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\Lib\\FileSystem\\bool|array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "model": {
+                    "name": "model",
+                    "line": 78,
+                    "short_desc": "The model associated with the errors.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Model",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "name": {
+                    "name": "name",
+                    "line": 78,
+                    "short_desc": "The name of the field in the model for the errors.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "generateUploadFilename": {
+            "name": "generateUploadFilename",
+            "line": 103,
+            "short_desc": "Generates a unique filename for an uploaded file while preserving its extension.",
+            "long_desc": "Uses a cryptographically secure random hash to create a unique base name.\nFalls back to 'bin' if no extension is found in the original filename.",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "A unique, safely generated filename with the original extension.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\Exception",
+                    "If it was not possible to gather sufficient entropy (from random_bytes)."
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "originalFilename": {
+                    "name": "originalFilename",
+                    "line": 103,
+                    "short_desc": "The original filename (used to extract the extension).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "getFiles": {
+            "name": "getFiles",
+            "line": 116,
+            "short_desc": "Getter function for the $_files array.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "The $_files array.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "handleUpload": {
+            "name": "handleUpload",
+            "line": 135,
+            "short_desc": "Handles file uploads and returns an Uploads instance if valid.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\Lib\\FileSystem\\Uploads",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "hint_desc": "Returns Uploads instance if valid, otherwise null.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "file": {
+                    "name": "file",
+                    "line": 136,
+                    "short_desc": "The file input from $_FILES.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "uploadModel": {
+                    "name": "uploadModel",
+                    "line": 137,
+                    "short_desc": "The name of the model class responsible for uploads.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "bucket": {
+                    "name": "bucket",
+                    "line": 138,
+                    "short_desc": "Upload destination.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "sizeMsg": {
+                    "name": "sizeMsg",
+                    "line": 139,
+                    "short_desc": "Size description for error messages.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "model": {
+                    "name": "model",
+                    "line": 140,
+                    "short_desc": "The associated with the view you are working with.\nMay or may not be same as $uploadModel if $uploadModel has index\nid field associated with another model.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Model",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "name": {
+                    "name": "name",
+                    "line": 141,
+                    "short_desc": "The name of the field for upload from form.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "mode": {
+                    "name": "mode",
+                    "line": 142,
+                    "short_desc": "Use Uploads::SINGLE for single file uploads or\nUploads::MULTIPLE for multiple file uploads.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "self::SINGLE",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "restructureFiles": {
+            "name": "restructureFiles",
+            "line": 181,
+            "short_desc": "Restructures $_FILES data based on mode.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Structured file array.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "files": {
+                    "name": "files",
+                    "line": 181,
+                    "short_desc": "The uploaded file(s).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "mode": {
+                    "name": "mode",
+                    "line": 181,
+                    "short_desc": "Upload mode: Uploads::SINGLE or Uploads::MULTIPLE.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "self::SINGLE",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "runValidation": {
+            "name": "runValidation",
+            "line": 213,
+            "short_desc": "Performs validation tasks.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "upload": {
+            "name": "upload",
+            "line": 249,
+            "short_desc": "Performs file upload.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 249,
+                    "short_desc": "Directory where file will exist when uploaded.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "uploadName": {
+                    "name": "uploadName",
+                    "line": 249,
+                    "short_desc": "The actual name for the file when uploaded.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "fileName": {
+                    "name": "fileName",
+                    "line": 249,
+                    "short_desc": "The temporary file name.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "validates": {
+            "name": "validates",
+            "line": 269,
+            "short_desc": "Reports on success of validation.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ],
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "True if validation is successful.  Otherwise,\nwe return the $_errors array.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "MULTIPLE": {
+            "name": "MULTIPLE",
+            "line": 17,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 0,
+            "tags": []
+        },
+        "SINGLE": {
+            "name": "SINGLE",
+            "line": 18,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 0,
+            "tags": []
+        }
+    }
+}

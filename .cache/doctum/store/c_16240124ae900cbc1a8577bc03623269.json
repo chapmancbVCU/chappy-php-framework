@@ -1,0 +1,29 @@
+{
+    "name": "Console\\Commands\\ReactHomeCommand",
+    "line": 12,
+    "short_desc": "Implements command for generating the home\/Index.jsx page component.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/ReactHomeCommand.php",
+    "relative_file": null,
+    "hash": "eb99b84d5c10339c34f10c390a26d8aac86c6dc8",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "React": "Console\\Helpers\\React",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

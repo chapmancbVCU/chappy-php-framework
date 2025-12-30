@@ -1,0 +1,33 @@
+{
+    "name": "Console\\Commands\\MakeTestCommand",
+    "line": 16,
+    "short_desc": "Supports ability to generate new test file.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MakeTestCommand.php",
+    "relative_file": null,
+    "hash": "7b61cdaa9c5657b494ac1d7edff7e0a8ac5642eb",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Test": "Console\\Helpers\\Test",
+        "Tools": "Console\\Helpers\\Tools",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

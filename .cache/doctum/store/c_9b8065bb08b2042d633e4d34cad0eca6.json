@@ -1,0 +1,48 @@
+{
+    "name": "Core\\Validators\\SpecialCharValidator",
+    "line": 8,
+    "short_desc": "Child class class that supports ability to check if field contains an\nspecial character that is not a space in the field.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Validators",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Validators\/SpecialCharValidator.php",
+    "relative_file": null,
+    "hash": "f1c5cd51802ab60a4ba52c4940e15f8824d7849a",
+    "parent": "Core\\Validators\\CustomValidator",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "CustomValidator": "Core\\Validators\\CustomValidator"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "runValidation": {
+            "name": "runValidation",
+            "line": 17,
+            "short_desc": "Implements the abstract function of the same name from the parent\nclass.  Enforces requirement where a field must contain at least one\nspecial character that is not a space.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

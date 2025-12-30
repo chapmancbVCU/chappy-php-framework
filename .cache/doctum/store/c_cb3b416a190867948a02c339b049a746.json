@@ -1,0 +1,707 @@
+{
+    "name": "Core\\Models\\EmailAttachments",
+    "line": 11,
+    "short_desc": "Implements features of the EmailAttachments class.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Models",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Models\/EmailAttachments.php",
+    "relative_file": null,
+    "hash": "77d895a0cad8e5f0060cd4de1e75dc6d134545e6",
+    "parent": "Core\\Model",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Model": "Core\\Model",
+        "Attachments": "Core\\Lib\\Mail\\Attachments",
+        "Users": "App\\Models\\Users",
+        "Required": "Core\\Validators\\RequiredValidator"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "_uploadPath": {
+            "name": "_uploadPath",
+            "line": 29,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "default": {
+                "nodeType": "Expr_BinaryOp_Concat",
+                "attributes": {
+                    "startLine": 29,
+                    "endLine": 29
+                },
+                "left": {
+                    "nodeType": "Expr_BinaryOp_Concat",
+                    "attributes": {
+                        "startLine": 29,
+                        "endLine": 29
+                    },
+                    "left": {
+                        "nodeType": "Expr_BinaryOp_Concat",
+                        "attributes": {
+                            "startLine": 29,
+                            "endLine": 29
+                        },
+                        "left": {
+                            "nodeType": "Expr_BinaryOp_Concat",
+                            "attributes": {
+                                "startLine": 29,
+                                "endLine": 29
+                            },
+                            "left": {
+                                "nodeType": "Expr_BinaryOp_Concat",
+                                "attributes": {
+                                    "startLine": 29,
+                                    "endLine": 29
+                                },
+                                "left": {
+                                    "nodeType": "Expr_BinaryOp_Concat",
+                                    "attributes": {
+                                        "startLine": 29,
+                                        "endLine": 29
+                                    },
+                                    "left": {
+                                        "nodeType": "Scalar_String",
+                                        "attributes": {
+                                            "startLine": 29,
+                                            "endLine": 29,
+                                            "kind": 1,
+                                            "rawValue": "'storage'"
+                                        },
+                                        "value": "storage"
+                                    },
+                                    "right": {
+                                        "nodeType": "Expr_ConstFetch",
+                                        "attributes": {
+                                            "startLine": 29,
+                                            "endLine": 29
+                                        },
+                                        "name": {
+                                            "nodeType": "Name",
+                                            "attributes": {
+                                                "startLine": 29,
+                                                "endLine": 29,
+                                                "namespacedName": {
+                                                    "nodeType": "Name_FullyQualified",
+                                                    "attributes": {
+                                                        "startLine": 29,
+                                                        "endLine": 29
+                                                    },
+                                                    "parts": [
+                                                        "Core",
+                                                        "Models",
+                                                        "DS"
+                                                    ]
+                                                }
+                                            },
+                                            "parts": [
+                                                "DS"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "right": {
+                                    "nodeType": "Scalar_String",
+                                    "attributes": {
+                                        "startLine": 29,
+                                        "endLine": 29,
+                                        "kind": 1,
+                                        "rawValue": "'app'"
+                                    },
+                                    "value": "app"
+                                }
+                            },
+                            "right": {
+                                "nodeType": "Expr_ConstFetch",
+                                "attributes": {
+                                    "startLine": 29,
+                                    "endLine": 29
+                                },
+                                "name": {
+                                    "nodeType": "Name",
+                                    "attributes": {
+                                        "startLine": 29,
+                                        "endLine": 29,
+                                        "namespacedName": {
+                                            "nodeType": "Name_FullyQualified",
+                                            "attributes": {
+                                                "startLine": 29,
+                                                "endLine": 29
+                                            },
+                                            "parts": [
+                                                "Core",
+                                                "Models",
+                                                "DS"
+                                            ]
+                                        }
+                                    },
+                                    "parts": [
+                                        "DS"
+                                    ]
+                                }
+                            }
+                        },
+                        "right": {
+                            "nodeType": "Scalar_String",
+                            "attributes": {
+                                "startLine": 29,
+                                "endLine": 29,
+                                "kind": 1,
+                                "rawValue": "'private'"
+                            },
+                            "value": "private"
+                        }
+                    },
+                    "right": {
+                        "nodeType": "Expr_ConstFetch",
+                        "attributes": {
+                            "startLine": 29,
+                            "endLine": 29
+                        },
+                        "name": {
+                            "nodeType": "Name",
+                            "attributes": {
+                                "startLine": 29,
+                                "endLine": 29,
+                                "namespacedName": {
+                                    "nodeType": "Name_FullyQualified",
+                                    "attributes": {
+                                        "startLine": 29,
+                                        "endLine": 29
+                                    },
+                                    "parts": [
+                                        "Core",
+                                        "Models",
+                                        "DS"
+                                    ]
+                                }
+                            },
+                            "parts": [
+                                "DS"
+                            ]
+                        }
+                    }
+                },
+                "right": {
+                    "nodeType": "Scalar_String",
+                    "attributes": {
+                        "startLine": 29,
+                        "endLine": 29,
+                        "kind": 1,
+                        "rawValue": "'email_attachments'"
+                    },
+                    "value": "email_attachments"
+                }
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "attachment_name": {
+            "name": "attachment_name",
+            "line": 32,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "created_at": {
+            "name": "created_at",
+            "line": 33,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "deleted": {
+            "name": "deleted",
+            "line": 34,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Scalar_LNumber",
+                "attributes": {
+                    "startLine": 34,
+                    "endLine": 34,
+                    "rawValue": "0",
+                    "kind": 10
+                },
+                "value": 0
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "description": {
+            "name": "description",
+            "line": 35,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "id": {
+            "name": "id",
+            "line": 36,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "mime_type": {
+            "name": "mime_type",
+            "line": 37,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "name": {
+            "name": "name",
+            "line": 38,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "path": {
+            "name": "path",
+            "line": 39,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "size": {
+            "name": "size",
+            "line": 40,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "updated_at": {
+            "name": "updated_at",
+            "line": 41,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "user_id": {
+            "name": "user_id",
+            "line": 42,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        }
+    },
+    "methods": {
+        "afterDelete": {
+            "name": "afterDelete",
+            "line": 44,
+            "short_desc": "Called before delete.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "afterSave": {
+            "name": "afterSave",
+            "line": 48,
+            "short_desc": "Called before save.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "beforeDelete": {
+            "name": "beforeDelete",
+            "line": 52,
+            "short_desc": "This runs before delete, needs to return a boolean",
+            "long_desc": null,
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "Boolean value depending on results of operation.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "beforeSave": {
+            "name": "beforeSave",
+            "line": 56,
+            "short_desc": "Called after save.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "formatBytes": {
+            "name": "formatBytes",
+            "line": 68,
+            "short_desc": "Formats size of attachment to human readable format.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The file size in human readable format.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "bytes": {
+                    "name": "bytes",
+                    "line": 68,
+                    "short_desc": "The size of the attachment.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "precision": {
+                    "name": "precision",
+                    "line": 68,
+                    "short_desc": "The precision in number of decimal places to\nreport.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "2",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "getAllowedFileTypes": {
+            "name": "getAllowedFileTypes",
+            "line": 84,
+            "short_desc": "Getter function for $allowedFileTypes array",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "$allowedFileTypes The array of allowed file types.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getMaxAllowedFileSize": {
+            "name": "getMaxAllowedFileSize",
+            "line": 94,
+            "short_desc": "Getter function for $maxAllowedFileSize.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "$maxAllowedFileSize The max file size for an individual\nfile.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "onConstruct": {
+            "name": "onConstruct",
+            "line": 103,
+            "short_desc": "Implements onConstruct from parent class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "uploadFile": {
+            "name": "uploadFile",
+            "line": 112,
+            "short_desc": "Performs upload",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user_id": {
+                    "name": "user_id",
+                    "line": 112,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "uploads": {
+                    "name": "uploads",
+                    "line": 112,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "uploadUsername": {
+            "name": "uploadUsername",
+            "line": 123,
+            "short_desc": "Retrieves username for uploader of attachment.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The uploader's username.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user_id": {
+                    "name": "user_id",
+                    "line": 123,
+                    "short_desc": "The id for the user.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "validator": {
+            "name": "validator",
+            "line": 128,
+            "short_desc": "Function that is called on save.  If validation fails the save function\nwill not proceed.  This function is just a signature and must be\nimplemented by models that run form validation because since it is\ncalled from within this class.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,133 @@
+{
+    "name": "Console\\Helpers\\DBSeeder",
+    "line": 12,
+    "short_desc": "Supports operations related to database seeding.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Helpers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Helpers\/DBSeeder.php",
+    "relative_file": null,
+    "hash": "ae3e27c82f5d1de8e5f6f42b93fc43eb4b4debf1",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "DatabaseSeeder": "Database\\Seeders\\DatabaseSeeder",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "makeSeeder": {
+            "name": "makeSeeder",
+            "line": 20,
+            "short_desc": "Creates a class for seeding a database.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 20,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "seed": {
+            "name": "seed",
+            "line": 36,
+            "short_desc": "Runs command for seeding database.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "seeder": {
+            "name": "seeder",
+            "line": 49,
+            "short_desc": "Returns a string containing contents of a new Seeder class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The contents of the seeder class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "seederName": {
+                    "name": "seederName",
+                    "line": 49,
+                    "short_desc": "The name of the Seeder class.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

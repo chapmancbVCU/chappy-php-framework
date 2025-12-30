@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Lib\Notifications\Notifiable | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
+        <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
+        <script async defer src="../../../js/bootstrap.min.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/api-docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Lib_Notifications_Notifiable" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                    <li><a href="../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">trait</span></li>
+                        <li><a href="../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib/Notifications.html">Notifications</a></li><li class="backslash">\</li><li>Notifiable</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>Notifiable    
+            </h1>
+    </div>
+
+    
+    <p>        trait
+    <strong>Notifiable</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Adds notification capabilities to a model.</p></p>            <p><p>This trait allows any model to send notifications through one or more
+channels (e.g., database, log, mail) using your Notification system.</p>
+<p>Requirements/Assumptions:</p>
+<ul>
+<li>The consuming model exposes an integer <code>$id</code> property (used by <code>notifications()</code>).</li>
+<li>Channel drivers are registered in {\Core\Lib\Notifications\ChannelRegistry}.</li>
+<li>Each Notification may optionally implement per-channel methods such as
+<code>toDatabase(object $notifiable): array</code>, <code>toLog(object $notifiable): string</code>,
+<code>toMail(object $notifiable): array</code>, etc. If a <code>to{Channel}</code> method is
+missing, <code>notify()</code> passes <code>null</code> as the <code>message</code> payload for that channel.</li>
+</ul></p>        </div>
+            
+        
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_notify">notify</a>(<a href="../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, array|null $channels = null, array $payload = [])
+        
+                                            <p><p>Send a notification to this notifiable through one or more channels.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_notifications">notifications</a>()
+        
+                                            <p><p>Retrieve this notifiable's unread notifications, newest first.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_notify">
+        <div class="location">at line 50</div>
+        <code>                    void
+    <strong>notify</strong>(<a href="../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, array|null $channels = null, array $payload = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Send a notification to this notifiable through one or more channels.</p></p>                <p><p>Resolves channels from the provided <code>$channels</code> argument or, if omitted,
+from <code>$notification-&gt;via($this)</code>. For each channel, this method looks for a
+corresponding payload method on the notification named <code>to{Channel}</code> (e.g.,
+<code>toDatabase</code>, <code>toLog</code>, <code>toMail</code>). The result (or <code>null</code> if the method
+does not exist) is placed under the <code>message</code> key, and the <code>$payload</code> array
+is included under <code>meta</code>. The combined payload is then sent to the channel
+driver resolved by {<a href="../../../Core/Lib/Notifications/ChannelRegistry.html">\Core\Lib\Notifications\ChannelRegistry::resolve()}.</a></p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></td>
+                <td>$notification</td>
+                <td><p>The notification instance to send.</p></td>
+            </tr>
+                    <tr>
+                <td>array|null</td>
+                <td>$channels</td>
+                <td><p>Optional explicit list of channels to use. Each item may be either a
+<code>Channel</code> enum case or a lowercase string channel name (e.g. 'database').
+When <code>null</code>, channels are taken from <code>$notification-&gt;via($this)</code>.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$payload</td>
+                <td><p>Optional supplemental metadata to include under the <code>meta</code> key for every
+channel (e.g., correlation IDs, debug flags). Defaults to an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/RuntimeException">RuntimeException</a></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/Throwable">Throwable</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notifications">
+        <div class="location">at line 91</div>
+        <code>                    array
+    <strong>notifications</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieve this notifiable's unread notifications, newest first.</p></p>                <p><p>Queries the notifications table for rows where <code>notifiable_id = $this-&gt;id</code>
+and <code>read_at IS NULL</code>, ordered by <code>created_at DESC</code>.</p></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>An array of unread notification records (model instances) for this notifiable.
+Returns an empty array if none are found.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

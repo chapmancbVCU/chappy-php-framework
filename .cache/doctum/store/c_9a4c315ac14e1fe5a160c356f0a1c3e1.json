@@ -1,0 +1,210 @@
+{
+    "name": "Core\\Lib\\Notifications\\ChannelRegistry",
+    "line": 31,
+    "short_desc": "Registry for notification channel drivers.",
+    "long_desc": "This static registry maps short channel names (e.g., \"database\", \"mail\") to\ntheir concrete {@see \\Core\\Lib\\Notifications\\Contracts\\Channel} implementation classes. Providers register\nchannels during application boot, and the notifier resolves them at runtime\nbefore delivery.\n\nNotes:\n- Registering the same name more than once will overwrite the previous mapping.\n- {@see \\Core\\Lib\\Notifications\\resolve()} instantiates the channel using a no-argument constructor.\n  If your channel requires dependencies, adapt this class to use your container.\n\nTypical flow:\n1) A service\/provider calls {@see \\Core\\Lib\\Notifications\\ChannelRegistry::register()} during boot.\n2) When sending, {@see \\Core\\Lib\\Notifications\\ChannelRegistry::resolve()} returns a Channel instance.",
+    "hint": null,
+    "tags": {
+        "see": [
+            [
+                "\\Core\\Lib\\Notifications\\Contracts\\Channel"
+            ],
+            [
+                "\\Core\\Lib\\Notifications\\Notifiable::notify()"
+            ],
+            [
+                "\\Core\\Lib\\Notifications\\NotificationManager::boot()"
+            ]
+        ]
+    },
+    "namespace": "Core\\Lib\\Notifications",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Notifications\/ChannelRegistry.php",
+    "relative_file": null,
+    "hash": "47e0a6026134a4dced4db05d75f08a8455e08043",
+    "parent": null,
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "RuntimeException": "RuntimeException",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Channel": "Core\\Lib\\Notifications\\Contracts\\Channel",
+        "UnregisteredChannelException": "Core\\Lib\\Notifications\\Exceptions\\UnregisteredChannelException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "all": {
+            "name": "all",
+            "line": 44,
+            "short_desc": "Return array of channel classes.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "The array of channel\nclasses.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "has": {
+            "name": "has",
+            "line": 54,
+            "short_desc": "Checks if channel name exists.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if channel name exist.  Otherwise, we return false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 54,
+                    "short_desc": "The name of the channel to check.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "register": {
+            "name": "register",
+            "line": 68,
+            "short_desc": "Register (or override) a channel implementation under a short name.",
+            "long_desc": "Call this during application boot (e.g., in a service provider).",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 68,
+                    "short_desc": "Short identifier used in Notification::via(), e.g. \"database\".",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "channelClass": {
+                    "name": "channelClass",
+                    "line": 68,
+                    "short_desc": "Fully-qualified class name implementing {@see \\Core\\Lib\\Notifications\\Contracts\\Channel}.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "resolve": {
+            "name": "resolve",
+            "line": 84,
+            "short_desc": "Resolve a channel by name into a concrete {@see Channel} instance.",
+            "long_desc": "The channel class is instantiated with a zero-argument constructor.\nIf the channel is not registered, a {@see \\RuntimeException} is thrown.",
+            "hint": [
+                [
+                    "\\Core\\Lib\\Notifications\\Contracts\\Channel",
+                    false
+                ]
+            ],
+            "hint_desc": "The instantiated channel driver.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\RuntimeException",
+                    "If the channel name is not registered."
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "name": {
+                    "name": "name",
+                    "line": 84,
+                    "short_desc": "The short channel name to resolve.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

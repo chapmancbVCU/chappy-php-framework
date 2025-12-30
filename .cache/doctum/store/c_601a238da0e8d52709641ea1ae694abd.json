@@ -1,0 +1,305 @@
+{
+    "name": "Core\\Lib\\Queue\\Jobs\\QueuedListenerJob",
+    "line": 26,
+    "short_desc": "Job wrapper that executes an event listener asynchronously.",
+    "long_desc": "This job carries the listener FQCN, the event FQCN, and a serialized payload\nto rebuild the event at runtime. It also exposes queue-related preferences\nsuch as delay, backoff, and max attempts.\n\nTypical lifecycle:\n - Created via {@see \\Core\\Lib\\Queue\\Jobs\\QueuedListenerJob::from()} when dispatching an event.\n - Enqueued by your queue manager with its payload from {@see \\Core\\Lib\\Queue\\Jobs\\toPayload()}.\n - Executed by a worker calling {@see \\Core\\Lib\\Queue\\Jobs\\handle()} which rehydrates the event\n   and invokes the listener.",
+    "hint": null,
+    "tags": {
+        "final": [
+            [
+                ""
+            ]
+        ],
+        "implements": [
+            [
+                "QueueableJobInterface"
+            ]
+        ]
+    },
+    "namespace": "Core\\Lib\\Queue\\Jobs",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Queue\/Jobs\/QueuedListenerJob.php",
+    "relative_file": null,
+    "hash": "c4a3d5ea4027389488c8682ab1047ccc92bb89ac",
+    "parent": null,
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Config": "Core\\Lib\\Utilities\\Config",
+        "DateTime": "Core\\Lib\\Utilities\\DateTime",
+        "QueueableJobInterface": "Core\\Lib\\Queue\\QueueableJobInterface"
+    },
+    "errors": [],
+    "interfaces": {
+        "Core\\Lib\\Queue\\QueueableJobInterface": "Core\\Lib\\Queue\\QueueableJobInterface"
+    },
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 89,
+            "short_desc": "Construct a job from a serialized array (as provided by the worker\/driver).",
+            "long_desc": "Expected keys in $data:\n- listener (string): listener FQCN\n- event (string|array): event FQCN or array with ['class' => string]\n- payload (array): serialized event payload\n- delay (int): initial delay in seconds\n- backoff (int|int[]): retry backoff seconds or array of per-attempt delays\n- max_attempts (int): max attempts before failure",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 89,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "from": {
+            "name": "from",
+            "line": 119,
+            "short_desc": "Factory method to build a job from a listener class and an event instance.",
+            "long_desc": "If the event exposes a toPayload(): array method, it will be used to\nserialize the event data; otherwise an empty array is stored.\n\nSupported $opts keys:\n - delay (int)            seconds before the job is available\n - backoff (int|int[])    retry backoff(s)\n - max_attempts (int)     max attempts before failure",
+            "hint": [
+                [
+                    "Core\\Lib\\Queue\\Jobs\\QueuedListenerJob",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "listenerClass": {
+                    "name": "listenerClass",
+                    "line": 119,
+                    "short_desc": "Fully-qualified listener class name.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "event": {
+                    "name": "event",
+                    "line": 119,
+                    "short_desc": "Event instance to serialize.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "opts": {
+                    "name": "opts",
+                    "line": 119,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "handle": {
+            "name": "handle",
+            "line": 139,
+            "short_desc": "Execute the job: rehydrate the event and call the listener's handle().",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "delay": {
+            "name": "delay",
+            "line": 150,
+            "short_desc": "Get the initial delay (in seconds) before the job becomes available.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "The time for delay in seconds or Unix timestamp.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "backoff": {
+            "name": "backoff",
+            "line": 159,
+            "short_desc": "Get the retry backoff delay(s).",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\Lib\\Queue\\int|array",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "maxAttempts": {
+            "name": "maxAttempts",
+            "line": 170,
+            "short_desc": "Get the maximum number of attempts for this job.",
+            "long_desc": "Falls back to the configured default (queue.max_attempts) when not set.",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "toPayload": {
+            "name": "toPayload",
+            "line": 197,
+            "short_desc": "Convert this job to a driver-ready payload.",
+            "long_desc": "Format:\n- job (string): job FQCN\n- data (array): job-specific data to reconstruct the job instance\n- available_at (int): UNIX timestamp when the job becomes available\n- max_attempts (int): maximum number of processing attempts",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [
+                "The hint on \"toPayload\" at @return is invalid: \"array{\n    job: class-string,\n    data: array{\n      listener:string,\n      event:string,\n      payload:array<string,mixed>,\n      delay:int,\n      backoff:int|array<int,int>,\n      max_attempts:int\n    },\n    available_at:int,\n    max_attempts:int\n}\""
+            ],
+            "parameters": []
+        },
+        "__set_state": {
+            "name": "__set_state",
+            "line": 239,
+            "short_desc": "Reconstruct a job from exported state (used by var_export()).",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\Lib\\Queue\\Jobs\\QueuedListenerJob",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "state": {
+                    "name": "state",
+                    "line": 239,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

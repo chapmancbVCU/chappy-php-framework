@@ -1,0 +1,62 @@
+{
+    "namespace": "",
+    "name": "asset",
+    "line": 21,
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/scripts\/helpers.php",
+    "relative_file": null,
+    "short_desc": "Retrieves publicly available asset.",
+    "long_desc": "",
+    "hint": [
+        [
+            "string",
+            false
+        ]
+    ],
+    "hint_desc": "The full path.",
+    "tags": [],
+    "modifiers": 0,
+    "is_by_ref": "",
+    "is_intersection_type": false,
+    "exceptions": [],
+    "errors": [],
+    "parameters": {
+        "path": {
+            "name": "path",
+            "line": 21,
+            "short_desc": "Path to the asset.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": null,
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "local": {
+            "name": "local",
+            "line": 21,
+            "short_desc": "If true use APP_DOMAIN instead of S3_BUCKET.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "false",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        }
+    }
+}

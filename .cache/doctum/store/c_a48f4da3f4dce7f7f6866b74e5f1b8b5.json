@@ -1,0 +1,29 @@
+{
+    "name": "Console\\Commands\\TinkerCommand",
+    "line": 12,
+    "short_desc": "Supports execution for tinker command.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/TinkerCommand.php",
+    "relative_file": null,
+    "hash": "400cf1123e181f33849eed003ee358566fe383eb",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface",
+        "Shell": "Psy\\Shell"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

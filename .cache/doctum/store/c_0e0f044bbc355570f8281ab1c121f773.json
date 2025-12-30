@@ -1,0 +1,574 @@
+{
+    "name": "Console\\Helpers\\Migrate",
+    "line": 19,
+    "short_desc": "Helper class for migration related console commands.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Helpers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Helpers\/Migrate.php",
+    "relative_file": null,
+    "hash": "01169d5cac1cf0718f14f984841758f814598f03",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "PDO": "PDO",
+        "DB": "Core\\DB",
+        "Arr": "Core\\Lib\\Utilities\\Arr",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Migration": "Core\\Lib\\Database\\Migration",
+        "MigrationStatus": "Console\\Helpers\\MigrationStatus",
+        "ConsoleException": "Core\\Exceptions\\Console\\ConsoleException",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "dropAllTables": {
+            "name": "dropAllTables",
+            "line": 42,
+            "short_desc": "Drops all tables from the database without using down function.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "fileName": {
+            "name": "fileName",
+            "line": 75,
+            "short_desc": "Generates file\/class name for migration.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The file\/class name of the migration.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "makeMigration": {
+            "name": "makeMigration",
+            "line": 85,
+            "short_desc": "Generates a migration class for creating a new table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 85,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "makeRenameMigration": {
+            "name": "makeRenameMigration",
+            "line": 103,
+            "short_desc": "Generates a migration class for renaming an existing table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 103,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "makeUpdateMigration": {
+            "name": "makeUpdateMigration",
+            "line": 122,
+            "short_desc": "Generates a migration class for updating existing table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 122,
+                    "short_desc": "The Symfony InputInterface object.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Symfony\\Component\\Console\\Input\\InputInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "migrate": {
+            "name": "migrate",
+            "line": 139,
+            "short_desc": "Performs migration operation.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "migrationClass": {
+            "name": "migrationClass",
+            "line": 211,
+            "short_desc": "Generates a new Migration class for creating a new table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The contents of the new Migration class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fileName": {
+                    "name": "fileName",
+                    "line": 211,
+                    "short_desc": "The file name for the Migration class.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "tableName": {
+                    "name": "tableName",
+                    "line": 211,
+                    "short_desc": "The name of the table for the migration.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "migrationRenameClass": {
+            "name": "migrationRenameClass",
+            "line": 256,
+            "short_desc": "Generates a new Migration class for renaming an existing table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The contents of the new Migration class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fileName": {
+                    "name": "fileName",
+                    "line": 256,
+                    "short_desc": "The file name for the Migration class.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "from": {
+                    "name": "from",
+                    "line": 256,
+                    "short_desc": "The table's original name.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "to": {
+                    "name": "to",
+                    "line": 256,
+                    "short_desc": "The new name for the table.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "migrationUpdateClass": {
+            "name": "migrationUpdateClass",
+            "line": 295,
+            "short_desc": "Generates a new Migration class for updating a table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The contents of the new Migration class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fileName": {
+                    "name": "fileName",
+                    "line": 295,
+                    "short_desc": "The file name for the Migration class.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "tableName": {
+                    "name": "tableName",
+                    "line": 295,
+                    "short_desc": "The name of the table for the migration.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "refresh": {
+            "name": "refresh",
+            "line": 338,
+            "short_desc": "Performs refresh operation.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "step": {
+                    "name": "step",
+                    "line": 338,
+                    "short_desc": "The number of individual migrations to roll\nback.  When set to false all tables are dropped one by one.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Console\\Helpers\\bool|int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "rollback": {
+            "name": "rollback",
+            "line": 393,
+            "short_desc": "Performs roll back operation",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "batch": {
+                    "name": "batch",
+                    "line": 393,
+                    "short_desc": "The batch number.  If false we assume\nthat we want to roll back latest batch of migrations.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Console\\Helpers\\string|int|bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "rollbackStep": {
+            "name": "rollbackStep",
+            "line": 441,
+            "short_desc": "Perform step roll back.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "step": {
+                    "name": "step",
+                    "line": 441,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Console\\Helpers\\string|int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "status": {
+            "name": "status",
+            "line": 454,
+            "short_desc": "Reports migration status.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "MIGRATIONS_PATH": {
+            "name": "MIGRATIONS_PATH",
+            "line": 20,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 1,
+            "tags": []
+        }
+    }
+}

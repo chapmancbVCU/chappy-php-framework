@@ -1,0 +1,26 @@
+{
+    "name": "Core\\Exceptions\\View\\ViewNotFoundException",
+    "line": 9,
+    "short_desc": "Class to handle events related to views not being found.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Exceptions\\View",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Exceptions\/View\/ViewNotFoundException.php",
+    "relative_file": null,
+    "hash": "f9bcb4d901436599753f9bac819957878e715941",
+    "parent": "Core\\Exceptions\\View\\ViewException",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "ViewException": "Core\\Exceptions\\View\\ViewException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

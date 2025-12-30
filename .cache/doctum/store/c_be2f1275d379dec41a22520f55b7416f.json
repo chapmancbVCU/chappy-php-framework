@@ -1,0 +1,131 @@
+{
+    "name": "Core\\Lib\\Events\\EventDispatcher",
+    "line": 10,
+    "short_desc": null,
+    "long_desc": null,
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Events",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Events\/EventDispatcher.php",
+    "relative_file": null,
+    "hash": "6eaef9a01d4eefd6935a15f073592caf0f890c1e",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "QueuePreferences": "Core\\Lib\\Events\\Contracts\\QueuePreferences",
+        "ShouldQueue": "Core\\Lib\\Events\\Contracts\\ShouldQueue",
+        "QueuedListenerJob": "Core\\Lib\\Queue\\Jobs\\QueuedListenerJob",
+        "QueueManager": "Core\\Lib\\Queue\\QueueManager"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "listen": {
+            "name": "listen",
+            "line": 20,
+            "short_desc": "Listens for an event.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 20,
+                    "short_desc": "The event name.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "listener": {
+                    "name": "listener",
+                    "line": 20,
+                    "short_desc": "The listener.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\Lib\\Events\\callable|string|array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "dispatch": {
+            "name": "dispatch",
+            "line": 30,
+            "short_desc": "Dispatches an event",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "event": {
+                    "name": "event",
+                    "line": 30,
+                    "short_desc": "The event to be dispatches.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

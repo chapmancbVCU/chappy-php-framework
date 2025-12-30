@@ -1,0 +1,612 @@
+{
+    "name": "Core\\Services\\UserService",
+    "line": 20,
+    "short_desc": "Provides functions for managing users.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Services",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Services\/UserService.php",
+    "relative_file": null,
+    "hash": "28fce80d3be1eab9ec63835c293615b15d0bdb80",
+    "parent": null,
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Input": "Core\\Input",
+        "Users": "App\\Models\\Users",
+        "SendWelcomeEmail": "App\\Jobs\\SendWelcomeEmail",
+        "ProfileImages": "Core\\Models\\ProfileImages",
+        "Uploads": "Core\\Lib\\FileSystem\\Uploads",
+        "QueueManager": "Core\\Lib\\Queue\\QueueManager",
+        "DateTime": "Core\\Lib\\Utilities\\DateTime",
+        "EventManager": "Core\\Lib\\Events\\EventManager",
+        "AccountDeactivated": "Core\\Lib\\Events\\AccountDeactivated",
+        "UserPasswordResetRequested": "Core\\Lib\\Events\\UserPasswordResetRequested",
+        "Session": "Core\\Session"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "deleteIfAllowed": {
+            "name": "deleteIfAllowed",
+            "line": 29,
+            "short_desc": "Deletes user if not admin and unlinks profile images if $unlink\nis set to true.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "id": {
+                    "name": "id",
+                    "line": 29,
+                    "short_desc": "The id for user we want to delete.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "unlink": {
+                    "name": "unlink",
+                    "line": 29,
+                    "short_desc": "Determines if profile images are deleted.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "deleteProfileImage": {
+            "name": "deleteProfileImage",
+            "line": 46,
+            "short_desc": "Deletes profile image",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "JSON response array.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 46,
+                    "short_desc": "The request for deleting image.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "ensureAuthenticatedUser": {
+            "name": "ensureAuthenticatedUser",
+            "line": 62,
+            "short_desc": "Acts as safeguard to ensure incorrect user is not updated.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 62,
+                    "short_desc": "The user object to test.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "handleProfileImages": {
+            "name": "handleProfileImages",
+            "line": 79,
+            "short_desc": "Uploads and sorts profile images.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 79,
+                    "short_desc": "The user whose profile images we want to manage.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "uploads": {
+                    "name": "uploads",
+                    "line": 79,
+                    "short_desc": "The Uploads object or profile image upload.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\Services\\Core\\Lib\\FileSystem\\Uploads",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "sortedImages": {
+                    "name": "sortedImages",
+                    "line": 79,
+                    "short_desc": "Order of sorted images.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "sendWhenSetToInactive": {
+            "name": "sendWhenSetToInactive",
+            "line": 96,
+            "short_desc": "Sends E-mail to user when account is deactivated as appropriate.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 96,
+                    "short_desc": "The user we will send E-mail to.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "shouldSendEmail": {
+                    "name": "shouldSendEmail",
+                    "line": 96,
+                    "short_desc": "Sends E-mail when true.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "sendWhenSetToResetPW": {
+            "name": "sendWhenSetToResetPW",
+            "line": 111,
+            "short_desc": "Sends E-mail to user when reset_password flag is set as appropriate.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 111,
+                    "short_desc": "The user we will send E-mail to.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "shouldSendEmail": {
+                    "name": "shouldSendEmail",
+                    "line": 111,
+                    "short_desc": "Sends E-mail when true.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "toggleAccountStatus": {
+            "name": "toggleAccountStatus",
+            "line": 129,
+            "short_desc": "Assist in toggling inactive field.  Returns boolean value to determine\nif E-mail should be sent.  To properly test if E-mail should be sent\nget value of $user->inactive before post.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "true if we want to send mail and otherwise false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 129,
+                    "short_desc": "The user whose status we want to set.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "request": {
+                    "name": "request",
+                    "line": 129,
+                    "short_desc": "The request.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "currentInactive": {
+                    "name": "currentInactive",
+                    "line": 129,
+                    "short_desc": "Value of $user->inactive before post.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "null",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "toggleResetPassword": {
+            "name": "toggleResetPassword",
+            "line": 144,
+            "short_desc": "Assist in toggling reset_password field.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "1 if reset_password is 'on', otherwise we return 0.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 144,
+                    "short_desc": "The user whose status we want to set.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "request": {
+                    "name": "request",
+                    "line": 144,
+                    "short_desc": "The request.z",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "currentReset": {
+                    "name": "currentReset",
+                    "line": 144,
+                    "short_desc": "Value of $user->reset_password before post.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "null",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "updatePassword": {
+            "name": "updatePassword",
+            "line": 156,
+            "short_desc": "Updates user's password",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\Services\\App\\Models\\Users|bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if password is updated, otherwise false",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 156,
+                    "short_desc": "The user whose password we want to update.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "request": {
+                    "name": "request",
+                    "line": 156,
+                    "short_desc": "The request.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

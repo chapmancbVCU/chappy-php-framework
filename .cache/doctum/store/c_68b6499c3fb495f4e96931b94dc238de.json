@@ -1,0 +1,31 @@
+{
+    "name": "Console\\Commands\\MakeEventServiceProviderCommand",
+    "line": 14,
+    "short_desc": "Generates a new event service provider class.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MakeEventServiceProviderCommand.php",
+    "relative_file": null,
+    "hash": "bf5fe1b9e0090a0dec936e7a880970712b04c53a",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Events": "Console\\Helpers\\Events",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

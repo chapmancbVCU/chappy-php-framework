@@ -1,0 +1,281 @@
+{
+    "name": "Core\\Validators\\CustomValidator",
+    "line": 12,
+    "short_desc": "Abstract parent class for our child validation child classes.  Each child\nclass must implement the runValidation() function.",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "abstract": [
+            [
+                ""
+            ]
+        ]
+    },
+    "namespace": "Core\\Validators",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Validators\/CustomValidator.php",
+    "relative_file": null,
+    "hash": "f0f7ec8f22400f79fa072118f172ca650c1d1a80",
+    "parent": null,
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "FrameworkException": "Core\\Exceptions\\FrameworkException",
+        "Arr": "Core\\Lib\\Utilities\\Arr",
+        "ArraySet": "Core\\Lib\\Utilities\\ArraySet"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "additionalFieldData": {
+            "name": "additionalFieldData",
+            "line": 13,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Expr_Array",
+                "attributes": {
+                    "startLine": 13,
+                    "endLine": 13,
+                    "kind": 2
+                },
+                "items": []
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "field": {
+            "name": "field",
+            "line": 14,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "includeDeleted": {
+            "name": "includeDeleted",
+            "line": 15,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Expr_ConstFetch",
+                "attributes": {
+                    "startLine": 15,
+                    "endLine": 15
+                },
+                "name": {
+                    "nodeType": "Name",
+                    "attributes": {
+                        "startLine": 15,
+                        "endLine": 15,
+                        "namespacedName": {
+                            "nodeType": "Name_FullyQualified",
+                            "attributes": {
+                                "startLine": 15,
+                                "endLine": 15
+                            },
+                            "parts": [
+                                "Core",
+                                "Validators",
+                                "false"
+                            ]
+                        }
+                    },
+                    "parts": [
+                        "false"
+                    ]
+                }
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "message": {
+            "name": "message",
+            "line": 17,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Scalar_String",
+                "attributes": {
+                    "startLine": 17,
+                    "endLine": 17,
+                    "kind": 1,
+                    "rawValue": "''"
+                },
+                "value": ""
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "rule": {
+            "name": "rule",
+            "line": 18,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "success": {
+            "name": "success",
+            "line": 19,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Expr_ConstFetch",
+                "attributes": {
+                    "startLine": 19,
+                    "endLine": 19
+                },
+                "name": {
+                    "nodeType": "Name",
+                    "attributes": {
+                        "startLine": 19,
+                        "endLine": 19,
+                        "namespacedName": {
+                            "nodeType": "Name_FullyQualified",
+                            "attributes": {
+                                "startLine": 19,
+                                "endLine": 19
+                            },
+                            "parts": [
+                                "Core",
+                                "Validators",
+                                "true"
+                            ]
+                        }
+                    },
+                    "parts": [
+                        "true"
+                    ]
+                }
+            },
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 33,
+            "short_desc": "Constructor for Custom Validator.  It performs checks on the model and\nparams such as fields, rules, and messages.  Finally the validation is\nperformed against input from a form.  An exception is thrown if any\nconditions are not satisfied.  When an exception is thrown a message\nis displayed describing the issue.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "model": {
+                    "name": "model",
+                    "line": 33,
+                    "short_desc": "The name of the model we want to perform\nvalidation when submitting a form.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 33,
+                    "short_desc": "A list of values obtained from an input when a\nform is submitted during a post action.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "runValidation": {
+            "name": "runValidation",
+            "line": 82,
+            "short_desc": "Signature for the runValidation function that must be implemented by\neach child class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "abstract": [
+                    [
+                        ""
+                    ]
+                ]
+            },
+            "see": [],
+            "modifiers": 17,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,728 @@
+{
+    "name": "Core\\View",
+    "line": 15,
+    "short_desc": "Handles operations related to views and its content.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/View.php",
+    "relative_file": null,
+    "hash": "29a8e291283f69b7f1af92cab7e076501254b623",
+    "parent": "stdClass",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "ComponentNotFoundException": "Core\\Exceptions\\View\\ComponentNotFoundException",
+        "LayoutNotFoundException": "Core\\Exceptions\\View\\LayoutNotFoundException",
+        "ViewNotFoundException": "Core\\Exceptions\\View\\ViewNotFoundException",
+        "stdClass": "stdClass",
+        "ArraySet": "Core\\Lib\\Utilities\\ArraySet",
+        "Env": "Core\\Lib\\Utilities\\Env"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 35,
+            "short_desc": "Default constructor.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "addWidget": {
+            "name": "addWidget",
+            "line": 48,
+            "short_desc": "Registers a new widget.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "section": {
+                    "name": "section",
+                    "line": 48,
+                    "short_desc": "The category for the widget.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "viewPath": {
+                    "name": "viewPath",
+                    "line": 48,
+                    "short_desc": "The widget described as parentDirectory.widgetName.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "data": {
+                    "name": "data",
+                    "line": 48,
+                    "short_desc": "Any data associated with the widget.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "component": {
+            "name": "component",
+            "line": 60,
+            "short_desc": "Includes a component into a view.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "component": {
+                    "name": "component",
+                    "line": 60,
+                    "short_desc": "The name of the component.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "frameworkComponentPath": {
+                    "name": "frameworkComponentPath",
+                    "line": 60,
+                    "short_desc": "Uses path for component inside\nframework when true.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "content": {
+            "name": "content",
+            "line": 79,
+            "short_desc": "The content of the page.  The two types are head and body.  If\nnecessary, we can implement additional types of content.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "The type of content we want to render.  If it is not\na known type of content we return false;",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "type": {
+                    "name": "type",
+                    "line": 79,
+                    "short_desc": "The type of content we want to render.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "end": {
+            "name": "end",
+            "line": 91,
+            "short_desc": "Sets the end for a particular section of content.  When called it\ntakes _outputBuffer, cleans it, and outputs it to the screen.  In the\nabsence of a previous call to the start() function a message requesting\nyou to call start() is displayed.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "render": {
+            "name": "render",
+            "line": 109,
+            "short_desc": "Performs render operations for a particular view.",
+            "long_desc": "Example input: home\/index.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "viewName": {
+                    "name": "viewName",
+                    "line": 109,
+                    "short_desc": "The name of the view we want to render.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "frameworkViewPath": {
+                    "name": "frameworkViewPath",
+                    "line": 109,
+                    "short_desc": "When true we use built in controllers under Core,\notherwise controllers defined by users are utilized.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "frameworkLayoutPath": {
+                    "name": "frameworkLayoutPath",
+                    "line": 109,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "renderJsx": {
+            "name": "renderJsx",
+            "line": 131,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "viewComponent": {
+                    "name": "viewComponent",
+                    "line": 131,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "props": {
+                    "name": "props",
+                    "line": 131,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "entry": {
+                    "name": "entry",
+                    "line": 131,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "'resources\/js\/app.jsx'",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "renderWidget": {
+            "name": "renderWidget",
+            "line": 154,
+            "short_desc": "Renders a single widget view file with given data.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Rendered HTML output.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "viewPath": {
+                    "name": "viewPath",
+                    "line": 154,
+                    "short_desc": "Relative to resources\/views\/, without .php\ne.g., 'widgets\/dashboard\/revenueCard'",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "data": {
+                    "name": "data",
+                    "line": 154,
+                    "short_desc": "Data to extract into the view.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "renderWidgets": {
+            "name": "renderWidgets",
+            "line": 175,
+            "short_desc": "Renders widgets for a given section.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Rendered HTML for the widget slot.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "slot": {
+                    "name": "slot",
+                    "line": 175,
+                    "short_desc": "Widget slot name (e.g., 'dashboard.cards').",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "widgets": {
+                    "name": "widgets",
+                    "line": 175,
+                    "short_desc": "All registered widgets (usually $this->widgets or WidgetRegistry::getAll()).",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "setLayout": {
+            "name": "setLayout",
+            "line": 197,
+            "short_desc": "Sets the layout for the view.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 197,
+                    "short_desc": "The path for our view.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "setSiteTitle": {
+            "name": "setSiteTitle",
+            "line": 207,
+            "short_desc": "Setter function for site title of current page.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "title": {
+                    "name": "title",
+                    "line": 207,
+                    "short_desc": "The site title for a particular page.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "siteTitle": {
+            "name": "siteTitle",
+            "line": 216,
+            "short_desc": "Getter function for current page's site title.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The site title for a particular page.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "start": {
+            "name": "start",
+            "line": 229,
+            "short_desc": "When called this function establishes the beginning for a section\nof content.  Anything between calls of this function and end() will be\nincluded in our view.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "type": {
+                    "name": "type",
+                    "line": 229,
+                    "short_desc": "The name of the type of content we want to include\nin our view.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "APP_COMPONENT_PATH": {
+            "name": "APP_COMPONENT_PATH",
+            "line": 16,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "APP_LAYOUT_PATH": {
+            "name": "APP_LAYOUT_PATH",
+            "line": 17,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "APP_VIEW_PATH": {
+            "name": "APP_VIEW_PATH",
+            "line": 18,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "APP_WIDGET_PATH": {
+            "name": "APP_WIDGET_PATH",
+            "line": 19,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "FRAMEWORK_COMPONENT_PATH": {
+            "name": "FRAMEWORK_COMPONENT_PATH",
+            "line": 23,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "FRAMEWORK_LAYOUT_PATH": {
+            "name": "FRAMEWORK_LAYOUT_PATH",
+            "line": 24,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "FRAMEWORK_VIEW_PATH": {
+            "name": "FRAMEWORK_VIEW_PATH",
+            "line": 25,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        }
+    }
+}

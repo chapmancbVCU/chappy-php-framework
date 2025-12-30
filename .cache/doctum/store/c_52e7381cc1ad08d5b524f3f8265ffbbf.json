@@ -1,0 +1,364 @@
+{
+    "name": "Core\\Lib\\Http\\Api",
+    "line": 20,
+    "short_desc": "Lightweight HTTP JSON client with optional on-disk caching.",
+    "long_desc": "Responsibilities:\n- Build URLs from a base URL plus default and per-call query parameters.\n- Perform JSON-based GET\/POST requests with cURL and sensible timeouts.\n- Cache successful GET responses to `storage\/cache\/<namespace>\/cache_<hash>.json`.\n\nTypical usage is to subclass this client and provide service-specific defaults\n(e.g., base URL, default headers, API key in `$defaultQuery`, TTL, etc.).",
+    "hint": null,
+    "tags": {
+        "package": [
+            [
+                "Core\\Lib\\Http"
+            ]
+        ]
+    },
+    "namespace": "Core\\Lib\\Http",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Http\/Api.php",
+    "relative_file": null,
+    "hash": "2487fbad34de39463ead0b9a7130e511b0e25a0d",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "APIException": "Core\\Exceptions\\API\\APIException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 72,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "baseUrl": {
+                    "name": "baseUrl",
+                    "line": 73,
+                    "short_desc": "Service base URL (e.g., \"https:\/\/api.example.com\")",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "cacheNamespace": {
+                    "name": "cacheNamespace",
+                    "line": 74,
+                    "short_desc": "Subdirectory under cache root (e.g., \"api\", \"weather\")",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "'api'",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "defaultHeaders": {
+                    "name": "defaultHeaders",
+                    "line": 75,
+                    "short_desc": "Default headers for all requests",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "['Accept' => 'application\/json']",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "defaultQuery": {
+                    "name": "defaultQuery",
+                    "line": 76,
+                    "short_desc": "Default query params for all requests",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "defaultTtl": {
+                    "name": "defaultTtl",
+                    "line": 77,
+                    "short_desc": "Default cache TTL (seconds) for GET; 0 disables caching",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "0",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "timeout": {
+                    "name": "timeout",
+                    "line": 78,
+                    "short_desc": "cURL timeout in seconds (also used as connect timeout)",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "6",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "get": {
+            "name": "get",
+            "line": 141,
+            "short_desc": "Perform a GET request that expects a JSON response.",
+            "long_desc": "Utilizes on-disk caching when TTL > 0.",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Decoded JSON as an associative array",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\Core\\Exceptions\\API\\APIException",
+                    "On transport errors or invalid\/upstream error JSON"
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 141,
+                    "short_desc": "Path relative to base URL (e.g., \"\/weather\")",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "query": {
+                    "name": "query",
+                    "line": 141,
+                    "short_desc": "Query parameters for this call",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "ttl": {
+                    "name": "ttl",
+                    "line": 141,
+                    "short_desc": "Override cache TTL (seconds); null uses default; 0 disables caching",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "null",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "post": {
+            "name": "post",
+            "line": 169,
+            "short_desc": "Perform a POST request with a JSON body and expect a JSON response.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Decoded JSON as an associative array",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\Core\\Exceptions\\API\\APIException",
+                    "When JSON encoding fails or upstream returns an error"
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 169,
+                    "short_desc": "Path relative to base URL",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "body": {
+                    "name": "body",
+                    "line": 169,
+                    "short_desc": "Payload to JSON-encode and send",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "query": {
+                    "name": "query",
+                    "line": 169,
+                    "short_desc": "Extra query parameters",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "headers": {
+                    "name": "headers",
+                    "line": 169,
+                    "short_desc": "Extra headers (merged over defaults)",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "CACHE_DIRECTORY": {
+            "name": "CACHE_DIRECTORY",
+            "line": 62,
+            "short_desc": "Root cache directory for the application.",
+            "long_desc": "",
+            "modifiers": 4,
+            "tags": []
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "Core\\Exceptions\\API\\APIException",
+    "line": 9,
+    "short_desc": "Handles exceptions related to APIs.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Exceptions\\API",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Exceptions\/API\/APIException.php",
+    "relative_file": null,
+    "hash": "5bbbdafd3e7030a7972d1c29945ffa739b000550",
+    "parent": "Core\\Exceptions\\FrameworkRuntimeException",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "FrameworkRuntimeException": "Core\\Exceptions\\FrameworkRuntimeException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

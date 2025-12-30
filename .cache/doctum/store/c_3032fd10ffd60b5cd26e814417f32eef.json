@@ -1,0 +1,49 @@
+{
+    "name": "Core\\Validators\\RequiredValidator",
+    "line": 8,
+    "short_desc": "Child class that performs validation for fields that are required.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Validators",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Validators\/RequiredValidator.php",
+    "relative_file": null,
+    "hash": "b6afef030a5f4a0af7e120dab94111103b72d484",
+    "parent": "Core\\Validators\\CustomValidator",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "CustomValidator": "Core\\Validators\\CustomValidator",
+        "Helper": "Core\\Helper"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "runValidation": {
+            "name": "runValidation",
+            "line": 16,
+            "short_desc": "Implements the abstract function of the same name from the parent\nclass.  Enforces the required requirement for a field.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

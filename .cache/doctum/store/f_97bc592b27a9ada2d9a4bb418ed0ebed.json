@@ -1,0 +1,102 @@
+{
+    "namespace": "",
+    "name": "now",
+    "line": 194,
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/scripts\/helpers.php",
+    "relative_file": null,
+    "short_desc": "Get the current time as a formatted string using Carbon.",
+    "long_desc": "This function supports optional user-specific overrides for timezone,\nformat, and locale. If not provided, it defaults to the application's\nconfigured environment values.",
+    "hint": [
+        [
+            "string",
+            false
+        ]
+    ],
+    "hint_desc": "The current time formatted based on the provided or default settings.",
+    "tags": {
+        "see": [
+            [
+                "\\Core\\Lib\\Utilities\\DateTime::formatTime()",
+                "for",
+                "formatting",
+                "logic."
+            ]
+        ]
+    },
+    "modifiers": 0,
+    "is_by_ref": "",
+    "is_intersection_type": false,
+    "exceptions": [],
+    "errors": [],
+    "parameters": {
+        "timezone": {
+            "name": "timezone",
+            "line": 194,
+            "short_desc": "The timezone to use (e.g., 'Europe\/Berlin').\nFalls back to env('TIME_ZONE') if null.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "null",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "format": {
+            "name": "format",
+            "line": 194,
+            "short_desc": "The format string (e.g., 'H:i' or 'g:i A').\nFalls back to DateTime::FORMAT_12_HOUR if null.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "null",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "locale": {
+            "name": "locale",
+            "line": 194,
+            "short_desc": "The locale code (e.g., 'en', 'fr').\nFalls back to env('LOCALE') if null.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "null",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        }
+    }
+}

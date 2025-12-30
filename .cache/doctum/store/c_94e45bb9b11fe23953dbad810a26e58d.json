@@ -1,0 +1,29 @@
+{
+    "name": "Console\\Commands\\ReactErrorCommand",
+    "line": 12,
+    "short_desc": "Implements command for generating the error\/NotFound.jsx page component.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/ReactErrorCommand.php",
+    "relative_file": null,
+    "hash": "70ba4d38fbff67e0717b6b445a412234e3d18167",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "React": "Console\\Helpers\\React",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

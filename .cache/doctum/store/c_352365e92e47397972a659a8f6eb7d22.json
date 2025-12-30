@@ -1,0 +1,31 @@
+{
+    "name": "Console\\Commands\\RunMigrationCommand",
+    "line": 12,
+    "short_desc": "Supports ability to run a migration file.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/RunMigrationCommand.php",
+    "relative_file": null,
+    "hash": "39f8cba9a2c6a0e7f35bff37624844945a13fdcc",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Migrate": "Console\\Helpers\\Migrate",
+        "DBSeeder": "Console\\Helpers\\DBSeeder",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

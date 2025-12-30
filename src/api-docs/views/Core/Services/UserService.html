@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Services\UserService | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
+        <script src="../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../doctum.js"></script>
+        <script async defer src="../../js/bootstrap.min.js"></script>
+        <script async defer src="../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/api-docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Services_UserService" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                    <li><a href="../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../Core/Services.html">Services</a></li><li class="backslash">\</li><li>UserService</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>UserService    
+            </h1>
+    </div>
+
+    
+    <p>final         class
+    <strong>UserService</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Provides functions for managing users.</p></p>                    </div>
+            
+        
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_deleteIfAllowed">deleteIfAllowed</a>(int $id, bool $unlink = false)
+        
+                                            <p><p>Deletes user if not admin and unlinks profile images if $unlink
+is set to true.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_deleteProfileImage">deleteProfileImage</a>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        
+                                            <p><p>Deletes profile image</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_ensureAuthenticatedUser">ensureAuthenticatedUser</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+        
+                                            <p><p>Acts as safeguard to ensure incorrect user is not updated.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_handleProfileImages">handleProfileImages</a>(<abbr title="App\Models\Users">Users</abbr> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
+        
+                                            <p><p>Uploads and sorts profile images.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_sendWhenSetToInactive">sendWhenSetToInactive</a>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+        
+                                            <p><p>Sends E-mail to user when account is deactivated as appropriate.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_sendWhenSetToResetPW">sendWhenSetToResetPW</a>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+        
+                                            <p><p>Sends E-mail to user when reset_password flag is set as appropriate.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toggleAccountStatus">toggleAccountStatus</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
+        
+                                            <p><p>Assist in toggling inactive field.  Returns boolean value to determine
+if E-mail should be sent.  To properly test if E-mail should be sent
+get value of $user-&gt;inactive before post.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toggleResetPassword">toggleResetPassword</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
+        
+                                            <p><p>Assist in toggling reset_password field.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_updatePassword">updatePassword</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        
+                                            <p><p>Updates user's password</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_deleteIfAllowed">
+        <div class="location">at line 29</div>
+        <code>        static            void
+    <strong>deleteIfAllowed</strong>(int $id, bool $unlink = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Deletes user if not admin and unlinks profile images if $unlink
+is set to true.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The id for user we want to delete.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$unlink</td>
+                <td><p>Determines if profile images are deleted.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_deleteProfileImage">
+        <div class="location">at line 46</div>
+        <code>        static            array
+    <strong>deleteProfileImage</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Deletes profile image</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a></td>
+                <td>$request</td>
+                <td><p>The request for deleting image.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>JSON response array.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ensureAuthenticatedUser">
+        <div class="location">at line 62</div>
+        <code>        static            void
+    <strong>ensureAuthenticatedUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Acts as safeguard to ensure incorrect user is not updated.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user object to test.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_handleProfileImages">
+        <div class="location">at line 79</div>
+        <code>        static            void
+    <strong>handleProfileImages</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Uploads and sorts profile images.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose profile images we want to manage.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null</td>
+                <td>$uploads</td>
+                <td><p>The Uploads object or profile image upload.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$sortedImages</td>
+                <td><p>Order of sorted images.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_sendWhenSetToInactive">
+        <div class="location">at line 96</div>
+        <code>        static            void
+    <strong>sendWhenSetToInactive</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sends E-mail to user when account is deactivated as appropriate.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user we will send E-mail to.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$shouldSendEmail</td>
+                <td><p>Sends E-mail when true.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_sendWhenSetToResetPW">
+        <div class="location">at line 111</div>
+        <code>        static            void
+    <strong>sendWhenSetToResetPW</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sends E-mail to user when reset_password flag is set as appropriate.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user we will send E-mail to.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$shouldSendEmail</td>
+                <td><p>Sends E-mail when true.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toggleAccountStatus">
+        <div class="location">at line 129</div>
+        <code>        static            bool
+    <strong>toggleAccountStatus</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assist in toggling inactive field.  Returns boolean value to determine
+if E-mail should be sent.  To properly test if E-mail should be sent
+get value of $user-&gt;inactive before post.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose status we want to set.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a></td>
+                <td>$request</td>
+                <td><p>The request.</p></td>
+            </tr>
+                    <tr>
+                <td>int|null</td>
+                <td>$currentInactive</td>
+                <td><p>Value of $user-&gt;inactive before post.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>true if we want to send mail and otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toggleResetPassword">
+        <div class="location">at line 144</div>
+        <code>        static            bool
+    <strong>toggleResetPassword</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assist in toggling reset_password field.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose status we want to set.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a></td>
+                <td>$request</td>
+                <td><p>The request.z</p></td>
+            </tr>
+                    <tr>
+                <td>int|null</td>
+                <td>$currentReset</td>
+                <td><p>Value of $user-&gt;reset_password before post.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>1 if reset_password is 'on', otherwise we return 0.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_updatePassword">
+        <div class="location">at line 156</div>
+        <code>        static            <abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr>
+    <strong>updatePassword</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Updates user's password</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose password we want to update.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a></td>
+                <td>$request</td>
+                <td><p>The request.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr></td>
+            <td><p>True if password is updated, otherwise false</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

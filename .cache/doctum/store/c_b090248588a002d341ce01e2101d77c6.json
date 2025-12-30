@@ -1,0 +1,113 @@
+{
+    "name": "Core\\Lib\\Events\\Contracts\\QueuePreferences",
+    "line": 11,
+    "short_desc": "Defines the contract for event listeners or jobs that can be queued.",
+    "long_desc": "Implementing classes can control the queue name, delay, retry behavior,\nand maximum number of processing attempts for a queued task.",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Events\\Contracts",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Events\/Contracts\/QueuePreferences.php",
+    "relative_file": null,
+    "hash": "082497b075bf67ccb7911a4a24e2e68104157848",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": true,
+    "is_read_only": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "backoff": {
+            "name": "backoff",
+            "line": 18,
+            "short_desc": "Get the backoff time(s) between retry attempts.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\Lib\\Events\\Contracts\\int|array",
+                    false
+                ]
+            ],
+            "hint_desc": "Number of seconds before retry, or an array of increasing delays\n(e.g., [10, 30, 60]) for multiple retries.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "delay": {
+            "name": "delay",
+            "line": 25,
+            "short_desc": "Get the delay before the job\/listener should be processed.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "Delay in seconds or a UNIX timestamp representing when the job should be available.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "maxAttempts": {
+            "name": "maxAttempts",
+            "line": 32,
+            "short_desc": "Get the maximum number of attempts for processing this job\/listener.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "Maximum retry attempts before the job\/listener is marked as failed.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "viaQueue": {
+            "name": "viaQueue",
+            "line": 39,
+            "short_desc": "Get the name of the queue to send the job\/event listener to.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "null",
+                    false
+                ]
+            ],
+            "hint_desc": "The queue name (e.g., 'mail') or null to use the default queue.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,1090 @@
+{
+    "name": "Core\\DB",
+    "line": 14,
+    "short_desc": "Support database operations.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/DB.php",
+    "relative_file": null,
+    "hash": "d21b3e82873aed6810764bdf73a424991856da63",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "PDO": "PDO",
+        "Exception": "Exception",
+        "PDOException": "PDOException",
+        "Arr": "Core\\Lib\\Utilities\\Arr",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "ArraySet": "Core\\Lib\\Utilities\\ArraySet"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "beginTransaction": {
+            "name": "beginTransaction",
+            "line": 65,
+            "short_desc": "Begins a database transaction.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True on success, false on failure",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "commit": {
+            "name": "commit",
+            "line": 90,
+            "short_desc": "Commits the current database transaction.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True on success, false on failure",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "connect": {
+            "name": "connect",
+            "line": 122,
+            "short_desc": "Establishes a new database connection using the provided configuration array.",
+            "long_desc": "This method creates a new PDO instance based on the given connection details\nand sets it as the singleton instance for the DB class. It can be used to\noverride the default database connection at runtime (e.g., for testing or\nconnecting to a different database).\n\nSupported drivers:\n- **sqlite:** Connects to a SQLite database file or an in-memory database.\n  Foreign key constraints are enabled by default.\n- **mysql:** Connects to a MySQL\/MariaDB database using the provided host, port,\n  database name, charset, username, and password.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [
+                [
+                    "\\Exception",
+                    "If the connection attempt fails, an Exception is thrown\nwith the corresponding error message."
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "override": {
+                    "name": "override",
+                    "line": 122,
+                    "short_desc": "An associative array containing connection parameters:\n- `driver`   (string)  The database driver ('sqlite' or 'mysql').\n- `database` (string)  Path to SQLite file or database name for MySQL.\n- `host`     (string)  (MySQL) The database host.\n- `port`     (int)     (MySQL) The database port.\n- `charset`  (string)  (MySQL) The character set.\n- `username` (string)  (MySQL) The username for authentication.\n- `password` (string)  (MySQL) The password for authentication.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "count": {
+            "name": "count",
+            "line": 151,
+            "short_desc": "Getter function for the private _count variable.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "The number of results found in an SQL query.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "delete": {
+            "name": "delete",
+            "line": 168,
+            "short_desc": "Performs delete operation against SQL database.",
+            "long_desc": "Example setup:\n$contacts = $db->delete('contacts', 3);",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if delete operation is successful.  Otherwise, we\nreturn false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 168,
+                    "short_desc": "The name of the table that contains the record\nwe want to delete.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "id": {
+                    "name": "id",
+                    "line": 168,
+                    "short_desc": "The primary key for the record we want to remove from a\ndatabase table.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "error": {
+            "name": "error",
+            "line": 178,
+            "short_desc": "Getter function for the $_error variable.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "The value for the $_error flag.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "find": {
+            "name": "find",
+            "line": 204,
+            "short_desc": "Performs find operation against the database.  The user can use\nparameters such as conditions, bind, order, limit, and sort.",
+            "long_desc": "Example setup:\n$contacts = $db->find('users', [\n    'conditions' => [\"email = ?\"],\n    'bind' => ['chad.chapman@email.com'],\n    'order' => \"username\",\n    'limit' => 5,\n    'sort' => 'DESC'\n]);",
+            "hint": [
+                [
+                    "Core\\bool|array",
+                    false
+                ]
+            ],
+            "hint_desc": "An array of object returned from an SQL query.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 204,
+                    "short_desc": "The name or the table we want to perform\nour query against",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 204,
+                    "short_desc": "An associative array that contains key value pair\nparameters for our query such as conditions, bind, limit, offset,\njoin, order, and sort.  The default value is an empty array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "class": {
+                    "name": "class",
+                    "line": 204,
+                    "short_desc": "A default value of false, it contains the\nname of the class we will build based on the name of a model.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\bool|string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "findFirst": {
+            "name": "findFirst",
+            "line": 225,
+            "short_desc": "Returns the first result performed by an SQL query.  It is a wrapper\nfor the _read function for this purpose.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\array|object|bool",
+                    false
+                ]
+            ],
+            "hint_desc": "An associative array of results returned from an SQL\nquery.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [
+                "The method \"findFirst\" has \"1\" invalid @param tags.",
+                "Invalid @param tag on \"findFirst\": \"@param string $table The name or the table we want to perform\nour query against.\""
+            ],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 225,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 225,
+                    "short_desc": "An associative array that contains key value pair\nparameters for our query such as conditions, bind, limit, offset,\njoin, order, and sort.  The default value is an empty array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "class": {
+                    "name": "class",
+                    "line": 225,
+                    "short_desc": "A default value of false, it contains the\nname of the class we will build based on the name of a model.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\bool|string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "findTotal": {
+            "name": "findTotal",
+            "line": 242,
+            "short_desc": "Returns number of records in a table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "$count The number of records in a table.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 242,
+                    "short_desc": "The name or the table we want to perform\nour query against.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 242,
+                    "short_desc": "An associative array that contains key value pair\nparameters for our query such as conditions, bind, limit, offset,\njoin, order, and sort.  The default value is an empty array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "first": {
+            "name": "first",
+            "line": 256,
+            "short_desc": "Returns first result in the _result array.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\array|object",
+                    false
+                ]
+            ],
+            "hint_desc": "An associative array that is the first object\nin a _result.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getColumns": {
+            "name": "getColumns",
+            "line": 268,
+            "short_desc": "Returns columns for a table.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "An array of objects where each one represents a column\nfrom a database table.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 268,
+                    "short_desc": "The name of the table we want to retrieve\nthe column names.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "getInstance": {
+            "name": "getInstance",
+            "line": 284,
+            "short_desc": "An instance of this class set as a variable.  To be used in other\nclass because we can't use $this.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\DB",
+                    false
+                ]
+            ],
+            "hint_desc": "The instance of this class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getPDO": {
+            "name": "getPDO",
+            "line": 296,
+            "short_desc": "Returns instance of PDO class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\PDO",
+                    false
+                ]
+            ],
+            "hint_desc": "The PDO object.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "groupByColumn": {
+            "name": "groupByColumn",
+            "line": 309,
+            "short_desc": "Appropriately formats column for query with GROUP BY operations.  A\ncall to the ANY_VALUE function is added if the DB driver is MySQL\nor MariaDB.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\string|null",
+                    false
+                ]
+            ],
+            "hint_desc": "The properly formatted column if DB driver\nis properly set or detected.  Otherwise, we return null.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "column": {
+                    "name": "column",
+                    "line": 309,
+                    "short_desc": "Name of the column to format.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "insert": {
+            "name": "insert",
+            "line": 340,
+            "short_desc": "Perform insert operations against the database.",
+            "long_desc": "Example setup:\n$fields = [\n  'fname' => 'John',\n  'lname' => 'Doe',\n  'email' => 'example@email.com'\n];\n$contacts = $db->insert('contacts', $fields);",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "Report whether or not the operation was successful.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 340,
+                    "short_desc": "The name of the table we want to perform the\ninsert operation.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "fields": {
+                    "name": "fields",
+                    "line": 340,
+                    "short_desc": "An associative array of key value pairs.  The key\nis the name of the database field and the value is the value we will\nset to a particular field.  The default value is an empty array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "inTransaction": {
+            "name": "inTransaction",
+            "line": 370,
+            "short_desc": "Checks if a transaction is currently active.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if a transaction is active, false otherwise",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "lastID": {
+            "name": "lastID",
+            "line": 379,
+            "short_desc": "The primary key ID of the last insert operation.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\int|string|null",
+                    false
+                ]
+            ],
+            "hint_desc": "The primary key ID from the last insert operation.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "query": {
+            "name": "query",
+            "line": 397,
+            "short_desc": "Performs database query operations that includes prepare,\nbinding, execute, and fetch.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Core\\DB",
+                    false
+                ]
+            ],
+            "hint_desc": "The results of the database query.  If the operation\nis not successful the $_error instance variable is set to true and is\nreturned.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "sql": {
+                    "name": "sql",
+                    "line": 397,
+                    "short_desc": "The database query we will submit to the database.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 397,
+                    "short_desc": "An associative array that contains key value pair\nparameters for our query such as conditions, bind, limit, offset,\njoin, order, and sort.  The default value is an empty array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "class": {
+                    "name": "class",
+                    "line": 397,
+                    "short_desc": "A default value of false, it contains the\nname of the class we will build based on the name of a model.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Core\\bool|string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "results": {
+            "name": "results",
+            "line": 555,
+            "short_desc": "Returns value of query results.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "An array of objects that contain results of a database\nquery.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "rollBack": {
+            "name": "rollBack",
+            "line": 564,
+            "short_desc": "Rolls back the current database transaction.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True on success, false on failure",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "tableExists": {
+            "name": "tableExists",
+            "line": 579,
+            "short_desc": "Checks whether a given table exists in the currently connected database.",
+            "long_desc": "This method runs a driver-specific query to determine if the table is present.\nFor SQLite, it queries the `sqlite_master` system table. For MySQL\/MariaDB,\nit uses the `SHOW TABLES LIKE` statement.",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "Returns true if the table exists in the database, or false if it does not.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 579,
+                    "short_desc": "The name of the table to check for existence.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "update": {
+            "name": "update",
+            "line": 609,
+            "short_desc": "Performs update operation on a SQL database record.",
+            "long_desc": "Example setup:\n$fields = [\n  'fname' => 'John',\n  'email' => 'example@email.com'\n];\n$contacts = $db->update('contacts', 3, $fields);",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if the update operation is successful.  Otherwise,\nwe return false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 609,
+                    "short_desc": "$table The name of the table that contains the\nrecord we want to update.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "id": {
+                    "name": "id",
+                    "line": 609,
+                    "short_desc": "The primary key for the record we want to remove from a\ndatabase table.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "fields": {
+                    "name": "fields",
+                    "line": 609,
+                    "short_desc": "The value of the fields we want to set for the\ndatabase record.  The default value is an empty array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "updateWhere": {
+            "name": "updateWhere",
+            "line": 624,
+            "short_desc": "Updates records in a table using params-style conditions.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "Number of rows affected.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 624,
+                    "short_desc": "The table to update.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "fields": {
+                    "name": "fields",
+                    "line": 624,
+                    "short_desc": "Key\/value pairs to set.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 624,
+                    "short_desc": "Params like ['conditions' => 'queue = ?', 'bind' => [$queueName]]",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "valueExistsInColumn": {
+            "name": "valueExistsInColumn",
+            "line": 660,
+            "short_desc": "Check if a value exists in a JSON or text-based column",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if value exists, False otherwise",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "table": {
+                    "name": "table",
+                    "line": 660,
+                    "short_desc": "The table name",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "column": {
+                    "name": "column",
+                    "line": 660,
+                    "short_desc": "The column name (JSON or text-based)",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "value": {
+                    "name": "value",
+                    "line": 660,
+                    "short_desc": "The value to search for",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "mixed",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

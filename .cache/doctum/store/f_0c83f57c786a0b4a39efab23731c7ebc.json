@@ -1,0 +1,138 @@
+{
+    "namespace": "",
+    "name": "email",
+    "line": 136,
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/scripts\/forms.php",
+    "relative_file": null,
+    "short_desc": "Renders an HTML div element that surrounds an input of type email.",
+    "long_desc": "",
+    "hint": [
+        [
+            "string",
+            false
+        ]
+    ],
+    "hint_desc": "A surrounding div and the input element of type email.",
+    "tags": [],
+    "modifiers": 0,
+    "is_by_ref": "",
+    "is_intersection_type": false,
+    "exceptions": [],
+    "errors": [],
+    "parameters": {
+        "label": {
+            "name": "label",
+            "line": 137,
+            "short_desc": "Sets the label for this input.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": null,
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "name": {
+            "name": "name",
+            "line": 138,
+            "short_desc": "Sets the value for the name, for, and id attributes\nfor this input.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": null,
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "value": {
+            "name": "value",
+            "line": 139,
+            "short_desc": "The value we want to set.  We can use this to set\nthe value of the value attribute during form validation.  Default value\nis the empty string.  It can be set with values during form validation\nand forms used for editing records.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "''",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "inputAttrs": {
+            "name": "inputAttrs",
+            "line": 140,
+            "short_desc": "The values used to set the class and other\nattributes of the input string.  The default value is an empty array.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "[]",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "divAttrs": {
+            "name": "divAttrs",
+            "line": 141,
+            "short_desc": "The values used to set the class and other\nattributes of the surrounding div.  The default value is an empty array.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "[]",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        },
+        "errors": {
+            "name": "errors",
+            "line": 142,
+            "short_desc": "The errors array.  Default value is an empty array.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": "[]",
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        }
+    }
+}

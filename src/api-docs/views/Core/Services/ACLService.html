@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Services\ACLService | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
+        <script src="../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../doctum.js"></script>
+        <script async defer src="../../js/bootstrap.min.js"></script>
+        <script async defer src="../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/api-docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Services_ACLService" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                    <li><a href="../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../Core/Services.html">Services</a></li><li class="backslash">\</li><li>ACLService</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>ACLService    
+            </h1>
+    </div>
+
+    
+    <p>        class
+    <strong>ACLService</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Collection of functions for managing User's ACLs.</p></p>                    </div>
+            
+        
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_aclsForUser">aclsForUser</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+        
+                                            <p><p>Returns an array containing access control list information.  When the
+$acl instance variable is empty an empty array is returned.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_aclToArray">aclToArray</a>(mixed $acls)
+        
+                                            <p><p>Ensures that we are always dealing with an array of ACLs</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_addAcl">addAcl</a>(int $user_id, string $acl)
+        
+                                            <p><p>Add ACL to user's acl field as an element of an array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_checkACL">checkACL</a>(<a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> $acl)
+        
+                                            <p><p>Checks if ACL is found and sets flash message if not the case.  Also,
+checks if it is assigned to a user and sets flash message.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_deleteIfAllowed">deleteIfAllowed</a>(int $id)
+        
+                                            <p><p>Deletes ACL if allowed.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_manageAcls">manageAcls</a>(array $acls, <abbr title="App\Models\Users">Users</abbr> $user, array $newAcls, array $userAcls)
+        
+                                            <p><p>Manages the adding and removing of ACLs.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_removeAcl">removeAcl</a>(int $user_id, string $acl)
+        
+                                            <p><p>Removes ACL from user's acl field array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setAclAtRegistration">setAclAtRegistration</a>()
+        
+                                            <p><p>Sets ACL at registration.  If users table is empty the default
+value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_saveACL">saveACL</a>(<a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> $acl, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        
+                                            <p><p>Saves ACL record.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_updateUserACLs">updateUserACLs</a>(<abbr title="App\Models\Users">Users</abbr> $user, array $userAcls, array $acls, array|null $postAcls = null)
+        
+                                            <p><p>Updates user's acl field</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_unUsedACLs">unUsedACLs</a>()
+        
+                                            <p><p>Returns array of unused ACLs.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_usedACLs">usedACLs</a>()
+        
+                                            <p><p>Returns array of used ACLs.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_aclsForUser">
+        <div class="location">at line 22</div>
+        <code>        static            array
+    <strong>aclsForUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns an array containing access control list information.  When the
+$acl instance variable is empty an empty array is returned.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose ACLs we want to use.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The array containing access control list information.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_aclToArray">
+        <div class="location">at line 33</div>
+        <code>        static            array
+    <strong>aclToArray</strong>(mixed $acls)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures that we are always dealing with an array of ACLs</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$acls</td>
+                <td><p>An array or any type that we want to add to an array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>An array of acls.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addAcl">
+        <div class="location">at line 48</div>
+        <code>        static            bool
+    <strong>addAcl</strong>(int $user_id, string $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Add ACL to user's acl field as an element of an array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose acl field we want to
+modify.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The name of the new ACL.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True or false depending on success of operation.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_checkACL">
+        <div class="location">at line 67</div>
+        <code>        static            void
+    <strong>checkACL</strong>(<a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if ACL is found and sets flash message if not the case.  Also,
+checks if it is assigned to a user and sets flash message.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></td>
+                <td>$acl</td>
+                <td><p>The ACL to verify.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_deleteIfAllowed">
+        <div class="location">at line 85</div>
+        <code>        static            bool
+    <strong>deleteIfAllowed</strong>(int $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Deletes ACL if allowed.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The id for the ACL.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if deleted, otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_manageAcls">
+        <div class="location">at line 109</div>
+        <code>        static            void
+    <strong>manageAcls</strong>(array $acls, <abbr title="App\Models\Users">Users</abbr> $user, array $newAcls, array $userAcls)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Manages the adding and removing of ACLs.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$acls</td>
+                <td><p>ACLs stored in acl table.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user we want to modify</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$newAcls</td>
+                <td><p>The new ACLs for the user.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$userAcls</td>
+                <td><p>The user's existing ACLs.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_removeAcl">
+        <div class="location">at line 127</div>
+        <code>        static            bool
+    <strong>removeAcl</strong>(int $user_id, string $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Removes ACL from user's acl field array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose acl field we want to modify.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The name of the ACL to be removed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if  user is found, otherwise we  return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAclAtRegistration">
+        <div class="location">at line 147</div>
+        <code>        static            string
+    <strong>setAclAtRegistration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets ACL at registration.  If users table is empty the default
+value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The value of the ACL we are setting upon
+registration of a user.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_saveACL">
+        <div class="location">at line 161</div>
+        <code>        static            bool
+    <strong>saveACL</strong>(<a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> $acl, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Saves ACL record.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></td>
+                <td>$acl</td>
+                <td><p>The ACL to be Saves</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a></td>
+                <td>$request</td>
+                <td><p>The request.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_updateUserACLs">
+        <div class="location">at line 180</div>
+        <code>        static            void
+    <strong>updateUserACLs</strong>(<abbr title="App\Models\Users">Users</abbr> $user, array $userAcls, array $acls, array|null $postAcls = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Updates user's acl field</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose ACLs we want to update.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$userAcls</td>
+                <td><p>Existing user's ACLs.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$acls</td>
+                <td><p>All available ACLs.</p></td>
+            </tr>
+                    <tr>
+                <td>array|null</td>
+                <td>$postAcls</td>
+                <td><p>ACLs from post that are selected.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_unUsedACLs">
+        <div class="location">at line 191</div>
+        <code>        static            array
+    <strong>unUsedACLs</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns array of unused ACLs.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>$unUsedAcls An array of unused ACLs.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_usedACLs">
+        <div class="location">at line 207</div>
+        <code>        static            array
+    <strong>usedACLs</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns array of used ACLs.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>$usedACLs An array of used ACLs.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

@@ -1,0 +1,638 @@
+{
+    "name": "Core\\Services\\ACLService",
+    "line": 14,
+    "short_desc": "Collection of functions for managing User's ACLs.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Services",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Services\/ACLService.php",
+    "relative_file": null,
+    "hash": "890165ea69797cfac58ba05cebcc61e7632ce2c3",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Input": "Core\\Input",
+        "ACL": "Core\\Models\\ACL",
+        "Users": "App\\Models\\Users",
+        "Arr": "Core\\Lib\\Utilities\\Arr",
+        "Session": "Core\\Session"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "aclsForUser": {
+            "name": "aclsForUser",
+            "line": 22,
+            "short_desc": "Returns an array containing access control list information.  When the\n$acl instance variable is empty an empty array is returned.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "The array containing access control list information.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 22,
+                    "short_desc": "The user whose ACLs we want to use.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "aclToArray": {
+            "name": "aclToArray",
+            "line": 33,
+            "short_desc": "Ensures that we are always dealing with an array of ACLs",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "An array of acls.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "acls": {
+                    "name": "acls",
+                    "line": 33,
+                    "short_desc": "An array or any type that we want to add to an array.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "mixed",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "addAcl": {
+            "name": "addAcl",
+            "line": 48,
+            "short_desc": "Add ACL to user's acl field as an element of an array.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True or false depending on success of operation.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user_id": {
+                    "name": "user_id",
+                    "line": 48,
+                    "short_desc": "The id of the user whose acl field we want to\nmodify.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "acl": {
+                    "name": "acl",
+                    "line": 48,
+                    "short_desc": "The name of the new ACL.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "checkACL": {
+            "name": "checkACL",
+            "line": 67,
+            "short_desc": "Checks if ACL is found and sets flash message if not the case.  Also,\nchecks if it is assigned to a user and sets flash message.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "acl": {
+                    "name": "acl",
+                    "line": 67,
+                    "short_desc": "The ACL to verify.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Models\\ACL",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "deleteIfAllowed": {
+            "name": "deleteIfAllowed",
+            "line": 85,
+            "short_desc": "Deletes ACL if allowed.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if deleted, otherwise false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "id": {
+                    "name": "id",
+                    "line": 85,
+                    "short_desc": "The id for the ACL.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "manageAcls": {
+            "name": "manageAcls",
+            "line": 109,
+            "short_desc": "Manages the adding and removing of ACLs.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "acls": {
+                    "name": "acls",
+                    "line": 109,
+                    "short_desc": "ACLs stored in acl table.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "user": {
+                    "name": "user",
+                    "line": 109,
+                    "short_desc": "The user we want to modify",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "newAcls": {
+                    "name": "newAcls",
+                    "line": 109,
+                    "short_desc": "The new ACLs for the user.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "userAcls": {
+                    "name": "userAcls",
+                    "line": 109,
+                    "short_desc": "The user's existing ACLs.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "removeAcl": {
+            "name": "removeAcl",
+            "line": 127,
+            "short_desc": "Removes ACL from user's acl field array.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "True if  user is found, otherwise we  return false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user_id": {
+                    "name": "user_id",
+                    "line": 127,
+                    "short_desc": "The id of the user whose acl field we want to modify.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "acl": {
+                    "name": "acl",
+                    "line": 127,
+                    "short_desc": "The name of the ACL to be removed.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "setAclAtRegistration": {
+            "name": "setAclAtRegistration",
+            "line": 147,
+            "short_desc": "Sets ACL at registration.  If users table is empty the default\nvalue is Admin.  Otherwise, we set the value to \"\".",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The value of the ACL we are setting upon\nregistration of a user.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "saveACL": {
+            "name": "saveACL",
+            "line": 161,
+            "short_desc": "Saves ACL record.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "acl": {
+                    "name": "acl",
+                    "line": 161,
+                    "short_desc": "The ACL to be Saves",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Models\\ACL",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "request": {
+                    "name": "request",
+                    "line": 161,
+                    "short_desc": "The request.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "updateUserACLs": {
+            "name": "updateUserACLs",
+            "line": 180,
+            "short_desc": "Updates user's acl field",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 180,
+                    "short_desc": "The user whose ACLs we want to update.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "userAcls": {
+                    "name": "userAcls",
+                    "line": 180,
+                    "short_desc": "Existing user's ACLs.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "acls": {
+                    "name": "acls",
+                    "line": 180,
+                    "short_desc": "All available ACLs.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "postAcls": {
+                    "name": "postAcls",
+                    "line": 180,
+                    "short_desc": "ACLs from post that are selected.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "null",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "unUsedACLs": {
+            "name": "unUsedACLs",
+            "line": 191,
+            "short_desc": "Returns array of unused ACLs.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "$unUsedAcls An array of unused ACLs.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "usedACLs": {
+            "name": "usedACLs",
+            "line": 207,
+            "short_desc": "Returns array of used ACLs.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "$usedACLs An array of used ACLs.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,69 @@
+{
+    "name": "Core\\Lib\\Providers\\NotificationServiceProvider",
+    "line": 10,
+    "short_desc": "Service provider for notifications.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Providers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Providers\/NotificationServiceProvider.php",
+    "relative_file": null,
+    "hash": "d42d0cfaae6d5e34c6f75c8327d9537934edc1e0",
+    "parent": null,
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "ChannelRegistry": "Core\\Lib\\Notifications\\ChannelRegistry"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "register": {
+            "name": "register",
+            "line": 16,
+            "short_desc": "For future support for containers.  Bind per-channel deps here.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "bootNotifications": {
+            "name": "bootNotifications",
+            "line": 25,
+            "short_desc": "Register channels for notifications.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

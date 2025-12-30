@@ -1,0 +1,130 @@
+{
+    "name": "Core\\Lib\\Queue\\QueueableJobInterface",
+    "line": 9,
+    "short_desc": "Interface that all queueable jobs must implement.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Queue",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Queue\/QueueableJobInterface.php",
+    "relative_file": null,
+    "hash": "cb4564166584e92533734a54b66730925b73ed0d",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": true,
+    "is_read_only": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "backoff": {
+            "name": "backoff",
+            "line": 10,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": [
+                [
+                    "Core\\Lib\\Queue\\int|array",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "delay": {
+            "name": "delay",
+            "line": 16,
+            "short_desc": "Sets delay for a job.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "The time for delay in seconds or Unix timestamp.",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "handle": {
+            "name": "handle",
+            "line": 23,
+            "short_desc": "The logic that should be executed when the job is processed.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "maxAttempts": {
+            "name": "maxAttempts",
+            "line": 30,
+            "short_desc": "Undocumented function",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "toPayload": {
+            "name": "toPayload",
+            "line": 38,
+            "short_desc": "Converts the job into a payload array for storage in the queue.",
+            "long_desc": "Must include the fully qualified class name and job data.",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

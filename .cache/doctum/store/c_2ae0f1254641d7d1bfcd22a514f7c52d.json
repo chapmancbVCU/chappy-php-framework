@@ -1,0 +1,533 @@
+{
+    "name": "Console\\Helpers\\Events",
+    "line": 9,
+    "short_desc": "Supports operations related to Events\/Listeners.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Helpers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Helpers\/Events.php",
+    "relative_file": null,
+    "hash": "eb3c24cb1ff7239a9347e9f7caeb1887104da7d8",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "eventTemplate": {
+            "name": "eventTemplate",
+            "line": 20,
+            "short_desc": "Template for new event.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The content for the new event class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 20,
+                    "short_desc": "The name for the new event class.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "eventServiceProviderTemplate": {
+            "name": "eventServiceProviderTemplate",
+            "line": 53,
+            "short_desc": "Template for event service provider.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The content of the event service provider.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "providerName": {
+                    "name": "providerName",
+                    "line": 53,
+                    "short_desc": "The name of the event service provider.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "listenerTemplate": {
+            "name": "listenerTemplate",
+            "line": 89,
+            "short_desc": "Template for event listener class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The content for the new listener class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 89,
+                    "short_desc": "The name of the event.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "listenerName": {
+                    "name": "listenerName",
+                    "line": 89,
+                    "short_desc": "The name of the listener.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "makeEvent": {
+            "name": "makeEvent",
+            "line": 121,
+            "short_desc": "Creates a new event class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 121,
+                    "short_desc": "The name for the event.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "queue": {
+                    "name": "queue",
+                    "line": 121,
+                    "short_desc": "If true then function creates version of file for\nqueues.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "makeEventServiceProvider": {
+            "name": "makeEventServiceProvider",
+            "line": 138,
+            "short_desc": "Creates a new event service provider.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "providerName": {
+                    "name": "providerName",
+                    "line": 138,
+                    "short_desc": "The name for the event service provider.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "makeListener": {
+            "name": "makeListener",
+            "line": 157,
+            "short_desc": "Creates a new listener class.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 157,
+                    "short_desc": "The name of the event.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "listenerName": {
+                    "name": "listenerName",
+                    "line": 157,
+                    "short_desc": "The name of the listener.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "queue": {
+                    "name": "queue",
+                    "line": 157,
+                    "short_desc": "If true then function creates version of file for\nqueues.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "bool",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "queueEventTemplate": {
+            "name": "queueEventTemplate",
+            "line": 175,
+            "short_desc": "Returns template for event class when queue flag is set.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The contents of the event class.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 175,
+                    "short_desc": "The name of the event.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "queueListenerTemplate": {
+            "name": "queueListenerTemplate",
+            "line": 222,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 222,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "listenerName": {
+                    "name": "listenerName",
+                    "line": 222,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "verifyListenerParams": {
+            "name": "verifyListenerParams",
+            "line": 293,
+            "short_desc": "Checks if $eventName and $listerName was provided and that they are not the same.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "If True then both params were provided and not the same.\nOtherwise, we return false.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "eventName": {
+                    "name": "eventName",
+                    "line": 293,
+                    "short_desc": "The name of the event.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "listenerName": {
+                    "name": "listenerName",
+                    "line": 293,
+                    "short_desc": "The name of the listener.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "EVENT_PATH": {
+            "name": "EVENT_PATH",
+            "line": 10,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "LISTENER_PATH": {
+            "name": "LISTENER_PATH",
+            "line": 11,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        },
+        "PROVIDER_PATH": {
+            "name": "PROVIDER_PATH",
+            "line": 12,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        }
+    }
+}

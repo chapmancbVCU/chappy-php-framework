@@ -1,0 +1,31 @@
+{
+    "name": "Console\\Commands\\MakeValidatorCommand",
+    "line": 14,
+    "short_desc": "Generates a new Custom Form Validator",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MakeValidatorCommand.php",
+    "relative_file": null,
+    "hash": "fb047e55a0b9adea9bb302d431dec863d759a522",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Validator": "Console\\Helpers\\Validator",
+        "Str": "Core\\Lib\\Utilities\\Str",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputArgument": "Symfony\\Component\\Console\\Input\\InputArgument",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

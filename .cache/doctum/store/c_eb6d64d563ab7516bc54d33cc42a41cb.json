@@ -1,0 +1,48 @@
+{
+    "name": "Core\\Validators\\EmailValidator",
+    "line": 7,
+    "short_desc": "Child class that performs validation for E-mail fields.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Validators",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Validators\/EmailValidator.php",
+    "relative_file": null,
+    "hash": "ad456ea5408c75d2c7402d93cf7ea7eccd8d57cb",
+    "parent": "Core\\Validators\\CustomValidator",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "CustomValidator": "Core\\Validators\\CustomValidator"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "runValidation": {
+            "name": "runValidation",
+            "line": 15,
+            "short_desc": "Implements the abstract function of the same name from the parent\nclass.  Enforces requirement where a field must be a valid E-mail.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

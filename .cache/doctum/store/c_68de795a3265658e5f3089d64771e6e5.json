@@ -1,0 +1,69 @@
+{
+    "name": "Core\\Lib\\Events\\EventManager",
+    "line": 10,
+    "short_desc": "Manages the registration and dispatching of events.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Lib\\Events",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Events\/EventManager.php",
+    "relative_file": null,
+    "hash": "e35eb4d99d02973848245f493c810037b4db5dc8",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "FrameworkRuntimeException": "Core\\Exceptions\\FrameworkRuntimeException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "boot": {
+            "name": "boot",
+            "line": 21,
+            "short_desc": "Boots event service upon application start.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "dispatcher": {
+            "name": "dispatcher",
+            "line": 46,
+            "short_desc": "Get the dispatcher (after boot)",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Core\\Lib\\Events\\EventDispatcher",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

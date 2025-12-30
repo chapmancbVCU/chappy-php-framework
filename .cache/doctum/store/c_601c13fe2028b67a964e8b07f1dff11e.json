@@ -1,0 +1,134 @@
+{
+    "name": "Core\\Models\\UserSessions",
+    "line": 9,
+    "short_desc": "Supports operations of the User Session model.  Extends the Model class.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Models",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Models\/UserSessions.php",
+    "relative_file": null,
+    "hash": "171527fd50fcf30954ee8105ebaf37fe4a5efc25",
+    "parent": "Core\\Model",
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Env": "Core\\Lib\\Utilities\\Env"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "id": {
+            "name": "id",
+            "line": 10,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "session": {
+            "name": "session",
+            "line": 11,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "user_agent": {
+            "name": "user_agent",
+            "line": 13,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        },
+        "user_id": {
+            "name": "user_id",
+            "line": 14,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [],
+            "is_read_only": false,
+            "is_write_only": false,
+            "is_intersection_type": false
+        }
+    },
+    "methods": {
+        "beforeSave": {
+            "name": "beforeSave",
+            "line": 21,
+            "short_desc": "Called before save.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getFromCookie": {
+            "name": "getFromCookie",
+            "line": 32,
+            "short_desc": "Retrieves User Session information from cookie.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ],
+                [
+                    "\\Core\\Models\\UserSessions",
+                    false
+                ]
+            ],
+            "hint_desc": "An object containing information about the\ncurrent user's session.  If a user session does not exist false is\nreturned.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,48 @@
+{
+    "name": "Core\\Validators\\MatchesValidator",
+    "line": 8,
+    "short_desc": "Child class that performs validation for two fields that are required to\nhave the same value.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Validators",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Validators\/MatchesValidator.php",
+    "relative_file": null,
+    "hash": "1d029eb5a75f7be1317d8eded0ddc3939e4c9621",
+    "parent": "Core\\Validators\\CustomValidator",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "CustomValidator": "Core\\Validators\\CustomValidator"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "runValidation": {
+            "name": "runValidation",
+            "line": 15,
+            "short_desc": "Implements the abstract function of the same name from the parent\nclass.  Enforces requirements when two fields must match.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Console\\Commands\\MigrateRollbackCommand",
+    "line": 13,
+    "short_desc": "Supports ability to roll back database migrations.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/MigrateRollbackCommand.php",
+    "relative_file": null,
+    "hash": "fb212d1447a2b434b4507c8b3eeb407c831f0c1b",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Tools": "Console\\Helpers\\Tools",
+        "Migrate": "Console\\Helpers\\Migrate",
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

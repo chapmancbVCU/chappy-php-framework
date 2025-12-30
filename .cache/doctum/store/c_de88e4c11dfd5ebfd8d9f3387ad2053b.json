@@ -1,0 +1,51 @@
+{
+    "name": "Core\\ErrorHandler",
+    "line": 13,
+    "short_desc": "Performs error handling for application.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/ErrorHandler.php",
+    "relative_file": null,
+    "hash": "6f485e8ad772799733c8888fcc53955816de88f9",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Run": "Whoops\\Run",
+        "ArraySet": "Core\\Lib\\Utilities\\ArraySet",
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "PrettyPageHandler": "Whoops\\Handler\\PrettyPageHandler"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "initialize": {
+            "name": "initialize",
+            "line": 20,
+            "short_desc": "Performs global exception handling, global error handling, and\ninitialized whoops.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

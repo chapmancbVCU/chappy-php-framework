@@ -1,0 +1,50 @@
+{
+    "name": "Core\\Validators\\PhoneNumberValidator",
+    "line": 10,
+    "short_desc": "Validates input for phone numbers.  Locale abbreviation needs to be set as\na rule.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Validators",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Validators\/PhoneNumberValidator.php",
+    "relative_file": null,
+    "hash": "08e61c5cccb8ecae1ae1d94ed1b0efb7f5f71eee",
+    "parent": "Core\\Validators\\CustomValidator",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "CustomValidator": "Core\\Validators\\CustomValidator",
+        "NumberParseException": "libphonenumber\\NumberParseException",
+        "PhoneNumberUtil": "libphonenumber\\PhoneNumberUtil"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "runValidation": {
+            "name": "runValidation",
+            "line": 17,
+            "short_desc": "Implements the abstract function of the same name from the parent\nclass.  Enforces correct input for phone numbers.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

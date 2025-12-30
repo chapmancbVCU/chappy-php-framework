@@ -1,0 +1,43 @@
+{
+    "namespace": "",
+    "name": "errorBag",
+    "line": 113,
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/scripts\/forms.php",
+    "relative_file": null,
+    "short_desc": "Returns list of errors.",
+    "long_desc": "",
+    "hint": [
+        [
+            "string",
+            false
+        ]
+    ],
+    "hint_desc": "A string representation of a div element containing an\ninput of type checkbox.",
+    "tags": [],
+    "modifiers": 0,
+    "is_by_ref": "",
+    "is_intersection_type": false,
+    "exceptions": [],
+    "errors": [],
+    "parameters": {
+        "errors": {
+            "name": "errors",
+            "line": 113,
+            "short_desc": "A list of errors and their description that is\ngenerated during server side form validation.",
+            "long_desc": null,
+            "hint": [
+                [
+                    "\\array|Core\\Lib\\Utilities\\ArraySet",
+                    false
+                ]
+            ],
+            "tags": [],
+            "modifiers": 0,
+            "default": null,
+            "variadic": false,
+            "is_by_ref": false,
+            "is_read_only": false,
+            "is_intersection_type": false
+        }
+    }
+}

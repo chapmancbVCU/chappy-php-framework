@@ -1,0 +1,29 @@
+{
+    "name": "Console\\Commands\\ServeUserGuideCommand",
+    "line": 12,
+    "short_desc": "Performs the command for serving the Jekyll user guide locally.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Commands",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Commands\/ServeUserGuideCommand.php",
+    "relative_file": null,
+    "hash": "5d3ae1757d412d97a7270cf1b3d4b4ce683824a2",
+    "parent": "Symfony\\Component\\Console\\Command\\Command",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Command": "Symfony\\Component\\Console\\Command\\Command",
+        "InputInterface": "Symfony\\Component\\Console\\Input\\InputInterface",
+        "OutputInterface": "Symfony\\Component\\Console\\Output\\OutputInterface",
+        "InputOption": "Symfony\\Component\\Console\\Input\\InputOption"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

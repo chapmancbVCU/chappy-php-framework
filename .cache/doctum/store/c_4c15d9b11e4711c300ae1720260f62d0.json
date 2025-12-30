@@ -1,0 +1,148 @@
+{
+    "name": "Core\\Lib\\Notifications\\Contracts\\Channel",
+    "line": 21,
+    "short_desc": "Contract for delivering notifications over a specific transport (database, mail, SMS, etc).",
+    "long_desc": "Implementations should:\n- Accept a notifiable entity and a notification instance.\n- Consume the payload produced by the corresponding toX() method (e.g., toDatabase(), toMail()).\n- Perform the side-effecting delivery and throw on failure (so callers can log\/retry).",
+    "hint": null,
+    "tags": {
+        "template": [
+            [
+                "TNotifiable",
+                "of",
+                "object"
+            ],
+            [
+                "TNotification",
+                "of",
+                "Notification"
+            ]
+        ],
+        "see": [
+            [
+                "\\Core\\Lib\\Notifications\\Notification::via()"
+            ],
+            [
+                "\\Core\\Lib\\Notifications\\Notifiable::notify()"
+            ]
+        ]
+    },
+    "namespace": "Core\\Lib\\Notifications\\Contracts",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Lib\/Notifications\/Contracts\/Channel.php",
+    "relative_file": null,
+    "hash": "a3b9a2d4f4262a41f695b0243cdbd41743794cc3",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": true,
+    "is_read_only": false,
+    "aliases": {
+        "Notification": "Core\\Lib\\Notifications\\Notification"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "send": {
+            "name": "send",
+            "line": 33,
+            "short_desc": "Deliver the notification for this channel.",
+            "long_desc": "Implementations SHOULD be idempotent when possible, or document non-idempotent behavior.\nIf delivery fails, throw an exception to allow the caller (or a queue worker) to handle retries.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "see": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "notifiable": {
+                    "name": "notifiable",
+                    "line": 33,
+                    "short_desc": "The user\/entity receiving the notification.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "object",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "notification": {
+                    "name": "notification",
+                    "line": 33,
+                    "short_desc": "The notification instance.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Lib\\Notifications\\Notification",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "payload": {
+                    "name": "payload",
+                    "line": 33,
+                    "short_desc": "Usually the result of toX() (array\/DTO)",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "mixed",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "name": {
+            "name": "name",
+            "line": 40,
+            "short_desc": "The short channel name used in via(): e.g. 'database', 'mail', 'sms'.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The name of the channel.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

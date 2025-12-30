@@ -1,0 +1,60 @@
+{
+    "name": "Console\\Helpers\\ProfileImageDir",
+    "line": 13,
+    "short_desc": "Contains functions for creating and deleting the profile images directory.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Console\\Helpers",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/Console\/Helpers\/ProfileImageDir.php",
+    "relative_file": null,
+    "hash": "0f39622045b5258b56bf910b6b375e9a00783880",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Logger": "Core\\Lib\\Logging\\Logger",
+        "RecursiveIteratorIterator": "RecursiveIteratorIterator",
+        "RecursiveDirectoryIterator": "RecursiveDirectoryIterator",
+        "Command": "Symfony\\Component\\Console\\Command\\Command"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "rmdirProfileImageDirectories": {
+            "name": "rmdirProfileImageDirectories",
+            "line": 21,
+            "short_desc": "Performs rmdir operation on the profile images directory.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "A value that indicates success, invalid, or failure.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "IMAGES_PATH": {
+            "name": "IMAGES_PATH",
+            "line": 14,
+            "short_desc": null,
+            "long_desc": null,
+            "modifiers": 4,
+            "tags": []
+        }
+    }
+}

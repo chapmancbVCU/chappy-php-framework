@@ -1,0 +1,147 @@
+{
+    "name": "Core\\Services\\DashboardService",
+    "line": 13,
+    "short_desc": "Supports admin dashboard operations.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Core\\Services",
+    "file": "\/Users\/chadchapman\/Repos\/chappy-php-framework\/src\/core\/Services\/DashboardService.php",
+    "relative_file": null,
+    "hash": "6153d648564fa79ff0d3f94afafdde0e683926fe",
+    "parent": null,
+    "modifiers": 32,
+    "is_trait": false,
+    "is_interface": false,
+    "is_read_only": false,
+    "aliases": {
+        "Users": "App\\Models\\Users",
+        "AuthService": "Core\\Services\\AuthService",
+        "Pagination": "Core\\Lib\\Pagination\\Pagination",
+        "Session": "Core\\Session"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "checkIfCurrentUser": {
+            "name": "checkIfCurrentUser",
+            "line": 14,
+            "short_desc": null,
+            "long_desc": null,
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "user": {
+                    "name": "user",
+                    "line": 14,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\App\\Models\\Users",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                },
+                "redirect": {
+                    "name": "redirect",
+                    "line": 14,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": "''",
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "paginateUsers": {
+            "name": "paginateUsers",
+            "line": 27,
+            "short_desc": "Returns list of paginated users.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "An array of paginated users.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "pagination": {
+                    "name": "pagination",
+                    "line": 27,
+                    "short_desc": "Instance of Pagination class",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Core\\Lib\\Pagination\\Pagination",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": 0,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false,
+                    "is_read_only": false,
+                    "is_intersection_type": false
+                }
+            }
+        },
+        "totalUserCountExceptCurrent": {
+            "name": "totalUserCountExceptCurrent",
+            "line": 40,
+            "short_desc": "Returns query number of users excluding current.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "The number of users except current.",
+            "tags": [],
+            "see": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "is_intersection_type": false,
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}
