@@ -17,12 +17,13 @@ class Session {
     public const PRIMARY = "primary";
     public const SECONDARY = "secondary";
     public const DARK = "dark";
+    public const LIGHT = "light";
 
     /**
      * Adds a session alert message.
      *
      * @param string $type Can be info, success, warning, danger, primary, 
-     * secondary, or dark.
+     * secondary, light, or dark.
      * @param string $message The message you want to display in the alert.
      * @return void
      */
