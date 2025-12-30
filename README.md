@@ -4,7 +4,7 @@
 
 
 [Visit our Wiki](https://chapmancbvcu.github.io/chappy-php-starter/)
-
+[Chappy.php API](https://chapmancbvcu.github.io/chappy-php-framework/)
 
 # Chappy.php Framework
 
