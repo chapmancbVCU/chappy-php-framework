@@ -108,7 +108,7 @@
                                                                                 VALIDATOR_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Path to custom form validators.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -129,6 +129,17 @@
                                             <p><p>Generates a new user defined validator class.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_validatorTemplate">validatorTemplate</a>(string $validatorName)
+        
+                                            <p><p>Returns a string containing the structure for the new custom
+validator class with the name of the validator as the only parameter.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -137,7 +148,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_makeValidator">
-        <div class="location">at line 17</div>
+        <div class="location">at line 18</div>
         <code>        static            int
     <strong>makeValidator</strong>(string $validatorName)
         </code>
@@ -167,6 +178,50 @@
         <tr>
             <td>int</td>
             <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validatorTemplate">
+        <div class="location">at line 35</div>
+        <code>        static        private    string
+    <strong>validatorTemplate</strong>(string $validatorName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns a string containing the structure for the new custom
+validator class with the name of the validator as the only parameter.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$validatorName</td>
+                <td><p>The name for the new custom validator
+class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents for the new custom validator class.</p></td>
         </tr>
     </table>
 

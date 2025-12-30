@@ -8,11 +8,17 @@ use Core\Lib\Utilities\Str;
  * json files.
  */
 class View {
+  /** Path to components. */
     public const COMPONENTS_PATH = ROOT.DS.'resources'.DS.'views'.DS.'components'.DS;
+    /** Path to CSS files. */
     public const CSS_PATH = ROOT.DS.'resources'.DS.'css'.DS;
+    /** Path to layout files. */
     public const LAYOUT_PATH = ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS;
+    /** Path to view files. */
     public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
+    /** Path to widget files. */
     public const WIDGET_PATH = self::VIEW_PATH.'widgets'.DS;
+    
     /**
      * Returns contents of a card component.
      *

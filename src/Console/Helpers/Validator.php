@@ -7,6 +7,7 @@ use Console\Helpers\Tools;
  * Supports operations for the make:validator command.
  */
 class Validator {
+    /** Path to custom form validators. */
     private const VALIDATOR_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Validators'.DS;
     /**
      * Generates a new user defined validator class.
