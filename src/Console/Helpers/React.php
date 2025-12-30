@@ -10,8 +10,19 @@ use Symfony\Component\Console\Command\Command;
  * Contains functions that perform operations for React.js relate CLI commands.
  */
 class React {
+    /**
+     * Path to React.js components.
+     */
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
+
+    /**
+     * Path to React.js pages.
+     */
     public const PAGE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'pages'.DS;
+
+    /**
+     * Path to JavaScript utilities.
+     */
     public const UTILS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'utils'.DS;
     
     /**
