@@ -15,32 +15,61 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  * Contains functions for miscellaneous tasks.
  */
 class Tools {
+    /**
+     * Supports ability to log information to console.
+     *
+     * @var OutputInterface|null
+     */
     private static ?OutputInterface $output = null;
 
+    /** Value for background black. */
     public const BG_BLACK = '40';
+    /** Value for background red. */
     public const BG_RED = '41';
+    /** Value for background green. */
     public const BG_GREEN = '42';
+    /** Value for background yellow. */
     public const BG_YELLOW = '43';
+    /** Value for background blue. */
     public const BG_BLUE = '44';
+    /** Value for background magenta. */
     public const BG_MAGENTA = '45';
+    /** Value for background cyan. */
     public const BG_CYAN = '46';
+    /** Value for background light grey */
     public const BG_LIGHT_GREY = '47';
 
+    /** Value for text black. */
     public const TEXT_BLACK = '0;30';
+    /** Value for text white. */
     public const TEXT_WHITE = '1;37';
+    /** Value for text dark grey. */
     public const TEXT_DARK_GREY = '1;30';
+    /** Value for text red. */
     public const TEXT_RED = '0;31';
+    /** Value for text green. */
     public const TEXT_GREEN = '0;32';
+    /** Value for text brown. */
     public const TEXT_BROWN = '0;33';
+    /** Value for text yellow. */
     public const TEXT_YELLOW = '1;33';
+    /** Value for text blue. */
     public const TEXT_BLUE = '0;34';
+    /** Value for text magenta. */
     public const TEXT_MAGENTA = '0;35';
+    /** Value for text cyan. */
     public const TEXT_CYAN = '0;36';
+    /** Value for text light cyan. */
     public const TEXT_LIGHT_CYAN = '1;36';
+    /** Value for text light grey. */
     public const TEXT_LIGHT_GREY = '0;37';
+    /** Value for text light red. */
     public const TEXT_LIGHT_RED = '1;31';
+    /** Value for text light green. */
     public const TEXT_LIGHT_GREEN = '1;32';
+    /** Value for text light blue. */
     public const TEXT_LIGHT_BLUE = '1;34';
+    /** Value for text light magenta. */
     public const TEXT_LIGHT_MAGENTA = '1;35'; 
 
     /**
