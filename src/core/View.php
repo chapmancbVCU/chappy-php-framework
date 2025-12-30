@@ -128,6 +128,14 @@ class View extends stdClass {
         }
     }
 
+    /**
+     * Renders a React.js file.
+     *
+     * @param string $viewComponent The name of the component.
+     * @param array $props The prop to be pass to the component.
+     * @param string $entry The entry point for JavaScript.
+     * @return void
+     */
     public function renderJsx(string $viewComponent, array $props = [], string $entry = 'resources/js/app.jsx'): void
     {
         // allow existing controller style ($this->view->props) to keep working
