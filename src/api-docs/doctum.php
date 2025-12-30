@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use Doctum\Doctum;
-use Doctum\Parser\Filter\PublicFilter;
+use Doctum\Parser\Filter\TrueFilter;
 use Symfony\Component\Finder\Finder;
 
 define('DS', DIRECTORY_SEPARATOR);
@@ -24,5 +24,5 @@ return new Doctum($iterator, [
     'base_url' => '/docs/',
 
     // IMPORTANT: Doctum 5.x expects filter as an option (no setFilter() method)
-    'filter' => new PublicFilter(),
+    'filter' => new TrueFilter(),
 ]);
