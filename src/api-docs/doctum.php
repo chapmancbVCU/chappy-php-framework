@@ -18,10 +18,10 @@ $iterator = Finder::create()
 
 return new Doctum($iterator, [
     'title' => 'Chappy.php API',
-    'build_dir' => ROOT . DS . 'src' . DS . 'api-docs' . DS . 'views',
+    'build_dir' => ROOT . DS . 'docs',
     'cache_dir' => ROOT . DS . '.cache' . DS . 'doctum',
     'default_opened_level' => 2,
-    'base_url' => '/api-docs/',
+    'base_url' => '/docs/',
 
     // IMPORTANT: Doctum 5.x expects filter as an option (no setFilter() method)
     'filter' => new PublicFilter(),
