@@ -8,7 +8,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Console\Helpers\DBSeeder;
 
 /**
- * Undocumented class
+ * Supports operations for the make:seeder command.  Use this command 
+ * to make a database seeder.
  */
 class MakeSeederCommand extends Command {
     /**

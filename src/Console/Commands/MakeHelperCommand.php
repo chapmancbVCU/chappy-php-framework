@@ -8,7 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
- * Undocumented class
+ * Class for the make:command-helper command.  This class generates helpers 
+ * for your custom commands.
  */
 class MakeHelperCommand extends Command {
     /**
