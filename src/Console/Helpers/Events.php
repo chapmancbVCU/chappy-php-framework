@@ -219,6 +219,13 @@ class {$eventName} {
 PHP;
     }
 
+    /**
+     * Generates a stub for queue listener class.
+     *
+     * @param string $eventName The name of the event.
+     * @param string $listenerName The name of the listener.
+     * @return string The stub for a queue listener class.
+     */
     public static function queueListenerTemplate(string $eventName, string $listenerName): string {
         return <<<PHP
 <?php
