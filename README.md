@@ -3,7 +3,7 @@
 </div>
 
 
-[Visit our Wiki](https://chapmancbvcu.github.io/chappy-php-starter/)
+[Visit our Wiki](https://chapmancbvcu.github.io/chappy-php-starter/) <br>
 [Chappy.php API](https://chapmancbvcu.github.io/chappy-php-framework/)
 
 # Chappy.php Framework
