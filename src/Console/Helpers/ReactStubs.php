@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+/**
+ * A collection of React.js view, component, and util stubs.
+ */
 class ReactStubs {
     /**
      * Sub for auth/Login.jsx page component.
