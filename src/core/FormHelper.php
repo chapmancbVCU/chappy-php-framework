@@ -723,7 +723,7 @@ class FormHelper {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @param string A surrounding div and the textarea element.
+     * @return string A surrounding div and the textarea element.
      */
     public static function textareaBlock(
         string $label, 
