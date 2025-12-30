@@ -5,13 +5,23 @@ use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
 
-
 /**
  * Supports commands related to the MailerService.
  */
 class Email {
+    /**
+     * Path for email layouts.
+     */
     private const LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+
+    /**
+     * Path for custom mailers.
+     */
     private const MAILER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'CustomMailers'.DS;
+
+    /**
+     * Path for email templates.
+     */
     private const TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
 
     /**
