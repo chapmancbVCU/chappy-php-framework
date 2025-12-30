@@ -30,7 +30,7 @@ abstract class Notification {
      * Generic array representation (fallback for logging, webhooks, etc.).
      * By default, defer to the database payload.
      *
-     * @param object $notifiable
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
      * @return array<string,mixed>
      */
     public function toArray(object $notifiable): array

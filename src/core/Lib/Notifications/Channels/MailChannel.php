@@ -56,6 +56,11 @@ use Core\Lib\Mail\MailerService;        // <- your service
  *    ]
  */
 final class MailChannel implements Channel {
+    /**
+     * Constructor for MailChannel.
+     *
+     * @param MailerService|null $service The mailer service object.
+     */
     public function __construct(private ?MailerService $service = null) {
         $this->service ??= new MailerService();
     }
@@ -190,6 +195,7 @@ final class MailChannel implements Channel {
         throw new NotifiableRoutingException("No email route found for notifiable entity.");
     }
 
+    #[\Override]
     /**
      * @param object $notifiable The user/entity receiving the notification.
      * @param Notification $notification The notification instance.
@@ -202,7 +208,6 @@ final class MailChannel implements Channel {
      * @throws InvalidArgumentException|RuntimeException
      * @return void
      */
-    #[\Override]
     public function send(object $notifiable, Notification $notification, mixed $payload): void {
         if(!($notification instanceof Notification)) {
             throw new InvalidPayloadException('MailChannel expects a Notification instance.');

@@ -16,6 +16,9 @@ use Core\Lib\Notifications\Contracts\Channel;
  * JSON structure and writes it to the configured Logger.
  */
 final class LogChannel implements Channel {
+    /**
+     * The available control keys.
+     */
     private const CONTROL_KEYS = ['message','level','log_channel','_meta','meta'];
 
     /**

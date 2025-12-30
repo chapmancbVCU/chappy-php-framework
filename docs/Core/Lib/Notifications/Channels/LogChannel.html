@@ -111,7 +111,7 @@ JSON structure and writes it to the configured Logger.</p></p>        </div>
                                                                                 CONTROL_KEYS
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The available control keys.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -124,12 +124,62 @@ JSON structure and writes it to the configured Logger.</p></p>        </div>
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_configureLog">configureLog</a>(array $data, string $message, array $meta, string $notifiableClass, string $notificationClass)
+        
+                                            <p><p>Configures log array</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_controlKeys">controlKeys</a>()
+        
+                                            <p><p>Return the list of control keys that will be stripped from the data bag.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logData">logData</a>(object $notifiable, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, array $payloadArr)
+        
+                                            <p><p>Build the consolidated &quot;data&quot; bag for logging.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logMessage">logMessage</a>(array $data, object $notifiable, string $notifiableClass, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, string $notificationClass, string $payloadMessage)
+        
+                                            <p><p>Determine the human‑readable message to log.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
                     <a href="#method_name">name</a>()
         
                                             <p><p>Returns the canonical name of the channel.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_payloadMessage">payloadMessage</a>(array $payloadArr)
+        
+                                            <p><p>Extract a string message from the payload, if present.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -149,8 +199,235 @@ JSON structure and writes it to the configured Logger.</p></p>        </div>
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method_configureLog">
+        <div class="location">at line 34</div>
+        <code>        static        private    array
+    <strong>configureLog</strong>(array $data, string $message, array $meta, string $notifiableClass, string $notificationClass)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Configures log array</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Information associated with notification.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>Messages sent for logging.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$meta</td>
+                <td><p>Any meta data that is available.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$notifiableClass</td>
+                <td><p>The name of the notifiable class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$notificationClass</td>
+                <td><p>The name of the notification class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The log array.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_controlKeys">
+        <div class="location">at line 57</div>
+        <code>        static        private    array
+    <strong>controlKeys</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+                            <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;Exposed for testing and reuse; not part of the public channel API.</td>
+            </tr>
+        </table>
+                &nbsp;
+    
+
+        <div class="method-description">
+                            <p><p>Return the list of control keys that will be stripped from the data bag.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logData">
+        <div class="location">at line 75</div>
+        <code>        static        private    array
+    <strong>logData</strong>(object $notifiable, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, array $payloadArr)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Build the consolidated &quot;data&quot; bag for logging.</p></p>                <p><p>Strategy:
+1) Start with the notification’s {<a href="../../../../Core/Lib/Notifications/Notification.html">\Core\Lib\Notifications\Notification::toArray()}</a> result.
+2) Merge in the payload array <em>minus</em> control keys, allowing payload
+to override keys from step 1 so per‑send overrides are visible.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$notifiable</td>
+                <td><p>The entity receiving the notification.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></td>
+                <td>$notification</td>
+                <td><p>The notification instance.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$payloadArr</td>
+                <td><p>Payload provided to the channel.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>Final data bag to include under &quot;data&quot;.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logMessage">
+        <div class="location">at line 111</div>
+        <code>        static        private    string
+    <strong>logMessage</strong>(array $data, object $notifiable, string $notifiableClass, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, string $notificationClass, string $payloadMessage)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determine the human‑readable message to log.</p></p>                <p><p>Priority:
+1) Non‑null payload‑provided message (already normalized to string)
+2) Notification‑provided {<a href="../../../../Core/Lib/Notifications/Notification.html">\Core\Lib\Notifications\Notification::toLog()}</a> string
+3) &quot;data['message']&quot; if present and string
+4) A synthesized &quot;Notification X for Y&quot; fallback</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Final data bag (may contain 'message').</p></td>
+            </tr>
+                    <tr>
+                <td>object</td>
+                <td>$notifiable</td>
+                <td><p>The notifiable entity.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$notifiableClass</td>
+                <td><p>Class name of the notifiable.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></td>
+                <td>$notification</td>
+                <td><p>The notification instance.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$notificationClass</td>
+                <td><p>Class name of the notification.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$payloadMessage</td>
+                <td><p>Message extracted from payload, if any.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Human‑readable message to include in the log entry.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_name">
-        <div class="location">at line 135</div>
+        <div class="location">at line 138</div>
         <code>        static            string
     <strong>name</strong>()
         </code>
@@ -182,8 +459,51 @@ when the notification's <code>via()</code> method includes &quot;log&quot;.</p><
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_payloadMessage">
+        <div class="location">at line 152</div>
+        <code>        static        private    string
+    <strong>payloadMessage</strong>(array $payloadArr)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Extract a string message from the payload, if present.</p></p>                <p><p>Accepts either a string or any JSON‑serializable value under the &quot;message&quot;
+key. Non‑string values are JSON‑encoded with unicode and slashes preserved.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$payloadArr</td>
+                <td><p>The payload provided to the channel.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A normalized message string or null if no message key exists.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 177</div>
+        <div class="location">at line 180</div>
         <code>                    void
     <strong>send</strong>(object $notifiable, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, mixed $payload)
         </code>
