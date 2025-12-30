@@ -19,6 +19,7 @@ class EventServiceProvider extends ServiceProvider {
     /**
      * The event listener mappings for the application's built-in framework 
      * events.
+     * @var array
      */
     protected array $listen = [
         UserPasswordResetRequested::class => [
