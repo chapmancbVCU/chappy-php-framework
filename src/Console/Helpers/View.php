@@ -151,7 +151,6 @@ PHP;
      *
      * @param string $layoutName The name of the layout.
      * @param string $menuName The name of the menu to be used.
-     * @param bool $react When true the layout is compatible with React.js.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeLayout(string $layoutName, string $menuName = 'main'): int {
