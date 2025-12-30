@@ -24,7 +24,7 @@ class MigrateRefreshCommand extends Command
     {
         $this->setName('migrate:refresh')
             ->setDescription('Drops all tables with down function and runs a Database Migration!')
-            ->setHelp('Drops all tables and runs a Database Migration')
+            ->setHelp('migrate:refresh with --seed to seed db and --step=<steps> as the number of steps to roll back.')
             ->addOption(
                 'step',
                 null,
