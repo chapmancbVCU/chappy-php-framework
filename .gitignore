@@ -4,6 +4,6 @@
 /.vscode/
 .DS_Store
 Thumbs.db*
-cache/
+/.cache/
 
 composer.lock
