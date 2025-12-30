@@ -6,6 +6,7 @@ use Core\Input;
 use Core\Models\ACL;
 use App\Models\Users;
 use Core\Lib\Utilities\Arr;
+use Core\Session;
 
 /**
  * Collection of functions for managing User's ACLs.
@@ -65,12 +66,12 @@ class ACLService {
      */
     public static function checkACL(ACL $acl): void {
         if (!$acl) {
-            flashMessage('danger', "ACL not found.");
+            flashMessage(Session::DANGER, "ACL not found.");
             redirect('admindashboard.manageAcls');
         }
     
         if ($acl->isAssignedToUsers()) {
-            flashMessage('danger', "Access denied. '{$acl->acl}' is assigned to one or more users and cannot be edited.");
+            flashMessage(Session::DANGER, "Access denied. '{$acl->acl}' is assigned to one or more users and cannot be edited.");
             redirect('admindashboard.manageAcls');
         }
     }
@@ -87,12 +88,12 @@ class ACLService {
 
         $users = $acl->isAssignedToUsers();
         if(is_countable($users) > 0) {
-            flashMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
+            flashMessage(Session::INFO, "Cannot delete ". $acl->acl. ", assigned to one or more users.");
             return false;
         }
         
         $acl->delete();
-        flashMessage('success', 'ACL has been deleted');
+        flashMessage(Session::SUCCESS, 'ACL has been deleted');
         return true;
     }
 

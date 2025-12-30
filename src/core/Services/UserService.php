@@ -12,6 +12,7 @@ use Core\Lib\Utilities\DateTime;
 use Core\Lib\Events\EventManager;
 use Core\Lib\Events\AccountDeactivated;
 use Core\Lib\Events\UserPasswordResetRequested;
+use Core\Session;
 
 /**
  * Provides functions for managing users.
@@ -30,9 +31,9 @@ final class UserService {
         if($user && $user->acl != '["Admin"]') {
             ProfileImages::deleteImages($id, $unlink);
             $user->delete();
-            flashMessage('success', 'User has been deleted.');
+            flashMessage(Session::SUCCESS, 'User has been deleted.');
         } else {
-            flashMessage('danger', 'Cannot delete Admin user!');
+            flashMessage(Session::DANGER, 'Cannot delete Admin user!');
         }
     }
 
@@ -62,7 +63,7 @@ final class UserService {
         $currentUser = AuthService::currentUser();
 
         if (!$user || !$currentUser || $user->id !== $currentUser->id) {
-            flashMessage('danger', 'You do not have permission to edit this user.');
+            flashMessage(Session::DANGER, 'You do not have permission to edit this user.');
             redirect('');
         }
     }

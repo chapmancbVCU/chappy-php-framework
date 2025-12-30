@@ -4,6 +4,7 @@ namespace Core\Services;
 
 use App\Models\Users;
 use Core\Models\Notifications;
+use Core\Session;
 
 /**
  * Supports tasks related to notifications.
@@ -29,7 +30,7 @@ class NotificationService {
         
         if (!empty($messages)) {
             $finalMessage = implode('<br>', $messages);
-            flashMessage('info', $finalMessage);
+            flashMessage(Session::INFO, $finalMessage);
         }
     }
 

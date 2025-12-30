@@ -4,6 +4,7 @@ namespace Core\Lib\Listeners;
 
 use Core\Lib\Events\UserPasswordResetRequested;
 use Core\Lib\Mail\PasswordResetMailer;
+use Core\Session;
 
 /**
  * Class for sending password reset E-mail.
@@ -17,7 +18,7 @@ class SendPasswordResetEmail {
      */
     public function handle(UserPasswordResetRequested $event): void {
         $user = $event->user;
-        flashMessage('info', "Reset Password Email sent to {$user->username} via {$user->email}");
+        flashMessage(Session::INFO, "Reset Password Email sent to {$user->username} via {$user->email}");
         PasswordResetMailer::sendTo($user);
     }
 }

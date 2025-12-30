@@ -4,6 +4,7 @@ namespace Core\Lib\Listeners;
 
 use Core\Lib\Events\AccountDeactivated;
 use Core\Lib\Mail\AccountDeactivatedMailer;
+use Core\Session;
 
 /**
  * Class for sending account deactivated E-mail.
@@ -17,7 +18,7 @@ class SendAccountDeactivatedEmail {
      */
     public function handle(AccountDeactivated $event): void {
         $user = $event->user;
-        flashMessage('info', "Account Deactivated Email sent to {$user->username} via {$user->email}");
+        flashMessage(Session::INFO, "Account Deactivated Email sent to {$user->username} via {$user->email}");
         AccountDeactivatedMailer::sendTo($user);
     }
 }

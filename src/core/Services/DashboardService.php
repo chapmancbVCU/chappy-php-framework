@@ -5,6 +5,7 @@ namespace Core\Services;
 use App\Models\Users;
 use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
+use Core\Session;
 
 /**
  * Supports admin dashboard operations.
@@ -12,7 +13,7 @@ use Core\Lib\Pagination\Pagination;
 final class DashboardService {
     public static function checkIfCurrentUser(Users $user, string $redirect = '') {
         if($user == AuthService::currentUser()) {
-            flashMessage('danger', 'Logged in admin user can\'t be edited or viewed through admin dashboard.');
+            flashMessage(Session::DANGER, 'Logged in admin user can\'t be edited or viewed through admin dashboard.');
             redirect($redirect);
         }
     }
