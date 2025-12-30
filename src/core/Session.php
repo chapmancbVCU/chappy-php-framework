@@ -17,7 +17,7 @@ class Session {
      */
     public static function addMessage(string $type, string $message): void {
         $sessionName = 'alert-' . $type;
-        Logger::log($message, $type);
+        Logger::log("Session::addMessage(): ".$message);
         self::set($sessionName, $message);
     }
 
