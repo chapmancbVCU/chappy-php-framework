@@ -7,6 +7,7 @@ use Core\Lib\Utilities\DateTime;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Config;
+use Console\Helpers\Tools;
 use Symfony\Component\VarDumper\VarDumper;
 
 if (!function_exists('asset')) {
@@ -128,6 +129,32 @@ if(!function_exists('flashMessage')) {
      */
     function flashMessage(string $type, string $message): void {
         Session::addMessage($type, $message);
+    }
+}
+
+/**
+ * Generates output messages for console commands.
+ *
+ * @param string $message The message we want to show.
+ * @param string $level The level of severity for log file.  The valid 
+ * levels are info, debug, warning, error, critical, alert, and emergency.
+ * @param string $background The background color.  This function 
+ * supports black, red, green, yellow, blue, magenta, cyan, and 
+ * light-grey
+ * @param string $text The color of the text.  This function supports 
+ * black, white, dark-grey, red, green, brown, blue, magenta, cyan, 
+ * light-cyan, light-grey, light-red, light green, light-blue, and 
+ * light-magenta.
+ * @return void
+ */
+if(!function_exists('info')) {
+    function info(
+        string $message, 
+        string $level = Logger::INFO, 
+        string $background = Tools::BG_GREEN, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, $level, $background, $text);
     }
 }
 
