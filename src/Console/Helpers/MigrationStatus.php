@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+/**
+ * Supports the tracking of migration status for tables.
+ */
 class MigrationStatus {
     // Instance variables
     private $batch;
