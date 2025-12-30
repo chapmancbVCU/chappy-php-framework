@@ -8,14 +8,51 @@ use InvalidArgumentException;
  * Provides support for file uploads.
  */
 class Uploads {
+    /**
+     * Path to the bucket where file are stored.
+     * @var string
+     */
     private string $_bucket;
+
+    /**
+     * An array of allowed file types.
+     * @var array
+     */
     protected array $_allowedFileTypes = [];
+
+    /**
+     * An array of error objects.
+     * @var array
+     */
     private array $_errors = [];
+
+    /**
+     * The name of the field associated with file upload.
+     * @var string
+     */
     protected string $_fieldName;
+
+    /**
+     * An array containing objects with information about files.
+     * @var array
+     */
     protected array $_files= []; 
+
+    /**
+     * The maximum allowed upload size.
+     * @var integer
+     */
     protected int $_maxAllowedSize;
+
+    /** Constant for specifying multiple file upload. */
     const MULTIPLE = 'multiple';
+    /** Constant for specifying single file upload. */
     const SINGLE = 'single';
+
+    /**
+     * Message describing maximum allowable size.
+     * @var string
+     */
     protected string $sizeMsg;
 
     /**

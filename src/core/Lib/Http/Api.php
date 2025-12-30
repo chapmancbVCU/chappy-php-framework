@@ -57,11 +57,11 @@ class Api {
 
     /**
      * Root cache directory for the application.
-     * @var string
      */
     private const CACHE_DIRECTORY = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'cache';
 
     /**
+     * Constructor for Api object.
      * @param string               $baseUrl         Service base URL (e.g., "https://api.example.com")
      * @param string               $cacheNamespace  Subdirectory under cache root (e.g., "api", "weather")
      * @param array<string,string> $defaultHeaders  Default headers for all requests

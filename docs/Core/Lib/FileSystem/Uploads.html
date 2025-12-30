@@ -107,7 +107,7 @@
                                                                                                                         MULTIPLE
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for specifying multiple file upload.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -116,13 +116,81 @@
                                                                                                                         SINGLE
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for specifying single file upload.</p></em></p>
                     <p></p>
                 </td>
             </tr>
             </table>
 
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property__bucket">
+                                                            private                    string
+                                                                                
+                                    </td>
+                <td>$_bucket</td>
+                <td class="last"><p>Path to the bucket where file are stored.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__allowedFileTypes">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$_allowedFileTypes</td>
+                <td class="last"><p>An array of allowed file types.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__errors">
+                                                            private                    array
+                                                                                
+                                    </td>
+                <td>$_errors</td>
+                <td class="last"><p>An array of error objects.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__fieldName">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$_fieldName</td>
+                <td class="last"><p>The name of the field associated with file upload.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__files">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$_files</td>
+                <td class="last"><p>An array containing objects with information about files.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__maxAllowedSize">
+                                        protected                                        int
+                                                                                
+                                    </td>
+                <td>$_maxAllowedSize</td>
+                <td class="last"><p>The maximum allowed upload size.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_sizeMsg">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$sizeMsg</td>
+                <td class="last"><p>Message describing maximum allowable size.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -135,6 +203,16 @@
                     <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\FileSystem\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, string $bucket, string $sizeMsg, string $mode)
         
                                             <p><p>Creates instance of Uploads class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_addErrorMessage">addErrorMessage</a>(string $name, string $message)
+        
+                                            <p><p>Adds an error message to the $_errors array.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -218,6 +296,26 @@ presentable to user during validation.</p></p>                </div>
                                             <p><p>Reports on success of validation.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_validateFileType">validateFileType</a>()
+        
+                                            <p><p>Validates file type and sets error message if file type is invalid.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_validateSize">validateSize</a>()
+        
+                                            <p><p>Validates file size and sets error message if file is too large.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -226,7 +324,7 @@ presentable to user during validation.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 35</div>
+        <div class="location">at line 72</div>
         <code>                    
     <strong>__construct</strong>(<abbr title="Core\Lib\FileSystem\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, string $bucket, string $sizeMsg, string $mode)
         </code>
@@ -286,8 +384,55 @@ working with a single file upload or an array regarding form setup.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_addErrorMessage">
+        <div class="location">at line 98</div>
+        <code>            protected        void
+    <strong>addErrorMessage</strong>(string $name, string $message)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds an error message to the $_errors array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name of the error.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The message associated with this error.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_errorReporting">
-        <div class="location">at line 78</div>
+        <div class="location">at line 115</div>
         <code>                    void
     <strong>errorReporting</strong>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
         </code>
@@ -340,7 +485,7 @@ presentable to user during validation.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateUploadFilename">
-        <div class="location">at line 103</div>
+        <div class="location">at line 140</div>
         <code>                    string
     <strong>generateUploadFilename</strong>(string $originalFilename)
         </code>
@@ -392,7 +537,7 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getFiles">
-        <div class="location">at line 116</div>
+        <div class="location">at line 153</div>
         <code>                    array
     <strong>getFiles</strong>()
         </code>
@@ -424,7 +569,7 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleUpload">
-        <div class="location">at line 135</div>
+        <div class="location">at line 172</div>
         <code>        static            <a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
     <strong>handleUpload</strong>(array $file, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name, string $mode = self::SINGLE)
         </code>
@@ -499,7 +644,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_restructureFiles">
-        <div class="location">at line 181</div>
+        <div class="location">at line 218</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, string $mode = self::SINGLE)
         </code>
@@ -546,7 +691,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 213</div>
+        <div class="location">at line 250</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -578,7 +723,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_upload">
-        <div class="location">at line 249</div>
+        <div class="location">at line 286</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -630,7 +775,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validates">
-        <div class="location">at line 269</div>
+        <div class="location">at line 306</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>
@@ -651,6 +796,70 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             <td>bool|array</td>
             <td><p>True if validation is successful.  Otherwise,
 we return the $_errors array.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validateFileType">
+        <div class="location">at line 315</div>
+        <code>            protected        void
+    <strong>validateFileType</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Validates file type and sets error message if file type is invalid.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validateSize">
+        <div class="location">at line 355</div>
+        <code>            protected        void
+    <strong>validateSize</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Validates file size and sets error message if file is too large.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
         </tr>
     </table>
 

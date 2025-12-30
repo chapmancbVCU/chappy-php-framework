@@ -122,6 +122,65 @@
             </table>
 
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_baseUrl">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$baseUrl</td>
+                <td class="last"><p>Base URL (no trailing slash), e.g. &quot;<a href="https://api.example.com/v1">https://api.example.com/v1</a>&quot;</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_cacheDir">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$cacheDir</td>
+                <td class="last"><p>Absolute path to the cache directory for this client/namespace.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_defaultHeaders">
+                                        protected                                        <abbr title="Core\Lib\Http\array&lt;string,string&gt;">array&lt;string,string&gt;</abbr>
+                                                                                
+                                    </td>
+                <td>$defaultHeaders</td>
+                <td class="last"><p>Default headers sent on every request (merged with per-call headers).</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_defaultQuery">
+                                        protected                                        <abbr title="Core\Lib\Http\array&lt;string,mixed&gt;">array&lt;string,mixed&gt;</abbr>
+                                                                                
+                                    </td>
+                <td>$defaultQuery</td>
+                <td class="last"><p>Default query parameters merged into every request (per-call overrides).</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_defaultTtl">
+                                        protected                                        int
+                                                                                
+                                    </td>
+                <td>$defaultTtl</td>
+                <td class="last"><p>Default TTL (seconds) for GET cache. 0 disables caching.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_timeout">
+                                        protected                                        int
+                                                                                
+                                    </td>
+                <td>$timeout</td>
+                <td class="last"><p>Connection/overall timeout in seconds.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -133,8 +192,37 @@
                 <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(string $baseUrl, string $cacheNamespace = &#039;api&#039;, array $defaultHeaders = [&#039;Accept&#039; =&gt; &#039;application/json&#039;], array $defaultQuery = [], int $defaultTtl = 0, int $timeout = 6)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p><p>Constructor for Api object.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_buildUrl">buildUrl</a>(string $path, array $query)
+        
+                                            <p><p>Build an absolute URL with merged default + per-call query parameters.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_cacheFile">cacheFile</a>(string $url)
+        
+                                            <p><p>Compute the cache filename for a given URL.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_flattenHeaders">flattenHeaders</a>(array $headers)
+        
+                                            <p><p>Convert an associative array of headers into &quot;Key: Value&quot; lines.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -157,6 +245,36 @@
                                             <p><p>Perform a POST request with a JSON body and expect a JSON response.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_readCache">readCache</a>(string $url, int $ttl)
+        
+                                            <p><p>Read a cached JSON response for a URL if it exists and is fresh.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_requestJson">requestJson</a>(string $method, string $url, string|null $body, array $headers)
+        
+                                            <p><p>Core HTTP request using cURL that decodes JSON and throws on errors.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_writeCache">writeCache</a>(string $url, array $data)
+        
+                                            <p><p>Persist a decoded JSON response to the cache for a given URL.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -175,8 +293,7 @@
             
 
         <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
+                            <p><p>Constructor for Api object.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -215,6 +332,137 @@
             </table>
 
             
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_buildUrl">
+        <div class="location">at line 99</div>
+        <code>            protected        string
+    <strong>buildUrl</strong>(string $path, array $query)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Build an absolute URL with merged default + per-call query parameters.</p></p>                <p><p>Per-call parameters override defaults on conflict.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td><p>Path relative to the base URL (e.g., &quot;/weather&quot;)</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$query</td>
+                <td><p>Per-call query parameters</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Absolute URL including query string</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_cacheFile">
+        <div class="location">at line 111</div>
+        <code>            protected        string
+    <strong>cacheFile</strong>(string $url)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Compute the cache filename for a given URL.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td><p>Absolute URL</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Absolute path to the cache file</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_flattenHeaders">
+        <div class="location">at line 121</div>
+        <code>            protected        array
+    <strong>flattenHeaders</strong>(array $headers)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Convert an associative array of headers into &quot;Key: Value&quot; lines.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$headers</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             
@@ -343,6 +591,166 @@
             </tr>
             </table>
 
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_readCache">
+        <div class="location">at line 188</div>
+        <code>            protected        array|null
+    <strong>readCache</strong>(string $url, int $ttl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Read a cached JSON response for a URL if it exists and is fresh.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td><p>Absolute URL used as cache key</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$ttl</td>
+                <td><p>TTL in seconds</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|null</td>
+            <td><p>Decoded JSON or null if cache miss/stale</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_requestJson">
+        <div class="location">at line 209</div>
+        <code>            protected        array
+    <strong>requestJson</strong>(string $method, string $url, string|null $body, array $headers)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Core HTTP request using cURL that decodes JSON and throws on errors.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td><p>HTTP method (e.g., &quot;GET&quot;, &quot;POST&quot;)</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td><p>Absolute URL</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$body</td>
+                <td><p>Raw request body (e.g., JSON) or null</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$headers</td>
+                <td><p>Extra headers (merged over defaults)</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>Decoded JSON as an associative array</p></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Exceptions/API/APIException.html"><abbr title="Core\Exceptions\API\APIException">APIException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeCache">
+        <div class="location">at line 255</div>
+        <code>            protected        void
+    <strong>writeCache</strong>(string $url, array $data)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Persist a decoded JSON response to the cache for a given URL.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td><p>Absolute URL used as cache key</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Decoded JSON to write</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
             
             
                     </div>

@@ -129,7 +129,9 @@
 immediately after another column in the table (MySQL only).</p></dd><dt><a href="Core/Lib/Database/Migration.html#method_aclSetup">
 <abbr title="Core\Lib\Database\Migration">Migration</abbr>::aclSetup</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Migration.html"><abbr title="Core\Lib\Database\Migration">Migration</abbr></a></em></dt>
                     <dd><p>Setup acl table's initial fields during first db migration.</p></dd><dt><a href="Core/Lib/Events/AccountDeactivated.html"><abbr title="Core\Lib\Events\AccountDeactivated">AccountDeactivated</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Events.html">Core\Lib\Events</a></em></dt>
-                    <dd><p>Simple DTO (Data Transfer Object) class for password reset event.</p></dd><dt><a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Http.html">Core\Lib\Http</a></em></dt>
+                    <dd><p>Simple DTO (Data Transfer Object) class for password reset event.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_addErrorMessage">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::addErrorMessage</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>Adds an error message to the $_errors array.</p></dd><dt><a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Http.html">Core\Lib\Http</a></em></dt>
                     <dd><p>Lightweight HTTP JSON client with optional on-disk caching.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_apiCsrfCheck">
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>::apiCsrfCheck</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
                     <dd><p>Checks if CSRF token has been tampered with.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
@@ -247,7 +249,11 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr>::backoff</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/Contracts/QueuePreferences.html"><abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr></a></em></dt>
                     <dd><p>Get the backoff time(s) between retry attempts.</p></dd><dt><a href="Core/Lib/Events/EventManager.html#method_boot">
 <abbr title="Core\Lib\Events\EventManager">EventManager</abbr>::boot</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventManager.html"><abbr title="Core\Lib\Events\EventManager">EventManager</abbr></a></em></dt>
-                    <dd><p>Boots event service upon application start.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_buildAndSend">
+                    <dd><p>Boots event service upon application start.</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_baseUrl">
+<abbr title="Core\Lib\Http\Api">Api</abbr>#baseUrl</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Base URL (no trailing slash), e.g. &quot;<a href="https://api.example.com/v1">https://api.example.com/v1</a>&quot;</p></dd><dt><a href="Core/Lib/Http/Api.html#method_buildUrl">
+<abbr title="Core\Lib\Http\Api">Api</abbr>::buildUrl</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Build an absolute URL with merged default + per-call query parameters.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_buildAndSend">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::buildAndSend</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>Common send logic shared by all mailers.</p></dd><dt><a href="Core/Lib/Notifications/NotificationManager.html#method_boot">
 <abbr title="Core\Lib\Notifications\NotificationManager">NotificationManager</abbr>::boot</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/NotificationManager.html"><abbr title="Core\Lib\Notifications\NotificationManager">NotificationManager</abbr></a></em></dt>
@@ -335,7 +341,11 @@ fails the user is routed to a view stating access is restricted.</p></dd><dt><a 
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Create the table.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_create">
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
-                    <dd><p>Create a new table.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_content">
+                    <dd><p>Create a new table.</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_cacheDir">
+<abbr title="Core\Lib\Http\Api">Api</abbr>#cacheDir</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Absolute path to the cache directory for this client/namespace.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_cacheFile">
+<abbr title="Core\Lib\Http\Api">Api</abbr>::cacheFile</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Compute the cache filename for a given URL.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_content">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::content</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
                     <dd><p>Used to assemble array for attachment when content key is used.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications.html">Core\Lib\Notifications</a></em></dt>
                     <dd><p>Registry for notification channel drivers.</p></dd><dt><a href="Core/Lib/Notifications/Contracts/Channel.html"><abbr title="Core\Lib\Notifications\Contracts\Channel">Channel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Contracts.html">Core\Lib\Notifications\Contracts</a></em></dt>
@@ -481,7 +491,13 @@ then warnings are presented to the user.</p></dd><dt><a href="Core/Lib/Database/
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::dispatch</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
                     <dd><p>Dispatches an event</p></dd><dt><a href="Core/Lib/Events/EventManager.html#method_dispatcher">
 <abbr title="Core\Lib\Events\EventManager">EventManager</abbr>::dispatcher</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventManager.html"><abbr title="Core\Lib\Events\EventManager">EventManager</abbr></a></em></dt>
-                    <dd><p>Get the dispatcher (after boot)</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
+                    <dd><p>Get the dispatcher (after boot)</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_defaultHeaders">
+<abbr title="Core\Lib\Http\Api">Api</abbr>#defaultHeaders</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Default headers sent on every request (merged with per-call headers).</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_defaultQuery">
+<abbr title="Core\Lib\Http\Api">Api</abbr>#defaultQuery</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Default query parameters merged into every request (per-call overrides).</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_defaultTtl">
+<abbr title="Core\Lib\Http\Api">Api</abbr>#defaultTtl</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Default TTL (seconds) for GET cache. 0 disables caching.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Database-backed notification channel.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html"><abbr title="Core\Lib\Queue\DatabaseQueueDriver">DatabaseQueueDriver</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Queue.html">Core\Lib\Queue</a></em></dt>
                     <dd><p>Implements the QueueDriverInterface.  This driver implements functions
 that support database queue operations.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html#method_delete">
@@ -639,7 +655,9 @@ RuntimeException class.</p></dd><dt><a href="Core/FormHelper.html"><abbr title="
                     <dd><p>Define a foreign key (MySQL only).</p></dd><dt><a href="Core/Lib/Events/UserRegistered.html#method_fromPayload">
 <abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr>::fromPayload</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/UserRegistered.html"><abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr></a></em></dt>
                     <dd><p>Retrieves information from payload array and returns new instance of
-this class.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_from">
+this class.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_flattenHeaders">
+<abbr title="Core\Lib\Http\Api">Api</abbr>::flattenHeaders</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Convert an associative array of headers into &quot;Key: Value&quot; lines.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_from">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::from</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Factory method to build a job from a listener class and an event instance.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_fill">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::fill</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1499,7 +1517,11 @@ element.  Compatible with radio button groups.</p></dd><dt><a href="Core/Lib/Dat
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::restructureFiles</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Restructures $_FILES data based on mode.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_runValidation">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
-                    <dd><p>Performs validation tasks.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_register">
+                    <dd><p>Performs validation tasks.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_readCache">
+<abbr title="Core\Lib\Http\Api">Api</abbr>::readCache</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Read a cached JSON response for a URL if it exists and is fresh.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_requestJson">
+<abbr title="Core\Lib\Http\Api">Api</abbr>::requestJson</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Core HTTP request using cURL that decodes JSON and throws on errors.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_register">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::register</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
                     <dd><p>Register (or override) a channel implementation under a short name.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_resolve">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::resolve</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
@@ -1686,7 +1708,9 @@ Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Seeder.html"><abbr title
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::setQueueName</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
                     <dd><p>Resolve the queue name for a queued listener or job.</p></dd><dt>$<a href="Core/Lib/Events/UserRegistered.html#property_shouldSendEmail">
 <abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr>#shouldSendEmail</a> &mdash; <em>Property in class <a href="Core/Lib/Events/UserRegistered.html"><abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr></a></em></dt>
-                    <dd><p>Flag to control if an email should be sent.</p></dd><dt><a href="Core/Lib/Listeners/SendAccountDeactivatedEmail.html"><abbr title="Core\Lib\Listeners\SendAccountDeactivatedEmail">SendAccountDeactivatedEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
+                    <dd><p>Flag to control if an email should be sent.</p></dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property_sizeMsg">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#sizeMsg</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>Message describing maximum allowable size.</p></dd><dt><a href="Core/Lib/Listeners/SendAccountDeactivatedEmail.html"><abbr title="Core\Lib\Listeners\SendAccountDeactivatedEmail">SendAccountDeactivatedEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending account deactivated E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendPasswordResetEmail.html"><abbr title="Core\Lib\Listeners\SendPasswordResetEmail">SendPasswordResetEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending password reset E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendPasswordUpdateEmail.html"><abbr title="Core\Lib\Listeners\SendPasswordUpdateEmail">SendPasswordUpdateEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending password updated E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendRegistrationEmail.html"><abbr title="Core\Lib\Listeners\SendRegistrationEmail">SendRegistrationEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
@@ -1847,7 +1871,9 @@ for setting  attribute tags in the form section.</p></dd><dt><a href="Core/Lib/D
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::table</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
                     <dd><p>Modify an existing table.</p></dd><dt><a href="Core/Lib/Events/UserRegistered.html#method_toPayload">
 <abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr>::toPayload</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/UserRegistered.html"><abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr></a></em></dt>
-                    <dd><p>Adds instance variables to payload.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_toArray">
+                    <dd><p>Adds instance variables to payload.</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_timeout">
+<abbr title="Core\Lib\Http\Api">Api</abbr>#timeout</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Connection/overall timeout in seconds.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_toArray">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::toArray</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
                     <dd><p>Generic array representation (fallback for logging, webhooks, etc.).</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_toDatabase">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::toDatabase</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
@@ -2029,7 +2055,11 @@ class.</p></dd><dt><a href="Core/Exceptions/View/ViewNotFoundException.html"><ab
 <abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr>::viaQueue</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/Contracts/QueuePreferences.html"><abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr></a></em></dt>
                     <dd><p>Get the name of the queue to send the job/event listener to.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_validates">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::validates</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
-                    <dd><p>Reports on success of validation.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_via">
+                    <dd><p>Reports on success of validation.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_validateFileType">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::validateFileType</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>Validates file type and sets error message if file type is invalid.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_validateSize">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::validateSize</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>Validates file size and sets error message if file is too large.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_via">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::via</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
                     <dd><p>The delivery channels (e.g. ['database', 'mail']).</p></dd><dt><a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/React.html">Core\Lib\React</a></em></dt>
                     <dd><p>Supports operations for Vite.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_viteIsRunning">
@@ -2060,7 +2090,9 @@ called from within this class.</p></dd><dt><a href="Core/Models/Login.html#metho
 <abbr title="Console\Helpers\Queue">Queue</abbr>::worker</a>() &mdash; <em>Method in class <a href="Console/Helpers/Queue.html"><abbr title="Console\Helpers\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Worker for queue.</p></dd><dt><a href="Console/Helpers/Tools.html#method_writeFile">
 <abbr title="Console\Helpers\Tools">Tools</abbr>::writeFile</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
-                    <dd><p>Generates files for console commands</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
+                    <dd><p>Generates files for console commands</p></dd><dt><a href="Core/Lib/Http/Api.html#method_writeCache">
+<abbr title="Core\Lib\Http\Api">Api</abbr>::writeCache</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
+                    <dd><p>Persist a decoded JSON response to the cache for a given URL.</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
                     <dd><p>Class for generating a welcome message.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_walkRecursive">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::walkRecursive</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Recursively applies a callback function to each element in an array.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_weightedRandom">
@@ -2125,11 +2157,23 @@ operations.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerLevelException.htm
 <abbr title="Core\Lib\Events\UserPasswordUpdated">UserPasswordUpdated</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/UserPasswordUpdated.html"><abbr title="Core\Lib\Events\UserPasswordUpdated">UserPasswordUpdated</abbr></a></em></dt>
                     <dd>Constructor</dd><dt><a href="Core/Lib/Events/UserRegistered.html#method___construct">
 <abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/UserRegistered.html"><abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr></a></em></dt>
-                    <dd>Constructor</dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method___construct">
+                    <dd>Constructor</dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property__bucket">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#_bucket</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>Path to the bucket where file are stored.</p></dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property__allowedFileTypes">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#_allowedFileTypes</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>An array of allowed file types.</p></dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property__errors">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#_errors</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>An array of error objects.</p></dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property__fieldName">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#_fieldName</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>The name of the field associated with file upload.</p></dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property__files">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#_files</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>An array containing objects with information about files.</p></dd><dt>$<a href="Core/Lib/FileSystem/Uploads.html#property__maxAllowedSize">
+<abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>#_maxAllowedSize</a> &mdash; <em>Property in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>The maximum allowed upload size.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method___construct">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Creates instance of Uploads class.</p></dd><dt><a href="Core/Lib/Http/Api.html#method___construct">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method___construct">
+                    <dd><p>Constructor for Api object.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method___construct">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>Constructor for AbstractMailer</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method___construct">
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
