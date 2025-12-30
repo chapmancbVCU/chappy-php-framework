@@ -61,7 +61,7 @@ use Console\Helpers\Tools;
 use App\Models\\{$ucSeederName};
 
 /**
- * Seeder for {$ucSeederName} table.
+ * Seeder for {$lcSeederName} table.
  * 
  * @return void
  */
@@ -78,14 +78,14 @@ class {$ucSeederName}TableSeeder extends Seeder {
         \$numberOfRecords = 10;
         \$i = 0;
         while(\$i < \$numberOfRecords) {
-            \${$ucSeederName} = new {$ucSeederName}();
+            \${$lcSeederName} = new {$ucSeederName}();
             
 
             if(\${$ucSeederName}->save()) {
                 \$i++;
             }
         }
-        Tools::info("Seeded {$ucSeederName} table.");
+        Tools::info("Seeded {$lcSeederName} table.");
     }
 }
 PHP;
