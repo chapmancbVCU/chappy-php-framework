@@ -981,7 +981,10 @@ JSON responses.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_json
                     <dd><p>Template for event listener class.</p></dd><dt><a href="Console/Helpers/Log.html"><abbr title="Console\Helpers\Log">Log</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports ability to manage logs.</p></dd><dt><a href="Console/Helpers/View.html#method_layout">
 <abbr title="Console\Helpers\View">View</abbr>::layout</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
-                    <dd><p>Generates a layout compatible with React.js</p></dd><dt><a href="Core/DB.html#method_lastID">
+                    <dd><p>Generates a layout compatible with React.js</p></dd><dt><a href="Core/Controller.html#method_logViewForTesting">
+<abbr title="Core\Controller">Controller</abbr>::logViewForTesting</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
+                    <dd><p>Captures the current View instance during testing so that test assertions
+(e.g., assertViewContains) can access view-bound variables.</p></dd><dt><a href="Core/DB.html#method_lastID">
 <abbr title="Core\DB">DB</abbr>::lastID</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>The primary key ID of the last insert operation.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerException.html"><abbr title="Core\Exceptions\Logger\LoggerException">LoggerException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Logger.html">Core\Exceptions\Logger</a></em></dt>
                     <dd><p>Handles exceptions related to file logging.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerLevelException.html"><abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Logger.html">Core\Exceptions\Logger</a></em></dt>
@@ -1290,7 +1293,8 @@ values.</p></dd>        </dl><h2 id="letterO">O</h2>
                     <dd><p>Function implemented by child model classes when models are
 instantiated.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_onConstruct">
 <abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a></em></dt>
-                    <dd><p>Runs when the object is constructed.</p></dd><dt><a href="Core/FormHelper.html#method_optionsForSelect">
+                    <dd><p>Function implemented by child model classes when models are
+instantiated.</p></dd><dt><a href="Core/FormHelper.html#method_optionsForSelect">
 <abbr title="Core\FormHelper">FormHelper</abbr>::optionsForSelect</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Generates options for select.</p></dd><dt><a href="Core/FormHelper.html#method_output">
 <abbr title="Core\FormHelper">FormHelper</abbr>::output</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
@@ -1467,7 +1471,7 @@ file is accepted as a required input.</p></dd><dt><a href="Console/Helpers/Contr
 <abbr title="Console\Helpers\Test">Test</abbr>::runTest</a>() &mdash; <em>Method in class <a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a></em></dt>
                     <dd><p>Runs the unit test contained in the TestCase class.</p></dd><dt>$<a href="Core/Controller.html#property_request">
 <abbr title="Core\Controller">Controller</abbr>#request</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a> &mdash; <em>Class in namespace <a href="Core/Controllers.html">Core\Controllers</a></em></dt>
+                    <dd><p>Instance of Input class that performs much of our request tasks.</p></dd><dt><a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a> &mdash; <em>Class in namespace <a href="Core/Controllers.html">Core\Controllers</a></em></dt>
                     <dd><p>Implements support for the Restricted controller.  Interactions that the
 user performs that are restricted will result in a relevant view being
 rendered.</p></dd><dt><a href="Core/DB.html#method_results">
@@ -2016,7 +2020,7 @@ json files.</p></dd><dt><a href="Console/Helpers/View.html#method_viewContent">
 <abbr title="Console\Helpers\View">View</abbr>::viewContent</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
                     <dd><p>Generates content for view file.</p></dd><dt>$<a href="Core/Controller.html#property_view">
 <abbr title="Core\Controller">Controller</abbr>#view</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/DB.html#method_valueExistsInColumn">
+                    <dd><p>Instance of view class.</p></dd><dt><a href="Core/DB.html#method_valueExistsInColumn">
 <abbr title="Core\DB">DB</abbr>::valueExistsInColumn</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Check if a value exists in a JSON or text-based column</p></dd><dt><a href="Core/Exceptions/View/ViewException.html"><abbr title="Core\Exceptions\View\ViewException">ViewException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/View.html">Core\Exceptions\View</a></em></dt>
                     <dd><p>Handles exceptions related to views/layouts.  Extends the FrameworkException
@@ -2089,7 +2093,11 @@ called from within this class.</p></dd><dt><a href="Core/Models/Login.html#metho
 <abbr title="Console\Helpers\Test">Test</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a></em></dt>
                     <dd>Constructor</dd><dt><a href="Core/Application.html#method___construct">
 <abbr title="Core\Application">Application</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Application.html"><abbr title="Core\Application">Application</abbr></a></em></dt>
-                    <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt><a href="Core/Controller.html#method___construct">
+                    <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt>$<a href="Core/Controller.html#property__action">
+<abbr title="Core\Controller">Controller</abbr>#_action</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
+                    <dd><p>The name of the current action.</p></dd><dt>$<a href="Core/Controller.html#property__controller">
+<abbr title="Core\Controller">Controller</abbr>#_controller</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
+                    <dd><p>The name of the current controller.</p></dd><dt><a href="Core/Controller.html#method___construct">
 <abbr title="Core\Controller">Controller</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd><p>Constructor for the parent Controller class.  This constructor gets
 called when an instance of the child class is instantiated.</p></dd><dt><a href="Core/Exceptions/Console/ConsoleException.html#method___construct">

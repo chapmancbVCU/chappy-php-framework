@@ -10,9 +10,29 @@ use Core\Lib\Testing\ApplicationTestCase;
  */
 #[\AllowDynamicProperties]
 class Controller extends Application {
+    /**
+     * The name of the current action.
+     * @var string
+     */
     protected $_action;
+
+    /**
+     * The name of the current controller.
+     * @var string
+     */
     protected $_controller;
+
+    /**
+     * Instance of Input class that performs much of our request tasks.
+     * @var Input
+     */
     public $request;
+
+    /**
+     * Instance of view class.
+     *
+     * @var View
+     */
     public $view;
 
     /**
