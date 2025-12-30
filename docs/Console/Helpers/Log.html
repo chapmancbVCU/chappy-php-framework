@@ -108,7 +108,7 @@
                                                                                 LOG_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Path for log files.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -119,6 +119,16 @@
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_delete">delete</a>(string $fileName)
+        
+                                            <p><p>Performs delete operation on log files.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;void
@@ -166,8 +176,50 @@
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method_delete">
+        <div class="location">at line 22</div>
+        <code>        static        private    void
+    <strong>delete</strong>(string $fileName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs delete operation on log files.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fileName</td>
+                <td><p>The name of the log file.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_deleteAllLogs">
-        <div class="location">at line 30</div>
+        <div class="location">at line 33</div>
         <code>        static            void
     <strong>deleteAllLogs</strong>()
         </code>
@@ -199,7 +251,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteAppLog">
-        <div class="location">at line 41</div>
+        <div class="location">at line 44</div>
         <code>        static            void
     <strong>deleteAppLog</strong>()
         </code>
@@ -231,7 +283,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteCliLog">
-        <div class="location">at line 50</div>
+        <div class="location">at line 53</div>
         <code>        static            void
     <strong>deleteCliLog</strong>()
         </code>
@@ -263,7 +315,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deletePHPUnitLog">
-        <div class="location">at line 59</div>
+        <div class="location">at line 62</div>
         <code>        static            void
     <strong>deletePHPUnitLog</strong>()
         </code>

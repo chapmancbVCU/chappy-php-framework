@@ -8,6 +8,9 @@ use Core\Lib\Logging\Logger;
  * Supports ability to manage logs.
  */
 class Log {
+    /**
+     * Path for log files.
+     */
     private const LOG_PATH = ROOT.DS.'storage'.DS.'logs'.DS;
 
     /**

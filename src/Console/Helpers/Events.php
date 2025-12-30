@@ -7,8 +7,19 @@ namespace Console\Helpers;
  * Supports operations related to Events/Listeners.
  */
 class Events {
+    /**
+     * Path for event classes.
+     */
     private const EVENT_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
+
+    /**
+     * Path for listener classes.
+     */
     private const LISTENER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
+
+    /**
+     * Path for provider classes.
+     */
     private const PROVIDER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Providers'.DS;
 
     /**
