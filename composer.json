@@ -38,11 +38,12 @@
       "symfony/mailer": "^7.3",
       "symfony/http-client": "^7.3",
         "tijsverkoyen/css-to-inline-styles": "^2.3",
-        "predis/predis": "^3.1"
+        "predis/predis": "^3.1",
+        "symfony/finder": "^8.0"
     },
     "scripts": {
       "build-docs": [
-        "@php src/api-docs/doctum.phar update src/api-docs/doctum.php -v"
+        "/Applications/XAMPP/xamppfiles/bin/php src/api-docs/doctum.phar update src/api-docs/doctum.php -v"
       ],
       "post-install-cmd": [
         "@php src/scripts/setup.php"
