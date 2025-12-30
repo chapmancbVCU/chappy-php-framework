@@ -19,10 +19,10 @@ class MailerService {
     public const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     public const FRAMEWORK_TEMPLATE_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
     public const FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
-    protected static string $layoutPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    public const LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     protected Mailer $mailer;
-    protected static string $stylesPath = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
-    protected static string $templatePath = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
+    public const STYLES_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
+    public const TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
     
     /**
      * Creates a new mailer.
@@ -41,7 +41,7 @@ class MailerService {
      * the value of the parameter is used.
      */
     protected static function layoutPath(?string $layoutPath = null): string {
-        return $layoutPath ?? self::$layoutPath;
+        return $layoutPath ?? self::LAYOUT_PATH;
     }
 
     /**
@@ -197,7 +197,7 @@ class MailerService {
         ?string $stylesPath = null
     ): bool {
         $templatePath = self::templatePath($templatePath);
-        $stylesPath = $stylesPath ?? self::$stylesPath;
+        $stylesPath = $stylesPath ?? self::STYLES_PATH;
 
         $html = $this->template($template, $data, $layout, self::layoutPath($layoutPath), $templatePath, $styles, $stylesPath);
 
@@ -315,6 +315,6 @@ class MailerService {
      * the value of the parameter is used.
      */
     protected static function templatePath(?string $templatePath = null): string {
-        return $templatePath ?? self::$templatePath;
+        return $templatePath ?? self::TEMPLATE_PATH;
     }
 }
