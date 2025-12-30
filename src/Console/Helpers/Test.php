@@ -33,9 +33,29 @@ class Test {
         'testdox',
     ];
 
+    /**
+     * A string of input options provided as input when running the 
+     * test command.
+     *
+     * @var string 
+     */
     public string $inputOptions;
+
+    /**
+     * The Symfony OutputInterface object.
+     *
+     * @var OutputInterface 
+     */
     public OutputInterface $output;
+
+    /**
+     * The path for feature tests.
+     */
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
+    
+    /**
+     * The path for unit tests.
+     */
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     
     /**
