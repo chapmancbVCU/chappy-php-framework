@@ -101,19 +101,102 @@
             <p><p>Supports unit test related console commands.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        ALLOWED_OPTIONS
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        FEATURE_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        UNIT_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_inputOptions">
+                                                                                string
+                                                                                
+                                    </td>
+                <td>$inputOptions</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_output">
+                                                                                <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>
+                                                                                
+                                    </td>
+                <td>$output</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+        
+                                            <p>Constructor</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_allTests">allTests</a>()
+        
+                                            <p><p>Performs all tests.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_featureTests">featureTests</a>()
+        
+                                            <p><p>Returns array containing all filenames in Feature directory.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_makeTest">makeTest</a>(string $testName)
+                    <a href="#method_makeFeatureTest">makeFeatureTest</a>(string $testName)
         
-                                            <p><p>The template for a new TestCase class.</p></p>                </div>
+                                            <p><p>The template for a new Feature test class that extends ApplicationTestCase.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -121,9 +204,111 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_runTest">runTest</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+                    <a href="#method_makeTest">makeTest</a>(string $testName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         
-                                            <p><p>Runs the unit test contained in the TestCase class</p></p>                </div>
+                                            <p><p>Creates a new test class.  When --feature flag is provided a test
+feature class is created.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeUnitTest">makeUnitTest</a>(string $testName)
+        
+                                            <p><p>The template for a new Unit Test class that extends TestCase.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_parseOptions">parseOptions</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+        
+                                            <p><p>Parses PHPUnit related arguments and ignore Symfony arguments.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_runTest">runTest</a>(string $tests)
+        
+                                            <p><p>Runs the unit test contained in the TestCase class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_selectTests">selectTests</a>(string $testArg)
+        
+                                            <p><p>Supports ability to run test by class name or function name within
+a class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_singleFileWithinSuite">singleFileWithinSuite</a>(string $testArg, string $suite = self::UNIT_PATH)
+        
+                                            <p><p>Performs testing against a single class within a test suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testIfExists">testIfExists</a>(string $name)
+        
+                                            <p><p>Checks if file exists in either test suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testIfSame">testIfSame</a>(string $name)
+        
+                                            <p><p>Enforces rule that classes/files across test suites should be unique.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testSuite">testSuite</a>(array $collection)
+        
+                                            <p><p>Run all test files in an individual test suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testSuiteStatus">testSuiteStatus</a>(<abbr title="Console\Helpers\int|null">int|null</abbr> $featureStatus, <abbr title="Console\Helpers\int|null">int|null</abbr> $unitStatus)
+        
+                                            <p><p>Determines if execution of a test suite(s) is successful.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_unitTests">unitTests</a>()
+        
+                                            <p><p>Returns array containing all filenames in Unit directory.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -133,10 +318,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_makeTest">
-        <div class="location">at line 19</div>
-        <code>        static            string
-    <strong>makeTest</strong>(string $testName)
+                    <h3 id="method___construct">
+        <div class="location">at line 47</div>
+        <code>                    
+    <strong>__construct</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
     </h3>
     <div class="details">    
@@ -144,7 +329,109 @@
             
 
         <div class="method-description">
-                            <p><p>The template for a new TestCase class.</p></p>                        
+                            <p>Constructor</p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td><p>The Symfony OutputInterface object.</p></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_allTests">
+        <div class="location">at line 57</div>
+        <code>                    int
+    <strong>allTests</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs all tests.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_featureTests">
+        <div class="location">at line 78</div>
+        <code>        static            array
+    <strong>featureTests</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns array containing all filenames in Feature directory.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The array of all filenames in the Feature directory.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeFeatureTest">
+        <div class="location">at line 88</div>
+        <code>        static            string
+    <strong>makeFeatureTest</strong>(string $testName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>The template for a new Feature test class that extends ApplicationTestCase.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -175,10 +462,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_runTest">
-        <div class="location">at line 40</div>
+                    <h3 id="method_makeTest">
+        <div class="location">at line 120</div>
         <code>        static            int
-    <strong>runTest</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+    <strong>makeTest</strong>(string $testName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
     </h3>
     <div class="details">    
@@ -186,22 +473,22 @@
             
 
         <div class="method-description">
-                            <p><p>Runs the unit test contained in the TestCase class</p></p>                        
+                            <p><p>Creates a new test class.  When --feature flag is provided a test
+feature class is created.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>Input obtained from the console used to
-set name of unit test we want to run.</p></td>
+                <td>string</td>
+                <td>$testName</td>
+                <td><p>The name for the test.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The results of the test.</p></td>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
             </tr>
             </table>
 
@@ -212,6 +499,431 @@ set name of unit test we want to run.</p></td>
         <tr>
             <td>int</td>
             <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeUnitTest">
+        <div class="location">at line 148</div>
+        <code>        static            string
+    <strong>makeUnitTest</strong>(string $testName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>The template for a new Unit Test class that extends TestCase.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$testName</td>
+                <td><p>The name of the TestCase class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents for the new TestCase class.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_parseOptions">
+        <div class="location">at line 178</div>
+        <code>        static            string
+    <strong>parseOptions</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Parses PHPUnit related arguments and ignore Symfony arguments.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>Instance of InputInterface from command.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A string containing the arguments to be provided to
+PHPUnit.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_runTest">
+        <div class="location">at line 251</div>
+        <code>                    void
+    <strong>runTest</strong>(string $tests)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Runs the unit test contained in the TestCase class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$tests</td>
+                <td><p>The test to be performed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_selectTests">
+        <div class="location">at line 264</div>
+        <code>                    int
+    <strong>selectTests</strong>(string $testArg)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Supports ability to run test by class name or function name within
+a class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$testArg</td>
+                <td><p>The name of the class or class::test_name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_singleFileWithinSuite">
+        <div class="location">at line 311</div>
+        <code>                    void
+    <strong>singleFileWithinSuite</strong>(string $testArg, string $suite = self::UNIT_PATH)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs testing against a single class within a test suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$testArg</td>
+                <td><p>The name of the test class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$suite</td>
+                <td><p>The name of the test suite.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testIfExists">
+        <div class="location">at line 327</div>
+        <code>        static            bool
+    <strong>testIfExists</strong>(string $name)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if file exists in either test suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name of the file to be created.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if file exists in either test suite, otherwise we
+return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testIfSame">
+        <div class="location">at line 343</div>
+        <code>        static            bool
+    <strong>testIfSame</strong>(string $name)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule that classes/files across test suites should be unique.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name of the test class to be executed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if class/file exists across both test suites,
+otherwise we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testSuite">
+        <div class="location">at line 358</div>
+        <code>                    int
+    <strong>testSuite</strong>(array $collection)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Run all test files in an individual test suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$collection</td>
+                <td><p>All classes in a particular test suite.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testSuiteStatus">
+        <div class="location">at line 378</div>
+        <code>        static            bool
+    <strong>testSuiteStatus</strong>(<abbr title="Console\Helpers\int|null">int|null</abbr> $featureStatus, <abbr title="Console\Helpers\int|null">int|null</abbr> $unitStatus)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determines if execution of a test suite(s) is successful.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Console\Helpers\int|null">int|null</abbr></td>
+                <td>$featureStatus</td>
+                <td><p>Tracks if feature test are
+successful.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\Helpers\int|null">int|null</abbr></td>
+                <td>$unitStatus</td>
+                <td><p>Tracks if unit test are successful.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if successful, otherwise we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_unitTests">
+        <div class="location">at line 388</div>
+        <code>        static            array
+    <strong>unitTests</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns array containing all filenames in Unit directory.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The array of all filenames in the Unit directory.</p></td>
         </tr>
     </table>
 

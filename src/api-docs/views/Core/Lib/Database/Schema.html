@@ -132,6 +132,16 @@ Blueprint class.</p></p>                    </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_rename">rename</a>(string $from, string $to)
+        
+                                            <p><p>Renames a table</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_table">table</a>(string $table, callable $callback)
         
                                             <p><p>Modify an existing table.</p></p>                </div>
@@ -233,8 +243,55 @@ Blueprint class.</p></p>                    </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_table">
+                    <h3 id="method_rename">
         <div class="location">at line 43</div>
+        <code>        static            void
+    <strong>rename</strong>(string $from, string $to)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renames a table</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$from</td>
+                <td><p>The original table's name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>The new table name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_table">
+        <div class="location">at line 55</div>
         <code>        static            void
     <strong>table</strong>(string $table, callable $callback)
         </code>

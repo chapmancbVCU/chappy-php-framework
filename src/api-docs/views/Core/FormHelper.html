@@ -146,7 +146,7 @@ block.  Supports ability to have functions for event handlers&quot;.</p></p>    
                     <a href="#method_checkboxBlockLabelLeft">checkboxBlockLabelLeft</a>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Generates a div containing an input of type checkbox with the label to
-the left that is not part of a group.</p></p>                </div>
+the left.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -157,7 +157,7 @@ the left that is not part of a group.</p></p>                </div>
                     <a href="#method_checkboxBlockLabelRight">checkboxBlockLabelRight</a>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Generates a div containing an input of type checkbox with the label to
-the right that is not part of a group.</p></p>                </div>
+the right.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -196,7 +196,7 @@ been no tampering of a form's csrf token.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_emailBlock">emailBlock</a>(string $label, string $name, string $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+                    <a href="#method_emailBlock">emailBlock</a>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Renders an HTML div element that surrounds an input of type email.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -340,11 +340,9 @@ element.  Compatible with radio button groups.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_telBlock">telBlock</a>(string $phoneType, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], string $args = &quot;d&quot;, array $errors = [])
+                    <a href="#method_telBlock">telBlock</a>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
-                                            <p><p>Renders an HTML div element that surrounds an input of type tel.  The
-user is able to enter cell, home, and work as phone types.  Certain
-options can be set using the args parameter.</p></p>                </div>
+                                            <p><p>Renders an HTML div element that surrounds an input of type tel.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -366,7 +364,7 @@ for setting  attribute tags in the form section.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_appendErrorClass">
-        <div class="location">at line 25</div>
+        <div class="location">at line 26</div>
         <code>        static            array
     <strong>appendErrorClass</strong>(array $attrs, array $errors, string $name, string $class)
         </code>
@@ -425,7 +423,7 @@ form field.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_button">
-        <div class="location">at line 59</div>
+        <div class="location">at line 60</div>
         <code>        static            string
     <strong>button</strong>(string $buttonText, array $inputAttrs = [])
         </code>
@@ -478,7 +476,7 @@ optional attributes set.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_buttonBlock">
-        <div class="location">at line 82</div>
+        <div class="location">at line 83</div>
         <code>        static            string
     <strong>buttonBlock</strong>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
         </code>
@@ -537,7 +535,7 @@ set and any other optional attributes set.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_checkboxBlockLabelLeft">
-        <div class="location">at line 121</div>
+        <div class="location">at line 122</div>
         <code>        static            string
     <strong>checkboxBlockLabelLeft</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -548,7 +546,7 @@ set and any other optional attributes set.</p></td>
 
         <div class="method-description">
                             <p><p>Generates a div containing an input of type checkbox with the label to
-the left that is not part of a group.</p></p>                <p><p>An example function call is shown below:
+the left.</p></p>                <p><p>An example function call is shown below:
 FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this-&gt;login-&gt;getRememberMeChecked(), [], ['class' =&gt; 'form-group'], $this-&gt;displayErrors);</p>
 <p>Example HTML output is shown below:</p>
 <div class="form-group">
@@ -625,7 +623,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_checkboxBlockLabelRight">
-        <div class="location">at line 181</div>
+        <div class="location">at line 182</div>
         <code>        static            string
     <strong>checkboxBlockLabelRight</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -636,7 +634,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
 
         <div class="method-description">
                             <p><p>Generates a div containing an input of type checkbox with the label to
-the right that is not part of a group.</p></p>                <p><p>An example function call is shown below:
+the right.</p></p>                <p><p>An example function call is shown below:
 FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this-&gt;login-&gt;getRememberMeChecked(), [], ['class' =&gt; 'form-group mr-1'], $this-&gt;displayErrors);</p>
 <p>Example HTML output is shown below:</p>
 <div>
@@ -712,7 +710,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_checkToken">
-        <div class="location">at line 219</div>
+        <div class="location">at line 220</div>
         <code>        static            bool
     <strong>checkToken</strong>(string $token)
         </code>
@@ -758,7 +756,7 @@ of the $token parameter.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_csrfInput">
-        <div class="location">at line 232</div>
+        <div class="location">at line 233</div>
         <code>        static            string
     <strong>csrfInput</strong>()
         </code>
@@ -792,7 +790,7 @@ set as the value.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_displayErrors">
-        <div class="location">at line 244</div>
+        <div class="location">at line 246</div>
         <code>        static            string
     <strong>displayErrors</strong>(<abbr title="array|Core\Lib\Utilities\ArraySet">ArraySet</abbr> $errors)
         </code>
@@ -836,9 +834,9 @@ input of type checkbox.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_emailBlock">
-        <div class="location">at line 287</div>
+        <div class="location">at line 296</div>
         <code>        static            string
-    <strong>emailBlock</strong>(string $label, string $name, string $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+    <strong>emailBlock</strong>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
     </h3>
     <div class="details">    
@@ -867,7 +865,7 @@ FormHelper::emailBlock('Email', 'email', $this-&gt;contact-&gt;email, ['class' =
 for this input.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>mixed</td>
                 <td>$value</td>
                 <td><p>The value we want to set.  We can use this to set
 the value of the value attribute during form validation.  Default value
@@ -912,7 +910,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_errorMsg">
-        <div class="location">at line 319</div>
+        <div class="location">at line 329</div>
         <code>        static            string
     <strong>errorMsg</strong>(array $errors, string $name)
         </code>
@@ -959,7 +957,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_generateToken">
-        <div class="location">at line 329</div>
+        <div class="location">at line 345</div>
         <code>        static            string
     <strong>generateToken</strong>()
         </code>
@@ -991,7 +989,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_hidden">
-        <div class="location">at line 348</div>
+        <div class="location">at line 366</div>
         <code>        static            string
     <strong>hidden</strong>(string $name, mixed $value)
         </code>
@@ -1041,7 +1039,7 @@ FormHelper::hidden(&quot;example_name&quot;, &quot;example_value&quot;);</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_inputBlock">
-        <div class="location">at line 399</div>
+        <div class="location">at line 417</div>
         <code>        static            string
     <strong>inputBlock</strong>(string $type, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -1146,7 +1144,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_optionsForSelect">
-        <div class="location">at line 428</div>
+        <div class="location">at line 446</div>
         <code>        static            string
     <strong>optionsForSelect</strong>(array $options, <abbr title="Core\string|int|null">string|int|null</abbr> $selectedValue)
         </code>
@@ -1180,7 +1178,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td></td>
+            <td><p>The HTML element for select with correct value displayed.</p></td>
         </tr>
     </table>
 
@@ -1193,7 +1191,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_output">
-        <div class="location">at line 451</div>
+        <div class="location">at line 469</div>
         <code>        static            string
     <strong>output</strong>(string $name, string $for)
         </code>
@@ -1244,7 +1242,7 @@ input.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_posted_values">
-        <div class="location">at line 462</div>
+        <div class="location">at line 480</div>
         <code>        static            array
     <strong>posted_values</strong>(array $post)
         </code>
@@ -1287,7 +1285,7 @@ user submits a form.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_radioInput">
-        <div class="location">at line 500</div>
+        <div class="location">at line 513</div>
         <code>        static            string
     <strong>radioInput</strong>(string $label, string $id, string $name, string $value, bool $checked = false, array $inputAttrs = [])
         </code>
@@ -1324,16 +1322,15 @@ FormHelper::radioInput('CSS', 'css', 'fav_language', &quot;CSS&quot;, $check2, [
                     <tr>
                 <td>string</td>
                 <td>$name</td>
-                <td><p>Sets the value for the name, for, and id attributes
+                <td><p>Sets the value for the name attribute
 for this input.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$value</td>
                 <td><p>The value we want to set.  We can use this to set
-the value of the value attribute during form validation.  Default value
-is the empty string.  It can be set with values during form validation
-and forms used for editing records.</p></td>
+the value of the value attribute during form validation.  It can be
+set with values during form validation and forms used for editing records.</p></td>
             </tr>
                     <tr>
                 <td>bool</td>
@@ -1370,7 +1367,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sanitize">
-        <div class="location">at line 519</div>
+        <div class="location">at line 532</div>
         <code>        static            <abbr title="Core\string|array">string|array</abbr>
     <strong>sanitize</strong>(<abbr title="Core\string|array">string|array</abbr> $dirty)
         </code>
@@ -1412,7 +1409,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectBlock">
-        <div class="location">at line 556</div>
+        <div class="location">at line 569</div>
         <code>        static            string
     <strong>selectBlock</strong>(string $label, string $name, <abbr title="Core\string|int|null">string|int|null</abbr> $value, array $options, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -1499,7 +1496,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_stringifyAttrs">
-        <div class="location">at line 583</div>
+        <div class="location">at line 596</div>
         <code>        static            string
     <strong>stringifyAttrs</strong>(array $attrs)
         </code>
@@ -1541,7 +1538,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_submitBlock">
-        <div class="location">at line 610</div>
+        <div class="location">at line 623</div>
         <code>        static            string
     <strong>submitBlock</strong>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
         </code>
@@ -1601,7 +1598,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_submitTag">
-        <div class="location">at line 642</div>
+        <div class="location">at line 655</div>
         <code>        static            string
     <strong>submitTag</strong>(string $buttonText, array $inputAttrs = [])
         </code>
@@ -1655,9 +1652,9 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_telBlock">
-        <div class="location">at line 705</div>
+        <div class="location">at line 679</div>
         <code>        static            string
-    <strong>telBlock</strong>(string $phoneType, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], string $args = &quot;d&quot;, array $errors = [])
+    <strong>telBlock</strong>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
     </h3>
     <div class="details">    
@@ -1665,46 +1662,12 @@ attributes of the input string.  The default value is an empty array.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Renders an HTML div element that surrounds an input of type tel.  The
-user is able to enter cell, home, and work as phone types.  Certain
-options can be set using the args parameter.</p></p>                <p><p>Arguments supported:</p>
-<ol>
-<li>a - All default options turned on.</li>
-<li>d - All options are off.</li>
-<li>e - Default event listener turned on for enforcing phone format
-requirements.</li>
-<li>h - Default placeholder turned on.</li>
-<li>p - Default telephone pattern is enforced.</li>
-</ol>
-<p>The user may use 'a', or any combination of 'h', 'p', or 'e'.  The
-empty string is not a valid value for args.  Leaving out a value for
-args in the function call will cause all defaults to be turned on.  If
-the d is entered with all other valid options together will cause no
-options to be set.  If bad phone types and args values are entered
-exceptions displaying relevant information will be thrown.</p>
-<p>An example function call where no arguments are set is shown below:
-FormHelper::telBlock('cell', 'Cell Phone', 'cell_phone', $this-&gt;contact-&gt;cell_phone, ['class' =&gt; 'form-control'], ['class' =&gt; 'form-group col-md-6']);</p>
-<p>The corresponding HTML output is shown below:</p>
-<div class="form-group col-md-6"><label for="cell_phone">Cell Phone</label><input type="tel" id="cell_phone" name="cell_phone" value="" class="form-control" /></div>
-<p>An example function call where two options are set and other is set with the inputAttrs array is shown below:
-FormHelper::telBlock('home', 'Home Phone', 'home_phone', $this-&gt;contact-&gt;home_phone, ['class' =&gt; 'form-control', 'placeholder' =&gt; 'My placeholder'], ['class' =&gt; 'form-group col-md-6'],&quot;pe&quot;);</p>
-<p>The corresponding HTML output is shown below:</p>
-<div class="form-group col-md-6"><label for="home_phone">Home Phone</label><input type="tel" id="home_phone" name="home_phone" value="" class="form-control" placeholder="My placeholder" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="homePhoneNumberFormatter()" /></div>
-<p>An example function call where 'a' flag is set is shown below:
-FormHelper::telBlock('work', 'Work Phone', 'work_phone', $this-&gt;contact-&gt;work_phone, ['class' =&gt; 'form-control'], ['class' =&gt; 'form-group col-md-6'], &quot;a&quot;);</p>
-<p>The corresponding HTML output is shown below:</p>
-<div class="form-group col-md-6"><label for="work_phone">Work Phone</label><input type="tel" id="work_phone" name="work_phone" value="" class="form-control" placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="workPhoneNumberFormatter()" /></div></p>        
+                            <p><p>Renders an HTML div element that surrounds an input of type tel.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$phoneType</td>
-                <td><p>The type of phone that can be used.  We
-currently support &quot;cell&quot;, &quot;home&quot;, and &quot;work&quot; type phones.</p></td>
-            </tr>
                     <tr>
                 <td>string</td>
                 <td>$label</td>
@@ -1737,12 +1700,6 @@ attributes of the input string.  The default value is an empty array.</p></td>
 attributes of the surrounding div.  The default value is an empty array.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
-                <td>$args</td>
-                <td><p>Arguments that influence which options are turned
-on.</p></td>
-            </tr>
-                    <tr>
                 <td>array</td>
                 <td>$errors</td>
                 <td><p>The errors array.  Default value is an empty array.</p></td>
@@ -1770,7 +1727,7 @@ function call.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_textareaBlock">
-        <div class="location">at line 793</div>
+        <div class="location">at line 728</div>
         <code>        static            string
     <strong>textareaBlock</strong>(string $label, string $name, <abbr title="Core\string|null">string|null</abbr> $value, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>

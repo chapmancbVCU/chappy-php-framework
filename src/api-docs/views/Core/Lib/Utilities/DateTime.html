@@ -225,6 +225,16 @@ constants, locale, and timezone.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_nowPlusSeconds">nowPlusSeconds</a>(int $seconds)
+        
+                                            <p><p>Adds second passed as parameter to current time.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_timeAgo">timeAgo</a>(string $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
         
                                             <p><p>Accepts UTC time in format Y-m-d H:i:s and returns a string describing
@@ -328,8 +338,50 @@ constants, locale, and timezone.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_nowPlusSeconds">
+        <div class="location">at line 47</div>
+        <code>        static            string
+    <strong>nowPlusSeconds</strong>(int $seconds)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds second passed as parameter to current time.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$seconds</td>
+                <td><p>The number of seconds to add.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The time plus seconds passed as parameter.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_timeAgo">
-        <div class="location">at line 56</div>
+        <div class="location">at line 68</div>
         <code>        static            string
     <strong>timeAgo</strong>(string $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
         </code>
@@ -389,7 +441,7 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeDifference">
-        <div class="location">at line 76</div>
+        <div class="location">at line 88</div>
         <code>        static            string
     <strong>timeDifference</strong>(string $startTime, string $endTime, string $timezone = &#039;UTC&#039;)
         </code>
@@ -443,7 +495,7 @@ Output: &quot;7 hours before&quot;</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeStamps">
-        <div class="location">at line 87</div>
+        <div class="location">at line 99</div>
         <code>        static            string
     <strong>timeStamps</strong>()
         </code>
@@ -475,7 +527,7 @@ Output: &quot;7 hours before&quot;</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toISO8601">
-        <div class="location">at line 99</div>
+        <div class="location">at line 111</div>
         <code>        static            string
     <strong>toISO8601</strong>(string $time, string $timezone = &#039;UTC&#039;)
         </code>

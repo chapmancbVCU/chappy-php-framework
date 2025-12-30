@@ -101,6 +101,91 @@
             <p><p>Supports the ability to produce logging.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        EMERGENCY
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        ALERT
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        CRITICAL
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        ERROR
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        WARNING
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        NOTICE
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        INFO
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        DEBUG
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                            private
+                                                                                LOG_FILE_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -111,7 +196,7 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_log">log</a>(string $message, string $level = &#039;info&#039;)
+                    <a href="#method_log">log</a>(string $message, string $level = self::INFO)
         
                                             <p><p>Performs operations for adding content to log files.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -124,9 +209,9 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_log">
-        <div class="location">at line 32</div>
+        <div class="location">at line 54</div>
         <code>        static            void
-    <strong>log</strong>(string $message, string $level = &#039;info&#039;)
+    <strong>log</strong>(string $message, string $level = self::INFO)
         </code>
     </h3>
     <div class="details">    
@@ -164,6 +249,15 @@ written to a log file.</p></td>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Exceptions/Logger/LoggerLevelException.html"><abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>

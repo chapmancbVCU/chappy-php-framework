@@ -101,6 +101,81 @@
             <p><p>Supports functions for user sessions.  This class never gets instantiated.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        INFO
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        SUCCESS
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        WARNING
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        DANGER
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        PRIMARY
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        SECONDARY
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        DARK
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        LIGHT
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -123,7 +198,7 @@
                 <div class="col-md-8">
                     <a href="#method_delete">delete</a>(string $name)
         
-                                            <p><p>Removes CURRENT_USER_SESSION_NAME from th $_SESSION superglobal array
+                                            <p><p>Removes CURRENT_USER_SESSION_NAME from the $_SESSION superglobal array
 when a user logs out of a user session.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -160,7 +235,7 @@ array.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
+                    static&nbsp;mixed
                 </div>
                 <div class="col-md-8">
                     <a href="#method_set">set</a>(string $name, mixed $value)
@@ -187,7 +262,7 @@ end user software updates.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_addMessage">
-        <div class="location">at line 17</div>
+        <div class="location">at line 30</div>
         <code>        static            void
     <strong>addMessage</strong>(string $type, string $message)
         </code>
@@ -206,7 +281,8 @@ end user software updates.</p></p>                </div>
                     <tr>
                 <td>string</td>
                 <td>$type</td>
-                <td><p>Can be info, success, warning, or danger.</p></td>
+                <td><p>Can be info, success, warning, danger, primary,
+secondary, light, or dark.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -234,7 +310,7 @@ end user software updates.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_delete">
-        <div class="location">at line 31</div>
+        <div class="location">at line 51</div>
         <code>        static            void
     <strong>delete</strong>(string $name)
         </code>
@@ -244,7 +320,7 @@ end user software updates.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Removes CURRENT_USER_SESSION_NAME from th $_SESSION superglobal array
+                            <p><p>Removes CURRENT_USER_SESSION_NAME from the $_SESSION superglobal array
 when a user logs out of a user session.</p></p>                        
         </div>
         <div class="tags">
@@ -278,7 +354,7 @@ current user session.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_displayMessage">
-        <div class="location">at line 43</div>
+        <div class="location">at line 63</div>
         <code>        static            string
     <strong>displayMessage</strong>()
         </code>
@@ -311,7 +387,7 @@ button to dismiss the message.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_exists">
-        <div class="location">at line 65</div>
+        <div class="location">at line 85</div>
         <code>        static            bool
     <strong>exists</strong>(string $name)
         </code>
@@ -354,7 +430,7 @@ session.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_get">
-        <div class="location">at line 78</div>
+        <div class="location">at line 98</div>
         <code>        static            mixed
     <strong>get</strong>(string $name)
         </code>
@@ -399,8 +475,8 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_set">
-        <div class="location">at line 89</div>
-        <code>        static            string
+        <div class="location">at line 109</div>
+        <code>        static            mixed
     <strong>set</strong>(string $name, mixed $value)
         </code>
     </h3>
@@ -432,7 +508,7 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
+            <td>mixed</td>
             <td><p>The value that was set in the session.</p></td>
         </tr>
     </table>
@@ -446,7 +522,7 @@ CURRENT_USER_SESSION_NAME set as id for current logged in user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uagent_no_version">
-        <div class="location">at line 99</div>
+        <div class="location">at line 119</div>
         <code>        static            string
     <strong>uagent_no_version</strong>()
         </code>

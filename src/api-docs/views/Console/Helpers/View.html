@@ -102,6 +102,54 @@
 json files.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        COMPONENTS_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        CSS_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        LAYOUT_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        VIEW_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        WIDGET_PATH
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -132,9 +180,9 @@ json files.</p></p>                    </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_layout">layout</a>(string $layoutName)
+                    <a href="#method_layout">layout</a>(string $menuName)
         
-                                            <p><p>Returns a string containing contents for a layout.</p></p>                </div>
+                                            <p><p>Generates a layout compatible with React.js</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -145,6 +193,16 @@ json files.</p></p>                    </div>
                     <a href="#method_makeCardComponent">makeCardComponent</a>(string $componentName)
         
                                             <p><p>Writes card component to a file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeCSS">makeCSS</a>(string $fileName)
+        
+                                            <p><p>Generates a new CSS file.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -209,6 +267,16 @@ json files.</p></p>                    </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeWidget">makeWidget</a>(string $filePath)
+        
+                                            <p><p>Writes new file for widget.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
@@ -255,7 +323,7 @@ json files.</p></p>                    </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_cardComponent">
-        <div class="location">at line 15</div>
+        <div class="location">at line 21</div>
         <code>        static            string
     <strong>cardComponent</strong>()
         </code>
@@ -287,7 +355,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_formComponent">
-        <div class="location">at line 29</div>
+        <div class="location">at line 37</div>
         <code>        static            string
     <strong>formComponent</strong>(string $method, string $encType)
         </code>
@@ -334,9 +402,9 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_layout">
-        <div class="location">at line 44</div>
+        <div class="location">at line 54</div>
         <code>        static            string
-    <strong>layout</strong>(string $layoutName)
+    <strong>layout</strong>(string $menuName)
         </code>
     </h3>
     <div class="details">    
@@ -344,7 +412,7 @@ json files.</p></p>                    </div>
             
 
         <div class="method-description">
-                            <p><p>Returns a string containing contents for a layout.</p></p>                        
+                            <p><p>Generates a layout compatible with React.js</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -352,8 +420,8 @@ json files.</p></p>                    </div>
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
-                <td>$layoutName</td>
-                <td><p>The name of the layout.</p></td>
+                <td>$menuName</td>
+                <td><p>The name of the menu for the layout</p></td>
             </tr>
             </table>
 
@@ -376,7 +444,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeCardComponent">
-        <div class="location">at line 92</div>
+        <div class="location">at line 111</div>
         <code>        static            int
     <strong>makeCardComponent</strong>(string $componentName)
         </code>
@@ -417,8 +485,50 @@ json files.</p></p>                    </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_makeCSS">
+        <div class="location">at line 125</div>
+        <code>        static            int
+    <strong>makeCSS</strong>(string $fileName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates a new CSS file.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fileName</td>
+                <td><p>The name of the CSS file.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_makeFormComponent">
-        <div class="location">at line 108</div>
+        <div class="location">at line 141</div>
         <code>        static            int
     <strong>makeFormComponent</strong>(string $componentName, string $method, string $encType)
         </code>
@@ -470,7 +580,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeLayout">
-        <div class="location">at line 123</div>
+        <div class="location">at line 157</div>
         <code>        static            int
     <strong>makeLayout</strong>(string $layoutName, string $menuName = &#039;main&#039;)
         </code>
@@ -517,7 +627,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeMenu">
-        <div class="location">at line 137</div>
+        <div class="location">at line 172</div>
         <code>        static            int
     <strong>makeMenu</strong>(string $menuName)
         </code>
@@ -559,7 +669,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeMenuAcl">
-        <div class="location">at line 151</div>
+        <div class="location">at line 186</div>
         <code>        static            int
     <strong>makeMenuAcl</strong>(string $menuName)
         </code>
@@ -601,7 +711,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeTableComponent">
-        <div class="location">at line 165</div>
+        <div class="location">at line 200</div>
         <code>        static            int
     <strong>makeTableComponent</strong>(string $componentName)
         </code>
@@ -643,7 +753,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeView">
-        <div class="location">at line 179</div>
+        <div class="location">at line 214</div>
         <code>        static            int
     <strong>makeView</strong>(string $filePath)
         </code>
@@ -684,8 +794,50 @@ json files.</p></p>                    </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_makeWidget">
+        <div class="location">at line 224</div>
+        <code>        static            int
+    <strong>makeWidget</strong>(string $filePath)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Writes new file for widget.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$filePath</td>
+                <td><p>The path to the widget file.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_menu">
-        <div class="location">at line 189</div>
+        <div class="location">at line 234</div>
         <code>        static            string
     <strong>menu</strong>(string $menuName)
         </code>
@@ -727,7 +879,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_menuAcl">
-        <div class="location">at line 234</div>
+        <div class="location">at line 281</div>
         <code>        static            string
     <strong>menuAcl</strong>(string $menuName)
         </code>
@@ -770,7 +922,7 @@ menu name</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tableComponent">
-        <div class="location">at line 248</div>
+        <div class="location">at line 295</div>
         <code>        static            string
     <strong>tableComponent</strong>()
         </code>
@@ -802,7 +954,7 @@ menu name</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_viewContent">
-        <div class="location">at line 265</div>
+        <div class="location">at line 313</div>
         <code>        static            string
     <strong>viewContent</strong>()
         </code>

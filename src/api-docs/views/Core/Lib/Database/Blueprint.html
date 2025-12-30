@@ -121,6 +121,17 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_after">after</a>(string $column)
+        
+                                            <p><p>Specifies the position of the last defined column to appear
+immediately after another column in the table (MySQL only).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+                </div>
+                <div class="col-md-8">
                     <a href="#method_bigInteger">bigInteger</a>(string $name)
         
                                             <p><p>Define a big integer column.</p></p>                </div>
@@ -191,9 +202,60 @@
                     void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_dropColumns">dropColumns</a>(<abbr title="Core\Lib\Database\array|string">array|string</abbr> $columns)
+        
+                                            <p><p>Drops a column or group of columns.  If a column has a restraint
+then warnings are presented to the user.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dropForeign">dropForeign</a>(string $column, bool $preserveColumn = true)
+        
+                                            <p><p>Drops a foreign key constraint from the table (MySQL only).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_dropIfExists">dropIfExists</a>(string $table)
         
                                             <p><p>Drops a table if it exists.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dropIndex">dropIndex</a>(string $column, bool $preserveColumn = true)
+        
+                                            <p><p>Drops indexed value from the table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dropPrimaryKey">dropPrimaryKey</a>(string $column, bool $preserveColumn = true)
+        
+                                            <p><p>Drops primary key field from the table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dropUnique">dropUnique</a>(string $column, bool $preserveColumn = false)
+        
+                                            <p><p>Drops column with unique constraint from the table.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -231,7 +293,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_foreign">foreign</a>(string $column, string $references, string $onTable, string $onDelete = &#039;CASCADE&#039;, string $onUpdate = &#039;CASCADE&#039;)
+                    <a href="#method_foreign">foreign</a>(string $column, string $referencedColumn, string $onTable, string $onDelete = &#039;RESTRICT&#039;, string $onUpdate = &#039;RESTRICT&#039;)
         
                                             <p><p>Define a foreign key (MySQL only).</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -284,6 +346,56 @@
                     <a href="#method_nullable">nullable</a>()
         
                                             <p><p>Modifies last column added to the schema and make it nullable.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_renameColumn">renameColumn</a>(string $from, string $to)
+        
+                                            <p><p>Renames a particular column</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_renameForeign">renameForeign</a>(string $from, string $to)
+        
+                                            <p><p>Renames a foreign key.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_renameIndex">renameIndex</a>(string $from, string $to)
+        
+                                            <p><p>Renames an indexed column by preserving and reapplying the index.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_renamePrimaryKey">renamePrimaryKey</a>(string $from, string $to)
+        
+                                            <p><p>Renames the table's primary key.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_renameUnique">renameUnique</a>(string $from, string $to)
+        
+                                            <p><p>Renames a column with a unique constraint by preserving and reapplying the index.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -371,9 +483,29 @@
                     <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_unique">unique</a>()
+        
+                                            <p><p>Adds a unique index to the last defined column.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+                </div>
+                <div class="col-md-8">
                     <a href="#method_unsignedInteger">unsignedInteger</a>(string $name)
         
                                             <p><p>Define an unsigned integer column (MySQL only).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_unsignedBigInteger">unsignedBigInteger</a>(string $name)
+        
+                                            <p><p>Define an unsigned big integer column (MySQL only).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -404,7 +536,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 28</div>
+        <div class="location">at line 30</div>
         <code>                    
     <strong>__construct</strong>(string $table)
         </code>
@@ -436,8 +568,56 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_after">
+        <div class="location">at line 50</div>
+        <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+    <strong>after</strong>(string $column)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Specifies the position of the last defined column to appear
+immediately after another column in the table (MySQL only).</p></p>                <p><p>This method is only meaningful during ALTER TABLE operations
+(i.e., when calling $table-&gt;update()). The generated SQL will
+include an <code>AFTER column_name</code> clause to control column order.</p>
+<p>Example:
+$table-&gt;string('nickname')-&gt;after('last_name');
+// Produces: ALTER TABLE users ADD COLUMN nickname VARCHAR(255) AFTER last_name;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$column</td>
+                <td><p>The existing column name after which the new column should be added.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></td>
+            <td><p>Returns the current Blueprint instance for method chaining.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_bigInteger">
-        <div class="location">at line 39</div>
+        <div class="location">at line 63</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>bigInteger</strong>(string $name)
         </code>
@@ -479,7 +659,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_boolean">
-        <div class="location">at line 50</div>
+        <div class="location">at line 75</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>boolean</strong>(string $name)
         </code>
@@ -521,7 +701,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_create">
-        <div class="location">at line 58</div>
+        <div class="location">at line 84</div>
         <code>                    void
     <strong>create</strong>()
         </code>
@@ -553,7 +733,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_date">
-        <div class="location">at line 117</div>
+        <div class="location">at line 159</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>date</strong>(string $name)
         </code>
@@ -595,7 +775,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_dateTime">
-        <div class="location">at line 128</div>
+        <div class="location">at line 171</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>dateTime</strong>(string $name)
         </code>
@@ -637,7 +817,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_decimal">
-        <div class="location">at line 141</div>
+        <div class="location">at line 185</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>decimal</strong>(string $name, int $precision = 8, int $scale = 2)
         </code>
@@ -689,7 +869,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_default">
-        <div class="location">at line 160</div>
+        <div class="location">at line 205</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>default</strong>(<abbr title="Core\Lib\Database\string|int|float|bool">string|int|float|bool</abbr> $value)
         </code>
@@ -743,8 +923,101 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_dropColumns">
+        <div class="location">at line 236</div>
+        <code>                    void
+    <strong>dropColumns</strong>(<abbr title="Core\Lib\Database\array|string">array|string</abbr> $columns)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Drops a column or group of columns.  If a column has a restraint
+then warnings are presented to the user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Database\array|string">array|string</abbr></td>
+                <td>$columns</td>
+                <td><p>An individual column or an array of
+columns to drop.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dropForeign">
+        <div class="location">at line 292</div>
+        <code>                    void
+    <strong>dropForeign</strong>(string $column, bool $preserveColumn = true)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Drops a foreign key constraint from the table (MySQL only).</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$column</td>
+                <td><p>The name of the column to be dropped.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$preserveColumn</td>
+                <td><p>When true only the foreign key constraint is
+removed.  If set to false the column is also dropped from the table.
+The default value is true.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_dropIfExists">
-        <div class="location">at line 190</div>
+        <div class="location">at line 327</div>
         <code>                    void
     <strong>dropIfExists</strong>(string $table)
         </code>
@@ -785,8 +1058,155 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_dropIndex">
+        <div class="location">at line 342</div>
+        <code>                    void
+    <strong>dropIndex</strong>(string $column, bool $preserveColumn = true)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Drops indexed value from the table.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$column</td>
+                <td><p>The name of the column to be dropped.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$preserveColumn</td>
+                <td><p>When true only the index constraint is
+removed.  If set to false the column is also dropped from the table.
+The default value is true.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dropPrimaryKey">
+        <div class="location">at line 375</div>
+        <code>                    void
+    <strong>dropPrimaryKey</strong>(string $column, bool $preserveColumn = true)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Drops primary key field from the table.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$column</td>
+                <td><p>The name of the column to be dropped.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$preserveColumn</td>
+                <td><p>When true only the primary key constraint is
+removed.  If set to false the column is also dropped from the table.
+The default value is true.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dropUnique">
+        <div class="location">at line 407</div>
+        <code>                    void
+    <strong>dropUnique</strong>(string $column, bool $preserveColumn = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Drops column with unique constraint from the table.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$column</td>
+                <td><p>The name of the column to be dropped.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$preserveColumn</td>
+                <td><p>When true only the unique constraint is
+removed.  If set to false the column is also dropped from the table.
+The default value is true.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_double">
-        <div class="location">at line 204</div>
+        <div class="location">at line 478</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>double</strong>(string $name, int $precision = 16, int $scale = 4)
         </code>
@@ -838,7 +1258,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_enum">
-        <div class="location">at line 216</div>
+        <div class="location">at line 491</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>enum</strong>(string $name, array $values)
         </code>
@@ -885,7 +1305,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_float">
-        <div class="location">at line 234</div>
+        <div class="location">at line 510</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>float</strong>(string $name, int $precision = 8, int $scale = 2)
         </code>
@@ -937,9 +1357,9 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_foreign">
-        <div class="location">at line 248</div>
+        <div class="location">at line 525</div>
         <code>                    void
-    <strong>foreign</strong>(string $column, string $references, string $onTable, string $onDelete = &#039;CASCADE&#039;, string $onUpdate = &#039;CASCADE&#039;)
+    <strong>foreign</strong>(string $column, string $referencedColumn, string $onTable, string $onDelete = &#039;RESTRICT&#039;, string $onUpdate = &#039;RESTRICT&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -960,8 +1380,8 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
-                <td>$references</td>
-                <td><p>The column name in the foreign table being referenced.</p></td>
+                <td>$referencedColumn</td>
+                <td></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -999,7 +1419,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_id">
-        <div class="location">at line 263</div>
+        <div class="location">at line 574</div>
         <code>                    
     <strong>id</strong>()
         </code>
@@ -1022,7 +1442,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_index">
-        <div class="location">at line 273</div>
+        <div class="location">at line 584</div>
         <code>                    void
     <strong>index</strong>(string $column)
         </code>
@@ -1064,7 +1484,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_integer">
-        <div class="location">at line 283</div>
+        <div class="location">at line 745</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>integer</strong>(string $name)
         </code>
@@ -1106,7 +1526,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_mediumInteger">
-        <div class="location">at line 295</div>
+        <div class="location">at line 758</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>mediumInteger</strong>(string $name)
         </code>
@@ -1148,7 +1568,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_nullable">
-        <div class="location">at line 305</div>
+        <div class="location">at line 769</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>nullable</strong>()
         </code>
@@ -1179,8 +1599,243 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_renameColumn">
+        <div class="location">at line 784</div>
+        <code>                    void
+    <strong>renameColumn</strong>(string $from, string $to)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renames a particular column</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$from</td>
+                <td><p>The column's original name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>The column's new name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_renameForeign">
+        <div class="location">at line 809</div>
+        <code>                    void
+    <strong>renameForeign</strong>(string $from, string $to)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renames a foreign key.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$from</td>
+                <td><p>The original column name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>The new column name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_renameIndex">
+        <div class="location">at line 851</div>
+        <code>                    void
+    <strong>renameIndex</strong>(string $from, string $to)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renames an indexed column by preserving and reapplying the index.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$from</td>
+                <td><p>The original column name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>The new column name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_renamePrimaryKey">
+        <div class="location">at line 886</div>
+        <code>                    void
+    <strong>renamePrimaryKey</strong>(string $from, string $to)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renames the table's primary key.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$from</td>
+                <td><p>The original column name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>The new column name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_renameUnique">
+        <div class="location">at line 921</div>
+        <code>                    void
+    <strong>renameUnique</strong>(string $from, string $to)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renames a column with a unique constraint by preserving and reapplying the index.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$from</td>
+                <td><p>The original column name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$to</td>
+                <td><p>The new column name.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_smallInteger">
-        <div class="location">at line 319</div>
+        <div class="location">at line 987</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>smallInteger</strong>(string $name)
         </code>
@@ -1222,7 +1877,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_softDeletes">
-        <div class="location">at line 329</div>
+        <div class="location">at line 998</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>softDeletes</strong>()
         </code>
@@ -1254,7 +1909,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_string">
-        <div class="location">at line 341</div>
+        <div class="location">at line 1010</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>string</strong>(string $name, int $length = 255)
         </code>
@@ -1301,7 +1956,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_text">
-        <div class="location">at line 353</div>
+        <div class="location">at line 1023</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>text</strong>(string $name)
         </code>
@@ -1343,7 +1998,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_time">
-        <div class="location">at line 364</div>
+        <div class="location">at line 1035</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>time</strong>(string $name)
         </code>
@@ -1385,7 +2040,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_timestamp">
-        <div class="location">at line 375</div>
+        <div class="location">at line 1047</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>timestamp</strong>(string $name)
         </code>
@@ -1427,7 +2082,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_timestamps">
-        <div class="location">at line 383</div>
+        <div class="location">at line 1056</div>
         <code>                    void
     <strong>timestamps</strong>()
         </code>
@@ -1459,7 +2114,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tinyInteger">
-        <div class="location">at line 394</div>
+        <div class="location">at line 1067</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>tinyInteger</strong>(string $name)
         </code>
@@ -1500,8 +2155,49 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_unique">
+        <div class="location">at line 1080</div>
+        <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+    <strong>unique</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds a unique index to the last defined column.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/Exception">Exception</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_unsignedInteger">
-        <div class="location">at line 406</div>
+        <div class="location">at line 1096</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>unsignedInteger</strong>(string $name)
         </code>
@@ -1542,8 +2238,50 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_unsignedBigInteger">
+        <div class="location">at line 1112</div>
+        <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
+    <strong>unsignedBigInteger</strong>(string $name)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Define an unsigned big integer column (MySQL only).</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name of the column to be created as unsigned BIGINT (MySQL) or INTEGER for SQLite.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></td>
+            <td><p>Return the instance to allow method chaining.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 418</div>
+        <div class="location">at line 1126</div>
         <code>                    void
     <strong>update</strong>()
         </code>
@@ -1575,7 +2313,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uuid">
-        <div class="location">at line 435</div>
+        <div class="location">at line 1158</div>
         <code>                    
     <strong>uuid</strong>(string $name)
         </code>
