@@ -6,6 +6,9 @@ use Console\Helpers\ReactStubs;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 
+/**
+ * Contains functions that perform operations for React.js relate CLI commands.
+ */
 class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
     public const PAGE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'pages'.DS;
