@@ -11,7 +11,7 @@ class Model {
     public const MODEL_PATH = ROOT.DS.'app'.DS.'Models'.DS;
 
     /**
-     * Undocumented function
+     * Generates a new model class.
      *
      * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
