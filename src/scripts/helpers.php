@@ -103,20 +103,6 @@ if(!function_exists('e')) {
     }
 }
 
-if(!function_exists('flashMessage')) {
-    /**
-     * Adds a session alert message.
-     *
-     * @param string $type Can be info, success, warning, danger, primary, 
-     * secondary, light, or dark.
-     * @param string $message The message you want to display in the alert.
-     * @return void
-     */
-    function flashMessage(string $type, string $message): void {
-        Session::addMessage($type, $message);
-    }
-}
-
 if(!function_exists('env')) {
     /**
      * Get an environment variable.
@@ -128,6 +114,20 @@ if(!function_exists('env')) {
     function env(string $key, mixed $default = null)
     {
         return Env::get($key, $default);
+    }
+}
+
+if(!function_exists('flashMessage')) {
+    /**
+     * Adds a session alert message.
+     *
+     * @param string $type Can be info, success, warning, danger, primary, 
+     * secondary, light, or dark.
+     * @param string $message The message you want to display in the alert.
+     * @return void
+     */
+    function flashMessage(string $type, string $message): void {
+        Session::addMessage($type, $message);
     }
 }
 
