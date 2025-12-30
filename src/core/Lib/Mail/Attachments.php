@@ -11,6 +11,9 @@ use Core\Models\EmailAttachments;
  * Supports attachment processing for MailerService.
  */
 class Attachments {
+    /**
+     * Array of supported mime types as uploads.
+     */
     public const MIME_TYPES = [
         '7z'   => 'application/x-7z-compressed',
         'ai'   => 'application/postscript',

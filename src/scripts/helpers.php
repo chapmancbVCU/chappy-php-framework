@@ -31,8 +31,6 @@ if(!function_exists('cl')) {
      * Prints to console using JavaScript.
      * 
      * @param mixed $vars The information we want to print to console.
-     * @param bool $with_script_tags - Determines if we will use script tabs in 
-     * our output.  Default value is true.
      * @return void
      */
     function cl(mixed ...$vars): void {

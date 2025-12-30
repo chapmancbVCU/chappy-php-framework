@@ -107,7 +107,7 @@
                                                                                                                         EMERGENCY
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level emergency.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -116,7 +116,7 @@
                                                                                                                         ALERT
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level alert.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -125,7 +125,7 @@
                                                                                                                         CRITICAL
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level critical.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -134,7 +134,7 @@
                                                                                                                         ERROR
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level error.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -143,7 +143,7 @@
                                                                                                                         WARNING
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level warning.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -152,7 +152,7 @@
                                                                                                                         NOTICE
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level notice.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -161,7 +161,7 @@
                                                                                                                         INFO
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level info.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -170,7 +170,7 @@
                                                                                                                         DEBUG
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Constant for alert level debug.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -180,17 +180,41 @@
                                                                                 LOG_FILE_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Path to log files.</p></em></p>
                     <p></p>
                 </td>
             </tr>
             </table>
 
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_logFile">
+                    static                                        private                    string
+                                                                                
+                                    </td>
+                <td>$logFile</td>
+                <td class="last"><p>Full path and name of current log file.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_init">init</a>()
+        
+                                            <p><p>Initializes the log file based on the environment (CLI or Web).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;void
@@ -208,8 +232,40 @@
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method_init">
+        <div class="location">at line 44</div>
+        <code>        static        private    void
+    <strong>init</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Initializes the log file based on the environment (CLI or Web).</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_log">
-        <div class="location">at line 54</div>
+        <div class="location">at line 68</div>
         <code>        static            void
     <strong>log</strong>(string $message, string $level = self::INFO)
         </code>

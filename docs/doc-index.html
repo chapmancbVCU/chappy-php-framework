@@ -138,7 +138,11 @@ immediately after another column in the table (MySQL only).</p></dd><dt><a href=
                     <dd><p>Describes specification for all mailers.</p></dd><dt><a href="Core/Lib/Mail/AccountDeactivatedMailer.html"><abbr title="Core\Lib\Mail\AccountDeactivatedMailer">AccountDeactivatedMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
                     <dd><p>Class for generating a message informing the user that their
 password has been updated.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
-                    <dd><p>Supports attachment processing for MailerService.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_all">
+                    <dd><p>Supports attachment processing for MailerService.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_attach">
+<abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::attach</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
+                    <dd><p>Processes attachment if key labeled content is found.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_attachFromPath">
+<abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::attachFromPath</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
+                    <dd><p>Processes attachment if key labeled path is found.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_all">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::all</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
                     <dd><p>Return array of channel classes.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html"><abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Testing.html">Core\Lib\Testing</a></em></dt>
                     <dd><p>Abstract class for test cases.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_assertDatabaseHas">
@@ -767,7 +771,13 @@ or MariaDB.</p></dd><dt><a href="Core/FormHelper.html#method_generateToken">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Perform a GET request that expects a JSON response.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_get">
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
-                    <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_getAllowedMimeTypes">
+                    <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_getData">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::getData</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>Used to retrieve data to be used in E-mail.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_getSubject">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::getSubject</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>Returns subject for E-mail.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_getTemplate">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::getTemplate</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>Returns the template to be used.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_getAllowedMimeTypes">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::getAllowedMimeTypes</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
                     <dd><p>Gets the values from the MIME_TYPES array.</p></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method_getContent">
 <abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr>::getContent</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></em></dt>
@@ -906,7 +916,9 @@ or submitTag functions.</p></dd><dt><a href="Core/Input.html"><abbr title="Core\
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::integer</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define an integer column.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_isEnqueueListener">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::isEnqueueListener</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
-                    <dd><p>Determine if the listener should be enqueued and enqueue it if applicable.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/InvalidPayloadException.html"><abbr title="Core\Lib\Notifications\Exceptions\InvalidPayloadException">InvalidPayloadException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
+                    <dd><p>Determine if the listener should be enqueued and enqueue it if applicable.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_init">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::init</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Initializes the log file based on the environment (CLI or Web).</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/InvalidPayloadException.html"><abbr title="Core\Lib\Notifications\Exceptions\InvalidPayloadException">InvalidPayloadException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
                     <dd><p>Handles cases when there are invalid payloads.  Extends the
 NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isDev">
 <abbr title="Core\Lib\React\Vite">Vite</abbr>::isDev</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
@@ -1012,9 +1024,13 @@ JSON responses.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_json
                     <dd><p>An array of registered listeners.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_listen">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::listen</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
                     <dd><p>Listens for an event.</p></dd><dt><a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Logging.html">Core\Lib\Logging</a></em></dt>
-                    <dd><p>Supports the ability to produce logging.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_log">
+                    <dd><p>Supports the ability to produce logging.</p></dd><dt>$<a href="Core/Lib/Logging/Logger.html#property_logFile">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>#logFile</a> &mdash; <em>Property in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Full path and name of current log file.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_log">
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::log</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
-                    <dd><p>Performs operations for adding content to log files.</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
+                    <dd><p>Performs operations for adding content to log files.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_layout">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#layout</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>The layout to be used with email.</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Notification channel that writes notifications to the application log.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_last">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::last</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Get the last element that passes a given test.</p></dd><dt><a href="Core/Lib/Utilities/ArraySet.html#method_last">
@@ -1181,7 +1197,9 @@ feature class is created.</p></dd><dt><a href="Console/Helpers/Test.html#method_
                     <dd><p>Define a medium integer column.</p></dd><dt><a href="Core/Lib/Database/Migration.html"><abbr title="Core\Lib\Database\Migration">Migration</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Database.html">Core\Lib\Database</a></em></dt>
                     <dd><p>Supports database migration operations.</p></dd><dt><a href="Core/Lib/Events/Contracts/QueuePreferences.html#method_maxAttempts">
 <abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/Contracts/QueuePreferences.html"><abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr></a></em></dt>
-                    <dd><p>Get the maximum number of attempts for processing this job/listener.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_mime">
+                    <dd><p>Get the maximum number of attempts for processing this job/listener.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_mailer">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#mailer</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>The mailer service object sending the mail.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_mime">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::mime</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
                     <dd><p>Returns the MIME type for a given file extension.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
                     <dd><p>Supports E-mail infrastructure for this framework.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
@@ -1714,7 +1732,9 @@ Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Seeder.html"><abbr title
                     <dd><p>Class for sending account deactivated E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendPasswordResetEmail.html"><abbr title="Core\Lib\Listeners\SendPasswordResetEmail">SendPasswordResetEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending password reset E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendPasswordUpdateEmail.html"><abbr title="Core\Lib\Listeners\SendPasswordUpdateEmail">SendPasswordUpdateEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending password updated E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendRegistrationEmail.html"><abbr title="Core\Lib\Listeners\SendRegistrationEmail">SendRegistrationEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
-                    <dd><p>Class for sending user registered E-mail.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_send">
+                    <dd><p>Class for sending user registered E-mail.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_style">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#style</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>The style to be used with email.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_send">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::send</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>Send the mail</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_sendTo">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::sendTo</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
@@ -1957,7 +1977,9 @@ E-mail event.</p></dd><dt>$<a href="Core/Lib/Events/UserRegistered.html#property
                     <dd><p>User associated with event.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/FileSystem.html">Core\Lib\FileSystem</a></em></dt>
                     <dd><p>Provides support for file uploads.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_upload">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::upload</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
-                    <dd><p>Performs file upload.</p></dd><dt><a href="Core/Lib/Mail/UpdatePasswordMailer.html"><abbr title="Core\Lib\Mail\UpdatePasswordMailer">UpdatePasswordMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
+                    <dd><p>Performs file upload.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_user">
+<abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#user</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
+                    <dd><p>The user to send the email.</p></dd><dt><a href="Core/Lib/Mail/UpdatePasswordMailer.html"><abbr title="Core\Lib\Mail\UpdatePasswordMailer">UpdatePasswordMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
                     <dd><p>Class for generating a message informing the user that their
 password has been updated.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/UnregisteredChannelException.html"><abbr title="Core\Lib\Notifications\Exceptions\UnregisteredChannelException">UnregisteredChannelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
                     <dd><p>Handles exceptions related to unregistered channels.  Extends the

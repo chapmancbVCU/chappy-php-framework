@@ -12,16 +12,30 @@ use ReflectionClass;
  * Supports the ability to produce logging.
  */
 class Logger {
+    /** Constant for alert level emergency. */
     public const EMERGENCY = 'emergency';
+    /** Constant for alert level alert. */
     public const ALERT = 'alert';
+    /** Constant for alert level critical. */
     public const CRITICAL = 'critical';
+    /** Constant for alert level error. */
     public const ERROR = 'error';
+    /** Constant for alert level warning. */
     public const WARNING = 'warning';
+    /** Constant for alert level notice. */
     public const NOTICE = 'notice';
+    /** Constant for alert level info. */
     public const INFO = 'info';
+    /** Constant for alert level debug. */
     public const DEBUG = 'debug';
 
+    /** Path to log files. */
     private const string LOG_FILE_PATH = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS; 
+
+    /**
+     * Full path and name of current log file.
+     * @var string
+     */
     private static string $logFile;
 
     /**

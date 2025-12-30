@@ -8,13 +8,35 @@ use App\Models\Users;
  * Describes specification for all mailers.
  */
 abstract class AbstractMailer {
+    /**
+     * The layout to be used with email.
+     *
+     * @var string
+     */
     protected string $layout = 'default';
+
+    /**
+     * The mailer service object sending the mail.
+     * @var MailerService
+     */
     protected MailerService $mailer;
+
+    /**
+     * The style to be used with email.
+     * @var string
+     */
     protected string $style = 'default';
+
+    /**
+     * The user to send the email.
+     * @var Users
+     */
     protected Users $user;
 
     /**
      * Constructor for AbstractMailer
+     * 
+     * @param Users $user The user to send the email.
      */
     public function __construct(Users $user) {
         $this->mailer = new MailerService();

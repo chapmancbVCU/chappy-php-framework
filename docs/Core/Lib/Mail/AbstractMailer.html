@@ -102,6 +102,47 @@
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_layout">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$layout</td>
+                <td class="last"><p>The layout to be used with email.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_mailer">
+                                        protected                                        <a href="../../../Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a>
+                                                                                
+                                    </td>
+                <td>$mailer</td>
+                <td class="last"><p>The mailer service object sending the mail.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_style">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$style</td>
+                <td class="last"><p>The style to be used with email.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_user">
+                                        protected                                        <abbr title="App\Models\Users">Users</abbr>
+                                                                                
+                                    </td>
+                <td>$user</td>
+                <td class="last"><p>The user to send the email.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -124,6 +165,36 @@
                     <a href="#method_buildAndSend">buildAndSend</a>(string|null $layout = null, array $attachments = [], string|null $layoutPath = null, string|null $templatePath = null, string|null $styles = null, string|null $stylesPath = null)
         
                                             <p><p>Common send logic shared by all mailers.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getData">getData</a>()
+        
+                                            <p><p>Used to retrieve data to be used in E-mail.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getSubject">getSubject</a>()
+        
+                                            <p><p>Returns subject for E-mail.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getTemplate">getTemplate</a>()
+        
+                                            <p><p>Returns the template to be used.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -154,7 +225,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 19</div>
+        <div class="location">at line 41</div>
         <code>                    
     <strong>__construct</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -173,7 +244,7 @@
                     <tr>
                 <td><abbr title="App\Models\Users">Users</abbr></td>
                 <td>$user</td>
-                <td></td>
+                <td><p>The user to send the email.</p></td>
             </tr>
             </table>
 
@@ -187,7 +258,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_buildAndSend">
-        <div class="location">at line 36</div>
+        <div class="location">at line 58</div>
         <code>                    bool
     <strong>buildAndSend</strong>(string|null $layout = null, array $attachments = [], string|null $layoutPath = null, string|null $templatePath = null, string|null $styles = null, string|null $stylesPath = null)
         </code>
@@ -254,8 +325,104 @@ attachments.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_getData">
+        <div class="location">at line 86</div>
+        <code>    abstract        protected        array
+    <strong>getData</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Used to retrieve data to be used in E-mail.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>Data to be used in E-mail.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSubject">
+        <div class="location">at line 93</div>
+        <code>    abstract        protected        string
+    <strong>getSubject</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns subject for E-mail.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The subject of the E-mail.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTemplate">
+        <div class="location">at line 100</div>
+        <code>    abstract        protected        string
+    <strong>getTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the template to be used.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The name of the template to be used.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 85</div>
+        <div class="location">at line 107</div>
         <code>                    bool
     <strong>send</strong>()
         </code>
@@ -287,7 +454,7 @@ attachments.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendTo">
-        <div class="location">at line 95</div>
+        <div class="location">at line 117</div>
         <code>        static            bool
     <strong>sendTo</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>
