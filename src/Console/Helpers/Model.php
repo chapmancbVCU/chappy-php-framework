@@ -8,6 +8,9 @@ use Symfony\Component\Console\Input\InputInterface;
  * Helper class for model related console commands.
  */
 class Model {
+    /**
+     * Path to model classes.
+     */
     public const MODEL_PATH = ROOT.DS.'app'.DS.'Models'.DS;
 
     /**

@@ -218,9 +218,11 @@ $acl instance variable is empty an empty array is returned.</p></dd><dt><a href=
                     <dd></dd><dt><a href="Core/View.html#method_addWidget">
 <abbr title="Core\View">View</abbr>::addWidget</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
                     <dd><p>Registers a new widget.</p></dd>        </dl><h2 id="letterB">B</h2>
-        <dl id="indexB"><dt>$<a href="Console/Helpers/MigrationStatus.html#property_batch">
+        <dl id="indexB"><dt><a href="Console/Helpers/Migrate.html#method_batchExists">
+<abbr title="Console\Helpers\Migrate">Migrate</abbr>::batchExists</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
+                    <dd><p>Test if a particular batch of migrations exists.</p></dd><dt>$<a href="Console/Helpers/MigrationStatus.html#property_batch">
 <abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr>#batch</a> &mdash; <em>Property in class <a href="Console/Helpers/MigrationStatus.html"><abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Console/Helpers/Notifications.html#method_buildPayload">
+                    <dd><p>The batch value for a particular migration.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_buildPayload">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::buildPayload</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Build the per-send payload for the test command.</p></dd><dt><a href="Console/Helpers/Tools.html#method_border">
 <abbr title="Console\Helpers\Tools">Tools</abbr>::border</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
@@ -1208,7 +1210,7 @@ a field.</p></dd>        </dl><h2 id="letterN">N</h2>
                     <dd><p>Supports ability to create new notifications migration file.</p></dd><dt><a href="Console/Commands/NotificationsPruneCommand.html"><abbr title="Console\Commands\NotificationsPruneCommand">NotificationsPruneCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to run a migration file.</p></dd><dt>$<a href="Console/Helpers/MigrationStatus.html#property_name">
 <abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr>#name</a> &mdash; <em>Property in class <a href="Console/Helpers/MigrationStatus.html"><abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
+                    <dd><p>The name of the migration class.</p></dd><dt><a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Utilities that support console commands related to Notifications:</p>
 <ul>
 <li>Resolving notifiables and channels from CLI options</li>
@@ -1625,9 +1627,11 @@ upper case character.</p></dd><dt><a href="Core/View.html#method_render">
 <abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr>::seeder</a>() &mdash; <em>Method in class <a href="Console/Helpers/DBSeeder.html"><abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr></a></em></dt>
                     <dd><p>Returns a string containing contents of a new Seeder class.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_status">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::status</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
-                    <dd><p>Reports migration status.</p></dd><dt>$<a href="Console/Helpers/MigrationStatus.html#property_status">
+                    <dd><p>Reports migration status.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_step">
+<abbr title="Console\Helpers\Migrate">Migrate</abbr>::step</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
+                    <dd><p>Drops table one at a time.</p></dd><dt>$<a href="Console/Helpers/MigrationStatus.html#property_status">
 <abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr>#status</a> &mdash; <em>Property in class <a href="Console/Helpers/MigrationStatus.html"><abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Console/Helpers/Notifications.html#method_sendViaNotifiable">
+                    <dd><p>Indicates either a 'Ran' or 'Pending' status.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_sendViaNotifiable">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::sendViaNotifiable</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Deliver a notification via a notifiable (or simulate if notifiable is not an object).</p></dd><dt><a href="Console/Helpers/Services.html"><abbr title="Console\Helpers\Services">Services</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports commands related to Services.</p></dd><dt><a href="Console/Helpers/Services.html#method_servicesTemplate">
@@ -1793,7 +1797,10 @@ special character that is not a space in the field.</p></dd><dt><a href="Core/Vi
 of content.  Anything between calls of this function and end() will be
 included in our view.</p></dd>        </dl><h2 id="letterT">T</h2>
         <dl id="indexT"><dt><a href="Console/Commands/TinkerCommand.html"><abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
-                    <dd><p>Supports execution for tinker command.</p></dd><dt><a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
+                    <dd><p>Supports execution for tinker command.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_tableCount">
+<abbr title="Console\Helpers\Migrate">Migrate</abbr>::tableCount</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
+                    <dd><p>Determines number of tables in database before performing migration
+operations.</p></dd><dt><a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports unit test related console commands.</p></dd><dt><a href="Console/Helpers/Test.html#method_testIfExists">
 <abbr title="Console\Helpers\Test">Test</abbr>::testIfExists</a>() &mdash; <em>Method in class <a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a></em></dt>
                     <dd><p>Checks if file exists in either test suite.</p></dd><dt><a href="Console/Helpers/Test.html#method_testIfSame">

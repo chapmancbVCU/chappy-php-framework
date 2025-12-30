@@ -6,9 +6,22 @@ namespace Console\Helpers;
  * Supports the tracking of migration status for tables.
  */
 class MigrationStatus {
-    // Instance variables
+    /**
+     * The batch value for a particular migration.
+     * @var string
+     */
     private $batch;
+
+    /**
+     * The name of the migration class.
+     * @var string
+     */
     private $name;
+
+    /**
+     * Indicates either a 'Ran' or 'Pending' status.
+     * @var string
+     */
     private $status;
 
     /**

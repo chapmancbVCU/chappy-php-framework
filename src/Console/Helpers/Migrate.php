@@ -17,6 +17,9 @@ use Symfony\Component\Console\Input\InputInterface;
  * Helper class for migration related console commands.
  */
 class Migrate {
+    /**
+     * Path to database migration files.
+     */
     public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
 
     /**
