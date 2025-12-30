@@ -172,6 +172,43 @@ final class QueuedListenerJob implements QueueableJobInterface {
     }
 
     /**
+     * Rebuild the event instance from the stored payload.
+     *
+     * If the event class defines a static fromPayload(array $data): self method,
+     * it will be used. Otherwise, a no-argument constructor is invoked and
+     * public properties are populated from payload keys.
+     *
+     * @return object The rehydrated event instance.
+     */
+    private function rehydrateEvent(): object {
+        if (method_exists($this->eventClass, 'fromPayload')) {
+            return ($this->eventClass)::fromPayload($this->eventPayload);
+        }
+
+        // fallback ONLY for events with no-arg ctor + public props
+        $event = new ($this->eventClass)();
+        foreach ($this->eventPayload as $k => $v) $event->$k = $v;
+        return $event;
+    }
+
+    /**
+     * Reconstruct a job from exported state (used by var_export()).
+     *
+     * @param array<string,mixed> $state The available states.
+     * @return self A new QueuedListenerJob object.
+     */
+    public static function __set_state(array $state): self {
+        return new self([
+            'listener'      => $state['listenerClass']   ?? '',
+            'event'         => $state['eventClass']      ?? '',
+            'payload'       => $state['eventPayload']    ?? [],
+            'delay'         => $state['delay']           ?? 0,
+            'backoff'       => $state['backoff']         ?? 0,
+            'max_attempts'  => $state['maxAttempts']     ?? 0,
+        ]);
+    }
+
+    /**
      * Convert this job to a driver-ready payload.
      *
      * Format:
@@ -208,42 +245,5 @@ final class QueuedListenerJob implements QueueableJobInterface {
             'available_at' => DateTime::nowPlusSeconds($this->delay()),
             'max_attempts' => $this->maxAttempts(),
         ];
-    }
-
-    /**
-     * Rebuild the event instance from the stored payload.
-     *
-     * If the event class defines a static fromPayload(array $data): self method,
-     * it will be used. Otherwise, a no-argument constructor is invoked and
-     * public properties are populated from payload keys.
-     *
-     * @return object The rehydrated event instance.
-     */
-    private function rehydrateEvent(): object {
-        if (method_exists($this->eventClass, 'fromPayload')) {
-            return ($this->eventClass)::fromPayload($this->eventPayload);
-        }
-
-        // fallback ONLY for events with no-arg ctor + public props
-        $event = new ($this->eventClass)();
-        foreach ($this->eventPayload as $k => $v) $event->$k = $v;
-        return $event;
-    }
-
-    /**
-     * Reconstruct a job from exported state (used by var_export()).
-     *
-     * @param array<string,mixed> $state The available states.
-     * @return self A new QueuedListenerJob object.
-     */
-    public static function __set_state(array $state): self {
-        return new self([
-            'listener'      => $state['listenerClass']   ?? '',
-            'event'         => $state['eventClass']      ?? '',
-            'payload'       => $state['eventPayload']    ?? [],
-            'delay'         => $state['delay']           ?? 0,
-            'backoff'       => $state['backoff']         ?? 0,
-            'max_attempts'  => $state['maxAttempts']     ?? 0,
-        ]);
     }
 }

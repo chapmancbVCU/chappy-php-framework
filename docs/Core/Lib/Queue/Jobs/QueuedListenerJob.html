@@ -236,16 +236,6 @@ and invokes the listener.</li>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_toPayload">toPayload</a>()
-        
-                                            <p><p>Convert this job to a driver-ready payload.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     object
                 </div>
                 <div class="col-md-8">
@@ -262,6 +252,16 @@ and invokes the listener.</li>
                     <a href="#method___set_state">__set_state</a>(array $state)
         
                                             <p><p>Reconstruct a job from exported state (used by var_export()).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toPayload">toPayload</a>()
+        
+                                            <p><p>Convert this job to a driver-ready payload.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -499,46 +499,8 @@ serialize the event data; otherwise an empty array is stored.</p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_toPayload">
-        <div class="location">at line 197</div>
-        <code>                    array
-    <strong>toPayload</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Convert this job to a driver-ready payload.</p></p>                <p><p>Format:</p>
-<ul>
-<li>job (string): job FQCN</li>
-<li>data (array): job-specific data to reconstruct the job instance</li>
-<li>available_at (int): UNIX timestamp when the job becomes available</li>
-<li>max_attempts (int): maximum number of processing attempts</li>
-</ul></p>        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>array</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_rehydrateEvent">
-        <div class="location">at line 222</div>
+        <div class="location">at line 183</div>
         <code>                private    object
     <strong>rehydrateEvent</strong>()
         </code>
@@ -572,7 +534,7 @@ public properties are populated from payload keys.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method___set_state">
-        <div class="location">at line 239</div>
+        <div class="location">at line 200</div>
         <code>        static            <a href="../../../../Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a>
     <strong>__set_state</strong>(array $state)
         </code>
@@ -602,6 +564,44 @@ public properties are populated from payload keys.</p></p>
         <tr>
             <td><a href="../../../../Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></td>
             <td><p>A new QueuedListenerJob object.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toPayload">
+        <div class="location">at line 234</div>
+        <code>                    array
+    <strong>toPayload</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Convert this job to a driver-ready payload.</p></p>                <p><p>Format:</p>
+<ul>
+<li>job (string): job FQCN</li>
+<li>data (array): job-specific data to reconstruct the job instance</li>
+<li>available_at (int): UNIX timestamp when the job becomes available</li>
+<li>max_attempts (int): maximum number of processing attempts</li>
+</ul></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
         </tr>
     </table>
 
