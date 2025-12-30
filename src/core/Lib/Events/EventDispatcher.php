@@ -11,6 +11,11 @@ use Core\Lib\Queue\QueueManager;
  * Handles operations related to dispatching events.
  */
 class EventDispatcher {
+    /**
+     * An array of registered listeners.
+     *
+     * @var array
+     */
     protected array $listeners = [];
 
     /**

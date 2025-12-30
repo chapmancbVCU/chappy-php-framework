@@ -7,6 +7,10 @@ namespace Core\Lib\Events;
  */
 class AccountDeactivated
 {
+    /**
+     * User associated with event.
+     * @var User
+     */
     public $user;
 
     /**

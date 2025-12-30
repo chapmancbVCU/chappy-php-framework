@@ -111,7 +111,7 @@
                                                                                 
                                     </td>
                 <td>$listeners</td>
-                <td class="last"></td>
+                <td class="last"><p>An array of registered listeners.</p></td>
                 <td></td>
             </tr>
             </table>
@@ -218,7 +218,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_listen">
-        <div class="location">at line 23</div>
+        <div class="location">at line 28</div>
         <code>                    void
     <strong>listen</strong>(string $eventName, <abbr title="Core\Lib\Events\callable|string|array">callable|string|array</abbr> $listener)
         </code>
@@ -265,7 +265,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_dispatch">
-        <div class="location">at line 33</div>
+        <div class="location">at line 38</div>
         <code>                    void
     <strong>dispatch</strong>(object $event)
         </code>
@@ -307,7 +307,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_enqueueListener">
-        <div class="location">at line 56</div>
+        <div class="location">at line 61</div>
         <code>                private    void
     <strong>enqueueListener</strong>(string $listenerClass, object $instance, object $event)
         </code>
@@ -361,7 +361,7 @@ and pushes the job to the specified queue via the {\Core\Lib\Queue\QueueManager}
             </div>
                     <div class="method-item">
                     <h3 id="method_isEnqueueListener">
-        <div class="location">at line 81</div>
+        <div class="location">at line 86</div>
         <code>                private    bool
     <strong>isEnqueueListener</strong>(string $listenerClass, object $instance, object $event)
         </code>
@@ -414,7 +414,7 @@ the queue system instead of being executed immediately.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleListener">
-        <div class="location">at line 101</div>
+        <div class="location">at line 106</div>
         <code>                private    void
     <strong>handleListener</strong>(mixed $listener, object $event)
         </code>
@@ -465,7 +465,7 @@ the queue system instead of being executed immediately.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_hasQueuePreferences">
-        <div class="location">at line 122</div>
+        <div class="location">at line 127</div>
         <code>                private    bool
     <strong>hasQueuePreferences</strong>(object $instance)
         </code>
@@ -507,7 +507,7 @@ the queue system instead of being executed immediately.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_processCallableArray">
-        <div class="location">at line 134</div>
+        <div class="location">at line 139</div>
         <code>                private    void
     <strong>processCallableArray</strong>(array $listener, object $event)
         </code>
@@ -554,7 +554,7 @@ the queue system instead of being executed immediately.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_processClassString">
-        <div class="location">at line 156</div>
+        <div class="location">at line 161</div>
         <code>                private    void
     <strong>processClassString</strong>(string $listenerClass, object $event)
         </code>
@@ -601,7 +601,7 @@ the queue system instead of being executed immediately.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_setQueueName">
-        <div class="location">at line 180</div>
+        <div class="location">at line 185</div>
         <code>                private    string
     <strong>setQueueName</strong>(object $instance)
         </code>

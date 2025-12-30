@@ -8,6 +8,10 @@ use App\Models\Users;
  * Simple DTO (Data Transfer Object) class for password reset event.
  */
 class UserPasswordUpdated {
+    /**
+     * User associated with event.
+     * @var Users
+     */
     public Users $user;
 
     /**

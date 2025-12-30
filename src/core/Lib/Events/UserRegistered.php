@@ -9,8 +9,18 @@ use App\Models\Users;
  * E-mail event.
  */
 class UserRegistered {
+    /**
+     * User associated with event.
+     * @var Users
+     */
     public $user;
+
+    /**
+     * Flag to control if an email should be sent.
+     * @var bool
+     */
     public $shouldSendEmail;
+    
     /**
      * Constructor
      *

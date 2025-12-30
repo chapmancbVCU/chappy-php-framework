@@ -108,20 +108,20 @@ E-mail event.</p></p>                    </div>
             <table class="table table-condensed">
                     <tr>
                 <td class="type" id="property_user">
-                                                                                
+                                                                                <abbr title="App\Models\Users">Users</abbr>
                                                                                 
                                     </td>
                 <td>$user</td>
-                <td class="last"></td>
+                <td class="last"><p>User associated with event.</p></td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_shouldSendEmail">
-                                                                                
+                                                                                bool
                                                                                 
                                     </td>
                 <td>$shouldSendEmail</td>
-                <td class="last"></td>
+                <td class="last"><p>Flag to control if an email should be sent.</p></td>
                 <td></td>
             </tr>
             </table>
@@ -169,7 +169,7 @@ this class.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 21</div>
+        <div class="location">at line 31</div>
         <code>                    
     <strong>__construct</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
         </code>
@@ -208,7 +208,7 @@ sent.  Set default value to false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_toPayload">
-        <div class="location">at line 32</div>
+        <div class="location">at line 42</div>
         <code>                    array
     <strong>toPayload</strong>()
         </code>
@@ -241,7 +241,7 @@ variables.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_fromPayload">
-        <div class="location">at line 46</div>
+        <div class="location">at line 56</div>
         <code>        static            <a href="../../../Core/Lib/Events/UserRegistered.html"><abbr title="Core\Lib\Events\UserRegistered">UserRegistered</abbr></a>
     <strong>fromPayload</strong>(array $data)
         </code>
