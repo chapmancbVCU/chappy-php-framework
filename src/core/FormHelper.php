@@ -618,7 +618,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param string A surrounding div and the input element of type submit.
+     * @return string A surrounding div and the input element of type submit.
      */
     public static function submitBlock(
         string $buttonText, 
