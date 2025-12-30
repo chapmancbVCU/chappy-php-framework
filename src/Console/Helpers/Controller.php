@@ -6,6 +6,9 @@ namespace Console\Helpers;
  * Helper class for controller related console commands.
  */
 class Controller {
+    /**
+     * Path for controller classes.
+     */
     public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
     
     /**

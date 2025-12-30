@@ -10,7 +10,6 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports operations related to database seeding.
  */
 class DBSeeder {
-
     /**
      * Creates a class for seeding a database.
      *

@@ -13,6 +13,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Supports unit test related console commands.
  */
 class Test {
+    /**
+     * The array of options allowed as input for the test command.
+     */
     public const ALLOWED_OPTIONS = [
         'coverage',
         'debug',
@@ -52,7 +55,7 @@ class Test {
      * The path for feature tests.
      */
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
-    
+
     /**
      * The path for unit tests.
      */

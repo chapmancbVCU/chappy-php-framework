@@ -107,7 +107,7 @@
                                                                                                                         ALLOWED_OPTIONS
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The array of options allowed as input for the test command.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -125,7 +125,7 @@
                                                                                                                         UNIT_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The path for unit tests.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -320,7 +320,7 @@ a class.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 63</div>
+        <div class="location">at line 70</div>
         <code>                    
     <strong>__construct</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -358,7 +358,7 @@ a class.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_allTests">
-        <div class="location">at line 73</div>
+        <div class="location">at line 80</div>
         <code>                    int
     <strong>allTests</strong>()
         </code>
@@ -390,7 +390,7 @@ a class.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_featureTests">
-        <div class="location">at line 94</div>
+        <div class="location">at line 101</div>
         <code>        static            array
     <strong>featureTests</strong>()
         </code>
@@ -422,7 +422,7 @@ a class.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeFeatureTest">
-        <div class="location">at line 104</div>
+        <div class="location">at line 111</div>
         <code>        static            string
     <strong>makeFeatureTest</strong>(string $testName)
         </code>
@@ -464,7 +464,7 @@ a class.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeTest">
-        <div class="location">at line 136</div>
+        <div class="location">at line 143</div>
         <code>        static            int
     <strong>makeTest</strong>(string $testName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -512,7 +512,7 @@ feature class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeUnitTest">
-        <div class="location">at line 164</div>
+        <div class="location">at line 171</div>
         <code>        static            string
     <strong>makeUnitTest</strong>(string $testName)
         </code>
@@ -554,7 +554,7 @@ feature class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_parseOptions">
-        <div class="location">at line 194</div>
+        <div class="location">at line 201</div>
         <code>        static            string
     <strong>parseOptions</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -597,7 +597,7 @@ PHPUnit.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runTest">
-        <div class="location">at line 267</div>
+        <div class="location">at line 274</div>
         <code>                    void
     <strong>runTest</strong>(string $tests)
         </code>
@@ -639,7 +639,7 @@ PHPUnit.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectTests">
-        <div class="location">at line 280</div>
+        <div class="location">at line 287</div>
         <code>                    int
     <strong>selectTests</strong>(string $testArg)
         </code>
@@ -682,7 +682,7 @@ a class.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_singleFileWithinSuite">
-        <div class="location">at line 327</div>
+        <div class="location">at line 334</div>
         <code>                    void
     <strong>singleFileWithinSuite</strong>(string $testArg, string $suite = self::UNIT_PATH)
         </code>
@@ -729,7 +729,7 @@ a class.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_testIfExists">
-        <div class="location">at line 343</div>
+        <div class="location">at line 350</div>
         <code>        static            bool
     <strong>testIfExists</strong>(string $name)
         </code>
@@ -772,7 +772,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_testIfSame">
-        <div class="location">at line 359</div>
+        <div class="location">at line 366</div>
         <code>        static            bool
     <strong>testIfSame</strong>(string $name)
         </code>
@@ -815,7 +815,7 @@ otherwise we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_testSuite">
-        <div class="location">at line 374</div>
+        <div class="location">at line 381</div>
         <code>                    int
     <strong>testSuite</strong>(array $collection)
         </code>
@@ -857,7 +857,7 @@ otherwise we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_testSuiteStatus">
-        <div class="location">at line 394</div>
+        <div class="location">at line 401</div>
         <code>        static            bool
     <strong>testSuiteStatus</strong>(<abbr title="Console\Helpers\int|null">int|null</abbr> $featureStatus, <abbr title="Console\Helpers\int|null">int|null</abbr> $unitStatus)
         </code>
@@ -905,7 +905,7 @@ successful.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_unitTests">
-        <div class="location">at line 404</div>
+        <div class="location">at line 411</div>
         <code>        static            array
     <strong>unitTests</strong>()
         </code>

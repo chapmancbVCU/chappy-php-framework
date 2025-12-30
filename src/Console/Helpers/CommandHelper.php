@@ -11,8 +11,16 @@ use Symfony\Component\Console\Input\InputInterface;
  * helper classes.
  */
 class CommandHelper {
+    /**
+     * The path for user defined command classes.
+     */
     private const COMMAND_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Commands'.DS;
+
+    /**
+     * The path for user defined command helper classes.
+     */
     private const HELPER_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Console'.DS.'Helpers'.DS;
+    
     /**
      * Creates template for new command class.
      *
