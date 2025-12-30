@@ -11,6 +11,9 @@ use Symfony\Component\Console\Command\Command;
  * Contains functions for creating and deleting the profile images directory.
  */
 class ProfileImageDir {
+    /**
+     * Path to profile images.
+     */
     private const IMAGES_PATH = ROOT.DS.'storage'.DS.'app'.DS.'private'.DS .'profile_images';
 
     /**

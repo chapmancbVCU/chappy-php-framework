@@ -12,6 +12,9 @@ use Symfony\Component\Console\Command\Command;
  * Supports commands related to queues.
  */
 class Queue {
+    /**
+     * Path to jobs classes.
+     */
     private const JOBS_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Jobs'.DS;
 
     /**
