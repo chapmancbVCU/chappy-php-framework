@@ -9,6 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports commands related to Services.
  */
 class Services {
+    /**
+     * Path to service classes.
+     */
     private const SERVICES_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Services'.DS;
 
     /**
