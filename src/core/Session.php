@@ -1,11 +1,22 @@
 <?php
 declare(strict_types=1);
 namespace Core;
+
+use Core\Exceptions\Session\SessionLevelException;
 use Core\Lib\Logging\Logger;
+use ReflectionClass;
+
 /**
  * Supports functions for user sessions.  This class never gets instantiated.
  */
 class Session {
+    public const INFO = "info";
+    public const SUCCESS = "success";
+    public const WARNING = "warning";
+    public const DANGER = "danger";
+    public const PRIMARY = "primary";
+    public const SECONDARY = "secondary";
+    public const DARK = "dark";
 
     /**
      * Adds a session alert message.
@@ -16,6 +27,13 @@ class Session {
      * @return void
      */
     public static function addMessage(string $type, string $message): void {
+        $reflectionClass = new ReflectionClass(__CLASS__);
+        $constants = $reflectionClass->getConstants();
+        $constantKey = array_search($type, $constants);
+        if($constantKey == false) {
+            throw new SessionLevelException($type, "SessionLevelException: Invalid session alert level: ");
+        }
+
         $sessionName = 'alert-' . $type;
         Logger::log("Session::addMessage(): ".$message);
         self::set($sessionName, $message);
