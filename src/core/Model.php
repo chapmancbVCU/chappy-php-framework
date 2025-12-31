@@ -14,14 +14,52 @@ use Core\Lib\Utilities\DateTime;
  */
 #[\AllowDynamicProperties]
 class Model {
+    /** Constant for blacklist */
     const BLACKLIST = 'blacklist';
+    
+    /**
+     * The instance of the DB class.
+     * @var DB
+     */
     protected static $_db;
+    
+    /**
+     * The current id.
+     * @var number
+     */
     public $id;
+    
+    /**
+     * The name of the model.
+     * @var string
+     */
     protected $_modelName;
+    
+    /**
+     * $_softDelete value.
+     * @var bool
+     */
     protected static $_softDelete = false;
+    
+    /**
+     * The name of the table.
+     * @var string
+     */
     protected static $_table;
+    
+    /**
+     * Flag to indicate if validation is successful.
+     * @var bool
+     */
     protected $_validates = true;
+    
+    /**
+     * The array of validation errors.
+     * @var array
+     */
     protected $_validationErrors = [];
+
+    /** Constant for whitelist */
     const WHITELIST = 'whitelist';
 
     /**

@@ -193,7 +193,7 @@ contains the specified keys and values.</p></dd><dt><a href="Core/Lib/Testing/Te
                     <dd><p>Update the object with an associative array.</p></dd><dt><a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
                     <dd><p>Describes ACL model.</p></dd><dt>$<a href="Core/Models/ACL.html#property_acl">
 <abbr title="Core\Models\ACL">ACL</abbr>#acl</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_attachment_name">
+                    <dd><p>The acl value.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_attachment_name">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#attachment_name</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Models/EmailAttachments.html#method_afterDelete">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::afterDelete</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
@@ -293,13 +293,13 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Notifications.html#method_beforeSave">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>Implementation of beforeSave from base class.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd><p>Implements beforeSave.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd><p>Called before save.</p></dd>        </dl><h2 id="letterC">C</h2>
+                    <dd><p>Called after save.</p></dd>        </dl><h2 id="letterC">C</h2>
         <dl id="indexC"><dt><a href="Console/Commands/MakeHelperCommand.html#method_configure">
 <abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr>::configure</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a></em></dt>
                     <dd><p>Configures the command.</p></dd><dt><a href="Console/Commands/MakeSeederCommand.html#method_configure">
@@ -416,7 +416,7 @@ ChannelException class</p></dd><dt><a href="Core/Lib/Notifications/Notification.
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::crc32</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Calculate CRC32 hash of a string.</p></dd><dt>$<a href="Core/Models/ACL.html#property_created_at">
 <abbr title="Core\Models\ACL">ACL</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_created_at">
+                    <dd><p>Created at.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_created_at">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/Notifications.html#property_created_at">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
@@ -552,7 +552,7 @@ wrappers for those found in the Carbon class.</p></dd><dt><a href="Core/Model.ht
 <abbr title="Core\Model">Model</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Wrapper for database delete function.  If not softDelete we set it.</p></dd><dt>$<a href="Core/Models/ACL.html#property_deleted">
 <abbr title="Core\Models\ACL">ACL</abbr>#deleted</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_deleted">
+                    <dd>Deleted</dd><dt>$<a href="Core/Models/EmailAttachments.html#property_deleted">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#deleted</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_description">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#description</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
@@ -981,13 +981,13 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#metho
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::isUuid</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Check if a string is a valid UUID.</p></dd><dt>$<a href="Core/Model.html#property_id">
 <abbr title="Core\Model">Model</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Model.html#method_insert">
+                    <dd><p>The current id.</p></dd><dt><a href="Core/Model.html#method_insert">
 <abbr title="Core\Model">Model</abbr>::insert</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Wrapper for database insert function.</p></dd><dt><a href="Core/Model.html#method_isNew">
 <abbr title="Core\Model">Model</abbr>::isNew</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Checks if an object is a new insertion or an existing record.</p></dd><dt>$<a href="Core/Models/ACL.html#property_id">
 <abbr title="Core\Models\ACL">ACL</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/ACL.html#method_isAssignedToUsers">
+                    <dd><p>The current id.</p></dd><dt><a href="Core/Models/ACL.html#method_isAssignedToUsers">
 <abbr title="Core\Models\ACL">ACL</abbr>::isAssignedToUsers</a>() &mdash; <em>Method in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
                     <dd><p>Check if ACL is assigned to any users</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_id">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
@@ -1403,7 +1403,7 @@ instantiated.</p></dd><dt><a href="Core/FormHelper.html#method_optionsForSelect"
 <abbr title="Core\Model">Model</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Runs when the object is constructed.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_onConstruct">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
-                    <dd><p>Implements onConstruct from parent class.</p></dd>        </dl><h2 id="letterP">P</h2>
+                    <dd><p>Runs when the object is constructed.</p></dd>        </dl><h2 id="letterP">P</h2>
         <dl id="indexP"><dt><a href="Console/Helpers/Notifications.html#method_prune">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::prune</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Prune old notifications using the model layer.</p></dd><dt><a href="Console/Helpers/ProfileImageDir.html"><abbr title="Console\Helpers\ProfileImageDir">ProfileImageDir</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
@@ -1498,7 +1498,9 @@ One where the callback returns true, the other where it returns false.</p></dd><
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::plural</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Pluralize a word.</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_position">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::position</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
-                    <dd><p>Find the position of the first occurrence of a substring.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_path">
+                    <dd><p>Find the position of the first occurrence of a substring.</p></dd><dt><a href="Core/Model.html#method_populateObjData">
+<abbr title="Core\Model">Model</abbr>::populateObjData</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>Populates object with data.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_path">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#path</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/Login.html#property_password">
 <abbr title="Core\Models\Login">Login</abbr>#password</a> &mdash; <em>Property in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
@@ -2102,7 +2104,7 @@ ChannelException class.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_
                     <dd><p>Updates one or more rows in this model's underlying table using
 your framework's params-style conditions.</p></dd><dt>$<a href="Core/Models/ACL.html#property_updated_at">
 <abbr title="Core\Models\ACL">ACL</abbr>#updated_at</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_updated_at">
+                    <dd><p>Updated at.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_updated_at">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#updated_at</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_user_id">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#user_id</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
@@ -2196,7 +2198,10 @@ will not proceed.  This function is just a signature and must be
 implemented by models that run form validation because since it is
 called from within this class.</p></dd><dt><a href="Core/Models/Login.html#method_validator">
 <abbr title="Core\Models\Login">Login</abbr>::validator</a>() &mdash; <em>Method in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
-                    <dd><p>Performs form validation checks for the login screen.</p></dd><dt><a href="Core/View.html"><abbr title="Core\View">View</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>Function that is called on save.  If validation fails the save function
+will not proceed.  This function is just a signature and must be
+implemented by models that run form validation because since it is
+called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title="Core\View">View</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Handles operations related to views and its content.</p></dd>        </dl><h2 id="letterW">W</h2>
         <dl id="indexW"><dt><a href="Console/Helpers/Queue.html#method_worker">
 <abbr title="Console\Helpers\Queue">Queue</abbr>::worker</a>() &mdash; <em>Method in class <a href="Console/Helpers/Queue.html"><abbr title="Console\Helpers\Queue">Queue</abbr></a></em></dt>
@@ -2311,9 +2316,29 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></em></dt>
                     <dd><p>Constructs a new TestResponse instance.</p></dd><dt><a href="Core/Lib/Utilities/ArraySet.html#method___construct">
 <abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/ArraySet.html"><abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr></a></em></dt>
-                    <dd><p>Constructor to initialize the array.</p></dd><dt><a href="Core/Model.html#method___construct">
+                    <dd><p>Constructor to initialize the array.</p></dd><dt>$<a href="Core/Model.html#property__db">
+<abbr title="Core\Model">Model</abbr>#_db</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>The instance of the DB class.</p></dd><dt>$<a href="Core/Model.html#property__modelName">
+<abbr title="Core\Model">Model</abbr>#_modelName</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>The name of the model.</p></dd><dt>$<a href="Core/Model.html#property__softDelete">
+<abbr title="Core\Model">Model</abbr>#_softDelete</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>$_softDelete value.</p></dd><dt>$<a href="Core/Model.html#property__table">
+<abbr title="Core\Model">Model</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>The name of the table.</p></dd><dt>$<a href="Core/Model.html#property__validates">
+<abbr title="Core\Model">Model</abbr>#_validates</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>Flag to indicate if validation is successful.</p></dd><dt>$<a href="Core/Model.html#property__validationErrors">
+<abbr title="Core\Model">Model</abbr>#_validationErrors</a> &mdash; <em>Property in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>The array of validation errors.</p></dd><dt><a href="Core/Model.html#method___construct">
 <abbr title="Core\Model">Model</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
-                    <dd><p>Default constructor.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property__uploadPath">
+                    <dd><p>Default constructor.</p></dd><dt><a href="Core/Model.html#method__fetchStyleParams">
+<abbr title="Core\Model">Model</abbr>::_fetchStyleParams</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>Used to set default fetchStyle param.</p></dd><dt><a href="Core/Model.html#method__softDeleteParams">
+<abbr title="Core\Model">Model</abbr>::_softDeleteParams</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
+                    <dd><p>Adds to the conditions to avoid getting soft deleted rows returned</p></dd><dt>$<a href="Core/Models/ACL.html#property__softDelete">
+<abbr title="Core\Models\ACL">ACL</abbr>#_softDelete</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
+                    <dd><p>$_softDelete value.</p></dd><dt>$<a href="Core/Models/ACL.html#property__table">
+<abbr title="Core\Models\ACL">ACL</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
+                    <dd><p>The name of the table.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property__uploadPath">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#_uploadPath</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>

@@ -7,13 +7,34 @@ use Core\Validators\{RequiredValidator, UniqueValidator};
  * Describes ACL model.
  */
 final class ACL extends Model {
+    /**
+     * The acl value.
+     * @var string
+     */
     public $acl;
+
+    /** The blacklist array. */
     public const blackList = ['id', 'deleted'];
+    /** Created at. */
     public $created_at;
+    /** Deleted */
     public $deleted = 0;
+    /**
+     * The current id.
+     * @var number
+     */
     public $id;
+    /** 
+     * $_softDelete value. 
+     * @var bool
+     * */
     protected static $_softDelete = true;
+    /**
+     * The name of the table.
+     * @var string
+     */
     protected static $_table = 'acl';
+    /** Updated at. */
     public $updated_at;
 
     /**
