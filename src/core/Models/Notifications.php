@@ -6,17 +6,51 @@ use Core\Model;
  * Implements features of the Notifications class.
  */
 class Notifications extends Model {
-    // Set to name of database table.
+    /**
+     * The name of the notifications table.
+     * @var string
+     */
     protected static $_table = 'notifications';
     
     // Fields from your database
+    /** Created at. */
     public $created_at;
+
+    /** Notification data. */
     public $data;
+
+    /**
+     * The id for this notification.
+     * @var int
+     */
     public $id;
+
+    /**
+     * Notification type.
+     * @var string
+     */
     public $notifiable_type;
+
+    /**
+     * Id of user to be notified.
+     * @var int
+     */
     public $notifiable_id;
+
+    /**
+     * Read at flag.
+     * @var int
+     */
     public $read_at;
+
+    /**
+     * The type of notification.
+     *
+     * @var string
+     */
     public $type;
+
+    /** Updated at. */
     public $updated_at;
 
     /**

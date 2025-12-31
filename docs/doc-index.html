@@ -287,9 +287,9 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Models\ACL">ACL</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
                     <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_beforeSave">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Notifications.html#method_beforeSave">
+                    <dd><p>Implementation of beforeSave function where timestamps are updated.</p></dd><dt><a href="Core/Models/Notifications.html#method_beforeSave">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
+                    <dd><p>Implementation of beforeSave from base class.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
@@ -416,7 +416,7 @@ ChannelException class</p></dd><dt><a href="Core/Lib/Notifications/Notification.
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Create at.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_created_at">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/Queue.html#property_created_at">
+                    <dd><p>Created at.</p></dd><dt>$<a href="Core/Models/Queue.html#property_created_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Services/ACLService.html#method_checkACL">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::checkACL</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
@@ -554,7 +554,7 @@ wrappers for those found in the Carbon class.</p></dd><dt><a href="Core/Model.ht
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#description</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd>Description</dd><dt>$<a href="Core/Models/Notifications.html#property_data">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#data</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/ProfileImages.html#property_deleted">
+                    <dd><p>Notification data.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_deleted">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#deleted</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Models/ProfileImages.html#method_deleteById">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::deleteById</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
@@ -989,7 +989,7 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#metho
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>The primary key id</p></dd><dt>$<a href="Core/Models/Notifications.html#property_id">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/ProfileImages.html#property_id">
+                    <dd><p>The id for this notification.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_id">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/Queue.html#property_id">
 <abbr title="Core\Models\Queue">Queue</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
@@ -1361,9 +1361,9 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/Notifications/Excepti
                     <dd><p>Name of the attachment.</p></dd><dt><a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
                     <dd><p>Implements features of the Notifications class.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_notifiable_type">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#notifiable_type</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/Notifications.html#property_notifiable_id">
+                    <dd><p>Notification type.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_notifiable_id">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#notifiable_id</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/Notifications.html#method_notificationsToPrune">
+                    <dd><p>Id of user to be notified.</p></dd><dt><a href="Core/Models/Notifications.html#method_notificationsToPrune">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::notificationsToPrune</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Permanently delete old notifications from this model's table.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_name">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#name</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
@@ -1680,7 +1680,7 @@ message if validator fails.</p></dd><dt>$<a href="Core/Models/Login.html#propert
 <abbr title="Core\Models\Login">Login</abbr>#remember_me</a> &mdash; <em>Property in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
                     <dd><p>Indicates if remember_me was selected.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_read_at">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#read_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/Queue.html#property_reserved_at">
+                    <dd><p>Read at flag.</p></dd><dt>$<a href="Core/Models/Queue.html#property_reserved_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#reserved_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Models/Queue.html#method_reserveNext">
 <abbr title="Core\Models\Queue">Queue</abbr>::reserveNext</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
@@ -2023,7 +2023,7 @@ Output: &quot;7 hours before&quot;</p></dd><dt><a href="Core/Lib/Utilities/DateT
 <abbr title="Core\Model">Model</abbr>::timeStamps</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Sets values for timestamp fields.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_type">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#type</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/DashboardService.html#method_totalUserCountExceptCurrent">
+                    <dd><p>The type of notification.</p></dd><dt><a href="Core/Services/DashboardService.html#method_totalUserCountExceptCurrent">
 <abbr title="Core\Services\DashboardService">DashboardService</abbr>::totalUserCountExceptCurrent</a>() &mdash; <em>Method in class <a href="Core/Services/DashboardService.html"><abbr title="Core\Services\DashboardService">DashboardService</abbr></a></em></dt>
                     <dd><p>Returns query number of users excluding current.</p></dd><dt><a href="Core/Services/UserService.html#method_toggleAccountStatus">
 <abbr title="Core\Services\UserService">UserService</abbr>::toggleAccountStatus</a>() &mdash; <em>Method in class <a href="Core/Services/UserService.html"><abbr title="Core\Services\UserService">UserService</abbr></a></em></dt>
@@ -2112,7 +2112,7 @@ your framework's params-style conditions.</p></dd><dt>$<a href="Core/Models/ACL.
 <abbr title="Core\Models\Login">Login</abbr>#username</a> &mdash; <em>Property in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
                     <dd><p>Username of authenticating user.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_updated_at">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#updated_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/ProfileImages.html#property_url">
+                    <dd><p>Updated at.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_url">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#url</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/ProfileImages.html#property_user_id">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#user_id</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
@@ -2339,7 +2339,9 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#_uploadPath</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Set your file path.  Include your bucket if necessary.</p></dd><dt>$<a href="Core/Models/Login.html#property__table">
 <abbr title="Core\Models\Login">Login</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
-                    <dd><p>Placeholder table name.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
+                    <dd><p>Placeholder table name.</p></dd><dt>$<a href="Core/Models/Notifications.html#property__table">
+<abbr title="Core\Models\Notifications">Notifications</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>The name of the notifications table.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd><p>Constructor for Custom Validator.  It performs checks on the model and
 params such as fields, rules, and messages.  Finally the validation is

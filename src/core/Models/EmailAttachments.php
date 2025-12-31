@@ -113,6 +113,11 @@ final class EmailAttachments extends Model {
      */
     public $user_id;
 
+    /**
+     * Implementation of beforeSave function where timestamps are updated.
+     *
+     * @return void
+     */
     public function beforeSave(): void {
         $this->timeStamps();
     }
