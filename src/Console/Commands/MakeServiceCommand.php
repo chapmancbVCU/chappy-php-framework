@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new custom mailer.
+ * Generates a new custom service by running make:service.
  */
 class MakeServiceCommand extends Command {
     /**

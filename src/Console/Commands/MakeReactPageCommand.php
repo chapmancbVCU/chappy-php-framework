@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Implements command for making a new view file.
+ * Implements command for making a new react view by running react:page.
  */
 class MakeReactPageCommand extends Command {
     /**

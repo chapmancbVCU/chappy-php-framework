@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Implements command for making a new react utility.
+ * Implements command for making a new JavaScript utility by running react:util.
  */
 class MakeReactUtilCommand extends Command {
     /**

@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Implements command for making a new react component.
+ * Implements command for making a new react component by running react:component.
  */
 class MakeReactComponentCommand extends Command {
     /**
