@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Implements command for making a new view file.
+ * Implements command for making a new view file by running make:view.
  */
 class MakeViewCommand extends Command {
     /**
