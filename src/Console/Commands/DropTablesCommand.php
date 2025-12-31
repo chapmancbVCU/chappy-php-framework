@@ -6,7 +6,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Console\Helpers\Migrate;
 
 /**
- * Supports ability to drop all tables.
+ * Supports ability to drop all tables by using the migrate:drop-all command.
  */
 class DropTablesCommand extends Command
 {
