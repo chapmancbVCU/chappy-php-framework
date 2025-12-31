@@ -13,6 +13,10 @@ use Core\Lib\Testing\TestResponse;
  * Abstract class for test cases.
  */
 abstract class ApplicationTestCase extends TestCase {
+    /**
+     * The controller output.
+     * @var array
+     */
     public static array $controllerOutput = [];
     
     /**
@@ -120,7 +124,7 @@ abstract class ApplicationTestCase extends TestCase {
      *
      * @param string $controllerSlug e.g., 'home'
      * @param string $actionSlug     e.g., 'index'
-     * @param array $params          Parameters to pass to the action
+     * @param array $urlSegments          Parameters to pass to the action
      * @return string Rendered HTML output
      *
      * @throws \Exception
@@ -165,7 +169,7 @@ abstract class ApplicationTestCase extends TestCase {
      * - get('/')                → HomeController::indexAction()
      * - get('/products/show/3') → ProductsController::showAction(3)
      *
-     * @param string \$uri The URI string, e.g., '/home/index' or '/products/show/3'
+     * @param string $uri The URI string, e.g., '/home/index' or '/products/show/3'
      * @return \Core\Lib\Testing\TestResponse The response object containing status and content
      */
     protected function get(string $uri): TestResponse
@@ -245,6 +249,7 @@ abstract class ApplicationTestCase extends TestCase {
      * to DELETE and runs the matching controller action.
      *
      * @param string $uri The URI to simulate, e.g., '/posts/10'
+     * @param array $data The DELETE data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
     protected function put(string $uri, array $data = []): TestResponse

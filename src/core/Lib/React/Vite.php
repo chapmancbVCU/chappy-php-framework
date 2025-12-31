@@ -35,8 +35,8 @@ final class Vite
     /**
      * Check if Vite dev server is reachable.
      *
-     * @param string $devBase
-     * @return bool
+     * @param string $devBase URL for dev server.
+     * @return bool True if running, otherwise false.
      */
     public static function viteIsRunning(string $devBase = 'http://localhost:5173'): bool {
         $url = rtrim($devBase, '/') . '/@vite/client';
@@ -50,8 +50,8 @@ final class Vite
      * Adds dev tags.
      *
      * @param string $entry Relative path from project root (e.g. 'resources/js/app.jsx')
-     * @param string $devServer 'http://localhost:5173'
-     * @return string
+     * @param string $devServer URL for dev server.
+     * @return string Script modules with tags.
      */
     private static function devTags(string $entry, string $devServer): string
     {
@@ -67,7 +67,7 @@ HTML;
     /**
      * Locate and decode the Vite manifest.
      *
-     * @return array|null
+     * @return array|null The Vite manifest.
      */
     private static function loadManifest(): ?array
     {
@@ -104,7 +104,7 @@ HTML;
      * Adds production tags.
      *
      * @param string $entry Relative path from project root (e.g. 'resources/js/app.jsx')
-     * @return string
+     * @return string The production tags.
      */
     private static function prodTags(string $entry): string
     {
@@ -171,8 +171,8 @@ HTML;
      * - In prod (APP_ENV=production), always use manifest-based assets.
      *
      * @param string $entry Relative path from project root (e.g. 'resources/js/app.jsx')
-     * @param string $devServer
-     * @return string
+     * @param string $devServer URL for dev server.
+     * @return string Script/link tags for a Vite entry.
      */
     public static function tags(string $entry, string $devServer = 'http://localhost:5173'): string
     {

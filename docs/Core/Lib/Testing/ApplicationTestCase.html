@@ -111,7 +111,7 @@
                                                                                 
                                     </td>
                 <td>$controllerOutput</td>
-                <td class="last"></td>
+                <td class="last"><p>The controller output.</p></td>
                 <td></td>
             </tr>
             </table>
@@ -150,6 +150,69 @@
                                             <p><p>Asserts that a property exists on the View object captured via controllerOutput().</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_controllerOutput">controllerOutput</a>(string $controllerSlug, string $actionSlug, array $urlSegments = [])
+        
+                                            <p><p>Simulates a controller action based on URL-style input and captures its output.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_get">get</a>(string $uri)
+        
+                                            <p><p>Simulates an HTTP GET request to a given URI by resolving and executing
+the corresponding controller and action, capturing the output.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_mockFile">mockFile</a>(string $files)
+        
+                                            <p><p>Create a mock file for actions that require file input in form submissions.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_post">post</a>(string $uri, array $data = [])
+        
+                                            <p><p>Simulates a POST request by setting $_POST data and executing the specified
+controller and action. Returns a TestResponse with the output and status.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_put">put</a>(string $uri, array $data = [])
+        
+                                            <p><p>Simulates a DELETE request to a specified URI. This sets the request method
+to DELETE and runs the matching controller action.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setUp">setUp</a>()
+        
+                                            <p><p>Implements setUp function from TestCase class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -158,7 +221,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_assertDatabaseHas">
-        <div class="location">at line 32</div>
+        <div class="location">at line 36</div>
         <code>                    void
     <strong>assertDatabaseHas</strong>(string $table, array $data, string $message = &#039;&#039;)
         </code>
@@ -220,7 +283,7 @@ whether a matching row exists. It fails the test if no such row is found.</p></p
             </div>
                     <div class="method-item">
                     <h3 id="method_assertDatabaseMissing">
-        <div class="location">at line 70</div>
+        <div class="location">at line 74</div>
         <code>                    void
     <strong>assertDatabaseMissing</strong>(string $table, array $data, string $message = &#039;&#039;)
         </code>
@@ -282,7 +345,7 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertViewContains">
-        <div class="location">at line 102</div>
+        <div class="location">at line 106</div>
         <code>                    void
     <strong>assertViewContains</strong>(string $property, mixed $expectedValue = null)
         </code>
@@ -310,6 +373,287 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
             </tr>
             </table>
 
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_controllerOutput">
+        <div class="location">at line 132</div>
+        <code>            protected        string
+    <strong>controllerOutput</strong>(string $controllerSlug, string $actionSlug, array $urlSegments = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a controller action based on URL-style input and captures its output.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controllerSlug</td>
+                <td><p>e.g., 'home'</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$actionSlug</td>
+                <td><p>e.g., 'index'</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$urlSegments</td>
+                <td><p>Parameters to pass to the action</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Rendered HTML output</p></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/Exception">Exception</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_get">
+        <div class="location">at line 175</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>get</strong>(string $uri)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates an HTTP GET request to a given URI by resolving and executing
+the corresponding controller and action, capturing the output.</p></p>                <p><p>Supports URI segments in the form of /controller/action/param1/param2,
+and maps them to a controller class and action method with optional
+parameters passed positionally.</p>
+<p>Example:</p>
+<ul>
+<li>get('/')                → HomeController::indexAction()</li>
+<li>get('/products/show/3') → ProductsController::showAction(3)</li>
+</ul></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>The URI string, e.g., '/home/index' or '/products/show/3'</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>The response object containing status and content</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_mockFile">
+        <div class="location">at line 201</div>
+        <code>            protected        void
+    <strong>mockFile</strong>(string $files)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Create a mock file for actions that require file input in form submissions.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$files</td>
+                <td><p>The name of the $_FILES field.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_post">
+        <div class="location">at line 219</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>post</strong>(string $uri, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a POST request by setting $_POST data and executing the specified
+controller and action. Returns a TestResponse with the output and status.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>The URI to simulate, e.g., '/login'</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>The POST data to inject (e.g., ['email' =&gt; 'foo@bar.com'])</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>The test response object</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_put">
+        <div class="location">at line 255</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>put</strong>(string $uri, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a DELETE request to a specified URI. This sets the request method
+to DELETE and runs the matching controller action.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>The URI to simulate, e.g., '/posts/10'</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>The DELETE data.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>The test response object</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setUp">
+        <div class="location">at line 288</div>
+        <code>            protected        void
+    <strong>setUp</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Implements setUp function from TestCase class.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 

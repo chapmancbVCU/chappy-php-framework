@@ -141,6 +141,36 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_devTags">devTags</a>(string $entry, string $devServer)
+        
+                                            <p><p>Adds dev tags.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_loadManifest">loadManifest</a>()
+        
+                                            <p><p>Locate and decode the Vite manifest.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_prodTags">prodTags</a>(string $entry)
+        
+                                            <p><p>Adds production tags.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_tags">tags</a>(string $entry, string $devServer = &#039;http://localhost:5173&#039;)
         
                                             <p><p>Render script/link tags for a Vite entry.</p></p>                </div>
@@ -237,7 +267,7 @@
                     <tr>
                 <td>string</td>
                 <td>$devBase</td>
-                <td></td>
+                <td><p>URL for dev server.</p></td>
             </tr>
             </table>
 
@@ -247,7 +277,128 @@
                     <table class="table table-condensed">
         <tr>
             <td>bool</td>
-            <td></td>
+            <td><p>True if running, otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_devTags">
+        <div class="location">at line 56</div>
+        <code>        static        private    string
+    <strong>devTags</strong>(string $entry, string $devServer)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds dev tags.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$entry</td>
+                <td><p>Relative path from project root (e.g. 'resources/js/app.jsx')</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$devServer</td>
+                <td><p>URL for dev server.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Script modules with tags.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loadManifest">
+        <div class="location">at line 72</div>
+        <code>        static        private    array|null
+    <strong>loadManifest</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Locate and decode the Vite manifest.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array|null</td>
+            <td><p>The Vite manifest.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_prodTags">
+        <div class="location">at line 109</div>
+        <code>        static        private    string
+    <strong>prodTags</strong>(string $entry)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds production tags.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$entry</td>
+                <td><p>Relative path from project root (e.g. 'resources/js/app.jsx')</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The production tags.</p></td>
         </tr>
     </table>
 
@@ -287,7 +438,7 @@
                     <tr>
                 <td>string</td>
                 <td>$devServer</td>
-                <td></td>
+                <td><p>URL for dev server.</p></td>
             </tr>
             </table>
 
@@ -297,7 +448,7 @@
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td></td>
+            <td><p>Script/link tags for a Vite entry.</p></td>
         </tr>
     </table>
 
