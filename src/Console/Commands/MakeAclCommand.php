@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Supports ability to generate a menu_acl json file by running make:acl.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#menu-acls">here</a>.
  */
 class MakeAclCommand extends Command {
     /**
