@@ -9,7 +9,16 @@ namespace Core\Lib\Utilities;
  */
 class ArraySet
 {
+    /**
+     * Items for array.
+     * @var array
+     */
     protected array $items;
+
+    /**
+     * The last result.
+     * @var mixed
+     */
     protected mixed $lastResult;
 
     /**

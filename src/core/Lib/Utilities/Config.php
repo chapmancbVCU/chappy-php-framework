@@ -53,7 +53,7 @@ class Config
      *
      * @param string $key Dot notation key (e.g. "app.name")
      * @param mixed $default Default value if key not found
-     * @return mixed
+     * @return mixed The configuration value.
      */
     public static function get(string $key, mixed $default = null): mixed {
         $keys = explode('.', $key);
