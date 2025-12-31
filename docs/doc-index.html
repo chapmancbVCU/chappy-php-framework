@@ -201,9 +201,9 @@ contains the specified keys and values.</p></dd><dt><a href="Core/Lib/Testing/Te
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#allowedFileTypes</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>The allowed file types.</p></dd><dt>$<a href="Core/Models/Queue.html#property_attempts">
 <abbr title="Core\Models\Queue">Queue</abbr>#attempts</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/Queue.html#property_available_at">
+                    <dd><p>Number of attempts.</p></dd><dt>$<a href="Core/Models/Queue.html#property_available_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#available_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a> &mdash; <em>Class in namespace <a href="Core/Services.html">Core\Services</a></em></dt>
+                    <dd><p>Available at.</p></dd><dt><a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a> &mdash; <em>Class in namespace <a href="Core/Services.html">Core\Services</a></em></dt>
                     <dd><p>Collection of functions for managing User's ACLs.</p></dd><dt><a href="Core/Services/ACLService.html#method_aclsForUser">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::aclsForUser</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Returns an array containing access control list information.  When the
@@ -295,9 +295,9 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
+                    <dd><p>Implements beforeSave.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd>        </dl><h2 id="letterC">C</h2>
+                    <dd><p>Called before save.</p></dd>        </dl><h2 id="letterC">C</h2>
         <dl id="indexC"><dt><a href="Console/Commands/MakeHelperCommand.html#method_configure">
 <abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr>::configure</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a></em></dt>
                     <dd><p>Configures the command.</p></dd><dt><a href="Console/Commands/MakeSeederCommand.html#method_configure">
@@ -420,7 +420,9 @@ ChannelException class</p></dd><dt><a href="Core/Lib/Notifications/Notification.
 <abbr title="Core\Models\Notifications">Notifications</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Created at.</p></dd><dt>$<a href="Core/Models/Queue.html#property_created_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/ACLService.html#method_checkACL">
+                    <dd><p>Created at.</p></dd><dt><a href="Core/Models/Queue.html#method_calcRetryDelay">
+<abbr title="Core\Models\Queue">Queue</abbr>::calcRetryDelay</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Calculate delay when performing retry for a job.</p></dd><dt><a href="Core/Services/ACLService.html#method_checkACL">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::checkACL</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Checks if ACL is found and sets flash message if not the case.  Also,
 checks if it is assigned to a user and sets flash message.</p></dd><dt><a href="Core/Services/AuthService.html#method_confirm">
@@ -637,7 +639,7 @@ presentable to user during validation.</p></dd><dt><a href="Core/Lib/Providers/E
                     <dd><p>Create excerpts around specific words within a string.</p></dd><dt><a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
                     <dd><p>Implements features of the EmailAttachments class.</p></dd><dt>$<a href="Core/Models/Queue.html#property_exception">
 <abbr title="Core\Models\Queue">Queue</abbr>#exception</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/Queue.html#method_exceptionMessaging">
+                    <dd>Exceptions</dd><dt><a href="Core/Models/Queue.html#method_exceptionMessaging">
 <abbr title="Core\Models\Queue">Queue</abbr>::exceptionMessaging</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Handles tasks related to exceptions and retry of jobs.</p></dd><dt><a href="Core/Services/UserService.html#method_ensureAuthenticatedUser">
 <abbr title="Core\Services\UserService">UserService</abbr>::ensureAuthenticatedUser</a>() &mdash; <em>Method in class <a href="Core/Services/UserService.html"><abbr title="Core\Services\UserService">UserService</abbr></a></em></dt>
@@ -740,7 +742,13 @@ findTotal function in DB class.</p></dd><dt><a href="Core/Models/EmailAttachment
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::findByUserId</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Finds all profile images for a user.</p></dd><dt>$<a href="Core/Models/Queue.html#property_failed_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#failed_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/NotificationService.html#method_flashUnreadNotifications">
+                    <dd><p>Failed at.</p></dd><dt><a href="Core/Models/Queue.html#method_failedAt">
+<abbr title="Core\Models\Queue">Queue</abbr>::failedAt</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Logs message indicating job permanently failed and returns current timestamp.</p></dd><dt><a href="Core/Models/Queue.html#method_findFirstWithLock">
+<abbr title="Core\Models\Queue">Queue</abbr>::findFirstWithLock</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Find first with lock</p></dd><dt><a href="Core/Models/Queue.html#method_findJob">
+<abbr title="Core\Models\Queue">Queue</abbr>::findJob</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Returns record for job based on id found in associative array.</p></dd><dt><a href="Core/Services/NotificationService.html#method_flashUnreadNotifications">
 <abbr title="Core\Services\NotificationService">NotificationService</abbr>::flashUnreadNotifications</a>() &mdash; <em>Method in class <a href="Core/Services/NotificationService.html"><abbr title="Core\Services\NotificationService">NotificationService</abbr></a></em></dt>
                     <dd><p>Adds notification information to Session Messages for currently logged
 in user.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_field">
@@ -891,7 +899,9 @@ available constants.</p></dd><dt><a href="Core/FormHelper.html#method_hidden">
 <abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr>::hasAny</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/ArraySet.html"><abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr></a></em></dt>
                     <dd><p>Determine if at least one of the given keys exists in the array.</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_headline">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::headline</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
-                    <dd><p>Convert a string to headline case.</p></dd><dt><a href="Core/Router.html#method_hasAccess">
+                    <dd><p>Convert a string to headline case.</p></dd><dt><a href="Core/Models/Queue.html#method_hasExceededMaxAttempts">
+<abbr title="Core\Models\Queue">Queue</abbr>::hasExceededMaxAttempts</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Test if job as exceeded limit for maximum allowed attempts.</p></dd><dt><a href="Core/Router.html#method_hasAccess">
 <abbr title="Core\Router">Router</abbr>::hasAccess</a>() &mdash; <em>Method in class <a href="Core/Router.html"><abbr title="Core\Router">Router</abbr></a></em></dt>
                     <dd><p>Checks if user has access to a particular section of the site
 and grants access if that is the case.</p></dd><dt><a href="Core/Services/AuthService.html#method_hashPassword">
@@ -995,9 +1005,11 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#metho
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>ID for this image.</p></dd><dt>$<a href="Core/Models/Queue.html#property_id">
 <abbr title="Core\Models\Queue">Queue</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/UserSessions.html#property_id">
+                    <dd><p>ID for item in queue.</p></dd><dt><a href="Core/Models/Queue.html#method_isQueueableClass">
+<abbr title="Core\Models\Queue">Queue</abbr>::isQueueableClass</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Checks if class exists and that it implements the QueueableJobInterface.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property_id">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/SessionManager.html#method_initialize">
+                    <dd><p>The id for the session.</p></dd><dt><a href="Core/SessionManager.html#method_initialize">
 <abbr title="Core\SessionManager">SessionManager</abbr>::initialize</a>() &mdash; <em>Method in class <a href="Core/SessionManager.html"><abbr title="Core\SessionManager">SessionManager</abbr></a></em></dt>
                     <dd><p>Checks if session exists and logs user in.  Logs user out if account
 status is inactive.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_includeDeleted">
@@ -1294,7 +1306,9 @@ extendability.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_
 <abbr title="Core\Models\Notifications">Notifications</abbr>::markAsReadById</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Mark notification record as read by id.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_maxAllowedFileSize">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#maxAllowedFileSize</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Max allowed size.</p></dd><dt><a href="Core/Services/ACLService.html#method_manageAcls">
+                    <dd><p>Max allowed size.</p></dd><dt><a href="Core/Models/Queue.html#method_maxAttempts">
+<abbr title="Core\Models\Queue">Queue</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Returns maximum allowable attempts.</p></dd><dt><a href="Core/Services/ACLService.html#method_manageAcls">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::manageAcls</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Manages the adding and removing of ACLs.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_message">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#message</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
@@ -1509,7 +1523,7 @@ One where the callback returns true, the other where it returns false.</p></dd><
                     <dd><p>Password of user authenticating.</p></dd><dt><a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
                     <dd><p>Supports CRUD operations on profile image records.</p></dd><dt>$<a href="Core/Models/Queue.html#property_payload">
 <abbr title="Core\Models\Queue">Queue</abbr>#payload</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/AttachmentService.html#method_previewAttachment">
+                    <dd>Payload</dd><dt><a href="Core/Services/AttachmentService.html#method_previewAttachment">
 <abbr title="Core\Services\AttachmentService">AttachmentService</abbr>::previewAttachment</a>() &mdash; <em>Method in class <a href="Core/Services/AttachmentService.html"><abbr title="Core\Services\AttachmentService">AttachmentService</abbr></a></em></dt>
                     <dd><p>Generates preview for attachment in new tab.</p></dd><dt><a href="Core/Services/AttachmentService.html#method_processAttachment">
 <abbr title="Core\Services\AttachmentService">AttachmentService</abbr>::processAttachment</a>() &mdash; <em>Method in class <a href="Core/Services/AttachmentService.html"><abbr title="Core\Services\AttachmentService">AttachmentService</abbr></a></em></dt>
@@ -1547,7 +1561,7 @@ binding, execute, and fetch.</p></dd><dt><a href="Core/Lib/Events/Contracts/Queu
                     <dd><p>Wrapper for database query function.</p></dd><dt><a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
                     <dd><p>Implements features of the Queue class.</p></dd><dt>$<a href="Core/Models/Queue.html#property_queue">
 <abbr title="Core\Models\Queue">Queue</abbr>#queue</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd>        </dl><h2 id="letterR">R</h2>
+                    <dd><p>Name of queue.</p></dd>        </dl><h2 id="letterR">R</h2>
         <dl id="indexR"><dt><a href="Console/Commands/ReactAuthCommand.html"><abbr title="Console\Commands\ReactAuthCommand">ReactAuthCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Implements command for generating the auth page components.</p></dd><dt><a href="Console/Commands/ReactErrorCommand.html"><abbr title="Console\Commands\ReactErrorCommand">ReactErrorCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Implements command for generating the error/NotFound.jsx page component.</p></dd><dt><a href="Console/Commands/ReactHomeCommand.html"><abbr title="Console\Commands\ReactHomeCommand">ReactHomeCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -1686,9 +1700,13 @@ message if validator fails.</p></dd><dt>$<a href="Core/Models/Login.html#propert
 <abbr title="Core\Models\Notifications">Notifications</abbr>#read_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Read at flag.</p></dd><dt>$<a href="Core/Models/Queue.html#property_reserved_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#reserved_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/Queue.html#method_reserveNext">
+                    <dd><p>Reserved at.</p></dd><dt><a href="Core/Models/Queue.html#method_reservedAt">
+<abbr title="Core\Models\Queue">Queue</abbr>::reservedAt</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Updates reserved_at field.</p></dd><dt><a href="Core/Models/Queue.html#method_reserveNext">
 <abbr title="Core\Models\Queue">Queue</abbr>::reserveNext</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd><p>Attempts to atomically reserve the next available job from the queue.</p></dd><dt><a href="Core/Router.html"><abbr title="Core\Router">Router</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>Attempts to atomically reserve the next available job from the queue.</p></dd><dt><a href="Core/Models/Queue.html#method_resolveBackoffDelay">
+<abbr title="Core\Models\Queue">Queue</abbr>::resolveBackoffDelay</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Resolves backoff delay.</p></dd><dt><a href="Core/Router.html"><abbr title="Core\Router">Router</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>This class is responsible for routing between views.</p></dd><dt><a href="Core/Router.html#method_redirect">
 <abbr title="Core\Router">Router</abbr>::redirect</a>() &mdash; <em>Method in class <a href="Core/Router.html"><abbr title="Core\Router">Router</abbr></a></em></dt>
                     <dd><p>Performs redirect operations.</p></dd><dt><a href="Core/Router.html#method_route">
@@ -1914,9 +1932,11 @@ cause this function to return false.</p></dd><dt>$<a href="Core/Models/EmailAtta
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#size</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Size of the attachment.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_sort">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#sort</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Sorted position.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property_session">
+                    <dd><p>Sorted position.</p></dd><dt><a href="Core/Models/Queue.html#method_setAvailableAt">
+<abbr title="Core\Models\Queue">Queue</abbr>::setAvailableAt</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Sets when job is available.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property_session">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#session</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/ACLService.html#method_setAclAtRegistration">
+                    <dd><p>The session.</p></dd><dt><a href="Core/Services/ACLService.html#method_setAclAtRegistration">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::setAclAtRegistration</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Sets ACL at registration.  If users table is empty the default
 value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></dd><dt><a href="Core/Services/ACLService.html#method_saveACL">
@@ -2126,12 +2146,14 @@ your framework's params-style conditions.</p></dd><dt>$<a href="Core/Models/ACL.
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::uploadProfileImage</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Performs upload operation for a profile image.</p></dd><dt>$<a href="Core/Models/Queue.html#property_updated_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#updated_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
+                    <dd><p>Updated at.</p></dd><dt><a href="Core/Models/Queue.html#method_updateAttempts">
+<abbr title="Core\Models\Queue">Queue</abbr>::updateAttempts</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Updates information about attempts.</p></dd><dt><a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a> &mdash; <em>Class in namespace <a href="Core/Models.html">Core\Models</a></em></dt>
                     <dd><p>Supports operations of the User Session model.  Extends the Model class.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property_user_agent">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#user_agent</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/UserSessions.html#property_user_id">
+                    <dd><p>The user agent.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property_user_id">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#user_id</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/ACLService.html#method_updateUserACLs">
+                    <dd><p>ID of user associated with this session.</p></dd><dt><a href="Core/Services/ACLService.html#method_updateUserACLs">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::updateUserACLs</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Updates user's acl field</p></dd><dt><a href="Core/Services/ACLService.html#method_unUsedACLs">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::unUsedACLs</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
@@ -2351,7 +2373,11 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Name of the table.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property__uploadPath">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#_uploadPath</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Upload path.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
+                    <dd><p>Upload path.</p></dd><dt>$<a href="Core/Models/Queue.html#property__table">
+<abbr title="Core\Models\Queue">Queue</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
+                    <dd><p>Name of the table.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property__table">
+<abbr title="Core\Models\UserSessions">UserSessions</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
+                    <dd><p>The name of the table.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd><p>Constructor for Custom Validator.  It performs checks on the model and
 params such as fields, rules, and messages.  Finally the validation is

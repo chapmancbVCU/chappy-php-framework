@@ -6,11 +6,37 @@ use Core\{Cookie, Model, Session};
 /**
  * Supports operations of the User Session model.  Extends the Model class.
  */
-final class UserSessions extends Model{
+final class UserSessions extends Model {
+    /**
+     * The id for the session.
+     * @var int
+     */
     public $id;
+
+    /**
+     * The session.
+     * @var string
+     */
     public $session;
+
+    /**
+     * The name of the table.
+     * @var string
+     */
     protected static $_table = 'user_sessions';
+
+    /**
+     * The user agent.
+     *
+     * @var string
+     */
     public $user_agent;
+
+    /**
+     * ID of user associated with this session.
+     *
+     * @var int
+     */
     public $user_id;
 
     /**

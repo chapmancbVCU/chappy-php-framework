@@ -14,19 +14,46 @@ use Core\Lib\Queue\QueueableJobInterface;
  * Implements features of the Queue class.
  */
 class Queue extends Model {
-    // Set to name of database table.
+    /**
+     * Name of the table.
+     * @var string
+     */
     protected static $_table = 'queue';
 
-    // Fields from your database
+    /**
+     * Number of attempts.
+     * @var int
+     */
     public $attempts;
+
+    /** Available at. */
     public $available_at;
+    /** Created at. */
     public $created_at;
+    /** Exceptions */
     public $exception;
+    /** Failed at. */
     public $failed_at;
+
+    /**
+     * ID for item in queue.
+     *
+     * @var int
+     */
     public $id;
+
+    /**
+     * Name of queue.
+     *
+     * @var string
+     */
     public $queue;
+
+    /** Reserved at. */
     public $reserved_at;
+    /** Payload */
     public $payload;
+    /** Updated at. */
     public $updated_at;
 
     /**
@@ -62,7 +89,7 @@ class Queue extends Model {
      * Handles tasks related to exceptions and retry of jobs.
      *
      * @param FrameworkException $e The exception.
-     * @param array $job The array of jobs
+     * @param array $queueJob The array of jobs
      * @return void
      */
     public static function exceptionMessaging(FrameworkException $e, array $queueJob): void {
@@ -97,8 +124,8 @@ class Queue extends Model {
     /**
      * Find first with lock
      *
-     * @param string $queueName
-     * @return self|null
+     * @param string $queueName The name of the queue.
+     * @return self|null The queue.
      */
     private static function findFirstWithLock(string $queueName): ?self {
         $job =  self::findFirst([
@@ -232,11 +259,11 @@ class Queue extends Model {
     }
 
     /**
-     * Undocumented function
+     * Resolves backoff delay.
      *
-     * @param mixed $backoff
-     * @param self $job
-     * @return integer
+     * @param mixed $backoff Time to backoff.
+     * @param self $job The queue to backoff.
+     * @return int The delay.
      */
     private static function resolveBackoffDelay(mixed $backoff, self $job): int {
         if(is_array($backoff)) {
@@ -247,6 +274,13 @@ class Queue extends Model {
         return 10;
     }
 
+    /**
+     * Sets when job is available.
+     *
+     * @param integer $delay The delay.
+     * @param self $job The job in the queue.
+     * @return void
+     */
     private static function setAvailableAt(int $delay, self $job) {
         Tools::info("Job will be retried. Attempt: {$job->attempts}", Logger::WARNING);
         return DateTime::nowPlusSeconds($delay);
