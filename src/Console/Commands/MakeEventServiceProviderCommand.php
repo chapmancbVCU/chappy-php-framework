@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new event service provider class.
+ * Generates a new event service provider class by running make:provider.
  */
 class MakeEventServiceProviderCommand extends Command
 {

@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new event class.
+ * Generates a new event class by typing make:event.
  */
 class MakeEventCommand extends Command
 {

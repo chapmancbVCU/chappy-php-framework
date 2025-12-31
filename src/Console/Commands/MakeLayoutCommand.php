@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new layout.
+ * Generates a new layout by running make:layout.
  */
 class MakeLayoutCommand extends Command {
     /**

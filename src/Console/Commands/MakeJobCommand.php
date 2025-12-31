@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new Job class.
+ * Generates a new Job class by running make:job.
  */
 class MakeJobCommand extends Command
 {
