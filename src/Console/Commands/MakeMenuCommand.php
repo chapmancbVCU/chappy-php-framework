@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Core\Lib\Utilities\Str;
 
 /**
- * Supports ability to generate a new menu file
+ * Supports ability to generate a new menu file by running make:menu.
  */
 class MakeMenuCommand extends Command {
     /**

@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new event class.
+ * Generates a new listener class by running make:listener.
  */
 class MakeListenerCommand extends Command
 {

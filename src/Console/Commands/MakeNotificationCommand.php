@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new Notification class.
+ * Generates a new Notification class by running make:notification.
  */
 class MakeNotificationCommand extends Command
 {
