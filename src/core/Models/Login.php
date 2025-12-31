@@ -7,9 +7,29 @@ use Core\Validators\RequiredValidator;
  * Extends the Model class.  Supports functions for the Login model.
  */
 final class Login extends Model {
+    /**
+     * Password of user authenticating.
+     *
+     * @var string
+     */
     public $password;
+
+    /**
+     * Indicates if remember_me was selected. 
+     * @var bool
+     */
     public $remember_me;
+
+    /**
+     * Placeholder table name.
+     * @var string
+     */
     protected static $_table = 'tmp_fake';
+
+    /**
+     * Username of authenticating user.
+     * @var string
+     */
     public $username;
 
     /**

@@ -13,45 +13,105 @@ final class EmailAttachments extends Model {
     // Fields you don't want saved on form submit
     // public const blackList = [];
 
-    // Set to name of database table.
+    /**
+     * Set to name of database table.
+     *
+     * @var string
+     */
     protected static $_table = 'email_attachments';
 
-    // Soft delete
+    /**
+     * Soft delete
+     *
+     * @var bool
+     */
     protected static $_softDelete = true;
     
-    // List your allowed file types.
+    /**
+     * The array of allowed types.
+     * @var array
+     */
     protected static $allowedFileTypes;
 
-    // Set your max file size.
+    /**
+     * Set your max file size.
+     * @var int
+     */
     protected static $maxAllowedFileSize = 17825792;
 
-    // Set your file path.  Include your bucket if necessary.
+    /**
+     * Set your file path.  Include your bucket if necessary.
+     * @var string
+     */
     public static $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'email_attachments';
     
-    // Fields from your database
+    /**
+     * The attachment's name.
+     * @var string
+     */
     public $attachment_name;
+    
+    /** Create at. */
     public $created_at;
+    
+    /**
+     * Deleted
+     *
+     * @var int
+     */
     public $deleted = 0;
+    
+    /**
+     * Description
+     *
+     * @var string
+     */
     public $description;
+
+    /**
+     * The primary key id
+     *
+     * @var int
+     */
     public $id;
+
+    /**
+     * The mime type.
+     *
+     * @var string
+     */
     public $mime_type;
+
+    /**
+     * Name of the attachment.
+     *
+     * @var string
+     */
     public $name;
+
+    /**
+     * Path to the attachment.
+     *
+     * @var string
+     */
     public $path;
+
+    /**
+     * Size of the attachment.
+     *
+     * @var int
+     */
     public $size;
+
+    /** Updated at. */
     public $updated_at;
+
+    /**
+     * ID of the recipient.
+     *
+     * @var int
+     */
     public $user_id;
-
-    public function afterDelete(): void {
-        // Implement your function
-    }
-
-    public function afterSave(): void {
-        // Implement your function
-    }
-
-    public function beforeDelete(): void {
-        // Implement your function
-    }
 
     public function beforeSave(): void {
         $this->timeStamps();
@@ -102,16 +162,6 @@ final class EmailAttachments extends Model {
      */
     public function onConstruct(): void {
         self::$allowedFileTypes = Attachments::getAllowedMimeTypes();
-    }
-
-    /**
-     * Performs upload
-     *
-     * @return void
-     */
-    public static function uploadFile($user_id, $uploads): void {
-        // Implement your function
-        
     }
 
     /**
