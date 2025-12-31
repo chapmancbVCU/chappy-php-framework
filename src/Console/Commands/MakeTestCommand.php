@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to generate new test file.
+ * Supports ability to generate new test file by running make:test.
  */
 class MakeTestCommand extends Command
 {

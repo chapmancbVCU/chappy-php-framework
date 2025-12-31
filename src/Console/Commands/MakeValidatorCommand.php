@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /** 
- * Generates a new Custom Form Validator
+ * Generates a new Custom Form Validator by running make:validator.
  */
 class MakeValidatorCommand extends Command {
     /**
