@@ -221,7 +221,7 @@ $acl instance variable is empty an empty array is returned.</p></dd><dt><a href=
 <abbr title="Core\Session">Session</abbr>::addMessage</a>() &mdash; <em>Method in class <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a></em></dt>
                     <dd><p>Adds a session alert message.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_additionalFieldData">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#additionalFieldData</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/View.html#method_addWidget">
+                    <dd><p>Additional field data.</p></dd><dt><a href="Core/View.html#method_addWidget">
 <abbr title="Core\View">View</abbr>::addWidget</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
                     <dd><p>Registers a new widget.</p></dd>        </dl><h2 id="letterB">B</h2>
         <dl id="indexB"><dt><a href="Console/Helpers/Migrate.html#method_batchExists">
@@ -753,7 +753,7 @@ findTotal function in DB class.</p></dd><dt><a href="Core/Models/EmailAttachment
                     <dd><p>Adds notification information to Session Messages for currently logged
 in user.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_field">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#field</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
-                    <dd></dd>        </dl><h2 id="letterG">G</h2>
+                    <dd><p>Name of field being validated.</p></dd>        </dl><h2 id="letterG">G</h2>
         <dl id="indexG"><dt><a href="Console/Commands/GenerateControllerCommand.html"><abbr title="Console\Commands\GenerateControllerCommand">GenerateControllerCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to generate new controller class.</p></dd><dt><a href="Console/Commands/GenerateMigrationCommand.html"><abbr title="Console\Commands\GenerateMigrationCommand">GenerateMigrationCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to generate new migration file.</p></dd><dt><a href="Console/Commands/GenerateModelCommand.html"><abbr title="Console\Commands\GenerateModelCommand">GenerateModelCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -1014,7 +1014,7 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#metho
                     <dd><p>Checks if session exists and logs user in.  Logs user out if account
 status is inactive.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_includeDeleted">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#includeDeleted</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
-                    <dd></dd>        </dl><h2 id="letterJ">J</h2>
+                    <dd><p>Include deleted default is false.</p></dd>        </dl><h2 id="letterJ">J</h2>
         <dl id="indexJ"><dt><a href="Console/Helpers/Queue.html#method_jobTemplate">
 <abbr title="Console\Helpers\Queue">Queue</abbr>::jobTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Queue.html"><abbr title="Console\Helpers\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Template for Jobs class.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Http.html">Core\Lib\Http</a></em></dt>
@@ -1312,7 +1312,7 @@ extendability.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_
 <abbr title="Core\Services\ACLService">ACLService</abbr>::manageAcls</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Manages the adding and removing of ACLs.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_message">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#message</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Validators/MatchesValidator.html"><abbr title="Core\Validators\MatchesValidator">MatchesValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Message when validation fails.</p></dd><dt><a href="Core/Validators/MatchesValidator.html"><abbr title="Core\Validators\MatchesValidator">MatchesValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class that performs validation for two fields that are required to
 have the same value.</p></dd><dt><a href="Core/Validators/MaxValidator.html"><abbr title="Core\Validators\MaxValidator">MaxValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class that performs validation for the maximum length of a value for
@@ -1717,51 +1717,47 @@ the correct controller and action to use.</p></dd><dt><a href="Core/Services/ACL
 <abbr title="Core\Services\ACLService">ACLService</abbr>::removeAcl</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Removes ACL from user's acl field array.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_rule">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#rule</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Validators/CustomValidator.html#method_runValidation">
+                    <dd><p>Rule for validation success.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method_runValidation">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd><p>Signature for the runValidation function that must be implemented by
 each child class.</p></dd><dt><a href="Core/Validators/EmailValidator.html#method_runValidation">
 <abbr title="Core\Validators\EmailValidator">EmailValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/EmailValidator.html"><abbr title="Core\Validators\EmailValidator">EmailValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must be a valid E-mail.</p></dd><dt><a href="Core/Validators/LowerCharValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/LowerCharValidator.html#method_runValidation">
 <abbr title="Core\Validators\LowerCharValidator">LowerCharValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/LowerCharValidator.html"><abbr title="Core\Validators\LowerCharValidator">LowerCharValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain at least one
-lower case character.</p></dd><dt><a href="Core/Validators/MatchesValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/MatchesValidator.html#method_runValidation">
 <abbr title="Core\Validators\MatchesValidator">MatchesValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/MatchesValidator.html"><abbr title="Core\Validators\MatchesValidator">MatchesValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirements when two fields must match.</p></dd><dt><a href="Core/Validators/MaxValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/MaxValidator.html#method_runValidation">
 <abbr title="Core\Validators\MaxValidator">MaxValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/MaxValidator.html"><abbr title="Core\Validators\MaxValidator">MaxValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces maximum length requirements for a form field.</p></dd><dt><a href="Core/Validators/MinValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/MinValidator.html#method_runValidation">
 <abbr title="Core\Validators\MinValidator">MinValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/MinValidator.html"><abbr title="Core\Validators\MinValidator">MinValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces minimum length requirements for a form field.</p></dd><dt><a href="Core/Validators/NumberCharValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/NumberCharValidator.html#method_runValidation">
 <abbr title="Core\Validators\NumberCharValidator">NumberCharValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/NumberCharValidator.html"><abbr title="Core\Validators\NumberCharValidator">NumberCharValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain at least one
-numeric character.</p></dd><dt><a href="Core/Validators/NumericValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/NumericValidator.html#method_runValidation">
 <abbr title="Core\Validators\NumericValidator">NumericValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/NumericValidator.html"><abbr title="Core\Validators\NumericValidator">NumericValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain a number.</p></dd><dt><a href="Core/Validators/PhoneNumberValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/PhoneNumberValidator.html#method_runValidation">
 <abbr title="Core\Validators\PhoneNumberValidator">PhoneNumberValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/PhoneNumberValidator.html"><abbr title="Core\Validators\PhoneNumberValidator">PhoneNumberValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces correct input for phone numbers.</p></dd><dt><a href="Core/Validators/RequiredValidator.html"><abbr title="Core\Validators\RequiredValidator">RequiredValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/RequiredValidator.html"><abbr title="Core\Validators\RequiredValidator">RequiredValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class that performs validation for fields that are required.</p></dd><dt><a href="Core/Validators/RequiredValidator.html#method_runValidation">
 <abbr title="Core\Validators\RequiredValidator">RequiredValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/RequiredValidator.html"><abbr title="Core\Validators\RequiredValidator">RequiredValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces the required requirement for a field.</p></dd><dt><a href="Core/Validators/SpecialCharValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/SpecialCharValidator.html#method_runValidation">
 <abbr title="Core\Validators\SpecialCharValidator">SpecialCharValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/SpecialCharValidator.html"><abbr title="Core\Validators\SpecialCharValidator">SpecialCharValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain at least one
-special character that is not a space.</p></dd><dt><a href="Core/Validators/UniqueValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/UniqueValidator.html#method_runValidation">
 <abbr title="Core\Validators\UniqueValidator">UniqueValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/UniqueValidator.html"><abbr title="Core\Validators\UniqueValidator">UniqueValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement for a field.</p></dd><dt><a href="Core/Validators/UpperCharValidator.html#method_runValidation">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/Validators/UpperCharValidator.html#method_runValidation">
 <abbr title="Core\Validators\UpperCharValidator">UpperCharValidator</abbr>::runValidation</a>() &mdash; <em>Method in class <a href="Core/Validators/UpperCharValidator.html"><abbr title="Core\Validators\UpperCharValidator">UpperCharValidator</abbr></a></em></dt>
-                    <dd><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain at least one
-upper case character.</p></dd><dt><a href="Core/View.html#method_render">
+                    <dd><p>Signature for the runValidation function that must be implemented by
+each child class.</p></dd><dt><a href="Core/View.html#method_render">
 <abbr title="Core\View">View</abbr>::render</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
                     <dd><p>Performs render operations for a particular view.</p></dd><dt><a href="Core/View.html#method_renderJsx">
 <abbr title="Core\View">View</abbr>::renderJsx</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
@@ -1951,7 +1947,7 @@ value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></dd><dt><a hre
                     <dd><p>Sets a value in the $_SESSION superglobal array.</p></dd><dt><a href="Core/SessionManager.html"><abbr title="Core\SessionManager">SessionManager</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Supports session management</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_success">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#success</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Validators/SpecialCharValidator.html"><abbr title="Core\Validators\SpecialCharValidator">SpecialCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Flag to mark whether or not validation is successful.</p></dd><dt><a href="Core/Validators/SpecialCharValidator.html"><abbr title="Core\Validators\SpecialCharValidator">SpecialCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class class that supports ability to check if field contains an
 special character that is not a space in the field.</p></dd><dt><a href="Core/View.html#method_setLayout">
 <abbr title="Core\View">View</abbr>::setLayout</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
@@ -2377,7 +2373,9 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Models\Queue">Queue</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Name of the table.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property__table">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd><p>The name of the table.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
+                    <dd><p>The name of the table.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property__model">
+<abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#_model</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
+                    <dd><p>Name of the model.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd><p>Constructor for Custom Validator.  It performs checks on the model and
 params such as fields, rules, and messages.  Finally the validation is

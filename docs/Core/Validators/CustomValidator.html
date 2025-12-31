@@ -108,56 +108,65 @@ class must implement the runValidation() function.</p></p>                    </
             <table class="table table-condensed">
                     <tr>
                 <td class="type" id="property_additionalFieldData">
-                                                                                
+                                                                                array
                                                                                 
                                     </td>
                 <td>$additionalFieldData</td>
-                <td class="last"></td>
+                <td class="last"><p>Additional field data.</p></td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_field">
-                                                                                
+                                                                                string
                                                                                 
                                     </td>
                 <td>$field</td>
-                <td class="last"></td>
+                <td class="last"><p>Name of field being validated.</p></td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_includeDeleted">
-                                                                                
+                                                                                bool
                                                                                 
                                     </td>
                 <td>$includeDeleted</td>
-                <td class="last"></td>
+                <td class="last"><p>Include deleted default is false.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__model">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$_model</td>
+                <td class="last"><p>Name of the model.</p></td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_message">
-                                                                                
+                                                                                string
                                                                                 
                                     </td>
                 <td>$message</td>
-                <td class="last"></td>
+                <td class="last"><p>Message when validation fails.</p></td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_rule">
-                                                                                
+                                                                                mixed
                                                                                 
                                     </td>
                 <td>$rule</td>
-                <td class="last"></td>
+                <td class="last"><p>Rule for validation success.</p></td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_success">
-                                                                                
+                                                                                bool
                                                                                 
                                     </td>
                 <td>$success</td>
-                <td class="last"></td>
+                <td class="last"><p>Flag to mark whether or not validation is successful.</p></td>
                 <td></td>
             </tr>
             </table>
@@ -199,7 +208,7 @@ each child class.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 33</div>
+        <div class="location">at line 68</div>
         <code>                    
     <strong>__construct</strong>(object $model, array $params)
         </code>
@@ -243,7 +252,7 @@ form is submitted during a post action.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 82</div>
+        <div class="location">at line 117</div>
         <code>    abstract                void
     <strong>runValidation</strong>()
         </code>

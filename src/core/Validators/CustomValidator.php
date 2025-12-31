@@ -10,12 +10,47 @@ use Core\Lib\Utilities\ArraySet;
  * @abstract
  */
 abstract class CustomValidator {
+    /**
+     * Additional field data.
+     * @var array
+     */
     public $additionalFieldData = [];
+
+    /**
+     * Name of field being validated.
+     * @var string
+     */
     public $field;
+
+    /**
+     * Include deleted default is false.
+     * @var boolean
+     */
     public $includeDeleted = false;
+
+    /**
+     * Name of the model.
+     * @var string
+     */
     protected $_model;
+
+    /**
+     * Message when validation fails.
+     * @var string
+     */
     public $message = '';
+
+    /**
+     * Rule for validation success.
+     * @var mixed
+     */
     public $rule;
+
+    /**
+     * Flag to mark whether or not validation is successful.
+     *
+     * @var boolean
+     */
     public $success = true;
     
     /**
