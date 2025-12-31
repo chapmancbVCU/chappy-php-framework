@@ -11,6 +11,13 @@ use Core\Session;
  * Supports admin dashboard operations.
  */
 final class DashboardService {
+    /**
+     * Warns if admin user is attempting to view an area they should not be.
+     *
+     * @param Users $user The current user.
+     * @param string $redirect The destination for redirect.
+     * @return void
+     */
     public static function checkIfCurrentUser(Users $user, string $redirect = '') {
         if($user == AuthService::currentUser()) {
             flashMessage(Session::DANGER, 'Logged in admin user can\'t be edited or viewed through admin dashboard.');

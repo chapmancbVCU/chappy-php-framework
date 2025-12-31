@@ -137,7 +137,7 @@ final class UserService {
      * Assist in toggling reset_password field.
      *
      * @param Users $user The user whose status we want to set.
-     * @param Input $request The request.z
+     * @param Input $request The request.
      * @param int|null $currentReset Value of $user->reset_password before post.
      * @return int 1 if reset_password is 'on', otherwise we return 0.
      */

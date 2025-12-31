@@ -156,7 +156,7 @@ class ACLService {
      *
      * @param ACL $acl The ACL to be Saves
      * @param Input $request The request.
-     * @return bool
+     * @return bool True if update is successful, otherwise false.
      */
     public static function saveACL(ACL $acl, Input $request): bool {
         if ($acl->isNew()) {
