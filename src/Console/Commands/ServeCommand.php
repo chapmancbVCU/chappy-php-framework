@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Runs built-in PHP server.
+ * Runs built-in PHP server. 
  */
 class ServeCommand extends Command {
     /**

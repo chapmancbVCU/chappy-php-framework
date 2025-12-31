@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Implements command for generating the auth page components.
+ * Implements command for generating the auth page components. 
  */
 class ReactAuthCommand extends Command {
     /**

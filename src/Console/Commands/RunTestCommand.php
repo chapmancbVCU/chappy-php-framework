@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to run a phpunit test with only the name of the test 
- * file is accepted as a required input.
+ * file is accepted as a required input. 
  */
 class RunTestCommand extends Command
 {

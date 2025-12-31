@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to delete log file.
+ * Supports ability to delete log file. 
  */
 class RemoveLogsCommand extends Command {
     /**

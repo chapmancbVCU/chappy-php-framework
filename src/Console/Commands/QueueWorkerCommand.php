@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Executes a queue worker
+ * Executes a queue worker.
  */
 class QueueWorkerCommand extends Command
 {

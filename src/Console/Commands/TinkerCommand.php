@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Psy\Shell;
 
 /**
- * Supports execution for tinker command.
+ * Supports execution for tinker command. 
  */
 class TinkerCommand extends Command
 {

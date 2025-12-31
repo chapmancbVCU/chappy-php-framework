@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Implements command for generating the home/Index.jsx page component.
+ * Implements command for generating the home/Index.jsx page component. 
  */
 class ReactHomeCommand extends Command {
     /**

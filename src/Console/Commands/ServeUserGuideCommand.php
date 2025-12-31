@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Performs the command for serving the Jekyll user guide locally.
+ * Performs the command for serving the Jekyll user guide locally. 
  */
 class ServeUserGuideCommand extends Command {
     /**

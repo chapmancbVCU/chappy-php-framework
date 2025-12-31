@@ -8,7 +8,7 @@ use Console\Helpers\ProfileImageDir;
 
 /**
  * Run this after performing the migrate:refresh command to delete all 
- * existing profile images.  May need sudo privileges. 
+ * existing profile images.  May need sudo privileges.  
  */
 class RemoveProfileImagesCommand extends Command
 {
