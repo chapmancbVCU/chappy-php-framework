@@ -11,7 +11,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to generate new model class by typing make:model <modelname>.
+ * Supports ability to generate new model class by typing make:model.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/models#overview">here</a>.
  */
 class GenerateModelCommand extends Command
 {

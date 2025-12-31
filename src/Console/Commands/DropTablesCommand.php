@@ -6,7 +6,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Console\Helpers\Migrate;
 
 /**
- * Supports ability to drop all tables by using the migrate:drop-all command.
+ * Supports ability to drop all tables by using the migrate:drop-all command.  
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_operations#drop-all">here</a>.
  */
 class DropTablesCommand extends Command
 {
