@@ -10,13 +10,21 @@ use ReflectionClass;
  * Supports functions for user sessions.  This class never gets instantiated.
  */
 class Session {
+    /** info alert */
     public const INFO = "info";
+    /** success alert */
     public const SUCCESS = "success";
+    /** warning alert */
     public const WARNING = "warning";
+    /** danger alert */
     public const DANGER = "danger";
+    /** primary alert */
     public const PRIMARY = "primary";
+    /** secondary alert */
     public const SECONDARY = "secondary";
+    /** dark alert */
     public const DARK = "dark";
+    /** light alert */
     public const LIGHT = "light";
 
     /**

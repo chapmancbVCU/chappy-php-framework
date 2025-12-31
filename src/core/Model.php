@@ -14,7 +14,7 @@ use Core\Lib\Utilities\DateTime;
  */
 #[\AllowDynamicProperties]
 class Model {
-    /** Constant for blacklist */
+    /** Constant for blacklist. */
     const BLACKLIST = 'blacklist';
     
     /**
@@ -59,7 +59,7 @@ class Model {
      */
     protected $_validationErrors = [];
 
-    /** Constant for whitelist */
+    /** Constant for whitelist. */
     const WHITELIST = 'whitelist';
 
     /**

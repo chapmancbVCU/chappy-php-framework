@@ -176,6 +176,8 @@ class FormHelper {
      * used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element.
      */

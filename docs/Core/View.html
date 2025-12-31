@@ -108,7 +108,7 @@
                                                                                 APP_COMPONENT_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The app component path</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -118,7 +118,7 @@
                                                                                 APP_LAYOUT_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The app layout path</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -128,7 +128,7 @@
                                                                                 APP_VIEW_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The app view path</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -138,7 +138,7 @@
                                                                                 APP_WIDGET_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The app widget path</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -148,7 +148,7 @@
                                                                                 FRAMEWORK_COMPONENT_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The framework component path</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -158,7 +158,7 @@
                                                                                 FRAMEWORK_LAYOUT_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The framework layout path</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -168,13 +168,90 @@
                                                                                 FRAMEWORK_VIEW_PATH
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>The framework view path</p></em></p>
                     <p></p>
                 </td>
             </tr>
             </table>
 
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property__body">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_body</td>
+                <td class="last"><p>The body</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__content">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_content</td>
+                <td class="last"><p>The content</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__currentBuffer">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_currentBuffer</td>
+                <td class="last"><p>The content buffer</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__head">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_head</td>
+                <td class="last"><p>The head</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__layout">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_layout</td>
+                <td class="last"><p>The layout</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__outputBuffer">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_outputBuffer</td>
+                <td class="last"><p>The output buffer</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__siteTitle">
+                                        protected                                        
+                                                                                
+                                    </td>
+                <td>$_siteTitle</td>
+                <td class="last"><p>The site title</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_widgets">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$widgets</td>
+                <td class="last"><p>An array of widgets.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -323,7 +400,7 @@ included in our view.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 35</div>
+        <div class="location">at line 57</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -346,7 +423,7 @@ included in our view.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_addWidget">
-        <div class="location">at line 48</div>
+        <div class="location">at line 70</div>
         <code>                    void
     <strong>addWidget</strong>(string $section, string $viewPath, array $data = [])
         </code>
@@ -398,7 +475,7 @@ included in our view.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_component">
-        <div class="location">at line 60</div>
+        <div class="location">at line 82</div>
         <code>                    void
     <strong>component</strong>(string $component, bool $frameworkComponentPath = false)
         </code>
@@ -446,7 +523,7 @@ framework when true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_content">
-        <div class="location">at line 79</div>
+        <div class="location">at line 101</div>
         <code>                    mixed
     <strong>content</strong>(string $type)
         </code>
@@ -490,7 +567,7 @@ a known type of content we return false;</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_end">
-        <div class="location">at line 91</div>
+        <div class="location">at line 113</div>
         <code>                    void
     <strong>end</strong>()
         </code>
@@ -525,7 +602,7 @@ you to call start() is displayed.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_render">
-        <div class="location">at line 109</div>
+        <div class="location">at line 131</div>
         <code>                    void
     <strong>render</strong>(string $viewName, bool $frameworkViewPath = false, bool $frameworkLayoutPath = false)
         </code>
@@ -578,7 +655,7 @@ otherwise controllers defined by users are utilized.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderJsx">
-        <div class="location">at line 139</div>
+        <div class="location">at line 161</div>
         <code>                    void
     <strong>renderJsx</strong>(string $viewComponent, array $props = [], string $entry = &#039;resources/js/app.jsx&#039;)
         </code>
@@ -630,7 +707,7 @@ otherwise controllers defined by users are utilized.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderWidget">
-        <div class="location">at line 162</div>
+        <div class="location">at line 184</div>
         <code>                    string
     <strong>renderWidget</strong>(string $viewPath, array $data = [])
         </code>
@@ -678,7 +755,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderWidgets">
-        <div class="location">at line 183</div>
+        <div class="location">at line 205</div>
         <code>                    string
     <strong>renderWidgets</strong>(string $slot, array $widgets = [])
         </code>
@@ -725,7 +802,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setLayout">
-        <div class="location">at line 205</div>
+        <div class="location">at line 227</div>
         <code>                    void
     <strong>setLayout</strong>(string $path)
         </code>
@@ -767,7 +844,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setSiteTitle">
-        <div class="location">at line 215</div>
+        <div class="location">at line 237</div>
         <code>                    void
     <strong>setSiteTitle</strong>(string $title)
         </code>
@@ -809,7 +886,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_siteTitle">
-        <div class="location">at line 224</div>
+        <div class="location">at line 246</div>
         <code>                    string
     <strong>siteTitle</strong>()
         </code>
@@ -841,7 +918,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_start">
-        <div class="location">at line 237</div>
+        <div class="location">at line 259</div>
         <code>                    void
     <strong>start</strong>(string $type)
         </code>

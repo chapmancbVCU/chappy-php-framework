@@ -13,20 +13,42 @@ use Core\Lib\Utilities\Env;
  * Handles operations related to views and its content.
  */
 class View extends stdClass {
+    /** The app component path */
     private const APP_COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'components'.DS;
+    /** The app layout path */
     private const APP_LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'layouts'.DS;
+    /** The app view path */
     private const APP_VIEW_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS;
+    /** The app widget path */
     private const APP_WIDGET_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'widgets'.DS;
+
+    /** The body */
     protected $_body;
+    /** The content */
     protected $_content = [];
+    /** The content buffer */
     protected $_currentBuffer;
+
+    /** The framework component path */
     private const FRAMEWORK_COMPONENT_PATH = CHAPPY_ROOT.DS.'views'.DS.'components'.DS;
+    /** The framework layout path */
     private const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'layouts'.DS;
+    /** The framework view path */
     private const FRAMEWORK_VIEW_PATH = CHAPPY_ROOT.DS.'views'.DS;
+
+    /** The head */
     protected $_head;
+    /** The layout */
     protected $_layout;
+    /** The output buffer */
     protected $_outputBuffer;
+    /** The site title */
     protected $_siteTitle;
+
+    /**
+     * An array of widgets.
+     * @var array
+     */
     protected array $widgets = [];
     
     /**

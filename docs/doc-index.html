@@ -287,17 +287,17 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Model">Model</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/ACL.html#method_beforeSave">
 <abbr title="Core\Models\ACL">ACL</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_beforeSave">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
-                    <dd><p>Implementation of beforeSave function where timestamps are updated.</p></dd><dt><a href="Core/Models/Notifications.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Notifications.html#method_beforeSave">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>Implementation of beforeSave from base class.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd><p>Implements beforeSave.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
-                    <dd><p>Called before save.</p></dd>        </dl><h2 id="letterC">C</h2>
+                    <dd><p>Called after save.</p></dd>        </dl><h2 id="letterC">C</h2>
         <dl id="indexC"><dt><a href="Console/Commands/MakeHelperCommand.html#method_configure">
 <abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr>::configure</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a></em></dt>
                     <dd><p>Configures the command.</p></dd><dt><a href="Console/Commands/MakeSeederCommand.html#method_configure">
@@ -1419,7 +1419,7 @@ instantiated.</p></dd><dt><a href="Core/FormHelper.html#method_optionsForSelect"
 <abbr title="Core\Model">Model</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Runs when the object is constructed.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_onConstruct">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
-                    <dd><p>Implements onConstruct from parent class.</p></dd>        </dl><h2 id="letterP">P</h2>
+                    <dd><p>Runs when the object is constructed.</p></dd>        </dl><h2 id="letterP">P</h2>
         <dl id="indexP"><dt><a href="Console/Helpers/Notifications.html#method_prune">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::prune</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Prune old notifications using the model layer.</p></dd><dt><a href="Console/Helpers/ProfileImageDir.html"><abbr title="Console\Helpers\ProfileImageDir">ProfileImageDir</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
@@ -2209,14 +2209,20 @@ will not proceed.  This function is just a signature and must be
 implemented by models that run form validation because since it is
 called from within this class.</p></dd><dt><a href="Core/Models/ACL.html#method_validator">
 <abbr title="Core\Models\ACL">ACL</abbr>::validator</a>() &mdash; <em>Method in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd><p>Ensures fields are required and unique.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_validator">
+                    <dd><p>Function that is called on save.  If validation fails the save function
+will not proceed.  This function is just a signature and must be
+implemented by models that run form validation because since it is
+called from within this class.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_validator">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::validator</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Function that is called on save.  If validation fails the save function
 will not proceed.  This function is just a signature and must be
 implemented by models that run form validation because since it is
 called from within this class.</p></dd><dt><a href="Core/Models/Login.html#method_validator">
 <abbr title="Core\Models\Login">Login</abbr>::validator</a>() &mdash; <em>Method in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
-                    <dd><p>Performs form validation checks for the login screen.</p></dd><dt><a href="Core/View.html"><abbr title="Core\View">View</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>Function that is called on save.  If validation fails the save function
+will not proceed.  This function is just a signature and must be
+implemented by models that run form validation because since it is
+called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title="Core\View">View</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Handles operations related to views and its content.</p></dd>        </dl><h2 id="letterW">W</h2>
         <dl id="indexW"><dt><a href="Console/Helpers/Queue.html#method_worker">
 <abbr title="Console\Helpers\Queue">Queue</abbr>::worker</a>() &mdash; <em>Method in class <a href="Console/Helpers/Queue.html"><abbr title="Console\Helpers\Queue">Queue</abbr></a></em></dt>
@@ -2247,7 +2253,9 @@ called from within this class.</p></dd><dt><a href="Core/Models/Login.html#metho
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::words</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Limit a string to a certain number of words.</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_wrap">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::wrap</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
-                    <dd><p>Wrap a string with a given value.</p></dd>        </dl><h2 id="letterX">X</h2>
+                    <dd><p>Wrap a string with a given value.</p></dd><dt>$<a href="Core/View.html#property_widgets">
+<abbr title="Core\View">View</abbr>#widgets</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>An array of widgets.</p></dd>        </dl><h2 id="letterX">X</h2>
         <dl id="indexX"><dt><a href="Core/Lib/Utilities/Arr.html#method_xorDiff">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::xorDiff</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Compute the exclusive difference between two arrays.</p></dd>        </dl><h2 id="letter_">_</h2>
@@ -2409,7 +2417,21 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 params such as fields, rules, and messages.  Finally the validation is
 performed against input from a form.  An exception is thrown if any
 conditions are not satisfied.  When an exception is thrown a message
-is displayed describing the issue.</p></dd><dt><a href="Core/View.html#method___construct">
+is displayed describing the issue.</p></dd><dt>$<a href="Core/View.html#property__body">
+<abbr title="Core\View">View</abbr>#_body</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The body</p></dd><dt>$<a href="Core/View.html#property__content">
+<abbr title="Core\View">View</abbr>#_content</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The content</p></dd><dt>$<a href="Core/View.html#property__currentBuffer">
+<abbr title="Core\View">View</abbr>#_currentBuffer</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The content buffer</p></dd><dt>$<a href="Core/View.html#property__head">
+<abbr title="Core\View">View</abbr>#_head</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The head</p></dd><dt>$<a href="Core/View.html#property__layout">
+<abbr title="Core\View">View</abbr>#_layout</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The layout</p></dd><dt>$<a href="Core/View.html#property__outputBuffer">
+<abbr title="Core\View">View</abbr>#_outputBuffer</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The output buffer</p></dd><dt>$<a href="Core/View.html#property__siteTitle">
+<abbr title="Core\View">View</abbr>#_siteTitle</a> &mdash; <em>Property in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
+                    <dd><p>The site title</p></dd><dt><a href="Core/View.html#method___construct">
 <abbr title="Core\View">View</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
                     <dd><p>Default constructor.</p></dd>        </dl></div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
