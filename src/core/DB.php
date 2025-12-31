@@ -12,14 +12,58 @@ use Core\Lib\Utilities\ArraySet;
  * Support database operations.
  */
 class DB {
+    /**
+     * Number of items returned.
+     * @var int
+     */
     private $_count = 0;
+
+    /**
+     * The database driver.
+     * @var string
+     */
     private $_dbDriver;
+
+    /**
+     * Error status.
+     * @var bool
+     */
     private $_error = false;
+
+    /**
+     * The fetch style.
+     * @var int
+     */
     private $_fetchStyle = PDO::FETCH_OBJ;
+
+    /**
+     * Instance of this class.
+     * @var DB
+     */
     private static $_instance = null;
+
+    /**
+     * Id of last item inserted into database.
+     * @var int
+     */
     private $_lastInsertID = null;
+
+    /**
+     * The PDO object.
+     * @var PDO
+     */
     private $_pdo;
+
+    /**
+     * The query.
+     * @var mixed
+     */
     private $_query;
+
+    /**
+     * The result.
+     * @var mixed
+     */
     private $_result;
     
     /**
