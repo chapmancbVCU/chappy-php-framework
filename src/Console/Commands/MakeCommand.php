@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Supports ability to create new console command by running make:command.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#build-command">here</a>.
  */
 class MakeCommand extends Command
 {

@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to create components by running make:component.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/components">here</a>.
  */
 class MakeComponentCommand extends Command {
     /**
