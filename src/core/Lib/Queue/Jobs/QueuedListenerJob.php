@@ -217,19 +217,7 @@ final class QueuedListenerJob implements QueueableJobInterface {
      *  - available_at (int): UNIX timestamp when the job becomes available
      *  - max_attempts (int): maximum number of processing attempts
      *
-     * @return array{
-     *     job: class-string,
-     *     data: array{
-     *       listener:string,
-     *       event:string,
-     *       payload:array<string,mixed>,
-     *       delay:int,
-     *       backoff:int|array<int,int>,
-     *       max_attempts:int
-     *     },
-     *     available_at:int,
-     *     max_attempts:int
-     * }
+     * @return array The contents of the payload.
      */
     public function toPayload(): array {
         return [

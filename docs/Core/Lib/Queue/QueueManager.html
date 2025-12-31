@@ -102,6 +102,20 @@
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_driver">
+                                        protected                                        <a href="../../../Core/Lib/Queue/QueueDriverInterface.html"><abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr></a>
+                                                                                
+                                    </td>
+                <td>$driver</td>
+                <td class="last"><p>The driver that is being used.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -174,7 +188,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 18</div>
+        <div class="location">at line 22</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -197,7 +211,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_delete">
-        <div class="location">at line 46</div>
+        <div class="location">at line 50</div>
         <code>                    void
     <strong>delete</strong>(mixed $jobId)
         </code>
@@ -242,7 +256,7 @@ For database drivers, this is typically the row ID.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dispatch">
-        <div class="location">at line 63</div>
+        <div class="location">at line 67</div>
         <code>                    void
     <strong>dispatch</strong>(string $jobClass, array $data = [], string|null $queue = null)
         </code>
@@ -296,7 +310,7 @@ a handle(array $data) method for the worker to call.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_push">
-        <div class="location">at line 87</div>
+        <div class="location">at line 91</div>
         <code>                    void
     <strong>push</strong>(array $payload, string $queue = &#039;default&#039;)
         </code>
@@ -344,7 +358,7 @@ queue driver (database or Redis) without modification.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_pop">
-        <div class="location">at line 102</div>
+        <div class="location">at line 106</div>
         <code>                    array|null
     <strong>pop</strong>(string $queue)
         </code>
@@ -388,7 +402,7 @@ or null if the queue is empty.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_release">
-        <div class="location">at line 119</div>
+        <div class="location">at line 123</div>
         <code>                    void
     <strong>release</strong>(string $queue, array $payload, int $delay = 0)
         </code>

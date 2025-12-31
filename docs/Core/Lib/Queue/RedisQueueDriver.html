@@ -103,6 +103,20 @@ that support Redis queue operations.</p></p>                    </div>
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_redis">
+                                        protected                                        <abbr title="Predis\Client">Client</abbr>
+                                                                                
+                                    </td>
+                <td>$redis</td>
+                <td class="last"><p>The redis client.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -114,8 +128,7 @@ that support Redis queue operations.</p></p>                    </div>
                 <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(<abbr title="Predis\Client">Client</abbr> $redis)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p><p>The constructor for the RedisQueueDriver.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -166,7 +179,7 @@ that support Redis queue operations.</p></p>                    </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 16</div>
+        <div class="location">at line 25</div>
         <code>                    
     <strong>__construct</strong>(<abbr title="Predis\Client">Client</abbr> $redis)
         </code>
@@ -176,8 +189,7 @@ that support Redis queue operations.</p></p>                    </div>
             
 
         <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
+                            <p><p>The constructor for the RedisQueueDriver.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -186,7 +198,7 @@ that support Redis queue operations.</p></p>                    </div>
                     <tr>
                 <td><abbr title="Predis\Client">Client</abbr></td>
                 <td>$redis</td>
-                <td></td>
+                <td><p>The redis client.</p></td>
             </tr>
             </table>
 
@@ -200,7 +212,7 @@ that support Redis queue operations.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_delete">
-        <div class="location">at line 26</div>
+        <div class="location">at line 35</div>
         <code>                    void
     <strong>delete</strong>(mixed $jobId)
         </code>
@@ -242,7 +254,7 @@ that support Redis queue operations.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_pop">
-        <div class="location">at line 34</div>
+        <div class="location">at line 43</div>
         <code>                    array|null
     <strong>pop</strong>(string $queue)
         </code>
@@ -284,7 +296,7 @@ that support Redis queue operations.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_push">
-        <div class="location">at line 50</div>
+        <div class="location">at line 59</div>
         <code>                    void
     <strong>push</strong>(string $queue, array $payload)
         </code>
@@ -331,7 +343,7 @@ that support Redis queue operations.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_release">
-        <div class="location">at line 62</div>
+        <div class="location">at line 71</div>
         <code>                    void
     <strong>release</strong>(string $queue, array $payload, int $delay = 0)
         </code>

@@ -271,9 +271,9 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#backoff</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Backoff delay(s) used between retry attempts.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_backoff">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::backoff</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
-                    <dd><p>Get the retry backoff delay(s).</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_backoff">
+                    <dd><p>Sets backoff for a job</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_backoff">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::backoff</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Lib/Utilities/Str.html#method_base64Encode">
+                    <dd><p>Sets backoff for a job</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_base64Encode">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::base64Encode</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Base64 encode a string.</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_base64Decode">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::base64Decode</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
@@ -516,9 +516,11 @@ that support database queue operations.</p></dd><dt><a href="Core/Lib/Queue/Data
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#delay</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Initial delay before the job becomes available to workers (seconds).</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_delay">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::delay</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
-                    <dd><p>Get the initial delay (in seconds) before the job becomes available.</p></dd><dt><a href="Core/Lib/Queue/QueueDriverInterface.html#method_delete">
+                    <dd><p>Sets delay for a job.</p></dd><dt><a href="Core/Lib/Queue/QueueDriverInterface.html#method_delete">
 <abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueDriverInterface.html"><abbr title="Core\Lib\Queue\QueueDriverInterface">QueueDriverInterface</abbr></a></em></dt>
-                    <dd><p>Deletes a job from the queue.</p></dd><dt><a href="Core/Lib/Queue/QueueManager.html#method_delete">
+                    <dd><p>Deletes a job from the queue.</p></dd><dt>$<a href="Core/Lib/Queue/QueueManager.html#property_driver">
+<abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr>#driver</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/QueueManager.html"><abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr></a></em></dt>
+                    <dd><p>The driver that is being used.</p></dd><dt><a href="Core/Lib/Queue/QueueManager.html#method_delete">
 <abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueManager.html"><abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr></a></em></dt>
                     <dd><p>Delete a job from the queue by its identifier.</p></dd><dt><a href="Core/Lib/Queue/QueueManager.html#method_dispatch">
 <abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr>::dispatch</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueManager.html"><abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr></a></em></dt>
@@ -866,7 +868,7 @@ available constants.</p></dd><dt><a href="Core/FormHelper.html#method_hidden">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::has</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
                     <dd><p>Checks if channel name exists.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_handle">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::handle</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
-                    <dd><p>Execute the job: rehydrate the event and call the listener's handle().</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_handle">
+                    <dd><p>The logic that should be executed when the job is processed.</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_handle">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::handle</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
                     <dd><p>The logic that should be executed when the job is processed.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_has">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::has</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1240,7 +1242,7 @@ and/or AbstractMailer-based custom mailers.</p></dd><dt>$<a href="Core/Lib/Queue
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#maxAttempts</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Maximum number of attempts before the job is considered failed.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_maxAttempts">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
-                    <dd><p>Get the maximum number of attempts for this job.</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_maxAttempts">
+                    <dd><p>Undocumented function</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_maxAttempts">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
                     <dd><p>Undocumented function</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_map">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::map</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1606,7 +1608,9 @@ be overridden.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html#meth
 <abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr>::release</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueManager.html"><abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr></a></em></dt>
                     <dd><p>Release a job back onto the specified queue.</p></dd><dt><a href="Core/Lib/Queue/RedisQueueDriver.html"><abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Queue.html">Core\Lib\Queue</a></em></dt>
                     <dd><p>Implements the QueueDriverInterface.  This driver implements functions
-that support Redis queue operations.</p></dd><dt><a href="Core/Lib/Queue/RedisQueueDriver.html#method_release">
+that support Redis queue operations.</p></dd><dt>$<a href="Core/Lib/Queue/RedisQueueDriver.html#property_redis">
+<abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr>#redis</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/RedisQueueDriver.html"><abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr></a></em></dt>
+                    <dd><p>The redis client.</p></dd><dt><a href="Core/Lib/Queue/RedisQueueDriver.html#method_release">
 <abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr>::release</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/RedisQueueDriver.html"><abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr></a></em></dt>
                     <dd><p>Releases a job back onto the queue after a failure or delay.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_random">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::random</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1964,7 +1968,7 @@ for setting  attribute tags in the form section.</p></dd><dt><a href="Core/Lib/D
 <abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr>::totalPages</a>() &mdash; <em>Method in class <a href="Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></em></dt>
                     <dd><p>Returns total number of pages we need to handle.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_toPayload">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::toPayload</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
-                    <dd><p>Convert this job to a driver-ready payload.</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_toPayload">
+                    <dd><p>Converts the job into a payload array for storage in the queue.</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_toPayload">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::toPayload</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
                     <dd><p>Converts the job into a payload array for storage in the queue.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_tags">
 <abbr title="Core\Lib\React\Vite">Vite</abbr>::tags</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
@@ -2276,7 +2280,7 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueManager.html"><abbr title="Core\Lib\Queue\QueueManager">QueueManager</abbr></a></em></dt>
                     <dd><p>Constructor for QueueManager class.</p></dd><dt><a href="Core/Lib/Queue/RedisQueueDriver.html#method___construct">
 <abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/RedisQueueDriver.html"><abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method___construct">
+                    <dd><p>The constructor for the RedisQueueDriver.</p></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method___construct">
 <abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></em></dt>
                     <dd><p>Constructs a new TestResponse instance.</p></dd><dt><a href="Core/Lib/Utilities/ArraySet.html#method___construct">
 <abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/ArraySet.html"><abbr title="Core\Lib\Utilities\ArraySet">ArraySet</abbr></a></em></dt>

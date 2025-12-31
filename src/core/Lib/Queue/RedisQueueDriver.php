@@ -11,8 +11,17 @@ use Core\Lib\Logging\Logger;
  * that support Redis queue operations.
  */
 class RedisQueueDriver implements QueueDriverInterface {
+    /**
+     * The redis client.
+     * @var Client
+     */
     protected Client $redis;
 
+    /**
+     * The constructor for the RedisQueueDriver.
+     *
+     * @param Client $redis The redis client.
+     */
     public function __construct(Client $redis) {
         $this->redis = $redis;
     }

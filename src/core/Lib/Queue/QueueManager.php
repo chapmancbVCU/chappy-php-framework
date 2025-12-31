@@ -10,6 +10,10 @@ use Predis\Client as PredisClient;
  * Manages queue / job dispatch system.
  */
 class QueueManager {
+    /**
+     * The driver that is being used.
+     * @var QueueDriverInterface
+     */
     protected QueueDriverInterface $driver;
     
     /**

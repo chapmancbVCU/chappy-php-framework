@@ -7,7 +7,14 @@ namespace Core\Lib\Queue;
  * Interface that all queueable jobs must implement.
  */
 interface QueueableJobInterface {
+    /**
+     * Sets backoff for a job
+     *
+     * @return integer|array The backoff value(s)
+     */
+
     public function backoff(): int|array;
+    
     /**
      * Sets delay for a job.
      *
