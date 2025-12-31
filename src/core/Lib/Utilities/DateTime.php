@@ -9,16 +9,27 @@ use Carbon\Carbon;
  * wrappers for those found in the Carbon class.
  */
 class DateTime {
+    /** 12 hour format. */
     public const FORMAT_12_HOUR = 'Y-m-d h:i:s A';
+    /** 24 hour format. */
     public const FORMAT_24_HOUR = 'Y-m-d H:i:s';
+    /** Human readable format. */
     public const FORMAT_HUMAN_READABLE = 'l, F j, Y g:i A';
+    /** Date only. */
     public const FORMAT_DATE_ONLY = 'Y-m-d';
+    /** Time only in 12 hour format */
     public const FORMAT_TIME_ONLY_12H = 'h:i A';
+    /** Time only in 24 hour format */
     public const FORMAT_TIME_ONLY_24H = 'H:i';
+    /** Friendly date format. */
     public const FORMAT_FRIENDLY_DATE = 'F j, Y';
+    /** Day date format. */
     public const FORMAT_DAY_DATE = 'l, M j';
+    /** ISO 8601 format. */
     public const FORMAT_ISO_8601 = 'c';
+    /** RFC 2822 format. */
     public const FORMAT_RFC_2822 = 'r';
+    /** SQL DateTime format. */
     public const FORMAT_SQL_DATETIME = 'Y-m-d H:i:s';
 
     /**
@@ -28,7 +39,7 @@ class DateTime {
      * @param string $time String in format Y-m-d H:i:s A using UTC.
      * @param string $format Set format with a default of FORMAT_12_HOUR.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $timeZone Override default timezone with 'UTC' as default value.
+     * @param string $timezone Override default timezone with 'UTC' as default value.
      * @return string The formatted time.
      */
     public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
@@ -61,7 +72,7 @@ class DateTime {
      *
      * @param string $time String in format Y-m-d H:i:s using UTC.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $timeZone Override default timezone with 'UTC' as default value.
+     * @param string $timezone Override default timezone with 'UTC' as default value.
      * @param bool $short Set to true to show short form time.
      * @return string The time represented using language describing time since last change.
      */

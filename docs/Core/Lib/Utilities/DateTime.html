@@ -108,7 +108,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_12_HOUR
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>12 hour format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -117,7 +117,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_24_HOUR
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>24 hour format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -126,7 +126,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_HUMAN_READABLE
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Human readable format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -135,7 +135,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_DATE_ONLY
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Date only.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -144,7 +144,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_TIME_ONLY_12H
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Time only in 12 hour format</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -153,7 +153,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_TIME_ONLY_24H
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Time only in 24 hour format</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -162,7 +162,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_FRIENDLY_DATE
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Friendly date format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -171,7 +171,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_DAY_DATE
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>Day date format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -180,7 +180,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_ISO_8601
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>ISO 8601 format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -189,7 +189,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_RFC_2822
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>RFC 2822 format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -198,7 +198,7 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                                                                                                                         FORMAT_SQL_DATETIME
                                     </td>
                 <td class="last">
-                    <p><em></em></p>
+                    <p><em><p>SQL DateTime format.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -281,7 +281,7 @@ Output: &quot;7 hours before&quot;</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_formatTime">
-        <div class="location">at line 34</div>
+        <div class="location">at line 45</div>
         <code>        static            string
     <strong>formatTime</strong>(string $time, string $format = self::FORMAT_12_HOUR, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;)
         </code>
@@ -316,7 +316,7 @@ constants, locale, and timezone.</p></p>
                     <tr>
                 <td>string</td>
                 <td>$timezone</td>
-                <td></td>
+                <td><p>Override default timezone with 'UTC' as default value.</p></td>
             </tr>
             </table>
 
@@ -339,7 +339,7 @@ constants, locale, and timezone.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_nowPlusSeconds">
-        <div class="location">at line 47</div>
+        <div class="location">at line 58</div>
         <code>        static            string
     <strong>nowPlusSeconds</strong>(int $seconds)
         </code>
@@ -381,7 +381,7 @@ constants, locale, and timezone.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeAgo">
-        <div class="location">at line 68</div>
+        <div class="location">at line 79</div>
         <code>        static            string
     <strong>timeAgo</strong>(string $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
         </code>
@@ -413,7 +413,7 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
                     <tr>
                 <td>string</td>
                 <td>$timezone</td>
-                <td></td>
+                <td><p>Override default timezone with 'UTC' as default value.</p></td>
             </tr>
                     <tr>
                 <td>bool</td>
@@ -441,7 +441,7 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeDifference">
-        <div class="location">at line 88</div>
+        <div class="location">at line 99</div>
         <code>        static            string
     <strong>timeDifference</strong>(string $startTime, string $endTime, string $timezone = &#039;UTC&#039;)
         </code>
@@ -495,7 +495,7 @@ Output: &quot;7 hours before&quot;</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeStamps">
-        <div class="location">at line 99</div>
+        <div class="location">at line 110</div>
         <code>        static            string
     <strong>timeStamps</strong>()
         </code>
@@ -527,7 +527,7 @@ Output: &quot;7 hours before&quot;</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toISO8601">
-        <div class="location">at line 111</div>
+        <div class="location">at line 122</div>
         <code>        static            string
     <strong>toISO8601</strong>(string $time, string $timezone = &#039;UTC&#039;)
         </code>
