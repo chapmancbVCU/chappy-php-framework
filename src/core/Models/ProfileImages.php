@@ -9,16 +9,72 @@ use Core\Lib\FileSystem\Uploads;
  * Supports CRUD operations on profile image records.
  */
 final class ProfileImages extends Model {
+    /**
+     * The allowed file types.
+     * @var array
+     */
     protected static $allowedFileTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+    /**
+     * Deleted value, defaults to 0.
+     * @var int
+     */
     public $deleted = 0;
+
+    /**
+     * ID for this image.
+     * @var int
+     */
     public $id;
+
+    /**
+     * Max allowed size.
+     * @var int
+     */
     protected static $maxAllowedFileSize = 5242880;
+
+    /**
+     * Name of the file.
+     * @var string
+     */
     public $name;
+
+    /**
+     * Soft delete mode set to true.
+     * @var bool
+     */
     protected static $_softDelete = true;
+
+    /**
+     * Sorted position.
+     * @var int
+     */
     public $sort;
+
+    /**
+     * Name of the table.
+     * @var string
+     */
     protected static $_table = 'profile_images';
+
+    /**
+     * Upload path.
+     * @var string
+     */
     protected static $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'profile_images'.DS.'user_';
+
+    /**
+     * The URL for the profile image.
+     *
+     * @var string
+     */
     public $url;
+
+    /**
+     * ID of user associated with image.
+     *
+     * @var int
+     */
     public $user_id;
 
     /**

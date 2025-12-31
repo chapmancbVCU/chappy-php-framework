@@ -197,7 +197,9 @@ contains the specified keys and values.</p></dd><dt><a href="Core/Lib/Testing/Te
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#allowedFileTypes</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>The array of allowed types.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_attachment_name">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#attachment_name</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
-                    <dd><p>The attachment's name.</p></dd><dt>$<a href="Core/Models/Queue.html#property_attempts">
+                    <dd><p>The attachment's name.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_allowedFileTypes">
+<abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#allowedFileTypes</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
+                    <dd><p>The allowed file types.</p></dd><dt>$<a href="Core/Models/Queue.html#property_attempts">
 <abbr title="Core\Models\Queue">Queue</abbr>#attempts</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/Queue.html#property_available_at">
 <abbr title="Core\Models\Queue">Queue</abbr>#available_at</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
@@ -291,7 +293,7 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Implementation of beforeSave from base class.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
+                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
@@ -556,7 +558,7 @@ wrappers for those found in the Carbon class.</p></dd><dt><a href="Core/Model.ht
 <abbr title="Core\Models\Notifications">Notifications</abbr>#data</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Notification data.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_deleted">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#deleted</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/ProfileImages.html#method_deleteById">
+                    <dd><p>Deleted value, defaults to 0.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_deleteById">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::deleteById</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Deletes a profile image by id.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_deleteImages">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::deleteImages</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
@@ -991,7 +993,7 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#metho
 <abbr title="Core\Models\Notifications">Notifications</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>The id for this notification.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_id">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/Queue.html#property_id">
+                    <dd><p>ID for this image.</p></dd><dt>$<a href="Core/Models/Queue.html#property_id">
 <abbr title="Core\Models\Queue">Queue</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd></dd><dt>$<a href="Core/Models/UserSessions.html#property_id">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#id</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
@@ -1290,7 +1292,9 @@ extendability.</p></dd><dt>$<a href="Core/Models/EmailAttachments.html#property_
 <abbr title="Core\Models\Notifications">Notifications</abbr>::markAsRead</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Mark notification record as read.</p></dd><dt><a href="Core/Models/Notifications.html#method_markAsReadById">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::markAsReadById</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>Mark notification record as read by id.</p></dd><dt><a href="Core/Services/ACLService.html#method_manageAcls">
+                    <dd><p>Mark notification record as read by id.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_maxAllowedFileSize">
+<abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#maxAllowedFileSize</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
+                    <dd><p>Max allowed size.</p></dd><dt><a href="Core/Services/ACLService.html#method_manageAcls">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::manageAcls</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
                     <dd><p>Manages the adding and removing of ACLs.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_message">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#message</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
@@ -1367,7 +1371,7 @@ NotificationException class.</p></dd><dt><a href="Core/Lib/Notifications/Excepti
 <abbr title="Core\Models\Notifications">Notifications</abbr>::notificationsToPrune</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Permanently delete old notifications from this model's table.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_name">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#name</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Services/AttachmentService.html#method_name">
+                    <dd><p>Name of the file.</p></dd><dt><a href="Core/Services/AttachmentService.html#method_name">
 <abbr title="Core\Services\AttachmentService">AttachmentService</abbr>::name</a>() &mdash; <em>Method in class <a href="Core/Services/AttachmentService.html"><abbr title="Core\Services\AttachmentService">AttachmentService</abbr></a></em></dt>
                     <dd><p>Sets name for the attachment.</p></dd><dt><a href="Core/Services/NotificationService.html"><abbr title="Core\Services\NotificationService">NotificationService</abbr></a> &mdash; <em>Class in namespace <a href="Core/Services.html">Core\Services</a></em></dt>
                     <dd><p>Supports tasks related to notifications.</p></dd><dt><a href="Core/Services/NotificationService.html#method_notifyUsers">
@@ -1910,7 +1914,7 @@ cause this function to return false.</p></dd><dt>$<a href="Core/Models/EmailAtta
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>#size</a> &mdash; <em>Property in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Size of the attachment.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_sort">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#sort</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/UserSessions.html#property_session">
+                    <dd><p>Sorted position.</p></dd><dt>$<a href="Core/Models/UserSessions.html#property_session">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>#session</a> &mdash; <em>Property in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Services/ACLService.html#method_setAclAtRegistration">
 <abbr title="Core\Services\ACLService">ACLService</abbr>::setAclAtRegistration</a>() &mdash; <em>Method in class <a href="Core/Services/ACLService.html"><abbr title="Core\Services\ACLService">ACLService</abbr></a></em></dt>
@@ -2114,9 +2118,9 @@ your framework's params-style conditions.</p></dd><dt>$<a href="Core/Models/ACL.
 <abbr title="Core\Models\Notifications">Notifications</abbr>#updated_at</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Updated at.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_url">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#url</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Models/ProfileImages.html#property_user_id">
+                    <dd><p>The URL for the profile image.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property_user_id">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#user_id</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Models/ProfileImages.html#method_updateSortByUserId">
+                    <dd><p>ID of user associated with image.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_updateSortByUserId">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::updateSortByUserId</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Updates sort order by user id.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_uploadProfileImage">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::uploadProfileImage</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
@@ -2341,7 +2345,13 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Models\Login">Login</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a></em></dt>
                     <dd><p>Placeholder table name.</p></dd><dt>$<a href="Core/Models/Notifications.html#property__table">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>The name of the notifications table.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
+                    <dd><p>The name of the notifications table.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property__softDelete">
+<abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#_softDelete</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
+                    <dd><p>Soft delete mode set to true.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property__table">
+<abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#_table</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
+                    <dd><p>Name of the table.</p></dd><dt>$<a href="Core/Models/ProfileImages.html#property__uploadPath">
+<abbr title="Core\Models\ProfileImages">ProfileImages</abbr>#_uploadPath</a> &mdash; <em>Property in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
+                    <dd><p>Upload path.</p></dd><dt><a href="Core/Validators/CustomValidator.html#method___construct">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd><p>Constructor for Custom Validator.  It performs checks on the model and
 params such as fields, rules, and messages.  Finally the validation is
