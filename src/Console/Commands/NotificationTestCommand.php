@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports operations for testing a notification.
+ * Supports operations for testing a notification. 
  */
 class NotificationTestCommand extends Command
 {

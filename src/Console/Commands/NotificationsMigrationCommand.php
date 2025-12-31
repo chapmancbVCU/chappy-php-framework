@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to create new notifications migration file.
+ * Supports ability to create new notifications migration file. 
  */
 class NotificationsMigrationCommand extends Command
 {

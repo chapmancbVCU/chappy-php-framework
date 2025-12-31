@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to drop tables with down function and recreate them.
+ * Supports ability to drop tables with down function and recreate them with migrate:refresh.
  */
 class MigrateRefreshCommand extends Command
 {

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to roll back database migrations.
+ * Supports ability to roll back database migrations. 
  */
 class MigrateRollbackCommand extends Command
 {
