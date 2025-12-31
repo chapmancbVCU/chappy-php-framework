@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 /**
- * Supports ability to generate new controller class.
+ * Supports ability to generate new controller class by typing make:controller <controller_name>.
  */
 class GenerateControllerCommand extends Command
 {

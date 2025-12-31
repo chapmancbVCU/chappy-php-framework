@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to generate new model class.
+ * Supports ability to generate new model class by typing make:model <modelname>.
  */
 class GenerateModelCommand extends Command
 {

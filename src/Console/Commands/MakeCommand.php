@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
- * Supports ability to create new console command.
+ * Supports ability to create new console command by running make:command.
  */
 class MakeCommand extends Command
 {

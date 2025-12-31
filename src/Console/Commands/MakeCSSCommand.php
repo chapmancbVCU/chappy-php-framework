@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new email.
+ * Generates a new css file by typing make:css.
  */
 class MakeCSSCommand extends Command {
     /**

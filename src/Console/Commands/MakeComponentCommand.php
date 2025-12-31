@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to create components.
+ * Supports ability to create components by running make:component.
  */
 class MakeComponentCommand extends Command {
     /**
