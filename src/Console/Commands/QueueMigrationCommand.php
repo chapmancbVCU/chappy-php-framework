@@ -8,6 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to create new notifications migration file. 
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/queue#migration">here</a>.
  */
 class QueueMigrationCommand extends Command
 {

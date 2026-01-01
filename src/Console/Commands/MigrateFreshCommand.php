@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to drop all tables and recreate them by running migrate:fresh.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_operations#migrate-fresh">here</a>.
  */
 class MigrateFreshCommand extends Command
 {

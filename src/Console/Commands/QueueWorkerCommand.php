@@ -11,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Executes a queue worker.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/queue#worker">here</a>.
  */
 class QueueWorkerCommand extends Command
 {

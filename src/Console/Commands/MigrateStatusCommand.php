@@ -7,6 +7,7 @@ use Console\Helpers\Migrate;
 
 /**
  * Reports status of migrations.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_operations#status">here</a>.
  */
 class MigrateStatusCommand extends Command
 {
