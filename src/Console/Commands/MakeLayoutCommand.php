@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new layout by running make:layout.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#build-layout">here</a>.
  */
 class MakeLayoutCommand extends Command {
     /**
