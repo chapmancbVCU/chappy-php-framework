@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Core\Lib\Notifications\Exceptions;
+namespace Core\Exceptions\Notifications;
 
 /**
  * Exception class for notifications that extends RuntimeException
