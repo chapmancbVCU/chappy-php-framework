@@ -7,7 +7,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Performs the command for serving the Jekyll user guide locally. 
+ * Performs the command for serving the Jekyll user guide locally.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#local-servers">here</a>.
  */
 class ServeUserGuideCommand extends Command {
     /**

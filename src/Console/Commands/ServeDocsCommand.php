@@ -7,7 +7,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Runs built-in PHP server for serving Doctum API documentation. 
+ * Runs built-in PHP server for serving Doctum API documentation.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#local-servers">here</a>.
  */
 class ServeDocsCommand extends Command {
     /**
