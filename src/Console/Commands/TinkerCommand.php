@@ -7,7 +7,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Psy\Shell;
 
 /**
- * Supports execution for tinker command. 
+ * Supports execution for tinker command.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/tinker#startup">here</a>.
  */
 class TinkerCommand extends Command
 {

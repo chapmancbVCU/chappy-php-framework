@@ -7,7 +7,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Console\Helpers\DBSeeder;
 
 /**
- * Runs the command for seeding database with random data. 
+ * Runs the command for seeding database with random data.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_seeders#running-seeder">here</a>.
  */
 class SeedCommand extends Command {
     /**
