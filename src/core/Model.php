@@ -179,7 +179,7 @@ class Model {
         if(static::$_softDelete) {
             $deleted = $this->update(['deleted' => 1]);
         } else {
-            $deleted = static::getDb()->delete(static::$_table, $this->id);
+            $deleted = static::getDb()->delete(static::$_table, (int)$this->id);
         }
         $this->afterDelete();
         return $deleted;
@@ -496,7 +496,7 @@ class Model {
      */
     public function update(array $fields): bool {
         if(empty($fields) || $this->id == '') return false;
-        return static::getDb()->update(static::$_table, $this->id, $fields);
+        return static::getDb()->update(static::$_table, (int)$this->id, $fields);
     }
 
     /**
