@@ -420,7 +420,11 @@ variable is an associative array.</p></dd><dt><a href="Core/DB.html#method_commi
                     <dd><p>Establishes a new database connection using the provided configuration array.</p></dd><dt><a href="Core/DB.html#method_count">
 <abbr title="Core\DB">DB</abbr>::count</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Getter function for the private _count variable.</p></dd><dt><a href="Core/Exceptions/Console/ConsoleException.html"><abbr title="Core\Exceptions\Console\ConsoleException">ConsoleException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Console.html">Core\Exceptions\Console</a></em></dt>
-                    <dd><p>Handles exceptions related to the console.</p></dd><dt><a href="Core/Exceptions/View/ComponentNotFoundException.html"><abbr title="Core\Exceptions\View\ComponentNotFoundException">ComponentNotFoundException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/View.html">Core\Exceptions\View</a></em></dt>
+                    <dd><p>Handles exceptions related to the console.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelException.html"><abbr title="Core\Exceptions\Notifications\ChannelException">ChannelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
+                    <dd><p>Handles exceptions related to channels.  Extends the
+NotificationException class.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelSendFailedException.html"><abbr title="Core\Exceptions\Notifications\ChannelSendFailedException">ChannelSendFailedException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
+                    <dd><p>Handles exceptions related to sending through a channel.  Extends the
+ChannelException class</p></dd><dt><a href="Core/Exceptions/View/ComponentNotFoundException.html"><abbr title="Core\Exceptions\View\ComponentNotFoundException">ComponentNotFoundException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/View.html">Core\Exceptions\View</a></em></dt>
                     <dd><p>Class to handle events related to components not being found.</p></dd><dt><a href="Core/FormHelper.html#method_checkboxBlockLabelLeft">
 <abbr title="Core\FormHelper">FormHelper</abbr>::checkboxBlockLabelLeft</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Generates a div containing an input of type checkbox with the label to
@@ -453,11 +457,7 @@ fails the user is routed to a view stating access is restricted.</p></dd><dt><a 
                     <dd><p>Configures log array</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html#method_controlKeys">
 <abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr>::controlKeys</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a></em></dt>
                     <dd><p>Return the list of control keys that will be stripped from the data bag.</p></dd><dt><a href="Core/Lib/Notifications/Contracts/Channel.html"><abbr title="Core\Lib\Notifications\Contracts\Channel">Channel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Contracts.html">Core\Lib\Notifications\Contracts</a></em></dt>
-                    <dd><p>Contract for delivering notifications over a specific transport (database, mail, SMS, etc).</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/ChannelException.html"><abbr title="Core\Lib\Notifications\Exceptions\ChannelException">ChannelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
-                    <dd><p>Handles exceptions related to channels.  Extends the
-NotificationException class.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/ChannelSendFailedException.html"><abbr title="Core\Lib\Notifications\Exceptions\ChannelSendFailedException">ChannelSendFailedException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
-                    <dd><p>Handles exceptions related to sending through a channel.  Extends the
-ChannelException class</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_channels">
+                    <dd><p>Contract for delivering notifications over a specific transport (database, mail, SMS, etc).</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_channels">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::channels</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
                     <dd><p>Get an array of available channels.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_channelValues">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::channelValues</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
@@ -527,7 +527,9 @@ checks if it is assigned to a user and sets flash message.</p></dd><dt><a href="
 <abbr title="Core\Services\AuthService">AuthService</abbr>::currentUser</a>() &mdash; <em>Method in class <a href="Core/Services/AuthService.html"><abbr title="Core\Services\AuthService">AuthService</abbr></a></em></dt>
                     <dd><p>Checks if a user is logged in.</p></dd><dt><a href="Core/Services/DashboardService.html#method_checkIfCurrentUser">
 <abbr title="Core\Services\DashboardService">DashboardService</abbr>::checkIfCurrentUser</a>() &mdash; <em>Method in class <a href="Core/Services/DashboardService.html"><abbr title="Core\Services\DashboardService">DashboardService</abbr></a></em></dt>
-                    <dd><p>Warns if admin user is attempting to view an area they should not be.</p></dd><dt><a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Warns if admin user is attempting to view an area they should not be.</p></dd><dt>$<a href="Core/Traits/HasTimestamps.html#property_created_at">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr>#created_at</a> &mdash; <em>Property in class <a href="Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></em></dt>
+                    <dd><p>Time record was created.</p></dd><dt><a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Abstract parent class for our child validation child classes.  Each child
 class must implement the runValidation() function.</p></dd><dt><a href="Core/View.html#method_component">
 <abbr title="Core\View">View</abbr>::component</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
@@ -1100,7 +1102,9 @@ and grants access if that is the case.</p></dd><dt><a href="Core/Services/AuthSe
 <abbr title="Core\Services\AuthService">AuthService</abbr>::hashPassword</a>() &mdash; <em>Method in class <a href="Core/Services/AuthService.html"><abbr title="Core\Services\AuthService">AuthService</abbr></a></em></dt>
                     <dd><p>Hashes password.</p></dd><dt><a href="Core/Services/UserService.html#method_handleProfileImages">
 <abbr title="Core\Services\UserService">UserService</abbr>::handleProfileImages</a>() &mdash; <em>Method in class <a href="Core/Services/UserService.html"><abbr title="Core\Services\UserService">UserService</abbr></a></em></dt>
-                    <dd><p>Uploads and sorts profile images.</p></dd>        </dl><h2 id="letterI">I</h2>
+                    <dd><p>Uploads and sorts profile images.</p></dd><dt><a href="Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a> &mdash; <em>Class in namespace <a href="Core/Traits.html">Core\Traits</a></em></dt>
+                    <dd><p>Creates the $created_at and $updated_at fields and performs the operation
+that updates timestamps.</p></dd>        </dl><h2 id="letterI">I</h2>
         <dl id="indexI"><dt><a href="Console/Helpers/Queue.html#method_isValidJob">
 <abbr title="Console\Helpers\Queue">Queue</abbr>::isValidJob</a>() &mdash; <em>Method in class <a href="Console/Helpers/Queue.html"><abbr title="Console\Helpers\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Test if name of job class is valid.</p></dd><dt><a href="Console/Helpers/Queue.html#method_iterations">
@@ -1119,7 +1123,9 @@ test command.</p></dd><dt><a href="Console/Helpers/Tools.html#method_info">
                     <dd><p>Checks if a transaction is currently active.</p></dd><dt><a href="Core/ErrorHandler.html#method_initialize">
 <abbr title="Core\ErrorHandler">ErrorHandler</abbr>::initialize</a>() &mdash; <em>Method in class <a href="Core/ErrorHandler.html"><abbr title="Core\ErrorHandler">ErrorHandler</abbr></a></em></dt>
                     <dd><p>Performs global exception handling, global error handling, and
-initialized whoops.</p></dd><dt><a href="Core/FormHelper.html#method_inputBlock">
+initialized whoops.</p></dd><dt><a href="Core/Exceptions/Notifications/InvalidPayloadException.html"><abbr title="Core\Exceptions\Notifications\InvalidPayloadException">InvalidPayloadException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
+                    <dd><p>Handles cases when there are invalid payloads.  Extends the
+NotificationException class.</p></dd><dt><a href="Core/FormHelper.html#method_inputBlock">
 <abbr title="Core\FormHelper">FormHelper</abbr>::inputBlock</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Assists in the development of forms input blocks in forms.  It accepts
 parameters for setting attribute tags in the form section.  Not to be
@@ -1143,9 +1149,7 @@ or submitTag functions.</p></dd><dt><a href="Core/Input.html"><abbr title="Core\
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::init</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
                     <dd><p>Initializes the log file based on the environment (CLI or Web).</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html#method_isTemplate">
 <abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr>::isTemplate</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a></em></dt>
-                    <dd><p>Determines if mail will be using a template.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/InvalidPayloadException.html"><abbr title="Core\Lib\Notifications\Exceptions\InvalidPayloadException">InvalidPayloadException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
-                    <dd><p>Handles cases when there are invalid payloads.  Extends the
-NotificationException class.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isDev">
+                    <dd><p>Determines if mail will be using a template.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isDev">
 <abbr title="Core\Lib\React\Vite">Vite</abbr>::isDev</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
                     <dd><p>Simple env-based dev check.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_insertBefore">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::insertBefore</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1452,7 +1456,9 @@ feature class is created.</p></dd><dt><a href="Console/Helpers/Test.html#method_
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>#mailer</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
                     <dd><p>Mailer object.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_mailLogger">
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::mailLogger</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
-                    <dd><p>Logs each attempt at sending an E-mail.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
+                    <dd><p>Logs each attempt at sending an E-mail.</p></dd><dt>$<a href="Core/Lib/Notifications/ChannelRegistry.html#property_map">
+<abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>#map</a> &mdash; <em>Property in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
+                    <dd><p>Map of channel name =&gt; channel class.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Notification channel that sends email via the framework MailerService
 and/or AbstractMailer-based custom mailers.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_maxAttempts">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#maxAttempts</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
@@ -1534,7 +1540,10 @@ a field.</p></dd>        </dl><h2 id="letterN">N</h2>
 <abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr>::noControllerAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a></em></dt>
                     <dd><p>Handles case when controller is not found and sets 404 response.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_notFoundAction">
 <abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr>::notFoundAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a></em></dt>
-                    <dd><p>Handles cases when view is not found and sets 404 response.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_nullable">
+                    <dd><p>Handles cases when view is not found and sets 404 response.</p></dd><dt><a href="Core/Exceptions/Notifications/NotifiableRoutingException.html"><abbr title="Core\Exceptions\Notifications\NotifiableRoutingException">NotifiableRoutingException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
+                    <dd><p>Handles exceptions related to notification routing.  Extends the
+NotificationException class.</p></dd><dt><a href="Core/Exceptions/Notifications/NotificationException.html"><abbr title="Core\Exceptions\Notifications\NotificationException">NotificationException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
+                    <dd><p>Exception class for notifications that extends RuntimeException</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_nullable">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::nullable</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Modifies last column added to the schema and make it nullable.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html#method_name">
 <abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr>::name</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a></em></dt>
@@ -1550,10 +1559,7 @@ a field.</p></dd>        </dl><h2 id="letterN">N</h2>
 <abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr>::notifyWithTemplate</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a></em></dt>
                     <dd><p>Setups notification with mail template.</p></dd><dt><a href="Core/Lib/Notifications/Contracts/Channel.html#method_name">
 <abbr title="Core\Lib\Notifications\Contracts\Channel">Channel</abbr>::name</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Contracts/Channel.html"><abbr title="Core\Lib\Notifications\Contracts\Channel">Channel</abbr></a></em></dt>
-                    <dd><p>The short channel name used in via(): e.g. 'database', 'mail', 'sms'.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/NotifiableRoutingException.html"><abbr title="Core\Lib\Notifications\Exceptions\NotifiableRoutingException">NotifiableRoutingException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
-                    <dd><p>Handles exceptions related to notification routing.  Extends the
-NotificationException class.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/NotificationException.html"><abbr title="Core\Lib\Notifications\Exceptions\NotificationException">NotificationException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
-                    <dd><p>Exception class for notifications that extends RuntimeException</p></dd><dt><a href="Core/Lib/Notifications/Notifiable.html"><abbr title="Core\Lib\Notifications\Notifiable">Notifiable</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications.html">Core\Lib\Notifications</a></em></dt>
+                    <dd><p>The short channel name used in via(): e.g. 'database', 'mail', 'sms'.</p></dd><dt><a href="Core/Lib/Notifications/Notifiable.html"><abbr title="Core\Lib\Notifications\Notifiable">Notifiable</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications.html">Core\Lib\Notifications</a></em></dt>
                     <dd><p>Adds notification capabilities to a model.</p></dd><dt><a href="Core/Lib/Notifications/Notifiable.html#method_notify">
 <abbr title="Core\Lib\Notifications\Notifiable">Notifiable</abbr>::notify</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notifiable.html"><abbr title="Core\Lib\Notifications\Notifiable">Notifiable</abbr></a></em></dt>
                     <dd><p>Send a notification to this notifiable through one or more channels.</p></dd><dt><a href="Core/Lib/Notifications/Notifiable.html#method_notifications">
@@ -2229,9 +2235,7 @@ Output: &quot;7 hours before&quot;</p></dd><dt><a href="Core/Lib/Utilities/DateT
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::title</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Convert a string to title case.</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_toArray">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::toArray</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
-                    <dd><p>Convert a string into an array.</p></dd><dt><a href="Core/Model.html#method_timeStamps">
-<abbr title="Core\Model">Model</abbr>::timeStamps</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
-                    <dd><p>Sets values for timestamp fields.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_type">
+                    <dd><p>Convert a string into an array.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_type">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#type</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>The type of notification.</p></dd><dt><a href="Core/Services/DashboardService.html#method_totalUserCountExceptCurrent">
 <abbr title="Core\Services\DashboardService">DashboardService</abbr>::totalUserCountExceptCurrent</a>() &mdash; <em>Method in class <a href="Core/Services/DashboardService.html"><abbr title="Core\Services\DashboardService">DashboardService</abbr></a></em></dt>
@@ -2241,7 +2245,9 @@ Output: &quot;7 hours before&quot;</p></dd><dt><a href="Core/Lib/Utilities/DateT
 if E-mail should be sent.  To properly test if E-mail should be sent
 get value of $user-&gt;inactive before post.</p></dd><dt><a href="Core/Services/UserService.html#method_toggleResetPassword">
 <abbr title="Core\Services\UserService">UserService</abbr>::toggleResetPassword</a>() &mdash; <em>Method in class <a href="Core/Services/UserService.html"><abbr title="Core\Services\UserService">UserService</abbr></a></em></dt>
-                    <dd><p>Assist in toggling reset_password field.</p></dd>        </dl><h2 id="letterU">U</h2>
+                    <dd><p>Assist in toggling reset_password field.</p></dd><dt><a href="Core/Traits/HasTimestamps.html#method_timeStamps">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr>::timeStamps</a>() &mdash; <em>Method in class <a href="Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></em></dt>
+                    <dd><p>Sets values for timestamp fields.</p></dd>        </dl><h2 id="letterU">U</h2>
         <dl id="indexU"><dt><a href="Console/Helpers/Model.html#method_uploadModelTemplate">
 <abbr title="Console\Helpers\Model">Model</abbr>::uploadModelTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Model.html"><abbr title="Console\Helpers\Model">Model</abbr></a></em></dt>
                     <dd><p>The default template for a new upload model class.</p></dd><dt><a href="Console/Helpers/Test.html#method_unitTests">
@@ -2250,7 +2256,9 @@ get value of $user-&gt;inactive before post.</p></dd><dt><a href="Core/Services/
 <abbr title="Core\DB">DB</abbr>::update</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Performs update operation on a SQL database record.</p></dd><dt><a href="Core/DB.html#method_updateWhere">
 <abbr title="Core\DB">DB</abbr>::updateWhere</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
-                    <dd><p>Updates records in a table using params-style conditions.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_unique">
+                    <dd><p>Updates records in a table using params-style conditions.</p></dd><dt><a href="Core/Exceptions/Notifications/UnregisteredChannelException.html"><abbr title="Core\Exceptions\Notifications\UnregisteredChannelException">UnregisteredChannelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
+                    <dd><p>Handles exceptions related to unregistered channels.  Extends the
+ChannelException class.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_unique">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::unique</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Adds a unique index to the last defined column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_unsignedInteger">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::unsignedInteger</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
@@ -2281,9 +2289,7 @@ E-mail event.</p></dd><dt>$<a href="Core/Lib/Events/UserRegistered.html#property
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#user</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>The user to send the email.</p></dd><dt><a href="Core/Lib/Mail/UpdatePasswordMailer.html"><abbr title="Core\Lib\Mail\UpdatePasswordMailer">UpdatePasswordMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
                     <dd><p>Class for generating a message informing the user that their
-password has been updated.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/UnregisteredChannelException.html"><abbr title="Core\Lib\Notifications\Exceptions\UnregisteredChannelException">UnregisteredChannelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Exceptions.html">Core\Lib\Notifications\Exceptions</a></em></dt>
-                    <dd><p>Handles exceptions related to unregistered channels.  Extends the
-ChannelException class.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_unique">
+password has been updated.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_unique">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::unique</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Remove duplicate values from an array.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_uniqueBy">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::uniqueBy</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -2351,7 +2357,9 @@ your framework's params-style conditions.</p></dd><dt>$<a href="Core/Models/ACL.
                     <dd><p>Updates user's password</p></dd><dt><a href="Core/Session.html#method_uagent_no_version">
 <abbr title="Core\Session">Session</abbr>::uagent_no_version</a>() &mdash; <em>Method in class <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a></em></dt>
                     <dd><p>Don't store browser version numbers so we don't break session during
-end user software updates.</p></dd><dt><a href="Core/Validators/UniqueValidator.html"><abbr title="Core\Validators\UniqueValidator">UniqueValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+end user software updates.</p></dd><dt>$<a href="Core/Traits/HasTimestamps.html#property_updated_at">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr>#updated_at</a> &mdash; <em>Property in class <a href="Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></em></dt>
+                    <dd><p>Time record was updated.</p></dd><dt><a href="Core/Validators/UniqueValidator.html"><abbr title="Core\Validators\UniqueValidator">UniqueValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class that performs validation for fields that require a unique entry
 in a database.</p></dd><dt><a href="Core/Validators/UpperCharValidator.html"><abbr title="Core\Validators\UpperCharValidator">UpperCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class class that supports ability to check if field contains an
@@ -2497,7 +2505,13 @@ bind, order, limit, and sort.</p></dd><dt><a href="Core/Exceptions/Console/Conso
                     <dd><p>Create a new exception to handle faults related to log file write
 operations.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerLevelException.html#method___construct">
 <abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Logger/LoggerLevelException.html"><abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr></a></em></dt>
-                    <dd><p>Create a new LoggerLevelException.</p></dd><dt><a href="Core/Exceptions/Session/SessionLevelException.html#method___construct">
+                    <dd><p>Create a new LoggerLevelException.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelException.html#method___construct">
+<abbr title="Core\Exceptions\Notifications\ChannelException">ChannelException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Notifications/ChannelException.html"><abbr title="Core\Exceptions\Notifications\ChannelException">ChannelException</abbr></a></em></dt>
+                    <dd><p>Create a channel-scoped notification exception.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelSendFailedException.html#method___construct">
+<abbr title="Core\Exceptions\Notifications\ChannelSendFailedException">ChannelSendFailedException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Notifications/ChannelSendFailedException.html"><abbr title="Core\Exceptions\Notifications\ChannelSendFailedException">ChannelSendFailedException</abbr></a></em></dt>
+                    <dd><p>Create an exception indicating that delivery over a specific notification
+channel failed. Includes contextual metadata (channel name, notification
+class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/Exceptions/Session/SessionLevelException.html#method___construct">
 <abbr title="Core\Exceptions\Session\SessionLevelException">SessionLevelException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Session/SessionLevelException.html"><abbr title="Core\Exceptions\Session\SessionLevelException">SessionLevelException</abbr></a></em></dt>
                     <dd><p>Create a new SessionLevelException.</p></dd><dt><a href="Core/Exceptions/View/ViewException.html#method___construct">
 <abbr title="Core\Exceptions\View\ViewException">ViewException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/View/ViewException.html"><abbr title="Core\Exceptions\View\ViewException">ViewException</abbr></a></em></dt>
@@ -2537,13 +2551,7 @@ operations.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerLevelException.htm
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
                     <dd><p>Creates a new mailer.</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html#method___construct">
 <abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a></em></dt>
-                    <dd><p>Constructor for MailChannel.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/ChannelException.html#method___construct">
-<abbr title="Core\Lib\Notifications\Exceptions\ChannelException">ChannelException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Exceptions/ChannelException.html"><abbr title="Core\Lib\Notifications\Exceptions\ChannelException">ChannelException</abbr></a></em></dt>
-                    <dd><p>Create a channel-scoped notification exception.</p></dd><dt><a href="Core/Lib/Notifications/Exceptions/ChannelSendFailedException.html#method___construct">
-<abbr title="Core\Lib\Notifications\Exceptions\ChannelSendFailedException">ChannelSendFailedException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Exceptions/ChannelSendFailedException.html"><abbr title="Core\Lib\Notifications\Exceptions\ChannelSendFailedException">ChannelSendFailedException</abbr></a></em></dt>
-                    <dd><p>Create an exception indicating that delivery over a specific notification
-channel failed. Includes contextual metadata (channel name, notification
-class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/Lib/Pagination/Pagination.html#method___construct">
+                    <dd><p>Constructor for MailChannel.</p></dd><dt><a href="Core/Lib/Pagination/Pagination.html#method___construct">
 <abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></em></dt>
                     <dd><p>Constructor for Pagination class</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method___construct">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>

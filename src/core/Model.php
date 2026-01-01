@@ -170,8 +170,6 @@ class Model {
      * Wrapper for database delete function.  If not softDelete we set it.
      * If row is set to softDelete we call the database delete function.
      * 
-     * @param string $id The primary key for the record we want to remove from a 
-     * database table.  The default value is an empty string.
      * @return bool $deleted True if delete operation is successful.  Otherwise, we 
      * return false.
      */
@@ -486,19 +484,6 @@ class Model {
         }
         
         return $params;
-    }
-
-    /**
-     * Sets values for timestamp fields.
-     *
-     * @return void
-     */
-    public function timeStamps(): void {
-        $now = DateTime::timeStamps();
-        $this->updated_at = $now;
-        if($this->isNew()) {
-            $this->created_at = $now;
-        }
     }
 
     /**
