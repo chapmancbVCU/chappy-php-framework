@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Core\Traits\Admindashboard;
 use Core\Services\ACLService;
+use Core\Models\ACL;
+use Core\Session;
 
 trait ACLs {
     /**
@@ -40,5 +42,16 @@ trait ACLs {
         $this->view->acl = $acl;
         $this->view->header = $acl->isNew() ? "Added ACL" : "Edit ACL";
         $this->view->render('admindashboard.edit_acl', true, true);
+    }
+
+    /**
+     * Renders view for managing ACLs.
+     *
+     * @return void
+     */
+    public function manageACLsAction(): void {
+        $this->view->usedAcls = ACLService::usedACLs();
+        $this->view->unUsedAcls = ACLService::unUsedACLs();
+        $this->view->render('admindashboard.manage_acls', true, true);
     }
 }
