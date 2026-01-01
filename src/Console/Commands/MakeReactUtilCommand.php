@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for making a new JavaScript utility by running react:util.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/react_utils#overview">here</a>.
  */
 class MakeReactUtilCommand extends Command {
     /**

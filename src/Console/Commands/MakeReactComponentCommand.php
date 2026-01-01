@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for making a new react component by running react:component.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers_and_views#view-commands">here</a>.
  */
 class MakeReactComponentCommand extends Command {
     /**

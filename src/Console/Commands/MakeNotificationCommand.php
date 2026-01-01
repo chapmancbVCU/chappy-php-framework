@@ -11,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new Notification class by running make:notification.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/notifications#writing-a-notification">here</a>.
  */
 class MakeNotificationCommand extends Command
 {

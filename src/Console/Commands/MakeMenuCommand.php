@@ -10,6 +10,7 @@ use Core\Lib\Utilities\Str;
 
 /**
  * Supports ability to generate a new menu file by running make:menu.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#menus">here</a>.
  */
 class MakeMenuCommand extends Command {
     /**

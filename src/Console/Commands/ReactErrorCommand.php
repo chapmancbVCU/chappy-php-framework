@@ -8,6 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for generating the error/NotFound.jsx page component. 
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers_and_views#view-commands">here</a>.
  */
 class ReactErrorCommand extends Command {
     /**
