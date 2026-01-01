@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new Job class by running make:job.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/queue#job-class">here</a>.
  */
 class MakeJobCommand extends Command
 {
