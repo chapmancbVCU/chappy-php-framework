@@ -70,4 +70,14 @@ trait Attachments {
         $this->view->header = $attachment->isNew() ? "Added Attachment" : "Edit Attachment";
         $this->view->render('admindashboard/attachments_form', true, true);
     }
+
+    /**
+     * Previews an attachment
+     *
+     * @param int $id The primary key for the record of the attachment.
+     * @return void
+     */
+    public function previewAction(int $id): void {
+        AttachmentService::previewAttachment($id);
+    }
 }
