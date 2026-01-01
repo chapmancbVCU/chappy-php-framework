@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /** 
  * Generates a new Custom Form Validator by running make:validator.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/server_side_validation#custom-validators">here</a>.
  */
 class MakeValidatorCommand extends Command {
     /**

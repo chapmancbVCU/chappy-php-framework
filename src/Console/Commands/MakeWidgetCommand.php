@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for making a new widget file by running make:widget.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/widgets#overview">here</a>.
  */
 class MakeWidgetCommand extends Command {
     /**
