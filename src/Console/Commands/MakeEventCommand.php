@@ -11,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new event class by typing make:event.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/events#creating">here</a>.
  */
 class MakeEventCommand extends Command
 {

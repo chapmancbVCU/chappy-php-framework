@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 /**
  * Class for the make:command-helper command.  This class generates helpers 
  * for your custom commands.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#command-helpers">here</a>.
  */
 class MakeHelperCommand extends Command {
     /**

@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new event service provider class by running make:provider.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/events#make-provider">here</a>.
  */
 class MakeEventServiceProviderCommand extends Command
 {
