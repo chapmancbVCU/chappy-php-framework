@@ -1,11 +1,14 @@
 <?php
 namespace Core\Models;
 use Core\Model;
+use Core\Traits\HasTimestamps;
 
 /**
  * Implements features of the Notifications class.
  */
 class Notifications extends Model {
+    use HasTimestamps;
+    
     /**
      * The name of the notifications table.
      * @var string
@@ -13,8 +16,6 @@ class Notifications extends Model {
     protected static $_table = 'notifications';
     
     // Fields from your database
-    /** Created at. */
-    public $created_at;
 
     /** Notification data. */
     public $data;
@@ -49,9 +50,6 @@ class Notifications extends Model {
      * @var string
      */
     public $type;
-
-    /** Updated at. */
-    public $updated_at;
 
     /**
      * Implementation of beforeSave from base class.

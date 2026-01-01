@@ -4,25 +4,25 @@ use Core\Model;
 use Core\Lib\Mail\Attachments;
 use App\Models\Users;
 use Core\Validators\RequiredValidator as Required;
+use Core\Traits\HasTimestamps;
 
 /**
  * Implements features of the EmailAttachments class.
  */
 final class EmailAttachments extends Model {
-
+    use HasTimestamps;
+    
     // Fields you don't want saved on form submit
     // public const blackList = [];
 
     /**
      * Set to name of database table.
-     *
      * @var string
      */
     protected static $_table = 'email_attachments';
 
     /**
      * Soft delete
-     *
      * @var bool
      */
     protected static $_softDelete = true;
@@ -51,64 +51,50 @@ final class EmailAttachments extends Model {
      */
     public $attachment_name;
     
-    /** Create at. */
-    public $created_at;
-    
     /**
      * Deleted
-     *
      * @var int
      */
     public $deleted = 0;
     
     /**
      * Description
-     *
      * @var string
      */
     public $description;
 
     /**
      * The primary key id
-     *
      * @var int
      */
     public $id;
 
     /**
      * The mime type.
-     *
      * @var string
      */
     public $mime_type;
 
     /**
      * Name of the attachment.
-     *
      * @var string
      */
     public $name;
 
     /**
      * Path to the attachment.
-     *
      * @var string
      */
     public $path;
 
     /**
      * Size of the attachment.
-     *
      * @var int
      */
     public $size;
 
-    /** Updated at. */
-    public $updated_at;
-
     /**
      * ID of the recipient.
-     *
      * @var int
      */
     public $user_id;

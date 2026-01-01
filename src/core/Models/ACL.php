@@ -2,11 +2,13 @@
 namespace Core\Models;
 use Core\Model;
 use Core\Validators\{RequiredValidator, UniqueValidator};
-
+use Core\Traits\HasTimestamps;
 /**
  * Describes ACL model.
  */
 final class ACL extends Model {
+    use HasTimestamps;
+    
     /**
      * The acl value.
      * @var string
@@ -15,8 +17,7 @@ final class ACL extends Model {
 
     /** The blacklist array. */
     public const blackList = ['id', 'deleted'];
-    /** Created at. */
-    public $created_at;
+
     /** Deleted */
     public $deleted = 0;
     /**
@@ -34,8 +35,6 @@ final class ACL extends Model {
      * @var string
      */
     protected static $_table = 'acl';
-    /** Updated at. */
-    public $updated_at;
 
     /**
      * Implements beforeSave function described in Model parent class.  

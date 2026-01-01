@@ -4,11 +4,14 @@ namespace Core\Models;
 use Core\Model;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\FileSystem\Uploads;
+use Core\Traits\HasTimestamps;
 
 /**
  * Supports CRUD operations on profile image records.
  */
 final class ProfileImages extends Model {
+    use HasTimestamps;
+    
     /**
      * The allowed file types.
      * @var array

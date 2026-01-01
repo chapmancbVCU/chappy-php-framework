@@ -2,11 +2,14 @@
 namespace Core\Models;
 use Core\Lib\Utilities\Env;
 use Core\{Cookie, Model, Session};
+use Core\Traits\HasTimestamps;
 
 /**
  * Supports operations of the User Session model.  Extends the Model class.
  */
 final class UserSessions extends Model {
+    use HasTimestamps;
+    
     /**
      * The id for the session.
      * @var int

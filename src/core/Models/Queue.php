@@ -9,11 +9,14 @@ use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
 use Core\Lib\Queue\QueueableJobInterface;
+use Core\Traits\HasTimestamps;
 
 /**
  * Implements features of the Queue class.
  */
 class Queue extends Model {
+    use HasTimestamps;
+    
     /**
      * Name of the table.
      * @var string
@@ -28,8 +31,7 @@ class Queue extends Model {
 
     /** Available at. */
     public $available_at;
-    /** Created at. */
-    public $created_at;
+
     /** Exceptions */
     public $exception;
     /** Failed at. */
@@ -53,8 +55,6 @@ class Queue extends Model {
     public $reserved_at;
     /** Payload */
     public $payload;
-    /** Updated at. */
-    public $updated_at;
 
     /**
      * Calculate delay when performing retry for a job.
