@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new custom mailer by running make:mailer.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/email#custom-mailers">here</a>.
  */
 class MakeMailerCommand extends Command {
     /**

@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new listener class by running make:listener.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/events#event-flag">here</a>.
  */
 class MakeListenerCommand extends Command
 {
