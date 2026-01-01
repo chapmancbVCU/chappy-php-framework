@@ -7,7 +7,7 @@ use Core\Lib\Notifications\Notification;
 use Core\Models\Notifications;
 use Ramsey\Uuid\Uuid;
 use Core\Lib\Notifications\Notification as BaseNotification;
-use Core\Lib\Notifications\Exceptions\{
+use Core\Exceptions\Notifications\{
     InvalidPayloadException,
     NotifiableRoutingException,
     ChannelSendFailedException

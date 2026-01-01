@@ -5,7 +5,7 @@ namespace Core\Lib\Notifications\Channels;
 use Core\Lib\Mail\AbstractMailer;
 use Core\Lib\Notifications\Contracts\Channel;
 use Core\Lib\Notifications\Notification;
-use Core\Lib\Notifications\Exceptions\{
+use Core\Exceptions\Notifications\{
     InvalidPayloadException,
     NotifiableRoutingException,
     ChannelSendFailedException

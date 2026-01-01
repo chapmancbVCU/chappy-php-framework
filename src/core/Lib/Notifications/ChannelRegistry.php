@@ -5,7 +5,7 @@ namespace Core\Lib\Notifications;
 use RuntimeException;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Contracts\Channel;
-use Core\Lib\Notifications\Exceptions\UnregisteredChannelException;
+use Core\Exceptions\Notifications\UnregisteredChannelException;
 
 /**
  * Registry for notification channel drivers.

@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Notifications;
 
-use Core\Lib\Utilities\Str;
 use Core\Models\Notifications;
 use Core\Lib\Notifications\ChannelRegistry;
 
