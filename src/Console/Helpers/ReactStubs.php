@@ -212,7 +212,7 @@ import asset from '@chappy/utils/asset'
  * @returns {JSX.Element} The contents of Index view.
  */
 export default function Index({ user }) {
-const name = user.fname ?? 'Guest';
+    const name = user.fname ?? 'Guest';
     return (
         <div className="container">
             <div className="text-center">
