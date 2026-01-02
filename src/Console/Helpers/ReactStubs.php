@@ -251,7 +251,7 @@ const name = user.fname ?? 'Guest';
         <div className="row text-center g-4 mt-4">
             <div className="col-md-4">
             <h4>🧩 Composer and npm Support</h4>
-            <p>Manage your dependencies using Composer npm.</p>
+            <p>Manage your dependencies using Composer and npm.</p>
             </div>
             <div className="col-md-4">
             <h4>📁 User Management</h4>
