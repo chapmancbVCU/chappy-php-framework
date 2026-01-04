@@ -10,7 +10,7 @@ use Core\Lib\Utilities\DateTime;
 trait HasTimestamps {
     /**
      * Time record was created.
-     * @var [type]
+     * @var string
      */
     public $created_at;
 
