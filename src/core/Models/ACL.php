@@ -15,21 +15,30 @@ final class ACL extends Model {
      */
     public $acl;
 
-    /** The blacklist array. */
+    /** 
+     * The blacklist array. 
+     * @var array
+     */
     public const blackList = ['id', 'deleted'];
 
-    /** Deleted */
+    /** 
+     * Deleted 
+     * @var int
+     */
     public $deleted = 0;
     /**
      * The current id.
      * @var number
      */
+
     public $id;
+
     /** 
      * $_softDelete value. 
      * @var bool
-     * */
+     */
     protected static $_softDelete = true;
+
     /**
      * The name of the table.
      * @var string
