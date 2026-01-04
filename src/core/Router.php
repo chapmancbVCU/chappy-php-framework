@@ -231,10 +231,12 @@ class Router {
     {
         try {
             // Parse URLs
-            $requestPath = $_SERVER['PATH_INFO'] ?? $_SERVER['REQUEST_URI'] ?? '';
+            $requestUri  = $_SERVER['REQUEST_URI'] ?? '';
+            $requestPath = $_SERVER['PATH_INFO'] ?? (parse_url($requestUri, PHP_URL_PATH) ?: '');
+
             $url = ArraySet::make(explode('/', ltrim($requestPath, '/')))
-                ->filter(fn($v) => trim($v) !== '') // Removes empty segments
-                ->values(); // Reset array indices
+                ->filter(fn($v) => trim($v) !== '')
+                ->values();
 
             // Identify user
             $userId = Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) 
