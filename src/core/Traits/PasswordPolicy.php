@@ -8,30 +8,30 @@ namespace Core\Traits;
  */
 trait PasswordPolicy {
     /**
-     * Gets lower char requirement for password.
-     *
-     * @return bool
-     */
-    public function lowerChar(): bool {
-        return env('PW_LOWER_CHAR', false);
-    }
-
-    /**
      * Gets max length rule for password.
      *
-     * @return bool
+     * @return string
      */
-    public function isMaxLength(): bool {
+    public function isMaxLength(): string {
         return env('SET_PW_MAX_LENGTH', false);
     }
 
     /**
      * Gets minimum rule for password.
      *
-     * @return bool
+     * @return string
      */
-    public function isMinLength(): bool {
+    public function isMinLength(): string {
         return env('SET_PW_MIN_LENGTH', false);
+    }
+
+    /**
+     * Gets lower char requirement for password.
+     *
+     * @return string
+     */
+    public function lowerChar(): string {
+        return env('PW_LOWER_CHAR', false);
     }
 
     /**
@@ -55,27 +55,27 @@ trait PasswordPolicy {
     /**
      * Gets numeric char requirement for password.
      *
-     * @return bool
+     * @return string
      */
-    public function numericChar(): bool {
+    public function numericChar(): string {
         return env('PW_NUM_CHAR', false);
     }
 
     /**
      * Gets special char requirement for password.
      *
-     * @return bool
+     * @return string
      */
-    public function specialChar(): bool {
+    public function specialChar(): string {
         return env('PW_SPECIAL_CHAR', false);
     }
 
     /**
      * Gets upper char requirement for password.
      *
-     * @return bool
+     * @return string
      */
-    public function upperChar(): bool {
+    public function upperChar(): string {
         return env('PW_LOWER_CHAR', false);
     }
 }
