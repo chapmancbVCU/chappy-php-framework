@@ -29,7 +29,7 @@ function Login({errors, login, rememberMeChecked}) {
             <div className="col-md-6 bg-light p-3">
                 <h1 className="text-center">Login</h1>
                 <form className="form" action={route('auth.login')} method="post">
-                    <Forms.CSRF />
+                    <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
                     <Forms.Input 
                         type="text"
@@ -96,7 +96,7 @@ function Register({user, errors}) {
                 <h3 className="text-center">Register Here!</h3>
                 <hr />
                 <form action="" className="form" method="post" encType="multipart/form-data">
-                    <Forms.CSRF />
+                    <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
                     <Forms.Input 
                         type="text"
@@ -454,7 +454,7 @@ function Edit({user, errors, profileImages}) {
                 <h1 className="text-center">Edit Details for {user.username}</h1>
                 <hr />
                 <form className="form" action="" method="post" encType="multipart/form-data">
-                    <Forms.CSRF />
+                    <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
                     <Forms.Input 
                         type="text"
@@ -624,7 +624,7 @@ function UpdatePassword({user, errors}) {
                 <hr />
                 <PasswordComplexityRequirements />
                 <form className="form" action="" method="post">
-                    <Forms.CSRF />
+                    <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
                     <Forms.Input 
                         type="password"
