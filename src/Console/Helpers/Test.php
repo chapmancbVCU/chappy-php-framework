@@ -86,8 +86,8 @@ class Test {
             return Command::FAILURE;
         }
 
-        Test::testSuite($unitTests);
-        Test::testSuite($featureTests);
+        $this->testSuite($unitTests);
+        $this->testSuite($featureTests);
 
         Tools::info("All available test have been completed");
         return Command::SUCCESS;
