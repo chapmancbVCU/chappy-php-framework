@@ -1,11 +1,11 @@
 <div>
     <h4 class="text-center">Password Requirements</h4>
     <ul class="pl-3">
-        <?php if ($this->user->isMinLength() === 'true'): ?>
+        <?php if ($this->user->isMinLength()): ?>
             <li>Minimum <?= $this->user->minLength() ?> characters in length</li>
         <?php endif; ?>
 
-        <?php if ($this->user->isMaxLength() === 'true'): ?>
+        <?php if ($this->user->isMaxLength()): ?>
             <li>Maximum of <?= $this->user->maxLength() ?> characters in length</li>
         <?php endif; ?>
 
@@ -13,7 +13,7 @@
             <li>At least 1 upper case character</li>
         <?php endif; ?>
 
-        <?php if ($this->user->lowerChar() === 'true'): ?>
+        <?php if ($this->user->lowerChar()): ?>
             <li>At least 1 lower case character</li>
         <?php endif; ?>
 

@@ -10,28 +10,28 @@ trait PasswordPolicy {
     /**
      * Gets max length rule for password.
      *
-     * @return string
+     * @return bool
      */
-    public function isMaxLength(): string {
-        return env('SET_PW_MAX_LENGTH', false);
+    public function isMaxLength(): bool {
+        return (env('SET_PW_MAX_LENGTH', false) === "true") ? true : false;
     }
 
     /**
      * Gets minimum rule for password.
      *
-     * @return string
+     * @return bool
      */
-    public function isMinLength(): string {
-        return env('SET_PW_MIN_LENGTH', false);
+    public function isMinLength(): bool {
+        return (env('SET_PW_MIN_LENGTH', false) === "true") ? true : false;
     }
 
     /**
      * Gets lower char requirement for password.
      *
-     * @return string
+     * @return bool
      */
-    public function lowerChar(): string {
-        return env('PW_LOWER_CHAR', false);
+    public function lowerChar(): bool {
+        return (env('PW_LOWER_CHAR', false) === "true") ? true : false;
     }
 
     /**
@@ -55,27 +55,27 @@ trait PasswordPolicy {
     /**
      * Gets numeric char requirement for password.
      *
-     * @return string
+     * @return bool
      */
-    public function numericChar(): string {
-        return env('PW_NUM_CHAR', false);
+    public function numericChar(): bool {
+        return (env('PW_NUM_CHAR', false)  === "true") ? true : false;
     }
 
     /**
      * Gets special char requirement for password.
      *
-     * @return string
+     * @return bool
      */
-    public function specialChar(): string {
-        return env('PW_SPECIAL_CHAR', false);
+    public function specialChar(): bool {
+        return (env('PW_SPECIAL_CHAR', false) === "true") ? true : false;
     }
 
     /**
      * Gets upper char requirement for password.
      *
-     * @return string
+     * @return bool
      */
-    public function upperChar(): string {
-        return env('PW_LOWER_CHAR', false);
+    public function upperChar(): bool {
+        return (env('PW_LOWER_CHAR', false) === "true") ? true : false;
     }
 }
