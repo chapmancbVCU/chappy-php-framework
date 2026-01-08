@@ -147,13 +147,13 @@ PHP;
 
         if($input->getOption('feature')) {
             return Tools::writeFile(
-                ROOT.DS.'tests'.DS.'Feature'.DS.$testName.'.php',
+                ROOT.DS.self::FEATURE_PATH.$testName.'.php',
                 Test::makeFeatureTest($testName),
                 'Test'
             );
         } else {
             return Tools::writeFile(
-                ROOT.DS.'tests'.DS.'Unit'.DS.$testName.'.php',
+                ROOT.DS.self::UNIT_PATH.$testName.'.php',
                 Test::makeUnitTest($testName),
                 'Test'
             );
