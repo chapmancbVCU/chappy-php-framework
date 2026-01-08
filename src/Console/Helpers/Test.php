@@ -19,7 +19,7 @@ class Test {
     public const ALLOWED_OPTIONS = [
         'coverage',
         'debug',
-        'display-depreciations',
+        'display-deprecations',
         'display-errors',
         'display-incomplete',
         'display-skipped',
@@ -252,8 +252,8 @@ PHP;
                     case 'stop-on-warning':
                         $args[] = '--stop-on-warning';
                         break;
-                    case 'testbox':
-                        $args[] = '--testbox';
+                    case 'testdox':
+                        $args[] = '--testdox';
                         break;
                     default;
                         $args[] = '--' . $allowed;
