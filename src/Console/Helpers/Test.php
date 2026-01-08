@@ -308,8 +308,8 @@ PHP;
         } 
         
         // Run the test class if it exists in feature, unit, or both.
-        $unitStatus = self::singleFileWithinSuite(self::UNIT_PATH, $testArg);
-        $featureStatus = self::singleFileWithinSuite(self::FEATURE_PATH, $testArg);
+        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH);
+        $featureStatus = self::singleFileWithinSuite($testArg, self::FEATURE_PATH);
         if($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
@@ -334,7 +334,7 @@ PHP;
     public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
         if(file_exists($suite.$testArg.'.php')) {
             $command = ' '.$suite.$testArg.'.php';
-            $this->runTest($command, $this->output);
+            $this->runTest($command);
             return Command::SUCCESS;
         }
         return Command::FAILURE;
@@ -384,7 +384,7 @@ PHP;
         }
 
         foreach($collection as $fileName) {
-            $this->runTest($fileName, $this->output);
+            $this->runTest($fileName);
         }
 
         return Command::SUCCESS;
