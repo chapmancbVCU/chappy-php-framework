@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+use Symfony\Component\Console\Command\Command;
+use Core\Lib\Utilities\Arr;
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -47,4 +50,33 @@ class TestRunner {
         return glob($path."*.".$ext);
     }
 
+    /**
+     * Runs the unit test.
+     *
+     * @param string $tests The test to be performed.
+     * @return void
+     */
+    public function runTest(string $tests, string $testCommand): void {
+        $command = $testCommand . $tests . $this->inputOptions;
+        Tools::info('File: '.$tests);
+        $this->output->writeln(shell_exec($command));
+    }
+
+    /**
+     * Run all test files in an individual test suite.
+     *
+     * @param array $collection All classes in a particular test suite.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public function testSuite(array $collection, string $testCommand): int {
+        if(Arr::isEmpty($collection)) {
+            return Command::FAILURE;
+        }
+
+        foreach($collection as $fileName) {
+            $this->runTest($fileName, $testCommand);
+        }
+
+        return Command::SUCCESS;
+    }
 }

@@ -79,10 +79,10 @@ class RunTestCommand extends Command
         $unitStatus = null;
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
-            $unitStatus = $test->testSuite(TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, "php"));
+            $unitStatus = $test->testSuite(TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, "php"), PHPUnitRunner::TEST_COMMAND);
         }
         if(!$testArg && $feature) {
-            $featureStatus = $test->testSuite(TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, "php"));
+            $featureStatus = $test->testSuite(TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, "php"), PHPUnitRunner::TEST_COMMAND);
         }
         if(!$testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;

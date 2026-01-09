@@ -47,6 +47,8 @@ class PHPUnitRunner extends TestRunner {
      */
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     
+    public const TEST_COMMAND = 'php vendor/bin/phpunit ';
+
     /**
      * Constructor
      *
@@ -72,8 +74,8 @@ class PHPUnitRunner extends TestRunner {
             return Command::FAILURE;
         }
 
-        $this->testSuite($unitTests);
-        $this->testSuite($featureTests);
+        $this->testSuite($unitTests, self::TEST_COMMAND);
+        $this->testSuite($featureTests, self::TEST_COMMAND);
 
         Tools::info("All available test have been completed");
         return Command::SUCCESS;
@@ -192,17 +194,7 @@ class PHPUnitRunner extends TestRunner {
         return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
     }
 
-    /**
-     * Runs the unit test contained in the TestCase class.
-     *
-     * @param string $tests The test to be performed.
-     * @return void
-     */
-    public function runTest(string $tests): void {
-        $command = 'php vendor/bin/phpunit ' . $tests . $this->inputOptions;
-        Tools::info('File: '.$tests);
-        $this->output->writeln(shell_exec($command));
-    }
+    
 
     /**
      * Supports ability to run test by class name or function name within 
@@ -227,7 +219,7 @@ class PHPUnitRunner extends TestRunner {
                 $file = $path . $class . '.php';
                 if (file_exists($file)) {
                     $filter = "--filter " . escapeshellarg("{$class}::{$method}");
-                    $this->runTest($filter);
+                    $this->runTest($filter, self::TEST_COMMAND);
                     return Command::SUCCESS;
                 }
             }
@@ -261,7 +253,7 @@ class PHPUnitRunner extends TestRunner {
     public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
         if(file_exists($suite.$testArg.'.php')) {
             $command = ' '.$suite.$testArg.'.php';
-            $this->runTest($command);
+            $this->runTest($command, self::TEST_COMMAND);
             return Command::SUCCESS;
         }
         return Command::FAILURE;
@@ -299,23 +291,7 @@ class PHPUnitRunner extends TestRunner {
         return false;
     }
 
-    /**
-     * Run all test files in an individual test suite.
-     *
-     * @param array $collection All classes in a particular test suite.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public function testSuite(array $collection): int {
-        if(Arr::isEmpty($collection)) {
-            return Command::FAILURE;
-        }
-
-        foreach($collection as $fileName) {
-            $this->runTest($fileName);
-        }
-
-        return Command::SUCCESS;
-    }
+    
 
     /**
      * Determines if execution of a test suite(s) is successful.
