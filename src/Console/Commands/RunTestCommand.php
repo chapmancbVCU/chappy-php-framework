@@ -1,10 +1,8 @@
 <?php
 namespace Console\Commands;
-use Core\Helper;
-use Console\Helpers\Test;
+use Console\Helpers\Testing\Test;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;

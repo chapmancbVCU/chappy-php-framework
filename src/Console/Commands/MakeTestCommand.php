@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
  
-use Console\Helpers\Test;
+use Console\Helpers\Testing\Test;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
