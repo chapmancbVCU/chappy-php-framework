@@ -185,8 +185,6 @@ class PHPUnitRunner extends TestRunner {
         return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
     }
 
-    
-
     /**
      * Supports ability to run test by class name or function name within 
      * a class.
@@ -281,8 +279,6 @@ class PHPUnitRunner extends TestRunner {
         }
         return false;
     }
-
-    
 
     /**
      * Determines if execution of a test suite(s) is successful.
