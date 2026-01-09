@@ -8,10 +8,7 @@ use Console\Helpers\Testing\PHPUnitStubs;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
-class PHPTestBuilder extends TestBuilderInterface {
-    public const FEATURE_PATH = ROOT.DS.'tests'.DS.'Feature'.DS;
-    public const UNIT_PATH = ROOT.DS.'tests'.DS.'Unit'.DS;
-
+class PHPTestBuilder implements TestBuilderInterface {
     /**
      * Creates a new test class.  When --feature flag is provided a test 
      * feature class is created.
@@ -27,13 +24,13 @@ class PHPTestBuilder extends TestBuilderInterface {
 
         if($input->getOption('feature')) {
             return Tools::writeFile(
-                self::FEATURE_PATH.$testName.'.php',
+                ROOT.DS.PHPUnitRunner::FEATURE_PATH.$testName.'.php',
                 PHPUnitStubs::featureTestStub($testName),
                 'Test'
             );
         } else {
             return Tools::writeFile(
-                ROOT.DS.self::UNIT_PATH.$testName.'.php',
+                ROOT.DS.PHPUnitRunner::UNIT_PATH.$testName.'.php',
                 PHPUnitStubs::unitTestStub($testName),
                 'Test'
             );
@@ -51,7 +48,7 @@ class PHPTestBuilder extends TestBuilderInterface {
      */
     public static function testIfExists(string $name): bool {
         $testName = $name.'.php';
-        if(file_exists(self::FEATURE_PATH.$testName) || file_exists(self::UNIT_PATH.$testName)) {
+        if(file_exists(PHPUnitRunner::FEATURE_PATH.$testName) || file_exists(PHPUnitRunner::UNIT_PATH.$testName)) {
             Tools::info("File with the name '{$testName}' cannot exist in both test suites", Logger::ERROR, Tools::BG_RED);
             return true;
         }
