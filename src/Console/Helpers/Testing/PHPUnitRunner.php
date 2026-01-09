@@ -112,7 +112,7 @@ class PHPUnitRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeTest(string $testName, InputInterface $input): int {
-        if(Test::testIfExists($testName)) {
+        if(self::testIfExists($testName)) {
             return Command::FAILURE;
         }
 

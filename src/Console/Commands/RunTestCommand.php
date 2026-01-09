@@ -1,6 +1,6 @@
 <?php
 namespace Console\Commands;
-use Console\Helpers\Testing\Test;
+use Console\Helpers\Testing\PHPUnitRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
@@ -63,7 +63,7 @@ class RunTestCommand extends Command
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
         
-        $test = new Test($input, $output);
+        $test = new PHPUnitRunner($input, $output);
         
         if(!$feature && !$unit && !$testArg) {
             return $test->allTests();
@@ -78,23 +78,23 @@ class RunTestCommand extends Command
         $unitStatus = null;
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
-            $unitStatus = $test->testSuite(Test::unitTests());
+            $unitStatus = $test->testSuite(PHPUnitRunner::unitTests());
         }
         if(!$testArg && $feature) {
-            $featureStatus = $test->testSuite(Test::featureTests());
+            $featureStatus = $test->testSuite(PHPUnitRunner::featureTests());
         }
-        if(!$testArg && Test::testSuiteStatus($featureStatus, $unitStatus)) {
+        if(!$testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;
         }
 
         // Run individual test file based on --unit and --feature flags
         if($testArg && $unit) {
-            $unitStatus = $test->singleFileWithinSuite($testArg, Test::UNIT_PATH);
+            $unitStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::UNIT_PATH);
         }
         if($testArg && $feature) {
-            $featureStatus = $test->singleFileWithinSuite($testArg, Test::FEATURE_PATH);
+            $featureStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::FEATURE_PATH);
         }
-        if($testArg && Test::testSuiteStatus($featureStatus, $unitStatus)) {
+        if($testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;
         }
 
