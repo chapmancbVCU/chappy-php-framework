@@ -84,9 +84,9 @@ class PHPUnitRunner extends TestRunner {
      *
      * @return array The array of all filenames in the Feature directory.
      */
-    public static function featureTests(): array {
-        return glob(self::FEATURE_PATH.'*.php');
-    }
+    // public static function featureTests(): array {
+    //     return glob(self::FEATURE_PATH.'*.php');
+    // }
 
     /**
      * Creates a new test class.  When --feature flag is provided a test 
@@ -335,7 +335,7 @@ class PHPUnitRunner extends TestRunner {
      *
      * @return array The array of all filenames in the Unit directory.
      */
-    public static function unitTests(): array {
-        return glob(self::UNIT_PATH.'*.php');
-    }
+    // public static function unitTests(): array {
+    //     return glob(self::UNIT_PATH.'*.php');
+    // }
 }

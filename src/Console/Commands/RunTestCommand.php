@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 use Console\Helpers\Testing\PHPUnitRunner;
+use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
@@ -78,10 +79,10 @@ class RunTestCommand extends Command
         $unitStatus = null;
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
-            $unitStatus = $test->testSuite(PHPUnitRunner::unitTests());
+            $unitStatus = $test->testSuite(TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, "php"));
         }
         if(!$testArg && $feature) {
-            $featureStatus = $test->testSuite(PHPUnitRunner::featureTests());
+            $featureStatus = $test->testSuite(TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, "php"));
         }
         if(!$testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;
