@@ -1,8 +1,7 @@
 <?php
 namespace Console\Commands;
- 
-use Console\Helpers\Testing\Test;
-use Console\Helpers\Tools;
+
+use Console\Helpers\Testing\PHPUnitRunner;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -40,6 +39,6 @@ class MakeTestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $testName = Str::ucfirst($input->getArgument('testname'));
-        return Test::makeTest($testName, $input);
+        return PHPUnitRunner::makeTest($testName, $input);
     }
 }

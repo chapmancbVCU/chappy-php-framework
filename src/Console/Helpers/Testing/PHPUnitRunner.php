@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Supports unit test related console commands.
  */
-class Test {
+class PHPUnitRunner {
     /**
      * The array of options allowed as input for the test command.
      */
@@ -100,7 +100,7 @@ class Test {
      * @return array The array of all filenames in the Feature directory.
      */
     public static function featureTests(): array {
-        return glob(Test::FEATURE_PATH.'*.php');
+        return glob(self::FEATURE_PATH.'*.php');
     }
 
     /**
@@ -234,8 +234,8 @@ class Test {
             if(self::testIfSame($class)) { return Command::FAILURE; }
 
             $namespaces = [
-                'Tests\\Unit\\' => Test::UNIT_PATH,
-                'Tests\\Feature\\' => Test::FEATURE_PATH
+                'Tests\\Unit\\' => self::UNIT_PATH,
+                'Tests\\Feature\\' => self::FEATURE_PATH
             ];
 
             foreach ($namespaces as $namespace => $path) {
@@ -351,6 +351,6 @@ class Test {
      * @return array The array of all filenames in the Unit directory.
      */
     public static function unitTests(): array {
-        return glob(Test::UNIT_PATH.'*.php');
+        return glob(self::UNIT_PATH.'*.php');
     }
 }
