@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 use Console\Helpers\Tools;
+use Console\Helpers\Testing\PHPUnitStubs;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
@@ -118,7 +119,7 @@ class Test {
         if($input->getOption('feature')) {
             return Tools::writeFile(
                 ROOT.DS.self::FEATURE_PATH.$testName.'.php',
-                Test::makeFeatureTest($testName),
+                PHPUnitStubs::featureTestStub($testName),
                 'Test'
             );
         } else {
