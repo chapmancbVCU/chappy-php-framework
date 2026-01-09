@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Supports PHPUnit testing operations.
  */
-class PHPUnitRunner {
+class PHPUnitRunner extends TestRunner {
     /**
      * The array of options allowed as input for the test command.
      */
@@ -38,21 +38,6 @@ class PHPUnitRunner {
     ];
 
     /**
-     * A string of input options provided as input when running the 
-     * test command.
-     *
-     * @var string 
-     */
-    public string $inputOptions;
-
-    /**
-     * The Symfony OutputInterface object.
-     *
-     * @var OutputInterface 
-     */
-    public OutputInterface $output;
-
-    /**
      * The path for feature tests.
      */
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
@@ -70,7 +55,7 @@ class PHPUnitRunner {
      */
     public function __construct(InputInterface $input, OutputInterface $output) {
         $this->inputOptions = self::parseOptions($input);
-        $this->output = $output;
+        parent::__construct($output);
     }
 
     /**
@@ -79,8 +64,8 @@ class PHPUnitRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function allTests(): int {
-        $unitTests = self::unitTests();
-        $featureTests = self::featureTests();
+        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, "php");
+        $featureTests = self::getAllTestsInSuite(self::FEATURE_PATH, "php");
 
         if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
             Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
