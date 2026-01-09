@@ -36,7 +36,15 @@ class TestRunner {
         $this->output = $output;
     }
 
+    /**
+     * Retrieves all files in test suite so they can be run.
+     *
+     * @param string $path Path to test suite.
+     * @param string $ext File extension to specify between php and js related tests.
+     * @return array The array of all filenames in a particular directory.
+     */
     public static function getAllTestsInSuite(string $path, string $ext): array {
         return glob($path."*.".$ext);
     }
+
 }
