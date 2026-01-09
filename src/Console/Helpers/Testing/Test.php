@@ -125,41 +125,12 @@ class Test {
         } else {
             return Tools::writeFile(
                 ROOT.DS.self::UNIT_PATH.$testName.'.php',
-                Test::makeUnitTest($testName),
+                PHPUnitStubs::unitTestStub($testName),
                 'Test'
             );
         }
 
         return Command::FAILURE;
-    }
-
-    /**
-     * The template for a new Unit Test class that extends TestCase.
-     *
-     * @param string $testName The name of the TestCase class.
-     * @return string The contents for the new TestCase class.
-     */
-    public static function makeUnitTest(string $testName): string {
-        return <<<PHP
-<?php
-namespace Tests\Unit;
-use PHPUnit\Framework\TestCase;
-
-/**
- * Unit tests
- */
-class {$testName} extends TestCase {
-    /**
-    * Example test.
-    *
-    * @return void
-    */
-    public function test_example(): void
-    {
-        \$this->assertTrue(true);
-    }
-}
-PHP;
     }
 
     /**
