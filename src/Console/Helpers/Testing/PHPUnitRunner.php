@@ -47,6 +47,9 @@ class PHPUnitRunner extends TestRunner {
      */
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
     
+    /**
+     * The command for PHPUnit
+     */
     public const TEST_COMMAND = 'php vendor/bin/phpunit ';
 
     /**
