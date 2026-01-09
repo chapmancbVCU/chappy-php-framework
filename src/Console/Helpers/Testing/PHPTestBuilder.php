@@ -8,6 +8,10 @@ use Console\Helpers\Testing\PHPUnitStubs;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
+/**
+ * Utility class that supports ability to create new test classes for PHPUnit 
+ * based tests.
+ */
 class PHPTestBuilder implements TestBuilderInterface {
     /**
      * Creates a new test class.  When --feature flag is provided a test 
