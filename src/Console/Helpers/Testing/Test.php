@@ -103,36 +103,6 @@ class Test {
     }
 
     /**
-     * The template for a new Feature test class that extends ApplicationTestCase.
-     *
-     * @param string $testName The name of the TestCase class.
-     * @return string The contents for the new TestCase class.
-     */
-    public static function makeFeatureTest(string $testName): string {
-        return <<<PHP
-<?php
-namespace Tests\Feature;
-use Core\Lib\Testing\ApplicationTestCase;
-
-/**
- * Unit tests
- */
-class {$testName} extends ApplicationTestCase {
-    /**
-     * Example for testing home page.
-     *
-     * @return void
-     */
-    public function test_homepage_loads_successfully(): void
-    {
-        \$response = \$this->get('/');
-        \$response->assertStatus(200);
-    }
-}
-PHP;
-    }
-
-    /**
      * Creates a new test class.  When --feature flag is provided a test 
      * feature class is created.
      *
