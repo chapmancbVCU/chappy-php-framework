@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports unit test related console commands.
+ * Supports PHPUnit testing operations.
  */
 class PHPUnitRunner {
     /**

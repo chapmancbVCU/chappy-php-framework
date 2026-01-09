@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to generate new test file by running make:test.
+ * Supports ability to generate new PHPUnit test file by running make:test.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/unit_tests#creating-tests">here</a>.
  */
 class MakeTestCommand extends Command

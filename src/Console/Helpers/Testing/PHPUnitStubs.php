@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+/**
+ * Collection of template stub files for feature and unit test files.
+ */
 class PHPUnitStubs {
     /**
      * The template for a new Feature test class that extends ApplicationTestCase.
