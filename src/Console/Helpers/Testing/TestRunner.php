@@ -47,7 +47,7 @@ class TestRunner {
      * @return array The array of all filenames in a particular directory.
      */
     public static function getAllTestsInSuite(string $path, string $ext): array {
-        return glob($path."*.".$ext);
+        return glob($path."*".$ext);
     }
 
     /**
