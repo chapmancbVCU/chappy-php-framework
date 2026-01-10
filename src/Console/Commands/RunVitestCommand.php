@@ -25,7 +25,12 @@ class RunVitestCommand extends Command
         $this->setName('react:vitest')
             ->setDescription('Runs Vitest unit tests')
             ->setHelp('php console react:vitest')
-            ->addArgument('testname', InputArgument::OPTIONAL, 'Pass the test file\'s name.');
+            ->addArgument('testname', InputArgument::OPTIONAL, 'Pass the test file\'s name.')
+            
+            // Suite flags
+            ->addOption('component', null, InputOption::VALUE_NONE, 'Run component tests.')
+            ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.')
+            ->addOption('view', null, InputOption::VALUE_NONE, 'Run unit view.');
     }
  
     /**
