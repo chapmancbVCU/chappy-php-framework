@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Testing\PHPTestTestBuilder;
+use Console\Helpers\Testing\PHPUnitTestBuilder;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,6 +41,6 @@ class MakeTeMakeVitestTestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $testName = Str::ucfirst($input->getArgument('testname'));
-        return PHPTestTestBuilder::makeTest($testName, $input);
+        return PHPUnitTestBuilder::makeTest($testName, $input);
     }
 }
