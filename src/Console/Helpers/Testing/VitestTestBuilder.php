@@ -5,7 +5,7 @@ namespace Console\Helpers\Testing;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
-class JestTestBuilder implements TestBuilderInterface {
+class VitestTestBuilder implements TestBuilderInterface {
     
     public static function makeTest(string $testName, InputInterface $input): int { 
         return Command::FAILURE;
