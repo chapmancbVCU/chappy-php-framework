@@ -2,6 +2,7 @@
 namespace Console\Commands;
 
 use Console\Helpers\Testing\PHPTestBuilder;
+use Console\Helpers\Testing\VitestTestRunner;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -35,7 +36,11 @@ class RunVitestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(shell_exec("npm test"));
+        // $output->writeln(shell_exec("npm test"));
+        $test = new VitestTestRunner($input, $output);
+
+        $suite = VitestTestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, "test.js");
+        $test->runTest($suite[0], VitestTestRunner::TEST_COMMAND);
         return Command::SUCCESS;
     }
 }
