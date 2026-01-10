@@ -40,7 +40,8 @@ class RunVitestCommand extends Command
         $test = new VitestTestRunner($input, $output);
 
         $suite = VitestTestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, "test.js");
-        $test->runTest($suite[0], VitestTestRunner::TEST_COMMAND);
+        // $test->runTest($suite[0], VitestTestRunner::TEST_COMMAND);
+        $test->testSuite($suite, VitestTestRunner::TEST_COMMAND);
         return Command::SUCCESS;
     }
 }
