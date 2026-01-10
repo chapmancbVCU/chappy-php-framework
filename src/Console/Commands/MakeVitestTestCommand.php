@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Creates test for React.js or JavaScript files.  Use flags to determine which one
  * to generate.
  */
-class MakeTestCommand extends Command
+class MakeTeMakeVitestTestCommand extends Command
 {
     /**
      * Configures the command.
