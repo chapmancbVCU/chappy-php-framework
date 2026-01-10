@@ -7,10 +7,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class VitestTestRunner extends TestRunner {
+    public const COMPONENT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'component'.DS;
     public const UNIT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'unit'.DS;
+    public const VIEW_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'view'.DS;
 
     public const TEST_COMMAND = "npm test ";
-    
+
     /**
      * Constructor
      *
