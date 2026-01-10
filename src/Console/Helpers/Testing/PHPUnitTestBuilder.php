@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
  * Utility class that supports ability to create new test classes for PHPUnit 
  * based tests.
  */
-class PHPTestTestBuilder implements TestBuilderInterface {
+class PHPUnitTestBuilder implements TestBuilderInterface {
     /**
      * Creates a new test class.  When --feature flag is provided a test 
      * feature class is created.
