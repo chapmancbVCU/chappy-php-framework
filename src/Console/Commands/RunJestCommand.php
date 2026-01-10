@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * 
+ * Supports operations related to running Jest unit tests.
  */
 class RunJestCommand extends Command
 {
@@ -22,8 +22,8 @@ class RunJestCommand extends Command
     protected function configure(): void
     {
         $this->setName('react:jest')
-            ->setDescription('Generates a new test file!')
-            ->setHelp('php console make:test <test_name>');
+            ->setDescription('Runs Jest unit tests')
+            ->setHelp('php console react:jest');
     }
  
     /**
