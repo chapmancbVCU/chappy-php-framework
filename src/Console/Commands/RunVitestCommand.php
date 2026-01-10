@@ -35,7 +35,7 @@ class RunVitestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln("npm test");
+        $output->writeln(shell_exec("npm test"));
         return Command::SUCCESS;
     }
 }
