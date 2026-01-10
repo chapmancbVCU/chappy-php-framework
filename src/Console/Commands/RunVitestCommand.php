@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Supports operations related to running Jest unit tests.
  */
-class RunJestCommand extends Command
+class RunVitestCommand extends Command
 {
     /**
      * Configures the command.
@@ -21,9 +21,9 @@ class RunJestCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('react:jest')
-            ->setDescription('Runs Jest unit tests')
-            ->setHelp('php console react:jest');
+        $this->setName('react:vitest')
+            ->setDescription('Runs Vitest unit tests')
+            ->setHelp('php console react:vitest');
     }
  
     /**
@@ -35,7 +35,7 @@ class RunJestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(shell_exec("npm test"));
+        $output->writeln("npm test");
         return Command::SUCCESS;
     }
 }

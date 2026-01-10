@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
-class JestStubs {
+class VitestStubs {
     public static function jestStub($testName): string {
         return <<<JS
 
