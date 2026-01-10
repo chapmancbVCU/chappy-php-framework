@@ -7,13 +7,31 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class VitestTestRunner extends TestRunner {
+    /**
+     * Path for component tests.
+     */
     public const COMPONENT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'component'.DS;
-    public const UNIT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'unit'.DS;
+
+    /**
+     * Path for view tests.
+     */
     public const VIEW_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'view'.DS;
 
+    /**
+     * The command for Vitest
+     */
     public const TEST_COMMAND = "npm test ";
 
+    /**
+     * File extension for Vitest unit tests.
+     */
     public const TEST_FILE_EXTENSION = ".test.js";
+
+    /**
+     * Path for unit tests.
+     */
+    public const UNIT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'unit'.DS;
+
     /**
      * Constructor
      *
@@ -30,7 +48,7 @@ class VitestTestRunner extends TestRunner {
         $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
         $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::TEST_FILE_EXTENSION);
 
-        
+
 
         return Command::SUCCESS;
     }
