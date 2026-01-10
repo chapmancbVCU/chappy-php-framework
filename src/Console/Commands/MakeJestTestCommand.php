@@ -10,7 +10,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * 
+ * Creates test for React.js or JavaScript files.  Use flags to determine which one
+ * to generate.
  */
 class MakeTestCommand extends Command
 {
@@ -25,7 +26,9 @@ class MakeTestCommand extends Command
             ->setDescription('Generates a new test file!')
             ->setHelp('php console make:test <test_name>')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
-            ->addOption('feature', null, InputOption::VALUE_NONE, 'Create feature test');
+            ->addOption('unit', null, InputOption::VALUE_NONE, 'Create unit test')
+            ->addOption('component', null, InputOption::VALUE_NONE, 'Create component test')
+            ->addOption('page', null, InputOption::VALUE_NONE, 'Create page test');
     }
  
     /**
