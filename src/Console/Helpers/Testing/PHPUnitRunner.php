@@ -43,14 +43,19 @@ class PHPUnitRunner extends TestRunner {
     public const FEATURE_PATH = 'tests'.DS.'Feature'.DS;
 
     /**
-     * The path for unit tests.
-     */
-    public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
-    
-    /**
      * The command for PHPUnit
      */
     public const TEST_COMMAND = 'php vendor/bin/phpunit ';
+
+    /**
+     * File extension for PHPUnit unit tests.
+     */
+    public const TEST_FILE_EXTENSION = ".php";
+    
+    /**
+     * The path for unit tests.
+     */
+    public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
 
     /**
      * Constructor
@@ -69,8 +74,8 @@ class PHPUnitRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function allTests(): int {
-        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, "php");
-        $featureTests = self::getAllTestsInSuite(self::FEATURE_PATH, "php");
+        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
+        $featureTests = self::getAllTestsInSuite(self::FEATURE_PATH, self::TEST_FILE_EXTENSION);
 
         if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
             Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
