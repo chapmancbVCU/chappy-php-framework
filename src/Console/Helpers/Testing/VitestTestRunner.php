@@ -13,6 +13,7 @@ class VitestTestRunner extends TestRunner {
 
     public const TEST_COMMAND = "npm test ";
 
+    public const TEST_FILE_EXTENSION = ".test.js";
     /**
      * Constructor
      *
@@ -22,6 +23,16 @@ class VitestTestRunner extends TestRunner {
     public function __construct(InputInterface $input, OutputInterface $output) {
         $this->inputOptions = self::parseOptions($input);
         parent::__construct($output);
+    }
+
+    public function allTests(): int {
+        $componentTests = self::getAllTestsInSuite(self::COMPONENT_PATH, self::TEST_FILE_EXTENSION);
+        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
+        $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::TEST_FILE_EXTENSION);
+
+        
+
+        return Command::SUCCESS;
     }
 
     /**
