@@ -42,7 +42,12 @@ class RunVitestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        // $output->writeln(shell_exec("npm test"));
+        // Get options and arguments
+        $testArg = $input->getArgument('testname');
+        $component = $input->getOption('component');
+        $unit = $input->getOption('unit');
+        $view = $input->getOption('view');
+        
         $test = new VitestTestRunner($input, $output);
 
         $suite = VitestTestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, "test.js");
