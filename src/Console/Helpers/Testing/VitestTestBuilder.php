@@ -41,13 +41,19 @@ class VitestTestBuilder implements TestBuilderInterface {
                 VitestStubs::unitTestStub($testName),
                 'Test'
             );
-        } else {
+        } else if($input->getOption('view')){
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::VIEW_PATH.$testName.'.test.js',
                 VitestStubs::unitTestStub($testName),
                 'Test'
             );
-        }
+        } 
+
+        Tools::info(
+            "Please use a flag to ensure test is created in intended test suite.", 
+            Logger::WARNING, 
+            Tools::BG_YELLOW
+        );
         
         return Command::SUCCESS;
     }
