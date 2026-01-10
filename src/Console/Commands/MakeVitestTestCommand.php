@@ -28,7 +28,7 @@ class MakeVitestTestCommand extends Command
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
             ->addOption('unit', null, InputOption::VALUE_NONE, 'Create unit test')
             ->addOption('component', null, InputOption::VALUE_NONE, 'Create component test')
-            ->addOption('page', null, InputOption::VALUE_NONE, 'Create page test');
+            ->addOption('view', null, InputOption::VALUE_NONE, 'Create view test');
     }
  
     /**
