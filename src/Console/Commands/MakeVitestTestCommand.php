@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Creates test for React.js or JavaScript files.  Use flags to determine which one
  * to generate.
  */
-class MakeTeMakeVitestTestCommand extends Command
+class MakeVitestTestCommand extends Command
 {
     /**
      * Configures the command.
@@ -24,7 +24,7 @@ class MakeTeMakeVitestTestCommand extends Command
     {
         $this->setName('react:make:test')
             ->setDescription('Generates a new test file!')
-            ->setHelp('php console make:test <test_name>')
+            ->setHelp('php console react:make:test <test_name>')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
             ->addOption('unit', null, InputOption::VALUE_NONE, 'Create unit test')
             ->addOption('component', null, InputOption::VALUE_NONE, 'Create component test')
