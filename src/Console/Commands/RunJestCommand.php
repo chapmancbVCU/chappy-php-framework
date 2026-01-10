@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * 
  */
-class MakeTestCommand extends Command
+class RunJestCommand extends Command
 {
     /**
      * Configures the command.
@@ -35,7 +35,7 @@ class MakeTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(shell_exec("npm jest"));
+        $output->writeln(shell_exec("npm test"));
         return Command::SUCCESS;
     }
 }
