@@ -87,6 +87,23 @@ final class VitestTestRunner extends TestRunner {
     public function selectTests(string $testArg): int {
 
 
+        // Run test file if it exists in a particular suite.
+        $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        if($componentStatus == Command::SUCCESS || $unitStatus == Command::SUCCESS || $viewStatus == Command::SUCCESS) {
+            Tools::info("Selected tests have been completed");
+            return Command::SUCCESS;
+        }
         return Command::FAILURE;
     }
+
+    // public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
+    //     if(file_exists($suite.$testArg.self::TEST_FILE_EXTENSION)) {
+    //         $command = ' '.$suite.$testArg.self::TEST_FILE_EXTENSION;
+    //         $this->runTest($command, self::TEST_COMMAND);
+    //         return Command::SUCCESS;
+    //     }
+    //     return Command::FAILURE;
+    // }
 }
