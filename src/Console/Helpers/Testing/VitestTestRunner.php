@@ -76,4 +76,17 @@ final class VitestTestRunner extends TestRunner {
      * PHPUnit.
      */
     public static function parseOptions(InputInterface $input): string { return ""; }
+
+    /**
+     * Supports ability to run test by file name or function name within 
+     * a class.
+     *
+     * @param string $testArg The name of the class or class::test_name.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public function selectTests(string $testArg): int {
+
+
+        return Command::FAILURE;
+    }
 }
