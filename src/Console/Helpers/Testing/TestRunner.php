@@ -92,6 +92,7 @@ class TestRunner {
         }
         return Command::FAILURE;
     }
+    
     /**
      * Run all test files in an individual test suite.
      *
