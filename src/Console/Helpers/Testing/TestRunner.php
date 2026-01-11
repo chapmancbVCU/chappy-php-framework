@@ -36,7 +36,6 @@ class TestRunner {
     /**
      * Constructor
      *
-     * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
     public function __construct(OutputInterface $output) {
