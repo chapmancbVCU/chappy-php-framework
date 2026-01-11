@@ -84,11 +84,24 @@ class RunVitestCommand extends Command
                 VitestTestRunner::TEST_COMMAND
             );
         }
-
         if(!$testArg && VitestTestRunner::testSuiteStatus([$componentStatus, $unitStatus, $viewStatus])) {
             return Command::SUCCESS;
         }
-        
+
+        // Run individual test file based on flag provided.
+        if($testArg && $component) {
+            $componentStatus = $test->singleFileWithinSuite($testArg, VitestTestRunner::COMPONENT_PATH, VitestTestRunner::TEST_FILE_EXTENSION, VitestTestRunner::TEST_COMMAND);
+        }
+        if($testArg && $unit) {
+            $unitStatus = $test->singleFileWithinSuite($testArg, VitestTestRunner::UNIT_PATH, VitestTestRunner::TEST_FILE_EXTENSION, VitestTestRunner::TEST_COMMAND);
+        }
+        if($testArg && $view) {
+            $viewStatus = $test->singleFileWithinSuite($testArg, VitestTestRunner::VIEW_PATH, VitestTestRunner::TEST_FILE_EXTENSION, VitestTestRunner::TEST_COMMAND);
+        }
+        if($testArg && VitestTestRunner::testSuiteStatus([$componentStatus, $unitStatus, $viewStatus])) {
+            return Command::SUCCESS;
+        }
+
         Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, Tools::BG_RED);
         return Command::FAILURE;
     }
