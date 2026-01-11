@@ -111,6 +111,24 @@ class TestRunner {
     }
 
     /**
+     * Determine if test file exists in any of the available test suites.
+     *
+     * @param string $name The name of the test we want to confirm if it exists.
+     * @param array $testSuites The array of test suites.  Best practice is to use const provided 
+     * by child class.
+     * @param string $ext The file extension.  Best practice is to use const provided by child class.
+     * @return bool True if test does exist.  Otherwise, we return false.
+     */
+    public static function testExists(string $name, array $testSuites, string $ext): bool {
+        $count = 0;
+        foreach($testSuites as $testSuite) {
+            if(file_exists($testSuite.$name.$ext)) $count++;
+            if($count > 1) return true;
+        }
+        return false;
+    }
+
+    /**
      * Enforces rule that classes/files across test suites should be unique for filtering.
      *
      * @param string $name name of the test class to be executed.
@@ -124,7 +142,7 @@ class TestRunner {
         $count = 0;
         foreach($testSuites as $testSuite) {
             if(file_exists($testSuite.$name.$ext)) $count++;
-            if($count >1) {
+            if($count > 1) {
                 Tools::info(
                     "You have files with the same name across test suites.  Cannot use built in filtering", 
                     Logger::ERROR, 

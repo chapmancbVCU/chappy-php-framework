@@ -204,7 +204,7 @@ final class PHPUnitRunner extends TestRunner {
         }
 
         // No such test class exists.
-        if(!file_exists(self::UNIT_PATH.$testArg.'.php') && !file_exists(self::FEATURE_PATH.$testArg.'.php')) {
+        if(!$this->testExists($testArg, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) {
             Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
