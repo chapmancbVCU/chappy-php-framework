@@ -75,7 +75,16 @@ class TestRunner {
         $this->output->writeln(shell_exec($command));
     }
 
-    public function singleFileWithinSuite(string $testArg, string $suite, string $ext, string $command) {
+    /**
+     * Performs testing against a single class within a test suite.
+     *
+     * @param string $testArg The name of the test class or test.js file without extension.
+     * @param string $suite The name of the test suite.
+     * @param string $ext The file extension.  Best practice is to use const provided by child class.
+     * @param string $command The test command.  Best practice is to use const provided by child class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public function singleFileWithinSuite(string $testArg, string $suite, string $ext, string $command): int {
         if(file_exists($suite.$testArg.$ext)) {
             $test = ' '.$suite.$testArg.$ext;
             $this->runTest($test, $command);
