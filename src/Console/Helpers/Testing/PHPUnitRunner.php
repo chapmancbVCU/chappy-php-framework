@@ -211,22 +211,6 @@ final class PHPUnitRunner extends TestRunner {
     }
 
     /**
-     * Performs testing against a single class within a test suite.
-     *
-     * @param string $suite The name of the test suite.
-     * @param string $testArg The name of the test class.
-     * @return void
-     */
-    // public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
-    //     if(file_exists($suite.$testArg.self::TEST_FILE_EXTENSION)) {
-    //         $command = ' '.$suite.$testArg.self::TEST_FILE_EXTENSION;
-    //         $this->runTest($command, self::TEST_COMMAND);
-    //         return Command::SUCCESS;
-    //     }
-    //     return Command::FAILURE;
-    // }
-
-    /**
      * Enforces rule that classes/files across test suites should be unique.
      *
      * @param string $name The name of the test class to be executed.
@@ -241,18 +225,4 @@ final class PHPUnitRunner extends TestRunner {
         }
         return false;
     }
-
-    /**
-     * Determines if execution of a test suite(s) is successful.
-     *
-     * @param int|null $featureStatus Tracks if feature test are 
-     * successful.
-     * @param int|null $unitStatus Tracks if unit test are successful.
-     * @return bool True if successful, otherwise we return false.
-     */
-    // public static function testSuiteStatus(int|null $featureStatus, int|null $unitStatus): bool {
-    //     dd("Test");
-    //     return (isset($unitStatus) && $unitStatus == Command::SUCCESS) || 
-    //         (isset($featureStatus) && $featureStatus == Command::SUCCESS);
-    // }
 }
