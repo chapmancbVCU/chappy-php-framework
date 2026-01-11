@@ -94,6 +94,33 @@ class TestRunner {
     }
 
     /**
+     * Enforces rule that classes/files across test suites should be unique for filtering.
+     *
+     * @param string $name name of the test class to be executed.
+     * @param array $testSuites The array of test suites.  Best practice is to use const provided 
+     * by child class.
+     * @param string $ext The file extension.  Best practice is to use const provided by child class.
+     * @return bool True if the class name exists in multiple test suites.  Otherwise, 
+     * we return false.
+     */
+    public static function testIfSame(string $name, array $testSuites, string $ext): bool {
+        $count = 0;
+        foreach($testSuites as $testSuite) {
+            if(file_exists($testSuite.$name.$ext)) $count++;
+            if($count >1) {
+                Tools::info(
+                    "You have files with the same name across test suites.  Cannot use built in filtering", 
+                    Logger::ERROR, 
+                    Tools::BG_RED
+                );
+                
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Run all test files in an individual test suite.
      *
      * @param array $collection All classes in a particular test suite.
@@ -121,7 +148,7 @@ class TestRunner {
      * @return bool
      */
     public static function testSuiteStatus(array $suiteStatuses): bool {
-        foreach ($suiteStatuses as $status) {
+        foreach($suiteStatuses as $status) {
             if(isset($status) && $status == Command::SUCCESS) return true;
         }
         return false;

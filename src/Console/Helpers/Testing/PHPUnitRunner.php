@@ -175,7 +175,9 @@ final class PHPUnitRunner extends TestRunner {
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
 
-            if(self::testIfSame($class)) { return Command::FAILURE; }
+            if(self::testIfSame($class, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) { 
+                return Command::FAILURE; 
+            }
 
             $namespaces = [
                 'Tests\\Unit\\' => self::UNIT_PATH,
@@ -208,21 +210,5 @@ final class PHPUnitRunner extends TestRunner {
         }
         
         return Command::FAILURE;
-    }
-
-    /**
-     * Enforces rule that classes/files across test suites should be unique.
-     *
-     * @param string $name The name of the test class to be executed.
-     * @return bool True if class/file exists across both test suites, 
-     * otherwise we return false.
-     */
-    public static function testIfSame(string $name): bool {
-        $testName = $name.'.php';
-        if(file_exists(self::FEATURE_PATH.$testName) && file_exists(self::UNIT_PATH.$testName)) {
-            Tools::info("You have files with the same name in both test suites.  Cannot use built in filtering", Logger::ERROR, Tools::BG_RED);
-            return true;
-        }
-        return false;
     }
 }
