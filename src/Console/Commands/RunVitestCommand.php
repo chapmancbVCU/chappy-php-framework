@@ -68,19 +68,19 @@ class RunVitestCommand extends Command
         // Run tests based on flag provided (--component, --unit, --view).
         if(!$testArg && $component) {
             $componentStatus = $test->testSuite(
-                TestRunner::getAllTestsInSuite(VitestTestRunner::COMPONENT_PATH, VitestTestRunner::TEST_FILE_EXTENSION),
+                TestRunner::getAllTestsInSuite(VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_TEST_FILE_EXTENSION),
                 VitestTestRunner::TEST_COMMAND
             );
         }
         if(!$testArg && $unit) {
             $unitStatus = $test->testSuite(
-                TestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, VitestTestRunner::TEST_FILE_EXTENSION),
+                TestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, VitestTestRunner::UNIT_TEST_FILE_EXTENSION),
                 VitestTestRunner::TEST_COMMAND
             );
         }
         if(!$testArg && $view) {
             $viewStatus = $test->testSuite(
-                TestRunner::getAllTestsInSuite(VitestTestRunner::VIEW_PATH, VitestTestRunner::TEST_FILE_EXTENSION),
+                TestRunner::getAllTestsInSuite(VitestTestRunner::VIEW_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION),
                 VitestTestRunner::TEST_COMMAND
             );
         }
@@ -93,7 +93,7 @@ class RunVitestCommand extends Command
             $componentStatus = $test->singleFileWithinSuite(
                 $testArg, 
                 VitestTestRunner::COMPONENT_PATH, 
-                VitestTestRunner::TEST_FILE_EXTENSION, 
+                VitestTestRunner::UNIT_TEST_FILE_EXTENSION, 
                 VitestTestRunner::TEST_COMMAND
             );
         }
@@ -101,14 +101,14 @@ class RunVitestCommand extends Command
             $unitStatus = $test->singleFileWithinSuite(
                 $testArg, 
                 VitestTestRunner::UNIT_PATH, 
-                VitestTestRunner::TEST_FILE_EXTENSION, 
+                VitestTestRunner::UNIT_TEST_FILE_EXTENSION, 
                 VitestTestRunner::TEST_COMMAND
             );
         }
         if($testArg && $view) {
             $viewStatus = $test->singleFileWithinSuite(
                 $testArg, VitestTestRunner::VIEW_PATH, 
-                VitestTestRunner::TEST_FILE_EXTENSION, 
+                VitestTestRunner::REACT_TEST_FILE_EXTENSION, 
                 VitestTestRunner::TEST_COMMAND
             );
         }

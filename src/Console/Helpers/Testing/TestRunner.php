@@ -197,11 +197,11 @@ class TestRunner {
      * @return bool True if syntax is good
      */
     public function verifyFilterSyntax(string $testArg): bool {
-        if(Str::contains($testArg, '::')) {
-            return true;
+        if(Str::contains($testArg, ':')) {
+            Tools::info("There was an issue with filter syntax", Logger::ERROR, Tools::BG_RED);
+            return false;
         }
+        return true;
 
-        Tools::info("There was an issue with filter syntax", Logger::ERROR, Tools::BG_RED);
-        return false;
     }
 }

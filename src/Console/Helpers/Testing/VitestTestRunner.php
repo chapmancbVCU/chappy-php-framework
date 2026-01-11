@@ -20,6 +20,11 @@ final class VitestTestRunner extends TestRunner {
     public const COMPONENT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'component'.DS;
 
     /**
+     * File extension for component and view tests.
+     */
+    public const REACT_TEST_FILE_EXTENSION = ".test.jsx";
+
+    /**
      * Path for view tests.
      */
     public const VIEW_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'view'.DS;
@@ -32,8 +37,8 @@ final class VitestTestRunner extends TestRunner {
     /**
      * File extension for Vitest unit tests.
      */
-    public const TEST_FILE_EXTENSION = ".test.js";
-
+    public const UNIT_TEST_FILE_EXTENSION = ".test.js";
+    
     /**
      * Path for unit tests.
      */
@@ -56,9 +61,9 @@ final class VitestTestRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function allTests(): int {
-        $componentTests = self::getAllTestsInSuite(self::COMPONENT_PATH, self::TEST_FILE_EXTENSION);
-        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
-        $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::TEST_FILE_EXTENSION);
+        $componentTests = self::getAllTestsInSuite(self::COMPONENT_PATH, self::UNIT_TEST_FILE_EXTENSION);
+        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION);
+        $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION);
 
         if(Arr::isEmpty($componentTests) && Arr::isEmpty($unitTests) && Arr::isEmpty($viewTests)) {
             $this->noAvailableTestsMessage();
@@ -99,12 +104,12 @@ final class VitestTestRunner extends TestRunner {
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
             [$testFile, $line] = explode('::', $testArg);
-            $testIfSameResult = self::testIfSame($testFile, $testSuites, self::TEST_FILE_EXTENSION);
+            $testIfSameResult = self::testIfSame($testFile, $testSuites, self::UNIT_TEST_FILE_EXTENSION);
 
             if($testIfSameResult) return Command::FAILURE;
 
             foreach($testSuites as $testSuite) {
-                $file = $testSuite.$testFile.self::TEST_FILE_EXTENSION;
+                $file = $testSuite.$testFile.self::UNIT_TEST_FILE_EXTENSION;
                 if(file_exists($file)) {
                     $filter = $file.":".$line;
                     $this->runTest($filter, self::TEST_COMMAND);
@@ -114,16 +119,16 @@ final class VitestTestRunner extends TestRunner {
         }
 
         // Run test file if it exists in a particular suite.
-        $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::UNIT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
         if($this->didTestInSuiteSucceed([$componentStatus, $unitStatus, $viewStatus])) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
         }
 
         // No such test file exists.
-        if(!$this->testExists($testArg, $testSuites, self::TEST_FILE_EXTENSION)) {
+        if(!$this->testExists($testArg, $testSuites, self::UNIT_TEST_FILE_EXTENSION)) {
             Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
