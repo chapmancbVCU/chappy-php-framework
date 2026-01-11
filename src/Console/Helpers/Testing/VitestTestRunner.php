@@ -4,6 +4,7 @@ namespace Console\Helpers\Testing;
 
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -85,7 +86,24 @@ final class VitestTestRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg): int {
+        // Run test at specific line and file.
+        if(Str::contains($testArg, '::')) {
+            [$testFile, $line] = explode('::', $testArg);
 
+            $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
+            $testIfSameResult = self::testIfSame($testFile, $testSuites, self::TEST_FILE_EXTENSION);
+
+            if($testIfSameResult) return Command::FAILURE;
+
+            foreach($testSuites as $testSuite) {
+                $file = $testSuite.$testFile.self::TEST_FILE_EXTENSION;
+                if(file_exists($file)) {
+                    $filter = $file.":".$line;
+                    $this->runTest($filter, self::TEST_COMMAND);
+                    return Command::SUCCESS;
+                }
+            }
+        }
 
         // Run test file if it exists in a particular suite.
         $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
