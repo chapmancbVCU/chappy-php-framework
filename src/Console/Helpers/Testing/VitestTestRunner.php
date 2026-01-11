@@ -109,7 +109,7 @@ final class VitestTestRunner extends TestRunner {
         $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
         $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
         $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        if($componentStatus == Command::SUCCESS || $unitStatus == Command::SUCCESS || $viewStatus == Command::SUCCESS) {
+        if($this->didTestInSuiteSucceed([$componentStatus, $unitStatus, $viewStatus])) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
         }
