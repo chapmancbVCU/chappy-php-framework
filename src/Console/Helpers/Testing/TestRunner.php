@@ -9,6 +9,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class that contains functions that can be used by runner child classes.
+ */
 class TestRunner {
     /**
      * The array of options allowed as input for the test command.
@@ -51,6 +54,11 @@ class TestRunner {
         return glob($path."*".$ext);
     }
 
+    /**
+     * Alerts use if there are no available tests to perform.
+     *
+     * @return void
+     */
     protected function noAvailableTestsMessage(): void {
         Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
     }
