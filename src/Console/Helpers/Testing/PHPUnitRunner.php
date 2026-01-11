@@ -218,8 +218,8 @@ final class PHPUnitRunner extends TestRunner {
      * @return void
      */
     public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
-        if(file_exists($suite.$testArg.'.php')) {
-            $command = ' '.$suite.$testArg.'.php';
+        if(file_exists($suite.$testArg.self::TEST_FILE_EXTENSION)) {
+            $command = ' '.$suite.$testArg.self::TEST_FILE_EXTENSION;
             $this->runTest($command, self::TEST_COMMAND);
             return Command::SUCCESS;
         }
