@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Console\Helpers\Testing\VitestTestRunner;
@@ -60,6 +61,34 @@ class RunVitestCommand extends Command
             return $test->selectTests($testArg);
         }
 
+        $componentStatus = null;
+        $unitStatus = null;
+        $viewStatus = null;
+
+        // Run tests based on flag provided (--component, --unit, --view).
+        if(!$testArg && $component) {
+            $componentStatus = $test->testSuite(
+                TestRunner::getAllTestsInSuite(VitestTestRunner::COMPONENT_PATH, VitestTestRunner::TEST_FILE_EXTENSION),
+                VitestTestRunner::TEST_COMMAND
+            );
+        }
+        if(!$testArg && $unit) {
+            $unitStatus = $test->testSuite(
+                TestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, VitestTestRunner::TEST_FILE_EXTENSION),
+                VitestTestRunner::TEST_COMMAND
+            );
+        }
+        if(!$testArg && $view) {
+            $viewStatus = $test->testSuite(
+                TestRunner::getAllTestsInSuite(VitestTestRunner::VIEW_PATH, VitestTestRunner::TEST_FILE_EXTENSION),
+                VitestTestRunner::TEST_COMMAND
+            );
+        }
+
+        if(!$testArg && VitestTestRunner::testSuiteStatus([$componentStatus, $unitStatus, $viewStatus])) {
+            return Command::SUCCESS;
+        }
+        
         Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, Tools::BG_RED);
         return Command::FAILURE;
     }
