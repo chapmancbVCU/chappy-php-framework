@@ -5,6 +5,7 @@ namespace Console\Helpers\Testing;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -86,11 +87,11 @@ final class VitestTestRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg): int {
+        $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
+        
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
             [$testFile, $line] = explode('::', $testArg);
-
-            $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
             $testIfSameResult = self::testIfSame($testFile, $testSuites, self::TEST_FILE_EXTENSION);
 
             if($testIfSameResult) return Command::FAILURE;
@@ -112,6 +113,12 @@ final class VitestTestRunner extends TestRunner {
         if($this->didTestInSuiteSucceed([$componentStatus, $unitStatus, $viewStatus])) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
+        }
+
+        // No such test file exists.
+        if(!$this->testExists($testArg, $testSuites, self::TEST_FILE_EXTENSION)) {
+            Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, Tools::BG_YELLOW);
+            return Command::FAILURE;
         }
         return Command::FAILURE;
     }
