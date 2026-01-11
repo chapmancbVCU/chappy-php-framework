@@ -90,13 +90,27 @@ class RunVitestCommand extends Command
 
         // Run individual test file based on flag provided.
         if($testArg && $component) {
-            $componentStatus = $test->singleFileWithinSuite($testArg, VitestTestRunner::COMPONENT_PATH, VitestTestRunner::TEST_FILE_EXTENSION, VitestTestRunner::TEST_COMMAND);
+            $componentStatus = $test->singleFileWithinSuite(
+                $testArg, 
+                VitestTestRunner::COMPONENT_PATH, 
+                VitestTestRunner::TEST_FILE_EXTENSION, 
+                VitestTestRunner::TEST_COMMAND
+            );
         }
         if($testArg && $unit) {
-            $unitStatus = $test->singleFileWithinSuite($testArg, VitestTestRunner::UNIT_PATH, VitestTestRunner::TEST_FILE_EXTENSION, VitestTestRunner::TEST_COMMAND);
+            $unitStatus = $test->singleFileWithinSuite(
+                $testArg, 
+                VitestTestRunner::UNIT_PATH, 
+                VitestTestRunner::TEST_FILE_EXTENSION, 
+                VitestTestRunner::TEST_COMMAND
+            );
         }
         if($testArg && $view) {
-            $viewStatus = $test->singleFileWithinSuite($testArg, VitestTestRunner::VIEW_PATH, VitestTestRunner::TEST_FILE_EXTENSION, VitestTestRunner::TEST_COMMAND);
+            $viewStatus = $test->singleFileWithinSuite(
+                $testArg, VitestTestRunner::VIEW_PATH, 
+                VitestTestRunner::TEST_FILE_EXTENSION, 
+                VitestTestRunner::TEST_COMMAND
+            );
         }
         if($testArg && VitestTestRunner::testSuiteStatus([$componentStatus, $unitStatus, $viewStatus])) {
             return Command::SUCCESS;
