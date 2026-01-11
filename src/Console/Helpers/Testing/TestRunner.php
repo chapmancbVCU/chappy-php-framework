@@ -2,9 +2,10 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
-use Symfony\Component\Console\Command\Command;
 use Core\Lib\Utilities\Arr;
 use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -48,6 +49,10 @@ class TestRunner {
      */
     public static function getAllTestsInSuite(string $path, string $ext): array {
         return glob($path."*".$ext);
+    }
+
+    protected function noAvailableTestsMessage(): void {
+        Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
     }
 
     /**

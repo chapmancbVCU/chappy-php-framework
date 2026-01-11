@@ -78,7 +78,7 @@ class PHPUnitRunner extends TestRunner {
         $featureTests = self::getAllTestsInSuite(self::FEATURE_PATH, self::TEST_FILE_EXTENSION);
 
         if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
-            Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
+            $this->noAvailableTestsMessage();
             return Command::FAILURE;
         }
 
