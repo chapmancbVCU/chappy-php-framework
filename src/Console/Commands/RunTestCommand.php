@@ -90,7 +90,7 @@ class RunTestCommand extends Command
                 PHPUnitRunner::TEST_COMMAND
             );
         }
-        if(!$testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
+        if(!$testArg && PHPUnitRunner::testSuiteStatus([$featureStatus, $unitStatus])) {
             return Command::SUCCESS;
         }
 
@@ -101,7 +101,7 @@ class RunTestCommand extends Command
         if($testArg && $feature) {
             $featureStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
-        if($testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
+        if($testArg && PHPUnitRunner::testSuiteStatus([$featureStatus, $unitStatus])) {
             return Command::SUCCESS;
         }
 

@@ -250,8 +250,9 @@ final class PHPUnitRunner extends TestRunner {
      * @param int|null $unitStatus Tracks if unit test are successful.
      * @return bool True if successful, otherwise we return false.
      */
-    public static function testSuiteStatus(int|null $featureStatus, int|null $unitStatus): bool {
-        return (isset($unitStatus) && $unitStatus == Command::SUCCESS) || 
-            (isset($featureStatus) && $featureStatus == Command::SUCCESS);
-    }
+    // public static function testSuiteStatus(int|null $featureStatus, int|null $unitStatus): bool {
+    //     dd("Test");
+    //     return (isset($unitStatus) && $unitStatus == Command::SUCCESS) || 
+    //         (isset($featureStatus) && $featureStatus == Command::SUCCESS);
+    // }
 }

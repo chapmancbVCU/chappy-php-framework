@@ -92,7 +92,7 @@ class TestRunner {
         }
         return Command::FAILURE;
     }
-    
+
     /**
      * Run all test files in an individual test suite.
      *
@@ -109,5 +109,21 @@ class TestRunner {
         }
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * Determines if execution of a test suite(s) is successful.  The
+     * result is determined by testing if the status value is set and 
+     * its integer value is equal to Command::SUCCESS.
+     *
+     * @param array<int> $suiteStatuses Array of integers that indicates a 
+     * test is successful.  
+     * @return bool
+     */
+    public static function testSuiteStatus(array $suiteStatuses): bool {
+        foreach ($suiteStatuses as $status) {
+            if(isset($status) && $status == Command::SUCCESS) return true;
+        }
+        return false;
     }
 }
