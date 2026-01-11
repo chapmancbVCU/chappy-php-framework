@@ -194,8 +194,8 @@ final class PHPUnitRunner extends TestRunner {
         } 
         
         // Run the test class if it exists in a specific suite.
-        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH);
-        $featureStatus = self::singleFileWithinSuite($testArg, self::FEATURE_PATH);
+        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $featureStatus = self::singleFileWithinSuite($testArg, self::FEATURE_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
         if($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
@@ -217,14 +217,14 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $testArg The name of the test class.
      * @return void
      */
-    public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
-        if(file_exists($suite.$testArg.self::TEST_FILE_EXTENSION)) {
-            $command = ' '.$suite.$testArg.self::TEST_FILE_EXTENSION;
-            $this->runTest($command, self::TEST_COMMAND);
-            return Command::SUCCESS;
-        }
-        return Command::FAILURE;
-    }
+    // public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
+    //     if(file_exists($suite.$testArg.self::TEST_FILE_EXTENSION)) {
+    //         $command = ' '.$suite.$testArg.self::TEST_FILE_EXTENSION;
+    //         $this->runTest($command, self::TEST_COMMAND);
+    //         return Command::SUCCESS;
+    //     }
+    //     return Command::FAILURE;
+    // }
 
     /**
      * Enforces rule that classes/files across test suites should be unique.

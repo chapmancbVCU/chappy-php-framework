@@ -96,10 +96,10 @@ class RunTestCommand extends Command
 
         // Run individual test file based on --unit and --feature flags
         if($testArg && $unit) {
-            $unitStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::UNIT_PATH);
+            $unitStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::UNIT_PATH, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         if($testArg && $feature) {
-            $featureStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::FEATURE_PATH);
+            $featureStatus = $test->singleFileWithinSuite($testArg, PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         if($testArg && PHPUnitRunner::testSuiteStatus($featureStatus, $unitStatus)) {
             return Command::SUCCESS;

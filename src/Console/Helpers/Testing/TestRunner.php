@@ -75,6 +75,14 @@ class TestRunner {
         $this->output->writeln(shell_exec($command));
     }
 
+    public function singleFileWithinSuite(string $testArg, string $suite, string $ext, string $command) {
+        if(file_exists($suite.$testArg.$ext)) {
+            $test = ' '.$suite.$testArg.$ext;
+            $this->runTest($test, $command);
+            return Command::SUCCESS;
+        }
+        return Command::FAILURE;
+    }
     /**
      * Run all test files in an individual test suite.
      *
