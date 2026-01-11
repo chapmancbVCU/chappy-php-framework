@@ -193,7 +193,7 @@ final class PHPUnitRunner extends TestRunner {
 
         } 
         
-        // Run the test class if it exists in feature, unit, or both.
+        // Run the test class if it exists in a specific suite.
         $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH);
         $featureStatus = self::singleFileWithinSuite($testArg, self::FEATURE_PATH);
         if($unitStatus == Command::SUCCESS || $featureStatus == Command::SUCCESS) {
