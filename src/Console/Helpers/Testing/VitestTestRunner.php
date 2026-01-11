@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+use Console\Helpers\Tools;
+use Core\Lib\Utilities\Arr;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -43,13 +45,26 @@ class VitestTestRunner extends TestRunner {
         parent::__construct($output);
     }
 
+    /**
+     * Performs all tests.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public function allTests(): int {
         $componentTests = self::getAllTestsInSuite(self::COMPONENT_PATH, self::TEST_FILE_EXTENSION);
         $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
         $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::TEST_FILE_EXTENSION);
 
+        if(Arr::isEmpty($componentTests) && Arr::isEmpty($unitTests) && Arr::isEmpty($viewTests)) {
+            $this->noAvailableTestsMessage();
+            return Command::FAILURE;
+        }
 
+        $this->testSuite($componentTests, self::TEST_COMMAND);
+        $this->testSuite($unitTests, self::TEST_COMMAND);
+        $this->testSuite($viewTests, self::TEST_COMMAND);
 
+        Tools::info("All available test have been completed");
         return Command::SUCCESS;
     }
 

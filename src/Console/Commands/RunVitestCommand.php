@@ -1,7 +1,8 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Testing\PHPTestBuilder;
+use Console\Helpers\Tools;
+use Core\Lib\Logging\Logger;
 use Console\Helpers\Testing\VitestTestRunner;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
@@ -22,9 +23,9 @@ class RunVitestCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('react:vitest')
+        $this->setName('react:test')
             ->setDescription('Runs Vitest unit tests')
-            ->setHelp('php console react:vitest')
+            ->setHelp('php console react:test')
             ->addArgument('testname', InputArgument::OPTIONAL, 'Pass the test file\'s name.')
             
             // Suite flags
@@ -47,12 +48,15 @@ class RunVitestCommand extends Command
         $component = $input->getOption('component');
         $unit = $input->getOption('unit');
         $view = $input->getOption('view');
-        
+
         $test = new VitestTestRunner($input, $output);
 
-        $suite = VitestTestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, "test.js");
-        // $test->runTest($suite[0], VitestTestRunner::TEST_COMMAND);
-        $test->testSuite($suite, VitestTestRunner::TEST_COMMAND);
-        return Command::SUCCESS;
+        if(!$testArg && !$component && !$unit && !$view) {
+            return $test->allTests();
+        }
+        
+        
+        Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, Tools::BG_RED);
+        return Command::FAILURE;
     }
 }
