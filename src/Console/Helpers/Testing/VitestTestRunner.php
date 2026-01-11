@@ -10,6 +10,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Supports Vitest unit testing operations.
+ */
 final class VitestTestRunner extends TestRunner {
     /**
      * Path for component tests.
@@ -92,7 +95,7 @@ final class VitestTestRunner extends TestRunner {
         if(!$this->verifyFilterSyntax($testArg)) {
             return Command::FAILURE;
         }
-        
+
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
             [$testFile, $line] = explode('::', $testArg);
