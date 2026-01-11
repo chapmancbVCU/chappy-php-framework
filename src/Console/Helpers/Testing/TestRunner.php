@@ -44,6 +44,23 @@ class TestRunner {
     }
 
     /**
+     * Determines if test is successful by comparing status result 
+     * to Command::SUCCESS.  Useful for testing when filtering is 
+     * involved.
+     *
+     * @param array $status An array of integers that represents the status 
+     * of a test's completion.
+     * @return void
+     */
+    public function didTestInSuiteSucceed(array $status) {
+        foreach($status as $stat) {
+            if($stat == Command::SUCCESS) return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Retrieves all files in test suite so they can be run.
      *
      * @param string $path Path to test suite.
