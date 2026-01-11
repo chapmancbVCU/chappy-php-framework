@@ -97,13 +97,4 @@ final class VitestTestRunner extends TestRunner {
         }
         return Command::FAILURE;
     }
-
-    // public function singleFileWithinSuite(string $testArg, string $suite = self::UNIT_PATH) {
-    //     if(file_exists($suite.$testArg.self::TEST_FILE_EXTENSION)) {
-    //         $command = ' '.$suite.$testArg.self::TEST_FILE_EXTENSION;
-    //         $this->runTest($command, self::TEST_COMMAND);
-    //         return Command::SUCCESS;
-    //     }
-    //     return Command::FAILURE;
-    // }
 }
