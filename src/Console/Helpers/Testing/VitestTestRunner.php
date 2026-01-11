@@ -88,6 +88,10 @@ final class VitestTestRunner extends TestRunner {
      */
     public function selectTests(string $testArg): int {
         $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
+
+        if(!$this->verifyFilterSyntax($testArg)) {
+            return Command::FAILURE;
+        }
         
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {

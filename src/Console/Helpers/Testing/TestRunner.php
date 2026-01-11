@@ -5,6 +5,7 @@ namespace Console\Helpers\Testing;
 use Core\Lib\Utilities\Arr;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -185,6 +186,23 @@ class TestRunner {
         foreach($suiteStatuses as $status) {
             if(isset($status) && $status == Command::SUCCESS) return true;
         }
+        return false;
+    }
+
+    /**
+     * Test against most common syntax issue when filtering where only one 
+     * semicolon is entered between filename and test name or line number.
+     *
+     * @param string $testArg The argument provided when running the test 
+     * command.
+     * @return bool True if syntax is good
+     */
+    public function verifyFilterSyntax(string $testArg): bool {
+        if(Str::contains($testArg, '::')) {
+            return true;
+        }
+
+        Tools::info("There was an issue with filter syntax", Logger::ERROR, Tools::BG_RED);
         return false;
     }
 }
