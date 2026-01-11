@@ -171,7 +171,7 @@ final class PHPUnitRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg): int {
-        // Run a specific function
+        // Run a specific function in a class.
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
 
