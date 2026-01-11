@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Supports PHPUnit testing operations.
  */
-class PHPUnitRunner extends TestRunner {
+final class PHPUnitRunner extends TestRunner {
     /**
      * The array of options allowed as input for the test command.
      */

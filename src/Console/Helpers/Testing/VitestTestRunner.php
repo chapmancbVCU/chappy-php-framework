@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class VitestTestRunner extends TestRunner {
+final class VitestTestRunner extends TestRunner {
     /**
      * Path for component tests.
      */
