@@ -55,7 +55,11 @@ class RunVitestCommand extends Command
             return $test->allTests();
         }
         
-        
+        // Select test based on file name or function name.
+        if($testArg && !$component && !$unit && !$view) {
+            return $test->selectTests($testArg);
+        }
+
         Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, Tools::BG_RED);
         return Command::FAILURE;
     }
