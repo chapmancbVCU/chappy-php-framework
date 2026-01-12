@@ -97,9 +97,9 @@ final class VitestTestRunner extends TestRunner {
     public function selectTests(string $testArg): int {
         $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
 
-        if(!$this->verifyFilterSyntax($testArg)) {
-            return Command::FAILURE;
-        }
+        // if(!$this->verifyFilterSyntax($testArg)) {
+        //     return Command::FAILURE;
+        // }
 
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
@@ -108,10 +108,20 @@ final class VitestTestRunner extends TestRunner {
 
             if($testIfSameResult) return Command::FAILURE;
 
+            $exists = false;
+            $filter = "";
             foreach($testSuites as $testSuite) {
-                $file = $testSuite.$testFile.self::UNIT_TEST_FILE_EXTENSION;
-                if(file_exists($file)) {
-                    $filter = $file.":".$line;
+                $file = $testSuite.$testFile;//.self::UNIT_TEST_FILE_EXTENSION;
+                if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {
+                    $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$line;
+                    $exists = true;
+                }
+                if(file_exists($file.self::REACT_TEST_FILE_EXTENSION)) {
+                    $filter = $file.self::REACT_TEST_FILE_EXTENSION.":".$line;
+                    $exists = true;
+                }
+
+                if($exists) {
                     $this->runTest($filter, self::TEST_COMMAND);
                     return Command::SUCCESS;
                 }
