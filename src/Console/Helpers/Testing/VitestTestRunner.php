@@ -100,8 +100,10 @@ final class VitestTestRunner extends TestRunner {
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
             [$testFile, $line] = explode('::', $testArg);
-            $testIfSameResult = self::testIfSame($testFile, $testSuites, self::UNIT_TEST_FILE_EXTENSION);
 
+            // Make sure base file name does not exist in multiple places (fix after component is tested).
+            $testIfSameResult = self::testIfSame($testFile, $testSuites, self::UNIT_TEST_FILE_EXTENSION) || 
+                self::testIfSame($testFile, $testSuites, self::REACT_TEST_FILE_EXTENSION);
             if($testIfSameResult) return Command::FAILURE;
 
             $exists = false;
