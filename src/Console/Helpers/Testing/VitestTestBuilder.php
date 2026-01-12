@@ -37,13 +37,13 @@ class VitestTestBuilder implements TestBuilderInterface {
             );
         } else if($input->getOption('unit')) {
             return Tools::writeFile(
-                ROOT.DS.VitestTestRunner::UNIT_PATH.$testName.'.test.js',
+                ROOT.DS.VitestTestRunner::UNIT_PATH.$testName.VitestTestRunner::UNIT_TEST_FILE_EXTENSION,
                 VitestStubs::unitTestStub($testName),
                 'Test'
             );
         } else if($input->getOption('view')){
             return Tools::writeFile(
-                ROOT.DS.VitestTestRunner::VIEW_PATH.$testName.'.test.js',
+                ROOT.DS.VitestTestRunner::VIEW_PATH.$testName.VitestTestRunner::REACT_TEST_FILE_EXTENSION,
                 VitestStubs::unitTestStub($testName),
                 'Test'
             );
