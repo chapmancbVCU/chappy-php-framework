@@ -106,7 +106,7 @@ final class VitestTestRunner extends TestRunner {
 
             $exists = false;
             foreach($testSuites as $testSuite) {
-                $file = $testSuite.$testFile;//.self::UNIT_TEST_FILE_EXTENSION;
+                $file = $testSuite.$testFile;
                 if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {
                     $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$line;
                     $exists = true;
