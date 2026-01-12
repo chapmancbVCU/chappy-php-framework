@@ -97,10 +97,6 @@ final class VitestTestRunner extends TestRunner {
     public function selectTests(string $testArg): int {
         $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
 
-        // if(!$this->verifyFilterSyntax($testArg)) {
-        //     return Command::FAILURE;
-        // }
-
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
             [$testFile, $line] = explode('::', $testArg);
@@ -138,7 +134,7 @@ final class VitestTestRunner extends TestRunner {
 
         // No such test file exists.
         if(!$this->testExists($testArg, $testSuites, self::UNIT_TEST_FILE_EXTENSION)) {
-            Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, Tools::BG_YELLOW);
+            Tools::info("The {$testArg} test file does not exist or missing :: syntax error.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
         return Command::FAILURE;
