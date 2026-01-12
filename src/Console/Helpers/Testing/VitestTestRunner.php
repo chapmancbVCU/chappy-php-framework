@@ -109,7 +109,6 @@ final class VitestTestRunner extends TestRunner {
             if($testIfSameResult) return Command::FAILURE;
 
             $exists = false;
-            $filter = "";
             foreach($testSuites as $testSuite) {
                 $file = $testSuite.$testFile;//.self::UNIT_TEST_FILE_EXTENSION;
                 if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {

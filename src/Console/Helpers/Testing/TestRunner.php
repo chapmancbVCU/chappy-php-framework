@@ -187,21 +187,4 @@ class TestRunner {
         }
         return false;
     }
-
-    /**
-     * Test against most common syntax issue when filtering where only one 
-     * semicolon is entered between filename and test name or line number.
-     *
-     * @param string $testArg The argument provided when running the test 
-     * command.
-     * @return bool True if syntax is good
-     */
-    public function verifyFilterSyntax(string $testArg): bool {
-        if(Str::contains($testArg, ':')) {
-            Tools::info("There was an issue with filter syntax", Logger::ERROR, Tools::BG_RED);
-            return false;
-        }
-        return true;
-
-    }
 }

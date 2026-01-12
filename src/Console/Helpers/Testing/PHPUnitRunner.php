@@ -171,10 +171,6 @@ final class PHPUnitRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg): int {
-        if(!$this->verifyFilterSyntax($testArg)) {
-            return Command::FAILURE;
-        }
-        
         // Run a specific function in a class.
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
@@ -209,7 +205,7 @@ final class PHPUnitRunner extends TestRunner {
 
         // No such test class exists.
         if(!$this->testExists($testArg, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) {
-            Tools::info("The {$testArg} test file does not exist", Logger::DEBUG, Tools::BG_YELLOW);
+            Tools::info("The {$testArg} test file does not exist or missing :: syntax error.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
         
