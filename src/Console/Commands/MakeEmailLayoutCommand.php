@@ -19,7 +19,7 @@ class MakeEmailLayoutCommand extends Command {
      */
     protected function configure(): void
     {
-        $this->setName('make:email-layout')
+        $this->setName('make:email:layout')
             ->setDescription('Generates a new email layout')
             ->setHelp('php console make:email <email_layout>')
             ->addArgument('email-layout', InputArgument::REQUIRED, 'Pass the name of the new email layout');

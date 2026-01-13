@@ -20,7 +20,7 @@ class MakeHelperCommand extends Command {
      */
     protected function configure(): void
     {
-        $this->setName('make:command-helper')
+        $this->setName('make:command:helper')
             ->setDescription('Generates a class that supports multiple commands')
             ->setHelp('php console make:command-helper <helper_name>')
             ->addArgument('helper-name', InputArgument::REQUIRED, 'Pass the command helper\'s name');

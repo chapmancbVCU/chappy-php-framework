@@ -18,7 +18,7 @@ class DropTablesCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('migrate:drop-all')
+        $this->setName('migrate:drop:all')
             ->setDescription('Drops all database tables')
             ->setHelp('Drops all database tables');
     }
