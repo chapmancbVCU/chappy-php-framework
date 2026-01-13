@@ -233,6 +233,27 @@ JSX;
     }
 
     /**
+     * Generates a component with default export.
+     *
+     * @param string $componentName The name of the component.
+     * @return string The contents of the component.
+     */
+    public static function defaultComponentTemplate(string $componentName): string {
+        return <<<JSX
+import React from "react";
+function {$componentName}() {
+
+    return (
+        <>
+        
+        </>
+    );
+}        
+export default {$componentName};
+JSX;
+    }
+
+    /**
      * Stub for restoring required error/NotFound.jsx page component if 
      * accidentally deleted.
      *
@@ -324,6 +345,25 @@ export default function Index({ user }) {
 JSX;
     }
 
+    /**
+     * Generates a named export component.
+     *
+     * @param string $componentName The name of the component.
+     * @return string The contents of the component.
+     */
+    public static function namedComponentTemplate(string $componentName): string {
+        return <<<JSX
+import React from "react";
+export const {$componentName} = () => {
+
+    return (
+        <>
+        
+        </>
+    );
+}
+JSX;
+    }
     /**
      * Stub for ProfileImageSorter.jsx component.
      *

@@ -40,27 +40,6 @@ class React {
     }
 
     /**
-     * Generates a component with default export.
-     *
-     * @param string $componentName The name of the component.
-     * @return string The contents of the component.
-     */
-    public static function defaultComponentTemplate(string $componentName): string {
-        return <<<JSX
-import React from "react";
-function {$componentName}() {
-
-    return (
-        <>
-        
-        </>
-    );
-}        
-export default {$componentName};
-JSX;
-    }
-
-    /**
      * Generates the error/NotFound.jsx component.
      *
      * @return int A value that indicates success, invalid, or failure.
@@ -85,26 +64,6 @@ JSX;
     }
 
     /**
-     * Generates a named export component.
-     *
-     * @param string $componentName The name of the component.
-     * @return string The contents of the component.
-     */
-    public static function namedComponentTemplate(string $componentName): string {
-        return <<<JSX
-import React from "react";
-export const {$componentName} = () => {
-
-    return (
-        <>
-        
-        </>
-    );
-}
-JSX;
-    }
-
-    /**
      * Generates component under 'resources/js/components'.
      *
      * @param string $componentName The name of the component.
@@ -116,8 +75,8 @@ JSX;
         Tools::pathExists(self::COMPONENT_PATH);
         $componentPath = self::COMPONENT_PATH.$componentName.'.jsx';
         $content = ($named) 
-            ? self::namedComponentTemplate($componentName) 
-            : self::defaultComponentTemplate($componentName);
+            ? ReactStubs::namedComponentTemplate($componentName) 
+            : ReactStubs::defaultComponentTemplate($componentName);
         return Tools::writeFile($componentPath, $content, 'React component');
     }
 
@@ -132,8 +91,8 @@ JSX;
      */
     public static function makePage(string $filePath, string $pageName, bool $named = false): int {
         $content = ($named)
-            ? self::namedComponentTemplate($pageName) 
-            : self::defaultComponentTemplate($pageName);
+            ? ReactStubs::namedComponentTemplate($pageName) 
+            : ReactStubs::defaultComponentTemplate($pageName);
 
         return Tools::writeFile($filePath, $content, 'React page');
     }
