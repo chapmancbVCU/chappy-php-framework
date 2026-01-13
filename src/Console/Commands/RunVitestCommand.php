@@ -5,7 +5,6 @@ use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Console\Helpers\Testing\VitestTestRunner;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
