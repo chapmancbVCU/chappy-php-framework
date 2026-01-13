@@ -5,7 +5,7 @@ namespace Console\Helpers;
 /**
  * Helper class for controller related console commands.
  */
-class Controller {
+class ControllerStubs {
     /**
      * Path for controller classes.
      */

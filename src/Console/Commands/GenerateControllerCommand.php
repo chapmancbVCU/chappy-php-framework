@@ -4,6 +4,7 @@ namespace Console\Commands;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Console\Helpers\Controller;
+use Console\Helpers\ControllerStubs;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -69,14 +70,14 @@ class GenerateControllerCommand extends Command
         
         // Test if --resource flag is set and generate appropriate version of file
         if($input->getOption('resource')) {
-            $content = Controller::resourceTemplate($controllerName, $layout);
+            $content = ControllerStubs::resourceTemplate($controllerName, $layout);
         } else {
-            $content = Controller::defaultTemplate($controllerName, $layout);
+            $content = ControllerStubs::defaultTemplate($controllerName, $layout);
         }
 
         // Generate Controller class
         return Tools::writeFile(
-            Controller::CONTROLLER_PATH.$controllerName.'Controller.php',
+            ControllerStubs::CONTROLLER_PATH.$controllerName.'Controller.php',
             $content,
             "Controller"
         );
