@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+/**
+ * Collection of stubs for view files.
+ */
 class ViewStubs {
     /**
      * Returns contents of a card component.
