@@ -126,7 +126,7 @@ final class VitestTestRunner extends TestRunner {
         }
 
         // Run test file if it exists in a particular suite.
-        $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::UNIT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
         $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
         $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
         if($this->didTestInSuiteSucceed([$componentStatus, $unitStatus, $viewStatus])) {
