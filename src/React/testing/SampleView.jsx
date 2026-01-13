@@ -9,7 +9,6 @@ export default function SampleView({ user }) {
     return (
         <div className="container">
             <h1 className="display-4">Hello, {name} 👋</h1>
-            
         </div>
     );
 }
