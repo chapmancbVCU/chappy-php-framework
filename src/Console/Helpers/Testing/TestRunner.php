@@ -9,6 +9,8 @@ use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use function PHPUnit\Framework\isEmpty;
+
 /**
  * Class that contains functions that can be used by runner child classes.
  */
@@ -40,6 +42,20 @@ class TestRunner {
      */
     public function __construct(OutputInterface $output) {
         $this->output = $output;
+    }
+
+    /**
+     * Test to ensure there is not an empty test suite.  This function 
+     * returns false as soon as a non-empty test suite is encountered.
+     *
+     * @param array $testSuites The collection of all available test suites.
+     * @return bool True if all test suites are empty.  Otherwise, we return 
+     * false.
+     */
+    public function areAllSuitesEmpty(array $testSuites): bool {
+        $flattened = Arr::collapse($testSuites);
+        if(Arr::isNotEmpty($flattened)) return false; 
+        else return true;
     }
 
     /**

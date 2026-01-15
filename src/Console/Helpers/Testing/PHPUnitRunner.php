@@ -77,7 +77,7 @@ final class PHPUnitRunner extends TestRunner {
         $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
         $featureTests = self::getAllTestsInSuite(self::FEATURE_PATH, self::TEST_FILE_EXTENSION);
 
-        if(Arr::isEmpty($unitTests) && Arr::isEmpty($featureTests)) {
+        if($this->areAllSuitesEmpty([$unitTests, $featureTests])) {
             $this->noAvailableTestsMessage();
             return Command::FAILURE;
         }

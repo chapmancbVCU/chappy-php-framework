@@ -65,7 +65,7 @@ final class VitestTestRunner extends TestRunner {
         $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION);
         $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION);
 
-        if(Arr::isEmpty($componentTests) && Arr::isEmpty($unitTests) && Arr::isEmpty($viewTests)) {
+        if($this->areAllSuitesEmpty([$componentTests, $unitTests, $viewTests])) {
             $this->noAvailableTestsMessage();
             return Command::FAILURE;
         }
