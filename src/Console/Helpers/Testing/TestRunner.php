@@ -45,8 +45,7 @@ class TestRunner {
     }
 
     /**
-     * Test to ensure there is not an empty test suite.  This function 
-     * returns false as soon as a non-empty test suite is encountered.
+     * Test to ensure there is not an empty test suite.
      *
      * @param array $testSuites The collection of all available test suites.
      * @return bool True if all test suites are empty.  Otherwise, we return 
