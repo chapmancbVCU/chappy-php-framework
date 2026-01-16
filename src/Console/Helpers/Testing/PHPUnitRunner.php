@@ -203,15 +203,15 @@ final class PHPUnitRunner extends TestRunner {
                 $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extensions, self::TEST_COMMAND);
             }
         }
-        
+
         if($this->didTestInSuiteSucceed($statuses)) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
         }
 
         // No such test class exists.
-        if(!$this->testExists($testArg, $testSuites, self::TEST_FILE_EXTENSION)) {
-            Tools::info("The {$testArg} test file does not exist or missing :: syntax error.", Logger::DEBUG, Tools::BG_YELLOW);
+        if(!$this->testExists($testArg, $testSuites, $extensions)) {
+            Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
         
