@@ -175,7 +175,7 @@ final class PHPUnitRunner extends TestRunner {
         if(Str::contains($testArg, '::')) {
             [$testFile, $location] = explode('::', $testArg);
 
-            if(self::testIfSame($testFile, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) { 
+            if(self::testIfSame($testFile, $testSuites, self::TEST_FILE_EXTENSION)) { 
                 return Command::FAILURE; 
             }
 
