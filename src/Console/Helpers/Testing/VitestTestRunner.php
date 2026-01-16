@@ -97,7 +97,7 @@ final class VitestTestRunner extends TestRunner {
     public function selectTests(string $testArg, $testSuites): int {
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
-            [$testFile, $line] = explode('::', $testArg);
+            [$testFile, $location] = explode('::', $testArg);
 
             // Make sure base file name does not exist in multiple places (fix after component is tested).
             $testIfSameResult = self::testIfSame($testFile, $testSuites, self::UNIT_TEST_FILE_EXTENSION) || 
@@ -108,11 +108,11 @@ final class VitestTestRunner extends TestRunner {
             foreach($testSuites as $testSuite) {
                 $file = $testSuite.$testFile;
                 if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {
-                    $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$line;
+                    $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$location;
                     $exists = true;
                 }
                 if(file_exists($file.self::REACT_TEST_FILE_EXTENSION)) {
-                    $filter = $file.self::REACT_TEST_FILE_EXTENSION.":".$line;
+                    $filter = $file.self::REACT_TEST_FILE_EXTENSION.":".$location;
                     $exists = true;
                 }
 

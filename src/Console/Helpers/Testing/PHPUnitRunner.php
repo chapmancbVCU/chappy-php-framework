@@ -173,17 +173,17 @@ final class PHPUnitRunner extends TestRunner {
     public function selectTests(string $testArg, $testSuites): int {
         // Run a specific function in a class.
         if(Str::contains($testArg, '::')) {
-            [$class, $method] = explode('::', $testArg);
+            [$testFile, $location] = explode('::', $testArg);
 
-            if(self::testIfSame($class, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) { 
+            if(self::testIfSame($testFile, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) { 
                 return Command::FAILURE; 
             }
 
             $exists = false;
             foreach($testSuites as $testSuite) {
-                $file = $testSuite.$class;
+                $file = $testSuite.$testFile;
                 if(file_exists($file.self::TEST_FILE_EXTENSION)) {
-                    $filter = "--filter " . escapeshellarg("{$class}::{$method}");
+                    $filter = "--filter " . escapeshellarg("{$testFile}::{$location}");
                     $this->runTest($filter, self::TEST_COMMAND);
                     return Command::SUCCESS;
                 }
