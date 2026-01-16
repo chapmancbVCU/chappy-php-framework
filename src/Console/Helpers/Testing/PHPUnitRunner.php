@@ -171,6 +171,8 @@ final class PHPUnitRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg): int {
+        $testSuites = [self::FEATURE_PATH, self::UNIT_PATH];
+
         // Run a specific function in a class.
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
@@ -179,20 +181,15 @@ final class PHPUnitRunner extends TestRunner {
                 return Command::FAILURE; 
             }
 
-            $namespaces = [
-                'Tests\\Unit\\' => self::UNIT_PATH,
-                'Tests\\Feature\\' => self::FEATURE_PATH
-            ];
-
-            foreach ($namespaces as $namespace => $path) {
-                $file = $path . $class . '.php';
-                if (file_exists($file)) {
+            $exists = false;
+            foreach($testSuites as $testSuite) {
+                $file = $testSuite.$class;
+                if(file_exists($file.self::TEST_FILE_EXTENSION)) {
                     $filter = "--filter " . escapeshellarg("{$class}::{$method}");
                     $this->runTest($filter, self::TEST_COMMAND);
                     return Command::SUCCESS;
                 }
             }
-
         } 
         
         // Run the test class if it exists in a specific suite.
@@ -204,7 +201,7 @@ final class PHPUnitRunner extends TestRunner {
         }
 
         // No such test class exists.
-        if(!$this->testExists($testArg, [self::FEATURE_PATH, self::UNIT_PATH], self::TEST_FILE_EXTENSION)) {
+        if(!$this->testExists($testArg, $testSuites, self::TEST_FILE_EXTENSION)) {
             Tools::info("The {$testArg} test file does not exist or missing :: syntax error.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
