@@ -75,6 +75,21 @@ class TestRunner {
     }
 
     /**
+     * Present message to the user if the following conditions are true:
+     * - Test case files in multiple suites with the same name
+     * - There exists a function in both classes with the same name
+     * 
+     * This function is called internally by the selectTest function.
+     * @return void
+     */
+    private static function duplicateTestNameMessage(): void {
+        Tools::info(
+            "You have the same test name in files with the same name.  Cannot use built in filtering", 
+            Logger::ERROR, 
+            Tools::BG_RED
+        );
+    }
+    /**
      * Retrieves all files in test suite so they can be run.
      *
      * @param string $path Path to test suite.
@@ -167,12 +182,7 @@ class TestRunner {
         foreach($testSuites as $testSuite) {
             if(file_exists($testSuite.$name.$ext)) $count++;
             if($count > 1) {
-                Tools::info(
-                    "You have files with the same name across test suites.  Cannot use built in filtering", 
-                    Logger::ERROR, 
-                    Tools::BG_RED
-                );
-                
+                self::duplicateTestNameMessage();
                 return true;
             }
         }
