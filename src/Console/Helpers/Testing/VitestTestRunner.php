@@ -94,9 +94,7 @@ final class VitestTestRunner extends TestRunner {
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg): int {
-        $testSuites = [self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH];
-
+    public function selectTests(string $testArg, $testSuites): int {
         // Run test at specific line and file.
         if(Str::contains($testArg, '::')) {
             [$testFile, $line] = explode('::', $testArg);

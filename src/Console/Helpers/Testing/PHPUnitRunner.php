@@ -170,9 +170,7 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg): int {
-        $testSuites = [self::FEATURE_PATH, self::UNIT_PATH];
-
+    public function selectTests(string $testArg, $testSuites): int {
         // Run a specific function in a class.
         if(Str::contains($testArg, '::')) {
             [$class, $method] = explode('::', $testArg);
