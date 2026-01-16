@@ -73,7 +73,7 @@ class RunTestCommand extends Command
         // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
             $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
-            return $test->selectTests($testArg, $testSuites);
+            return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION);
         }
         
         $featureStatus = null;

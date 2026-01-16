@@ -170,12 +170,12 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg, $testSuites): int {
+    public function selectTests(string $testArg, array $testSuites, string|array $extensions): int {
         // Run a specific function in a class.
         if(Str::contains($testArg, '::')) {
             [$testFile, $location] = explode('::', $testArg);
 
-            if(self::testIfSame($testFile, $testSuites, self::TEST_FILE_EXTENSION)) { 
+            if(self::testIfSame($testFile, $testSuites, $extensions)) { 
                 return Command::FAILURE; 
             }
 

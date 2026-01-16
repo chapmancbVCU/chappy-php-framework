@@ -58,7 +58,8 @@ class RunVitestCommand extends Command
         // Select test based on file name or function name.
         if($testArg && !$component && !$unit && !$view) {
             $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
-            return $test->selectTests($testArg, $testSuites);
+            $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
+            return $test->selectTests($testArg, $testSuites, $extensions);
         }
 
         $componentStatus = null;
