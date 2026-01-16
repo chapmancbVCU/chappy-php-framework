@@ -99,11 +99,9 @@ final class VitestTestRunner extends TestRunner {
         if(Str::contains($testArg, '::')) {
             [$testFile, $location] = explode('::', $testArg);
 
-            // Make sure base file name does not exist in multiple places (fix after component is tested).
-            $testIfSameResult = self::testIfSame($testFile, $testSuites, self::UNIT_TEST_FILE_EXTENSION) || 
-                self::testIfSame($testFile, $testSuites, self::REACT_TEST_FILE_EXTENSION);
-            if($testIfSameResult) return Command::FAILURE;
-
+            if(self::testIfSame($testFile, $testSuites, [self::UNIT_TEST_FILE_EXTENSION, self::REACT_TEST_FILE_EXTENSION])) { 
+                return Command::FAILURE; 
+            }
             $exists = false;
             foreach($testSuites as $testSuite) {
                 $file = $testSuite.$testFile;

@@ -173,17 +173,29 @@ class TestRunner {
      * @param string $name name of the test class to be executed.
      * @param array $testSuites The array of test suites.  Best practice is to use const provided 
      * by child class.
-     * @param string $ext The file extension.  Best practice is to use const provided by child class.
+     * @param string $extension The file extension.  Best practice is to use const provided by child class.
      * @return bool True if the class name exists in multiple test suites.  Otherwise, 
      * we return false.
      */
-    public static function testIfSame(string $name, array $testSuites, string $ext): bool {
+    public static function testIfSame(string $name, array $testSuites, string|array $extension): bool {
         $count = 0;
-        foreach($testSuites as $testSuite) {
-            if(file_exists($testSuite.$name.$ext)) $count++;
-            if($count > 1) {
-                self::duplicateTestNameMessage();
-                return true;
+        if(is_array($extension)) {
+            foreach($testSuites as $testSuite) {
+                foreach($extension as $ext) {
+                    if(file_exists($testSuite.$name.$ext)) $count++;
+                    if($count > 1) {
+                        self::duplicateTestNameMessage();
+                        return true;
+                    }
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                if(file_exists($testSuite.$name.$extension)) $count++;
+                if($count > 1) {
+                    self::duplicateTestNameMessage();
+                    return true;
+                }
             }
         }
         return false;
