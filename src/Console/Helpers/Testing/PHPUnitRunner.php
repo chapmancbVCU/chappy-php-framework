@@ -5,7 +5,7 @@ namespace Console\Helpers\Testing;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
-use Core\Lib\Utilities\Str;
+use Console\Helpers\Testing\FilterService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -170,9 +170,9 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg, array $testSuites, string|array $extensions): int {
+    public function selectTests(string $testArg, array $testSuites, string|array $extensions, ?FilterService $filterService = null): int {
         // Run a specific function in a class.
-        if(Str::contains($testArg, '::')) {
+        if($filterService) {
             [$testFile, $location] = explode('::', $testArg);
 
             if(self::testIfSame($testFile, $testSuites, $extensions)) { 

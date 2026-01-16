@@ -1,9 +1,12 @@
 <?php
 namespace Console\Commands;
+
+use Console\Helpers\Testing\FilterService;
 use Console\Helpers\Testing\PHPUnitRunner;
 use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -72,8 +75,13 @@ class RunTestCommand extends Command
         
         // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
+            if(Str::contains($testArg, '::')) {
+                [$testFile, $location] = explode('::', $testArg);
+                $filter = "--filter " . escapeshellarg("{$testFile}::{$location}");
+                $filterService = new FilterService($filter, $location, $testFile);
+            }
             $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
-            return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION);
+            return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, $filterService);
         }
         
         $featureStatus = null;
