@@ -122,10 +122,28 @@ final class VitestTestRunner extends TestRunner {
         }
 
         // Run test file if it exists in a particular suite.
-        $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        if($this->didTestInSuiteSucceed([$componentStatus, $unitStatus, $viewStatus])) {
+        // $componentStatus = self::singleFileWithinSuite($testArg, self::COMPONENT_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        // $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        // $viewStatus = self::singleFileWithinSuite($testArg, self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION, self::TEST_COMMAND);
+        // if($this->didTestInSuiteSucceed([$componentStatus, $unitStatus, $viewStatus])) {
+        //     Tools::info("Selected tests have been completed");
+        //     return Command::SUCCESS;
+        // }
+
+        $statuses = [];
+        if(is_array($extensions)) {
+            foreach($testSuites as $testSuite) {
+                foreach($extensions as $ext) {
+                    $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, self::TEST_COMMAND);    
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extensions, self::TEST_COMMAND);
+            }
+        }
+
+        if($this->didTestInSuiteSucceed($statuses)) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
         }

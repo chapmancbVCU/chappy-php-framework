@@ -190,10 +190,21 @@ final class PHPUnitRunner extends TestRunner {
             }
         } 
         
-        // Run the test class if it exists in a specific suite.
-        $unitStatus = self::singleFileWithinSuite($testArg, self::UNIT_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        $featureStatus = self::singleFileWithinSuite($testArg, self::FEATURE_PATH, self::TEST_FILE_EXTENSION, self::TEST_COMMAND);
-        if($this->didTestInSuiteSucceed([$unitStatus, $featureStatus])) {
+        // Run the test case fie if it exists in a specific suite then report results.
+        $statuses = [];
+        if(is_array($extensions)) {
+            foreach($testSuites as $testSuite) {
+                foreach($extensions as $ext) {
+                    $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, self::TEST_COMMAND);    
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extensions, self::TEST_COMMAND);
+            }
+        }
+        
+        if($this->didTestInSuiteSucceed($statuses)) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
         }
