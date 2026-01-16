@@ -130,14 +130,24 @@ class TestRunner {
      * @param string $name The name of the test we want to confirm if it exists.
      * @param array $testSuites The array of test suites.  Best practice is to use const provided 
      * by child class.
-     * @param string $ext The file extension.  Best practice is to use const provided by child class.
+     * @param string|array $extension The file extension or array of file extensions.  
+     * Best practice is to use const provided by child class.
      * @return bool True if test does exist.  Otherwise, we return false.
      */
-    public static function testExists(string $name, array $testSuites, string $ext): bool {
+    public static function testExists(string $name, array $testSuites, string|array $extension): bool {
         $count = 0;
-        foreach($testSuites as $testSuite) {
-            if(file_exists($testSuite.$name.$ext)) $count++;
-            if($count > 1) return true;
+        if(is_array($extension)) {    
+            foreach($testSuites as $testSuite) {
+                foreach($extension as $ext) {
+                    if(file_exists($testSuite.$name.$ext)) $count++;
+                    if($count > 1) return true;
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                if(file_exists($testSuite.$name.$extension)) $count++;
+                if($count > 1) return true;
+            }
         }
         return false;
     }
