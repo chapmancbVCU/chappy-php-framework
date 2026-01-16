@@ -141,7 +141,7 @@ final class VitestTestRunner extends TestRunner {
         }
 
         // No such test file exists.
-        if(!$this->testExists($testArg, $testSuites, [self::UNIT_TEST_FILE_EXTENSION, self::REACT_TEST_FILE_EXTENSION])) {
+        if(!$this->testExists($testArg, $testSuites, $extensions)) {
             Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
