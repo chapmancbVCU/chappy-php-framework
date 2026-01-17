@@ -59,6 +59,8 @@ class RunVitestCommand extends Command
         
         // Select test based on file name or function name.
         if($testArg && !$component && !$unit && !$view) {
+            $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
+            $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
             if(Str::contains($testArg, '::')) {
                 [$testFile, $location] = explode('::', $testArg);
                 $filters = [
@@ -66,10 +68,9 @@ class RunVitestCommand extends Command
                     $testFile.VitestTestRunner::REACT_TEST_FILE_EXTENSION.":".$location,
                 ];
                 $filterService = new FilterService($filters, $location, $testFile);
+                return $test->selectTests($testArg, $testSuites, $extensions, $filterService);
             }
-            $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
-            $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
-            return $test->selectTests($testArg, $testSuites, $extensions, $filterService);
+            return $test->selectTests($testArg, $testSuites, $extensions);
         }
 
         $componentStatus = null;
