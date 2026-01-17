@@ -56,39 +56,6 @@ final class VitestTestRunner extends TestRunner {
     }
 
     /**
-     * Performs all tests.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public function allTests(array $testSuites, string|array $extensions, string $command): int {
-        $suites = [];
-
-        if(is_array($extensions)) {
-            foreach($testSuites as $testSuite) {
-                foreach($extensions as $extension) {
-                    $suites[] = self::getAllTestsInSuite($testSuite, $extension);
-                }
-            }
-        } else {
-            foreach($testSuites as $testSuite) {
-                $suites[] = self::getAllTestsInSuite($testSuite, $extensions);
-            }
-        }
-
-        if($this->areAllSuitesEmpty($suites)) {
-            $this->noAvailableTestsMessage();
-            return Command::FAILURE;
-        }
-
-        foreach($suites as $suite) {
-            $this->testSuite($suite, $command);
-        }
-
-        Tools::info("All available test have been completed");
-        return Command::SUCCESS;
-    }
-
-    /**
      * Parses Vitest related arguments and ignore Symfony arguments.
      *
      * @param InputInterface $input Instance of InputInterface from command.

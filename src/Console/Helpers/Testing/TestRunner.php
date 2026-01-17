@@ -57,7 +57,41 @@ class TestRunner {
         else return true;
     }
 
-    
+    /**
+     * Performs all tests.
+     *
+     * @param array $testSuites An array of test suite paths.
+     * @param string|array $extensions An array of supported file extensions.
+     * @param string $testCommand The command for running the tests.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public function allTests(array $testSuites, string|array $extensions, string $testCommand): int {
+        $suites = [];
+
+        if(is_array($extensions)) {
+            foreach($testSuites as $testSuite) {
+                foreach($extensions as $extension) {
+                    $suites[] = self::getAllTestsInSuite($testSuite, $extension);
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                $suites[] = self::getAllTestsInSuite($testSuite, $extensions);
+            }
+        }
+
+        if($this->areAllSuitesEmpty($suites)) {
+            $this->noAvailableTestsMessage();
+            return Command::FAILURE;
+        }
+
+        foreach($suites as $suite) {
+            $this->testSuite($suite, $testCommand);
+        }
+
+        Tools::info("All available test have been completed");
+        return Command::SUCCESS;
+    }
     /**
      * Present message to the user if the following conditions are true:
      * - Test case files in multiple suites with the same name
