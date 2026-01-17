@@ -100,11 +100,12 @@ final class VitestTestRunner extends TestRunner {
             Tools::info("Syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
-        
+
         [$testFile, $location] = explode('::', $testArg);
         if(self::testIfSame($testFile, $testSuites, $extensions)) { 
             return Command::FAILURE; 
         }
+        
         $exists = false;
         foreach($testSuites as $testSuite) {
             $file = $testSuite.$testFile;
