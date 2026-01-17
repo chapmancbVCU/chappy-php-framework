@@ -172,8 +172,12 @@ final class PHPUnitRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function testByFilter(string $testArg, array $testSuites, string $extension): int {
-        [$testFile, $location] = explode('::', $testArg);
+        if(!Str::contains($testArg, '::') || Str::contains($testArg, ':::')) {
+            Tools::info("Syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
+            return Command::FAILURE;
+        }
 
+        [$testFile, $location] = explode('::', $testArg);
         if(self::testIfSame($testFile, $testSuites, $extension)) { 
             return Command::FAILURE; 
         }
@@ -187,9 +191,6 @@ final class PHPUnitRunner extends TestRunner {
             }
         }
         
-        if(!$this->testExists($testArg, $testSuites, $extension)) {
-            Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
-        }
         return Command::FAILURE;
     }
 }
