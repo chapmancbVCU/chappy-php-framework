@@ -5,11 +5,8 @@ namespace Console\Helpers\Testing;
 use Core\Lib\Utilities\Arr;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use function PHPUnit\Framework\isEmpty;
 
 /**
  * Class that contains functions that can be used by runner child classes.
