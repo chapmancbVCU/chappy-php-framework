@@ -58,23 +58,6 @@ class TestRunner {
     }
 
     /**
-     * Determines if test is successful by comparing status result 
-     * to Command::SUCCESS.  Useful for testing when filtering is 
-     * involved.
-     *
-     * @param array $status An array of integers that represents the status 
-     * of a test's completion.
-     * @return void
-     */
-    public function didTestInSuiteSucceed(array $status) {
-        foreach($status as $stat) {
-            if($stat == Command::SUCCESS) return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Present message to the user if the following conditions are true:
      * - Test case files in multiple suites with the same name
      * - There exists a function in both classes with the same name
@@ -136,7 +119,7 @@ class TestRunner {
         string|array $extensions, 
         string $testCommand
     ): int {
-        
+
         $statuses = [];
         if(is_array($extensions)) {
             foreach($testSuites as $testSuite) {
@@ -150,7 +133,7 @@ class TestRunner {
             }
         }
 
-        if($this->didTestInSuiteSucceed($statuses)) {
+        if($this->testSuiteStatus($statuses)) {
             Tools::info("Selected tests have been completed");
             return Command::SUCCESS;
         }
