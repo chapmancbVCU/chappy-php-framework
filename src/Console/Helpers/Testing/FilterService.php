@@ -20,7 +20,7 @@ class FilterService {
         return $this->location;
     }
 
-    public function testFileName() {
+    public function testFile() {
         return $this->testFile;
     }
 }
