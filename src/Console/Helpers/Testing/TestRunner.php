@@ -122,10 +122,12 @@ class TestRunner {
     }
 
      /**
-     * Supports ability to run test by class name or function name within 
-     * a class.
+     * Supports ability to run test by class/file name.
      *
-     * @param string $testArg The name of the class or class::test_name.
+     * @param string $testArg The name of the class/file.
+     * @param array $testSuites An array of test suite paths.
+     * @param string|array $extensions An array of supported file extensions.
+     * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg, array $testSuites, string|array $extensions, string $testCommand): int {
