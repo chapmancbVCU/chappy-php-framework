@@ -42,14 +42,15 @@ final class VitestTestRunner extends TestRunner {
     public const TEST_COMMAND = "npm test ";
 
     /**
+     * Path for unit tests.
+     */
+    public const UNIT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'unit'.DS;
+    
+    /**
      * File extension for Vitest unit tests.
      */
     public const UNIT_TEST_FILE_EXTENSION = ".test.js";
     
-    /**
-     * Path for unit tests.
-     */
-    public const UNIT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'unit'.DS;
 
     /**
      * Constructor
