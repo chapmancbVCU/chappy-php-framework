@@ -9,8 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 interface TestBuilderInterface {
     /**
-     * Creates a new test class.  When --feature flag is provided a test 
-     * feature class is created.
+     * Creates a new test class.
      *
      * @param string $testName The name for the test.
      * @param InputInterface $input The Symfony InputInterface object.
