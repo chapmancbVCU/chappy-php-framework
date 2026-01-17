@@ -25,7 +25,11 @@ class VitestTestBuilder implements TestBuilderInterface {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeTest(string $testName, InputInterface $input): int { 
-        if(self::testIfExists($testName)) {
+        $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
+        $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
+
+        if(VitestTestRunner::testExists($testName, $testSuites, $extensions)) {
+            Tools::info("File with the name '{$testName}' already exists in one of the supported test suites", Logger::ERROR, Tools::BG_RED);
             return Command::FAILURE;
         }
 
@@ -57,13 +61,4 @@ class VitestTestBuilder implements TestBuilderInterface {
         
         return Command::SUCCESS;
     }
-
-    /**
-     * Checks if file exists in any test suite.
-     *
-     * @param string $name The name of the file to be created.
-     * @return bool True if file exists in any test suite, otherwise we 
-     * return false.
-     */
-    public static function testIfExists(string $name): bool { return false; }
 }
