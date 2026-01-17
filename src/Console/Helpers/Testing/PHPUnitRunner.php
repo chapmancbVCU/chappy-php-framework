@@ -171,10 +171,6 @@ final class PHPUnitRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectTests(string $testArg, array $testSuites, string|array $extensions): int {
-        // Run a specific function in a class.
-        
-        
-        // Run the test case fie if it exists in a specific suite then report results.
         $statuses = [];
         if(is_array($extensions)) {
             foreach($testSuites as $testSuite) {
