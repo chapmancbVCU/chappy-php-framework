@@ -18,7 +18,7 @@ final class VitestTestRunner extends TestRunner {
      * The array of options allowed as input for the test command.
      */
     public const ALLOWED_OPTIONS = [
-        'watch'
+
     ];
 
     /**
@@ -45,13 +45,12 @@ final class VitestTestRunner extends TestRunner {
      * Path for unit tests.
      */
     public const UNIT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'unit'.DS;
-    
+
     /**
      * File extension for Vitest unit tests.
      */
     public const UNIT_TEST_FILE_EXTENSION = ".test.js";
     
-
     /**
      * Constructor
      *
