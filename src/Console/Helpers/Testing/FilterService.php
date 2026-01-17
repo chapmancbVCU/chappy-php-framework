@@ -6,7 +6,7 @@ class FilterService {
     private $filter;
     private $location;
     private $testFile;
-    public function __construct(string $filter, string $location, string $testFile) {
+    public function __construct(string|array $filter, string $location, string $testFile) {
         $this->filter = $filter;
         $this->location = $location;
         $this->testFile = $testFile;
