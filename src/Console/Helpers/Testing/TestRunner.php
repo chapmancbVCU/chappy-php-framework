@@ -57,6 +57,7 @@ class TestRunner {
         else return true;
     }
 
+    
     /**
      * Present message to the user if the following conditions are true:
      * - Test case files in multiple suites with the same name

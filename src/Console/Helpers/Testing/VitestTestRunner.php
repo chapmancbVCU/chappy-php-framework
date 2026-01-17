@@ -60,19 +60,29 @@ final class VitestTestRunner extends TestRunner {
      *
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function allTests(): int {
-        $componentTests = self::getAllTestsInSuite(self::COMPONENT_PATH, self::UNIT_TEST_FILE_EXTENSION);
-        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::UNIT_TEST_FILE_EXTENSION);
-        $viewTests = self::getAllTestsInSuite(self::VIEW_PATH, self::REACT_TEST_FILE_EXTENSION);
+    public function allTests(array $testSuites, string|array $extensions, string $command): int {
+        $suites = [];
 
-        if($this->areAllSuitesEmpty([$componentTests, $unitTests, $viewTests])) {
+        if(is_array($extensions)) {
+            foreach($testSuites as $testSuite) {
+                foreach($extensions as $extension) {
+                    $suites[] = self::getAllTestsInSuite($testSuite, $extension);
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                $suites[] = self::getAllTestsInSuite($testSuite, $extensions);
+            }
+        }
+
+        if($this->areAllSuitesEmpty($suites)) {
             $this->noAvailableTestsMessage();
             return Command::FAILURE;
         }
 
-        $this->testSuite($componentTests, self::TEST_COMMAND);
-        $this->testSuite($unitTests, self::TEST_COMMAND);
-        $this->testSuite($viewTests, self::TEST_COMMAND);
+        foreach($suites as $suite) {
+            $this->testSuite($suite, $command);
+        }
 
         Tools::info("All available test have been completed");
         return Command::SUCCESS;
@@ -105,7 +115,7 @@ final class VitestTestRunner extends TestRunner {
         if(self::testIfSame($testFile, $testSuites, $extensions)) { 
             return Command::FAILURE; 
         }
-        
+
         $exists = false;
         foreach($testSuites as $testSuite) {
             $file = $testSuite.$testFile;

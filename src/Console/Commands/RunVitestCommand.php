@@ -52,15 +52,16 @@ class RunVitestCommand extends Command
         $view = $input->getOption('view');
 
         $test = new VitestTestRunner($input, $output);
+        $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
+        $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
 
         if(!$testArg && !$component && !$unit && !$view) {
-            return $test->allTests();
+            return $test->allTests($testSuites, $extensions, VitestTestRunner::TEST_COMMAND);
         }
         
         // Select test based on file name or function name.
         if($testArg && !$component && !$unit && !$view) {
-            $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
-            $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
+            
             if(Str::contains($testArg, '::')) {
                 return $test->testByFilter($testArg, $testSuites, $extensions);
             }

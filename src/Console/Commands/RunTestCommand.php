@@ -68,14 +68,16 @@ class RunTestCommand extends Command
         $feature = $input->getOption('feature');
         
         $test = new PHPUnitRunner($input, $output);
-        
+        $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
+
+
         if(!$feature && !$unit && !$testArg) {
-            return $test->allTests();
+            return $test->allTests($testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
         // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
-            $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
+            
             if(Str::contains($testArg, '::')) {
                return $test->testByFilter($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION); 
             }

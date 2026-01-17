@@ -73,17 +73,29 @@ final class PHPUnitRunner extends TestRunner {
      *
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function allTests(): int {
-        $unitTests = self::getAllTestsInSuite(self::UNIT_PATH, self::TEST_FILE_EXTENSION);
-        $featureTests = self::getAllTestsInSuite(self::FEATURE_PATH, self::TEST_FILE_EXTENSION);
+    public function allTests(array $testSuites, string|array $extensions, string $command): int {
+        $suites = [];
 
-        if($this->areAllSuitesEmpty([$unitTests, $featureTests])) {
+        if(is_array($extensions)) {
+            foreach($testSuites as $testSuite) {
+                foreach($extensions as $extension) {
+                    $suites[] = self::getAllTestsInSuite($testSuite, $extension);
+                }
+            }
+        } else {
+            foreach($testSuites as $testSuite) {
+                $suites[] = self::getAllTestsInSuite($testSuite, $extensions);
+            }
+        }
+
+        if($this->areAllSuitesEmpty($suites)) {
             $this->noAvailableTestsMessage();
             return Command::FAILURE;
         }
 
-        $this->testSuite($unitTests, self::TEST_COMMAND);
-        $this->testSuite($featureTests, self::TEST_COMMAND);
+        foreach($suites as $suite) {
+            $this->testSuite($suite, $command);
+        }
 
         Tools::info("All available test have been completed");
         return Command::SUCCESS;
