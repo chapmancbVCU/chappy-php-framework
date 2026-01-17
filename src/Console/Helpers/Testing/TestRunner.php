@@ -130,7 +130,13 @@ class TestRunner {
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg, array $testSuites, string|array $extensions, string $testCommand): int {
+    public function selectTests(
+        string $testArg, 
+        array $testSuites, 
+        string|array $extensions, 
+        string $testCommand
+    ): int {
+        
         $statuses = [];
         if(is_array($extensions)) {
             foreach($testSuites as $testSuite) {
@@ -151,7 +157,11 @@ class TestRunner {
 
         // No such test class exists.
         if(!$this->testExists($testArg, $testSuites, $extensions)) {
-            Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
+            Tools::info(
+                "The {$testArg} test file does not exist or missing :: syntax error when filtering.", 
+                Logger::DEBUG, 
+                Tools::BG_YELLOW
+            );
             return Command::FAILURE;
         }
         
