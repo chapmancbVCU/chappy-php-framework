@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to run a phpunit test with only the name of the test file is accepted as a required input.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/unit_tests#running-tests">here</a>.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/php_unit#running-tests">here</a>.
  */
 class RunTestCommand extends Command
 {
