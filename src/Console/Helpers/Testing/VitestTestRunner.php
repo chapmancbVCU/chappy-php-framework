@@ -87,8 +87,15 @@ final class VitestTestRunner extends TestRunner {
      */
     public static function parseOptions(InputInterface $input): string { return ""; }
 
-
-    public function testByFilter(string $testArg, array $testSuites, string|array $extensions): int {
+    /**
+     * Run filtered test by line number.
+     *
+     * @param string $testArg The name of the test file.
+     * @param array $testSuites An array of test suite paths.
+     * @param array $extensions An array of file extensions supported by Vitest.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public function testByFilter(string $testArg, array $testSuites, array $extensions): int {
         [$testFile, $location] = explode('::', $testArg);
 
         if(self::testIfSame($testFile, $testSuites, $extensions)) { 
