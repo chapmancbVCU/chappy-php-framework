@@ -40,7 +40,7 @@ class MakeVitestTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = Str::ucfirst($input->getArgument('testname'));
+        $testName = $input->getArgument('testname');
         return VitestTestBuilder::makeTest($testName, $input);
     }
 }
