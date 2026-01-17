@@ -87,39 +87,6 @@ final class VitestTestRunner extends TestRunner {
      */
     public static function parseOptions(InputInterface $input): string { return ""; }
 
-    /**
-     * Supports ability to run test by file name or function name within 
-     * a class.
-     *
-     * @param string $testArg The name of the class or class::test_name.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public function selectTests(string $testArg, array $testSuites, string|array $extensions): int {
-        $statuses = [];
-        if(is_array($extensions)) {
-            foreach($testSuites as $testSuite) {
-                foreach($extensions as $ext) {
-                    $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, self::TEST_COMMAND);    
-                }
-            }
-        } else {
-            foreach($testSuites as $testSuite) {
-                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extensions, self::TEST_COMMAND);
-            }
-        }
-
-        if($this->didTestInSuiteSucceed($statuses)) {
-            Tools::info("Selected tests have been completed");
-            return Command::SUCCESS;
-        }
-
-        // No such test file exists.
-        if(!$this->testExists($testArg, $testSuites, $extensions)) {
-            Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
-            return Command::FAILURE;
-        }
-        return Command::FAILURE;
-    }
 
     public function testByFilter(string $testArg, array $testSuites, string|array $extensions): int {
         [$testFile, $location] = explode('::', $testArg);

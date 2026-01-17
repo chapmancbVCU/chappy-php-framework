@@ -79,7 +79,7 @@ class RunTestCommand extends Command
             if(Str::contains($testArg, '::')) {
                return $test->testByFilter($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION); 
             }
-            return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION);
+            return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
         $featureStatus = null;
