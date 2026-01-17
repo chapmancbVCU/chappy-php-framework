@@ -28,13 +28,13 @@ class PHPUnitTestBuilder implements TestBuilderInterface {
 
         if($input->getOption('feature')) {
             return Tools::writeFile(
-                ROOT.DS.PHPUnitRunner::FEATURE_PATH.$testName.'.php',
+                ROOT.DS.PHPUnitRunner::FEATURE_PATH.$testName.PHPUnitRunner::TEST_FILE_EXTENSION,
                 PHPUnitStubs::featureTestStub($testName),
                 'Test'
             );
         } else {
             return Tools::writeFile(
-                ROOT.DS.PHPUnitRunner::UNIT_PATH.$testName.'.php',
+                ROOT.DS.PHPUnitRunner::UNIT_PATH.$testName.PHPUnitRunner::TEST_FILE_EXTENSION,
                 PHPUnitStubs::unitTestStub($testName),
                 'Test'
             );
