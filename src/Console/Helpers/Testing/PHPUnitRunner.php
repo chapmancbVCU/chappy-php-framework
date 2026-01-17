@@ -177,15 +177,15 @@ final class PHPUnitRunner extends TestRunner {
             return Command::FAILURE;
         }
 
-        [$testFile, $location] = explode('::', $testArg);
-        if(self::testIfSame($testFile, $testSuites, $extension)) { 
+        [$class, $method] = explode('::', $testArg);
+        if(self::testIfSame($class, $testSuites, $extension)) { 
             return Command::FAILURE; 
         }
 
         foreach($testSuites as $testSuite) {
-            $file = $testSuite.$testFile;
+            $file = $testSuite.$class;
             if(file_exists($file.self::TEST_FILE_EXTENSION)) {
-                $filter = "--filter " . escapeshellarg("{$testFile}::{$location}");
+                $filter = "--filter " . escapeshellarg("{$class}::{$method}");
                 $this->runTest($filter, self::TEST_COMMAND);
                 return Command::SUCCESS;
             }
