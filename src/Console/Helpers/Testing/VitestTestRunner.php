@@ -15,6 +15,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class VitestTestRunner extends TestRunner {
     /**
+     * The array of options allowed as input for the test command.
+     */
+    public const ALLOWED_OPTIONS = [
+        'watch'
+    ];
+
+    /**
      * Path for component tests.
      */
     public const COMPONENT_PATH = 'resources'.DS.'js'.DS.'tests'.DS.'component'.DS;
@@ -62,7 +69,20 @@ final class VitestTestRunner extends TestRunner {
      * @return string A string containing the arguments to be provided to 
      * PHPUnit.
      */
-    public static function parseOptions(InputInterface $input): string { return ""; }
+    public static function parseOptions(InputInterface $input): string { 
+        $args = [];
+
+        foreach(self::ALLOWED_OPTIONS as $allowed) {
+            if($input->hasOption($allowed) && $input->getOption($allowed)) {
+                switch($allowed) {
+                    default;
+                        $args[] = '--' . $allowed;
+                        break;
+                }
+            }
+        }
+        return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
+    }
 
     /**
      * Run filtered test by line number.
