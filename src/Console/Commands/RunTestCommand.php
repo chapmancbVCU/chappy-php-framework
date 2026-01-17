@@ -77,10 +77,7 @@ class RunTestCommand extends Command
         if($testArg && !$unit && !$feature) {
             $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
             if(Str::contains($testArg, '::')) {
-                [$testFile, $location] = explode('::', $testArg);
-                $filter = "--filter " . escapeshellarg("{$testFile}::{$location}");
-                $filterService = new FilterService($filter, $location, $testFile);
-                return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, $filterService);
+               return $test->testByFilter($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION); 
             }
             return $test->selectTests($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION);
         }

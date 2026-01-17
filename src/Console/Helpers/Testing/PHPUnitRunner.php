@@ -5,7 +5,7 @@ namespace Console\Helpers\Testing;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
-use Console\Helpers\Testing\FilterService;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -170,25 +170,9 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg, array $testSuites, string|array $extensions, ?FilterService $filterService = null): int {
+    public function selectTests(string $testArg, array $testSuites, string|array $extensions): int {
         // Run a specific function in a class.
-        if($filterService) {
-            [$testFile, $location] = explode('::', $testArg);
-
-            if(self::testIfSame($testFile, $testSuites, $extensions)) { 
-                return Command::FAILURE; 
-            }
-
-            $exists = false;
-            foreach($testSuites as $testSuite) {
-                $file = $testSuite.$testFile;
-                if(file_exists($file.self::TEST_FILE_EXTENSION)) {
-                    $filter = "--filter " . escapeshellarg("{$testFile}::{$location}");
-                    $this->runTest($filter, self::TEST_COMMAND);
-                    return Command::SUCCESS;
-                }
-            }
-        } 
+        
         
         // Run the test case fie if it exists in a specific suite then report results.
         $statuses = [];
@@ -215,6 +199,28 @@ final class PHPUnitRunner extends TestRunner {
             return Command::FAILURE;
         }
         
+        return Command::FAILURE;
+    }
+
+    public function testByFilter(string $testArg, array $testSuites, string|array $extensions): int {
+        [$testFile, $location] = explode('::', $testArg);
+
+        if(self::testIfSame($testFile, $testSuites, $extensions)) { 
+            return Command::FAILURE; 
+        }
+
+        foreach($testSuites as $testSuite) {
+            $file = $testSuite.$testFile;
+            if(file_exists($file.self::TEST_FILE_EXTENSION)) {
+                $filter = "--filter " . escapeshellarg("{$testFile}::{$location}");
+                $this->runTest($filter, self::TEST_COMMAND);
+                return Command::SUCCESS;
+            }
+        }
+        
+        if(!$this->testExists($testArg, $testSuites, $extensions)) {
+            Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
+        }
         return Command::FAILURE;
     }
 }

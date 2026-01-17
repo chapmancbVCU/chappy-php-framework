@@ -62,14 +62,9 @@ class RunVitestCommand extends Command
             $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
             $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
             if(Str::contains($testArg, '::')) {
-                [$testFile, $location] = explode('::', $testArg);
-                $filters = [
-                    $testFile.VitestTestRunner::UNIT_TEST_FILE_EXTENSION.":".$location,
-                    $testFile.VitestTestRunner::REACT_TEST_FILE_EXTENSION.":".$location,
-                ];
-                $filterService = new FilterService($filters, $location, $testFile);
-                return $test->selectTests($testArg, $testSuites, $extensions, $filterService);
+                return $test->testByFilter($testArg, $testSuites, $extensions);
             }
+            
             return $test->selectTests($testArg, $testSuites, $extensions);
         }
 

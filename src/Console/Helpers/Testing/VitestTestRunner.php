@@ -94,32 +94,9 @@ final class VitestTestRunner extends TestRunner {
      * @param string $testArg The name of the class or class::test_name.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(string $testArg, array $testSuites, string|array $extensions, ?FilterService $filterService = null): int {
+    public function selectTests(string $testArg, array $testSuites, string|array $extensions): int {
         // Run test at specific line and file.
-        if($filterService) {
-            [$testFile, $location] = explode('::', $testArg);
-
-            if(self::testIfSame($testFile, $testSuites, $extensions)) { 
-                return Command::FAILURE; 
-            }
-            $exists = false;
-            foreach($testSuites as $testSuite) {
-                $file = $testSuite.$testFile;
-                if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {
-                    $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$location;
-                    $exists = true;
-                }
-                if(file_exists($file.self::REACT_TEST_FILE_EXTENSION)) {
-                    $filter = $file.self::REACT_TEST_FILE_EXTENSION.":".$location;
-                    $exists = true;
-                }
-
-                if($exists) {
-                    $this->runTest($filter, self::TEST_COMMAND);
-                    return Command::SUCCESS;
-                }
-            }
-        }
+        
 
         // Run the test case fie if it exists in a specific suite then report results.
         $statuses = [];
@@ -144,6 +121,36 @@ final class VitestTestRunner extends TestRunner {
         if(!$this->testExists($testArg, $testSuites, $extensions)) {
             Tools::info("The {$testArg} test file does not exist or missing :: syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
+        }
+        return Command::FAILURE;
+    }
+
+    public function testByFilter(string $testArg, array $testSuites, string|array $extensions): int {
+        [$testFile, $location] = explode('::', $testArg);
+
+        if(self::testIfSame($testFile, $testSuites, $extensions)) { 
+            return Command::FAILURE; 
+        }
+        $exists = false;
+        foreach($testSuites as $testSuite) {
+            $file = $testSuite.$testFile;
+            if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {
+                $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$location;
+                $exists = true;
+            }
+            if(file_exists($file.self::REACT_TEST_FILE_EXTENSION)) {
+                $filter = $file.self::REACT_TEST_FILE_EXTENSION.":".$location;
+                $exists = true;
+            }
+
+            if($exists) {
+                $this->runTest($filter, self::TEST_COMMAND);
+                return Command::SUCCESS;
+            }
+        }
+
+        if(!$this->testExists($testArg, $testSuites, $extensions)) {
+            Tools::info("A syntax error when filtering was encountered.", Logger::DEBUG, Tools::BG_YELLOW);
         }
         return Command::FAILURE;
     }
