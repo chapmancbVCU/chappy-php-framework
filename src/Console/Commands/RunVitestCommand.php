@@ -1,10 +1,12 @@
 <?php
 namespace Console\Commands;
 
+use Console\Helpers\Testing\FilterService;
 use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Console\Helpers\Testing\VitestTestRunner;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -57,9 +59,17 @@ class RunVitestCommand extends Command
         
         // Select test based on file name or function name.
         if($testArg && !$component && !$unit && !$view) {
+            if(Str::contains($testArg, '::')) {
+                [$testFile, $location] = explode('::', $testArg);
+                $filters = [
+                    $testFile.VitestTestRunner::UNIT_TEST_FILE_EXTENSION.":".$location,
+                    $testFile.VitestTestRunner::REACT_TEST_FILE_EXTENSION.":".$location,
+                ];
+                $filterService = new FilterService($filters, $location, $testFile);
+            }
             $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
             $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
-            return $test->selectTests($testArg, $testSuites, $extensions);
+            return $test->selectTests($testArg, $testSuites, $extensions, $filterService);
         }
 
         $componentStatus = null;
