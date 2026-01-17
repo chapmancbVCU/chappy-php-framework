@@ -1,7 +1,6 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Testing\FilterService;
 use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
