@@ -217,13 +217,13 @@ class TestRunner {
             foreach($testSuites as $testSuite) {
                 foreach($extension as $ext) {
                     if(file_exists($testSuite.$name.$ext)) $count++;
-                    if($count > 1) return true;
+                    if($count > 0) return true;
                 }
             }
         } else {
             foreach($testSuites as $testSuite) {
                 if(file_exists($testSuite.$name.$extension)) $count++;
-                if($count > 1) return true;
+                if($count > 0) return true;
             }
         }
         return false;
