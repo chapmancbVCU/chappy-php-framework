@@ -139,6 +139,7 @@ class TestRunner {
      * Runs the unit test for your testing suite.
      *
      * @param string $test The test to be performed.
+     * @param string $testCommand The test command to be executed.
      * @return void
      */
     public function runTest(string $test, string $testCommand): void {
@@ -282,6 +283,7 @@ class TestRunner {
      * Run all test files in an individual test suite.
      *
      * @param array $collection All classes in a particular test suite.
+     * @param string $testCommand The test command to be executed.
      * @return int A value that indicates success, invalid, or failure.
      */
     public function testSuite(array $collection, string $testCommand): int {
