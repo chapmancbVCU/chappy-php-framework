@@ -199,7 +199,7 @@ class TestRunner {
     /**
      * Performs testing against a single class within a test suite.
      *
-     * @param string $testArg The name of the test class or test.js file without extension.
+     * @param string $testArg The name of the test file without extension.
      * @param string $testSuite The name of the test suite.  Best practice is 
      * to use const provided by child class.
      * @param string $ext The file extension.  Best practice is to use const provided by child class.
