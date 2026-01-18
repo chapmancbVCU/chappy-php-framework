@@ -82,8 +82,8 @@ class RunTestCommand extends Command
             return $test->selectByTestName($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
-        $runBySuiteStatus = [];
         // Run tests based on --unit and --feature flags
+        $runBySuiteStatus = [];
         if(!$testArg && $unit) {
             $runBySuiteStatus[] = $test->testSuite(
                 TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
