@@ -5,6 +5,7 @@ namespace Console\Helpers\Testing;
 use Core\Lib\Utilities\Arr;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -104,7 +105,7 @@ class TestRunner {
             Tools::BG_RED
         );
     }
-    
+
     /**
      * Retrieves all files in test suite so they can be run.
      *
@@ -296,5 +297,15 @@ class TestRunner {
             if(isset($status) && $status == Command::SUCCESS) return true;
         }
         return false;
+    }
+
+    /**
+     * Ensure filter syntax is correct.  Does not test if only one : is in string.
+     *
+     * @param string $testArg The name of the test file with filter.
+     * @return bool True if filter syntax is correct.  Otherwise, we return false.
+     */
+    public static function verifyFilterSyntax($testArg): bool {
+        return (Str::contains($testArg, '::') && !Str::contains($testArg, ':::'));
     }
 }

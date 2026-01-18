@@ -93,7 +93,7 @@ final class VitestTestRunner extends TestRunner {
      * @return int A value that indicates success, invalid, or failure.
      */
     public function testByFilter(string $testArg, array $testSuites, array $extensions): int {
-        if(!Str::contains($testArg, '::') || Str::contains($testArg, ':::')) {
+        if(!self::verifyFilterSyntax($testArg)) {
             Tools::info("Syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
             return Command::FAILURE;
         }
