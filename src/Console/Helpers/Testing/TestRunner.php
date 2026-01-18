@@ -57,7 +57,7 @@ class TestRunner {
     }
 
     /**
-     * Performs all tests.
+     * Performs all available tests.
      *
      * @param array $testSuites An array of test suite paths.  
      * Best practice is to use const provided by child class.
