@@ -66,36 +66,34 @@ class RunVitestCommand extends Command
             return $test->selectByTestName($testArg, $testSuites, $extensions, VitestTestRunner::TEST_COMMAND);
         }
 
-        $componentStatus = null;
-        $unitStatus = null;
-        $viewStatus = null;
-
+        $runBySuiteStatus = [];
         // Run tests based on flag provided (--component, --unit, --view).
         if(!$testArg && $component) {
-            $componentStatus = $test->testSuite(
+            $runBySuiteStatus[] = $test->testSuite(
                 TestRunner::getAllTestsInSuite(VitestTestRunner::COMPONENT_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION),
                 VitestTestRunner::TEST_COMMAND
             );
         }
         if(!$testArg && $unit) {
-            $unitStatus = $test->testSuite(
+            $runBySuiteStatus[] = $test->testSuite(
                 TestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, VitestTestRunner::UNIT_TEST_FILE_EXTENSION),
                 VitestTestRunner::TEST_COMMAND
             );
         }
         if(!$testArg && $view) {
-            $viewStatus = $test->testSuite(
+            $runBySuiteStatus[] = $test->testSuite(
                 TestRunner::getAllTestsInSuite(VitestTestRunner::VIEW_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION),
                 VitestTestRunner::TEST_COMMAND
             );
         }
-        if(!$testArg && VitestTestRunner::testSuiteStatus([$componentStatus, $unitStatus, $viewStatus])) {
+        if(!$testArg && VitestTestRunner::testSuiteStatus($runBySuiteStatus)) {
             return Command::SUCCESS;
         }
 
         // Run individual test file based on flag provided.
+        $testNameByFlagStatus = [];
         if($testArg && $component) {
-            $componentStatus = $test->singleFileWithinSuite(
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 VitestTestRunner::COMPONENT_PATH, 
                 VitestTestRunner::REACT_TEST_FILE_EXTENSION, 
@@ -103,7 +101,7 @@ class RunVitestCommand extends Command
             );
         }
         if($testArg && $unit) {
-            $unitStatus = $test->singleFileWithinSuite(
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 VitestTestRunner::UNIT_PATH, 
                 VitestTestRunner::UNIT_TEST_FILE_EXTENSION, 
@@ -111,13 +109,13 @@ class RunVitestCommand extends Command
             );
         }
         if($testArg && $view) {
-            $viewStatus = $test->singleFileWithinSuite(
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, VitestTestRunner::VIEW_PATH, 
                 VitestTestRunner::REACT_TEST_FILE_EXTENSION, 
                 VitestTestRunner::TEST_COMMAND
             );
         }
-        if($testArg && VitestTestRunner::testSuiteStatus([$componentStatus, $unitStatus, $viewStatus])) {
+        if($testArg && VitestTestRunner::testSuiteStatus($testNameByFlagStatus)) {
             return Command::SUCCESS;
         }
 

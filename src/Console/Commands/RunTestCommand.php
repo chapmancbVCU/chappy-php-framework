@@ -83,28 +83,28 @@ class RunTestCommand extends Command
             return $test->selectByTestName($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
-        $featureStatus = null;
-        $unitStatus = null;
+        $runBySuiteStatus = [];
         // Run tests based on --unit and --feature flags
         if(!$testArg && $unit) {
-            $unitStatus = $test->testSuite(
+            $runBySuiteStatus[] = $test->testSuite(
                 TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
                 PHPUnitRunner::TEST_COMMAND
             );
         }
         if(!$testArg && $feature) {
-            $featureStatus = $test->testSuite(
+            $runBySuiteStatus[] = $test->testSuite(
                 TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
                 PHPUnitRunner::TEST_COMMAND
             );
         }
-        if(!$testArg && PHPUnitRunner::testSuiteStatus([$featureStatus, $unitStatus])) {
+        if(!$testArg && PHPUnitRunner::testSuiteStatus($runBySuiteStatus)) {
             return Command::SUCCESS;
         }
 
         // Run individual test file based on --unit and --feature flags
+        $testNameByFlagStatus = [];
         if($testArg && $unit) {
-            $unitStatus = $test->singleFileWithinSuite(
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 PHPUnitRunner::UNIT_PATH, 
                 PHPUnitRunner::TEST_FILE_EXTENSION, 
@@ -112,14 +112,14 @@ class RunTestCommand extends Command
             );
         }
         if($testArg && $feature) {
-            $featureStatus = $test->singleFileWithinSuite(
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 PHPUnitRunner::FEATURE_PATH, 
                 PHPUnitRunner::TEST_FILE_EXTENSION, 
                 PHPUnitRunner::TEST_COMMAND
             );
         }
-        if($testArg && PHPUnitRunner::testSuiteStatus([$featureStatus, $unitStatus])) {
+        if($testArg && PHPUnitRunner::testSuiteStatus($testNameByFlagStatus)) {
             return Command::SUCCESS;
         }
 
