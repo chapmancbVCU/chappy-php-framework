@@ -98,6 +98,7 @@ class RunTestCommand extends Command
             );
         }
         if(!$testArg && PHPUnitRunner::testSuiteStatus($runBySuiteStatus)) {
+            Tools::info("Completed tests by suite(s)");
             return Command::SUCCESS;
         }
 

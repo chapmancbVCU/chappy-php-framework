@@ -87,6 +87,7 @@ class RunVitestCommand extends Command
             );
         }
         if(!$testArg && VitestTestRunner::testSuiteStatus($runBySuiteStatus)) {
+            Tools::info("Completed tests by suite(s)");
             return Command::SUCCESS;
         }
 
@@ -116,6 +117,7 @@ class RunVitestCommand extends Command
             );
         }
         if($testArg && VitestTestRunner::testSuiteStatus($testNameByFlagStatus)) {
+            Tools::info("Completed tests by name and suite(s)");
             return Command::SUCCESS;
         }
 
