@@ -136,14 +136,14 @@ class TestRunner {
     }
 
     /**
-     * Runs the unit test.
+     * Runs the unit test for your testing suite.
      *
-     * @param string $tests The test to be performed.
+     * @param string $test The test to be performed.
      * @return void
      */
-    public function runTest(string $tests, string $testCommand): void {
-        $command = $testCommand . $tests . $this->inputOptions;
-        Tools::info('File: '.$tests);
+    public function runTest(string $test, string $testCommand): void {
+        $command = $testCommand . $test . $this->inputOptions;
+        Tools::info('File: '.$test);
         $this->output->writeln(shell_exec($command));
     }
 
