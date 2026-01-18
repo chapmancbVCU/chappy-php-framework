@@ -45,7 +45,8 @@ class TestRunner {
     /**
      * Test to ensure there is not an empty test suite.
      *
-     * @param array $testSuites The collection of all available test suites.
+     * @param array $testSuites The collection of all available test suites.  
+     * Best practice is to use const provided by child class.
      * @return bool True if all test suites are empty.  Otherwise, we return 
      * false.
      */
@@ -58,8 +59,9 @@ class TestRunner {
     /**
      * Performs all tests.
      *
-     * @param array $testSuites An array of test suite paths.
-     * @param string|array $extensions An array of supported file extensions.
+     * @param array $testSuites An array of test suite paths.  
+     * Best practice is to use const provided by child class.
+     * @param string|array $extensions A string or an array of supported file extensions.
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
@@ -115,7 +117,8 @@ class TestRunner {
      * Retrieves all files in test suite so they can be run.
      *
      * @param string $path Path to test suite.
-     * @param string $ext File extension to specify between php and js related tests.
+     * @param string $ext File extension to specify between php and js related 
+     * tests.  Best practice is to use const provided by child class.
      * @return array The array of all filenames in a particular directory.
      */
     public static function getAllTestsInSuite(string $path, string $ext): array {
@@ -147,8 +150,9 @@ class TestRunner {
      * Supports ability to run test by class/file name.
      *
      * @param string $testArg The name of the class/file.
-     * @param array $testSuites An array of test suite paths.
-     * @param string|array $extensions An array of supported file extensions.
+     * @param array $testSuites An array of test suite paths.  Best practice is to use const provided by child class.
+     * @param string|array $extensions A string or an array of supported file extensions.  
+     * Best practice is to use const provided by child class.
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
@@ -194,14 +198,15 @@ class TestRunner {
      * Performs testing against a single class within a test suite.
      *
      * @param string $testArg The name of the test class or test.js file without extension.
-     * @param string $suite The name of the test suite.
+     * @param string $testSuite The name of the test suite.  Best practice is 
+     * to use const provided by child class.
      * @param string $ext The file extension.  Best practice is to use const provided by child class.
      * @param string $command The test command.  Best practice is to use const provided by child class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function singleFileWithinSuite(string $testArg, string $suite, string $ext, string $command): int {
-        if(file_exists($suite.$testArg.$ext)) {
-            $test = ' '.$suite.$testArg.$ext;
+    public function singleFileWithinSuite(string $testArg, string $testSuite, string $ext, string $command): int {
+        if(file_exists($testSuite.$testArg.$ext)) {
+            $test = ' '.$testSuite.$testArg.$ext;
             $this->runTest($test, $command);
             return Command::SUCCESS;
         }
@@ -214,22 +219,22 @@ class TestRunner {
      * @param string $name The name of the test we want to confirm if it exists.
      * @param array $testSuites The array of test suites.  Best practice is to use const provided 
      * by child class.
-     * @param string|array $extension The file extension or array of file extensions.  
+     * @param string|array $extensions A string or an array of supported file extensions.  
      * Best practice is to use const provided by child class.
      * @return bool True if test does exist.  Otherwise, we return false.
      */
-    public static function testExists(string $name, array $testSuites, string|array $extension): bool {
+    public static function testExists(string $name, array $testSuites, string|array $extensions): bool {
         $count = 0;
-        if(is_array($extension)) {    
+        if(is_array($extensions)) {    
             foreach($testSuites as $testSuite) {
-                foreach($extension as $ext) {
+                foreach($extensions as $ext) {
                     if(file_exists($testSuite.$name.$ext)) $count++;
                     if($count > 0) return true;
                 }
             }
         } else {
             foreach($testSuites as $testSuite) {
-                if(file_exists($testSuite.$name.$extension)) $count++;
+                if(file_exists($testSuite.$name.$extensions)) $count++;
                 if($count > 0) return true;
             }
         }
@@ -242,7 +247,8 @@ class TestRunner {
      * @param string $name name of the test class to be executed.
      * @param array $testSuites The array of test suites.  Best practice is to use const provided 
      * by child class.
-     * @param string $extension The file extension.  Best practice is to use const provided by child class.
+     * @param string $extension A string or an array of supported file extensions.  
+     * Best practice is to use const provided by child class.
      * @return bool True if the class name exists in multiple test suites.  Otherwise, 
      * we return false.
      */
