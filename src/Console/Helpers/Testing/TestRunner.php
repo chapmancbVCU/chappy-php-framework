@@ -147,7 +147,7 @@ class TestRunner {
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectTests(
+    public function selectByTestName(
         string $testArg, 
         array $testSuites, 
         string|array $extensions, 
