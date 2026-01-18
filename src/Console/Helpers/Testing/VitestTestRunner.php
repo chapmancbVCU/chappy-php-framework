@@ -4,7 +4,6 @@ namespace Console\Helpers\Testing;
 
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Arr;
-use Core\Lib\Utilities\Str;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
