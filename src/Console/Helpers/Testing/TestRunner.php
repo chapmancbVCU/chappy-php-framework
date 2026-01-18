@@ -305,7 +305,8 @@ class TestRunner {
      *
      * @param array<int> $suiteStatuses Array of integers that indicates a 
      * test is successful.  
-     * @return bool
+     * @return bool True if execution is successful.  Otherwise, we return 
+     * false.
      */
     public static function testSuiteStatus(array $suiteStatuses): bool {
         foreach($suiteStatuses as $status) {
