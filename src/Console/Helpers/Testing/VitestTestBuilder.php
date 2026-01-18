@@ -33,25 +33,32 @@ class VitestTestBuilder implements TestBuilderInterface {
             return Command::FAILURE;
         }
 
-        if($input->getOption('component')) {
+        $component = $input->getOption('component');
+        $unit = $input->getOption('unit');
+        $view = $input->getOption('view');
+
+        if($component && !$unit && !$view) {
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::COMPONENT_PATH.$testName.VitestTestRunner::REACT_TEST_FILE_EXTENSION,
                 VitestStubs::componentAndViewTestStub(),
                 'Component test'
             );
-        } else if($input->getOption('unit')) {
+        } else if($unit && !$component && !$view) {
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::UNIT_PATH.$testName.VitestTestRunner::UNIT_TEST_FILE_EXTENSION,
                 VitestStubs::unitTestStub(),
                 'Unit test'
             );
-        } else if($input->getOption('view')){
+        } else if($view && !$component && !$unit){
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::VIEW_PATH.$testName.VitestTestRunner::REACT_TEST_FILE_EXTENSION,
                 VitestStubs::componentAndViewTestStub(),
                 'View test'
             );
-        } 
+        } else {
+            Tools::info("More than one flag has been supplied.", Logger::WARNING, Tools::BG_YELLOW);
+            return Command::FAILURE;
+        }
 
         Tools::info(
             "Please use a flag to ensure test is created in intended test suite.", 
