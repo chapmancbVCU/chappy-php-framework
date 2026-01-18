@@ -122,7 +122,7 @@ class TestRunner {
      *
      * @return void
      */
-    protected function noAvailableTestsMessage(): void {
+    private function noAvailableTestsMessage(): void {
         Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
     }
 
