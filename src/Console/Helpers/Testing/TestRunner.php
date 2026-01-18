@@ -61,7 +61,8 @@ class TestRunner {
      *
      * @param array $testSuites An array of test suite paths.  
      * Best practice is to use const provided by child class.
-     * @param string|array $extensions A string or an array of supported file extensions.
+     * @param string|array $extensions A string or an array of supported file 
+     * extensions.  Best practice is to use const provided by child class.
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
@@ -150,9 +151,10 @@ class TestRunner {
      * Supports ability to run test by class/file name.
      *
      * @param string $testArg The name of the class/file.
-     * @param array $testSuites An array of test suite paths.  Best practice is to use const provided by child class.
-     * @param string|array $extensions A string or an array of supported file extensions.  
-     * Best practice is to use const provided by child class.
+     * @param array $testSuites An array of test suite paths.  Best practice 
+     * is to use const provided by child class.
+     * @param string|array $extensions A string or an array of supported file 
+     * extensions.  Best practice is to use const provided by child class.
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
