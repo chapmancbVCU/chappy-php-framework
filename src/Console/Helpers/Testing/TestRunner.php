@@ -251,7 +251,7 @@ class TestRunner {
      * by child class.
      * @param string $extension A string or an array of supported file extensions.  
      * Best practice is to use const provided by child class.
-     * @return bool True if the class name exists in multiple test suites.  Otherwise, 
+     * @return bool True if the class or file name exists in multiple test suites.  Otherwise, 
      * we return false.
      */
     public static function testIfSame(string $name, array $testSuites, string|array $extension): bool {
