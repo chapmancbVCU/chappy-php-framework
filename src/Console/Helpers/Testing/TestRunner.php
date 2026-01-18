@@ -83,12 +83,17 @@ class TestRunner {
             return Command::FAILURE;
         }
 
+        $statuses = [];
         foreach($suites as $suite) {
-            $this->testSuite($suite, $testCommand);
+            $statuses[] = $this->testSuite($suite, $testCommand);
         }
 
-        Tools::info("All available test have been completed");
-        return Command::SUCCESS;
+        if($this->testSuiteStatus($statuses)) {
+            Tools::info("All available test have been completed");
+            return Command::SUCCESS;
+        }
+
+        return Command::FAILURE;
     }
     /**
      * Present message to the user if the following conditions are true:
