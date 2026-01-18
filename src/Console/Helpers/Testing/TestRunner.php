@@ -104,6 +104,7 @@ class TestRunner {
             Tools::BG_RED
         );
     }
+    
     /**
      * Retrieves all files in test suite so they can be run.
      *
