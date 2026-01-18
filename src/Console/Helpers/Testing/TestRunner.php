@@ -24,14 +24,14 @@ class TestRunner {
      *
      * @var string 
      */
-    public string $inputOptions;
+    protected string $inputOptions;
 
     /**
      * The Symfony OutputInterface object.
      *
      * @var OutputInterface 
      */
-    public OutputInterface $output;
+    protected OutputInterface $output;
 
     /**
      * Constructor
