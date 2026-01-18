@@ -69,7 +69,6 @@ class RunTestCommand extends Command
         $test = new PHPUnitRunner($input, $output);
         $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
 
-
         if(!$feature && !$unit && !$testArg) {
             return $test->allTests($testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
@@ -121,6 +120,7 @@ class RunTestCommand extends Command
             );
         }
         if($testArg && PHPUnitRunner::testSuiteStatus($testNameByFlagStatus)) {
+            Tools::info("Completed tests by name and suite(s)");
             return Command::SUCCESS;
         }
 
