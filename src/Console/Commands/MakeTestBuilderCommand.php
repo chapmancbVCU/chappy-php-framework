@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\View;
+use Console\Helpers\Testing\ThirdPartyTests;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,7 +22,7 @@ class MakeTestBuilderCommand extends Command {
         $this->setName('make:test:builder')
             ->setDescription('Generates a test builder for a 3rd party suite')
             ->setHelp('php console make:view <directory_name>.<view_name>')
-            ->addArgument('builder-name', InputArgument::REQUIRED, 'Pass name of directory and view');
+            ->addArgument('builder-name', InputArgument::REQUIRED, 'Pass name of directory and builder');
     }
 
     /**
@@ -34,14 +34,14 @@ class MakeTestBuilderCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $viewArray = Tools::dotNotationVerify('view-name', $input);
-        if($viewArray == Command::FAILURE) return Command::FAILURE;
+        $builderArray = Tools::dotNotationVerify('builder-name', $input);
+        if($builderArray == Command::FAILURE) return Command::FAILURE;
 
-        $directory = View::VIEW_PATH.$viewArray[0];
+        $directory = ThirdPartyTests::THIRD_PARTY_TEST_PATH.'Testing'.DS.$builderArray[0];
         $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
         
         if($isDirMade == Command::FAILURE) return Command::FAILURE;
 
-        return View::makeView($directory . DS . $viewArray[1].'.php');
+        return ThirdPartyTests::makeBuilder($directory . DS . $builderArray[1].'.php');
     }
 }
