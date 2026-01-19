@@ -17,7 +17,7 @@ final class VitestTestRunner extends TestRunner {
      * The array of options allowed as input for the test command.
      */
     public const ALLOWED_OPTIONS = [
-
+        'coverage'
     ];
 
     /**
@@ -38,7 +38,7 @@ final class VitestTestRunner extends TestRunner {
     /**
      * The command for Vitest
      */
-    public const TEST_COMMAND = "npm test ";
+    public const TEST_COMMAND = "npx vitest run";
 
     /**
      * Path for unit tests.
@@ -74,6 +74,9 @@ final class VitestTestRunner extends TestRunner {
         foreach(self::ALLOWED_OPTIONS as $allowed) {
             if($input->hasOption($allowed) && $input->getOption($allowed)) {
                 switch($allowed) {
+                    case 'coverage':
+                        $args[] = '--coverage';
+                        break;
                     default;
                         $args[] = '--' . $allowed;
                         break;

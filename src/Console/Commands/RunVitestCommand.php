@@ -32,7 +32,9 @@ class RunVitestCommand extends Command
             // Suite flags
             ->addOption('component', null, InputOption::VALUE_NONE, 'Run component tests.')
             ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.')
-            ->addOption('view', null, InputOption::VALUE_NONE, 'Run unit view.');
+            ->addOption('view', null, InputOption::VALUE_NONE, 'Run unit view.')
+            
+            ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.');
     }
  
     /**
