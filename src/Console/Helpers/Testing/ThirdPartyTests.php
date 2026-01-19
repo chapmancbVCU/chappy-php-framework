@@ -25,11 +25,18 @@ class ThirdPartyTests {
         );
     }
 
-    // public static function makeRunner(string $filePath, string $className): int {
-    //     return Tools::writeFile(
-    //         $filePath.$className.".php",
-    //         ThirdPartyTestsStubs::builderStub($className),
-    //         "Test builder"
-    //     );
-    // }
+    /**
+     * Generates a new unit test runner class.
+     *
+     * @param string $filePath The name for the new runner class.
+     * @param string $className
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeRunner(string $filePath, string $className): int {
+        return Tools::writeFile(
+            $filePath.$className.".php",
+            ThirdPartyTestsStubs::runnerStub($className),
+            "Test runner"
+        );
+    }
 }
