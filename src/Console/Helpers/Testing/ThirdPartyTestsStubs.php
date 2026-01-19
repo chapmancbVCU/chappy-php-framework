@@ -10,7 +10,7 @@ class ThirdPartyTestsStubs {
     /**
      * Stub for custom test builder class.
      *
-     * @param string $className
+     * @param string $className Name for the new builder class.
      * @return string The contents of the new test builder class.
      */
     public static function builderStub(string $className): string {
@@ -32,9 +32,57 @@ class {$className} implements TestBuilderInterface {
 PHP;
     }
 
+    /**
+     * Stub for custom test runner class.
+     *
+     * @param string $className Name for the new runner class.
+     * @return string The contents of the new runner class.
+     */
     public static function runnerStub(string $className): string {
         return <<<PHP
+<?php
+declare(strict_types=1);
+namespace Console\Helpers\Testing;
 
+use Console\Helpers\Tools;
+use Console\Helpers\Testing\TestRunner;
+use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Arr;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+final class {$className} extends TestRunner {
+    /**
+     * The array of options allowed as input for the test command.
+     */
+    public const ALLOWED_OPTIONS = [];
+
+    /**
+     * The command for Unit Testing Framework.
+     */
+    public const TEST_COMMAND = '';
+
+    /**
+     * Constructor
+     *
+     * @param InputInterface \$input The Symfony InputInterface object.
+     * @param OutputInterface \$output The Symfony OutputInterface object.
+     */
+    public function __construct(InputInterface \$input, OutputInterface \$output) {
+        \$this->inputOptions = self::parseOptions(\$input);
+        parent::__construct(\$output);
+    }
+
+    /**
+     * Parses unit test related arguments and ignore Symfony arguments.
+     *
+     * @param InputInterface \$input Instance of InputInterface from command.
+     * @return string A string containing the arguments to be provided to 
+     * PHPUnit.
+     */
+    public static function parseOptions(InputInterface \$input): string { return ""; }
+}
 PHP;
     }
 }
