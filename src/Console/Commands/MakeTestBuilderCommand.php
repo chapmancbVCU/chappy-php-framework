@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\Helpers\Testing\ThirdPartyTests;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -34,14 +35,7 @@ class MakeTestBuilderCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $builderArray = Tools::dotNotationVerify('builder-name', $input);
-        if($builderArray == Command::FAILURE) return Command::FAILURE;
-
-        $directory = ThirdPartyTests::THIRD_PARTY_TEST_PATH.'Testing'.DS.$builderArray[0];
-        $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
-        
-        if($isDirMade == Command::FAILURE) return Command::FAILURE;
-
-        return ThirdPartyTests::makeBuilder($directory . DS . $builderArray[1].'.php');
+        $className = Str::ucfirst($input->getArgument('builder-name'));
+        return ThirdPartyTests::makeBuilder($className);
     }
 }
