@@ -9,7 +9,7 @@ use Console\Helpers\Tools;
  * parting unit testing frameworks.
  */
 class ThirdPartyTests {
-    public const THIRD_PARTY_TEST_PATH = ROOT.DS.'app'.DS.'CustomTests'.DS;
+    public const THIRD_PARTY_TEST_PATH = ROOT.DS.'app'.DS.'Testing'.DS;
 
     /**
      * Generates a new unit test builder class.
@@ -18,8 +18,9 @@ class ThirdPartyTests {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeBuilder(string $className): int {
+        Tools::pathExists(self::THIRD_PARTY_TEST_PATH);
         return Tools::writeFile(
-            self::THIRD_PARTY_TEST_PATH.'Testing'.DS.$className.".php",
+            self::THIRD_PARTY_TEST_PATH.$className.".php",
             ThirdPartyTestsStubs::builderStub($className),
             "Test builder"
         );
@@ -28,13 +29,13 @@ class ThirdPartyTests {
     /**
      * Generates a new unit test runner class.
      *
-     * @param string $filePath The name for the new runner class.
-     * @param string $className
+     * @param string $className The name for the new runner class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeRunner(string $filePath, string $className): int {
+    public static function makeRunner(string $className): int {
+        Tools::pathExists(self::THIRD_PARTY_TEST_PATH);
         return Tools::writeFile(
-            $filePath.$className.".php",
+            self::THIRD_PARTY_TEST_PATH.DS.$className.".php",
             ThirdPartyTestsStubs::runnerStub($className),
             "Test runner"
         );
