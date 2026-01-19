@@ -21,7 +21,7 @@ class MakeTestRunnerCommand extends Command {
     {
         $this->setName('make:test:runner')
             ->setDescription('Generates a test runner for a 3rd party suite')
-            ->setHelp('php console make:view <directory_name>.<view_name>')
+            ->setHelp('php console make:test:runner <runner-name>')
             ->addArgument('runner-name', InputArgument::REQUIRED, 'Pass name of directory and runner');
     }
 

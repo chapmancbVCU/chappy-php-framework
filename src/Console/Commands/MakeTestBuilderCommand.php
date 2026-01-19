@@ -21,7 +21,7 @@ class MakeTestBuilderCommand extends Command {
     {
         $this->setName('make:test:builder')
             ->setDescription('Generates a test builder for a 3rd party suite')
-            ->setHelp('php console make:view <directory_name>.<view_name>')
+            ->setHelp('php console make:test:builder <builder-name>')
             ->addArgument('builder-name', InputArgument::REQUIRED, 'Pass name of directory and builder');
     }
 
