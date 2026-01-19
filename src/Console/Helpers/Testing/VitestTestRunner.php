@@ -17,7 +17,12 @@ final class VitestTestRunner extends TestRunner {
      * The array of options allowed as input for the test command.
      */
     public const ALLOWED_OPTIONS = [
-        'coverage'
+        'bail',
+        'clearCache',
+        'coverage',
+        'pass-with-no-tests',
+        'retry',
+        'update'
     ];
 
     /**
@@ -74,8 +79,23 @@ final class VitestTestRunner extends TestRunner {
         foreach(self::ALLOWED_OPTIONS as $allowed) {
             if($input->hasOption($allowed) && $input->getOption($allowed)) {
                 switch($allowed) {
+                    case 'bail':
+                        $args[] = '--bail ' . $input->getOption('bail');
+                        break;
+                    case 'clearCache':
+                        $args[] = '--clearCache';
+                        break;
                     case 'coverage':
                         $args[] = '--coverage';
+                        break;
+                    case 'pass-with-no-tests':
+                        $args[] = '--pass-with-no-tests';
+                        break;
+                    case 'retry':
+                        $args[] = '--retry ' . $input->getOption('retry');
+                        break;
+                    case 'update':
+                        $args[] = '--update';
                         break;
                     default;
                         $args[] = '--' . $allowed;

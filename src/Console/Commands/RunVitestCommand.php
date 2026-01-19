@@ -34,9 +34,14 @@ class RunVitestCommand extends Command
             ->addOption('unit', null, InputOption::VALUE_NONE, 'Run unit tests.')
             ->addOption('view', null, InputOption::VALUE_NONE, 'Run unit view.')
             
-            ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.');
+            ->addOption('bail', null, InputOption::VALUE_REQUIRED, 'Stop after N failure.', false)
+            ->addOption('clearCache', null, InputOption::VALUE_NONE, 'Clears the cache.')
+            ->addOption('coverage', null, InputOption::VALUE_NONE, 'Display code coverage summary.')
+            ->addOption('pass-with-no-tests', null, InputOption::VALUE_NONE, 'Pass with no tests.')
+            ->addOption('retry', null, InputOption::VALUE_REQUIRED, 'Retry failing tests.', false)
+            ->addOption('update', null, InputOption::VALUE_NONE, 'Update snapshots.');
     }
- 
+
     /**
      * Executes the command
      *
