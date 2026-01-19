@@ -16,7 +16,7 @@ class ThirdPartyTestsStubs {
     public static function builderStub(string $className): string {
         return <<<PHP
 <?php
-namespace App\CustomTests\Testing;
+namespace App\Testing;
 
 use Console\Helpers\Testing\TestBuilderInterface;
 use Symfony\Component\Console\Command\Command;
@@ -42,7 +42,7 @@ PHP;
         return <<<PHP
 <?php
 declare(strict_types=1);
-namespace Console\Helpers\Testing;
+namespace App\Testing;
 
 use Console\Helpers\Tools;
 use Console\Helpers\Testing\TestRunner;
