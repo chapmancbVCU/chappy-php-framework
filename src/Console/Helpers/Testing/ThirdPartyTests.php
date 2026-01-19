@@ -4,7 +4,10 @@ namespace Console\Helpers\Testing;
 
 use Console\Helpers\Tools;
 
-
+/**
+ * Contains collection of functions that allows uses to add support for third 
+ * parting unit testing frameworks.
+ */
 class ThirdPartyTests {
     public const THIRD_PARTY_TEST_PATH = ROOT.DS.'app'.DS.'CustomTests'.DS;
 
