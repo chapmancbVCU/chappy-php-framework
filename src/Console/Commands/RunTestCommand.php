@@ -69,6 +69,7 @@ class RunTestCommand extends Command
         $test = new PHPUnitRunner($input, $output);
         $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
 
+        // Run all tests.
         if(!$feature && !$unit && !$testArg) {
             return $test->allTests($testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
@@ -82,7 +83,10 @@ class RunTestCommand extends Command
             return $test->selectByTestName($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
-        // Run tests based on --unit and --feature flags
+        /* 
+         * Run tests based on --unit and --feature flags and verify successful 
+         * completion.
+         */
         $runBySuiteStatus = [];
         if(!$testArg && $unit) {
             $runBySuiteStatus[] = $test->testSuite(
@@ -101,7 +105,10 @@ class RunTestCommand extends Command
             return Command::SUCCESS;
         }
 
-        // Run individual test file based on --unit and --feature flags
+        /* 
+         * Run individual test file based on --unit and --feature flags and 
+         * verify successful completion.
+         */
         $testNameByFlagStatus = [];
         if($testArg && $unit) {
             $testNameByFlagStatus[] = $test->singleFileWithinSuite(
