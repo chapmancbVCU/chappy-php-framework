@@ -15,17 +15,26 @@ class ThirdPartyTestsStubs {
      */
     public static function builderStub(string $className): string {
         return <<<PHP
+<?php
 namespace App\CustomTests\Testing;
 
 use Console\Helpers\Testing\TestBuilderInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
 class {$className} implements TestBuilderInterface {
 
     public static function makeTest(string \$testName, InputInterface \$input): int {
 
+        return Command::SUCCESS;
     }
 }
+PHP;
+    }
+
+    public static function runnerStub(string $className): string {
+        return <<<PHP
+
 PHP;
     }
 }
