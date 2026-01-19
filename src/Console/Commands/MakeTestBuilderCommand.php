@@ -35,6 +35,6 @@ class MakeTestBuilderCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $className = Str::ucfirst($input->getArgument('builder-name'));
-        return ThirdPartyTests::makeBuilder($className);
+        return ThirdPartyTests::makeBuilder($className."Builder");
     }
 }
