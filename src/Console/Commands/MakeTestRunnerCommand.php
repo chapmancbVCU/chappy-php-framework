@@ -35,15 +35,7 @@ class MakeTestRunnerCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $builderArray = Tools::dotNotationVerify('runner-name', $input);
-        if($builderArray == Command::FAILURE) return Command::FAILURE;
-
-        $filePath = ThirdPartyTests::THIRD_PARTY_TEST_PATH.'Suites'.DS.Str::ucfirst($builderArray[0]).DS;
-        $isDirMade = Tools::createDirWithPrompt($filePath, $input, $output);
-        
-        if($isDirMade == Command::FAILURE) return Command::FAILURE;
-
-        $className = Str::ucfirst($builderArray[1]);
-        return ThirdPartyTests::makeRunner($filePath, $className);
+        $className = Str::ucfirst($input->getArgument('runner-name'));
+        return ThirdPartyTests::makeRunner($className."Runner");
     }
 }
