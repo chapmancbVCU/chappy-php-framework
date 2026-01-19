@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Testing\ThirdPartyTests;
-use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -10,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * 
+ * Command for generating third party unit test builders.
  */
 class MakeTestBuilderCommand extends Command {
     /**
