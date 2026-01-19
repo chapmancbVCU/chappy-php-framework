@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * 
+ * Command for generating new unit test runner.
  */
 class MakeTestRunnerCommand extends Command {
     /**
@@ -35,15 +35,15 @@ class MakeTestRunnerCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $builderArray = Tools::dotNotationVerify('builder-name', $input);
+        $builderArray = Tools::dotNotationVerify('runner-name', $input);
         if($builderArray == Command::FAILURE) return Command::FAILURE;
 
-        $filePath = ThirdPartyTests::THIRD_PARTY_TEST_PATH.'Testing'.DS.$builderArray[0].DS;
+        $filePath = ThirdPartyTests::THIRD_PARTY_TEST_PATH.'Suites'.DS.Str::ucfirst($builderArray[0]).DS;
         $isDirMade = Tools::createDirWithPrompt($filePath, $input, $output);
         
         if($isDirMade == Command::FAILURE) return Command::FAILURE;
 
         $className = Str::ucfirst($builderArray[1]);
-        return ThirdPartyTests::makeBuilder($filePath, $className);
+        return ThirdPartyTests::makeRunner($filePath, $className);
     }
 }
