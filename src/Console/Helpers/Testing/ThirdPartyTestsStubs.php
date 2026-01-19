@@ -79,7 +79,7 @@ final class {$className} extends TestRunner {
      *
      * @param InputInterface \$input Instance of InputInterface from command.
      * @return string A string containing the arguments to be provided to 
-     * PHPUnit.
+     * to your testing framework.
      */
     public static function parseOptions(InputInterface \$input): string { 
         \$args = [];
