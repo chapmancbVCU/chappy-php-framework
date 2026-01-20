@@ -245,11 +245,11 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
-     * Simulates a DELETE request to a specified URI. This sets the request method
-     * to DELETE and runs the matching controller action.
+     * Simulates a PUT request to a specified URI. This sets the request method
+     * to PUT and runs the matching controller action.
      *
      * @param string $uri The URI to simulate, e.g., '/posts/10'
-     * @param array $data The DELETE data.
+     * @param array $data The PUT data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
     protected function put(string $uri, array $data = []): TestResponse
