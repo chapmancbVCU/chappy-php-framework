@@ -8,11 +8,13 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Database\Seeders\DatabaseSeeder;
 use Core\Lib\Testing\TestResponse;
-
+use Core\Lib\Http\JsonResponse;
 /**
  * Abstract class for test cases.
  */
 abstract class ApplicationTestCase extends TestCase {
+    use JsonResponse;
+
     /**
      * The controller output.
      * @var array
@@ -149,7 +151,7 @@ abstract class ApplicationTestCase extends TestCase {
             call_user_func_array([$controller, $actionMethod], $urlSegments); // full support for routed parameters
             return ob_get_clean();
         } catch (\Throwable $e) {
-            // 🚨 Clean buffer to avoid risky test error
+            // Clean buffer to avoid risky test error
             if (ob_get_level() > 0) {
                 ob_end_clean();
             }
@@ -192,6 +194,43 @@ abstract class ApplicationTestCase extends TestCase {
         }
     }
 
+    protected function json(string $method, string $uri, array $data = []): TestResponse {
+        $method = strtoupper($method);
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Enable test-friendly JSON responses
+        JsonResponse::$testing = true;
+
+        // Feed raw JSON body to JsonResponse::get()
+        JsonResponse::$rawInputOverride = json_encode($data);
+
+        $_SERVER['REQUEST_METHOD'] = $method;
+
+        // Optional but useful if you ever check headers in your code
+        $_SERVER['CONTENT_TYPE'] = 'application/json';
+
+        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
+        $controller = $segments[0] ?? 'home';
+        $action = $segments[1] ?? 'index';
+        $params = array_slice($segments, 2);
+
+        try {
+            $output = $this->controllerOutput($controller, $action, $params);
+
+            // Prefer the status code your jsonResponse() set (if you added it)
+            $status = JsonResponse::$lastStatus ?? 200;
+
+            return new TestResponse($output, $status);
+        } catch (\Exception $e) {
+            return new TestResponse($e->getMessage(), 500);
+        } finally {
+            JsonResponse::$rawInputOverride = null;
+            unset($_SERVER['REQUEST_METHOD'], $_SERVER['CONTENT_TYPE']);
+        }
+    }
     /**
      * Create a mock file for actions that require file input in form submissions.
      *
@@ -216,33 +255,34 @@ abstract class ApplicationTestCase extends TestCase {
      * @param array $data The POST data to inject (e.g., ['email' => 'foo@bar.com'])
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
-    protected function post(string $uri, array $data = []): TestResponse
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+    // protected function post(string $uri, array $data = []): TestResponse
+    // {
+    //     if (session_status() === PHP_SESSION_NONE) {
+    //         session_start();
+    //     }
 
-        $_POST = $data;
-        $_REQUEST = $data; // ✅ Ensure Input::get() works correctly
-        $_SERVER['REQUEST_METHOD'] = 'POST'; // ✅ Fix your test case
+    //     $_POST = $data;
+    //     $_REQUEST = $data; // ✅ Ensure Input::get() works correctly
+    //     $_SERVER['REQUEST_METHOD'] = 'POST'; // ✅ Fix your test case
 
-        $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
-        $controller = $segments[0] ?? 'home';
-        $action = $segments[1] ?? 'index';
-        $params = array_slice($segments, 2);
+    //     $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
+    //     $controller = $segments[0] ?? 'home';
+    //     $action = $segments[1] ?? 'index';
+    //     $params = array_slice($segments, 2);
 
-        try {
-            $output = $this->controllerOutput($controller, $action, $params);
-            return new TestResponse($output, 200);
-        } catch (\Exception $e) {
-            return new TestResponse($e->getMessage(), 500);
-        } finally {
-            // Clean up
-            $_POST = [];
-            $_REQUEST = [];
-            unset($_SERVER['REQUEST_METHOD']);
-        }
-    }
+    //     try {
+    //         $output = $this->controllerOutput($controller, $action, $params);
+    //         return new TestResponse($output, 200);
+    //     } catch (\Exception $e) {
+    //         return new TestResponse($e->getMessage(), 500);
+    //     } finally {
+    //         // Clean up
+    //         $_POST = [];
+    //         $_REQUEST = [];
+    //         unset($_SERVER['REQUEST_METHOD']);
+    //     }
+    // }
+    protected function post(string $uri, array $data = []): TestResponse   { return $this->request('POST', $uri, $data); }
 
     /**
      * Simulates a PUT request to a specified URI. This sets the request method
@@ -252,15 +292,47 @@ abstract class ApplicationTestCase extends TestCase {
      * @param array $data The PUT data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
-    protected function put(string $uri, array $data = []): TestResponse
-    {
+    // protected function put(string $uri, array $data = []): TestResponse
+    // {
+    //     if (session_status() === PHP_SESSION_NONE) {
+    //         session_start();
+    //     }
+
+    //     $_POST = $data;
+    //     $_REQUEST = $data; // ✅ Needed for Input::get() to work correctly
+    //     $_SERVER['REQUEST_METHOD'] = 'PUT'; // ✅ Simulate PUT
+
+    //     $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
+    //     $controller = $segments[0] ?? 'home';
+    //     $action = $segments[1] ?? 'index';
+    //     $params = array_slice($segments, 2);
+
+    //     try {
+    //         $output = $this->controllerOutput($controller, $action, $params);
+    //         return new TestResponse($output, 200);
+    //     } catch (\Exception $e) {
+    //         return new TestResponse($e->getMessage(), 500);
+    //     } finally {
+    //         // Clean up for future tests
+    //         $_POST = [];
+    //         $_REQUEST = [];
+    //         unset($_SERVER['REQUEST_METHOD']);
+    //     }
+    // }
+    protected function put(string $uri, array $data = []): TestResponse    { return $this->request('PUT', $uri, $data); }
+    protected function patch(string $uri, array $data = []): TestResponse  { return $this->request('PATCH', $uri, $data); }
+    protected function delete(string $uri, array $data = []): TestResponse { return $this->request('DELETE', $uri, $data); }
+
+    protected function request(string $method, string $uri, array $data = []): TestResponse {
+        $method = strtoupper($method);
+
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
         $_POST = $data;
-        $_REQUEST = $data; // ✅ Needed for Input::get() to work correctly
-        $_SERVER['REQUEST_METHOD'] = 'PUT'; // ✅ Simulate PUT
+        $_REQUEST = $data;
+        $_SERVER['REQUEST_METHOD'] = $method;
 
         $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
         $controller = $segments[0] ?? 'home';
@@ -273,10 +345,95 @@ abstract class ApplicationTestCase extends TestCase {
         } catch (\Exception $e) {
             return new TestResponse($e->getMessage(), 500);
         } finally {
-            // Clean up for future tests
             $_POST = [];
             $_REQUEST = [];
             unset($_SERVER['REQUEST_METHOD']);
+        }
+    }
+
+    protected function routeJson(string $method, string $pathInfo, array $payload = []): TestResponse {
+        $method = strtoupper($method);
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $prevServer = $_SERVER;
+
+        // Enable test-mode behavior in JsonResponse (no exit, no headers)
+        JsonResponse::$testing = true;
+        JsonResponse::$rawInputOverride = json_encode($payload);
+
+        $_SERVER['REQUEST_METHOD'] = $method;
+        $_SERVER['PATH_INFO'] = $pathInfo;
+        $_SERVER['REQUEST_URI'] = $pathInfo;
+        $_SERVER['CONTENT_TYPE'] = 'application/json';
+
+        ob_start();
+        try {
+            \Core\Router::route();
+            $output = ob_get_clean();
+
+            $status = JsonResponse::$lastStatus ?? 200;
+            return new TestResponse($output, $status);
+        } catch (\Throwable $e) {
+            if (ob_get_level() > 0) {
+                ob_end_clean();
+            }
+            return new TestResponse($e->getMessage(), 500);
+        } finally {
+            JsonResponse::$rawInputOverride = null;
+            $_SERVER = $prevServer;
+        }
+    }
+
+    protected function routeRequest(string $method, string $pathInfo, array $data = []): TestResponse {
+        $method = strtoupper($method);
+
+        // Start session if needed (router checks Session)
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Backup globals
+        $prevServer  = $_SERVER;
+        $prevGet     = $_GET;
+        $prevPost    = $_POST;
+        $prevRequest = $_REQUEST;
+
+        // Simulate request
+        $_SERVER['REQUEST_METHOD'] = $method;
+        $_SERVER['PATH_INFO'] = $pathInfo; // Router prefers PATH_INFO
+        $_SERVER['REQUEST_URI'] = $pathInfo; // fallback behavior if needed
+
+        if ($method === 'GET') {
+            $_GET = $data;
+            $_REQUEST = $data;
+            $_POST = [];
+        } else {
+            $_POST = $data;
+            $_REQUEST = $data;
+            $_GET = [];
+        }
+
+        ob_start();
+        try {
+            \Core\Router::route();
+            $output = ob_get_clean();
+            return new TestResponse($output, 200);
+        } catch (\Throwable $e) {
+            if (ob_get_level() > 0) {
+                ob_end_clean();
+            }
+            // Your router tends to redirect instead of throw for not-found,
+            // so most true exceptions here are 500s.
+            return new TestResponse($e->getMessage(), 500);
+        } finally {
+            // Restore globals
+            $_SERVER  = $prevServer;
+            $_GET     = $prevGet;
+            $_POST    = $prevPost;
+            $_REQUEST = $prevRequest;
         }
     }
 
@@ -288,7 +445,8 @@ abstract class ApplicationTestCase extends TestCase {
     protected function setUp(): void
     {
         parent::setUp();
-        
+        JsonResponse::$testing = true;
+
         DB::connect([
             'driver'   => Env::get('DB_CONNECTION', 'sqlite'),
             'database' => Env::get('DB_DATABASE', ':memory:'),
