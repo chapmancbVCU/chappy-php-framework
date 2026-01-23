@@ -206,6 +206,29 @@ abstract class ApplicationTestCase extends TestCase {
         }
     }
 
+    /**
+     * Simulates a JSON request to a controller/action route (bypassing the Router) and
+     * returns a {@see TestResponse} containing the captured output and status.
+     *
+     * This helper is designed for testing API-style controller actions that use the
+     * {@see \Core\Lib\Http\JsonResponse} trait. It injects a raw JSON payload into
+     * {@see \Core\Lib\Http\JsonResponse::get()} via {@see \Core\Lib\Http\JsonResponse::$rawInputOverride},
+     * enables test mode so JSON responses do not call exit, and sets the request method and
+     * JSON content type.
+     *
+     * URI mapping behavior:
+     * - "/" segments are interpreted as "/{controller}/{action}/param1/param2"
+     * - Default controller is "home"
+     * - Default action is "index"
+     *
+     * Note: This does not invoke the framework Router; it directly instantiates the controller
+     * and executes the action via {@see controllerOutput()}.
+     *
+     * @param string $method HTTP method (e.g., "GET", "POST", "PUT", "PATCH", "DELETE").
+     * @param string $uri URI in the form "/controller/action/param1/param2". Leading/trailing slashes are optional.
+     * @param array<string, mixed> $data JSON payload to provide to {@see \Core\Lib\Http\JsonResponse::get()}.
+     * @return TestResponse A response wrapper containing the controller output and an HTTP-like status code.
+     */
     protected function json(string $method, string $uri, array $data = []): TestResponse {
         $method = strtoupper($method);
 
@@ -243,7 +266,7 @@ abstract class ApplicationTestCase extends TestCase {
             unset($_SERVER['REQUEST_METHOD'], $_SERVER['CONTENT_TYPE']);
         }
     }
-    
+
     /**
      * Create a mock file for actions that require file input in form submissions.
      *
@@ -296,6 +319,27 @@ abstract class ApplicationTestCase extends TestCase {
         return $this->request('PUT', $uri, $data); 
     }
 
+    /**
+     * Simulates a form-style request to a controller/action route (bypassing the Router) and
+     * returns a {@see TestResponse} containing the captured output and status.
+     *
+     * This helper populates the superglobals {@see $_POST} and {@see $_REQUEST} with the provided
+     * data, sets {@see $_SERVER['REQUEST_METHOD']} to the requested method, and executes the
+     * targeted controller action via {@see controllerOutput()}.
+     *
+     * URI mapping behavior:
+     * - "/" segments are interpreted as "/{controller}/{action}/param1/param2"
+     * - Default controller is "home"
+     * - Default action is "index"
+     *
+     * Note: This does not invoke the framework Router; it directly instantiates the controller
+     * and executes the action via {@see controllerOutput()}.
+     *
+     * @param string $method HTTP method (e.g., "GET", "POST", "PUT", "PATCH", "DELETE").
+     * @param string $uri URI in the form "/controller/action/param1/param2". Leading/trailing slashes are optional.
+     * @param array<string, mixed> $data Request payload to inject into {@see $_POST} and {@see $_REQUEST}.
+     * @return TestResponse A response wrapper containing the controller output and an HTTP-like status code.
+     */
     protected function request(string $method, string $uri, array $data = []): TestResponse {
         $method = strtoupper($method);
 
@@ -324,6 +368,28 @@ abstract class ApplicationTestCase extends TestCase {
         }
     }
 
+    /**
+     * Simulates a JSON request through the full framework routing layer and returns a
+     * {@see TestResponse} containing the captured output and status.
+     *
+     * This helper is intended for end-to-end API tests where you want to exercise the
+     * Router's URL parsing and controller dispatch (i.e., closer to a real HTTP request).
+     *
+     * It enables test-mode behavior in {@see \Core\Lib\Http\JsonResponse} (preventing exit),
+     * injects a raw JSON payload via {@see \Core\Lib\Http\JsonResponse::$rawInputOverride},
+     * sets {@see $_SERVER['PATH_INFO']} and {@see $_SERVER['REQUEST_URI']} to the provided path,
+     * and executes {@see \Core\Router::route()} while capturing output buffering.
+     *
+     * Status code behavior:
+     * - If your JsonResponse implementation records the last status (e.g., in JsonResponse::$lastStatus),
+     *   that value is used.
+     * - Otherwise, defaults to 200.
+     *
+     * @param string $method HTTP method (e.g., "GET", "POST", "PUT", "PATCH", "DELETE").
+     * @param string $pathInfo The routed path (e.g., "/favorites/show", "/favorites/destroy/10").
+     * @param array<string, mixed> $payload JSON payload to inject into {@see \Core\Lib\Http\JsonResponse::get()}.
+     * @return TestResponse A response wrapper containing the routed output and an HTTP-like status code.
+     */
     protected function routeJson(string $method, string $pathInfo, array $payload = []): TestResponse {
         $method = strtoupper($method);
 
@@ -360,6 +426,31 @@ abstract class ApplicationTestCase extends TestCase {
         }
     }
 
+    /**
+     * Simulates a non-JSON request through the full framework routing layer and returns a
+     * {@see TestResponse} containing the captured output and status.
+     *
+     * This helper is intended for end-to-end tests where you want to exercise the Router's
+     * URL parsing and dispatch for traditional controller/view behavior (or form submissions).
+     *
+     * It temporarily mutates global request state:
+     * - {@see $_SERVER['REQUEST_METHOD']}
+     * - {@see $_SERVER['PATH_INFO']} (preferred by the Router)
+     * - {@see $_SERVER['REQUEST_URI']} (fallback behavior)
+     * - {@see $_GET}/{@see $_POST}/{@see $_REQUEST} depending on the HTTP method
+     *
+     * The Router is then executed via {@see \Core\Router::route()} while output buffering is captured.
+     * All globals are restored in a finally block to reduce cross-test contamination.
+     *
+     * Note: This helper returns status 200 on successful router execution. If a {@see \Throwable}
+     * is thrown, the helper returns status 500 with the exception message as content. Many "not found"
+     * or ACL flows may redirect rather than throw, depending on your Router design.
+     *
+     * @param string $method HTTP method (e.g., "GET", "POST", "PUT", "PATCH", "DELETE").
+     * @param string $pathInfo The routed path (e.g., "/profile/index", "/admindashboard/edit/5").
+     * @param array<string, mixed> $data Query parameters (GET) or form payload (non-GET) to inject into superglobals.
+     * @return TestResponse A response wrapper containing the routed output and an HTTP-like status code.
+     */
     protected function routeRequest(string $method, string $pathInfo, array $data = []): TestResponse {
         $method = strtoupper($method);
 
