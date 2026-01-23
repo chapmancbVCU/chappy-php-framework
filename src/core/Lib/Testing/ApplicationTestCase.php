@@ -243,6 +243,7 @@ abstract class ApplicationTestCase extends TestCase {
             unset($_SERVER['REQUEST_METHOD'], $_SERVER['CONTENT_TYPE']);
         }
     }
+    
     /**
      * Create a mock file for actions that require file input in form submissions.
      *

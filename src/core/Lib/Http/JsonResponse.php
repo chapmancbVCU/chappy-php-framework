@@ -12,17 +12,31 @@ use Core\Lib\Utilities\Arr;
  */
 trait JsonResponse {
     /** 
-     * @var string|null Raw JSON override for tests 
+     * Raw JSON override for tests 
+     * 
+     * @var string|null 
      */
     public static ?string $rawInputOverride = null;
 
-    /** When true, do not send headers or exit; just echo JSON and return. */
+    /** 
+     * When true, do not send headers or exit; just echo JSON and return. 
+     * 
+     * @var bool
+     */
     public static bool $testing = false;
 
-    /** Captured status for tests (optional convenience). */
+    /** 
+     * Captured status for tests (optional convenience). 
+     * 
+     * @var int
+     */
     public static int $lastStatus = 200;
 
-    /** Captured headers for tests (optional convenience). */
+    /** 
+     * Captured headers for tests (optional convenience). 
+     * 
+     * @var array
+     */
     public static array $lastHeaders = [];
     
     /**
