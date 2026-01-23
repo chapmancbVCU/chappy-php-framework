@@ -160,6 +160,18 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
+     * Simulates a DELETE request to a specified URI. This sets the request method
+     * to DELETE and runs the matching controller action.
+     *
+     * @param string $uri The URI to simulate, e.g., '/posts/10'
+     * @param array $data The DELETE data.
+     * @return \Core\Lib\Testing\TestResponse The test response object
+     */
+    protected function delete(string $uri, array $data = []): TestResponse { 
+        return $this->request('DELETE', $uri, $data); 
+    }
+
+    /**
      * Simulates an HTTP GET request to a given URI by resolving and executing
      * the corresponding controller and action, capturing the output.
      *
@@ -248,6 +260,18 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
+     * Simulates a PATCH request to a specified URI. This sets the request method
+     * to PUT and runs the matching controller action.
+     *
+     * @param string $uri The URI to simulate, e.g., '/patch/10'
+     * @param array $data The PATCH data.
+     * @return \Core\Lib\Testing\TestResponse The test response object
+     */
+    protected function patch(string $uri, array $data = []): TestResponse { 
+        return $this->request('PATCH', $uri, $data); 
+    }
+
+    /**
      * Simulates a POST request by setting $_POST data and executing the specified
      * controller and action. Returns a TestResponse with the output and status.
      *
@@ -255,34 +279,9 @@ abstract class ApplicationTestCase extends TestCase {
      * @param array $data The POST data to inject (e.g., ['email' => 'foo@bar.com'])
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
-    // protected function post(string $uri, array $data = []): TestResponse
-    // {
-    //     if (session_status() === PHP_SESSION_NONE) {
-    //         session_start();
-    //     }
-
-    //     $_POST = $data;
-    //     $_REQUEST = $data; // ✅ Ensure Input::get() works correctly
-    //     $_SERVER['REQUEST_METHOD'] = 'POST'; // ✅ Fix your test case
-
-    //     $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
-    //     $controller = $segments[0] ?? 'home';
-    //     $action = $segments[1] ?? 'index';
-    //     $params = array_slice($segments, 2);
-
-    //     try {
-    //         $output = $this->controllerOutput($controller, $action, $params);
-    //         return new TestResponse($output, 200);
-    //     } catch (\Exception $e) {
-    //         return new TestResponse($e->getMessage(), 500);
-    //     } finally {
-    //         // Clean up
-    //         $_POST = [];
-    //         $_REQUEST = [];
-    //         unset($_SERVER['REQUEST_METHOD']);
-    //     }
-    // }
-    protected function post(string $uri, array $data = []): TestResponse   { return $this->request('POST', $uri, $data); }
+    protected function post(string $uri, array $data = []): TestResponse { 
+        return $this->request('POST', $uri, $data); 
+    }
 
     /**
      * Simulates a PUT request to a specified URI. This sets the request method
@@ -292,36 +291,9 @@ abstract class ApplicationTestCase extends TestCase {
      * @param array $data The PUT data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
-    // protected function put(string $uri, array $data = []): TestResponse
-    // {
-    //     if (session_status() === PHP_SESSION_NONE) {
-    //         session_start();
-    //     }
-
-    //     $_POST = $data;
-    //     $_REQUEST = $data; // ✅ Needed for Input::get() to work correctly
-    //     $_SERVER['REQUEST_METHOD'] = 'PUT'; // ✅ Simulate PUT
-
-    //     $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
-    //     $controller = $segments[0] ?? 'home';
-    //     $action = $segments[1] ?? 'index';
-    //     $params = array_slice($segments, 2);
-
-    //     try {
-    //         $output = $this->controllerOutput($controller, $action, $params);
-    //         return new TestResponse($output, 200);
-    //     } catch (\Exception $e) {
-    //         return new TestResponse($e->getMessage(), 500);
-    //     } finally {
-    //         // Clean up for future tests
-    //         $_POST = [];
-    //         $_REQUEST = [];
-    //         unset($_SERVER['REQUEST_METHOD']);
-    //     }
-    // }
-    protected function put(string $uri, array $data = []): TestResponse    { return $this->request('PUT', $uri, $data); }
-    protected function patch(string $uri, array $data = []): TestResponse  { return $this->request('PATCH', $uri, $data); }
-    protected function delete(string $uri, array $data = []): TestResponse { return $this->request('DELETE', $uri, $data); }
+    protected function put(string $uri, array $data = []): TestResponse { 
+        return $this->request('PUT', $uri, $data); 
+    }
 
     protected function request(string $method, string $uri, array $data = []): TestResponse {
         $method = strtoupper($method);
