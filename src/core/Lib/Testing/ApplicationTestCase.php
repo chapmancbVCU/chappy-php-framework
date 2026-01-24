@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 use Database\Seeders\DatabaseSeeder;
 use Core\Lib\Testing\TestResponse;
 use Core\Lib\Http\JsonResponse;
+use Core\Exceptions\FrameworkException;
+
 /**
  * Abstract class for test cases.
  */
@@ -138,7 +140,7 @@ abstract class ApplicationTestCase extends TestCase {
      * @param array $urlSegments          Parameters to pass to the action
      * @return string Rendered HTML output
      *
-     * @throws \Exception
+     * @throws FrameworkException
      */
     protected function controllerOutput(string $controllerSlug, string $actionSlug, array $urlSegments = []): string
     {
@@ -146,13 +148,13 @@ abstract class ApplicationTestCase extends TestCase {
         $actionMethod = $actionSlug . 'Action';
 
         if (!class_exists($controllerClass)) {
-            throw new \Exception("Controller class {$controllerClass} not found.");
+            throw new FrameworkException("Controller class {$controllerClass} not found.");
         }
 
         $controller = new $controllerClass($controllerSlug, $actionSlug);
         
         if (!method_exists($controller, $actionMethod)) {
-            throw new \Exception("Method {$actionMethod} not found in {$controllerClass}.");
+            throw new FrameworkException("Method {$actionMethod} not found in {$controllerClass}.");
         }
 
         ob_start();
@@ -224,7 +226,7 @@ abstract class ApplicationTestCase extends TestCase {
         try {
             $output = $this->controllerOutput($controller, $action, $params);
             return new TestResponse($output, 200);
-        } catch (\Exception $e) {
+        } catch (FrameworkException $e) {
             return new TestResponse($e->getMessage(), 404);
         } finally {
             unset($_SERVER['REQUEST_METHOD']);
@@ -280,7 +282,7 @@ abstract class ApplicationTestCase extends TestCase {
             $status = JsonResponse::$lastStatus ?? 200;
 
             return new TestResponse($output, $status);
-        } catch (\Exception $e) {
+        } catch (FrameworkException $e) {
             return new TestResponse($e->getMessage(), 500);
         } finally {
             JsonResponse::setRawInputOverride();
@@ -376,7 +378,7 @@ abstract class ApplicationTestCase extends TestCase {
         try {
             $output = $this->controllerOutput($controller, $action, $params);
             return new TestResponse($output, 200);
-        } catch (\Exception $e) {
+        } catch (FrameworkException $e) {
             return new TestResponse($e->getMessage(), 500);
         } finally {
             $_POST = [];
@@ -453,7 +455,7 @@ abstract class ApplicationTestCase extends TestCase {
 
             $status = JsonResponse::$lastStatus ?? 200;
             return new TestResponse($output, $status);
-        } catch (\Throwable $e) {
+        } catch (FrameworkException $e) {
             self::cleanBuffer();
             return new TestResponse($e->getMessage(), 500);
         } finally {
@@ -486,6 +488,8 @@ abstract class ApplicationTestCase extends TestCase {
      * @param string $pathInfo The routed path (e.g., "/profile/index", "/admindashboard/edit/5").
      * @param array<string, mixed> $data Query parameters (GET) or form payload (non-GET) to inject into superglobals.
      * @return TestResponse A response wrapper containing the routed output and an HTTP-like status code.
+     * 
+     * @throws FrameworkException
      */
     protected function routeRequest(string $method, string $pathInfo, array $data = []): TestResponse {
         $method = strtoupper($method);
@@ -516,7 +520,7 @@ abstract class ApplicationTestCase extends TestCase {
             \Core\Router::route();
             $output = ob_get_clean();
             return new TestResponse($output, 200);
-        } catch (\Throwable $e) {
+        } catch (FrameworkException $e) {
             self::cleanBuffer();
             // Router tends to redirect instead of throw for not-found,
             // so most true exceptions here are 500s.
