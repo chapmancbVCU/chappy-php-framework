@@ -163,7 +163,7 @@ abstract class ApplicationTestCase extends TestCase {
      * Simulates a DELETE request to a specified URI. This sets the request method
      * to DELETE and runs the matching controller action.
      *
-     * @param string $uri The URI to simulate, e.g., '/posts/10'
+     * @param string $uri The URI to simulate, e.g., '/model_name/destroy/10'
      * @param array $data The DELETE data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
@@ -285,9 +285,9 @@ abstract class ApplicationTestCase extends TestCase {
 
     /**
      * Simulates a PATCH request to a specified URI. This sets the request method
-     * to PUT and runs the matching controller action.
+     * to PATCH and runs the matching controller action.
      *
-     * @param string $uri The URI to simulate, e.g., '/patch/10'
+     * @param string $uri The URI to simulate, e.g., '/model_name/patch/10'
      * @param array $data The PATCH data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
@@ -299,7 +299,7 @@ abstract class ApplicationTestCase extends TestCase {
      * Simulates a POST request by setting $_POST data and executing the specified
      * controller and action. Returns a TestResponse with the output and status.
      *
-     * @param string $uri The URI to simulate, e.g., '/login'
+     * @param string $uri The URI to simulate, e.g., '/auth/register'
      * @param array $data The POST data to inject (e.g., ['email' => 'foo@bar.com'])
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
@@ -311,7 +311,7 @@ abstract class ApplicationTestCase extends TestCase {
      * Simulates a PUT request to a specified URI. This sets the request method
      * to PUT and runs the matching controller action.
      *
-     * @param string $uri The URI to simulate, e.g., '/posts/10'
+     * @param string $uri The URI to simulate, e.g., '/model_name/update/10'
      * @param array $data The PUT data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
