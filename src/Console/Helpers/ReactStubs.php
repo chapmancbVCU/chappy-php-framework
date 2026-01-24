@@ -339,6 +339,12 @@ export default function Index({ user }) {
                 <p>Markdown and API documentation included and easy to customize.</p>
                 </div>
             </div>
+            <p class="text-center text-muted mt-5">
+                To customize this page, edit <code>resources/js/pages/home/Index.jsx</code> and <code>app/Controllers/HomeController.php</code>.
+            </p>
+            <p class="text-center text-muted mb-5">
+                Chappy.php Framework v{version}
+            </p>
         </div>
     );
 }
