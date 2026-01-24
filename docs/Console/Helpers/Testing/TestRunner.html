@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Console\Helpers\Testing\TestRunner | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
+        <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
+        <script async defer src="../../../js/bootstrap.min.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Console_Helpers_Testing_TestRunner" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                    <li><a href="../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../Console.html">Console</a></li><li class="backslash">\</li><li><a href="../../../Console/Helpers.html">Helpers</a></li><li class="backslash">\</li><li><a href="../../../Console/Helpers/Testing.html">Testing</a></li><li class="backslash">\</li><li>TestRunner</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>TestRunner    
+            </h1>
+    </div>
+
+    
+    <p>        class
+    <strong>TestRunner</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Class that contains functions that can be used by runner child classes.</p></p>                    </div>
+            
+        
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        ALLOWED_OPTIONS
+                                    </td>
+                <td class="last">
+                    <p><em><p>The array of options allowed as input for the test command.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_inputOptions">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$inputOptions</td>
+                <td class="last"><p>A string of input options provided as input when running the
+test command.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_output">
+                                        protected                                        <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>
+                                                                                
+                                    </td>
+                <td>$output</td>
+                <td class="last"><p>The Symfony OutputInterface object.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(<abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+        
+                                            <p>Constructor</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_areAllSuitesEmpty">areAllSuitesEmpty</a>(array $testSuites)
+        
+                                            <p><p>Test to ensure there is not an empty test suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_allTests">allTests</a>(array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extensions, string $testCommand)
+        
+                                            <p><p>Performs all available tests.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_duplicateTestNameMessage">duplicateTestNameMessage</a>()
+        
+                                            <p><p>Present message to the user if the following conditions are true:</p>
+<ul>
+<li>Test case files in multiple suites with the same name</li>
+<li>There exists a function in both classes with the same name</li>
+</ul></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getAllTestsInSuite">getAllTestsInSuite</a>(string $path, string $ext)
+        
+                                            <p><p>Retrieves all files in test suite so they can be run.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_noAvailableTestsMessage">noAvailableTestsMessage</a>()
+        
+                                            <p><p>Alerts use if there are no available tests to perform.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_runTest">runTest</a>(string $test, string $testCommand)
+        
+                                            <p><p>Runs the unit test for your testing suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_selectByTestName">selectByTestName</a>(string $testArg, array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extensions, string $testCommand)
+        
+                                            <p><p>Supports ability to run test by class/file name.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_singleFileWithinSuite">singleFileWithinSuite</a>(string $testArg, string $testSuite, string $ext, string $command)
+        
+                                            <p><p>Performs testing against a single class within a test suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testExists">testExists</a>(string $name, array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extensions)
+        
+                                            <p><p>Determine if test file exists in any of the available test suites.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testIfSame">testIfSame</a>(string $name, array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extension)
+        
+                                            <p><p>Enforces rule that classes/files across test suites should be unique for filtering.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testSuite">testSuite</a>(array $collection, string $testCommand)
+        
+                                            <p><p>Run all test files in an individual test suite.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testSuiteStatus">testSuiteStatus</a>(array $suiteStatuses)
+        
+                                            <p><p>Determines if execution of a test suite(s) is successful.  The
+result is determined by testing if the status value is set and
+its integer value is equal to Command::SUCCESS.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_verifyFilterSyntax">verifyFilterSyntax</a>(string $testArg)
+        
+                                            <p><p>Ensure filter syntax is correct.  Does not test if only one : is in string.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line 41</div>
+        <code>                    
+    <strong>__construct</strong>(<abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p>Constructor</p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td><p>The Symfony OutputInterface object.</p></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_areAllSuitesEmpty">
+        <div class="location">at line 53</div>
+        <code>                    bool
+    <strong>areAllSuitesEmpty</strong>(array $testSuites)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Test to ensure there is not an empty test suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$testSuites</td>
+                <td><p>The collection of all available test suites.
+Best practice is to use const provided by child class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if all test suites are empty.  Otherwise, we return
+false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_allTests">
+        <div class="location">at line 69</div>
+        <code>                    int
+    <strong>allTests</strong>(array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extensions, string $testCommand)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs all available tests.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$testSuites</td>
+                <td><p>An array of test suite paths.
+Best practice is to use const provided by child class.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\Helpers\Testing\string|array">string|array</abbr></td>
+                <td>$extensions</td>
+                <td><p>A string or an array of supported file
+extensions.  Best practice is to use const provided by child class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$testCommand</td>
+                <td><p>The command for running the tests.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_duplicateTestNameMessage">
+        <div class="location">at line 109</div>
+        <code>        static        private    void
+    <strong>duplicateTestNameMessage</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Present message to the user if the following conditions are true:</p>
+<ul>
+<li>Test case files in multiple suites with the same name</li>
+<li>There exists a function in both classes with the same name</li>
+</ul></p>                <p><p>This function is called internally by the selectTest function.</p></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAllTestsInSuite">
+        <div class="location">at line 125</div>
+        <code>        static            array
+    <strong>getAllTestsInSuite</strong>(string $path, string $ext)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves all files in test suite so they can be run.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td><p>Path to test suite.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$ext</td>
+                <td><p>File extension to specify between php and js related
+tests.  Best practice is to use const provided by child class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The array of all filenames in a particular directory.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_noAvailableTestsMessage">
+        <div class="location">at line 134</div>
+        <code>                private    void
+    <strong>noAvailableTestsMessage</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Alerts use if there are no available tests to perform.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_runTest">
+        <div class="location">at line 145</div>
+        <code>                    void
+    <strong>runTest</strong>(string $test, string $testCommand)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Runs the unit test for your testing suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$test</td>
+                <td><p>The test to be performed.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$testCommand</td>
+                <td><p>The test command to be executed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_selectByTestName">
+        <div class="location">at line 162</div>
+        <code>                    int
+    <strong>selectByTestName</strong>(string $testArg, array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extensions, string $testCommand)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Supports ability to run test by class/file name.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$testArg</td>
+                <td><p>The name of the class/file.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$testSuites</td>
+                <td><p>An array of test suite paths.  Best practice
+is to use const provided by child class.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\Helpers\Testing\string|array">string|array</abbr></td>
+                <td>$extensions</td>
+                <td><p>A string or an array of supported file
+extensions.  Best practice is to use const provided by child class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$testCommand</td>
+                <td><p>The command for running the tests.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_singleFileWithinSuite">
+        <div class="location">at line 210</div>
+        <code>                    int
+    <strong>singleFileWithinSuite</strong>(string $testArg, string $testSuite, string $ext, string $command)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs testing against a single class within a test suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$testArg</td>
+                <td><p>The name of the test file without extension.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$testSuite</td>
+                <td><p>The name of the test suite.  Best practice is
+to use const provided by child class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$ext</td>
+                <td><p>The file extension.  Best practice is to use const provided by child class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$command</td>
+                <td><p>The test command.  Best practice is to use const provided by child class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testExists">
+        <div class="location">at line 229</div>
+        <code>        static            bool
+    <strong>testExists</strong>(string $name, array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extensions)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determine if test file exists in any of the available test suites.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name of the test we want to confirm if it exists.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$testSuites</td>
+                <td><p>The array of test suites.  Best practice is to use const provided
+by child class.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\Helpers\Testing\string|array">string|array</abbr></td>
+                <td>$extensions</td>
+                <td><p>A string or an array of supported file extensions.
+Best practice is to use const provided by child class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if test does exist.  Otherwise, we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testIfSame">
+        <div class="location">at line 258</div>
+        <code>        static            bool
+    <strong>testIfSame</strong>(string $name, array $testSuites, <abbr title="Console\Helpers\Testing\string|array">string|array</abbr> $extension)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule that classes/files across test suites should be unique for filtering.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>name of the test class to be executed.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$testSuites</td>
+                <td><p>The array of test suites.  Best practice is to use const provided
+by child class.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\Helpers\Testing\string|array">string|array</abbr></td>
+                <td>$extension</td>
+                <td><p>A string or an array of supported file extensions.
+Best practice is to use const provided by child class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the class or file name exists in multiple test suites.  Otherwise,
+we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testSuite">
+        <div class="location">at line 289</div>
+        <code>                    int
+    <strong>testSuite</strong>(array $collection, string $testCommand)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Run all test files in an individual test suite.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$collection</td>
+                <td><p>All classes in a particular test suite.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$testCommand</td>
+                <td><p>The test command to be executed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testSuiteStatus">
+        <div class="location">at line 311</div>
+        <code>        static            bool
+    <strong>testSuiteStatus</strong>(array $suiteStatuses)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determines if execution of a test suite(s) is successful.  The
+result is determined by testing if the status value is set and
+its integer value is equal to Command::SUCCESS.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$suiteStatuses</td>
+                <td><p>Array of integers that indicates a
+test is successful.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if execution is successful.  Otherwise, we return
+false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_verifyFilterSyntax">
+        <div class="location">at line 324</div>
+        <code>        static            bool
+    <strong>verifyFilterSyntax</strong>(string $testArg)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensure filter syntax is correct.  Does not test if only one : is in string.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$testArg</td>
+                <td><p>The name of the test file with filter.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if filter syntax is correct.  Otherwise, we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>
