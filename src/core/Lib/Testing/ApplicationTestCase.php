@@ -122,6 +122,15 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
+     * Clean buffer to avoid risky test error.
+     *
+     * @return void
+     */
+    private static function cleanBuffer(): void {
+        if (ob_get_level() > 0) ob_end_clean();
+    }
+
+    /**
      * Simulates a controller action based on URL-style input and captures its output.
      *
      * @param string $controllerSlug e.g., 'home'
@@ -151,10 +160,7 @@ abstract class ApplicationTestCase extends TestCase {
             call_user_func_array([$controller, $actionMethod], $urlSegments); // full support for routed parameters
             return ob_get_clean();
         } catch (\Throwable $e) {
-            // Clean buffer to avoid risky test error
-            if (ob_get_level() > 0) {
-                ob_end_clean();
-            }
+            self::cleanBuffer();
             throw $e;
         }
     }
@@ -380,6 +386,15 @@ abstract class ApplicationTestCase extends TestCase {
         }
     }
 
+    /**
+     * Resolves action based on controller name and action name found in 
+     * segments array.
+     *
+     * @param array $segments Contains segments for controller name, action 
+     * name, and params.
+     * @return array An array containing strings for controller name and 
+     * action name.
+     */
     private static function resolveControllerAction(array $segments): array {
         return [
             $controller = $segments[0] ?? 'home',
@@ -387,6 +402,13 @@ abstract class ApplicationTestCase extends TestCase {
         ];
     }
 
+    /**
+     * Resolves params found in segments array.
+     *
+     * @param array $segments Contains segments for controller name, action 
+     * name, and params.
+     * @return array An array of parameters.
+     */
     private static function resolveParams(array $segments): array {
         return array_slice($segments, 2);
     }
@@ -435,9 +457,7 @@ abstract class ApplicationTestCase extends TestCase {
             $status = JsonResponse::$lastStatus ?? 200;
             return new TestResponse($output, $status);
         } catch (\Throwable $e) {
-            if (ob_get_level() > 0) {
-                ob_end_clean();
-            }
+            self::cleanBuffer();
             return new TestResponse($e->getMessage(), 500);
         } finally {
             JsonResponse::$rawInputOverride = null;
@@ -503,10 +523,8 @@ abstract class ApplicationTestCase extends TestCase {
             $output = ob_get_clean();
             return new TestResponse($output, 200);
         } catch (\Throwable $e) {
-            if (ob_get_level() > 0) {
-                ob_end_clean();
-            }
-            // Your router tends to redirect instead of throw for not-found,
+            self::cleanBuffer();
+            // Router tends to redirect instead of throw for not-found,
             // so most true exceptions here are 500s.
             return new TestResponse($e->getMessage(), 500);
         } finally {
