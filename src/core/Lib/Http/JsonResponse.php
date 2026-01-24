@@ -166,4 +166,15 @@ trait JsonResponse {
         http_response_code(204);
         exit;
     }
+
+    /**
+     * Inject JSON body by providing payload parameter.  Also performs cleanup 
+     * to avoid leaking into other tests.
+     *
+     * @param string|false|null $payload Result of json_encode for null.
+     * @return void
+     */
+    public static function setRawInputOverride(string|false|null $payload = null): void {
+        self::$rawInputOverride = $payload;
+    }
 }

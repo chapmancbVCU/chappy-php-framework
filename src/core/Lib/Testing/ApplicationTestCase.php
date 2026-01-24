@@ -262,7 +262,7 @@ abstract class ApplicationTestCase extends TestCase {
         self::enableJsonTestingMode();
 
         // Feed raw JSON body to JsonResponse::get()
-        JsonResponse::$rawInputOverride = json_encode($data);
+        JsonResponse::setRawInputOverride(json_encode($data));
 
         $_SERVER['REQUEST_METHOD'] = $method;
 
@@ -283,7 +283,7 @@ abstract class ApplicationTestCase extends TestCase {
         } catch (\Exception $e) {
             return new TestResponse($e->getMessage(), 500);
         } finally {
-            JsonResponse::$rawInputOverride = null;
+            JsonResponse::setRawInputOverride();
             unset($_SERVER['REQUEST_METHOD'], $_SERVER['CONTENT_TYPE']);
         }
     }
@@ -441,7 +441,7 @@ abstract class ApplicationTestCase extends TestCase {
 
         // Enable test-mode behavior in JsonResponse (no exit, no headers)
         self::enableJsonTestingMode();
-        JsonResponse::$rawInputOverride = json_encode($payload);
+        JsonResponse::setRawInputOverride(json_encode($payload));
 
         self::simulateRequest($method, $pathInfo);
         $_SERVER['CONTENT_TYPE'] = 'application/json';
@@ -457,7 +457,7 @@ abstract class ApplicationTestCase extends TestCase {
             self::cleanBuffer();
             return new TestResponse($e->getMessage(), 500);
         } finally {
-            JsonResponse::$rawInputOverride = null;
+            JsonResponse::setRawInputOverride();
             $_SERVER = $prevServer;
         }
     }
