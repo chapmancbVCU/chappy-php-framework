@@ -172,6 +172,27 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
+     * Set JsonResponse::$testing to true so we can test responses.
+     *
+     * @return void
+     */
+    protected function enableJsonTestingMode(): void {
+        JsonResponse::$testing = true;
+    }
+
+    /**
+     * Simulate a session where a function we are testing expects a user 
+     * to be authenticated.
+     *
+     * @return void
+     */
+    protected function ensureSessionStarts(): void {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    /**
      * Simulates an HTTP GET request to a given URI by resolving and executing
      * the corresponding controller and action, capturing the output.
      *
@@ -231,13 +252,10 @@ abstract class ApplicationTestCase extends TestCase {
      */
     protected function json(string $method, string $uri, array $data = []): TestResponse {
         $method = strtoupper($method);
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        self::ensureSessionStarts();
 
         // Enable test-friendly JSON responses
-        JsonResponse::$testing = true;
+        self::enableJsonTestingMode();
 
         // Feed raw JSON body to JsonResponse::get()
         JsonResponse::$rawInputOverride = json_encode($data);
@@ -342,10 +360,7 @@ abstract class ApplicationTestCase extends TestCase {
      */
     protected function request(string $method, string $uri, array $data = []): TestResponse {
         $method = strtoupper($method);
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        self::ensureSessionStarts();
 
         $_POST = $data;
         $_REQUEST = $data;
@@ -392,15 +407,11 @@ abstract class ApplicationTestCase extends TestCase {
      */
     protected function routeJson(string $method, string $pathInfo, array $payload = []): TestResponse {
         $method = strtoupper($method);
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
+        self::ensureSessionStarts();
         $prevServer = $_SERVER;
 
         // Enable test-mode behavior in JsonResponse (no exit, no headers)
-        JsonResponse::$testing = true;
+        self::enableJsonTestingMode();
         JsonResponse::$rawInputOverride = json_encode($payload);
 
         $_SERVER['REQUEST_METHOD'] = $method;
@@ -455,9 +466,7 @@ abstract class ApplicationTestCase extends TestCase {
         $method = strtoupper($method);
 
         // Start session if needed (router checks Session)
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        self::ensureSessionStarts();
 
         // Backup globals
         $prevServer  = $_SERVER;
