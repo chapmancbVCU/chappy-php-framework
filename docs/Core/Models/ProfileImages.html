@@ -100,14 +100,25 @@
             <div class="description">
             <p><p>Supports CRUD operations on profile image records.</p></p>                    </div>
             
+                <h2>Traits</h2>
+
         
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../../Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a>    </div>
+                <div class="col-md-6"><p>Creates the $created_at and $updated_at fields and performs the operation
+that updates timestamps.</p></div>
+            </div>
+            </div>
+    
             <h2>Constants</h2>    <table class="table table-condensed">
                     <tr>
                 <td>
                                                                                                                         BLACKLIST
                                     </td>
                 <td class="last">
-                    <p><em><p>Constant for blacklist</p></em></p>
+                    <p><em><p>Constant for blacklist.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -116,7 +127,7 @@
                                                                                                                         WHITELIST
                                     </td>
                 <td class="last">
-                    <p><em><p>Constant for whitelist</p></em></p>
+                    <p><em><p>Constant for whitelist.</p></em></p>
                     <p></p>
                 </td>
             </tr>
@@ -192,6 +203,26 @@
                 <td class="last"><p>The array of validation errors.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Model.html#property__validationErrors">
 <abbr title="Core\Model">Model</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_created_at">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$created_at</td>
+                <td class="last"><p>Time record was created.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasTimestamps.html#property_created_at">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_updated_at">
+                                                                                string
+                                                                                
+                                    </td>
+                <td>$updated_at</td>
+                <td class="last"><p>Time record was updated.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasTimestamps.html#property_updated_at">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_allowedFileTypes">
@@ -584,17 +615,6 @@ cause this function to return false.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    void
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_timeStamps">timeStamps</a>()
-        
-                                            <p><p>Sets values for timestamp fields.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_timeStamps">
-<abbr title="Core\Model">Model</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     bool
                 </div>
                 <div class="col-md-8">
@@ -640,6 +660,17 @@ implemented by models that run form validation because since it is
 called from within this class.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_validator">
 <abbr title="Core\Model">Model</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_timeStamps">timeStamps</a>()
+        
+                                            <p><p>Sets values for timestamp fields.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasTimestamps.html#method_timeStamps">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -959,7 +990,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 86</div>
+        <div class="location">at line 89</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -1025,7 +1056,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <div class="method-item">
                     <h3 id="method_delete">
         <div class="location">in <a href="../../Core/Model.html#method_delete">
-<abbr title="Core\Model">Model</abbr></a> at line 178</div>
+<abbr title="Core\Model">Model</abbr></a> at line 176</div>
         <code>                    bool
     <strong>delete</strong>()
         </code>
@@ -1059,7 +1090,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumns">
         <div class="location">in <a href="../../Core/Model.html#method_getColumns">
-<abbr title="Core\Model">Model</abbr></a> at line 196</div>
+<abbr title="Core\Model">Model</abbr></a> at line 194</div>
         <code>        static            array
     <strong>getColumns</strong>()
         </code>
@@ -1093,7 +1124,7 @@ from a database table.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumnsForSave">
         <div class="location">in <a href="../../Core/Model.html#method_getColumnsForSave">
-<abbr title="Core\Model">Model</abbr></a> at line 206</div>
+<abbr title="Core\Model">Model</abbr></a> at line 204</div>
         <code>                    array
     <strong>getColumnsForSave</strong>()
         </code>
@@ -1127,7 +1158,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getDb">
         <div class="location">in <a href="../../Core/Model.html#method_getDb">
-<abbr title="Core\Model">Model</abbr></a> at line 234</div>
+<abbr title="Core\Model">Model</abbr></a> at line 232</div>
         <code>        static            <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>getDb</strong>()
         </code>
@@ -1160,7 +1191,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getErrorMessages">
         <div class="location">in <a href="../../Core/Model.html#method_getErrorMessages">
-<abbr title="Core\Model">Model</abbr></a> at line 247</div>
+<abbr title="Core\Model">Model</abbr></a> at line 245</div>
         <code>                    array
     <strong>getErrorMessages</strong>()
         </code>
@@ -1194,7 +1225,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method__fetchStyleParams">
         <div class="location">in <a href="../../Core/Model.html#method__fetchStyleParams">
-<abbr title="Core\Model">Model</abbr></a> at line 257</div>
+<abbr title="Core\Model">Model</abbr></a> at line 255</div>
         <code>        static    protected        array
     <strong>_fetchStyleParams</strong>(array $params)
         </code>
@@ -1237,7 +1268,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method_find">
         <div class="location">in <a href="../../Core/Model.html#method_find">
-<abbr title="Core\Model">Model</abbr></a> at line 271</div>
+<abbr title="Core\Model">Model</abbr></a> at line 269</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>find</strong>(array $params = [])
         </code>
@@ -1281,7 +1312,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findById">
         <div class="location">in <a href="../../Core/Model.html#method_findById">
-<abbr title="Core\Model">Model</abbr></a> at line 285</div>
+<abbr title="Core\Model">Model</abbr></a> at line 283</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findById</strong>(int $id)
         </code>
@@ -1324,7 +1355,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findByTable">
         <div class="location">in <a href="../../Core/Model.html#method_findByTable">
-<abbr title="Core\Model">Model</abbr></a> at line 301</div>
+<abbr title="Core\Model">Model</abbr></a> at line 299</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>findByTable</strong>(string $table, array $params = [])
         </code>
@@ -1375,7 +1406,7 @@ selecting from related tables).</p></p>
                     <div class="method-item">
                     <h3 id="method_findAllByUserId">
         <div class="location">in <a href="../../Core/Model.html#method_findAllByUserId">
-<abbr title="Core\Model">Model</abbr></a> at line 317</div>
+<abbr title="Core\Model">Model</abbr></a> at line 315</div>
         <code>        static            array
     <strong>findAllByUserId</strong>(int $user_id, array $params = [])
         </code>
@@ -1424,7 +1455,7 @@ default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findFirst">
         <div class="location">in <a href="../../Core/Model.html#method_findFirst">
-<abbr title="Core\Model">Model</abbr></a> at line 335</div>
+<abbr title="Core\Model">Model</abbr></a> at line 333</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findFirst</strong>(array $params = [])
         </code>
@@ -1468,7 +1499,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findTotal">
         <div class="location">in <a href="../../Core/Model.html#method_findTotal">
-<abbr title="Core\Model">Model</abbr></a> at line 350</div>
+<abbr title="Core\Model">Model</abbr></a> at line 348</div>
         <code>        static            int
     <strong>findTotal</strong>(array $params = [])
         </code>
@@ -1513,7 +1544,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_insert">
         <div class="location">in <a href="../../Core/Model.html#method_insert">
-<abbr title="Core\Model">Model</abbr></a> at line 365</div>
+<abbr title="Core\Model">Model</abbr></a> at line 363</div>
         <code>                    bool
     <strong>insert</strong>(array $fields)
         </code>
@@ -1557,7 +1588,7 @@ use to populate a database record.  The default value is an empty array.</p></td
                     <div class="method-item">
                     <h3 id="method_isNew">
         <div class="location">in <a href="../../Core/Model.html#method_isNew">
-<abbr title="Core\Model">Model</abbr></a> at line 377</div>
+<abbr title="Core\Model">Model</abbr></a> at line 375</div>
         <code>                    bool
     <strong>isNew</strong>()
         </code>
@@ -1591,7 +1622,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
         <div class="location">in <a href="../../Core/Model.html#method_onConstruct">
-<abbr title="Core\Model">Model</abbr></a> at line 386</div>
+<abbr title="Core\Model">Model</abbr></a> at line 384</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -1624,7 +1655,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
         <div class="location">in <a href="../../Core/Model.html#method_populateObjData">
-<abbr title="Core\Model">Model</abbr></a> at line 394</div>
+<abbr title="Core\Model">Model</abbr></a> at line 392</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -1667,7 +1698,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_query">
         <div class="location">in <a href="../../Core/Model.html#method_query">
-<abbr title="Core\Model">Model</abbr></a> at line 409</div>
+<abbr title="Core\Model">Model</abbr></a> at line 407</div>
         <code>                    <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -1716,7 +1747,7 @@ The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_runValidation">
         <div class="location">in <a href="../../Core/Model.html#method_runValidation">
-<abbr title="Core\Model">Model</abbr></a> at line 420</div>
+<abbr title="Core\Model">Model</abbr></a> at line 418</div>
         <code>                    void
     <strong>runValidation</strong>(object $validator)
         </code>
@@ -1760,7 +1791,7 @@ message if validator fails.</p></p>
                     <div class="method-item">
                     <h3 id="method_save">
         <div class="location">in <a href="../../Core/Model.html#method_save">
-<abbr title="Core\Model">Model</abbr></a> at line 435</div>
+<abbr title="Core\Model">Model</abbr></a> at line 433</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -1795,7 +1826,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
         <div class="location">in <a href="../../Core/Model.html#method__softDeleteParams">
-<abbr title="Core\Model">Model</abbr></a> at line 470</div>
+<abbr title="Core\Model">Model</abbr></a> at line 468</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -1837,42 +1868,9 @@ delete.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_timeStamps">
-        <div class="location">in <a href="../../Core/Model.html#method_timeStamps">
-<abbr title="Core\Model">Model</abbr></a> at line 496</div>
-        <code>                    void
-    <strong>timeStamps</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Sets values for timestamp fields.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>void</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_update">
         <div class="location">in <a href="../../Core/Model.html#method_update">
-<abbr title="Core\Model">Model</abbr></a> at line 512</div>
+<abbr title="Core\Model">Model</abbr></a> at line 497</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -1917,7 +1915,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
         <div class="location">in <a href="../../Core/Model.html#method_updateWhere">
-<abbr title="Core\Model">Model</abbr></a> at line 542</div>
+<abbr title="Core\Model">Model</abbr></a> at line 527</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -1979,7 +1977,7 @@ Supports:</p>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
         <div class="location">in <a href="../../Core/Model.html#method_validationPassed">
-<abbr title="Core\Model">Model</abbr></a> at line 552</div>
+<abbr title="Core\Model">Model</abbr></a> at line 537</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -2013,7 +2011,7 @@ false if there is a failure.</p></td>
                     <div class="method-item">
                     <h3 id="method_validator">
         <div class="location">in <a href="../../Core/Model.html#method_validator">
-<abbr title="Core\Model">Model</abbr></a> at line 563</div>
+<abbr title="Core\Model">Model</abbr></a> at line 548</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -2047,8 +2045,41 @@ called from within this class.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_timeStamps">
+        <div class="location">in <a href="../../Core/Traits/HasTimestamps.html#method_timeStamps">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a> at line 28</div>
+        <code>                    void
+    <strong>timeStamps</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets values for timestamp fields.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_deleteById">
-        <div class="location">at line 97</div>
+        <div class="location">at line 100</div>
         <code>        static            bool
     <strong>deleteById</strong>(int $id)
         </code>
@@ -2091,7 +2122,7 @@ false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteImages">
-        <div class="location">at line 121</div>
+        <div class="location">at line 124</div>
         <code>        static            void
     <strong>deleteImages</strong>(int $user_id, bool $unlink = false)
         </code>
@@ -2141,7 +2172,7 @@ preserve image in storage.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findCurrentProfileImage">
-        <div class="location">at line 145</div>
+        <div class="location">at line 148</div>
         <code>        static            <abbr title="Core\Models\Core\Models\ProfileImages|bool">ProfileImages|bool</abbr>
     <strong>findCurrentProfileImage</strong>(int $user_id)
         </code>
@@ -2185,7 +2216,7 @@ exits, otherwise we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findByUserId">
-        <div class="location">at line 160</div>
+        <div class="location">at line 163</div>
         <code>        static            <abbr title="Core\Models\bool|array">bool|array</abbr>
     <strong>findByUserId</strong>(int $user_id)
         </code>
@@ -2229,7 +2260,7 @@ user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getAllowedFileTypes">
-        <div class="location">at line 173</div>
+        <div class="location">at line 176</div>
         <code>        static            array
     <strong>getAllowedFileTypes</strong>()
         </code>
@@ -2261,7 +2292,7 @@ user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getMaxAllowedFileSize">
-        <div class="location">at line 183</div>
+        <div class="location">at line 186</div>
         <code>        static            int
     <strong>getMaxAllowedFileSize</strong>()
         </code>
@@ -2294,7 +2325,7 @@ file.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_updateSortByUserId">
-        <div class="location">at line 196</div>
+        <div class="location">at line 199</div>
         <code>        static            void
     <strong>updateSortByUserId</strong>(int $user_id, array $sortOrder = [])
         </code>
@@ -2343,7 +2374,7 @@ image.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uploadProfileImage">
-        <div class="location">at line 217</div>
+        <div class="location">at line 220</div>
         <code>        static            void
     <strong>uploadProfileImage</strong>(int $user_id, <a href="../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a> $uploads)
         </code>

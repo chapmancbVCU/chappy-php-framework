@@ -100,7 +100,18 @@
             <div class="description">
             <p><p>Implements features of the EmailAttachments class.</p></p>                    </div>
             
+                <h2>Traits</h2>
+
         
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../../Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a>    </div>
+                <div class="col-md-6"><p>Creates the $created_at and $updated_at fields and performs the operation
+that updates timestamps.</p></div>
+            </div>
+            </div>
+    
             <h2>Constants</h2>    <table class="table table-condensed">
                     <tr>
                 <td>
@@ -194,6 +205,26 @@
 <abbr title="Core\Model">Model</abbr></a></small></td>
             </tr>
                     <tr>
+                <td class="type" id="property_created_at">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$created_at</td>
+                <td class="last"><p>Time record was created.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasTimestamps.html#property_created_at">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_updated_at">
+                                                                                string
+                                                                                
+                                    </td>
+                <td>$updated_at</td>
+                <td class="last"><p>Time record was updated.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasTimestamps.html#property_updated_at">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></small></td>
+            </tr>
+                    <tr>
                 <td class="type" id="property_allowedFileTypes">
                     static                    protected                                        array
                                                                                 
@@ -227,15 +258,6 @@
                                     </td>
                 <td>$attachment_name</td>
                 <td class="last"><p>The attachment's name.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_created_at">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$created_at</td>
-                <td class="last"><p>Create at.</p></td>
                 <td></td>
             </tr>
                     <tr>
@@ -290,15 +312,6 @@
                                     </td>
                 <td>$size</td>
                 <td class="last"><p>Size of the attachment.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_updated_at">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$updated_at</td>
-                <td class="last"><p>Updated at.</p></td>
                 <td></td>
             </tr>
                     <tr>
@@ -675,6 +688,17 @@ called from within this class.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_timeStamps">timeStamps</a>()
+        
+                                            <p><p>Sets values for timestamp fields.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasTimestamps.html#method_timeStamps">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
@@ -949,7 +973,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 111</div>
+        <div class="location">at line 107</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -1580,7 +1604,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
-        <div class="location">at line 158</div>
+        <div class="location">at line 154</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -1968,7 +1992,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 173</div>
+        <div class="location">at line 169</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -2002,8 +2026,41 @@ called from within this class.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_timeStamps">
+        <div class="location">in <a href="../../Core/Traits/HasTimestamps.html#method_timeStamps">
+<abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a> at line 28</div>
+        <code>                    void
+    <strong>timeStamps</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets values for timestamp fields.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_formatBytes">
-        <div class="location">at line 123</div>
+        <div class="location">at line 119</div>
         <code>        static            string
     <strong>formatBytes</strong>(int $bytes, int $precision = 2)
         </code>
@@ -2051,7 +2108,7 @@ report.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getAllowedFileTypes">
-        <div class="location">at line 139</div>
+        <div class="location">at line 135</div>
         <code>        static            array
     <strong>getAllowedFileTypes</strong>()
         </code>
@@ -2083,7 +2140,7 @@ report.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getMaxAllowedFileSize">
-        <div class="location">at line 149</div>
+        <div class="location">at line 145</div>
         <code>        static            int
     <strong>getMaxAllowedFileSize</strong>()
         </code>
@@ -2116,7 +2173,7 @@ file.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uploadUsername">
-        <div class="location">at line 168</div>
+        <div class="location">at line 164</div>
         <code>        static            string
     <strong>uploadUsername</strong>(int $user_id)
         </code>
