@@ -155,10 +155,6 @@ class Model {
         // Determine column key name based on DB driver
         $columnKey = (isset($columns[0]->Field)) ? 'Field' : 'name';
 
-        // foreach ($columns as $column) {
-        //     $columnName = $column->{$columnKey};
-        //     $data->{$columnName} = $this->{$columnName};
-        // }
         (new ArraySet($columns))->each(function($column) use (&$columnName, &$data, &$columnKey) {
             $columnName = $column->{$columnKey};
             $data->{$columnName} = $this->{$columnName};
