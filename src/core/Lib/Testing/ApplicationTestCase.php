@@ -223,7 +223,6 @@ abstract class ApplicationTestCase extends TestCase {
 
         try {
             $output = $this->controllerOutput($controller, $action, $params);
-
             return new TestResponse($output, 200);
         } catch (\Exception $e) {
             return new TestResponse($e->getMessage(), 404);
@@ -444,9 +443,7 @@ abstract class ApplicationTestCase extends TestCase {
         self::enableJsonTestingMode();
         JsonResponse::$rawInputOverride = json_encode($payload);
 
-        $_SERVER['REQUEST_METHOD'] = $method;
-        $_SERVER['PATH_INFO'] = $pathInfo;
-        $_SERVER['REQUEST_URI'] = $pathInfo;
+        self::simulateRequest($method, $pathInfo);
         $_SERVER['CONTENT_TYPE'] = 'application/json';
 
         ob_start();
@@ -502,10 +499,7 @@ abstract class ApplicationTestCase extends TestCase {
         $prevPost    = $_POST;
         $prevRequest = $_REQUEST;
 
-        // Simulate request
-        $_SERVER['REQUEST_METHOD'] = $method;
-        $_SERVER['PATH_INFO'] = $pathInfo; // Router prefers PATH_INFO
-        $_SERVER['REQUEST_URI'] = $pathInfo; // fallback behavior if needed
+        self::simulateRequest($method, $pathInfo);
 
         if ($method === 'GET') {
             $_GET = $data;
@@ -534,6 +528,19 @@ abstract class ApplicationTestCase extends TestCase {
             $_POST    = $prevPost;
             $_REQUEST = $prevRequest;
         }
+    }
+
+    /**
+     * Simulates a request.
+     *
+     * @param string $method The request method.
+     * @param string $pathInfo The path for the request.
+     * @return void
+     */
+    private static function simulateRequest(string $method, string $pathInfo): void {
+        $_SERVER['REQUEST_METHOD'] = $method;
+        $_SERVER['PATH_INFO'] = $pathInfo; // Router prefers PATH_INFO
+        $_SERVER['REQUEST_URI'] = $pathInfo; // fallback behavior if needed
     }
 
     /**
