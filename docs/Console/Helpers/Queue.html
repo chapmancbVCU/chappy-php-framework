@@ -151,32 +151,12 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_jobTemplate">jobTemplate</a>(string $jobName)
-        
-                                            <p><p>Template for Jobs class.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
                     <a href="#method_makeJob">makeJob</a>(string $jobName)
         
                                             <p><p>Creates a new job class.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_queueTemplate">queueTemplate</a>(string $fileName)
-        
-                                            <p><p>Template for queue migration.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -352,50 +332,8 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_jobTemplate">
-        <div class="location">at line 67</div>
-        <code>        static        private    string
-    <strong>jobTemplate</strong>(string $jobName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Template for Jobs class.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$jobName</td>
-                <td><p>The name of the job.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The content of the job class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_makeJob">
-        <div class="location">at line 121</div>
+        <div class="location">at line 67</div>
         <code>        static            int
     <strong>makeJob</strong>(string $jobName)
         </code>
@@ -436,50 +374,8 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_queueTemplate">
-        <div class="location">at line 137</div>
-        <code>        static        private    string
-    <strong>queueTemplate</strong>(string $fileName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Template for queue migration.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$fileName</td>
-                <td><p>The file and class name.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents for the queue migration.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_queueMigration">
-        <div class="location">at line 187</div>
+        <div class="location">at line 82</div>
         <code>        static            int
     <strong>queueMigration</strong>()
         </code>
@@ -511,7 +407,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_shutdownSignals">
-        <div class="location">at line 201</div>
+        <div class="location">at line 96</div>
         <code>        static        private    void
     <strong>shutdownSignals</strong>()
         </code>
@@ -543,7 +439,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_worker">
-        <div class="location">at line 219</div>
+        <div class="location">at line 114</div>
         <code>        static            int
     <strong>worker</strong>(int $maxIterations, string $queueName = &#039;default&#039;)
         </code>

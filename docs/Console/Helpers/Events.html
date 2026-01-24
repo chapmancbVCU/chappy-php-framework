@@ -141,36 +141,6 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_eventTemplate">eventTemplate</a>(string $eventName)
-        
-                                            <p><p>Template for new event.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_eventServiceProviderTemplate">eventServiceProviderTemplate</a>(string $providerName)
-        
-                                            <p><p>Template for event service provider.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_listenerTemplate">listenerTemplate</a>(string $eventName, string $listenerName)
-        
-                                            <p><p>Template for event listener class.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
@@ -201,26 +171,6 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_queueEventTemplate">queueEventTemplate</a>(string $eventName)
-        
-                                            <p><p>Returns template for event class when queue flag is set.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_queueListenerTemplate">queueListenerTemplate</a>(string $eventName, string $listenerName)
-        
-                                            <p><p>Generates a stub for queue listener class.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     static&nbsp;bool
                 </div>
                 <div class="col-md-8">
@@ -236,139 +186,8 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_eventTemplate">
-        <div class="location">at line 31</div>
-        <code>        static            string
-    <strong>eventTemplate</strong>(string $eventName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Template for new event.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$eventName</td>
-                <td><p>The name for the new event class.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The content for the new event class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_eventServiceProviderTemplate">
-        <div class="location">at line 64</div>
-        <code>        static            string
-    <strong>eventServiceProviderTemplate</strong>(string $providerName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Template for event service provider.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$providerName</td>
-                <td><p>The name of the event service provider.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The content of the event service provider.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_listenerTemplate">
-        <div class="location">at line 100</div>
-        <code>        static            string
-    <strong>listenerTemplate</strong>(string $eventName, string $listenerName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Template for event listener class.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$eventName</td>
-                <td><p>The name of the event.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$listenerName</td>
-                <td><p>The name of the listener.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The content for the new listener class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_makeEvent">
-        <div class="location">at line 132</div>
+        <div class="location">at line 33</div>
         <code>        static            int
     <strong>makeEvent</strong>(string $eventName, bool $queue = false)
         </code>
@@ -416,7 +235,7 @@ queues.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeEventServiceProvider">
-        <div class="location">at line 149</div>
+        <div class="location">at line 50</div>
         <code>        static            int
     <strong>makeEventServiceProvider</strong>(string $providerName)
         </code>
@@ -458,7 +277,7 @@ queues.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeListener">
-        <div class="location">at line 168</div>
+        <div class="location">at line 69</div>
         <code>        static            int
     <strong>makeListener</strong>(string $eventName, string $listenerName, bool $queue = false)
         </code>
@@ -510,97 +329,8 @@ queues.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_queueEventTemplate">
-        <div class="location">at line 186</div>
-        <code>        static            string
-    <strong>queueEventTemplate</strong>(string $eventName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Returns template for event class when queue flag is set.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$eventName</td>
-                <td><p>The name of the event.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents of the event class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_queueListenerTemplate">
-        <div class="location">at line 240</div>
-        <code>        static            string
-    <strong>queueListenerTemplate</strong>(string $eventName, string $listenerName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generates a stub for queue listener class.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$eventName</td>
-                <td><p>The name of the event.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$listenerName</td>
-                <td><p>The name of the listener.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The stub for a queue listener class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_verifyListenerParams">
-        <div class="location">at line 311</div>
+        <div class="location">at line 89</div>
         <code>        static            bool
     <strong>verifyListenerParams</strong>(string $eventName, string $listenerName)
         </code>

@@ -131,6 +131,26 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_authResetPassword">authResetPassword</a>()
+        
+                                            <p><p>Generates reset password view for auth controller.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_defaultComponentTemplate">defaultComponentTemplate</a>(string $componentName)
+        
+                                            <p><p>Generates a component with default export.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_errorNotFound">errorNotFound</a>()
         
                                             <p><p>Stub for restoring required error/NotFound.jsx page component if
@@ -145,6 +165,26 @@ accidentally deleted.</p></p>                </div>
                     <a href="#method_homeIndex">homeIndex</a>()
         
                                             <p><p>Stub for home/Index.jsx page component.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_hookTemplate">hookTemplate</a>(string $hookName)
+        
+                                            <p><p>Returns contents for a new hook file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_namedComponentTemplate">namedComponentTemplate</a>(string $componentName)
+        
+                                            <p><p>Generates a named export component.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -258,8 +298,82 @@ accidentally deleted.</p></p>                </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_authResetPassword">
+        <div class="location">at line 184</div>
+        <code>        static            string
+    <strong>authResetPassword</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates reset password view for auth controller.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents for the JSX file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_defaultComponentTemplate">
+        <div class="location">at line 241</div>
+        <code>        static            string
+    <strong>defaultComponentTemplate</strong>(string $componentName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates a component with default export.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$componentName</td>
+                <td><p>The name of the component.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents of the component.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_errorNotFound">
-        <div class="location">at line 185</div>
+        <div class="location">at line 262</div>
         <code>        static            string
     <strong>errorNotFound</strong>()
         </code>
@@ -292,7 +406,7 @@ accidentally deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_homeIndex">
-        <div class="location">at line 204</div>
+        <div class="location">at line 281</div>
         <code>        static            string
     <strong>homeIndex</strong>()
         </code>
@@ -323,8 +437,92 @@ accidentally deleted.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_hookTemplate">
+        <div class="location">at line 354</div>
+        <code>        static            string
+    <strong>hookTemplate</strong>(string $hookName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns contents for a new hook file.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$hookName</td>
+                <td><p>The name of the hook.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents of the new hook file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_namedComponentTemplate">
+        <div class="location">at line 371</div>
+        <code>        static            string
+    <strong>namedComponentTemplate</strong>(string $componentName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates a named export component.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$componentName</td>
+                <td><p>The name of the component.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents of the component.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_profileImageSorter">
-        <div class="location">at line 276</div>
+        <div class="location">at line 389</div>
         <code>        static            string
     <strong>profileImageSorter</strong>()
         </code>
@@ -356,7 +554,7 @@ accidentally deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileEdit">
-        <div class="location">at line 431</div>
+        <div class="location">at line 544</div>
         <code>        static            string
     <strong>profileEdit</strong>()
         </code>
@@ -388,7 +586,7 @@ accidentally deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileIndex">
-        <div class="location">at line 519</div>
+        <div class="location">at line 632</div>
         <code>        static            string
     <strong>profileIndex</strong>()
         </code>
@@ -420,7 +618,7 @@ accidentally deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileUpdatePassword">
-        <div class="location">at line 601</div>
+        <div class="location">at line 714</div>
         <code>        static            string
     <strong>profileUpdatePassword</strong>()
         </code>

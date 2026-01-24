@@ -100,11 +100,62 @@
             <div class="description">
             <p><p>Abstract class for test cases.</p></p>                    </div>
             
+                <h2>Traits</h2>
+
         
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../../../Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a>    </div>
+                <div class="col-md-6"><p>A trait that support operations related to APIs and their associated
+JSON responses.</p></div>
+            </div>
+            </div>
+    
     
             <h2>Properties</h2>
 
             <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_rawInputOverride">
+                    static                                                            string|null
+                                                                                
+                                    </td>
+                <td>$rawInputOverride</td>
+                <td class="last"><p>Raw JSON override for tests</p></td>
+                <td><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#property_rawInputOverride">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_testing">
+                    static                                                            bool
+                                                                                
+                                    </td>
+                <td>$testing</td>
+                <td class="last"><p>When true, do not send headers or exit; just echo JSON and return.</p></td>
+                <td><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#property_testing">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lastStatus">
+                    static                                                            int
+                                                                                
+                                    </td>
+                <td>$lastStatus</td>
+                <td class="last"><p>Captured status for tests (optional convenience).</p></td>
+                <td><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#property_lastStatus">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lastHeaders">
+                    static                                                            array
+                                                                                
+                                    </td>
+                <td>$lastHeaders</td>
+                <td class="last"><p>Captured headers for tests (optional convenience).</p></td>
+                <td><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#property_lastHeaders">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
                     <tr>
                 <td class="type" id="property_controllerOutput">
                     static                                                            array
@@ -120,6 +171,73 @@
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_apiCsrfCheck">apiCsrfCheck</a>()
+        
+                                            <p><p>Checks if CSRF token has been tampered with.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#method_apiCsrfCheck">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_get">get</a>(string $uri)
+        
+                                            <p><p>Simulates an HTTP GET request to a given URI by resolving and executing
+the corresponding controller and action, capturing the output.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_jsonError">jsonError</a>(string $message, int $status = 400, array $errors = [])
+        
+                                            <p><p>Makes JSON Response for error payloads.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#method_jsonError">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_jsonResponse">jsonResponse</a>(mixed $data, int $status = 200, array $extraHeaders = [])
+        
+                                            <p><p>Sends a JSON response with headers and status code.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#method_jsonResponse">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_preflight">preflight</a>()
+        
+                                            <p><p>Respond to CORS preflight.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#method_preflight">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setRawInputOverride">setRawInputOverride</a>(mixed $payload = null)
+        
+                                            <p><p>Inject JSON body by providing payload parameter.  Also performs cleanup
+to avoid leaking into other tests.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Http/JsonResponse.html#method_setRawInputOverride">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     void
@@ -152,6 +270,16 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_cleanBuffer">cleanBuffer</a>()
+        
+                                            <p><p>Clean buffer to avoid risky test error.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     string
                 </div>
                 <div class="col-md-8">
@@ -165,10 +293,42 @@
                     <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_get">get</a>(string $uri)
+                    <a href="#method_delete">delete</a>(string $uri, array $data = [])
         
-                                            <p><p>Simulates an HTTP GET request to a given URI by resolving and executing
-the corresponding controller and action, capturing the output.</p></p>                </div>
+                                            <p><p>Simulates a DELETE request to a specified URI. This sets the request method
+to DELETE and runs the matching controller action.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_enableJsonTestingMode">enableJsonTestingMode</a>()
+        
+                                            <p><p>Set JsonResponse::$testing to true so we can test responses.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_ensureSessionStarts">ensureSessionStarts</a>()
+        
+                                            <p><p>Simulate a session where a function we are testing expects a user
+to be authenticated.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_json">json</a>(string $method, string $uri, array $data = [])
+        
+                                            <p><p>Simulates a JSON request to a controller/action route (bypassing the Router) and
+returns a {TestResponse} containing the captured output and status.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -179,6 +339,17 @@ the corresponding controller and action, capturing the output.</p></p>          
                     <a href="#method_mockFile">mockFile</a>(string $files)
         
                                             <p><p>Create a mock file for actions that require file input in form submissions.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_patch">patch</a>(string $uri, array $data = [])
+        
+                                            <p><p>Simulates a PATCH request to a specified URI. This sets the request method
+to PATCH and runs the matching controller action.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -199,8 +370,72 @@ controller and action. Returns a TestResponse with the output and status.</p></p
                 <div class="col-md-8">
                     <a href="#method_put">put</a>(string $uri, array $data = [])
         
-                                            <p><p>Simulates a DELETE request to a specified URI. This sets the request method
-to DELETE and runs the matching controller action.</p></p>                </div>
+                                            <p><p>Simulates a PUT request to a specified URI. This sets the request method
+to PUT and runs the matching controller action.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_request">request</a>(string $method, string $uri, array $data = [])
+        
+                                            <p><p>Simulates a form-style request to a controller/action route (bypassing the Router) and
+returns a {TestResponse} containing the captured output and status.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resolveControllerAction">resolveControllerAction</a>(array $segments)
+        
+                                            <p><p>Resolves action based on controller name and action name found in
+segments array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resolveParams">resolveParams</a>(array $segments)
+        
+                                            <p><p>Resolves params found in segments array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_routeJson">routeJson</a>(string $method, string $pathInfo, array $payload = [])
+        
+                                            <p><p>Simulates a JSON request through the full framework routing layer and returns a
+{TestResponse} containing the captured output and status.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_routeRequest">routeRequest</a>(string $method, string $pathInfo, array $data = [])
+        
+                                            <p><p>Simulates a non-JSON request through the full framework routing layer and returns a
+{TestResponse} containing the captured output and status.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_simulateRequest">simulateRequest</a>(string $method, string $pathInfo)
+        
+                                            <p><p>Simulates a request.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -220,8 +455,274 @@ to DELETE and runs the matching controller action.</p></p>                </div>
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method_apiCsrfCheck">
+        <div class="location">in <a href="../../../Core/Lib/Http/JsonResponse.html#method_apiCsrfCheck">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 47</div>
+        <code>                    bool
+    <strong>apiCsrfCheck</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if CSRF token has been tampered with.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if token is valid, otherwise we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_get">
+        <div class="location">at line 218</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>get</strong>(string $uri)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates an HTTP GET request to a given URI by resolving and executing
+the corresponding controller and action, capturing the output.</p></p>                <p><p>Supports URI segments in the form of /controller/action/param1/param2,
+and maps them to a controller class and action method with optional
+parameters passed positionally.</p>
+<p>Example:</p>
+<ul>
+<li>get('/')                → HomeController::indexAction()</li>
+<li>get('/products/show/3') → ProductsController::showAction(3)</li>
+</ul></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>The URI string, e.g., '/home/index' or '/products/show/3'</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>The response object containing status and content</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonError">
+        <div class="location">in <a href="../../../Core/Lib/Http/JsonResponse.html#method_jsonError">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 97</div>
+        <code>                    void
+    <strong>jsonError</strong>(string $message, int $status = 400, array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Makes JSON Response for error payloads.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The error message.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$status</td>
+                <td><p>The status code.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The array of errors.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonResponse">
+        <div class="location">in <a href="../../../Core/Lib/Http/JsonResponse.html#method_jsonResponse">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 112</div>
+        <code>                    void
+    <strong>jsonResponse</strong>(mixed $data, int $status = 200, array $extraHeaders = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sends a JSON response with headers and status code.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$data</td>
+                <td><p>The JSON response.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$status</td>
+                <td><p>The status code.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$extraHeaders</td>
+                <td><p>Any extra headers.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_preflight">
+        <div class="location">in <a href="../../../Core/Lib/Http/JsonResponse.html#method_preflight">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 161</div>
+        <code>                    void
+    <strong>preflight</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Respond to CORS preflight.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRawInputOverride">
+        <div class="location">in <a href="../../../Core/Lib/Http/JsonResponse.html#method_setRawInputOverride">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 177</div>
+        <code>        static            void
+    <strong>setRawInputOverride</strong>(mixed $payload = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Inject JSON body by providing payload parameter.  Also performs cleanup
+to avoid leaking into other tests.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$payload</td>
+                <td><p>The JSON payload or null.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_assertDatabaseHas">
-        <div class="location">at line 36</div>
+        <div class="location">at line 40</div>
         <code>                    void
     <strong>assertDatabaseHas</strong>(string $table, array $data, string $message = &#039;&#039;)
         </code>
@@ -283,7 +784,7 @@ whether a matching row exists. It fails the test if no such row is found.</p></p
             </div>
                     <div class="method-item">
                     <h3 id="method_assertDatabaseMissing">
-        <div class="location">at line 74</div>
+        <div class="location">at line 78</div>
         <code>                    void
     <strong>assertDatabaseMissing</strong>(string $table, array $data, string $message = &#039;&#039;)
         </code>
@@ -345,7 +846,7 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertViewContains">
-        <div class="location">at line 106</div>
+        <div class="location">at line 110</div>
         <code>                    void
     <strong>assertViewContains</strong>(string $property, mixed $expectedValue = null)
         </code>
@@ -391,8 +892,40 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_cleanBuffer">
+        <div class="location">at line 131</div>
+        <code>        static        private    void
+    <strong>cleanBuffer</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Clean buffer to avoid risky test error.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_controllerOutput">
-        <div class="location">at line 132</div>
+        <div class="location">at line 145</div>
         <code>            protected        string
     <strong>controllerOutput</strong>(string $controllerSlug, string $actionSlug, array $urlSegments = [])
         </code>
@@ -440,7 +973,7 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a target="_blank" rel="noopener" href="https://www.php.net/Exception">Exception</a></td>
+                <td><a href="../../../Core/Exceptions/FrameworkException.html"><abbr title="Core\Exceptions\FrameworkException">FrameworkException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
@@ -452,10 +985,10 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_get">
-        <div class="location">at line 175</div>
+                    <h3 id="method_delete">
+        <div class="location">at line 178</div>
         <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
-    <strong>get</strong>(string $uri)
+    <strong>delete</strong>(string $uri, array $data = [])
         </code>
     </h3>
     <div class="details">    
@@ -463,15 +996,8 @@ that no matching row exists. It fails the test if such a row is found.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Simulates an HTTP GET request to a given URI by resolving and executing
-the corresponding controller and action, capturing the output.</p></p>                <p><p>Supports URI segments in the form of /controller/action/param1/param2,
-and maps them to a controller class and action method with optional
-parameters passed positionally.</p>
-<p>Example:</p>
-<ul>
-<li>get('/')                → HomeController::indexAction()</li>
-<li>get('/products/show/3') → ProductsController::showAction(3)</li>
-</ul></p>        
+                            <p><p>Simulates a DELETE request to a specified URI. This sets the request method
+to DELETE and runs the matching controller action.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -480,7 +1006,12 @@ parameters passed positionally.</p>
                     <tr>
                 <td>string</td>
                 <td>$uri</td>
-                <td><p>The URI string, e.g., '/home/index' or '/products/show/3'</p></td>
+                <td><p>The URI to simulate, e.g., '/model_name/destroy/10'</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>The DELETE data.</p></td>
             </tr>
             </table>
 
@@ -490,7 +1021,137 @@ parameters passed positionally.</p>
                     <table class="table table-condensed">
         <tr>
             <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
-            <td><p>The response object containing status and content</p></td>
+            <td><p>The test response object</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_enableJsonTestingMode">
+        <div class="location">at line 187</div>
+        <code>            protected        void
+    <strong>enableJsonTestingMode</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Set JsonResponse::$testing to true so we can test responses.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ensureSessionStarts">
+        <div class="location">at line 197</div>
+        <code>            protected        void
+    <strong>ensureSessionStarts</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulate a session where a function we are testing expects a user
+to be authenticated.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_json">
+        <div class="location">at line 259</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>json</strong>(string $method, string $uri, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a JSON request to a controller/action route (bypassing the Router) and
+returns a {TestResponse} containing the captured output and status.</p></p>                <p><p>This helper is designed for testing API-style controller actions that use the
+{\Core\Lib\Http\JsonResponse} trait. It injects a raw JSON payload into
+{<a href="../../../Core/Lib/Http/JsonResponse.html">\Core\Lib\Http\JsonResponse::get()}</a> via {<a href="../../../Core/Lib/Http/JsonResponse.html">\Core\Lib\Http\JsonResponse::$rawInputOverride},
+enables</a> test mode so JSON responses do not call exit, and sets the request method and
+JSON content type.</p>
+<p>URI mapping behavior:</p>
+<ul>
+<li>&quot;/&quot; segments are interpreted as &quot;/{controller}/{action}/param1/param2&quot;</li>
+<li>Default controller is &quot;home&quot;</li>
+<li>Default action is &quot;index&quot;</li>
+</ul>
+<p>Note: This does not invoke the framework Router; it directly instantiates the controller
+and executes the action via {\Core\Lib\Testing\controllerOutput()}.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td><p>HTTP method (e.g., &quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;PATCH&quot;, &quot;DELETE&quot;).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>URI in the form &quot;/controller/action/param1/param2&quot;. Leading/trailing slashes are optional.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>JSON payload to provide to {<a href="../../../Core/Lib/Http/JsonResponse.html">\Core\Lib\Http\JsonResponse::get()}.</a></p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>A response wrapper containing the controller output and an HTTP-like status code.</p></td>
         </tr>
     </table>
 
@@ -503,7 +1164,7 @@ parameters passed positionally.</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_mockFile">
-        <div class="location">at line 201</div>
+        <div class="location">at line 299</div>
         <code>            protected        void
     <strong>mockFile</strong>(string $files)
         </code>
@@ -544,8 +1205,56 @@ parameters passed positionally.</p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_patch">
+        <div class="location">at line 317</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>patch</strong>(string $uri, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a PATCH request to a specified URI. This sets the request method
+to PATCH and runs the matching controller action.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>The URI to simulate, e.g., '/model_name/patch/10'</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>The PATCH data.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>The test response object</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_post">
-        <div class="location">at line 219</div>
+        <div class="location">at line 329</div>
         <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
     <strong>post</strong>(string $uri, array $data = [])
         </code>
@@ -565,7 +1274,7 @@ controller and action. Returns a TestResponse with the output and status.</p></p
                     <tr>
                 <td>string</td>
                 <td>$uri</td>
-                <td><p>The URI to simulate, e.g., '/login'</p></td>
+                <td><p>The URI to simulate, e.g., '/auth/register'</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -593,7 +1302,7 @@ controller and action. Returns a TestResponse with the output and status.</p></p
             </div>
                     <div class="method-item">
                     <h3 id="method_put">
-        <div class="location">at line 255</div>
+        <div class="location">at line 341</div>
         <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
     <strong>put</strong>(string $uri, array $data = [])
         </code>
@@ -603,8 +1312,8 @@ controller and action. Returns a TestResponse with the output and status.</p></p
             
 
         <div class="method-description">
-                            <p><p>Simulates a DELETE request to a specified URI. This sets the request method
-to DELETE and runs the matching controller action.</p></p>                        
+                            <p><p>Simulates a PUT request to a specified URI. This sets the request method
+to PUT and runs the matching controller action.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -613,12 +1322,12 @@ to DELETE and runs the matching controller action.</p></p>
                     <tr>
                 <td>string</td>
                 <td>$uri</td>
-                <td><p>The URI to simulate, e.g., '/posts/10'</p></td>
+                <td><p>The URI to simulate, e.g., '/model_name/update/10'</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$data</td>
-                <td><p>The DELETE data.</p></td>
+                <td><p>The PUT data.</p></td>
             </tr>
             </table>
 
@@ -640,8 +1349,345 @@ to DELETE and runs the matching controller action.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_request">
+        <div class="location">at line 366</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>request</strong>(string $method, string $uri, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a form-style request to a controller/action route (bypassing the Router) and
+returns a {TestResponse} containing the captured output and status.</p></p>                <p><p>This helper populates the superglobals {$_POST} and {$_REQUEST} with the provided
+data, sets {$_SERVER['REQUEST_METHOD']} to the requested method, and executes the
+targeted controller action via {\Core\Lib\Testing\controllerOutput()}.</p>
+<p>URI mapping behavior:</p>
+<ul>
+<li>&quot;/&quot; segments are interpreted as &quot;/{controller}/{action}/param1/param2&quot;</li>
+<li>Default controller is &quot;home&quot;</li>
+<li>Default action is &quot;index&quot;</li>
+</ul>
+<p>Note: This does not invoke the framework Router; it directly instantiates the controller
+and executes the action via {\Core\Lib\Testing\controllerOutput()}.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td><p>HTTP method (e.g., &quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;PATCH&quot;, &quot;DELETE&quot;).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td><p>URI in the form &quot;/controller/action/param1/param2&quot;. Leading/trailing slashes are optional.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Request payload to inject into {$_POST} and {$_REQUEST}.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>A response wrapper containing the controller output and an HTTP-like status code.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resolveControllerAction">
+        <div class="location">at line 399</div>
+        <code>        static        private    array
+    <strong>resolveControllerAction</strong>(array $segments)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resolves action based on controller name and action name found in
+segments array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$segments</td>
+                <td><p>Contains segments for controller name, action
+name, and params.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>An array containing strings for controller name and
+action name.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resolveParams">
+        <div class="location">at line 413</div>
+        <code>        static        private    array
+    <strong>resolveParams</strong>(array $segments)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resolves params found in segments array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$segments</td>
+                <td><p>Contains segments for controller name, action
+name, and params.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>An array of parameters.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_routeJson">
+        <div class="location">at line 439</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>routeJson</strong>(string $method, string $pathInfo, array $payload = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a JSON request through the full framework routing layer and returns a
+{TestResponse} containing the captured output and status.</p></p>                <p><p>This helper is intended for end-to-end API tests where you want to exercise the
+Router's URL parsing and controller dispatch (i.e., closer to a real HTTP request).</p>
+<p>It enables test-mode behavior in {\Core\Lib\Http\JsonResponse} (preventing exit),
+injects a raw JSON payload via {<a href="../../../Core/Lib/Http/JsonResponse.html">\Core\Lib\Http\JsonResponse::$rawInputOverride},
+sets</a> {$_SERVER['PATH_INFO']} and {$_SERVER['REQUEST_URI']} to the provided path,
+and executes {<a href="../../../Core/Router.html">\Core\Router::route()}</a> while capturing output buffering.</p>
+<p>Status code behavior:</p>
+<ul>
+<li>If your JsonResponse implementation records the last status (e.g., in JsonResponse::$lastStatus),
+that value is used.</li>
+<li>Otherwise, defaults to 200.</li>
+</ul></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td><p>HTTP method (e.g., &quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;PATCH&quot;, &quot;DELETE&quot;).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$pathInfo</td>
+                <td><p>The routed path (e.g., &quot;/favorites/show&quot;, &quot;/favorites/destroy/10&quot;).</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$payload</td>
+                <td><p>JSON payload to inject into {<a href="../../../Core/Lib/Http/JsonResponse.html">\Core\Lib\Http\JsonResponse::get()}.</a></p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>A response wrapper containing the routed output and an HTTP-like status code.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_routeRequest">
+        <div class="location">at line 494</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a>
+    <strong>routeRequest</strong>(string $method, string $pathInfo, array $data = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a non-JSON request through the full framework routing layer and returns a
+{TestResponse} containing the captured output and status.</p></p>                <p><p>This helper is intended for end-to-end tests where you want to exercise the Router's
+URL parsing and dispatch for traditional controller/view behavior (or form submissions).</p>
+<p>It temporarily mutates global request state:</p>
+<ul>
+<li>{$_SERVER['REQUEST_METHOD']}</li>
+<li>{$_SERVER['PATH_INFO']} (preferred by the Router)</li>
+<li>{$_SERVER['REQUEST_URI']} (fallback behavior)</li>
+<li>{$_GET}/{@see $_POST}/{$_REQUEST} depending on the HTTP method</li>
+</ul>
+<p>The Router is then executed via {<a href="../../../Core/Router.html">\Core\Router::route()}</a> while output buffering is captured.
+All globals are restored in a finally block to reduce cross-test contamination.</p>
+<p>Note: This helper returns status 200 on successful router execution. If a {\Throwable}
+is thrown, the helper returns status 500 with the exception message as content. Many &quot;not found&quot;
+or ACL flows may redirect rather than throw, depending on your Router design.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td><p>HTTP method (e.g., &quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;PATCH&quot;, &quot;DELETE&quot;).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$pathInfo</td>
+                <td><p>The routed path (e.g., &quot;/profile/index&quot;, &quot;/admindashboard/edit/5&quot;).</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Query parameters (GET) or form payload (non-GET) to inject into superglobals.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></td>
+            <td><p>A response wrapper containing the routed output and an HTTP-like status code.</p></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Exceptions/FrameworkException.html"><abbr title="Core\Exceptions\FrameworkException">FrameworkException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_simulateRequest">
+        <div class="location">at line 544</div>
+        <code>        static        private    void
+    <strong>simulateRequest</strong>(string $method, string $pathInfo)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Simulates a request.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td><p>The request method.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$pathInfo</td>
+                <td><p>The path for the request.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_setUp">
-        <div class="location">at line 288</div>
+        <div class="location">at line 555</div>
         <code>            protected        void
     <strong>setUp</strong>()
         </code>

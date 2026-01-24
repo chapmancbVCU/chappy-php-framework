@@ -215,7 +215,7 @@ that updates timestamps.</p></div>
             </tr>
                     <tr>
                 <td class="type" id="property_created_at">
-                                                                                
+                                                                                string
                                                                                 
                                     </td>
                 <td>$created_at</td>
@@ -244,7 +244,7 @@ that updates timestamps.</p></div>
             </tr>
                     <tr>
                 <td class="type" id="property_deleted">
-                                                                                
+                                                                                int
                                                                                 
                                     </td>
                 <td>$deleted</td>
@@ -890,7 +890,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 45</div>
+        <div class="location">at line 54</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -956,7 +956,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <div class="method-item">
                     <h3 id="method_delete">
         <div class="location">in <a href="../../Core/Model.html#method_delete">
-<abbr title="Core\Model">Model</abbr></a> at line 176</div>
+<abbr title="Core\Model">Model</abbr></a> at line 172</div>
         <code>                    bool
     <strong>delete</strong>()
         </code>
@@ -990,7 +990,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumns">
         <div class="location">in <a href="../../Core/Model.html#method_getColumns">
-<abbr title="Core\Model">Model</abbr></a> at line 194</div>
+<abbr title="Core\Model">Model</abbr></a> at line 190</div>
         <code>        static            array
     <strong>getColumns</strong>()
         </code>
@@ -1024,7 +1024,7 @@ from a database table.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumnsForSave">
         <div class="location">in <a href="../../Core/Model.html#method_getColumnsForSave">
-<abbr title="Core\Model">Model</abbr></a> at line 204</div>
+<abbr title="Core\Model">Model</abbr></a> at line 200</div>
         <code>                    array
     <strong>getColumnsForSave</strong>()
         </code>
@@ -1058,7 +1058,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getDb">
         <div class="location">in <a href="../../Core/Model.html#method_getDb">
-<abbr title="Core\Model">Model</abbr></a> at line 232</div>
+<abbr title="Core\Model">Model</abbr></a> at line 228</div>
         <code>        static            <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>getDb</strong>()
         </code>
@@ -1091,7 +1091,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getErrorMessages">
         <div class="location">in <a href="../../Core/Model.html#method_getErrorMessages">
-<abbr title="Core\Model">Model</abbr></a> at line 245</div>
+<abbr title="Core\Model">Model</abbr></a> at line 241</div>
         <code>                    array
     <strong>getErrorMessages</strong>()
         </code>
@@ -1125,7 +1125,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method__fetchStyleParams">
         <div class="location">in <a href="../../Core/Model.html#method__fetchStyleParams">
-<abbr title="Core\Model">Model</abbr></a> at line 255</div>
+<abbr title="Core\Model">Model</abbr></a> at line 251</div>
         <code>        static    protected        array
     <strong>_fetchStyleParams</strong>(array $params)
         </code>
@@ -1168,7 +1168,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method_find">
         <div class="location">in <a href="../../Core/Model.html#method_find">
-<abbr title="Core\Model">Model</abbr></a> at line 269</div>
+<abbr title="Core\Model">Model</abbr></a> at line 265</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>find</strong>(array $params = [])
         </code>
@@ -1212,7 +1212,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findById">
         <div class="location">in <a href="../../Core/Model.html#method_findById">
-<abbr title="Core\Model">Model</abbr></a> at line 283</div>
+<abbr title="Core\Model">Model</abbr></a> at line 279</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findById</strong>(int $id)
         </code>
@@ -1255,7 +1255,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findByTable">
         <div class="location">in <a href="../../Core/Model.html#method_findByTable">
-<abbr title="Core\Model">Model</abbr></a> at line 299</div>
+<abbr title="Core\Model">Model</abbr></a> at line 295</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>findByTable</strong>(string $table, array $params = [])
         </code>
@@ -1306,7 +1306,7 @@ selecting from related tables).</p></p>
                     <div class="method-item">
                     <h3 id="method_findAllByUserId">
         <div class="location">in <a href="../../Core/Model.html#method_findAllByUserId">
-<abbr title="Core\Model">Model</abbr></a> at line 315</div>
+<abbr title="Core\Model">Model</abbr></a> at line 311</div>
         <code>        static            array
     <strong>findAllByUserId</strong>(int $user_id, array $params = [])
         </code>
@@ -1355,7 +1355,7 @@ default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findFirst">
         <div class="location">in <a href="../../Core/Model.html#method_findFirst">
-<abbr title="Core\Model">Model</abbr></a> at line 333</div>
+<abbr title="Core\Model">Model</abbr></a> at line 329</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findFirst</strong>(array $params = [])
         </code>
@@ -1399,7 +1399,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findTotal">
         <div class="location">in <a href="../../Core/Model.html#method_findTotal">
-<abbr title="Core\Model">Model</abbr></a> at line 348</div>
+<abbr title="Core\Model">Model</abbr></a> at line 344</div>
         <code>        static            int
     <strong>findTotal</strong>(array $params = [])
         </code>
@@ -1444,7 +1444,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_insert">
         <div class="location">in <a href="../../Core/Model.html#method_insert">
-<abbr title="Core\Model">Model</abbr></a> at line 363</div>
+<abbr title="Core\Model">Model</abbr></a> at line 359</div>
         <code>                    bool
     <strong>insert</strong>(array $fields)
         </code>
@@ -1488,7 +1488,7 @@ use to populate a database record.  The default value is an empty array.</p></td
                     <div class="method-item">
                     <h3 id="method_isNew">
         <div class="location">in <a href="../../Core/Model.html#method_isNew">
-<abbr title="Core\Model">Model</abbr></a> at line 375</div>
+<abbr title="Core\Model">Model</abbr></a> at line 371</div>
         <code>                    bool
     <strong>isNew</strong>()
         </code>
@@ -1522,7 +1522,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
         <div class="location">in <a href="../../Core/Model.html#method_onConstruct">
-<abbr title="Core\Model">Model</abbr></a> at line 384</div>
+<abbr title="Core\Model">Model</abbr></a> at line 380</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -1555,7 +1555,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
         <div class="location">in <a href="../../Core/Model.html#method_populateObjData">
-<abbr title="Core\Model">Model</abbr></a> at line 392</div>
+<abbr title="Core\Model">Model</abbr></a> at line 388</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -1598,7 +1598,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_query">
         <div class="location">in <a href="../../Core/Model.html#method_query">
-<abbr title="Core\Model">Model</abbr></a> at line 407</div>
+<abbr title="Core\Model">Model</abbr></a> at line 403</div>
         <code>                    <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -1647,7 +1647,7 @@ The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_runValidation">
         <div class="location">in <a href="../../Core/Model.html#method_runValidation">
-<abbr title="Core\Model">Model</abbr></a> at line 418</div>
+<abbr title="Core\Model">Model</abbr></a> at line 414</div>
         <code>                    void
     <strong>runValidation</strong>(object $validator)
         </code>
@@ -1691,7 +1691,7 @@ message if validator fails.</p></p>
                     <div class="method-item">
                     <h3 id="method_save">
         <div class="location">in <a href="../../Core/Model.html#method_save">
-<abbr title="Core\Model">Model</abbr></a> at line 433</div>
+<abbr title="Core\Model">Model</abbr></a> at line 429</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -1726,7 +1726,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
         <div class="location">in <a href="../../Core/Model.html#method__softDeleteParams">
-<abbr title="Core\Model">Model</abbr></a> at line 468</div>
+<abbr title="Core\Model">Model</abbr></a> at line 464</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -1770,7 +1770,7 @@ delete.</p></td>
                     <div class="method-item">
                     <h3 id="method_update">
         <div class="location">in <a href="../../Core/Model.html#method_update">
-<abbr title="Core\Model">Model</abbr></a> at line 497</div>
+<abbr title="Core\Model">Model</abbr></a> at line 493</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -1815,7 +1815,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
         <div class="location">in <a href="../../Core/Model.html#method_updateWhere">
-<abbr title="Core\Model">Model</abbr></a> at line 527</div>
+<abbr title="Core\Model">Model</abbr></a> at line 523</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -1877,7 +1877,7 @@ Supports:</p>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
         <div class="location">in <a href="../../Core/Model.html#method_validationPassed">
-<abbr title="Core\Model">Model</abbr></a> at line 537</div>
+<abbr title="Core\Model">Model</abbr></a> at line 533</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -1910,7 +1910,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 91</div>
+        <div class="location">at line 100</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -1975,7 +1975,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getOptionsForForm">
-        <div class="location">at line 58</div>
+        <div class="location">at line 67</div>
         <code>        static            array
     <strong>getOptionsForForm</strong>()
         </code>
@@ -2008,7 +2008,7 @@ dropdown and checkbox group elements.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getACLs">
-        <div class="location">at line 71</div>
+        <div class="location">at line 80</div>
         <code>        static            array
     <strong>getACLs</strong>()
         </code>
@@ -2040,7 +2040,7 @@ dropdown and checkbox group elements.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_isAssignedToUsers">
-        <div class="location">at line 80</div>
+        <div class="location">at line 89</div>
         <code>                    bool
     <strong>isAssignedToUsers</strong>()
         </code>

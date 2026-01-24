@@ -108,6 +108,16 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;<abbr title="Core\string|false">string|false</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_get_link">get_link</a>(string $value)
+        
+                                            <p><p>Gets link based on value from acl.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
@@ -140,6 +150,16 @@ and grants access if that is the case.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;<abbr title="Core\string|bool">string|bool</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resolveControllerClass">resolveControllerClass</a>(string $controllerShort)
+        
+                                            <p><p>Resolves namespaces for controllers.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
@@ -156,6 +176,51 @@ the correct controller and action to use.</p></p>                </div>
         <h2>Details</h2>
 
             <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_get_link">
+        <div class="location">at line 29</div>
+        <code>        static        private    <abbr title="Core\string|false">string|false</abbr>
+    <strong>get_link</strong>(string $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Gets link based on value from acl.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$value</td>
+                <td><p>item in acl that will be used to create a
+link.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\string|false">string|false</abbr></td>
+            <td><p>False if the user does not have access to a
+controller or action.  Otherwise we return the value so we can create
+a link.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
                     <div class="method-item">
                     <h3 id="method_getMenu">
         <div class="location">at line 53</div>
@@ -287,6 +352,49 @@ perform.  The default value is &quot;index&quot;.</p></td>
         <tr>
             <td>void</td>
             <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resolveControllerClass">
+        <div class="location">at line 203</div>
+        <code>        static        private    <abbr title="Core\string|bool">string|bool</abbr>
+    <strong>resolveControllerClass</strong>(string $controllerShort)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resolves namespaces for controllers.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controllerShort</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\string|bool">string|bool</abbr></td>
+            <td><p>The controller in namespaced form if it exists.
+Otherwise we redirect.</p></td>
         </tr>
     </table>
 

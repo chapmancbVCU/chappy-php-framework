@@ -113,6 +113,15 @@
             </tr>
                     <tr>
                 <td>
+                                                                                                                        HOOKS_PATH
+                                    </td>
+                <td class="last">
+                    <p><em><p>Path to React.js hooks.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
                                                                                                                         PAGE_PATH
                                     </td>
                 <td class="last">
@@ -148,16 +157,6 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_defaultComponentTemplate">defaultComponentTemplate</a>(string $componentName)
-        
-                                            <p><p>Generates a component with default export.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
@@ -178,12 +177,12 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
+                    static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_namedComponentTemplate">namedComponentTemplate</a>(string $componentName)
+                    <a href="#method_makeComponent">makeComponent</a>(string $componentName, bool $named = false)
         
-                                            <p><p>Generates a named export component.</p></p>                </div>
+                                            <p><p>Generates component under 'resources/js/components'.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -191,9 +190,10 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_makeComponent">makeComponent</a>(string $componentName, bool $named = false)
+                    <a href="#method_makeHook">makeHook</a>(string $hookName)
         
-                                            <p><p>Generates component under 'resources/js/components'.</p></p>                </div>
+                                            <p><p>Generates a JavaScript file under 'resources/js/hook' to be
+use as hook file with React.js front-end.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -235,7 +235,7 @@ use as support file with React.js front-end.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_authComponents">
-        <div class="location">at line 33</div>
+        <div class="location">at line 38</div>
         <code>        static            int
     <strong>authComponents</strong>()
         </code>
@@ -266,50 +266,8 @@ use as support file with React.js front-end.</p></p>                </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_defaultComponentTemplate">
-        <div class="location">at line 48</div>
-        <code>        static            string
-    <strong>defaultComponentTemplate</strong>(string $componentName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generates a component with default export.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$componentName</td>
-                <td><p>The name of the component.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents of the component.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_errorNotFoundComponent">
-        <div class="location">at line 68</div>
+        <div class="location">at line 52</div>
         <code>        static            int
     <strong>errorNotFoundComponent</strong>()
         </code>
@@ -341,7 +299,7 @@ use as support file with React.js front-end.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_homeComponent">
-        <div class="location">at line 80</div>
+        <div class="location">at line 64</div>
         <code>        static            int
     <strong>homeComponent</strong>()
         </code>
@@ -372,50 +330,8 @@ use as support file with React.js front-end.</p></p>                </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_namedComponentTemplate">
-        <div class="location">at line 93</div>
-        <code>        static            string
-    <strong>namedComponentTemplate</strong>(string $componentName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generates a named export component.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$componentName</td>
-                <td><p>The name of the component.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents of the component.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_makeComponent">
-        <div class="location">at line 115</div>
+        <div class="location">at line 79</div>
         <code>        static            int
     <strong>makeComponent</strong>(string $componentName, bool $named = false)
         </code>
@@ -462,8 +378,51 @@ component is generated.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_makeHook">
+        <div class="location">at line 95</div>
+        <code>        static            int
+    <strong>makeHook</strong>(string $hookName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates a JavaScript file under 'resources/js/hook' to be
+use as hook file with React.js front-end.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$hookName</td>
+                <td><p>The name of the hook file.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_makePage">
-        <div class="location">at line 133</div>
+        <div class="location">at line 111</div>
         <code>        static            int
     <strong>makePage</strong>(string $filePath, string $pageName, bool $named = false)
         </code>
@@ -516,7 +475,7 @@ component is generated.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeUtility">
-        <div class="location">at line 148</div>
+        <div class="location">at line 126</div>
         <code>        static            int
     <strong>makeUtility</strong>(string $utilityName)
         </code>
@@ -559,7 +518,7 @@ use as support file with React.js front-end.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileComponents">
-        <div class="location">at line 159</div>
+        <div class="location">at line 137</div>
         <code>        static            int
     <strong>profileComponents</strong>()
         </code>

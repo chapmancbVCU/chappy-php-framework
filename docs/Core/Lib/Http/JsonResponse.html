@@ -103,6 +103,47 @@ JSON responses.</p></p>                    </div>
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_rawInputOverride">
+                    static                                                            string|null
+                                                                                
+                                    </td>
+                <td>$rawInputOverride</td>
+                <td class="last"><p>Raw JSON override for tests</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_testing">
+                    static                                                            bool
+                                                                                
+                                    </td>
+                <td>$testing</td>
+                <td class="last"><p>When true, do not send headers or exit; just echo JSON and return.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lastStatus">
+                    static                                                            int
+                                                                                
+                                    </td>
+                <td>$lastStatus</td>
+                <td class="last"><p>Captured status for tests (optional convenience).</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lastHeaders">
+                    static                                                            array
+                                                                                
+                                    </td>
+                <td>$lastHeaders</td>
+                <td class="last"><p>Captured headers for tests (optional convenience).</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -157,6 +198,17 @@ JSON responses.</p></p>                    </div>
                                             <p><p>Respond to CORS preflight.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setRawInputOverride">setRawInputOverride</a>(mixed $payload = null)
+        
+                                            <p><p>Inject JSON body by providing payload parameter.  Also performs cleanup
+to avoid leaking into other tests.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -165,7 +217,7 @@ JSON responses.</p></p>                    </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_apiCsrfCheck">
-        <div class="location">at line 20</div>
+        <div class="location">at line 47</div>
         <code>                    bool
     <strong>apiCsrfCheck</strong>()
         </code>
@@ -197,7 +249,7 @@ JSON responses.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_get">
-        <div class="location">at line 35</div>
+        <div class="location">at line 62</div>
         <code>                    <abbr title="Core\Lib\Http\array|string">array|string</abbr>
     <strong>get</strong>(<abbr title="Core\Lib\Http\string|null">string|null</abbr> $input = null)
         </code>
@@ -240,7 +292,7 @@ JSON related operations.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_jsonError">
-        <div class="location">at line 69</div>
+        <div class="location">at line 97</div>
         <code>                    void
     <strong>jsonError</strong>(string $message, int $status = 400, array $errors = [])
         </code>
@@ -292,7 +344,7 @@ JSON related operations.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_jsonResponse">
-        <div class="location">at line 84</div>
+        <div class="location">at line 112</div>
         <code>                    void
     <strong>jsonResponse</strong>(mixed $data, int $status = 200, array $extraHeaders = [])
         </code>
@@ -344,7 +396,7 @@ JSON related operations.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_preflight">
-        <div class="location">at line 117</div>
+        <div class="location">at line 161</div>
         <code>                    void
     <strong>preflight</strong>()
         </code>
@@ -357,6 +409,49 @@ JSON related operations.</p></p>
                             <p><p>Respond to CORS preflight.</p></p>                        
         </div>
         <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRawInputOverride">
+        <div class="location">at line 177</div>
+        <code>        static            void
+    <strong>setRawInputOverride</strong>(mixed $payload = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Inject JSON body by providing payload parameter.  Also performs cleanup
+to avoid leaking into other tests.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$payload</td>
+                <td><p>The JSON payload or null.</p></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 

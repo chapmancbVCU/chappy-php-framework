@@ -190,36 +190,6 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_migrationClass">migrationClass</a>(string $fileName, string $tableName)
-        
-                                            <p><p>Generates a new Migration class for creating a new table.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_migrationRenameClass">migrationRenameClass</a>(string $fileName, string $from, string $to)
-        
-                                            <p><p>Generates a new Migration class for renaming an existing table.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_migrationUpdateClass">migrationUpdateClass</a>(string $fileName, string $tableName)
-        
-                                            <p><p>Generates a new Migration class for updating a table.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
@@ -550,154 +520,8 @@ operations.</p></p>                </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_migrationClass">
-        <div class="location">at line 214</div>
-        <code>        static            string
-    <strong>migrationClass</strong>(string $fileName, string $tableName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generates a new Migration class for creating a new table.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$fileName</td>
-                <td><p>The file name for the Migration class.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$tableName</td>
-                <td><p>The name of the table for the migration.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents of the new Migration class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_migrationRenameClass">
-        <div class="location">at line 259</div>
-        <code>        static            string
-    <strong>migrationRenameClass</strong>(string $fileName, string $from, string $to)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generates a new Migration class for renaming an existing table.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$fileName</td>
-                <td><p>The file name for the Migration class.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$from</td>
-                <td><p>The table's original name.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$to</td>
-                <td><p>The new name for the table.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents of the new Migration class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_migrationUpdateClass">
-        <div class="location">at line 298</div>
-        <code>        static            string
-    <strong>migrationUpdateClass</strong>(string $fileName, string $tableName)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generates a new Migration class for updating a table.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$fileName</td>
-                <td><p>The file name for the Migration class.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$tableName</td>
-                <td><p>The name of the table for the migration.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The contents of the new Migration class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_refresh">
-        <div class="location">at line 341</div>
+        <div class="location">at line 214</div>
         <code>        static            int
     <strong>refresh</strong>(<abbr title="Console\Helpers\bool|int">bool|int</abbr> $step = false)
         </code>
@@ -740,7 +564,7 @@ back.  When set to false all tables are dropped one by one.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_rollback">
-        <div class="location">at line 396</div>
+        <div class="location">at line 269</div>
         <code>        static            int
     <strong>rollback</strong>(<abbr title="Console\Helpers\string|int|bool">string|int|bool</abbr> $batch = false)
         </code>
@@ -783,7 +607,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_rollbackStep">
-        <div class="location">at line 444</div>
+        <div class="location">at line 317</div>
         <code>        static            int
     <strong>rollbackStep</strong>(<abbr title="Console\Helpers\string|int">string|int</abbr> $step)
         </code>
@@ -825,7 +649,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_status">
-        <div class="location">at line 457</div>
+        <div class="location">at line 330</div>
         <code>        static            int
     <strong>status</strong>()
         </code>
@@ -857,7 +681,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_step">
-        <div class="location">at line 513</div>
+        <div class="location">at line 386</div>
         <code>        static        private    <abbr title="Console\Helpers\bool|int">bool|int</abbr>
     <strong>step</strong>(string $klassNamespace, <abbr title="Console\Helpers\bool|int">bool|int</abbr> $step = false)
         </code>
@@ -907,7 +731,7 @@ when no number of steps is provided.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tableCount">
-        <div class="location">at line 534</div>
+        <div class="location">at line 407</div>
         <code>        static        private    int
     <strong>tableCount</strong>()
         </code>
