@@ -2,6 +2,7 @@
 namespace Console\Commands;
 
 use Console\Helpers\React;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -34,7 +35,7 @@ class MakeReactHookCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $hookName = $input->getArgument('hook-name');
-        return React::makeUtility($hookName);
+        $hookName = Str::ucfirst($input->getArgument('hook-name'));
+        return React::makeHook($hookName);
     }
 }

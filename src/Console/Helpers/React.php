@@ -16,6 +16,11 @@ class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
 
     /**
+     * Path to React.js hooks.
+     */
+    public const HOOKS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'hooks'.DS;
+
+    /**
      * Path to React.js pages.
      */
     public const PAGE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'pages'.DS;
@@ -78,6 +83,20 @@ class React {
             ? ReactStubs::namedComponentTemplate($componentName) 
             : ReactStubs::defaultComponentTemplate($componentName);
         return Tools::writeFile($componentPath, $content, 'React component');
+    }
+
+    /**
+     * Generates a JavaScript file under 'resources/js/hook' to be 
+     * use as hook file with React.js front-end.
+     *
+     * @param string $hookName The name of the hook file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeHook(string $hookName): int {
+        Tools::pathExists(self::HOOKS_PATH);
+        $filePath = self::HOOKS_PATH.$hookName.'.js';
+        $content = ReactStubs::hookTemplate($hookName);
+        return Tools::writeFile($filePath, $content, 'React.js hook');
     }
 
     /**

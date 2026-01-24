@@ -346,6 +346,23 @@ JSX;
     }
 
     /**
+     * Returns contents for a new hook file.
+     *
+     * @param string $hookName The name of the hook.
+     * @return string The contents of the new hook file.
+     */
+    public static function hookTemplate($hookName): string {
+        return <<<JS
+const use{$hookName} = () => {
+
+    return {  }
+}
+
+export default use{$hookName};
+JS;
+    }
+
+    /**
      * Generates a named export component.
      *
      * @param string $componentName The name of the component.
