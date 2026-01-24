@@ -212,9 +212,8 @@ abstract class ApplicationTestCase extends TestCase {
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
 
-        $controller = $segments[0] ?? 'home';
-        $action = $segments[1] ?? 'index';
-        $params = array_slice($segments, 2);
+        [$controller, $action] = self::resolveControllerAction($segments);
+        $params = self::resolveParams($segments);
 
         try {
             $output = $this->controllerOutput($controller, $action, $params);
@@ -266,9 +265,8 @@ abstract class ApplicationTestCase extends TestCase {
         $_SERVER['CONTENT_TYPE'] = 'application/json';
 
         $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
-        $controller = $segments[0] ?? 'home';
-        $action = $segments[1] ?? 'index';
-        $params = array_slice($segments, 2);
+        [$controller, $action] = self::resolveControllerAction($segments);
+        $params = self::resolveParams($segments);
 
         try {
             $output = $this->controllerOutput($controller, $action, $params);
@@ -367,9 +365,8 @@ abstract class ApplicationTestCase extends TestCase {
         $_SERVER['REQUEST_METHOD'] = $method;
 
         $segments = array_values(array_filter(explode('/', trim($uri, '/'))));
-        $controller = $segments[0] ?? 'home';
-        $action = $segments[1] ?? 'index';
-        $params = array_slice($segments, 2);
+        [$controller, $action] = self::resolveControllerAction($segments);
+        $params = self::resolveParams($segments);
 
         try {
             $output = $this->controllerOutput($controller, $action, $params);
@@ -381,6 +378,17 @@ abstract class ApplicationTestCase extends TestCase {
             $_REQUEST = [];
             unset($_SERVER['REQUEST_METHOD']);
         }
+    }
+
+    private static function resolveControllerAction(array $segments): array {
+        return [
+            $controller = $segments[0] ?? 'home',
+            $action = $segments[1] ?? 'index'
+        ];
+    }
+
+    private static function resolveParams(array $segments): array {
+        return array_slice($segments, 2);
     }
 
     /**
