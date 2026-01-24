@@ -171,7 +171,7 @@ trait JsonResponse {
      * Inject JSON body by providing payload parameter.  Also performs cleanup 
      * to avoid leaking into other tests.
      *
-     * @param string|false|null $payload Result of json_encode for null.
+     * @param string|false|null $payload Result of json_encode or null.
      * @return void
      */
     public static function setRawInputOverride(string|false|null $payload = null): void {
