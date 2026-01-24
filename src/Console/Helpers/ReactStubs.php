@@ -285,10 +285,11 @@ import asset from '@chappy/utils/asset'
 /**
  * The home page.
  * @property {object} user The currently logged in user.
+ * @property {string} version The current version of the Chappy.php framework.
  * @param {InputProps} param0 
  * @returns {JSX.Element} The contents of Index view.
  */
-export default function Index({ user }) {
+export default function Index({ user, version }) {
     const name = user.fname ?? 'Guest';
     return (
         <div className="container">
