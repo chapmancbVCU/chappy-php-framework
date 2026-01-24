@@ -1,7 +1,8 @@
 <?php
 namespace Console\Commands;
-use Core\Helper;
-use Console\Helpers\Test;
+
+use Console\Helpers\Testing\PHPUnitRunner;
+use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Tools;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Str;
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to run a phpunit test with only the name of the test file is accepted as a required input.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/unit_tests#running-tests">here</a>.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/php_unit#running-tests">here</a>.
  */
 class RunTestCommand extends Command
 {
@@ -65,38 +66,68 @@ class RunTestCommand extends Command
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
         
-        $test = new Test($input, $output);
-        
+        $test = new PHPUnitRunner($input, $output);
+        $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
+
+        // Run all tests.
         if(!$feature && !$unit && !$testArg) {
-            return $test->allTests();
+            return $test->allTests($testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
         // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
-             return $test->selectTests($testArg);
+            
+            if(Str::contains($testArg, '::')) {
+               return $test->testByFilter($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION); 
+            }
+            return $test->selectByTestName($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }
         
-        $featureStatus = null;
-        $unitStatus = null;
-        // Run tests based on --unit and --feature flags
+        /* 
+         * Run tests based on --unit and --feature flags and verify successful 
+         * completion.
+         */
+        $runBySuiteStatus = [];
         if(!$testArg && $unit) {
-            $unitStatus = $test->testSuite(Test::unitTests());
+            $runBySuiteStatus[] = $test->testSuite(
+                TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
+                PHPUnitRunner::TEST_COMMAND
+            );
         }
         if(!$testArg && $feature) {
-            $featureStatus = $test->testSuite(Test::featureTests());
+            $runBySuiteStatus[] = $test->testSuite(
+                TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
+                PHPUnitRunner::TEST_COMMAND
+            );
         }
-        if(!$testArg && Test::testSuiteStatus($featureStatus, $unitStatus)) {
+        if(!$testArg && PHPUnitRunner::testSuiteStatus($runBySuiteStatus)) {
+            Tools::info("Completed tests by suite(s)");
             return Command::SUCCESS;
         }
 
-        // Run individual test file based on --unit and --feature flags
+        /* 
+         * Run individual test file based on --unit and --feature flags and 
+         * verify successful completion.
+         */
+        $testNameByFlagStatus = [];
         if($testArg && $unit) {
-            $unitStatus = $test->singleFileWithinSuite($testArg, Test::UNIT_PATH, );
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
+                $testArg, 
+                PHPUnitRunner::UNIT_PATH, 
+                PHPUnitRunner::TEST_FILE_EXTENSION, 
+                PHPUnitRunner::TEST_COMMAND
+            );
         }
         if($testArg && $feature) {
-            $featureStatus = $test->singleFileWithinSuite($testArg, Test::FEATURE_PATH,);
+            $testNameByFlagStatus[] = $test->singleFileWithinSuite(
+                $testArg, 
+                PHPUnitRunner::FEATURE_PATH, 
+                PHPUnitRunner::TEST_FILE_EXTENSION, 
+                PHPUnitRunner::TEST_COMMAND
+            );
         }
-        if($testArg && Test::testSuiteStatus($featureStatus, $unitStatus)) {
+        if($testArg && PHPUnitRunner::testSuiteStatus($testNameByFlagStatus)) {
+            Tools::info("Completed tests by name and suite(s)");
             return Command::SUCCESS;
         }
 

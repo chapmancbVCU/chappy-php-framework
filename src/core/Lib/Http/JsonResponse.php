@@ -11,7 +11,34 @@ use Core\Lib\Utilities\Arr;
  * JSON responses.
  */
 trait JsonResponse {
+    /** 
+     * Raw JSON override for tests 
+     * 
+     * @var string|null 
+     */
+    public static ?string $rawInputOverride = null;
 
+    /** 
+     * When true, do not send headers or exit; just echo JSON and return. 
+     * 
+     * @var bool
+     */
+    public static bool $testing = false;
+
+    /** 
+     * Captured status for tests (optional convenience). 
+     * 
+     * @var int
+     */
+    public static int $lastStatus = 200;
+
+    /** 
+     * Captured headers for tests (optional convenience). 
+     * 
+     * @var array
+     */
+    public static array $lastHeaders = [];
+    
     /**
      * Checks if CSRF token has been tampered with.
      *
@@ -33,8 +60,9 @@ trait JsonResponse {
      * @return array|string Sanitized input as array or string
      */
     public function get(string|null $input = null): array| string {
-        $raw = file_get_contents('php://input') ?: '';
-        $data = json_decode($raw, true);
+        $raw = self::$rawInputOverride ?? (file_get_contents('php://input') ?: '');
+        $data = json_decode($raw, true) ?: [];
+        
         if(!$input) {
             foreach($data as $field => $value) {
                 if(Arr::isArray($value)) {
@@ -81,32 +109,48 @@ trait JsonResponse {
      * @param array $extraHeaders Any extra headers.
      * @return void
      */
-    public function jsonResponse(mixed $data, int $status = 200, array $extraHeaders = []): void {
+    public function jsonResponse(mixed $data, int $status = 200, array $extraHeaders = []): void
+    {
         // CORS - keep '*' only for public, no-credentials endpoints
         $headers = [
-            'Access-Control-Allow-Origin'   => '*',
-            'Content-Type'                  => 'application/json; charset=UTF-8',
-            'Cache-control'                 => 'no-store'
-        ]  + $extraHeaders;
+            'Access-Control-Allow-Origin' => '*',
+            'Content-Type'                => 'application/json; charset=UTF-8',
+            'Cache-control'               => 'no-store',
+        ] + $extraHeaders;
 
-        foreach($headers as $k => $v) {
-            header("$k: $v");
+        // Capture for tests (handy for assertions)
+        self::$lastStatus  = $status;
+        self::$lastHeaders = $headers;
+
+        // In tests, don't mutate PHP's global response state or terminate execution
+        if (!self::$testing) {
+            foreach ($headers as $k => $v) {
+                header("$k: $v");
+            }
+            http_response_code($status);
         }
 
-        http_response_code($status);
-
         $flags = JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE;
-        if(env('APP_ENV', 'production') !== 'production') {
+        if (env('APP_ENV', 'production') !== 'production') {
             $flags |= JSON_PRETTY_PRINT;
         }
 
         try {
             echo json_encode($data, $flags | JSON_THROW_ON_ERROR);
-        } catch(FrameworkException $e) {
-            http_response_code(500);
-            echo json_encode(['success' => false, 'message' => 'JSON encoding error'], $flags);
+        } catch (FrameworkException|\Throwable $e) {
+            // In production, reflect failure via status code; in tests, just emit error JSON
+            if (!self::$testing) {
+                http_response_code(500);
+            }
+            echo json_encode(
+                ['success' => false, 'message' => 'JSON encoding error'],
+                $flags
+            );
         }
-        exit;
+
+        if (!self::$testing) {
+            exit;
+        }
     }
 
     /**
@@ -121,5 +165,17 @@ trait JsonResponse {
         header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-CSRF-Token');
         http_response_code(204);
         exit;
+    }
+
+    /**
+     * Inject JSON body by providing payload parameter.  Also performs cleanup 
+     * to avoid leaking into other tests.
+     *
+     * @param mixed $payload The JSON payload or null.
+     * @return void
+     */
+    public static function setRawInputOverride(mixed $payload = null): void {
+        if($payload) self::$rawInputOverride = json_encode($payload);
+        else self::$rawInputOverride = null;
     }
 }

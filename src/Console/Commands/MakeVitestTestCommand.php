@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Testing\PHPUnitTestBuilder;
+use Console\Helpers\Testing\VitestTestBuilder;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -10,10 +10,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to generate new PHPUnit test file by running make:test.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/unit_tests#creating-tests">here</a>.
+ * Creates test for React.js or JavaScript files.  Use flags to determine which one
+ * to generate.
  */
-class MakeTestCommand extends Command
+class MakeVitestTestCommand extends Command
 {
     /**
      * Configures the command.
@@ -22,11 +22,13 @@ class MakeTestCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('make:test')
+        $this->setName('react:make:test')
             ->setDescription('Generates a new test file!')
-            ->setHelp('php console make:test <test_name>')
+            ->setHelp('php console react:make:test <test_name>')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
-            ->addOption('feature', null, InputOption::VALUE_NONE, 'Create feature test');
+            ->addOption('unit', null, InputOption::VALUE_NONE, 'Create unit test')
+            ->addOption('component', null, InputOption::VALUE_NONE, 'Create component test')
+            ->addOption('view', null, InputOption::VALUE_NONE, 'Create view test');
     }
  
     /**
@@ -38,7 +40,7 @@ class MakeTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = Str::ucfirst($input->getArgument('testname'));
-        return PHPUnitTestBuilder::makeTest($testName, $input);
+        $testName = $input->getArgument('testname');
+        return VitestTestBuilder::makeTest($testName, $input);
     }
 }

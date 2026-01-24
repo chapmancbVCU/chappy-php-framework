@@ -139,9 +139,9 @@ class Tools {
      * is returned.
      */
     public static function dotNotationVerify(string $inputName, InputInterface $input): array|int {
-        $viewArray = explode(".", $input->getArgument($inputName));
+        $arr = explode(".", $input->getArgument($inputName));
 
-        if (sizeof($viewArray) !== 2) {
+        if (sizeof($arr) !== 2) {
             self::info(
                 'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
                 Logger::DEBUG,
@@ -149,7 +149,7 @@ class Tools {
             );
             return Command::FAILURE;
         }
-        return $viewArray;
+        return $arr;
     }
 
     /**

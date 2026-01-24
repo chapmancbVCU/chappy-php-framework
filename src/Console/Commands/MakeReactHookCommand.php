@@ -1,17 +1,18 @@
 <?php
 namespace Console\Commands;
- 
-use Console\Helpers\Email;
+
+use Console\Helpers\React;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new email layout by typing make:email-layout.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/email#templates-and-layouts">here</a>.
+ * Implements command for making a new JavaScript utility by running react:hook.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/react_utils#overview">here</a>.
  */
-class MakeEmailLayoutCommand extends Command {
+class MakeReactHookCommand extends Command {
     /**
      * Configures the command.
      *
@@ -19,10 +20,10 @@ class MakeEmailLayoutCommand extends Command {
      */
     protected function configure(): void
     {
-        $this->setName('make:email:layout')
-            ->setDescription('Generates a new email layout')
-            ->setHelp('php console make:email <email_layout>')
-            ->addArgument('email-layout', InputArgument::REQUIRED, 'Pass the name of the new email layout');
+        $this->setName('react:hook')
+            ->setDescription('Generates a new hook file')
+            ->setHelp('php console react:hook <component_name>')
+            ->addArgument('hook-name', InputArgument::REQUIRED, 'Pass the name for the new React.js hook');
     }
 
     /**
@@ -34,6 +35,7 @@ class MakeEmailLayoutCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Email::makeLayout($input);
+        $hookName = Str::ucfirst($input->getArgument('hook-name'));
+        return React::makeHook($hookName);
     }
 }

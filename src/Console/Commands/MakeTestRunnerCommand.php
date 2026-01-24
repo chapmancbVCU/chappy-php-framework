@@ -1,17 +1,17 @@
 <?php
 namespace Console\Commands;
- 
-use Console\Helpers\Email;
+
+use Console\Helpers\Testing\ThirdPartyTests;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generates a new email layout by typing make:email-layout.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/email#templates-and-layouts">here</a>.
+ * Command for generating new unit test runner.
  */
-class MakeEmailLayoutCommand extends Command {
+class MakeTestRunnerCommand extends Command {
     /**
      * Configures the command.
      *
@@ -19,10 +19,10 @@ class MakeEmailLayoutCommand extends Command {
      */
     protected function configure(): void
     {
-        $this->setName('make:email:layout')
-            ->setDescription('Generates a new email layout')
-            ->setHelp('php console make:email <email_layout>')
-            ->addArgument('email-layout', InputArgument::REQUIRED, 'Pass the name of the new email layout');
+        $this->setName('make:test:runner')
+            ->setDescription('Generates a test runner for a 3rd party suite')
+            ->setHelp('php console make:test:runner <runner-name>')
+            ->addArgument('runner-name', InputArgument::REQUIRED, 'Pass name of directory and runner');
     }
 
     /**
@@ -34,6 +34,7 @@ class MakeEmailLayoutCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Email::makeLayout($input);
+        $className = Str::ucfirst($input->getArgument('runner-name'));
+        return ThirdPartyTests::makeRunner($className."Runner");
     }
 }

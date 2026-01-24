@@ -16,6 +16,11 @@ class React {
     public const COMPONENT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'components'.DS;
 
     /**
+     * Path to React.js hooks.
+     */
+    public const HOOKS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'hooks'.DS;
+
+    /**
      * Path to React.js pages.
      */
     public const PAGE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'pages'.DS;
@@ -37,27 +42,6 @@ class React {
         Tools::writeFile($path.'Login.jsx', ReactStubs::authLogin(), 'auth/Login.jsx');
         Tools::writeFile($path.'Register.jsx', ReactStubs::authRegister(), 'auth/Register.jsx');
         return Command::SUCCESS;
-    }
-
-    /**
-     * Generates a component with default export.
-     *
-     * @param string $componentName The name of the component.
-     * @return string The contents of the component.
-     */
-    public static function defaultComponentTemplate(string $componentName): string {
-        return <<<JSX
-import React from "react";
-function {$componentName}() {
-
-    return (
-        <>
-        
-        </>
-    );
-}        
-export default {$componentName};
-JSX;
     }
 
     /**
@@ -85,26 +69,6 @@ JSX;
     }
 
     /**
-     * Generates a named export component.
-     *
-     * @param string $componentName The name of the component.
-     * @return string The contents of the component.
-     */
-    public static function namedComponentTemplate(string $componentName): string {
-        return <<<JSX
-import React from "react";
-export const {$componentName} = () => {
-
-    return (
-        <>
-        
-        </>
-    );
-}
-JSX;
-    }
-
-    /**
      * Generates component under 'resources/js/components'.
      *
      * @param string $componentName The name of the component.
@@ -116,9 +80,23 @@ JSX;
         Tools::pathExists(self::COMPONENT_PATH);
         $componentPath = self::COMPONENT_PATH.$componentName.'.jsx';
         $content = ($named) 
-            ? self::namedComponentTemplate($componentName) 
-            : self::defaultComponentTemplate($componentName);
+            ? ReactStubs::namedComponentTemplate($componentName) 
+            : ReactStubs::defaultComponentTemplate($componentName);
         return Tools::writeFile($componentPath, $content, 'React component');
+    }
+
+    /**
+     * Generates a JavaScript file under 'resources/js/hook' to be 
+     * use as hook file with React.js front-end.
+     *
+     * @param string $hookName The name of the hook file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeHook(string $hookName): int {
+        Tools::pathExists(self::HOOKS_PATH);
+        $filePath = self::HOOKS_PATH.$hookName.'.js';
+        $content = ReactStubs::hookTemplate($hookName);
+        return Tools::writeFile($filePath, $content, 'React.js hook');
     }
 
     /**
@@ -132,8 +110,8 @@ JSX;
      */
     public static function makePage(string $filePath, string $pageName, bool $named = false): int {
         $content = ($named)
-            ? self::namedComponentTemplate($pageName) 
-            : self::defaultComponentTemplate($pageName);
+            ? ReactStubs::namedComponentTemplate($pageName) 
+            : ReactStubs::defaultComponentTemplate($pageName);
 
         return Tools::writeFile($filePath, $content, 'React page');
     }
