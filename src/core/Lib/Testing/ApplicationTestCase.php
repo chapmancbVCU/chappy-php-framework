@@ -262,7 +262,7 @@ abstract class ApplicationTestCase extends TestCase {
         self::enableJsonTestingMode();
 
         // Feed raw JSON body to JsonResponse::get()
-        JsonResponse::setRawInputOverride(json_encode($data));
+        JsonResponse::setRawInputOverride($data);
 
         $_SERVER['REQUEST_METHOD'] = $method;
 
@@ -441,7 +441,7 @@ abstract class ApplicationTestCase extends TestCase {
 
         // Enable test-mode behavior in JsonResponse (no exit, no headers)
         self::enableJsonTestingMode();
-        JsonResponse::setRawInputOverride(json_encode($payload));
+        JsonResponse::setRawInputOverride($payload);
 
         self::simulateRequest($method, $pathInfo);
         $_SERVER['CONTENT_TYPE'] = 'application/json';
