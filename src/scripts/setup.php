@@ -79,7 +79,7 @@ foreach ($envLines as $line) {
 // 8️⃣ Write the updated content back to .env
 file_put_contents($envFile, implode("\n", $updatedEnv) . "\n");
 
-chmod($envFile, 0777);
+chmod($envFile, 0775);
 
 echo "🔑 Successfully updated .env with generated keys.\n";
 
@@ -92,16 +92,16 @@ $directories = [
 
 foreach ($directories as $dir) {
     if (!is_dir($dir)) {
-        mkdir($dir, 0777, true);
+        mkdir($dir, 0775, true);
         echo "📂 Created directory: $dir\n";
     }
 }
 
 // 1️⃣2️⃣ Set permissions (Linux/macOS only)
 if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-    chmod('storage', 0777);
-    chmod('storage/logs', 0777);
-    chmod('database', 0777);
+    chmod('storage', 0775);
+    chmod('storage/logs', 0775);
+    chmod('database', 0775);
     echo "🔧 Set permissions for storage, logs, and database directories.\n";
 }
 
