@@ -107,6 +107,29 @@ $response-&gt;assertSee('Welcome');</p></p>        </div>
             
         
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_content">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$content</td>
+                <td class="last"><p>The response body content.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_status">
+                                        protected                                        int
+                                                                                
+                                    </td>
+                <td>$status</td>
+                <td class="last"><p>The simulated HTTP status code.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
@@ -180,7 +203,7 @@ contains the specified keys and values.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 42</div>
+        <div class="location">at line 41</div>
         <code>                    
     <strong>__construct</strong>(string $content, int $status = 200)
         </code>
@@ -218,7 +241,7 @@ contains the specified keys and values.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertDontSee">
-        <div class="location">at line 54</div>
+        <div class="location">at line 53</div>
         <code>                    void
     <strong>assertDontSee</strong>(string $text)
         </code>
@@ -260,7 +283,7 @@ contains the specified keys and values.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertJson">
-        <div class="location">at line 70</div>
+        <div class="location">at line 69</div>
         <code>                    void
     <strong>assertJson</strong>(array $expected)
         </code>
@@ -303,7 +326,7 @@ contains the specified keys and values.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertSee">
-        <div class="location">at line 87</div>
+        <div class="location">at line 86</div>
         <code>                    void
     <strong>assertSee</strong>(string $text)
         </code>
@@ -345,7 +368,7 @@ contains the specified keys and values.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertStatus">
-        <div class="location">at line 102</div>
+        <div class="location">at line 101</div>
         <code>                    void
     <strong>assertStatus</strong>(int $expected)
         </code>
@@ -387,7 +410,7 @@ contains the specified keys and values.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getContent">
-        <div class="location">at line 116</div>
+        <div class="location">at line 115</div>
         <code>                    string
     <strong>getContent</strong>()
         </code>
