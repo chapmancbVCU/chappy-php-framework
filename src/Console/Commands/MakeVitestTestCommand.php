@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Testing\VitestTestBuilder;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,7 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Creates test for React.js or JavaScript files.  Use flags to determine which one
- * to generate.
+ * to generate.  More information can be found 
+ * <a href="https://chapmancbvcu.github.io/chappy-php-starter/vitest#creating-tests">here</a>.
  */
 class MakeVitestTestCommand extends Command
 {

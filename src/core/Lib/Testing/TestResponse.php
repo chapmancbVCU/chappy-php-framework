@@ -4,7 +4,6 @@ namespace Core\Lib\Testing;
 
 use PHPUnit\Framework\Assert;
 
-
 /**
  * A simplified test response wrapper that mimics HTTP-style responses for use in feature tests.
  *

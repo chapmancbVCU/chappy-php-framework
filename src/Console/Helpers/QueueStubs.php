@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+/**
+ * Collection of stubs for queue/event listener classes.
+ */
 class QueueStubs {
     /**
      * Template for Jobs class.

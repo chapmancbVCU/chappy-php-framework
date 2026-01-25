@@ -3,7 +3,6 @@ namespace Console\Commands;
  
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
-use Console\Helpers\Controller;
 use Console\Helpers\ControllerStubs;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
