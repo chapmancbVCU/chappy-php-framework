@@ -36,6 +36,18 @@ Chappy.php is a modern PHP MVC framework focused on clarity, modularity, and rap
 
 ---
 
+## System Requirements
+- Apache or Nginx (or XAMPP)
+- PHP 8.4
+- MySQL or MariaDB
+- Composer, Node.js, npm
+- SQL Management software
+- Composer
+- git
+- OS: macOS / Linux / Windows 11+
+
+---
+
 ## 🚀 Getting Started
 
 Chappy.php is published as a Composer package.
