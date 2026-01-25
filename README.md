@@ -88,4 +88,5 @@ Youtube: https://www.youtube.com/@chappy-php
 2. Freeskills on YouTube (https://www.youtube.com/playlist?list=PLFPkAJFH7I0keB1qpWk5qVVUYdNLTEUs3)
 
 **Release Notes**
-v[2.0.0](https://chapmancbvcu.github.io/chappy-php-starter/jekyll/update/2026/01/25/Version-2-ReleaseNotes.html)
+
+[v2.0.0](https://chapmancbvcu.github.io/chappy-php-starter/jekyll/update/2026/01/25/Version-2-ReleaseNotes.html)
