@@ -43,7 +43,7 @@ final class VitestTestRunner extends TestRunner {
     /**
      * The command for Vitest
      */
-    public const TEST_COMMAND = "npx vitest run";
+    public const TEST_COMMAND = "npx vitest run ";
 
     /**
      * Path for unit tests.
