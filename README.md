@@ -62,3 +62,27 @@ Install via [chappy-php/chappy-php](https://github.com/chappy-php/chappy-php) st
 ```bash
 composer create-project chappy-php/chappy-php my-app
 ```
+
+---
+
+📄 Documentation
+Full documentation is included with the project. After setup, access:
+- 📘 User Guide
+- 🔧 API Reference
+
+---
+
+📬 Contact
+Questions or suggestions? 📧 chad.chapman2010@gmail.com.
+🐛 [Open an issue](https://github.com/chapmancbVCU/chappy-php-framework/issues)
+
+---
+
+🌐 Social
+Youtube: https://www.youtube.com/@chappy-php
+
+---
+
+🏆 Credits
+1. “mvc” icon by iconixar, from thenounproject.com.
+2. Freeskills on YouTube (https://www.youtube.com/playlist?list=PLFPkAJFH7I0keB1qpWk5qVVUYdNLTEUs3)
