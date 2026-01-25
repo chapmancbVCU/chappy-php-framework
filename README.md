@@ -20,35 +20,21 @@ Chappy.php is a modern PHP MVC framework focused on clarity, modularity, and rap
 
 ## ⚙️ Features
 
-⚛️ Native React.js View Support
-
-💡 Lightweight, fast PHP MVC core
-
-🧭 Dynamic routing with controllers
-
-🧱 Layouts, components, and templating
-
-🔐 Built‑in user authentication & ACL
-
-✍️ Custom form handling and validation
-
-📥 Secure file uploads
-
-🧪 Unit testing with PHPUnit and Vitest
-
-🔥 Vite‑based asset bundling
-
-🎛 Symfony Console–powered CLI (console)
-
-🌱 Seeders, migrations, and database helpers
-
-📊 Doctum‑generated API documentation
-
-📖 Built‑in Jekyll user guide
-
-🧾 .env configuration via vlucas/phpdotenv
-
-📂 Organized PSR‑4 project structure
+- ⚛️ Native React.js View Support
+- 💡 Lightweight, fast PHP MVC core
+- 🧭 Dynamic routing with controllers
+- 🧱 Layouts, components, and templating
+- 🔐 Built‑in user authentication & ACL
+- ✍️ Custom form handling and validation
+- 📥 Secure file uploads
+- 🧪 Unit testing with PHPUnit and Vitest
+- 🔥 Vite‑based asset bundling
+- 🎛 Symfony Console–powered CLI (console)
+- 🌱 Seeders, migrations, and database helpers
+- 📊 Doctum‑generated API documentation
+- 📖 Built‑in Jekyll user guide
+- 🧾 .env configuration via vlucas/phpdotenv
+- 📂 Organized PSR‑4 project structure
 - 📚 [Jekyll user guide](https://chapmancbvcu.github.io/chappy-php-starter/)
 
 ---
