@@ -143,7 +143,7 @@ class TestRunner {
      * @return void
      */
     public function runTest(string $test, string $testCommand): void {
-        $command = $testCommand . $test . $this->inputOptions;
+        $command = $testCommand . ' ' . $test . $this->inputOptions;
         Tools::info('File: '.$test);
         $this->output->writeln(shell_exec($command));
     }
