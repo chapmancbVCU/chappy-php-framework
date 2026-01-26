@@ -345,8 +345,6 @@ class Uploads {
         }
     }
     
-    
-
     /**
      * Validates file size and sets error message if file is too large.
      *
