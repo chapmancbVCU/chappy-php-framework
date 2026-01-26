@@ -322,6 +322,8 @@ class Uploads {
                 : $type;
         }
     
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+
         foreach ($this->_files as $file) {
             $filePath = $file['tmp_name'];
             $fileName = $file['name'];
@@ -333,9 +335,7 @@ class Uploads {
             }
     
             // Get the MIME type of the file
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $mimeType = finfo_file($finfo, $filePath);
-            finfo_close($finfo);
+            $mimeType = $finfo->file($filePath) ?: '';
     
             // Check if the file type is allowed
             if (!in_array($mimeType, $this->_allowedFileTypes, true)) {
