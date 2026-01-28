@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Queue;
 
-use Core\DB;
 use Core\Lib\Utilities\Config;
 use Predis\Client as PredisClient;
 
