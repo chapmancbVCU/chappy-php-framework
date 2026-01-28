@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
-// use App\Models\Users;
-
 /**
  * Class for generating a welcome message.
  */
