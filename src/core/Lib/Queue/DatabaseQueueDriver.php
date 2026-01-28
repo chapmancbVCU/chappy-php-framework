@@ -17,7 +17,7 @@ class DatabaseQueueDriver implements QueueDriverInterface {
      * @return void
      */
     public function delete($jobId): void {
-        $job =Queue::findById((int)$jobId);
+        $job = Queue::findById((int)$jobId);
         if($job) {
             $job->delete();
         }
