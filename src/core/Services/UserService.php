@@ -4,11 +4,8 @@ namespace Core\Services;
 
 use Core\Input;
 use App\Models\Users;
-use App\Jobs\SendWelcomeEmail;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
-use Core\Lib\Queue\QueueManager;
-use Core\Lib\Utilities\DateTime;
 use Core\Lib\Events\EventManager;
 use Core\Lib\Events\AccountDeactivated;
 use Core\Lib\Events\UserPasswordResetRequested;
