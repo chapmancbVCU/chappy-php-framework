@@ -66,22 +66,29 @@ class Logger {
      * written to log file.
      */
     public static function log(string $message, string $level = self::INFO): void {
-        if (!Env::get('DEBUG', false)) {
-            return; // Skip logging if DEBUG is disabled
+        $loggingConfigLevel = Env::get("LOGGING");
+        if(!self::verifyLoggingLevel()) {
+            $message = "Invalid log level set in config: You entered $loggingConfigLevel -> " . $message;
+            $level = self::ERROR;
+        }
+
+        if((Env::get('DEBUG') == 'E_WARNING') && ($level != self::INFO || $level != self::DEBUG || $level != self::NOTICE)) {
+            return;
         }
 
         $reflectionClass = new ReflectionClass(__CLASS__);
         $constants = $reflectionClass->getConstants();
         $constantKey = array_search($level, $constants);
-        if($constantKey == false) {
-            throw new LoggerLevelException($level, "LoggerLevelException: Invalid severity level: ");
+        if($constantKey === false) {
+            $message = "Invalid log level set in config: You entered {$level} -> " . $message;
+            $level = self::ERROR;
         }
 
         if (!isset(self::$logFile)) {
             self::init();
         }
 
-            // Get the caller's file and line number
+        // Get the caller's file and line number
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
         $caller = $backtrace[1] ?? null; // Use index 1 to get the actual caller
 
@@ -129,8 +136,42 @@ class Logger {
 
         if ($result === false) {
             throw new LoggerException("Error: Unable to write to log file.");
-            // die("Error: Unable to write to log file.");
         }
-        
+    }
+
+    public static function verifyLoggingLevel() {
+        $level = Env::get('LOGGING');
+        $isValid = false;
+        switch ($level) {
+            case self::ALERT:
+                $isValid = true;
+                break;
+            case self::CRITICAL:
+                $isValid = true;
+                break;
+            case self::DEBUG:
+                $isValid = true;
+                break;
+            case self::EMERGENCY:
+                $isValid = true;
+                break;
+            case self::ERROR:
+                $isValid = true;
+                break;
+            case self::INFO:
+                $isValid = true;
+                break;
+            case self::NOTICE:
+                $isValid = true;
+                break;
+            case self::WARNING:
+                $isValid = true;
+                break;
+            default:
+                $isValid = false;
+                break;
+        }
+
+        return $isValid;
     }
 }
