@@ -67,7 +67,7 @@ class Logger {
      */
     public static function log(string $message, string $level = self::INFO): void {
         $loggingConfigLevel = Env::get("LOGGING");
-        if(!self::verifyLoggingLevel()) {
+        if(!self::verifyLoggingLevel(Env::get('LOGGING'))) {
             $message = "Invalid log level set in config: You entered $loggingConfigLevel -> " . $message;
             $level = self::ERROR;
         }
@@ -76,11 +76,8 @@ class Logger {
             return;
         }
 
-        $reflectionClass = new ReflectionClass(__CLASS__);
-        $constants = $reflectionClass->getConstants();
-        $constantKey = array_search($level, $constants);
-        if($constantKey === false) {
-            $message = "Invalid log level set in config: You entered {$level} -> " . $message;
+        if(!self::verifyLoggingLevel($level)) {
+            $message = "Invalid log level passed as a parameter: You entered {$level} -> " . $message;
             $level = self::ERROR;
         }
 
@@ -139,39 +136,19 @@ class Logger {
         }
     }
 
-    public static function verifyLoggingLevel() {
-        $level = Env::get('LOGGING');
-        $isValid = false;
-        switch ($level) {
-            case self::ALERT:
-                $isValid = true;
-                break;
-            case self::CRITICAL:
-                $isValid = true;
-                break;
-            case self::DEBUG:
-                $isValid = true;
-                break;
-            case self::EMERGENCY:
-                $isValid = true;
-                break;
-            case self::ERROR:
-                $isValid = true;
-                break;
-            case self::INFO:
-                $isValid = true;
-                break;
-            case self::NOTICE:
-                $isValid = true;
-                break;
-            case self::WARNING:
-                $isValid = true;
-                break;
-            default:
-                $isValid = false;
-                break;
+    /**
+     * Tests if the PSR-3 logging level that is provided is valid
+     *
+     * @param string $level The PSR-3 level to be tested.
+     * @return bool True if the level is valid.  Otherwise, we return false.
+     */
+    public static function verifyLoggingLevel(string $level): bool {
+        $reflectionClass = new ReflectionClass(__CLASS__);
+        $constants = $reflectionClass->getConstants();
+        $constantKey = array_search($level, $constants);
+        if($constantKey === false) {
+            return false;
         }
-
-        return $isValid;
+        return true;
     }
 }
