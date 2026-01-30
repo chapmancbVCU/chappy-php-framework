@@ -199,7 +199,7 @@ class Model {
      */
     public function getColumnsForSave(): array {
         $columns = static::getColumns();
-        Logger::log("Columns from DB: " . json_encode($columns), Logger::DEBUG);
+        debug("Columns from DB: " . json_encode($columns));
 
         $fields = [];
 
@@ -207,7 +207,7 @@ class Model {
         $columnKey = isset($columns[0]->Field) ? 'Field' : (isset($columns[0]->name) ? 'name' : null);
 
         if ($columnKey === null) {
-            Logger::log("ERROR: Column key not found!", Logger::ERROR);
+            error("ERROR: Column key not found!");
             return [];
         }
 
@@ -216,7 +216,7 @@ class Model {
             if (isset($this->{$key})) $fields[$key] = $this->{$key};
             
         });
-        Logger::log("Fields for save: " . json_encode($fields), Logger::DEBUG);
+        debug("Fields for save: " . json_encode($fields));
         return $fields;
     }
 
