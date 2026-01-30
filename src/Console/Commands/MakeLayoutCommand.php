@@ -60,7 +60,7 @@ class MakeLayoutCommand extends Command {
         } else if($menuAcl === null) {
             View::makeMenuAcl($layoutName);
         } else {
-            Tools::info('--menu-acl does not accept an argument', Logger::DEBUG, Tools::BG_RED);
+            Tools::info('--menu-acl does not accept an argument', Logger::INFO, Tools::BG_RED);
         }
 
         // Process menu input
@@ -72,7 +72,7 @@ class MakeLayoutCommand extends Command {
             View::makeMenu($layoutName);
             return View::makeLayout($layoutName, $layoutName);
         } else {
-            Tools::info('--menu does not accept an argument', Logger::DEBUG, Tools::BG_RED);
+            Tools::info('--menu does not accept an argument', Logger::INFO, Tools::BG_RED);
             return Command::FAILURE;
         }
     }
