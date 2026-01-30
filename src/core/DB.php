@@ -6,7 +6,6 @@ use Exception;
 use \PDOException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\ArraySet;
 /**
  * Support database operations.
@@ -358,7 +357,6 @@ class DB {
         }
         alert(
             'The DB driver was not properly set.  GROUP BY formatting failed.  Please check DB_CONNECTION value in .env file', 
-            Logger::DEBUG
         );
         return null;
     }
@@ -383,7 +381,7 @@ class DB {
      */
     public function insert(string $table, array $fields = []): bool {
         if (empty($fields)) {
-            Logger::log("Attempted to insert empty data into {$table}", Logger::ERROR);
+            error("Attempted to insert empty data into {$table}");
             return false;
         }
     
@@ -398,7 +396,7 @@ class DB {
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
-        Logger::log("Preparing INSERT query: $sql | Params: " . json_encode($values), Logger::DEBUG);
+        debug("Preparing INSERT query: $sql | Params: " . json_encode($values));
 
         if (!$this->query($sql, $values)->error()) {
             return true;
@@ -457,16 +455,16 @@ class DB {
 
                 // If multiple rows updated, log a summary
                 if ($this->_count > 1) {
-                    Logger::log("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s", Logger::DEBUG);
+                    debug("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s");
                 } else {
-                    Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", Logger::DEBUG);
+                    debug("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
                 }
             } else {
                 $this->_error = true;
-                Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), Logger::ERROR);
+                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params));
             }
         } else {
-            Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), Logger::ERROR);
+            error("Failed to prepare query: $sql | Params: " . json_encode($params));
         }
 
         return $this;
@@ -667,7 +665,7 @@ class DB {
      */
     public function updateWhere(string $table, array $fields, array $params = []): int {
         if (empty($fields)) {
-            Logger::log("Attempted to update with empty data in {$table}", Logger::ERROR);
+            error("Attempted to update with empty data in {$table}");
             return 0;
         }
 
