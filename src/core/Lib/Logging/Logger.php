@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Logging;
 
-use Core\Exceptions\Logger\LoggerException;
-use Core\Exceptions\Logger\LoggerLevelException;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
 use ReflectionClass;
@@ -29,9 +27,9 @@ class Logger {
     /** Constant for alert level debug. */
     public const DEBUG = 'debug';
 
-    /** Path to log files. */
-    private const string LOG_FILE_PATH = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS; 
-
+    /**
+     * Associative array of levels mapped to integers based on severity.
+     */
     private const LEVELS = [
         self::EMERGENCY => 0,
         self::ALERT     => 1,
@@ -42,6 +40,10 @@ class Logger {
         self::INFO      => 6,
         self::DEBUG     => 7,
     ];
+
+    /** Path to log files. */
+    private const string LOG_FILE_PATH = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS; 
+
     /**
      * Full path and name of current log file.
      * @var string
@@ -49,11 +51,24 @@ class Logger {
     private static string $logFile;
 
     /**
+     * Performs system logging if we cannot write to log file.  We also dump 
+     * the message to the console/view.
+     *
+     * @param string $message The message to be logged.
+     * @return void
+     */
+    private static function emergencyFallback(string $message): void {
+        $loggingMessage = "CHAPPY LOGGER EMERGENCY {$message}";
+        error_log($loggingMessage);
+        dump($loggingMessage);
+    }
+
+    /**
      * Initializes the log file based on the environment (CLI or Web).
      */
     private static function init(): void {
         if (!defined('ROOT')) {
-            throw new LoggerException("ROOT constant is not defined.");
+            self::emergencyFallback("ROOT constant is not defined.");
         }
 
         // Determine log file location
@@ -64,16 +79,39 @@ class Logger {
     }
 
     /**
+     * Checks if log directory is writeable.  If not writable we write message 
+     * to PHP log file and dump message to console or view.
+     *
+     * @param string $logDir Path for the log directory
+     * @return void
+     */
+    private static function isLogDirWritable(string $logDir): void {
+        if (!is_writable($logDir)) {
+            self::emergencyFallback(
+                "Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4)
+            );
+        }
+    }
+
+    /**
+     * Checks if log file is writable.  If not writable we write message 
+     * to PHP log file and dump message to console or view.
+     *
+     * @return void
+     */
+    private static function isLogFileWritable(): void {
+        if (!is_writable(self::$logFile)) {
+            self::emergencyFallback("Log file is not writable.");
+        }
+    }
+
+    /**
      * Performs operations for adding content to log files.
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
      * @param string $level Describes the severity of the message.
      * @return void
-     * 
-     * @throws LoggerLevelException If invalid severity level is provided an
-     * exception is thrown.  Exception message is presented to user and 
-     * written to log file.
      */
     public static function log(string $message, string $level = self::INFO): void {
         $loggingConfigLevel = Env::get("LOGGING");
@@ -113,34 +151,41 @@ class Logger {
         $logMessage = "[$date - GMT] [$level] [$shortFile:$line] $message" . PHP_EOL;
         $logDir = dirname(self::$logFile);
 
-        // Debug: Check directory existence
-        if (!is_dir($logDir)) {
-            mkdir($logDir, 0775, true);
-        }
-
-        // Debug: Check directory permissions
-        if (!is_writable($logDir)) {
-            throw new LoggerException(
-                "Error: Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4)
-            );
-        }
-
-        // Debug: Check file existence
-        if (!file_exists(self::$logFile)) {
-            touch(self::$logFile);
-            chmod(self::$logFile, 0775);
-        }
-
-        // Debug: Check if file is writable
-        if (!is_writable(self::$logFile)) {
-            throw new LoggerException("Error: Log file is not writable.");
-        }
-
+        // Checks to ensure we can log to file.
+        self::logDirExists($logDir);
+        self::isLogDirWritable($logDir);
+        self::logFileExists();
+        self::isLogFileWritable();
+        
         // Write to log file
         $result = file_put_contents(self::$logFile, $logMessage, FILE_APPEND | LOCK_EX);
 
         if ($result === false) {
-            throw new LoggerException("Error: Unable to write to log file.");
+            self::emergencyFallback("Unable to write to log file.");
+        }
+    }
+
+    /**
+     * Checks if log directory exists.  If not, then we create it.
+     *
+     * @param string $logDir Path for the log directory.
+     * @return void
+     */
+    private static function logDirExists(string $logDir): void {
+        if (!is_dir($logDir)) {
+            mkdir($logDir, 0775, true);
+        }
+    }
+
+    /**
+     * Checks if log file exists.  If not, then we create it.
+     *
+     * @return void
+     */
+    private static function logFileExists(): void {
+        if (!file_exists(self::$logFile)) {
+            touch(self::$logFile);
+            chmod(self::$logFile, 0775);
         }
     }
 
