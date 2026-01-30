@@ -51,6 +51,21 @@ class Logger {
     private static string $logFile;
 
     /**
+     * Get the caller's file and line number
+     *
+     * @return array An array containing the file name and line number.
+     */
+    private static function debugBacktrace(): array {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        $caller = $backtrace[1] ?? null;
+
+        return [
+            $file = $caller['file'] ?? 'Unknown File',
+            $line = $caller['line'] ?? 'Unknown Line'
+        ];
+    }
+
+    /**
      * Performs system logging if we cannot write to log file.  We also dump 
      * the message to the console/view.
      *
@@ -120,25 +135,16 @@ class Logger {
             $level = self::CRITICAL;
         }
 
-        if(!self::shouldLog($level)) {
-            return;
-        }
+        if(!self::shouldLog($level)) return;
 
         if(!self::verifyLoggingLevel($level)) {
             $message = "Invalid log level passed as a parameter: You entered {$level} -> " . $message;
             $level = self::CRITICAL;
         }
 
-        if (!isset(self::$logFile)) {
-            self::init();
-        }
-
-        // Get the caller's file and line number
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        $caller = $backtrace[1] ?? null; // Use index 1 to get the actual caller
-
-        $file = $caller['file'] ?? 'Unknown File';
-        $line = $caller['line'] ?? 'Unknown Line';
+        if (!isset(self::$logFile)) self::init();
+        
+        [$file, $line] = self::debugBacktrace();
 
         // Dynamically determine the base path
         $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
