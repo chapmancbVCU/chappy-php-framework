@@ -4,9 +4,7 @@ use Core\Router;
 use Core\Session;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Config;
-use Console\Helpers\Tools;
 use Symfony\Component\VarDumper\VarDumper;
 
 if (!function_exists('asset')) {
