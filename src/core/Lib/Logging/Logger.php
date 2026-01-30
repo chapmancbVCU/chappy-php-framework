@@ -88,7 +88,7 @@ class Logger {
     private static function generateLogMessage(string $level, string $message): string {
         [$file, $line] = self::debugBacktrace();
         $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
-        
+
         $shortFile = Str::replace($basePath, '', $file);
         $shortFile = ltrim($shortFile, '/');
 
@@ -211,7 +211,7 @@ class Logger {
      * @return bool True we will log based on level.  Otherwise, we return 
      * false.
      */
-    private static function shouldLog(string $level): bool {
+    public static function shouldLog(string $level): bool {
         $configLevel = Env::get("LOGGING");
 
         if (!isset(self::LEVELS[$configLevel]) || !isset(self::LEVELS[$level])) {

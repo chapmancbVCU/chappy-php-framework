@@ -202,6 +202,8 @@ class Tools {
         string $background = self::BG_GREEN, 
         string $text = self::TEXT_LIGHT_GREY
     ): void {
+        if(!Logger::shouldLog($level)) return;
+        
         if (self::$output) {
             self::$output->writeln($message);
         }
