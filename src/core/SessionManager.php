@@ -26,10 +26,10 @@ class SessionManager {
             if ($user) {
                 if ($user->inactive == 1) {
                     $user->logout();
-                    Logger::log("Inactive user attempted auto-login: User ID {$user->id}", Logger::WARNING);
+                    warning("Inactive user attempted auto-login: User ID {$user->id}");
                 } else {
                     Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $user->id);
-                    Logger::log("User auto-logged in via Remember Me: User ID {$user->id}", Logger::INFO);
+                    info("User auto-logged in via Remember Me: User ID {$user->id}");
                 }
             }
         }
