@@ -57,11 +57,11 @@ class GenerateControllerCommand extends Command
         if($layoutInput === false) {
             $layout = 'default';
         } else if ($layoutInput === null) {
-            Tools::info('Please supply name of layout.', Logger::DEBUG, Tools::BG_RED);
+            console_warning('Please supply name of layout.');
             return Command::FAILURE;
         } else {
             if($layoutInput === '') {
-                Tools::info('Please supply name of layout.', Logger::DEBUG, Tools::BG_RED);
+                console_warning('Please supply name of layout.');
                 return Command::FAILURE;
             }
             $layout = Str::lower($layoutInput);

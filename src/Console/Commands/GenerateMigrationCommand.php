@@ -41,7 +41,7 @@ class GenerateMigrationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if($input->getOption('update') && $input->getOption('rename')) {
-            Tools::info('Cannot accept update and rename options at the same time.', Logger::ERROR, Tools::BG_RED);
+            console_warning('Cannot accept update and rename options at the same time.');
             return Command::FAILURE;
         }
 
