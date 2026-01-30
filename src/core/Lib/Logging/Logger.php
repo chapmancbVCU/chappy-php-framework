@@ -79,6 +79,25 @@ class Logger {
     }
 
     /**
+     * Packages together the actual formatted log message with 
+     *
+     * @param string $level The severity level of the message.
+     * @param string $message The original message.
+     * @return string The formatted message for log file.
+     */
+    private static function generateLogMessage(string $level, string $message): string {
+        [$file, $line] = self::debugBacktrace();
+        $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
+        
+        $shortFile = Str::replace($basePath, '', $file);
+        $shortFile = ltrim($shortFile, '/');
+
+        $date = date('Y-m-d H:i:s');
+        
+        return "[$date - GMT] [$level] [$shortFile:$line] $message" . PHP_EOL;
+    }
+
+    /**
      * Initializes the log file based on the environment (CLI or Web).
      */
     private static function init(): void {
@@ -144,26 +163,14 @@ class Logger {
 
         if (!isset(self::$logFile)) self::init();
         
-        [$file, $line] = self::debugBacktrace();
-
-        // Dynamically determine the base path
-        $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
-
-        // Trim base path from filename
-        $shortFile = Str::replace($basePath, '', $file);
-        $shortFile = ltrim($shortFile, '/'); // Remove leading slash if present
-
-        $date = date('Y-m-d H:i:s');
-        $logMessage = "[$date - GMT] [$level] [$shortFile:$line] $message" . PHP_EOL;
-        $logDir = dirname(self::$logFile);
-
         // Checks to ensure we can log to file.
+        $logDir = dirname(self::$logFile);
         self::logDirExists($logDir);
         self::isLogDirWritable($logDir);
         self::logFileExists();
         self::isLogFileWritable();
-        
-        // Write to log file
+
+        $logMessage = self::generateLogMessage($level, $message);
         $result = file_put_contents(self::$logFile, $logMessage, FILE_APPEND | LOCK_EX);
 
         if ($result === false) {
