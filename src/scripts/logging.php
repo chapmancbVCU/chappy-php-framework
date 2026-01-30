@@ -122,20 +122,6 @@ if(!function_exists('info')) {
     }
 }
 
-if(!function_exists('logger')) {
-    /**
-     * Performs operations for adding content to log files.
-     *
-     * @param string $message The description of an event that is being 
-     * written to a log file.
-     * @param string $level Describes the severity of the message.
-     * @return void
-     */
-    function logger(string $message, string $level = Logger::INFO) {
-        Logger::log($message, $level);
-    }
-}
-
 /**
  * Performs operations for adding content to log files using the notice 
  * severity level.
