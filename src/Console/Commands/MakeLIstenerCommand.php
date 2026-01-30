@@ -1,9 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Tools;
 use Console\Helpers\Events;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -45,16 +43,12 @@ class MakeListenerCommand extends Command
         $eventName = Str::ucfirst($input->getOption('event'));
 
         if(!$eventName) {
-            Tools::info('Please provide name of the event', Logger::WARNING, Tools::BG_YELLOW);
+            console_warning('Please provide name of the event');
             return Command::FAILURE;
         }
 
         if(!Events::verifyListenerParams($eventName, $listenerName)) {
-            Tools::info(
-                'Either event option was not provided or both event and listener names are the same', 
-                Logger::WARNING, 
-                Tools::BG_YELLOW
-            );
+            console_warning('Either event option was not provided or both event and listener names are the same');
             return Command::FAILURE;
         }
         
