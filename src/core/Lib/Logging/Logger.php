@@ -32,6 +32,16 @@ class Logger {
     /** Path to log files. */
     private const string LOG_FILE_PATH = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'logs' . DS; 
 
+    private const LEVELS = [
+        self::EMERGENCY => 0,
+        self::ALERT     => 1,
+        self::CRITICAL  => 2,
+        self::ERROR     => 3,
+        self::WARNING   => 4,
+        self::NOTICE    => 5,
+        self::INFO      => 6,
+        self::DEBUG     => 7,
+    ];
     /**
      * Full path and name of current log file.
      * @var string
@@ -67,18 +77,18 @@ class Logger {
      */
     public static function log(string $message, string $level = self::INFO): void {
         $loggingConfigLevel = Env::get("LOGGING");
-        if(!self::verifyLoggingLevel(Env::get('LOGGING'))) {
+        if(!self::verifyLoggingLevel($loggingConfigLevel)) {
             $message = "Invalid log level set in config: You entered $loggingConfigLevel -> " . $message;
-            $level = self::ERROR;
+            $level = self::CRITICAL;
         }
 
-        if((Env::get('DEBUG') == 'E_WARNING') && ($level != self::INFO || $level != self::DEBUG || $level != self::NOTICE)) {
+        if(!self::shouldLog($level)) {
             return;
         }
 
         if(!self::verifyLoggingLevel($level)) {
             $message = "Invalid log level passed as a parameter: You entered {$level} -> " . $message;
-            $level = self::ERROR;
+            $level = self::CRITICAL;
         }
 
         if (!isset(self::$logFile)) {
@@ -113,7 +123,6 @@ class Logger {
             throw new LoggerException(
                 "Error: Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4)
             );
-            //die("Error: Log directory is not writable. Current permissions: " . substr(sprintf('%o', fileperms($logDir)), -4));
         }
 
         // Debug: Check file existence
@@ -125,7 +134,6 @@ class Logger {
         // Debug: Check if file is writable
         if (!is_writable(self::$logFile)) {
             throw new LoggerException("Error: Log file is not writable.");
-            // die("Error: Log file is not writable.");
         }
 
         // Write to log file
@@ -134,6 +142,26 @@ class Logger {
         if ($result === false) {
             throw new LoggerException("Error: Unable to write to log file.");
         }
+    }
+
+    /**
+     * Logs to file based on level.  If level is info the anything with a 
+     * severity level greater or equal to is logged.
+     *
+     * @param string $level The level passed as a parameter to the log 
+     * function.
+     * @return bool True we will log based on level.  Otherwise, we return 
+     * false.
+     */
+    private static function shouldLog(string $level): bool {
+        $configLevel = Env::get("LOGGING");
+
+        if (!isset(self::LEVELS[$configLevel]) || !isset(self::LEVELS[$level])) {
+            return true; // fail-soft: don’t block logs due to config typos
+        }
+
+        // Log if the message is as severe or more severe than config threshold
+        return self::LEVELS[$level] <= self::LEVELS[$configLevel];
     }
 
     /**
