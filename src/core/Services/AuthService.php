@@ -9,7 +9,6 @@ use App\Models\Users;
 use Core\Models\Login;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
-use Core\Lib\Logging\Logger;
 use Core\Models\UserSessions;
 use Core\Models\ProfileImages;
 use Core\Lib\FileSystem\Uploads;
@@ -84,7 +83,7 @@ class AuthService {
             }
             else {
                 $loginModel->addErrorMessage('username','There is an error with your username or password');
-                Logger::log('User failed to log in', Logger::WARNING);
+                warning('User failed to log in');
             }
         }
 
@@ -139,15 +138,15 @@ class AuthService {
         ]);
 
         if (!$user) {
-            Logger::log("Failed login attempt: Username '{$loginUser->username}' not found.", Logger::WARNING);
+            warning("Failed login attempt: Username '{$loginUser->username}' not found.");
         }
 
         if ($user->inactive == 1) {
-            Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", Logger::WARNING);
+            warning("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).");
         }
 
         Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $loginUser->id);
-        Logger::log("User {$user->id} ({$user->username}) logged in successfully.", Logger::INFO);
+        info("User {$user->id} ({$user->username}) logged in successfully.");
         
         if($rememberMe) {
             $hash = Str::md5(uniqid() . rand(0, 100));
@@ -158,7 +157,7 @@ class AuthService {
             $us = new UserSessions();
             $us->assign($fields);
             $us->save();
-            Logger::log("Remember Me token set for user {$user->id} ({$user->username}).", Logger::INFO);
+            info("Remember Me token set for user {$user->id} ({$user->username}).");
         }
     }
 
@@ -209,7 +208,7 @@ class AuthService {
             Cookie::delete(Env::get('REMEMBER_ME_COOKIE_NAME'));
         }
         $user::$currentLoggedInUser = null;
-        Logger::log("User {$user->id} ({$user->username}) logged out.", Logger::INFO);
+        info("User {$user->id} ({$user->username}) logged out.");
         return true;
     }
 
