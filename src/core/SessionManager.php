@@ -6,7 +6,6 @@ use Core\Cookie;
 use Core\Session;
 use Core\FormHelper;
 use Core\Lib\Utilities\Env;
-use Core\Lib\Logging\Logger;
 use Core\Services\AuthService;
 
 /**
