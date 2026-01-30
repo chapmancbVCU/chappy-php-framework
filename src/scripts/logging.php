@@ -48,42 +48,84 @@ if(!function_exists('console')) {
 }
 
 if(!function_exists('console_alert')) {
+    /**
+     * Generates an alert console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_alert(string $message): void {
         Tools::info($message, Logger::ALERT, Tools::BG_RED);
     }
 }
 
 if(!function_exists('console_critical')) {
+    /**
+     * Generates a critical console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_critical(string $message): void {
         Tools::info($message, Logger::CRITICAL, Tools::BG_MAGENTA);
     }
 }
 
 if(!function_exists('console_debug')) {
+    /**
+     * Generates a debug console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_debug(string $message, ): void {
         Tools::info($message, Logger::DEBUG, Tools::BG_BLUE);
     }
 }
 
 if(!function_exists('console_emergency')) {
+    /**
+     * Generates an emergency console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_emergency(string $message): void {
         Tools::info($message, Logger::EMERGENCY, Tools::BG_RED);
     }
 }
 
 if(!function_exists('console_error')) {
+    /**
+     * Generates an error console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_error(string $message,): void {
         Tools::info($message, Logger::ERROR, Tools::BG_RED);
     }
 }
 
 if(!function_exists('console_info')) {
+    /**
+     * Generates an info console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_info(string $message, ): void {
         Tools::info($message, Logger::INFO, Tools::BG_GREEN);
     }
 }
 
 if(!function_exists('console_notice')) {
+    /**
+     * Generates a notice console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_notice(
         string $message): void {
         Tools::info($message, Logger::NOTICE, Tools::BG_CYAN);
@@ -91,6 +133,12 @@ if(!function_exists('console_notice')) {
 }
 
 if(!function_exists('console_warning')) {
+    /**
+     * Generates a warning console message.
+     *
+     * @param string $message The message to be printed to the console.
+     * @return void
+     */
     function console_warning(string $message): void {
         Tools::info($message, Logger::WARNING, Tools::BG_YELLOW);
     }
