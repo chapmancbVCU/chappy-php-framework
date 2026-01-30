@@ -9,7 +9,6 @@ use Core\Services\AuthService;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\ArraySet;
 
@@ -245,7 +244,7 @@ class Router {
 
             // Log only critical requests
             if (!empty($_GET) || in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT', 'DELETE']) || $userId === 'Guest') {
-                Logger::log("Request: $requestPath | User: $userId", Logger::INFO);
+                info("Request: $requestPath | User: $userId");
             }
 
             // Extract controller
@@ -276,11 +275,11 @@ class Router {
 
                 if (!isset($deniedAttempts[$key])) {
                     $deniedAttempts[$key] = 1;
-                    Logger::log("Access Denied: User '$userId' tried '$controller_name/$action_name'", Logger::WARNING);
+                    warning("Access Denied: User '$userId' tried '$controller_name/$action_name'");
                 } else {
                     $deniedAttempts[$key]++;
                     if ($deniedAttempts[$key] <= 3) {
-                        Logger::log("Repeated Access Denied: User '$userId' ($deniedAttempts[$key] times) on '$controller_name/$action_name'", Logger::WARNING);
+                        warning("Repeated Access Denied: User '$userId' ($deniedAttempts[$key] times) on '$controller_name/$action_name'");
                     }
                 }
 
@@ -300,7 +299,7 @@ class Router {
                 redirect('restricted.notFound', [$action_name, $controller_name]);
             }
         } catch (FrameworkException $e) {
-            Logger::log("Unhandled Exception in Router: " . $e->getMessage(), Logger::ERROR);
+            error("Unhandled Exception in Router: " . $e->getMessage());
             throw $e;
         }
     }

@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace Core;
 
 use Core\Exceptions\Session\SessionLevelException;
-use Core\Lib\Logging\Logger;
 use ReflectionClass;
 
 /**
@@ -44,7 +43,7 @@ class Session {
         }
 
         $sessionName = 'alert-' . $type;
-        Logger::log("Session::addMessage(): ".$message);
+        info("Session::addMessage(): ".$message);
         self::set($sessionName, $message);
     }
 
