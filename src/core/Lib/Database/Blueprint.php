@@ -91,7 +91,7 @@ class Blueprint {
         }
 
         DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Creating Table {$this->table}");
+        Tools::info("SUCCESS: Creating Table {$this->table}", Logger::DEBUG);
 
         foreach ($this->indexes as $index) {
             $this->createIndex($index);
@@ -111,7 +111,7 @@ class Blueprint {
     protected function createForeignKey(string $fk): void {
         if ($this->dbDriver === 'mysql') {
             DB::getInstance()->query($fk);
-            Tools::info("SUCCESS: Adding Foreign Key To {$this->table}");
+            Tools::info("SUCCESS: Adding Foreign Key To {$this->table}", Logger::DEBUG);
         }
     }
 
@@ -137,7 +137,7 @@ class Blueprint {
                 : "ALTER TABLE {$this->table} ADD INDEX ({$index})";
 
             DB::getInstance()->query($sql);
-            Tools::info("SUCCESS: Adding Index {$index} To {$this->table}");
+            Tools::info("SUCCESS: Adding Index {$index} To {$this->table}", Logger::DEBUG);
         } else {
             $columns = implode(', ', array_map(fn($col) => "`$col`", $index['columns']));
             $sql = match ($index['type']) {
@@ -146,7 +146,7 @@ class Blueprint {
             };
 
             DB::getInstance()->query($sql);
-            Tools::info("SUCCESS: Adding Index {$index['name']} To {$this->table}");
+            Tools::info("SUCCESS: Adding Index {$index['name']} To {$this->table}", Logger::DEBUG);
         }
     }
 
@@ -327,7 +327,7 @@ class Blueprint {
     public function dropIfExists(string $table): void {
         $sql = "DROP TABLE IF EXISTS {$table}";
         DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Dropping Table {$table}");
+        Tools::info("SUCCESS: Dropping Table {$table}", Logger::DEBUG);
     }
 
     /**
@@ -357,7 +357,7 @@ class Blueprint {
         }
 
         DB::getInstance()->query($sql);
-        Tools::info("Dropped the indexed constraint for the {$column} column of the {$this->table} table.");
+        Tools::info("Dropped the indexed constraint for the {$column} column of the {$this->table} table.", Logger::DEBUG);
         if(!$preserveColumn) {
             $this->dropColumns($column);
         }
@@ -388,7 +388,7 @@ class Blueprint {
         $db->getInstance()->query($sql);
         $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
         $db->getInstance()->query($sql);
-        Tools::info("The primary key constraint for the '{$column}' column for the '{$this->table}' table has been dropped.");
+        Tools::info("The primary key constraint for the '{$column}' column for the '{$this->table}' table has been dropped.", Logger::DEBUG);
         
         if(!$preserveColumn) {
             $this->dropColumns($column);
@@ -434,7 +434,7 @@ class Blueprint {
 
             $dropSql = "ALTER TABLE {$this->table} DROP INDEX `{$indexName}`";
             DB::getInstance()->query($dropSql);
-            Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+            Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'", Logger::DEBUG);
 
             if(!$preserveColumn) {
                 $this->dropColumns($column);
@@ -456,7 +456,7 @@ class Blueprint {
                             $dropSql = "DROP INDEX IF EXISTS `{$indexName}`";
                             DB::getInstance()->query($dropSql);
                             $this->dropColumns($column);
-                            Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'");
+                            Tools::info("Dropped UNIQUE index '{$indexName}' for column '{$column}' from '{$this->table}'", Logger::DEBUG);
                             return;
                         }
                     }
@@ -838,7 +838,7 @@ class Blueprint {
             );
         }
 
-        Tools::info("Successfully renamed foreign key '{$from}' to '{$to}' on '{$this->table}'");
+        Tools::info("Successfully renamed foreign key '{$from}' to '{$to}' on '{$this->table}'", Logger::DEBUG);
     }
 
     /**
@@ -873,7 +873,7 @@ class Blueprint {
             $this->index($to);
         }
 
-        Tools::info("Successfully renamed indexed column '{$from}' to '{$to}' on '{$this->table}'");
+        Tools::info("Successfully renamed indexed column '{$from}' to '{$to}' on '{$this->table}'", Logger::DEBUG);
     }
 
     /**
@@ -908,7 +908,7 @@ class Blueprint {
             DB::getInstance()->query("ALTER TABLE {$this->table} ADD PRIMARY KEY ({$to})");
         }
 
-        Tools::info("Successfully renamed primary key '{$from}' to '{$to}' on '{$this->table}'");
+        Tools::info("Successfully renamed primary key '{$from}' to '{$to}' on '{$this->table}'", Logger::DEBUG);
     }
 
     /**
@@ -943,7 +943,7 @@ class Blueprint {
             $this->setUnique($to);
         }
 
-        Tools::info("Successfully unique constrained column '{$from}' to '{$to}' on '{$this->table}'");
+        Tools::info("Successfully unique constrained column '{$from}' to '{$to}' on '{$this->table}'", Logger::DEBUG);
     }
 
     /**
@@ -958,7 +958,7 @@ class Blueprint {
                 "REFERENCES {$fk['referenced_table']}({$fk['referenced_column']}) " .
                 "ON DELETE {$fk['on_delete']} ON UPDATE {$fk['on_update']}";
             DB::getInstance()->query($sql);
-            Tools::info("Applied foreign key: {$fk['column']} → {$fk['referenced_table']}.{$fk['referenced_column']}");
+            Tools::info("Applied foreign key: {$fk['column']} → {$fk['referenced_table']}.{$fk['referenced_column']}", Logger::DEBUG);
         }
     }
 
@@ -1140,7 +1140,7 @@ class Blueprint {
 
             $sql = "ALTER TABLE {$this->table} ADD COLUMN {$columnDef}{$modifierSql}";
             DB::getInstance()->query($sql);
-            Tools::info("SUCCESS: Adding Column {$columnDef} To {$this->table}");
+            Tools::info("SUCCESS: Adding Column {$columnDef} To {$this->table}", Logger::DEBUG);
         }
 
         foreach ($this->indexes as $index) {
