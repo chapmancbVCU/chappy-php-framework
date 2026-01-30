@@ -356,7 +356,7 @@ class DB {
             return ($dbDriver === 'mysql' || $dbDriver === 'mariadb') ? 
                 "ANY_VALUE($column)" : $column;
         }
-        Logger::log(
+        alert(
             'The DB driver was not properly set.  GROUP BY formatting failed.  Please check DB_CONNECTION value in .env file', 
             Logger::DEBUG
         );

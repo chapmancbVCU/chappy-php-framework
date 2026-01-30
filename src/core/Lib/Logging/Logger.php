@@ -31,14 +31,14 @@ class Logger {
      * Associative array of levels mapped to integers based on severity.
      */
     private const LEVELS = [
-        self::EMERGENCY => 0,
-        self::ALERT     => 1,
-        self::CRITICAL  => 2,
-        self::ERROR     => 3,
-        self::WARNING   => 4,
-        self::NOTICE    => 5,
-        self::INFO      => 6,
-        self::DEBUG     => 7,
+        self::EMERGENCY => 600,
+        self::ALERT     => 550,
+        self::CRITICAL  => 500,
+        self::ERROR     => 400,
+        self::WARNING   => 300,
+        self::NOTICE    => 250,
+        self::INFO      => 200,
+        self::DEBUG     => 100,
     ];
 
     /** Path to log files. */
@@ -219,7 +219,7 @@ class Logger {
         }
 
         // Log if the message is as severe or more severe than config threshold
-        return self::LEVELS[$level] <= self::LEVELS[$configLevel];
+        return self::LEVELS[$level] >= self::LEVELS[$configLevel];
     }
 
     /**
