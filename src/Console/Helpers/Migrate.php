@@ -62,7 +62,7 @@ class Migrate {
                     $db->query("DROP TABLE IF EXISTS `$table`");
                 }
             }
-            Tools::info("All tables dropped successfully.");
+            Tools::info("All tables dropped successfully.", Logger::DEBUG);
             return Command::SUCCESS;
         } catch(ConsoleException $e) {
             Tools::info('Error dropping tables: ' . $e->getMessage(), Logger::ERROR);
@@ -227,7 +227,7 @@ class Migrate {
         }
 
         if($tableCount == 0) {
-            Tools::info('Empty database. No tables to drop.', Logger::DEBUG, Tools::BG_RED);
+            Tools::info('Empty database. No tables to drop.', Logger::INFO, Tools::BG_RED);
             return Command::FAILURE;
         }
     
@@ -255,7 +255,7 @@ class Migrate {
             $db->query("DROP TABLE IF EXISTS migrations;");
         }
     
-        Tools::info('All tables have been dropped.', Logger::INFO);
+        Tools::info('All tables have been dropped.', Logger::DEBUG);
         return Command::SUCCESS;
     }
 
@@ -330,7 +330,7 @@ class Migrate {
     public static function status(): int {
         $migrationFiles = glob('database' . DS . 'migrations' . DS . '*.php');
         if(sizeof($migrationFiles) == 0) {
-            Tools::info("There are no existing migrations", Logger::DEBUG, Tools::BG_YELLOW);
+            Tools::info("There are no existing migrations", Logger::ERROR, Tools::BG_YELLOW);
         }
 
         $migrationStatus = [];
