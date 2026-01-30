@@ -4,7 +4,6 @@ namespace Core;
 
 use Whoops\Run;
 use Core\Lib\Utilities\ArraySet;
-use Core\Lib\Logging\Logger;
 use Whoops\Handler\PrettyPageHandler;
 
 /**

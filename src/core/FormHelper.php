@@ -4,7 +4,6 @@ namespace Core;
 
 use Core\Exceptions\FrameworkException;
 use Core\Session;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
