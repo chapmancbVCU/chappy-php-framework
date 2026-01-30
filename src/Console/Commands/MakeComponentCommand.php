@@ -2,8 +2,7 @@
 namespace Console\Commands;
  
 use Core\Lib\Utilities\Str;
-use Console\Helpers\{Tools, View};
-use Core\Lib\Logging\Logger;
+use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
