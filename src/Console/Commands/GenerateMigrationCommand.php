@@ -1,9 +1,7 @@
 <?php
 namespace Console\Commands;
  
-use Console\Helpers\Tools;
 use Console\Helpers\Migrate;
-use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
