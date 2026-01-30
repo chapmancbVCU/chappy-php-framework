@@ -47,6 +47,78 @@ if(!function_exists('console')) {
     }
 }
 
+if(!function_exists('console_alert')) {
+    function console_alert(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::ALERT, Tools::BG_RED, $text);
+    }
+}
+
+if(!function_exists('console_critical')) {
+    function console_critical(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::CRITICAL, Tools::BG_MAGENTA, $text);
+    }
+}
+
+if(!function_exists('console_debug')) {
+    function console_debug(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::DEBUG, Tools::BG_BLUE, $text);
+    }
+}
+
+if(!function_exists('console_emergency')) {
+    function console_emergency(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::EMERGENCY, Tools::BG_RED, $text);
+    }
+}
+
+if(!function_exists('console_error')) {
+    function console_error(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::ERROR, Tools::BG_RED, $text);
+    }
+}
+
+if(!function_exists('console_info')) {
+    function console_info(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::INFO, Tools::BG_GREEN, $text);
+    }
+}
+
+if(!function_exists('console_notice')) {
+    function console_notice(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::NOTICE, Tools::BG_CYAN, $text);
+    }
+}
+
+if(!function_exists('console_warning')) {
+    function console_warning(
+        string $message, 
+        string $text = Tools::TEXT_LIGHT_GREY
+    ): void {
+        Tools::info($message, Logger::WARNING, Tools::BG_YELLOW, $text);
+    }
+}
+
 /**
  * Performs operations for adding content to log files using the critical 
  * severity level.
