@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Exceptions\Console;
 use Core\Exceptions\FrameworkException;
-use Core\Lib\Logging\Logger;
 
 /**
  * Handles exceptions related to the console.
@@ -23,6 +22,6 @@ final class ConsoleException extends FrameworkException {
             0,
             $previous
         );
-        Logger::log($message, Logger::ERROR);
+        error($message);
     }
 }
