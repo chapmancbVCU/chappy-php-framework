@@ -70,7 +70,7 @@ class RedisQueueDriver implements QueueDriverInterface {
      */
     public function release(string $queue, array $payload, int $delay = 0): void {
         if ($delay > 0) {
-            Tools::info("Redis release with delay uses `sleep({$delay})`. This blocks the worker. Consider switching to a scheduled queue or DB driver.", Logger::WARNING, Tools::BG_YELLOW);
+            console_warning("Redis release with delay uses `sleep({$delay})`. This blocks the worker. Consider switching to a scheduled queue or DB driver.");
             sleep($delay);
         }
         $this->push($queue, $payload);
