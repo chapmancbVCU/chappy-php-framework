@@ -29,7 +29,7 @@ class VitestTestBuilder implements TestBuilderInterface {
         $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
 
         if(VitestTestRunner::testExists($testName, $testSuites, $extensions)) {
-            Tools::info("File with the name '{$testName}' already exists in one of the supported test suites", Logger::ERROR, Tools::BG_RED);
+            console_warning("File with the name '{$testName}' already exists in one of the supported test suites");
             return Command::FAILURE;
         }
 
@@ -56,15 +56,11 @@ class VitestTestBuilder implements TestBuilderInterface {
                 'View test'
             );
         } else {
-            Tools::info("More than one flag has been supplied.", Logger::WARNING, Tools::BG_YELLOW);
+            console_warning("More than one flag has been supplied.");
             return Command::FAILURE;
         }
 
-        Tools::info(
-            "Please use a flag to ensure test is created in intended test suite.", 
-            Logger::WARNING, 
-            Tools::BG_YELLOW
-        );
+        console_warning("Please use a flag to ensure test is created in intended test suite.");
         
         return Command::SUCCESS;
     }
