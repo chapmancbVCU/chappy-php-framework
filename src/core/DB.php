@@ -318,18 +318,14 @@ class DB {
      * @return string A log-safe string representation of the parameters.
      */
     private function formatParamsForLog(array $params): string {
-        $mode = Env::get('DB_LOG_PARAMS', 'none'); // none|masked|full
+        $rawMode = Env::get('DB_LOG_PARAMS', 'none');
+        $mode = $this->normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
 
-        if ($mode === 'none') {
-            return $this->paramSummary($params);
-        }
-
-        if ($mode === 'full') {
-            // strongly consider refusing this in production
-            return json_encode($params);
-        }
-
-        return json_encode($this->safeParams($params));
+        return match ($mode) {
+            'none'   => $this->paramSummary($params),
+            'full'   => json_encode($params),
+            default  => json_encode($this->safeParams($params))
+        };
     }
 
     /**
@@ -452,6 +448,35 @@ class DB {
      */
     public function lastID(): int|string|null {
         return $this->_lastInsertID;
+    }
+
+    /**
+     * Normalizes and validates the DB_LOG_PARAMS mode from configuration.
+     *
+     * Accepts: none, masked, full (case-insensitive, ignores surrounding quotes/whitespace).
+     * Falls back to $default if invalid.
+     *
+     * @param string|null $raw     Raw value from env/config.
+     * @param string      $default Default mode if invalid.
+     * @return string One of: 'none', 'masked', 'full'.
+     */
+    private function normalizeParamLogMode(?string $raw, string $default = 'none'): string {
+        $mode = $raw ?? $default;
+
+        $mode = trim($mode);
+        $mode = trim($mode, "\"'"); // handles 'full' or "full"
+
+        $mode = strtolower($mode);
+
+        $allowed = ['none', 'masked', 'full'];
+
+        if (!in_array($mode, $allowed, true)) {
+            // Mis-config shouldn't break execution; fall back safely.
+            warning("Invalid DB_LOG_PARAMS='{$raw}'. Using '{$default}'. Allowed: none|masked|full");
+            return $default;
+        }
+
+        return $mode;
     }
 
     /**
