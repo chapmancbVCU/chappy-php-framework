@@ -189,7 +189,7 @@ class Migrate {
                     ]); 
                     $migrationsRun[] = $klassNamespace;
                 } else {
-                    console_error("WARNING: Migration class '{$klassNamespace}' not found!");
+                    console_error("Migration class '{$klassNamespace}' not found!");
                 }
             }
         }
@@ -228,7 +228,7 @@ class Migrate {
 
         if($tableCount == 0) {
             console_notice('Empty database. No tables to drop.');
-            return Command::FAILURE;
+            return Command::SUCCESS;
         }
     
         // ✅ Get all migration files
