@@ -2,8 +2,6 @@
 namespace Console\Commands;
  
 use Console\Helpers\Queue;
-use Console\Helpers\Tools;
-use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -44,7 +42,7 @@ class QueueWorkerCommand extends Command
         $queueName = $input->getOption('queue');
 
         if($once && $max) {
-            Tools::info('You can only set one option at a time', Logger::WARNING, Tools::BG_YELLOW);
+            console_warning('You can only set one option at a time');
             return Command::FAILURE;
         } 
         
