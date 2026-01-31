@@ -146,7 +146,7 @@ class Blueprint {
             };
 
             DB::getInstance()->query($sql);
-            console_info("SUCCESS: Adding Index {$index['name']} To {$this->table}");
+            console_debug("SUCCESS: Adding Index {$index['name']} To {$this->table}");
         }
     }
 
@@ -218,7 +218,7 @@ class Blueprint {
         $columnType = Str::upper($matches[2]);
 
         if ($this->dbDriver === 'sqlite' && Arr::exists(['TEXT', 'BLOB'], $columnType)) {
-            warning("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.");
+            console_warning("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.");
             return $this;
         }
 
@@ -277,7 +277,7 @@ class Blueprint {
                 {$columnString}";
         console_debug($sql);
         $db->query($sql);
-        console_debug("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
+        console_info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
     }
 
     /**
@@ -783,7 +783,7 @@ class Blueprint {
      */
     public function renameColumn(string $from, string $to): void {
         if($from === '' || $to === '') {
-            Tools::info("Column names cannot be empty", Logger::DEBUG, Tools::BG_YELLOW);
+            console_warning("Column names cannot be empty");
             return;
         }
         
@@ -808,7 +808,7 @@ class Blueprint {
      */
     public function renameForeign(string $from, string $to): void {
         if($from === '' || $to === '') {
-            console_info("Column names cannot be empty");
+            console_warning("Column names cannot be empty");
             return;
         }
 
@@ -820,7 +820,7 @@ class Blueprint {
         if($isForeignKey) {
             $this->dropForeign($from, true);
         } else {
-            console_info("'{$from}' is not a foreign key.  Skipping operation.");
+            console_notice("'{$from}' is not a foreign key.  Skipping operation.");
             return;
         }
 
@@ -850,7 +850,7 @@ class Blueprint {
      */
     public function renameIndex(string $from, string $to): void {
         if($from === '' || $to === '') {
-            console_info("Column names cannot be empty");
+            console_warning("Column names cannot be empty");
             return;
         }
 
@@ -861,7 +861,7 @@ class Blueprint {
         if($isIndexed) {
             $this->dropIndex($from, true);
         } else {
-            console_info("'{$from}' is not an indexed column.  Skipping operation.");
+            console_notice("'{$from}' is not an indexed column.  Skipping operation.");
             return;
         }
 
@@ -885,7 +885,7 @@ class Blueprint {
      */
     public function renamePrimaryKey(string $from, string $to): void {
         if($from === '' || $to === '') {
-            console_info("Column names cannot be empty");
+            console_warning("Column names cannot be empty");
             return;
         }
 
@@ -896,7 +896,7 @@ class Blueprint {
         if($isPrimaryKey) {
             $this->dropPrimaryKey($from, true);
         } else {
-            console_info("'{$from}' is not a primary key.  Skipping operation.");
+            console_notice("'{$from}' is not a primary key.  Skipping operation.");
             return;
         }
 
@@ -920,7 +920,7 @@ class Blueprint {
      */
     public function renameUnique(string $from, string $to): void {
         if($from === '' || $to === '') {
-            console_info("Column names cannot be empty");
+            console_warning("Column names cannot be empty");
             return;
         }
 
@@ -931,7 +931,7 @@ class Blueprint {
         if($isUnique) {
             $this->dropUnique($from, true);
         } else {
-            console_info("'{$from}' does not have an unique constraint.  Skipping operation.");
+            console_notice("'{$from}' does not have an unique constraint.  Skipping operation.");
             return;
         }
 
