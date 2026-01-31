@@ -4,7 +4,6 @@ namespace Console\Commands;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Console\Helpers\ControllerStubs;
-use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;

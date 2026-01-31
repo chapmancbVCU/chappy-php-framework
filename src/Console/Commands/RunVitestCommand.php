@@ -2,8 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Testing\TestRunner;
-use Console\Helpers\Tools;
-use Core\Lib\Logging\Logger;
 use Console\Helpers\Testing\VitestTestRunner;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
@@ -94,7 +92,7 @@ class RunVitestCommand extends Command
             );
         }
         if(!$testArg && VitestTestRunner::testSuiteStatus($runBySuiteStatus)) {
-            Tools::info("Completed tests by suite(s)");
+            console_info("Completed tests by suite(s)");
             return Command::SUCCESS;
         }
 
@@ -124,11 +122,11 @@ class RunVitestCommand extends Command
             );
         }
         if($testArg && VitestTestRunner::testSuiteStatus($testNameByFlagStatus)) {
-            Tools::info("Completed tests by name and suite(s)");
+            console_info("Completed tests by name and suite(s)");
             return Command::SUCCESS;
         }
 
-        Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, Tools::BG_RED);
+        console_error("There was an issue running unit tests.  Check your command line input.");
         return Command::FAILURE;
     }
 }
