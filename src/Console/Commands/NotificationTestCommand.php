@@ -3,7 +3,6 @@ namespace Console\Commands;
 
 use Console\Helpers\Tools;
 use Console\Helpers\Notifications;
-use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -68,7 +67,7 @@ class NotificationTestCommand extends Command
         $className = Notifications::notificationClass($notificationName);
 
         if(!Notifications::notificationClassExists($className)) {
-            Tools::info("The {$className} does not exist.", Logger::ERROR, Tools::BG_YELLOW);
+            console_error("The {$className} does not exist.");
             return Command::FAILURE;
         }
 
