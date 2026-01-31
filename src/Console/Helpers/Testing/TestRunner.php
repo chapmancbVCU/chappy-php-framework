@@ -92,7 +92,7 @@ class TestRunner {
         }
 
         if($this->testSuiteStatus($statuses)) {
-            Tools::info("All available test have been completed");
+            console_info("All available test have been completed");
             return Command::SUCCESS;
         }
 
@@ -107,10 +107,8 @@ class TestRunner {
      * @return void
      */
     private static function duplicateTestNameMessage(): void {
-        Tools::info(
-            "You have the same test name in files with the same name.  Cannot use built in filtering", 
-            Logger::ERROR, 
-            Tools::BG_RED
+        console_warning(
+            "You have the same test name in files with the same name.  Cannot use built in filtering"
         );
     }
 
@@ -132,7 +130,7 @@ class TestRunner {
      * @return void
      */
     private function noAvailableTestsMessage(): void {
-        Tools::info("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
+        console_notice("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
     }
 
     /**
@@ -144,7 +142,7 @@ class TestRunner {
      */
     public function runTest(string $test, string $testCommand): void {
         $command = $testCommand . ' ' . $test . $this->inputOptions;
-        Tools::info('File: '.$test);
+        console_info('File: '.$test);
         $this->output->writeln(shell_exec($command));
     }
 
@@ -180,16 +178,14 @@ class TestRunner {
         }
 
         if($this->testSuiteStatus($statuses)) {
-            Tools::info("Selected tests have been completed");
+            console_info("Selected tests have been completed");
             return Command::SUCCESS;
         }
 
         // No such test class exists.
         if(!$this->testExists($testArg, $testSuites, $extensions)) {
-            Tools::info(
+            console_warning(
                 "The {$testArg} test file does not exist or missing :: syntax error when filtering.", 
-                Logger::DEBUG, 
-                Tools::BG_YELLOW
             );
             return Command::FAILURE;
         }
