@@ -2,9 +2,7 @@
 namespace Core\Models;
 use Core\DB;
 use Core\Model;
-use Console\Helpers\Tools;
 use Core\Exceptions\FrameworkException;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Utilities\DateTime;
@@ -93,7 +91,7 @@ class Queue extends Model {
      * @return void
      */
     public static function exceptionMessaging(FrameworkException $e, array $queueJob): void {
-        Tools::info("Job failed: " . $e->getMessage(), Logger::WARNING);
+        console_warning("Job failed: " . $e->getMessage());
         $payload = $queueJob['payload'] ?? [];
         $job = self::findJob($queueJob);
 
@@ -117,7 +115,7 @@ class Queue extends Model {
      * @return string Current timestamp.
      */
     private static function failedAt(): string {
-        Tools::info('Job permanently failed and marked as failed.', Logger::WARNING);
+        console_warning('Job permanently failed and marked as failed.');
         return DateTime::timeStamps();
     }
     
@@ -282,7 +280,7 @@ class Queue extends Model {
      * @return void
      */
     private static function setAvailableAt(int $delay, self $job) {
-        Tools::info("Job will be retried. Attempt: {$job->attempts}", Logger::WARNING);
+        console_warning("Job will be retried. Attempt: {$job->attempts}");
         return DateTime::nowPlusSeconds($delay);
     }
 
