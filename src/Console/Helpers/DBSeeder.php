@@ -35,7 +35,7 @@ class DBSeeder {
     public static function seed(): int {
         $seeder = new DatabaseSeeder();
         $seeder->run();
-        Tools::info('Database seeding complete!.  If you see only this message then uncomment your seeders.');
+        console_info('Database seeding complete!.  If you see only this message then uncomment your seeders.');
         return Command::SUCCESS;
     }
 
@@ -84,7 +84,7 @@ class {$ucSeederName}TableSeeder extends Seeder {
                 \$i++;
             }
         }
-        Tools::info("Seeded {$lcSeederName} table.");
+        console_info("Seeded {$lcSeederName} table.");
     }
 }
 PHP;
