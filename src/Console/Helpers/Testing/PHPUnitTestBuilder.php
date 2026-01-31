@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
-use Core\Lib\Logging\Logger;
 use Console\Helpers\Tools;
 use Console\Helpers\Testing\PHPUnitStubs;
 use Symfony\Component\Console\Command\Command;
