@@ -379,7 +379,7 @@ class Blueprint {
         }
 
         if(!$this->isPrimaryKey($column)) {
-            console_warning("'{$column}' is not a primary key.  Skipping operation.");
+            console_notice("'{$column}' is not a primary key.  Skipping operation.");
             return;
         }
 
@@ -792,7 +792,7 @@ class Blueprint {
         if(!$isConstrained) {
             $sql = "ALTER TABLE {$this->table}
                 RENAME COLUMN {$from} TO {$to}";
-            Db::getInstance()->query($sql);
+            DB::getInstance()->query($sql);
             console_info("Column {$from} renamed to {$to}");
         } else {
             console_warning("The field {$from} is a constrained column.  Make sure you drop any constraints before renaming this column.");
