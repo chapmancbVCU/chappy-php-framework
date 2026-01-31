@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
-use Console\Helpers\Tools;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -151,7 +149,7 @@ final class PHPUnitRunner extends TestRunner {
      */
     public function testByFilter(string $testArg, array $testSuites, string $extension): int {
         if(!self::verifyFilterSyntax($testArg)) {
-            Tools::info("Syntax error when filtering.", Logger::DEBUG, Tools::BG_YELLOW);
+            console_error("Syntax error when filtering.");
             return Command::FAILURE;
         }
 

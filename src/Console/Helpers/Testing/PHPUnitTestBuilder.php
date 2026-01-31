@@ -25,7 +25,7 @@ class PHPUnitTestBuilder implements TestBuilderInterface {
         $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
         
         if(PHPUnitRunner::testExists($testName, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION)) {
-            Tools::info("File with the name '{$testName}' already exists in one of the supported test suites", Logger::ERROR, Tools::BG_RED);
+            console_warning("File with the name '{$testName}' already exists in one of the supported test suites");
             return Command::FAILURE;
         }
 
