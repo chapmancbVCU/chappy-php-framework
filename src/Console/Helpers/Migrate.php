@@ -243,7 +243,7 @@ class Migrate {
                 $step = self::step($klassNamespace, $step);
                 if(is_int($step) && $step <= 0) return Command::SUCCESS; 
             } else {
-                console_error("WARNING: Migration class '{$klassNamespace}' not found!");
+                console_error("Migration class '{$klassNamespace}' not found!");
             }
         }
     
@@ -330,7 +330,7 @@ class Migrate {
     public static function status(): int {
         $migrationFiles = glob('database' . DS . 'migrations' . DS . '*.php');
         if(sizeof($migrationFiles) == 0) {
-            console_warning("There are no existing migrations");
+            console_notice("There are no existing migrations");
         }
 
         $migrationStatus = [];
@@ -365,9 +365,9 @@ class Migrate {
             $batch = $status->getBatch();
             $state = $status->getStatus();
             if($status->getStatus() == 'Ran') {
-                Tools::info("$name: ........................ [$batch] $state");
+                console_info("$name: ........................ [$batch] $state");
             } else {
-                Tools::info("$name ......................... Pending", Logger::INFO, Tools::BG_YELLOW);
+                console_notice("$name ......................... Pending");
             }
         }
         return Command::SUCCESS;
@@ -385,7 +385,7 @@ class Migrate {
      */
     private static function step(string $klassNamespace, bool|int $step = false): bool|int {
         $db = DB::getInstance();
-        console_info("Dropping table from: {$klassNamespace}");
+        console_debug("Dropping table from: {$klassNamespace}");
         $mig = new $klassNamespace();
         if(!$step && !is_int($step)) {
             $mig->down();
