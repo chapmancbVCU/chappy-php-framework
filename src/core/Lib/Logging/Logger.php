@@ -51,21 +51,6 @@ class Logger {
     private static string $logFile;
 
     /**
-     * Get the caller's file and line number
-     *
-     * @return array An array containing the file name and line number.
-     */
-    private static function debugBacktrace(): array {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        $caller = $backtrace[1] ?? null;
-
-        return [
-            $file = $caller['file'] ?? 'Unknown File',
-            $line = $caller['line'] ?? 'Unknown Line'
-        ];
-    }
-
-    /**
      * Performs system logging if we cannot write to log file.  We also dump 
      * the message to the console/view.
      *
@@ -85,8 +70,7 @@ class Logger {
      * @param string $message The original message.
      * @return string The formatted message for log file.
      */
-    private static function generateLogMessage(string $level, string $message): string {
-        [$file, $line] = self::debugBacktrace();
+    private static function generateLogMessage(string $level, string $message, string $file, int $line): string {
         $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
 
         $shortFile = Str::replace($basePath, '', $file);
@@ -170,7 +154,12 @@ class Logger {
         self::logFileExists();
         self::isLogFileWritable();
 
-        $logMessage = self::generateLogMessage($level, $message);
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        $caller = $backtrace[1] ?? null;
+        $file = $caller['file'] ?? 'Unknown File';
+        $line = $caller['line'] ?? 'Unknown Line';
+
+        $logMessage = self::generateLogMessage($level, $message, $file, $line);
         $result = file_put_contents(self::$logFile, $logMessage, FILE_APPEND | LOCK_EX);
 
         if ($result === false) {
