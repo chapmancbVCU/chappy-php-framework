@@ -91,7 +91,7 @@ class Blueprint {
         }
 
         DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Creating Table {$this->table}", Logger::DEBUG);
+        console_debug("SUCCESS: Creating Table {$this->table}");
 
         foreach ($this->indexes as $index) {
             $this->createIndex($index);
@@ -111,7 +111,7 @@ class Blueprint {
     protected function createForeignKey(string $fk): void {
         if ($this->dbDriver === 'mysql') {
             DB::getInstance()->query($fk);
-            Tools::info("SUCCESS: Adding Foreign Key To {$this->table}", Logger::DEBUG);
+            console_debug("SUCCESS: Adding Foreign Key To {$this->table}");
         }
     }
 
@@ -137,7 +137,7 @@ class Blueprint {
                 : "ALTER TABLE {$this->table} ADD INDEX ({$index})";
 
             DB::getInstance()->query($sql);
-            Tools::info("SUCCESS: Adding Index {$index} To {$this->table}", Logger::DEBUG);
+            console_debug("SUCCESS: Adding Index {$index} To {$this->table}");
         } else {
             $columns = implode(', ', array_map(fn($col) => "`$col`", $index['columns']));
             $sql = match ($index['type']) {
@@ -235,7 +235,7 @@ class Blueprint {
      */
     public function dropColumns(array|string $columns): void {
         if($columns === '' || (Arr::isArray($columns) && Arr::isEmpty($columns))) {
-            Tools::info('Column argument can\'t be an empty string or an empty array', Logger::DEBUG, Tools::BG_YELLOW);
+            console_warning('Column argument can\'t be an empty string or an empty array');
             return;
         }
 
@@ -249,7 +249,7 @@ class Blueprint {
             $last = end($columns);
             foreach($columns as $column) {
                 if($column === '') {
-                    Tools::info('Array contains empty string.', Logger::DEBUG, Tools::BG_YELLOW);
+                    console_warning('Array contains empty string.');
                     continue;
                 }
                 $columnsConstrained = $this->isPrimaryKey($column) || $this->isIndex($column) || 
@@ -275,9 +275,9 @@ class Blueprint {
         
         $sql = "ALTER TABLE {$this->table}
                 {$columnString}";
-        Tools::info($sql);
+        console_debug($sql);
         $db->query($sql);
-        Tools::info("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
+        console_debug("The column(s) {$columnList} have been dropped from the '{$this->table}' table.");
     }
 
     /**
@@ -291,14 +291,14 @@ class Blueprint {
      */
     public function dropForeign(string $column, bool $preserveColumn = true): void {
         if ($column === '') {
-            Tools::info("Column argument can't be an empty string", Logger::DEBUG, Tools::BG_YELLOW);
+            console_warning("Column argument can't be an empty string");
             return;
         }
 
         if ($this->dbDriver === 'mysql') {
             $result = $this->getForeignKey($column);
             if (!$result) {
-                Tools::info("No foreign key constraint found on column '{$column}'", Logger::DEBUG, Tools::BG_YELLOW);
+                console_warning("No foreign key constraint found on column '{$column}'");
                 return;
             }
 
@@ -309,12 +309,12 @@ class Blueprint {
             if(!$preserveColumn) {
                 $this->dropColumns($column);
             }
-            Tools::info("Dropped FOREIGN KEY '{$constraintName}' on '{$column}' in '{$this->table}'");
+            console_info("Dropped FOREIGN KEY '{$constraintName}' on '{$column}' in '{$this->table}'");
 
         } elseif ($this->dbDriver === 'sqlite') {
             // SQLite does not support DROP CONSTRAINT or ALTER TABLE DROP FOREIGN KEY.
             // You must recreate the table without the foreign key.
-            Tools::info("SQLite does not support dropping foreign keys directly. You must recreate the table.", Logger::DEBUG, Tools::BG_YELLOW);
+            console_warning("SQLite does not support dropping foreign keys directly. You must recreate the table.");
         }
     }
 
@@ -327,7 +327,7 @@ class Blueprint {
     public function dropIfExists(string $table): void {
         $sql = "DROP TABLE IF EXISTS {$table}";
         DB::getInstance()->query($sql);
-        Tools::info("SUCCESS: Dropping Table {$table}", Logger::DEBUG);
+        console_debug("SUCCESS: Dropping Table {$table}");
     }
 
     /**
@@ -341,12 +341,12 @@ class Blueprint {
      */
     public function dropIndex(string $column, bool $preserveColumn = true): void {
         if(!$this->isIndex($column)) {
-            Tools::info("'{$column}' is not an indexed field.  Skipping operation.");
+            console_notice("'{$column}' is not an indexed field.  Skipping operation.");
             return;
         }
 
         if($column === '') {
-            Tools::info("Column argument can't be an empty string");
+            console_warning("Column argument can't be an empty string");
             return;
         }
 
@@ -357,7 +357,7 @@ class Blueprint {
         }
 
         DB::getInstance()->query($sql);
-        Tools::info("Dropped the indexed constraint for the {$column} column of the {$this->table} table.", Logger::DEBUG);
+        console_info("Dropped the indexed constraint for the {$column} column of the {$this->table} table.");
         if(!$preserveColumn) {
             $this->dropColumns($column);
         }
@@ -374,12 +374,12 @@ class Blueprint {
      */
     public function dropPrimaryKey(string $column, bool $preserveColumn = true): void {
         if($column === '') {
-            Tools::info("Column argument can't be an empty string");
+            console_warning("Column argument can't be an empty string");
             return;
         }
 
         if(!$this->isPrimaryKey($column)) {
-            Tools::info("'{$column}' is not a primary key.  Skipping operation.");
+            console_warning("'{$column}' is not a primary key.  Skipping operation.");
             return;
         }
 
@@ -388,7 +388,7 @@ class Blueprint {
         $db->getInstance()->query($sql);
         $sql = "ALTER TABLE {$this->table} DROP PRIMARY KEY";
         $db->getInstance()->query($sql);
-        Tools::info("The primary key constraint for the '{$column}' column for the '{$this->table}' table has been dropped.", Logger::DEBUG);
+        console_info("The primary key constraint for the '{$column}' column for the '{$this->table}' table has been dropped.");
         
         if(!$preserveColumn) {
             $this->dropColumns($column);
@@ -958,7 +958,7 @@ class Blueprint {
                 "REFERENCES {$fk['referenced_table']}({$fk['referenced_column']}) " .
                 "ON DELETE {$fk['on_delete']} ON UPDATE {$fk['on_update']}";
             DB::getInstance()->query($sql);
-            Tools::info("Applied foreign key: {$fk['column']} → {$fk['referenced_table']}.{$fk['referenced_column']}", Logger::DEBUG);
+            console_debug("Applied foreign key: {$fk['column']} → {$fk['referenced_table']}.{$fk['referenced_column']}");
         }
     }
 
@@ -1140,7 +1140,7 @@ class Blueprint {
 
             $sql = "ALTER TABLE {$this->table} ADD COLUMN {$columnDef}{$modifierSql}";
             DB::getInstance()->query($sql);
-            Tools::info("SUCCESS: Adding Column {$columnDef} To {$this->table}", Logger::DEBUG);
+            console_debug("SUCCESS: Adding Column {$columnDef} To {$this->table}");
         }
 
         foreach ($this->indexes as $index) {
