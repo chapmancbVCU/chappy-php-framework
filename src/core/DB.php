@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Core;
+
+use Core\Lib\Logging\Logger;
 use \PDO;
 use Exception;
 use \PDOException;
@@ -303,32 +305,6 @@ class DB {
     }
 
     /**
-     * Formats query parameters for logging, based on the DB_LOG_PARAMS mode.
-     *
-     * Supported modes (via Env::get('DB_LOG_PARAMS')):
-     * - **none**   (default): logs only parameter count and types/lengths (no values).
-     * - **masked**: logs redacted values using safeParams().
-     * - **full**  : logs full raw parameter values (not recommended outside local/dev).
-     *
-     * This is designed to prevent sensitive data (passwords, tokens, emails, etc.)
-     * from being written to logs in production while still preserving useful debugging
-     * context (execution timing, SQL, parameter shape).
-     *
-     * @param array $params Parameters bound to the prepared SQL statement.
-     * @return string A log-safe string representation of the parameters.
-     */
-    private function formatParamsForLog(array $params): string {
-        $rawMode = Env::get('DB_LOG_PARAMS', 'none');
-        $mode = $this->normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
-
-        return match ($mode) {
-            'none'   => $this->paramSummary($params),
-            'full'   => json_encode($params),
-            default  => json_encode($this->safeParams($params))
-        };
-    }
-
-    /**
      * Returns columns for a table.
      *
      * @param string $table The name of the table we want to retrieve
@@ -424,7 +400,7 @@ class DB {
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
-        debug("Preparing INSERT query: $sql | Params: " . $this->formatParamsForLog($values));
+        debug("Preparing INSERT query: $sql | Params: " . Logger::formatParamsForLog($values));
 
         if (!$this->query($sql, $values)->error()) {
             return true;
@@ -480,35 +456,6 @@ class DB {
     }
 
     /**
-     * Produces a safe "shape" summary of query parameters without logging values.
-     *
-     * The summary includes:
-     * - total parameter count
-     * - parameter types
-     * - string lengths and array sizes (when applicable)
-     *
-     * Example output:
-     * `count=3 types=[int,string(12),null]`
-     *
-     * @param array $params Parameters bound to a prepared statement.
-     * @return string A concise summary suitable for logs.
-     */
-    private function paramSummary(array $params): string {
-        $types = array_map(function ($p) {
-            $t = gettype($p);
-            if (is_string($p)) return "string(" . strlen($p) . ")";
-            if (is_int($p)) return "int";
-            if (is_float($p)) return "float";
-            if (is_bool($p)) return "bool";
-            if (is_null($p)) return "null";
-            if (is_array($p)) return "array(" . count($p) . ")";
-            return $t;
-        }, $params);
-
-        return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
-    }
-
-    /**
      * Performs database query operations that includes prepare, 
      * binding, execute, and fetch.  
      *
@@ -543,14 +490,14 @@ class DB {
                 if ($this->_count > 1) {
                     debug("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s");
                 } else {
-                    debug("Executed Query: $sql | Params: " . $this->formatParamsForLog($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
+                    debug("Executed Query: $sql | Params: " . Logger::formatParamsForLog($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
                 }
             } else {
                 $this->_error = true;
-                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . $this->formatParamsForLog($params));
+                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . Logger::formatParamsForLog($params));
             }
         } else {
-            error("Failed to prepare query: $sql | Params: " . $this->formatParamsForLog($params));
+            error("Failed to prepare query: $sql | Params: " . Logger::formatParamsForLog($params));
         }
 
         return $this;
@@ -691,64 +638,6 @@ class DB {
      */
     public function rollBack(): bool {
         return $this->_pdo->rollBack();
-    }
-
-    /**
-     * Returns a redacted copy of query parameters suitable for logging.
-     *
-     * This method attempts to prevent common secret leakage by:
-     * - Redacting token-like strings (base64-ish, JWT-ish, Bearer tokens)
-     * - Truncating long strings to a short prefix + length indicator
-     * - Masking email usernames (optional behavior included)
-     * - Summarizing arrays/objects rather than dumping them
-     *
-     * Note: This is a best-effort sanitizer for logs. For maximum safety,
-     * prefer DB_LOG_PARAMS=none in production.
-     *
-     * @param array $params Parameters bound to a prepared statement.
-     * @return array A sanitized array of parameters safe to JSON encode for logs.
-     */
-    private function safeParams(array $params): array {
-        return array_map(function ($p) {
-            if (is_null($p) || is_int($p) || is_float($p) || is_bool($p)) {
-                return $p;
-            }
-
-            if (is_string($p)) {
-                $s = $p;
-
-                // common secret patterns
-                $looksLikeSecret =
-                    strlen($s) >= 20 && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s) // tokens/base64-ish
-                    || str_contains($s, 'Bearer ')
-                    || preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s); // JWT-ish
-
-                if ($looksLikeSecret) {
-                    return '[REDACTED len=' . strlen($s) . ']';
-                }
-
-                // general string masking
-                $len = strlen($s);
-                if ($len > 64) {
-                    return substr($s, 0, 8) . '…[len=' . $len . ']';
-                }
-
-                // emails can be masked too if desired
-                if (filter_var($s, FILTER_VALIDATE_EMAIL)) {
-                    [$u, $d] = explode('@', $s, 2);
-                    return substr($u, 0, 2) . '…@' . $d;
-                }
-
-                return $s;
-            }
-
-            // arrays/objects shouldn't usually be here; summarize
-            if (is_array($p)) {
-                return '[array count=' . count($p) . ']';
-            }
-
-            return '[type=' . gettype($p) . ']';
-        }, $params);
     }
 
     /**

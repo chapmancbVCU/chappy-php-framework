@@ -64,6 +64,32 @@ class Logger {
     }
 
     /**
+     * Formats query parameters for logging, based on the DB_LOG_PARAMS mode.
+     *
+     * Supported modes (via Env::get('DB_LOG_PARAMS')):
+     * - **none**   (default): logs only parameter count and types/lengths (no values).
+     * - **masked**: logs redacted values using safeParams().
+     * - **full**  : logs full raw parameter values (not recommended outside local/dev).
+     *
+     * This is designed to prevent sensitive data (passwords, tokens, emails, etc.)
+     * from being written to logs in production while still preserving useful debugging
+     * context (execution timing, SQL, parameter shape).
+     *
+     * @param array $params Parameters bound to the prepared SQL statement.
+     * @return string A log-safe string representation of the parameters.
+     */
+    public static function formatParamsForLog(array $params): string {
+        $rawMode = Env::get('DB_LOG_PARAMS', 'none');
+        $mode = self::normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
+
+        return match ($mode) {
+            'none'   => self::paramSummary($params),
+            'full'   => json_encode($params),
+            default  => json_encode(self::safeParams($params))
+        };
+    }
+
+    /**
      * Packages together the actual formatted log message with 
      *
      * @param string $level The severity level of the message.
@@ -189,6 +215,121 @@ class Logger {
             touch(self::$logFile);
             chmod(self::$logFile, 0775);
         }
+    }
+
+    /**
+     * Normalizes and validates the DB_LOG_PARAMS mode from configuration.
+     *
+     * Accepts: none, masked, full (case-insensitive, ignores surrounding quotes/whitespace).
+     * Falls back to $default if invalid.
+     *
+     * @param string|null $raw     Raw value from env/config.
+     * @param string      $default Default mode if invalid.
+     * @return string One of: 'none', 'masked', 'full'.
+     */
+    private static function normalizeParamLogMode(?string $raw, string $default = 'none'): string {
+        $mode = $raw ?? $default;
+
+        $mode = trim($mode);
+        $mode = trim($mode, "\"'"); // handles 'full' or "full"
+
+        $mode = strtolower($mode);
+
+        $allowed = ['none', 'masked', 'full'];
+
+        if (!in_array($mode, $allowed, true)) {
+            // Mis-config shouldn't break execution; fall back safely.
+            warning("Invalid DB_LOG_PARAMS='{$raw}'. Using '{$default}'. Allowed: none|masked|full");
+            return $default;
+        }
+
+        return $mode;
+    }
+    /**
+     * Produces a safe "shape" summary of query parameters without logging values.
+     *
+     * The summary includes:
+     * - total parameter count
+     * - parameter types
+     * - string lengths and array sizes (when applicable)
+     *
+     * Example output:
+     * `count=3 types=[int,string(12),null]`
+     *
+     * @param array $params Parameters bound to a prepared statement.
+     * @return string A concise summary suitable for logs.
+     */
+    private static function paramSummary(array $params): string {
+        $types = array_map(function ($p) {
+            $t = gettype($p);
+            if (is_string($p)) return "string(" . strlen($p) . ")";
+            if (is_int($p)) return "int";
+            if (is_float($p)) return "float";
+            if (is_bool($p)) return "bool";
+            if (is_null($p)) return "null";
+            if (is_array($p)) return "array(" . count($p) . ")";
+            return $t;
+        }, $params);
+
+        return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
+    }
+
+    /**
+     * Returns a redacted copy of query parameters suitable for logging.
+     *
+     * This method attempts to prevent common secret leakage by:
+     * - Redacting token-like strings (base64-ish, JWT-ish, Bearer tokens)
+     * - Truncating long strings to a short prefix + length indicator
+     * - Masking email usernames (optional behavior included)
+     * - Summarizing arrays/objects rather than dumping them
+     *
+     * Note: This is a best-effort sanitizer for logs. For maximum safety,
+     * prefer DB_LOG_PARAMS=none in production.
+     *
+     * @param array $params Parameters bound to a prepared statement.
+     * @return array A sanitized array of parameters safe to JSON encode for logs.
+     */
+    private static function safeParams(array $params): array {
+        return array_map(function ($p) {
+            if (is_null($p) || is_int($p) || is_float($p) || is_bool($p)) {
+                return $p;
+            }
+
+            if (is_string($p)) {
+                $s = $p;
+
+                // common secret patterns
+                $looksLikeSecret =
+                    strlen($s) >= 20 && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s) // tokens/base64-ish
+                    || str_contains($s, 'Bearer ')
+                    || preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s); // JWT-ish
+
+                if ($looksLikeSecret) {
+                    return '[REDACTED len=' . strlen($s) . ']';
+                }
+
+                // general string masking
+                $len = strlen($s);
+                if ($len > 64) {
+                    return substr($s, 0, 8) . '…[len=' . $len . ']';
+                }
+
+                // emails can be masked too if desired
+                if (filter_var($s, FILTER_VALIDATE_EMAIL)) {
+                    [$u, $d] = explode('@', $s, 2);
+                    return substr($u, 0, 2) . '…@' . $d;
+                }
+
+                return $s;
+            }
+
+            // arrays/objects shouldn't usually be here; summarize
+            if (is_array($p)) {
+                return '[array count=' . count($p) . ']';
+            }
+
+            return '[type=' . gettype($p) . ']';
+        }, $params);
     }
 
     /**
