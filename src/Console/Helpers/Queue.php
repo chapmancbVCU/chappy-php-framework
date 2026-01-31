@@ -96,11 +96,11 @@ class Queue {
     private static function shutdownSignals(): void {
         pcntl_async_signals(true);
         pcntl_signal(SIGTERM, function() {
-            Tools::info("Worker shutting down..."); 
+            console_info("Worker shutting down..."); 
             exit; 
         });
         pcntl_signal(SIGINT, function() {
-            Tools::info("Worker interrupted..."); 
+            console_notice("Worker interrupted..."); 
             exit; 
         });
     }
@@ -114,13 +114,13 @@ class Queue {
     public static function worker(int $maxIterations, string $queueName = 'default'): int {
         $queue = new QueueManager();
         self::shutdownSignals();
-        Tools::info("Worker started on queue: {$queueName}");
+        console_info("Worker started on queue: {$queueName}");
         
         for($i = 0; $i < $maxIterations; $i++) {
             $job = $queue->pop($queueName);
             if ($job) {
                 try {
-                    Tools::info("Processing job: " . json_encode($job['payload']));
+                    console_info("Processing job: " . json_encode($job['payload']));
                     $payload = $job['payload'];
                     $jobClass = $payload['job'] ?? null;
                     $data = $payload['data'] ?? [];
