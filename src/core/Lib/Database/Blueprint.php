@@ -542,9 +542,9 @@ class Blueprint {
      * Determines if a particular column has a foreign key constraint (MySQL only).
      *
      * @param string $column The name of the column.
-     * @return object The results returned from the database.
+     * @return object|null The results returned from the database.
      */
-    private function getForeignKey(string $column): object {
+    private function getForeignKey(string $column): ?object {
         $sql = "
             SELECT
                 k.CONSTRAINT_NAME,
