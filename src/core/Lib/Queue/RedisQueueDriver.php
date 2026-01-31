@@ -3,8 +3,6 @@ declare(strict_types=1);
 namespace Core\Lib\Queue;
 
 use Predis\Client;
-use Console\Helpers\Tools;
-use Core\Lib\Logging\Logger;
 
 /**
  * Implements the QueueDriverInterface.  This driver implements functions 
