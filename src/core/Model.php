@@ -168,7 +168,11 @@ class Model {
      * return false.
      */
     public function delete(): bool {
-        if($this->id == '' || !isset($this->id)) return false;
+        if($this->id == '' || !isset($this->id) || (int)$this->id <= 0) {
+            warning("Model::delete called without a valid id on table " . static::$_table);
+            return false;
+        }
+
         $this->beforeDelete();
         if(static::$_softDelete) {
             $deleted = $this->update(['deleted' => 1]);
@@ -197,7 +201,7 @@ class Model {
      */
     public function getColumnsForSave(): array {
         $columns = static::getColumns();
-        debug("Columns from DB: " . json_encode($columns));
+        debug("DB columns fetched for " . static::$_table . " (count=" . count($columns) . ")");
 
         $fields = [];
 
@@ -205,7 +209,7 @@ class Model {
         $columnKey = isset($columns[0]->Field) ? 'Field' : (isset($columns[0]->name) ? 'name' : null);
 
         if ($columnKey === null) {
-            error("ERROR: Column key not found!");
+            error("Model::getColumnsForSave failed: could not determine column key for table " . static::$_table);
             return [];
         }
 
@@ -214,7 +218,8 @@ class Model {
             if (isset($this->{$key})) $fields[$key] = $this->{$key};
             
         });
-        debug("Fields for save: " . json_encode($fields));
+
+        debug("Fields prepared for save on " . static::$_table . " (count=" . count($fields) . ")");
         return $fields;
     }
 
@@ -441,8 +446,14 @@ class Model {
                 if($save){
                     $this->id = (int) static::getDb()->lastID();
                 }
+                if (!$save) {
+                    debug("Model::save INSERT failed for " . static::$_table);
+                }
             } else {
                 $save = $this->update($fields);
+                if (!$save) {
+                    debug("Model::save UPDATE failed for " . static::$_table . " id=" . (int)$this->id);
+                }
             }
 
             if($save){
