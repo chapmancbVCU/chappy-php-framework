@@ -1,6 +1,5 @@
 <?php
 namespace Console\Commands;
-use Console\Helpers\Tools;
 use Console\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -52,7 +51,7 @@ class MigrateRollbackCommand extends Command
         $batch = $input->getOption('batch');
 
         if($step && $batch) {
-            Tools::info("Can't perform step and batch operations at the same time");
+            console_warning("Can't perform step and batch operations at the same time");
             return Command::FAILURE;
         }
 
