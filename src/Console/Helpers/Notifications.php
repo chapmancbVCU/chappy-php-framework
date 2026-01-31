@@ -114,11 +114,11 @@ class Notifications {
 
         $target = is_object($notifiable) ? get_class($notifiable) : (string)$notifiable;
 
-        Tools::info(
+        console_info(
             "[DRY-RUN] Would send " . get_class($notification) .
             " to {$target} via [" . implode(',', $resolvedChannels) . "]"
         );
-        Tools::info(json_encode($payload, JSON_PRETTY_PRINT));
+        console_info(json_encode($payload, JSON_PRETTY_PRINT));
 
         return true;
     }
@@ -303,7 +303,7 @@ PHP;
     public static function resolveNotifiable(InputInterface $input): object|string {
         $userOpt = $input->getOption('user');
         if(!$userOpt) {
-            Tools::info('No --user provided; using a dummy notifiable string');
+            console_info('No --user provided; using a dummy notifiable string');
             return 'dummy';
         }   
         return self::findUser($userOpt) ?? 'dummy';
@@ -341,7 +341,7 @@ PHP;
     public static function prune(int $days): int {
         $recordsDeleted = NotificationModel::notificationsToPrune($days);
         $message = "{$recordsDeleted} has been deleted";
-        Tools::info($message);
+        console_info($message);
         return Command::SUCCESS;
     }
 
@@ -383,9 +383,9 @@ PHP;
         $simChannels = $channels ?? $notification->via((object)['id' => (string)$notifiable]);
         if (in_array('log', $simChannels, true)) {
             // If you have a LogChannel handy, you could resolve and call it here.
-            Tools::info('[SIMULATED] log: '.$notification->toLog((object)['id'=>(string)$notifiable]));
+            console_info('[SIMULATED] log: '.$notification->toLog((object)['id'=>(string)$notifiable]));
         } else {
-            Tools::info('[SKIPPED] no deliverable channel for non-object notifiable');
+            console_notice('[SKIPPED] no deliverable channel for non-object notifiable');
         }
     }
 
