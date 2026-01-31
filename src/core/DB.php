@@ -7,6 +7,8 @@ use \PDOException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Env;
+
 /**
  * Support database operations.
  */
@@ -301,6 +303,36 @@ class DB {
     }
 
     /**
+     * Formats query parameters for logging, based on the DB_LOG_PARAMS mode.
+     *
+     * Supported modes (via Env::get('DB_LOG_PARAMS')):
+     * - **none**   (default): logs only parameter count and types/lengths (no values).
+     * - **masked**: logs redacted values using safeParams().
+     * - **full**  : logs full raw parameter values (not recommended outside local/dev).
+     *
+     * This is designed to prevent sensitive data (passwords, tokens, emails, etc.)
+     * from being written to logs in production while still preserving useful debugging
+     * context (execution timing, SQL, parameter shape).
+     *
+     * @param array $params Parameters bound to the prepared SQL statement.
+     * @return string A log-safe string representation of the parameters.
+     */
+    private function formatParamsForLog(array $params): string {
+        $mode = Env::get('DB_LOG_PARAMS', 'none'); // none|masked|full
+
+        if ($mode === 'none') {
+            return $this->paramSummary($params);
+        }
+
+        if ($mode === 'full') {
+            // strongly consider refusing this in production
+            return json_encode($params);
+        }
+
+        return json_encode($this->safeParams($params));
+    }
+
+    /**
      * Returns columns for a table.
      *
      * @param string $table The name of the table we want to retrieve
@@ -355,7 +387,7 @@ class DB {
             return ($dbDriver === 'mysql' || $dbDriver === 'mariadb') ? 
                 "ANY_VALUE($column)" : $column;
         }
-        alert(
+        error(
             'The DB driver was not properly set.  GROUP BY formatting failed.  Please check DB_CONNECTION value in .env file', 
         );
         return null;
@@ -381,7 +413,7 @@ class DB {
      */
     public function insert(string $table, array $fields = []): bool {
         if (empty($fields)) {
-            error("Attempted to insert empty data into {$table}");
+            warning("Attempted to insert empty data into {$table}");
             return false;
         }
     
@@ -396,7 +428,7 @@ class DB {
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
-        debug("Preparing INSERT query: $sql | Params: " . json_encode($values));
+        debug("Preparing INSERT query: $sql | Params: " . $this->formatParamsForLog($values));
 
         if (!$this->query($sql, $values)->error()) {
             return true;
@@ -420,6 +452,35 @@ class DB {
      */
     public function lastID(): int|string|null {
         return $this->_lastInsertID;
+    }
+
+    /**
+     * Produces a safe "shape" summary of query parameters without logging values.
+     *
+     * The summary includes:
+     * - total parameter count
+     * - parameter types
+     * - string lengths and array sizes (when applicable)
+     *
+     * Example output:
+     * `count=3 types=[int,string(12),null]`
+     *
+     * @param array $params Parameters bound to a prepared statement.
+     * @return string A concise summary suitable for logs.
+     */
+    private function paramSummary(array $params): string {
+        $types = array_map(function ($p) {
+            $t = gettype($p);
+            if (is_string($p)) return "string(" . strlen($p) . ")";
+            if (is_int($p)) return "int";
+            if (is_float($p)) return "float";
+            if (is_bool($p)) return "bool";
+            if (is_null($p)) return "null";
+            if (is_array($p)) return "array(" . count($p) . ")";
+            return $t;
+        }, $params);
+
+        return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
     }
 
     /**
@@ -457,14 +518,14 @@ class DB {
                 if ($this->_count > 1) {
                     debug("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s");
                 } else {
-                    debug("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
+                    debug("Executed Query: $sql | Params: " . $this->formatParamsForLog($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
                 }
             } else {
                 $this->_error = true;
-                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params));
+                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . $this->formatParamsForLog($params));
             }
         } else {
-            error("Failed to prepare query: $sql | Params: " . json_encode($params));
+            error("Failed to prepare query: $sql | Params: " . $this->formatParamsForLog($params));
         }
 
         return $this;
@@ -608,6 +669,64 @@ class DB {
     }
 
     /**
+     * Returns a redacted copy of query parameters suitable for logging.
+     *
+     * This method attempts to prevent common secret leakage by:
+     * - Redacting token-like strings (base64-ish, JWT-ish, Bearer tokens)
+     * - Truncating long strings to a short prefix + length indicator
+     * - Masking email usernames (optional behavior included)
+     * - Summarizing arrays/objects rather than dumping them
+     *
+     * Note: This is a best-effort sanitizer for logs. For maximum safety,
+     * prefer DB_LOG_PARAMS=none in production.
+     *
+     * @param array $params Parameters bound to a prepared statement.
+     * @return array A sanitized array of parameters safe to JSON encode for logs.
+     */
+    private function safeParams(array $params): array {
+        return array_map(function ($p) {
+            if (is_null($p) || is_int($p) || is_float($p) || is_bool($p)) {
+                return $p;
+            }
+
+            if (is_string($p)) {
+                $s = $p;
+
+                // common secret patterns
+                $looksLikeSecret =
+                    strlen($s) >= 20 && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s) // tokens/base64-ish
+                    || str_contains($s, 'Bearer ')
+                    || preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s); // JWT-ish
+
+                if ($looksLikeSecret) {
+                    return '[REDACTED len=' . strlen($s) . ']';
+                }
+
+                // general string masking
+                $len = strlen($s);
+                if ($len > 64) {
+                    return substr($s, 0, 8) . '…[len=' . $len . ']';
+                }
+
+                // emails can be masked too if desired
+                if (filter_var($s, FILTER_VALIDATE_EMAIL)) {
+                    [$u, $d] = explode('@', $s, 2);
+                    return substr($u, 0, 2) . '…@' . $d;
+                }
+
+                return $s;
+            }
+
+            // arrays/objects shouldn't usually be here; summarize
+            if (is_array($p)) {
+                return '[array count=' . count($p) . ']';
+            }
+
+            return '[type=' . gettype($p) . ']';
+        }, $params);
+    }
+
+    /**
      * Checks whether a given table exists in the currently connected database.
      *
      * This method runs a driver-specific query to determine if the table is present.
@@ -619,11 +738,10 @@ class DB {
      * @return bool Returns true if the table exists in the database, or false if it does not.
      */
     public function tableExists(string $table): bool {
-        if ($this->_dbDriver === 'sqlite') {
-            $sql = "SELECT name FROM sqlite_master WHERE type='table' AND name=:table";
-        } else {
-            $sql = "SHOW TABLES LIKE :table";
-        }
+        $sql = ($this->_dbDriver === 'sqlite')
+            ? "SELECT name FROM sqlite_master WHERE type='table' AND name=?"
+            : "SHOW TABLES LIKE ?";
+
 
         $this->query($sql, ['table' => $table]);
         return $this->count() > 0;
