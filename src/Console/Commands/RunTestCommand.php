@@ -101,7 +101,7 @@ class RunTestCommand extends Command
             );
         }
         if(!$testArg && PHPUnitRunner::testSuiteStatus($runBySuiteStatus)) {
-            Tools::info("Completed tests by suite(s)");
+            console_info("Completed tests by suite(s)");
             return Command::SUCCESS;
         }
 
@@ -127,11 +127,11 @@ class RunTestCommand extends Command
             );
         }
         if($testArg && PHPUnitRunner::testSuiteStatus($testNameByFlagStatus)) {
-            Tools::info("Completed tests by name and suite(s)");
+            console_info("Completed tests by name and suite(s)");
             return Command::SUCCESS;
         }
 
-        Tools::info("There was an issue running unit tests.  Check your command line input.", Logger::ERROR, Tools::BG_RED);
+        console_error("There was an issue running unit tests.  Check your command line input.");
         return Command::FAILURE;
     }
 }
