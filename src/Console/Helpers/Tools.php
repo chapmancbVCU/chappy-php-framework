@@ -173,10 +173,12 @@ class Tools {
         $constantKey = array_search($value, $constants);
 
         if($constantKey == false) {
-            throw new ConsoleException("ConsoleException: Invalid background or text color.");
+            return false;
         }
         if(!str_contains($constantKey, $type)) {
-            throw new ConsoleException("ConsoleException: You are using an incorrect constant value for type $type.");
+            $output = "\e[0;37;41m\n\n   Console Error: You are using an incorrect constant value for type $type.\n\e[0m\n";
+            fwrite(STDOUT, $output);
+            fflush(STDOUT);
         }
         
         return in_array($value, $constants);
@@ -208,19 +210,27 @@ class Tools {
         if (self::$output) {
             self::$output->writeln($message);
         }
-        
         Logger::log($message, $level);
 
-        // Perform console logging
-        if (self::hasConstant($background, "BG") && self::hasConstant($text, "TEXT")) {
-            $output = "\e[".$text.";".$background."m\n\n   ".$message."\n\e[0m\n";
-            fwrite(STDOUT, $output);
-            fflush(STDOUT);
-        } else {
-            $output = "\e[0;37;41m\n\n   Invalid background or text color.\n\e[0m\n";
+        // Check if text and background color is correct.
+        if(!self::hasConstant($background, "BG")) {
+            $output = "\e[0;37;41m\n\n   Invalid background color.  We recommend using built-in constants.\n\e[0m\n";
+            $background = self::BG_MAGENTA;
             fwrite(STDOUT, $output);
             fflush(STDOUT);
         }
+        if(!self::hasConstant($text, "TEXT")) {
+            $output = "\e[0;37;41m\n\n   Invalid text color.  We recommend using built-in constants.\n\e[0m\n";
+            $background = self::BG_MAGENTA;
+            $text = self::TEXT_LIGHT_GREY;
+            fwrite(STDOUT, $output);
+            fflush(STDOUT);
+        }
+
+        // Perform console logging
+        $output = "\e[".$text.";".$background."m\n\n   ".$message."\n\e[0m\n";
+        fwrite(STDOUT, $output);
+        fflush(STDOUT);
 
         $loggingConfigLevel = Env::get("LOGGING");
         if(!Logger::verifyLoggingLevel($loggingConfigLevel)) {
