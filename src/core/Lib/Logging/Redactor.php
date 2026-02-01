@@ -31,8 +31,7 @@ final class Redactor {
      * @param mixed $value The value to sanitize.
      * @return mixed The sanitized value suitable for logging.
      */
-    public static function redact(mixed $value): mixed
-    {
+    public static function redact(mixed $value): mixed {
         if ($value === null || is_int($value) || is_float($value) || is_bool($value)) {
             return $value;
         }
@@ -57,8 +56,7 @@ final class Redactor {
      * @param array $arr The array to sanitize.
      * @return array The sanitized array.
      */
-    private static function redactArray(array $arr): array
-    {
+    private static function redactArray(array $arr): array {
         $out = [];
         foreach ($arr as $k => $v) {
             $out[$k] = self::redact($v);
@@ -82,8 +80,7 @@ final class Redactor {
      * @param string $s The string to sanitize.
      * @return string The sanitized string.
      */
-    private static function redactString(string $s): string
-    {
+    private static function redactString(string $s): string {
         $len = strlen($s);
 
         // always redact password hashes + bearer/jwt

@@ -427,35 +427,6 @@ class DB {
     }
 
     /**
-     * Normalizes and validates the DB_LOG_PARAMS mode from configuration.
-     *
-     * Accepts: none, masked, full (case-insensitive, ignores surrounding quotes/whitespace).
-     * Falls back to $default if invalid.
-     *
-     * @param string|null $raw     Raw value from env/config.
-     * @param string      $default Default mode if invalid.
-     * @return string One of: 'none', 'masked', 'full'.
-     */
-    private function normalizeParamLogMode(?string $raw, string $default = 'none'): string {
-        $mode = $raw ?? $default;
-
-        $mode = trim($mode);
-        $mode = trim($mode, "\"'"); // handles 'full' or "full"
-
-        $mode = strtolower($mode);
-
-        $allowed = ['none', 'masked', 'full'];
-
-        if (!in_array($mode, $allowed, true)) {
-            // Mis-config shouldn't break execution; fall back safely.
-            warning("Invalid DB_LOG_PARAMS='{$raw}'. Using '{$default}'. Allowed: none|masked|full");
-            return $default;
-        }
-
-        return $mode;
-    }
-
-    /**
      * Performs database query operations that includes prepare, 
      * binding, execute, and fetch.  
      *
@@ -503,7 +474,6 @@ class DB {
         return $this;
     }
 
-    
     /**
      * Supports SELECT operations that maybe ran against a SQL database.  It 
      * supports the ability to order and limit the number of results returned 
