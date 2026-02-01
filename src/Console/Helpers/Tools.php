@@ -83,6 +83,18 @@ class Tools {
     }
 
     /**
+     * Performs actual action of writing output to console with specified 
+     * background color, text color, and message.
+     *
+     * @param string $output The output string for the console.
+     * @return void
+     */
+    private static function consoleLog(string $output): void {
+        fwrite(STDOUT, $output);
+        fflush(STDOUT);
+    }
+
+    /**
      * Creates a directory.  It checks if it already exists.  If not, user is asked to confirm the want to create a new directory.
      *
      * @param string $directory The full path for the directory to be created.
@@ -177,8 +189,7 @@ class Tools {
         }
         if(!str_contains($constantKey, $type)) {
             $output = "\e[0;37;41m\n\n   Console Error: You are using an incorrect constant value for type $type.\n\e[0m\n";
-            fwrite(STDOUT, $output);
-            fflush(STDOUT);
+            self::consoleLog($output);
             return false;
         }
         
@@ -217,35 +228,30 @@ class Tools {
         if(!self::hasConstant($background, "BG")) {
             $output = "\e[0;37;41m\n\n   Invalid background color.  We recommend using built-in constants.\n\e[0m\n";
             $background = self::BG_MAGENTA;
-            fwrite(STDOUT, $output);
-            fflush(STDOUT);
+            self::consoleLog($output);
         }
         if(!self::hasConstant($text, "TEXT")) {
             $output = "\e[0;37;41m\n\n   Invalid text color.  We recommend using built-in constants.\n\e[0m\n";
             $background = self::BG_MAGENTA;
             $text = self::TEXT_LIGHT_GREY;
-            fwrite(STDOUT, $output);
-            fflush(STDOUT);
+            self::consoleLog($output);
         }
 
         // Perform console logging
         $output = "\e[".$text.";".$background."m\n\n   ".$message."\n\e[0m\n";
-        fwrite(STDOUT, $output);
-        fflush(STDOUT);
+        self::consoleLog($output);
 
         $loggingConfigLevel = Env::get("LOGGING");
         if(!Logger::verifyLoggingLevel($loggingConfigLevel)) {
             $criticalMessage = "Invalid log level set in config: You entered $loggingConfigLevel";
             $output = "\e[".$text.";".self::BG_MAGENTA."m\n\n   ".$criticalMessage."\n\e[0m\n";
-            fwrite(STDOUT, $output);
-            fflush(STDOUT);
+            self::consoleLog($output);
         }
 
         if(!Logger::verifyLoggingLevel($level)) {
             $criticalMessage = "Invalid log level passed as a parameter: You entered $level";
             $output = "\e[".$text.";".self::BG_MAGENTA."m\n\n   ".$criticalMessage."\n\e[0m\n";
-            fwrite(STDOUT, $output);
-            fflush(STDOUT);
+            self::consoleLog($output);
         }
     }
 
