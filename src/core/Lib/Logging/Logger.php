@@ -134,37 +134,17 @@ class Logger {
     public static function log(string $message, string $level = self::INFO): void {
         $loggingConfigLevel = Env::get("LOGGING");
         if(!self::verifyLoggingLevel($loggingConfigLevel)) {
-            $message = "Invalid log level set in config: You entered $loggingConfigLevel -> " . $message;
-            $level = self::CRITICAL;
+            $criticalMessage = "Invalid log level set in config: You entered $loggingConfigLevel";
+            self::writeToLog($criticalMessage, self::CRITICAL);
+        }
+
+        if(!self::verifyLoggingLevel($level)) {
+            $criticalMessage = "Invalid log level passed as a parameter: You entered {$level}";
+            self::writeToLog($criticalMessage, self::CRITICAL);
         }
 
         if(!self::shouldLog($level)) return;
-
-        if(!self::verifyLoggingLevel($level)) {
-            $message = "Invalid log level passed as a parameter: You entered {$level} -> " . $message;
-            $level = self::CRITICAL;
-        }
-
-        if (!isset(self::$logFile)) self::init();
-        
-        // Checks to ensure we can log to file.
-        $logDir = dirname(self::$logFile);
-        self::logDirExists($logDir);
-        self::isLogDirWritable($logDir);
-        self::logFileExists();
-        self::isLogFileWritable();
-
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        $caller = $backtrace[1] ?? null;
-        $file = $caller['file'] ?? 'Unknown File';
-        $line = $caller['line'] ?? 'Unknown Line';
-
-        $logMessage = self::generateLogMessage($level, $message, $file, $line);
-        $result = file_put_contents(self::$logFile, $logMessage, FILE_APPEND | LOCK_EX);
-
-        if ($result === false) {
-            self::emergencyFallback("Unable to write to log file.");
-        }
+        self::writeToLog($message, $level);
     }
 
     /**
@@ -225,5 +205,36 @@ class Logger {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Internal function for writing to log after all checks have passed.
+     *
+     * @param string $message The description of an event that is being 
+     * written to a log file.
+     * @param string $level Describes the severity of the message.
+     * @return void
+     */
+    private static function writeToLog(string $message, string $level): void {
+        if (!isset(self::$logFile)) self::init();
+        
+        // Checks to ensure we can log to file.
+        $logDir = dirname(self::$logFile);
+        self::logDirExists($logDir);
+        self::isLogDirWritable($logDir);
+        self::logFileExists();
+        self::isLogFileWritable();
+
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        $caller = $backtrace[1] ?? null;
+        $file = $caller['file'] ?? 'Unknown File';
+        $line = $caller['line'] ?? 'Unknown Line';
+
+        $logMessage = self::generateLogMessage($level, $message, $file, $line);
+        $result = file_put_contents(self::$logFile, $logMessage, FILE_APPEND | LOCK_EX);
+
+        if ($result === false) {
+            self::emergencyFallback("Unable to write to log file.");
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Core\Exceptions\Console\ConsoleException;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Env;
 use ReflectionClass;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -217,6 +218,21 @@ class Tools {
             fflush(STDOUT);
         } else {
             $output = "\e[0;37;41m\n\n   Invalid background or text color.\n\e[0m\n";
+            fwrite(STDOUT, $output);
+            fflush(STDOUT);
+        }
+
+        $loggingConfigLevel = Env::get("LOGGING");
+        if(!Logger::verifyLoggingLevel($loggingConfigLevel)) {
+            $criticalMessage = "Invalid log level set in config: You entered $loggingConfigLevel";
+            $output = "\e[".$text.";".self::BG_MAGENTA."m\n\n   ".$criticalMessage."\n\e[0m\n";
+            fwrite(STDOUT, $output);
+            fflush(STDOUT);
+        }
+
+        if(!Logger::verifyLoggingLevel($level)) {
+            $criticalMessage = "Invalid log level passed as a parameter: You entered $level";
+            $output = "\e[".$text.";".self::BG_MAGENTA."m\n\n   ".$criticalMessage."\n\e[0m\n";
             fwrite(STDOUT, $output);
             fflush(STDOUT);
         }
