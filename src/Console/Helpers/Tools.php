@@ -179,6 +179,7 @@ class Tools {
             $output = "\e[0;37;41m\n\n   Console Error: You are using an incorrect constant value for type $type.\n\e[0m\n";
             fwrite(STDOUT, $output);
             fflush(STDOUT);
+            return false;
         }
         
         return in_array($value, $constants);

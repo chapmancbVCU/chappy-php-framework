@@ -92,7 +92,7 @@ class TestRunner {
         }
 
         if($this->testSuiteStatus($statuses)) {
-            console_info("All available test have been completed");
+            Tools::info("All available test have been completed", 'debug', Tools::TEXT_BLACK);
             return Command::SUCCESS;
         }
 
