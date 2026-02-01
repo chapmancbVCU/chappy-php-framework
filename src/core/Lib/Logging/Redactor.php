@@ -43,6 +43,34 @@ final class Redactor {
     private static bool $didWarnInvalidDbLogParams = false;
 
     /**
+     * Determines whether an array is a list (0..n-1 keys).
+     *
+     * @param array $arr
+     * @return bool
+     */
+    private static function isList(array $arr): bool {
+        // PHP 8.1+ (you’re on 8.4/8.5, so this is safe)
+        return array_is_list($arr);
+    }
+
+    /**
+     * Encodes data to JSON for logs safely.
+     *
+     * @param mixed $data
+     * @return string
+     */
+    private static function jsonForLog(mixed $data): string {
+        $json = json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+        if ($json === false) {
+            // Fallback that won't throw and won't leak content
+            return '[unencodable data]';
+        }
+
+        return $json;
+    }
+
+    /**
      * Formats query parameters for logging, based on the DB_LOG_PARAMS mode.
      *
      * Supported modes (via Env::get('DB_LOG_PARAMS')):
@@ -68,10 +96,17 @@ final class Redactor {
         }
 
         return match ($mode) {
-            'none'   => Redactor::paramSummary($params),
-            'full'   => json_encode($params),
-            'masked' => json_encode(Redactor::redactAssoc($params)),
-            default  => json_encode(Redactor::redactAssoc($params)), // if you keep default
+            'none' => self::paramSummary($params),
+
+            'full' => self::jsonForLog($params),
+
+            'masked' => self::jsonForLog(
+                self::isList($params) ? self::redact($params) : self::redactAssoc($params)
+            ),
+
+            default => self::jsonForLog(
+                self::isList($params) ? self::redact($params) : self::redactAssoc($params)
+            ),
         };
     }
 
@@ -106,27 +141,24 @@ final class Redactor {
     /**
      * Produces a safe "shape" summary of query parameters without logging values.
      *
-     * The summary includes:
-     * - total parameter count
-     * - parameter types
-     * - string lengths and array sizes (when applicable)
-     *
-     * Example output:
+     * Example:
      * `count=3 types=[int,string(12),null]`
      *
-     * @param array $params Parameters bound to a prepared statement.
-     * @return string A concise summary suitable for logs.
+     * @param array $params
+     * @return string
      */
     public static function paramSummary(array $params): string {
         $types = array_map(function ($p) {
-            $t = gettype($p);
             if (is_string($p)) return "string(" . strlen($p) . ")";
             if (is_int($p)) return "int";
             if (is_float($p)) return "float";
             if (is_bool($p)) return "bool";
             if (is_null($p)) return "null";
             if (is_array($p)) return "array(" . count($p) . ")";
-            return $t;
+            if (is_object($p)) return "object(" . get_class($p) . ")";
+            if (is_resource($p)) return "resource";
+
+            return gettype($p);
         }, $params);
 
         return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
@@ -137,8 +169,12 @@ final class Redactor {
      * other structured payloads.
      */
     public static function redactAssoc(array $data): array {
-        $out = [];
+        if (self::isList($data)) {
+            $redacted = self::redact($data);
+            return $redacted;
+        }
 
+        $out = [];
         foreach ($data as $key => $value) {
             $k = is_string($key) ? $key : (string)$key;
             $out[$key] = self::redactKeyValue($k, $value);
@@ -241,9 +277,18 @@ final class Redactor {
         }
 
         $looksLikeSecret =
-            (strlen($s) >= 20 && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s))
+            // JWT-ish
+            preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s)
+            // Bearer token anywhere (case-insensitive)
             || preg_match('/\bbearer\b/i', $s)
-            || preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s);
+            // Long base64-ish tokens: require at least one digit and one letter to reduce "all letters" false positives
+            || (
+                strlen($s) >= 24
+                && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s)
+                && preg_match('/[A-Za-z]/', $s)
+                && preg_match('/[0-9]/', $s)
+        );
+
 
         if ($looksLikeSecret) {
             return '[REDACTED len=' . strlen($s) . ']';
