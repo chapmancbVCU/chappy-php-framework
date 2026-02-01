@@ -83,7 +83,7 @@ class Logger {
         $mode = self::normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
 
         return match ($mode) {
-            'none'   => self::paramSummary($params),
+            'none'   => Redactor::paramSummary($params),
             'full'   => json_encode($params),
             default  => json_encode(Redactor::redact($params))
         };
@@ -244,34 +244,6 @@ class Logger {
         }
 
         return $mode;
-    }
-    /**
-     * Produces a safe "shape" summary of query parameters without logging values.
-     *
-     * The summary includes:
-     * - total parameter count
-     * - parameter types
-     * - string lengths and array sizes (when applicable)
-     *
-     * Example output:
-     * `count=3 types=[int,string(12),null]`
-     *
-     * @param array $params Parameters bound to a prepared statement.
-     * @return string A concise summary suitable for logs.
-     */
-    private static function paramSummary(array $params): string {
-        $types = array_map(function ($p) {
-            $t = gettype($p);
-            if (is_string($p)) return "string(" . strlen($p) . ")";
-            if (is_int($p)) return "int";
-            if (is_float($p)) return "float";
-            if (is_bool($p)) return "bool";
-            if (is_null($p)) return "null";
-            if (is_array($p)) return "array(" . count($p) . ")";
-            return $t;
-        }, $params);
-
-        return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
     }
 
     /**

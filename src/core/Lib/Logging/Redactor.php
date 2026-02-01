@@ -34,6 +34,35 @@ final class Redactor {
     ];
 
     /**
+     * Produces a safe "shape" summary of query parameters without logging values.
+     *
+     * The summary includes:
+     * - total parameter count
+     * - parameter types
+     * - string lengths and array sizes (when applicable)
+     *
+     * Example output:
+     * `count=3 types=[int,string(12),null]`
+     *
+     * @param array $params Parameters bound to a prepared statement.
+     * @return string A concise summary suitable for logs.
+     */
+    public static function paramSummary(array $params): string {
+        $types = array_map(function ($p) {
+            $t = gettype($p);
+            if (is_string($p)) return "string(" . strlen($p) . ")";
+            if (is_int($p)) return "int";
+            if (is_float($p)) return "float";
+            if (is_bool($p)) return "bool";
+            if (is_null($p)) return "null";
+            if (is_array($p)) return "array(" . count($p) . ")";
+            return $t;
+        }, $params);
+
+        return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
+    }
+
+    /**
      * Redact an associative array (key-aware). Use this for request data and
      * other structured payloads.
      */
