@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core;
 
 use Core\Lib\Logging\Logger;
+use Core\Lib\Logging\Redactor;
 use \PDO;
 use Exception;
 use \PDOException;
@@ -399,7 +400,7 @@ class DB {
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
-        debug("Preparing INSERT query: $sql | Params: " . Logger::formatParamsForLog($values));
+        debug("Preparing INSERT query: $sql | Params: " . Redactor::formatParamsForLog($values));
 
         if (!$this->query($sql, $values)->error()) {
             return true;
@@ -460,14 +461,14 @@ class DB {
                 if ($this->_count > 1) {
                     debug("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s");
                 } else {
-                    debug("Executed Query: $sql | Params: " . Logger::formatParamsForLog($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
+                    debug("Executed Query: $sql | Params: " . Redactor::formatParamsForLog($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s");
                 }
             } else {
                 $this->_error = true;
                 error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . Logger::formatParamsForLog($params));
             }
         } else {
-            error("Failed to prepare query: $sql | Params: " . Logger::formatParamsForLog($params));
+            error("Failed to prepare query: $sql | Params: " . Redactor::formatParamsForLog($params));
         }
 
         return $this;

@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Core\Lib\Logging;
 
+use Core\Lib\Utilities\Env;
+
 /**
  * Utility class responsible for sanitizing and redacting values before
  * they are written to log files.
@@ -32,6 +34,74 @@ final class Redactor {
         'api_key', 'secret', 'csrf_token',
         'remember_me', 'remember_token', 'session_id', 'phpsessid'
     ];
+
+    /**
+     * Flag that is used to prevent invalid DB_LOG_PARAMS mode warnings per request.
+     *
+     * @var bool
+     */
+    private static bool $didWarnInvalidDbLogParams = false;
+
+    /**
+     * Formats query parameters for logging, based on the DB_LOG_PARAMS mode.
+     *
+     * Supported modes (via Env::get('DB_LOG_PARAMS')):
+     * - **none**   (default): logs only parameter count and types/lengths (no values).
+     * - **masked**: logs redacted values using safeParams().
+     * - **full**  : logs full raw parameter values (not recommended outside local/dev).
+     *
+     * This is designed to prevent sensitive data (passwords, tokens, emails, etc.)
+     * from being written to logs in production while still preserving useful debugging
+     * context (execution timing, SQL, parameter shape).
+     *
+     * @param array $params Parameters bound to the prepared SQL statement.
+     * @return string A log-safe string representation of the parameters.
+     */
+    public static function formatParamsForLog(array $params): string {
+        $rawMode = Env::get('DB_LOG_PARAMS', 'none');
+        $mode = self::normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
+
+        // Optional safety belt (recommended)
+        $unsafe = Env::get('DB_LOG_UNSAFE', false);
+        if ($mode === 'full' && !$unsafe) {
+            $mode = 'masked';
+        }
+
+        return match ($mode) {
+            'none'   => Redactor::paramSummary($params),
+            'full'   => json_encode($params),
+            'masked' => json_encode(Redactor::redactAssoc($params)),
+            default  => json_encode(Redactor::redactAssoc($params)), // if you keep default
+        };
+    }
+
+    /**
+     * Normalizes DB_LOG_PARAMS to a safe, supported value.
+     *
+     * Accepts common .env formatting such as quoted values ('full', "masked")
+     * and ignores leading/trailing whitespace. If the value is not recognized,
+     * it falls back to a safe default and emits a warning.
+     *
+     * Allowed values: none|masked|full
+     *
+     * @param string|null $raw Raw config value (e.g. from Env::get()).
+     * @param string $default Default mode to use if $raw is invalid.
+     * @return string Normalized mode: 'none', 'masked', or 'full'.
+     */
+    private static function normalizeParamLogMode(?string $raw, string $default = 'none'): string {
+        $mode = strtolower(trim(trim($raw ?? $default), "\"'"));
+        $allowed = ['none', 'masked', 'full'];
+
+        if (!in_array($mode, $allowed, true)) {
+            if (!self::$didWarnInvalidDbLogParams) {
+                warning("Invalid DB_LOG_PARAMS='{$raw}'. Using '{$default}'. Allowed: none|masked|full");
+                self::$didWarnInvalidDbLogParams = true;
+            }
+            return $default;
+        }
+
+        return $mode;
+    }
 
     /**
      * Produces a safe "shape" summary of query parameters without logging values.
