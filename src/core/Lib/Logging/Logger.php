@@ -85,7 +85,7 @@ class Logger {
         return match ($mode) {
             'none'   => self::paramSummary($params),
             'full'   => json_encode($params),
-            default  => json_encode(self::safeParams($params))
+            default  => json_encode(Redactor::redact($params))
         };
     }
 
@@ -272,64 +272,6 @@ class Logger {
         }, $params);
 
         return "count=" . count($params) . " types=[" . implode(',', $types) . "]";
-    }
-
-    /**
-     * Returns a redacted copy of query parameters suitable for logging.
-     *
-     * This method attempts to prevent common secret leakage by:
-     * - Redacting token-like strings (base64-ish, JWT-ish, Bearer tokens)
-     * - Truncating long strings to a short prefix + length indicator
-     * - Masking email usernames (optional behavior included)
-     * - Summarizing arrays/objects rather than dumping them
-     *
-     * Note: This is a best-effort sanitizer for logs. For maximum safety,
-     * prefer DB_LOG_PARAMS=none in production.
-     *
-     * @param array $params Parameters bound to a prepared statement.
-     * @return array A sanitized array of parameters safe to JSON encode for logs.
-     */
-    private static function safeParams(array $params): array {
-        return array_map(function ($p) {
-            if (is_null($p) || is_int($p) || is_float($p) || is_bool($p)) {
-                return $p;
-            }
-
-            if (is_string($p)) {
-                $s = $p;
-
-                // common secret patterns
-                $looksLikeSecret =
-                    strlen($s) >= 20 && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s) // tokens/base64-ish
-                    || str_contains($s, 'Bearer ')
-                    || preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s); // JWT-ish
-
-                if ($looksLikeSecret) {
-                    return '[REDACTED len=' . strlen($s) . ']';
-                }
-
-                // general string masking
-                $len = strlen($s);
-                if ($len > 64) {
-                    return substr($s, 0, 8) . '…[len=' . $len . ']';
-                }
-
-                // emails can be masked too if desired
-                if (filter_var($s, FILTER_VALIDATE_EMAIL)) {
-                    [$u, $d] = explode('@', $s, 2);
-                    return substr($u, 0, 2) . '…@' . $d;
-                }
-
-                return $s;
-            }
-
-            // arrays/objects shouldn't usually be here; summarize
-            if (is_array($p)) {
-                return '[array count=' . count($p) . ']';
-            }
-
-            return '[type=' . gettype($p) . ']';
-        }, $params);
     }
 
     /**
