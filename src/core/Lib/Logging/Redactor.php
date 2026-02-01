@@ -23,6 +23,32 @@ namespace Core\Lib\Logging;
  */
 final class Redactor {
     /**
+     * Array of values to always redact.
+     */
+    private const ALWAYS_REDACT_KEYS = [
+        'password', 'password_confirmation', 'current_password', 'new_password',
+        'pwd', 'pass', 'passphrase',
+        'token', 'access_token', 'refresh_token', 'authorization',
+        'api_key', 'secret', 'csrf_token',
+        'remember_me', 'remember_token', 'session_id', 'phpsessid'
+    ];
+
+    /**
+     * Redact an associative array (key-aware). Use this for request data and
+     * other structured payloads.
+     */
+    public static function redactAssoc(array $data): array {
+        $out = [];
+
+        foreach ($data as $key => $value) {
+            $k = is_string($key) ? $key : (string)$key;
+            $out[$key] = self::redactKeyValue($k, $value);
+        }
+
+        return $out;
+    }
+
+    /**
      * Redacts or sanitizes a value for safe logging.
      *
      * Primitive values are returned as-is. Strings and arrays are inspected
@@ -65,6 +91,36 @@ final class Redactor {
     }
 
     /**
+     * Redact a value using the key name as an additional signal.
+     */
+    private static function redactKeyValue(string $key, mixed $value): mixed { 
+        $normalized = strtolower($key);
+
+        $containsSensitive =
+            str_contains($normalized, 'password') ||
+            str_contains($normalized, 'token') ||
+            str_contains($normalized, 'secret') ||
+            str_contains($normalized, 'api_key') ||
+            str_contains($normalized, 'apikey') ||
+            str_contains($normalized, 'authorization') ||
+            str_contains($normalized, 'csrf') ||
+            str_contains($normalized, 'session') ||
+            str_contains($normalized, 'cookie') ||
+            str_contains($normalized, 'signature');
+
+        if ($containsSensitive || in_array($normalized, self::ALWAYS_REDACT_KEYS, true)) {
+            return '[REDACTED]';
+        }
+
+        // Recurse arrays with key-awareness if nested
+        if (is_array($value)) {
+            return self::redactAssoc($value);
+        }
+
+        return self::redact($value);
+    }
+
+    /**
      * Sanitizes a string value for logging.
      *
      * This method detects and masks:
@@ -81,31 +137,30 @@ final class Redactor {
      * @return string The sanitized string.
      */
     private static function redactString(string $s): string {
-        $len = strlen($s);
-
-        // always redact password hashes + bearer/jwt
-        if (str_starts_with($s, '$2y$') || str_starts_with($s, '$2a$') || str_starts_with($s, '$argon2')) {
-            return "[REDACTED hash len={$len}]";
-        }
-        if (stripos($s, 'bearer ') !== false) {
-            return "[REDACTED bearer len={$len}]";
-        }
-        if (preg_match('/^eyJ[a-zA-Z0-9_-]*\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/', $s)) {
-            return "[REDACTED jwt len={$len}]";
+        if (preg_match('/^\$2y\$\d{2}\$.{53}$/', $s) || str_starts_with($s, '$argon2')) {
+            return '[REDACTED hash]';
         }
 
-        // paths: truncate, don't redact
-        if (str_contains($s, '/') || str_contains($s, '\\')) {
-            return $len > 96 ? substr($s, 0, 32) . "…[len={$len}]" : $s;
+        $looksLikeSecret =
+            (strlen($s) >= 20 && preg_match('/^[A-Za-z0-9+\/=_\-.]+$/', $s))
+            || preg_match('/\bbearer\b/i', $s)
+            || preg_match('/eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/', $s);
+
+        if ($looksLikeSecret) {
+            return '[REDACTED len=' . strlen($s) . ']';
         }
 
-        // email: mask user part
         if (filter_var($s, FILTER_VALIDATE_EMAIL)) {
             [$u, $d] = explode('@', $s, 2);
-            return substr($u, 0, 2) . "…@{$d}";
+            $prefix = substr($u, 0, min(2, strlen($u)));
+            return $prefix . '…@' . $d;
         }
 
-        // long strings: truncate
-        return $len > 128 ? substr($s, 0, 32) . "…[len={$len}]" : $s;
+        $len = strlen($s);
+        if ($len > 64) {
+            return substr($s, 0, 8) . '…[len=' . $len . ']';
+        }
+
+        return $s;
     }
 }
