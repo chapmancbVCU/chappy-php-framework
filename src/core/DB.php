@@ -465,7 +465,7 @@ class DB {
                 }
             } else {
                 $this->_error = true;
-                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . Logger::formatParamsForLog($params));
+                error("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . Redactor::formatParamsForLog($params));
             }
         } else {
             error("Failed to prepare query: $sql | Params: " . Redactor::formatParamsForLog($params));
