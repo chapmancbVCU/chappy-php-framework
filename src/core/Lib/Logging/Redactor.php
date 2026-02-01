@@ -49,7 +49,6 @@ final class Redactor {
      * @return bool
      */
     private static function isList(array $arr): bool {
-        // PHP 8.1+ (you’re on 8.4/8.5, so this is safe)
         return array_is_list($arr);
     }
 
@@ -89,7 +88,6 @@ final class Redactor {
         $rawMode = Env::get('DB_LOG_PARAMS', 'none');
         $mode = self::normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
 
-        // Optional safety belt (recommended)
         $unsafe = Env::get('DB_LOG_UNSAFE', false);
         if ($mode === 'full' && !$unsafe) {
             $mode = 'masked';
