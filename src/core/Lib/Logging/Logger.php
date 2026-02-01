@@ -51,6 +51,13 @@ class Logger {
     private static string $logFile;
 
     /**
+     * Flag that is used to prevent invalid DB_LOG_PARAMS mode warnings per request.
+     *
+     * @var bool
+     */
+    private static bool $didWarnInvalidDbLogParams = false;
+
+    /**
      * Performs system logging if we cannot write to log file.  We also dump 
      * the message to the console/view.
      *
@@ -82,10 +89,17 @@ class Logger {
         $rawMode = Env::get('DB_LOG_PARAMS', 'none');
         $mode = self::normalizeParamLogMode(is_string($rawMode) ? $rawMode : null, 'none');
 
+        // Optional safety belt (recommended)
+        $unsafe = Env::get('DB_LOG_UNSAFE', false);
+        if ($mode === 'full' && !$unsafe) {
+            $mode = 'masked';
+        }
+
         return match ($mode) {
             'none'   => Redactor::paramSummary($params),
             'full'   => json_encode($params),
-            default  => json_encode(Redactor::redact($params))
+            'masked' => json_encode(Redactor::redactAssoc($params)),
+            default  => json_encode(Redactor::redactAssoc($params)), // if you keep default
         };
     }
 
@@ -218,28 +232,27 @@ class Logger {
     }
 
     /**
-     * Normalizes and validates the DB_LOG_PARAMS mode from configuration.
+     * Normalizes DB_LOG_PARAMS to a safe, supported value.
      *
-     * Accepts: none, masked, full (case-insensitive, ignores surrounding quotes/whitespace).
-     * Falls back to $default if invalid.
+     * Accepts common .env formatting such as quoted values ('full', "masked")
+     * and ignores leading/trailing whitespace. If the value is not recognized,
+     * it falls back to a safe default and emits a warning.
      *
-     * @param string|null $raw     Raw value from env/config.
-     * @param string      $default Default mode if invalid.
-     * @return string One of: 'none', 'masked', 'full'.
+     * Allowed values: none|masked|full
+     *
+     * @param string|null $raw Raw config value (e.g. from Env::get()).
+     * @param string $default Default mode to use if $raw is invalid.
+     * @return string Normalized mode: 'none', 'masked', or 'full'.
      */
     private static function normalizeParamLogMode(?string $raw, string $default = 'none'): string {
-        $mode = $raw ?? $default;
-
-        $mode = trim($mode);
-        $mode = trim($mode, "\"'"); // handles 'full' or "full"
-
-        $mode = strtolower($mode);
-
+        $mode = strtolower(trim(trim($raw ?? $default), "\"'"));
         $allowed = ['none', 'masked', 'full'];
 
         if (!in_array($mode, $allowed, true)) {
-            // Mis-config shouldn't break execution; fall back safely.
-            warning("Invalid DB_LOG_PARAMS='{$raw}'. Using '{$default}'. Allowed: none|masked|full");
+            if (!self::$didWarnInvalidDbLogParams) {
+                warning("Invalid DB_LOG_PARAMS='{$raw}'. Using '{$default}'. Allowed: none|masked|full");
+                self::$didWarnInvalidDbLogParams = true;
+            }
             return $default;
         }
 
