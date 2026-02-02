@@ -1,6 +1,5 @@
 <?php
 use Core\Lib\Logging\Logger;
-use Console\Helpers\Tools;
 use Console\ConsoleLogger;
 /*
  * Contains globals for logging.
