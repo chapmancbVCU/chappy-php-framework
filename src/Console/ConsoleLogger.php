@@ -7,6 +7,9 @@ use Core\Lib\Logging\Logger;
 use ReflectionClass;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Supports all operations related to writing output to console.
+ */
 final class ConsoleLogger {
     /**
      * Supports ability to log information to console.
