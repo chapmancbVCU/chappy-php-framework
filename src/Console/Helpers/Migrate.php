@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\ConsoleLogger;
 use PDO;
 use Core\DB;
 use Core\Lib\Utilities\Arr;
@@ -359,7 +360,7 @@ class Migrate {
             }
         }
 
-        ConsoleLogger::log("Name ................................. Batch / Status", Logger::INFO, Tools::BG_BLUE);
+        ConsoleLogger::log("Name ................................. Batch / Status", Logger::INFO, ConsoleLogger::BG_BLUE);
         foreach($migrationStatus as $status) {
             $name = $status->getName();
             $batch = $status->getBatch();

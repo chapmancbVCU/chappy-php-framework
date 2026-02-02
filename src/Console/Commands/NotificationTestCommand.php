@@ -1,7 +1,7 @@
 <?php
 namespace Console\Commands;
 
-use Console\Helpers\Tools;
+use Console\ConsoleLogger;
 use Console\Helpers\Notifications;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -62,7 +62,7 @@ class NotificationTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        Tools::setOutput($output);
+        ConsoleLogger::setOutput($output);
         $notificationName = $input->getArgument('notification-name');
         $className = Notifications::notificationClass($notificationName);
 
