@@ -165,6 +165,16 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;<abbr title="Console\Helpers\App\Models\Users">Users</abbr>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findUser">findUser</a>(string $user)
+        
+                                            <p><p>Find a user/notifiable record by numeric id, email, or username.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
@@ -215,6 +225,16 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_notificationTemplate">notificationTemplate</a>(string $classFunctions, string $notificationName)
+        
+                                            <p><p>Generate the PHP contents for a notification class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;<abbr title="Console\Helpers\object|string">object|string</abbr>
                 </div>
                 <div class="col-md-8">
@@ -261,6 +281,56 @@
                     <a href="#method_sendViaNotifiable">sendViaNotifiable</a>(<abbr title="Console\Helpers\object|string">object|string</abbr> $notifiable, <a href="../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, array $payload, array|null $channels)
         
                                             <p><p>Deliver a notification via a notifiable (or simulate if notifiable is not an object).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setViaList">setViaList</a>(array|null $channels)
+        
+                                            <p><p>Format a list of channels into PHP code suitable for a generated via() method.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toDatabaseTemplate">toDatabaseTemplate</a>()
+        
+                                            <p><p>Template for a toDatabase() method body within a scaffolded notification.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toLogTemplate">toLogTemplate</a>()
+        
+                                            <p><p>Template for a toLog() method body within a scaffolded notification.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toMailTemplate">toMailTemplate</a>()
+        
+                                            <p><p>Template for a toMail() method body within a scaffolded notification.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_viaTemplate">viaTemplate</a>(string $channelList)
+        
+                                            <p><p>Template for the via() method within a scaffolded notification.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -426,6 +496,48 @@
         <tr>
             <td>bool</td>
             <td><p>TRUE if dry-run occurred; FALSE otherwise.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findUser">
+        <div class="location">at line 132</div>
+        <code>        static        private    <abbr title="Console\Helpers\App\Models\Users">Users</abbr>|null
+    <strong>findUser</strong>(string $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Find a user/notifiable record by numeric id, email, or username.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$user</td>
+                <td><p>String token from CLI (id|email|username).</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Console\Helpers\App\Models\Users">Users</abbr>|null</td>
+            <td><p>The matched user or NULL if not found.</p></td>
         </tr>
     </table>
 
@@ -633,6 +745,53 @@ all enum channel values are used.</p></p>
         <tr>
             <td>int</td>
             <td><p>A Tools::writeFile status code.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notificationTemplate">
+        <div class="location">at line 266</div>
+        <code>        static        private    string
+    <strong>notificationTemplate</strong>(string $classFunctions, string $notificationName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generate the PHP contents for a notification class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$classFunctions</td>
+                <td><p>Concatenated channel method bodies + via().</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$notificationName</td>
+                <td><p>Class name (no namespace).</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Full PHP file contents for the notification class.</p></td>
         </tr>
     </table>
 
@@ -858,6 +1017,187 @@ all enum channel values are used.</p></p>
         <tr>
             <td>void</td>
             <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setViaList">
+        <div class="location">at line 401</div>
+        <code>        static        private    string
+    <strong>setViaList</strong>(array|null $channels)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Format a list of channels into PHP code suitable for a generated via() method.</p></p>                <p><p>If the provided list is empty or equals the full enum size, returns the literal
+string &quot;Notification::channelValues()&quot; to keep the generated class concise.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array|null</td>
+                <td>$channels</td>
+                <td><p>Channel names to embed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>PHP expression to place inside via().</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toDatabaseTemplate">
+        <div class="location">at line 424</div>
+        <code>        static        private    string
+    <strong>toDatabaseTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for a toDatabase() method body within a scaffolded notification.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>PHP code snippet for inclusion.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toLogTemplate">
+        <div class="location">at line 448</div>
+        <code>        static        private    string
+    <strong>toLogTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for a toLog() method body within a scaffolded notification.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>PHP code snippet for inclusion.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toMailTemplate">
+        <div class="location">at line 467</div>
+        <code>        static        private    string
+    <strong>toMailTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for a toMail() method body within a scaffolded notification.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>PHP code snippet for inclusion.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_viaTemplate">
+        <div class="location">at line 487</div>
+        <code>        static        private    string
+    <strong>viaTemplate</strong>(string $channelList)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for the via() method within a scaffolded notification.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$channelList</td>
+                <td><p>PHP expression representing the channel list.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>PHP code snippet for inclusion.</p></td>
         </tr>
     </table>
 

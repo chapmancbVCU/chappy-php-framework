@@ -108,22 +108,42 @@ rendered.</p></p>                    </div>
 
             <table class="table table-condensed">
                     <tr>
-                <td class="type" id="property_request">
+                <td class="type" id="property__action">
+                                        protected                                        string
                                                                                 
+                                    </td>
+                <td>$_action</td>
+                <td class="last"><p>The name of the current action.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Controller.html#property__action">
+<abbr title="Core\Controller">Controller</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__controller">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$_controller</td>
+                <td class="last"><p>The name of the current controller.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Controller.html#property__controller">
+<abbr title="Core\Controller">Controller</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_request">
+                                                                                <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a>
                                                                                 
                                     </td>
                 <td>$request</td>
-                <td class="last"></td>
+                <td class="last"><p>Instance of Input class that performs much of our request tasks.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Controller.html#property_request">
 <abbr title="Core\Controller">Controller</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_view">
-                                                                                
+                                                                                <a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a>
                                                                                 
                                     </td>
                 <td>$view</td>
-                <td class="last"></td>
+                <td class="last"><p>Instance of view class.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Controller.html#property_view">
 <abbr title="Core\Controller">Controller</abbr></a></small></td>
             </tr>
@@ -140,9 +160,32 @@ rendered.</p></p>                    </div>
                 <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(string $controller, string $action)
         
-                                            <p><p>Constructor for the parent Controller class.  This constructor gets
-called when an instance of the child class is instantiated.</p></p>                </div>
+                                            <p><p>Calls functions for reporting and unregister of globals.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Controller.html#method___construct">
+<abbr title="Core\Controller">Controller</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method__set_reporting">_set_reporting</a>()
+        
+                                            <p><p>Manages the displaying of error messages and other reporting for this
+application.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Application.html#method__set_reporting">
+<abbr title="Core\Application">Application</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logViewForTesting">logViewForTesting</a>(<a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a> $view)
+        
+                                            <p><p>Captures the current View instance during testing so that test assertions
+(e.g., assertViewContains) can access view-bound variables.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Controller.html#method_logViewForTesting">
 <abbr title="Core\Controller">Controller</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -204,7 +247,7 @@ called when an instance of the child class is instantiated.</p></p>             
                     <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../Core/Controller.html#method___construct">
-<abbr title="Core\Controller">Controller</abbr></a> at line 27</div>
+<abbr title="Core\Controller">Controller</abbr></a> at line 47</div>
         <code>                    
     <strong>__construct</strong>(string $controller, string $action)
         </code>
@@ -214,8 +257,7 @@ called when an instance of the child class is instantiated.</p></p>             
             
 
         <div class="method-description">
-                            <p><p>Constructor for the parent Controller class.  This constructor gets
-called when an instance of the child class is instantiated.</p></p>                        
+                            <p><p>Calls functions for reporting and unregister of globals.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -236,6 +278,86 @@ the URL.</p></td>
             </table>
 
             
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__set_reporting">
+        <div class="location">in <a href="../../Core/Application.html#method__set_reporting">
+<abbr title="Core\Application">Application</abbr></a> at line 23</div>
+        <code>                private    void
+    <strong>_set_reporting</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Manages the displaying of error messages and other reporting for this
+application.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logViewForTesting">
+        <div class="location">in <a href="../../Core/Controller.html#method_logViewForTesting">
+<abbr title="Core\Controller">Controller</abbr></a> at line 67</div>
+        <code>            protected        void
+    <strong>logViewForTesting</strong>(<a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a> $view)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Captures the current View instance during testing so that test assertions
+(e.g., assertViewContains) can access view-bound variables.</p></p>                <p><p>This method should be called in controller actions before rendering a view.
+It stores the View object in ApplicationTestCase::$controllerOutput['view']
+when the application is running in the 'testing' environment.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a></td>
+                <td>$view</td>
+                <td><p>The View instance to capture.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
             
             
             

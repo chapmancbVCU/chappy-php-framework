@@ -177,6 +177,16 @@
                     <tr>
                 <td>
                                                             private
+                                                                                LEVELS
+                                    </td>
+                <td class="last">
+                    <p><em><p>Associative array of levels mapped to integers based on severity.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                            private
                                                                                 LOG_FILE_PATH
                                     </td>
                 <td class="last">
@@ -210,9 +220,52 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_emergencyFallback">emergencyFallback</a>(string $message)
+        
+                                            <p><p>Performs system logging if we cannot write to log file.  We also dump
+the message to the console/view.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateLogMessage">generateLogMessage</a>(string $level, string $message, string $file, int $line)
+        
+                                            <p><p>Packages together the actual formatted log message with</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_init">init</a>()
         
                                             <p><p>Initializes the log file based on the environment (CLI or Web).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isLogDirWritable">isLogDirWritable</a>(string $logDir)
+        
+                                            <p><p>Checks if log directory is writeable.  If not writable we write message
+to PHP log file and dump message to console or view.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isLogFileWritable">isLogFileWritable</a>()
+        
+                                            <p><p>Checks if log file is writable.  If not writable we write message
+to PHP log file and dump message to console or view.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -225,6 +278,57 @@
                                             <p><p>Performs operations for adding content to log files.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logDirExists">logDirExists</a>(string $logDir)
+        
+                                            <p><p>Checks if log directory exists.  If not, then we create it.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logFileExists">logFileExists</a>()
+        
+                                            <p><p>Checks if log file exists.  If not, then we create it.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_shouldLog">shouldLog</a>(string $level)
+        
+                                            <p><p>Logs to file based on level.  If level is info the anything with a
+severity level greater or equal to is logged.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_verifyLoggingLevel">verifyLoggingLevel</a>(string $level)
+        
+                                            <p><p>Tests if the PSR-3 logging level that is provided is valid</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_writeToLog">writeToLog</a>(string $message, string $level)
+        
+                                            <p><p>Internal function for writing to log after all checks have passed.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -232,8 +336,108 @@
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method_emergencyFallback">
+        <div class="location">at line 60</div>
+        <code>        static        private    void
+    <strong>emergencyFallback</strong>(string $message)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs system logging if we cannot write to log file.  We also dump
+the message to the console/view.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The message to be logged.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateLogMessage">
+        <div class="location">at line 73</div>
+        <code>        static        private    string
+    <strong>generateLogMessage</strong>(string $level, string $message, string $file, int $line)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Packages together the actual formatted log message with</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$level</td>
+                <td><p>The severity level of the message.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The original message.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$line</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The formatted message for log file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_init">
-        <div class="location">at line 44</div>
+        <div class="location">at line 87</div>
         <code>        static        private    void
     <strong>init</strong>()
         </code>
@@ -264,8 +468,84 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_isLogDirWritable">
+        <div class="location">at line 106</div>
+        <code>        static        private    void
+    <strong>isLogDirWritable</strong>(string $logDir)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if log directory is writeable.  If not writable we write message
+to PHP log file and dump message to console or view.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$logDir</td>
+                <td><p>Path for the log directory</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isLogFileWritable">
+        <div class="location">at line 120</div>
+        <code>        static        private    void
+    <strong>isLogFileWritable</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if log file is writable.  If not writable we write message
+to PHP log file and dump message to console or view.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_log">
-        <div class="location">at line 68</div>
+        <div class="location">at line 134</div>
         <code>        static            void
     <strong>log</strong>(string $message, string $level = self::INFO)
         </code>
@@ -305,15 +585,215 @@ written to a log file.</p></td>
     </table>
 
             
-                            <h4>Exceptions</h4>
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logDirExists">
+        <div class="location">at line 156</div>
+        <code>        static        private    void
+    <strong>logDirExists</strong>(string $logDir)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if log directory exists.  If not, then we create it.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Core/Exceptions/Logger/LoggerLevelException.html"><abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr></a></td>
-                <td></td>
+                <td>string</td>
+                <td>$logDir</td>
+                <td><p>Path for the log directory.</p></td>
             </tr>
             </table>
 
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logFileExists">
+        <div class="location">at line 167</div>
+        <code>        static        private    void
+    <strong>logFileExists</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if log file exists.  If not, then we create it.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_shouldLog">
+        <div class="location">at line 183</div>
+        <code>        static            bool
+    <strong>shouldLog</strong>(string $level)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Logs to file based on level.  If level is info the anything with a
+severity level greater or equal to is logged.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$level</td>
+                <td><p>The level passed as a parameter to the log
+function.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True we will log based on level.  Otherwise, we return
+false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_verifyLoggingLevel">
+        <div class="location">at line 200</div>
+        <code>        static            bool
+    <strong>verifyLoggingLevel</strong>(string $level)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Tests if the PSR-3 logging level that is provided is valid</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$level</td>
+                <td><p>The PSR-3 level to be tested.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the level is valid.  Otherwise, we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_writeToLog">
+        <div class="location">at line 218</div>
+        <code>        static        private    void
+    <strong>writeToLog</strong>(string $message, string $level)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Internal function for writing to log after all checks have passed.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The description of an event that is being
+written to a log file.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$level</td>
+                <td><p>Describes the severity of the message.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
             
             
                     </div>

@@ -259,7 +259,7 @@ class DB {
      * Returns the first result performed by an SQL query.  It is a wrapper
      * for the _read function for this purpose.
      *
-     * @param @param string $table The name or the table we want to perform 
+     * @param string $table The name or the table we want to perform 
      * our query against.
      * @param array $params An associative array that contains key value pair 
      * parameters for our query such as conditions, bind, limit, offset, 

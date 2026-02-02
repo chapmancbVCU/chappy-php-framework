@@ -293,7 +293,7 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Model">Model</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/ACL.html#method_beforeSave">
 <abbr title="Core\Models\ACL">ACL</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_beforeSave">
+                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_beforeSave">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Notifications.html#method_beforeSave">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
@@ -301,7 +301,7 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
+                    <dd><p>Implements beforeSave.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd>        </dl><h2 id="letterC">C</h2>
         <dl id="indexC"><dt><a href="Console/Commands/DropTablesCommand.html#method_configure">
@@ -414,7 +414,11 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr>::configure</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeUserGuideCommand.html"><abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr></a></em></dt>
                     <dd><p>Configures the command.</p></dd><dt><a href="Console/Commands/TinkerCommand.html#method_configure">
 <abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr>::configure</a>() &mdash; <em>Method in class <a href="Console/Commands/TinkerCommand.html"><abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr></a></em></dt>
-                    <dd><p>Configures the command.</p></dd><dt><a href="Console/Helpers/CommandHelper.html"><abbr title="Console\Helpers\CommandHelper">CommandHelper</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
+                    <dd><p>Configures the command.</p></dd><dt><a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a> &mdash; <em>Class in namespace <a href="Console.html">Console</a></em></dt>
+                    <dd><p>Supports all operations related to writing output to console.</p></dd><dt><a href="Console/ConsoleLogger.html#method_consoleLog">
+<abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::consoleLog</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
+                    <dd><p>Performs actual action of writing output to console with specified
+background color, text color, and message.</p></dd><dt><a href="Console/Helpers/CommandHelper.html"><abbr title="Console\Helpers\CommandHelper">CommandHelper</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports commands related to building console commands and associated
 helper classes.</p></dd><dt><a href="Console/Helpers/CommandStubs.html"><abbr title="Console\Helpers\CommandStubs">CommandStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Contains stubs for command and command helper templates.</p></dd><dt><a href="Console/Helpers/CommandStubs.html#method_commandTemplate">
@@ -460,11 +464,21 @@ been no tampering of a form's csrf token.</p></dd><dt><a href="Core/FormHelper.h
                     <dd><p>Determines current page based on REQUEST_URI.</p></dd><dt><a href="Core/Input.html#method_csrfCheck">
 <abbr title="Core\Input">Input</abbr>::csrfCheck</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
                     <dd><p>Checks csrf token to determine if it was tampered with.  If the check
-fails the user is routed to a view stating access is restricted.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_create">
+fails the user is routed to a view stating access is restricted.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_columns">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#columns</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_columnModifiers">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#columnModifiers</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_create">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
-                    <dd><p>Create the table.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_create">
+                    <dd><p>Create the table.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_createForeignKey">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::createForeignKey</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Create a foreign key (MySQL only).</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_createIndex">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::createIndex</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Define an index on one or more columns.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_create">
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
-                    <dd><p>Create a new table.</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_cacheDir">
+                    <dd><p>Create a new table.</p></dd><dt><a href="Core/Lib/Database/Seeder.html#method_call">
+<abbr title="Core\Lib\Database\Seeder">Seeder</abbr>::call</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Seeder.html"><abbr title="Core\Lib\Database\Seeder">Seeder</abbr></a></em></dt>
+                    <dd><p>Call another seeder class.</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_cacheDir">
 <abbr title="Core\Lib\Http\Api">Api</abbr>#cacheDir</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Absolute path to the cache directory for this client/namespace.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_cacheFile">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::cacheFile</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
@@ -591,7 +605,9 @@ second element is the file name.  The structure is shown below:</p></dd><dt><a h
 <abbr title="Core\DB">DB</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Performs delete operation against SQL database.</p></dd><dt><a href="Core/FormHelper.html#method_displayErrors">
 <abbr title="Core\FormHelper">FormHelper</abbr>::displayErrors</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
-                    <dd><p>Returns list of errors.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_date">
+                    <dd><p>Returns list of errors.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_dbDriver">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#dbDriver</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_date">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::date</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define a date column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_dateTime">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::dateTime</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
@@ -630,7 +646,9 @@ then warnings are presented to the user.</p></dd><dt><a href="Core/Lib/Database/
 <abbr title="Core\Lib\Http\Api">Api</abbr>#defaultQuery</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Default query parameters merged into every request (per-call overrides).</p></dd><dt>$<a href="Core/Lib/Http/Api.html#property_defaultTtl">
 <abbr title="Core\Lib\Http\Api">Api</abbr>#defaultTtl</a> &mdash; <em>Property in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
-                    <dd><p>Default TTL (seconds) for GET cache. 0 disables caching.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
+                    <dd><p>Default TTL (seconds) for GET cache. 0 disables caching.</p></dd><dt>$<a href="Core/Lib/Logging/Redactor.html#property_didWarnInvalidDbLogParams">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>#didWarnInvalidDbLogParams</a> &mdash; <em>Property in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Flag that is used to prevent invalid DB_LOG_PARAMS mode warnings per request.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Notifications/Channels.html">Core\Lib\Notifications\Channels</a></em></dt>
                     <dd><p>Database-backed notification channel.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html"><abbr title="Core\Lib\Queue\DatabaseQueueDriver">DatabaseQueueDriver</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Queue.html">Core\Lib\Queue</a></em></dt>
                     <dd><p>Implements the QueueDriverInterface.  This driver implements functions
 that support database queue operations.</p></dd><dt><a href="Core/Lib/Queue/DatabaseQueueDriver.html#method_delete">
@@ -836,7 +854,9 @@ variable.</p></dd><dt><a href="Core/DB.html#method_error">
 <abbr title="Core\FormHelper">FormHelper</abbr>::emailBlock</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Renders an HTML div element that surrounds an input of type email.</p></dd><dt><a href="Core/FormHelper.html#method_errorMsg">
 <abbr title="Core\FormHelper">FormHelper</abbr>::errorMsg</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
-                    <dd><p>Renders an error message for a particular form field.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_enum">
+                    <dd><p>Renders an error message for a particular form field.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_engine">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#engine</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_enum">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::enum</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define an enum column (MySQL only).</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Events.html">Core\Lib\Events</a></em></dt>
                     <dd><p>Handles operations related to dispatching events.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_enqueueListener">
@@ -845,7 +865,10 @@ variable.</p></dd><dt><a href="Core/DB.html#method_error">
                     <dd><p>Manages the registration and dispatching of events.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_errorReporting">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::errorReporting</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Processes list of errors associated with uploads and makes them
-presentable to user during validation.</p></dd><dt><a href="Core/Lib/Providers/EventServiceProvider.html"><abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Providers.html">Core\Lib\Providers</a></em></dt>
+presentable to user during validation.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_emergencyFallback">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::emergencyFallback</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Performs system logging if we cannot write to log file.  We also dump
+the message to the console/view.</p></dd><dt><a href="Core/Lib/Providers/EventServiceProvider.html"><abbr title="Core\Lib\Providers\EventServiceProvider">EventServiceProvider</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Providers.html">Core\Lib\Providers</a></em></dt>
                     <dd><p>Internal EventServiceProvider for builtin events.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_eventClass">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>#eventClass</a> &mdash; <em>Property in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Fully-qualified class name of the event to be rehydrated.</p></dd><dt>$<a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#property_eventPayload">
@@ -886,9 +909,14 @@ to be authenticated.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_exc
 takes _outputBuffer, cleans it, and outputs it to the screen.  In the
 absence of a previous call to the start() function a message requesting
 you to call start() is displayed.</p></dd>        </dl><h2 id="letterF">F</h2>
-        <dl id="indexF"><dt><a href="Console/Helpers/Migrate.html#method_fileName">
+        <dl id="indexF"><dt><a href="Console/ConsoleLogger.html#method_fixBackgroundColor">
+<abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::fixBackgroundColor</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
+                    <dd><p>Fixes background color when invalid background color is set for
+originating message.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_fileName">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::fileName</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
-                    <dd><p>Generates file/class name for migration.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitStubs.html#method_featureTestStub">
+                    <dd><p>Generates file/class name for migration.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_findUser">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::findUser</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Find a user/notifiable record by numeric id, email, or username.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitStubs.html#method_featureTestStub">
 <abbr title="Console\Helpers\Testing\PHPUnitStubs">PHPUnitStubs</abbr>::featureTestStub</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/PHPUnitStubs.html"><abbr title="Console\Helpers\Testing\PHPUnitStubs">PHPUnitStubs</abbr></a></em></dt>
                     <dd><p>The template for a new Feature test class that extends ApplicationTestCase.</p></dd><dt><a href="Console/Helpers/ViewStubs.html#method_formComponent">
 <abbr title="Console\Helpers\ViewStubs">ViewStubs</abbr>::formComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/ViewStubs.html"><abbr title="Console\Helpers\ViewStubs">ViewStubs</abbr></a></em></dt>
@@ -906,7 +934,9 @@ for the _read function for this purpose.</p></dd><dt><a href="Core/DB.html#metho
                     <dd><p>Base class for this framework's exceptions that extends the Exception class.</p></dd><dt><a href="Core/Exceptions/FrameworkRuntimeException.html"><abbr title="Core\Exceptions\FrameworkRuntimeException">FrameworkRuntimeException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions.html">Core\Exceptions</a></em></dt>
                     <dd><p>Base class for this framework's exceptions that extends the
 RuntimeException class.</p></dd><dt><a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
-                    <dd><p>Contains functions for building form elements of various types.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_float">
+                    <dd><p>Contains functions for building form elements of various types.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_foreignKeys">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#foreignKeys</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_float">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::float</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define a float column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_foreign">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::foreign</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
@@ -915,7 +945,9 @@ RuntimeException class.</p></dd><dt><a href="Core/FormHelper.html"><abbr title="
                     <dd><p>Retrieves information from payload array and returns new instance of
 this class.</p></dd><dt><a href="Core/Lib/Http/Api.html#method_flattenHeaders">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::flattenHeaders</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
-                    <dd><p>Convert an associative array of headers into &quot;Key: Value&quot; lines.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_from">
+                    <dd><p>Convert an associative array of headers into &quot;Key: Value&quot; lines.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_formatParamsForLog">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::formatParamsForLog</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Formats query parameters for logging, based on the DB_LOG_PARAMS mode.</p></dd><dt><a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html#method_from">
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::from</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Factory method to build a job from a listener class and an event instance.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_fill">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::fill</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
@@ -1023,7 +1055,9 @@ or MariaDB.</p></dd><dt><a href="Core/FormHelper.html#method_generateToken">
 <abbr title="Core\Input">Input</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
                     <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Input.html#method_getRequestMethod">
 <abbr title="Core\Input">Input</abbr>::getRequestMethod</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
-                    <dd><p>Returns the request element within the $_SERVER superglobal array.</p></dd><dt><a href="Core/Lib/Database/Migration.html#method_getNextBatch">
+                    <dd><p>Returns the request element within the $_SERVER superglobal array.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_getForeignKey">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::getForeignKey</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Determines if a particular column has a foreign key constraint (MySQL only).</p></dd><dt><a href="Core/Lib/Database/Migration.html#method_getNextBatch">
 <abbr title="Core\Lib\Database\Migration">Migration</abbr>::getNextBatch</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Migration.html"><abbr title="Core\Lib\Database\Migration">Migration</abbr></a></em></dt>
                     <dd><p>Get value for batch field for next set of migrations.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_generateUploadFilename">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::generateUploadFilename</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
@@ -1033,7 +1067,9 @@ or MariaDB.</p></dd><dt><a href="Core/FormHelper.html#method_generateToken">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Perform a GET request that expects a JSON response.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_get">
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
-                    <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_getData">
+                    <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_generateLogMessage">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::generateLogMessage</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Packages together the actual formatted log message with</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_getData">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::getData</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>Used to retrieve data to be used in E-mail.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_getSubject">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::getSubject</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
@@ -1041,7 +1077,13 @@ or MariaDB.</p></dd><dt><a href="Core/FormHelper.html#method_generateToken">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::getTemplate</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>Returns the template to be used.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_getAllowedMimeTypes">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::getAllowedMimeTypes</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
-                    <dd><p>Gets the values from the MIME_TYPES array.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_get">
+                    <dd><p>Gets the values from the MIME_TYPES array.</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html#method_getData">
+<abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr>::getData</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a></em></dt>
+                    <dd><p>Overrides getData from parent.</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html#method_getSubject">
+<abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr>::getSubject</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a></em></dt>
+                    <dd><p>Overrides getSubject from parent.</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html#method_getTemplate">
+<abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr>::getTemplate</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a></em></dt>
+                    <dd><p>Overrides getTemplate from parent.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_get">
 <abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/ApplicationTestCase.html"><abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr></a></em></dt>
                     <dd><p>Simulates an HTTP GET request to a given URI by resolving and executing
 the corresponding controller and action, capturing the output.</p></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method_getContent">
@@ -1091,7 +1133,10 @@ of user.</p></dd><dt><a href="Core/Session.html#method_get">
 <abbr title="Core\Session">Session</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a></em></dt>
                     <dd><p>Getter function that returns the $_SESSION superglobal associative
 array.</p></dd>        </dl><h2 id="letterH">H</h2>
-        <dl id="indexH"><dt><a href="Console/Helpers/CommandStubs.html#method_helperTemplate">
+        <dl id="indexH"><dt><a href="Console/ConsoleLogger.html#method_hasConstant">
+<abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::hasConstant</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
+                    <dd><p>Checks if value for background color or text color matches list of
+available constants.</p></dd><dt><a href="Console/Helpers/CommandStubs.html#method_helperTemplate">
 <abbr title="Console\Helpers\CommandStubs">CommandStubs</abbr>::helperTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/CommandStubs.html"><abbr title="Console\Helpers\CommandStubs">CommandStubs</abbr></a></em></dt>
                     <dd><p>Creates new helper class.</p></dd><dt><a href="Console/Helpers/React.html#method_homeComponent">
 <abbr title="Console\Helpers\React">React</abbr>::homeComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/React.html"><abbr title="Console\Helpers\React">React</abbr></a></em></dt>
@@ -1099,10 +1144,7 @@ array.</p></dd>        </dl><h2 id="letterH">H</h2>
 <abbr title="Console\Helpers\ReactStubs">ReactStubs</abbr>::homeIndex</a>() &mdash; <em>Method in class <a href="Console/Helpers/ReactStubs.html"><abbr title="Console\Helpers\ReactStubs">ReactStubs</abbr></a></em></dt>
                     <dd><p>Stub for home/Index.jsx page component.</p></dd><dt><a href="Console/Helpers/ReactStubs.html#method_hookTemplate">
 <abbr title="Console\Helpers\ReactStubs">ReactStubs</abbr>::hookTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/ReactStubs.html"><abbr title="Console\Helpers\ReactStubs">ReactStubs</abbr></a></em></dt>
-                    <dd><p>Returns contents for a new hook file.</p></dd><dt><a href="Console/Helpers/Tools.html#method_hasConstant">
-<abbr title="Console\Helpers\Tools">Tools</abbr>::hasConstant</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
-                    <dd><p>Checks if value for background color or text color matches list of
-available constants.</p></dd><dt><a href="Core/FormHelper.html#method_hidden">
+                    <dd><p>Returns contents for a new hook file.</p></dd><dt><a href="Core/FormHelper.html#method_hidden">
 <abbr title="Core\FormHelper">FormHelper</abbr>::hidden</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Generates a hidden input element.</p></dd><dt><a href="Core/Helper.html"><abbr title="Core\Helper">Helper</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Helper and utility functions.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_handleListener">
@@ -1158,9 +1200,7 @@ that updates timestamps.</p></dd>        </dl><h2 id="letterI">I</h2>
                     <dd><p>Determines number of iterations to run worker</p></dd><dt>$<a href="Console/Helpers/Testing/TestRunner.html#property_inputOptions">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>#inputOptions</a> &mdash; <em>Property in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
                     <dd><p>A string of input options provided as input when running the
-test command.</p></dd><dt><a href="Console/Helpers/Tools.html#method_info">
-<abbr title="Console\Helpers\Tools">Tools</abbr>::info</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
-                    <dd><p>Generates output messages for console commands.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_indexAction">
+test command.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_indexAction">
 <abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr>::indexAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a></em></dt>
                     <dd><p>This controller's default action.</p></dd><dt><a href="Core/DB.html#method_insert">
 <abbr title="Core\DB">DB</abbr>::insert</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
@@ -1183,17 +1223,35 @@ or submitTag functions.</p></dd><dt><a href="Core/Input.html"><abbr title="Core\
 <abbr title="Core\Input">Input</abbr>::isPost</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
                     <dd><p>Checks if the REQUEST_METHOD is POST.</p></dd><dt><a href="Core/Input.html#method_isPut">
 <abbr title="Core\Input">Input</abbr>::isPut</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
-                    <dd><p>Checks if the REQUEST_METHOD is PUT.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_id">
+                    <dd><p>Checks if the REQUEST_METHOD is PUT.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_indexes">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#indexes</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_id">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::id</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Add an ID column (primary key).</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_index">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::index</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
-                    <dd><p>Define an index.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_integer">
+                    <dd><p>Define an index.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_isForeignKey">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::isForeignKey</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Tests if a column is a foreign key.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_isIndex">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::isIndex</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Tests if field is an index.  If true then reports to console.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_isPrimaryKey">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::isPrimaryKey</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Tests if field is a primary key.  If true then reports to console.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_isUnique">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::isUnique</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Tests if a column has a UNIQUE constraint.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_integer">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::integer</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define an integer column.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_isEnqueueListener">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::isEnqueueListener</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
                     <dd><p>Determine if the listener should be enqueued and enqueue it if applicable.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_init">
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::init</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
-                    <dd><p>Initializes the log file based on the environment (CLI or Web).</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html#method_isTemplate">
+                    <dd><p>Initializes the log file based on the environment (CLI or Web).</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_isLogDirWritable">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::isLogDirWritable</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Checks if log directory is writeable.  If not writable we write message
+to PHP log file and dump message to console or view.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_isLogFileWritable">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::isLogFileWritable</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Checks if log file is writable.  If not writable we write message
+to PHP log file and dump message to console or view.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_isList">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::isList</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Determines whether an array is a list (0..n-1 keys).</p></dd><dt><a href="Core/Lib/Notifications/Channels/MailChannel.html#method_isTemplate">
 <abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr>::isTemplate</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/MailChannel.html"><abbr title="Core\Lib\Notifications\Channels\MailChannel">MailChannel</abbr></a></em></dt>
                     <dd><p>Determines if mail will be using a template.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isDev">
 <abbr title="Core\Lib\React\Vite">Vite</abbr>::isDev</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
@@ -1269,7 +1327,9 @@ JSON responses.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_json
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>::jsonError</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
                     <dd><p>Makes JSON Response for error payloads.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_jsonResponse">
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>::jsonResponse</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
-                    <dd><p>Sends a JSON response with headers and status code.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_json">
+                    <dd><p>Sends a JSON response with headers and status code.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_jsonForLog">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::jsonForLog</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Encodes data to JSON for logs safely.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_json">
 <abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr>::json</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/ApplicationTestCase.html"><abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr></a></em></dt>
                     <dd><p>Simulates a JSON request to a controller/action route (bypassing the Router) and
 returns a {TestResponse} containing the captured output and status.</p></dd>        </dl><h2 id="letterK">K</h2>
@@ -1288,7 +1348,9 @@ returns a {TestResponse} containing the captured output and status.</p></dd>    
                     <dd><p>Sort the array by keys in ascending order.</p></dd><dt><a href="Core/Lib/Utilities/Str.html#method_kebab">
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::kebab</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Convert a string to kebab-case.</p></dd>        </dl><h2 id="letterL">L</h2>
-        <dl id="indexL"><dt><a href="Console/Helpers/Email.html#method_layoutPath">
+        <dl id="indexL"><dt><a href="Console/ConsoleLogger.html#method_log">
+<abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::log</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
+                    <dd><p>Generates output messages for console commands.</p></dd><dt><a href="Console/Helpers/Email.html#method_layoutPath">
 <abbr title="Console\Helpers\Email">Email</abbr>::layoutPath</a>() &mdash; <em>Method in class <a href="Console/Helpers/Email.html"><abbr title="Console\Helpers\Email">Email</abbr></a></em></dt>
                     <dd><p>Creates directory for layout if it does not exist.</p></dd><dt><a href="Console/Helpers/Email.html#method_layoutTemplate">
 <abbr title="Console\Helpers\Email">Email</abbr>::layoutTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Email.html"><abbr title="Console\Helpers\Email">Email</abbr></a></em></dt>
@@ -1302,10 +1364,10 @@ returns a {TestResponse} containing the captured output and status.</p></dd>    
                     <dd><p>Captures the current View instance during testing so that test assertions
 (e.g., assertViewContains) can access view-bound variables.</p></dd><dt><a href="Core/DB.html#method_lastID">
 <abbr title="Core\DB">DB</abbr>::lastID</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
-                    <dd><p>The primary key ID of the last insert operation.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerException.html"><abbr title="Core\Exceptions\Logger\LoggerException">LoggerException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Logger.html">Core\Exceptions\Logger</a></em></dt>
-                    <dd><p>Handles exceptions related to file logging.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerLevelException.html"><abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Logger.html">Core\Exceptions\Logger</a></em></dt>
-                    <dd><p>Handles exceptions related to Logger severity levels.</p></dd><dt><a href="Core/Exceptions/View/LayoutNotFoundException.html"><abbr title="Core\Exceptions\View\LayoutNotFoundException">LayoutNotFoundException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/View.html">Core\Exceptions\View</a></em></dt>
-                    <dd><p>Class to handle events related to layouts not being found.</p></dd><dt>$<a href="Core/Lib/Events/EventDispatcher.html#property_listeners">
+                    <dd><p>The primary key ID of the last insert operation.</p></dd><dt><a href="Core/Exceptions/View/LayoutNotFoundException.html"><abbr title="Core\Exceptions\View\LayoutNotFoundException">LayoutNotFoundException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/View.html">Core\Exceptions\View</a></em></dt>
+                    <dd><p>Class to handle events related to layouts not being found.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_lastColumn">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#lastColumn</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt>$<a href="Core/Lib/Events/EventDispatcher.html#property_listeners">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>#listeners</a> &mdash; <em>Property in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
                     <dd><p>An array of registered listeners.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_listen">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::listen</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
@@ -1318,7 +1380,11 @@ returns a {TestResponse} containing the captured output and status.</p></dd>    
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>#logFile</a> &mdash; <em>Property in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
                     <dd><p>Full path and name of current log file.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_log">
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::log</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
-                    <dd><p>Performs operations for adding content to log files.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_layout">
+                    <dd><p>Performs operations for adding content to log files.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_logDirExists">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::logDirExists</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Checks if log directory exists.  If not, then we create it.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_logFileExists">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::logFileExists</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Checks if log file exists.  If not, then we create it.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_layout">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#layout</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>The layout to be used with email.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_layoutPath">
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::layoutPath</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
@@ -1613,7 +1679,9 @@ a field.</p></dd>        </dl><h2 id="letterN">N</h2>
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::notificationClassExists</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Determine if a notification class exists.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_notificationsMigration">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::notificationsMigration</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>Create a new notifications migration file on disk.</p></dd><dt><a href="Console/Helpers/ReactStubs.html#method_namedComponentTemplate">
+                    <dd><p>Create a new notifications migration file on disk.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_notificationTemplate">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::notificationTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Generate the PHP contents for a notification class.</p></dd><dt><a href="Console/Helpers/ReactStubs.html#method_namedComponentTemplate">
 <abbr title="Console\Helpers\ReactStubs">ReactStubs</abbr>::namedComponentTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/ReactStubs.html"><abbr title="Console\Helpers\ReactStubs">ReactStubs</abbr></a></em></dt>
                     <dd><p>Generates a named export component.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method_noAvailableTestsMessage">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::noAvailableTestsMessage</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
@@ -1626,7 +1694,9 @@ a field.</p></dd>        </dl><h2 id="letterN">N</h2>
 NotificationException class.</p></dd><dt><a href="Core/Exceptions/Notifications/NotificationException.html"><abbr title="Core\Exceptions\Notifications\NotificationException">NotificationException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/Notifications.html">Core\Exceptions\Notifications</a></em></dt>
                     <dd><p>Exception class for notifications that extends RuntimeException</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_nullable">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::nullable</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
-                    <dd><p>Modifies last column added to the schema and make it nullable.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html#method_name">
+                    <dd><p>Modifies last column added to the schema and make it nullable.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_normalizeParamLogMode">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::normalizeParamLogMode</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Normalizes DB_LOG_PARAMS to a safe, supported value.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html#method_name">
 <abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr>::name</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a></em></dt>
                     <dd><p>Short channel name used in Notification::via().</p></dd><dt><a href="Core/Lib/Notifications/Channels/LogChannel.html#method_name">
 <abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr>::name</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/LogChannel.html"><abbr title="Core\Lib\Notifications\Channels\LogChannel">LogChannel</abbr></a></em></dt>
@@ -1675,17 +1745,16 @@ NotificationException class.</p></dd><dt><a href="Core/Exceptions/Notifications/
 numeric character in the field.</p></dd><dt><a href="Core/Validators/NumericValidator.html"><abbr title="Core\Validators\NumericValidator">NumericValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class that performs validation for fields than only accept numeric
 values.</p></dd>        </dl><h2 id="letterO">O</h2>
-        <dl id="indexO"><dt>$<a href="Console/Helpers/Testing/TestRunner.html#property_output">
+        <dl id="indexO"><dt>$<a href="Console/ConsoleLogger.html#property_output">
+<abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>#output</a> &mdash; <em>Property in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
+                    <dd><p>Supports ability to log information to console.</p></dd><dt>$<a href="Console/Helpers/Testing/TestRunner.html#property_output">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>#output</a> &mdash; <em>Property in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
-                    <dd><p>The Symfony OutputInterface object.</p></dd><dt>$<a href="Console/Helpers/Tools.html#property_output">
-<abbr title="Console\Helpers\Tools">Tools</abbr>#output</a> &mdash; <em>Property in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
-                    <dd><p>Supports ability to log information to console.</p></dd><dt><a href="Core/Controller.html#method_onConstruct">
+                    <dd><p>The Symfony OutputInterface object.</p></dd><dt><a href="Core/Controller.html#method_onConstruct">
 <abbr title="Core\Controller">Controller</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd><p>Function implemented by child model classes when models are
 instantiated.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_onConstruct">
 <abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a></em></dt>
-                    <dd><p>Function implemented by child model classes when models are
-instantiated.</p></dd><dt><a href="Core/FormHelper.html#method_optionsForSelect">
+                    <dd><p>Runs when the object is constructed.</p></dd><dt><a href="Core/FormHelper.html#method_optionsForSelect">
 <abbr title="Core\FormHelper">FormHelper</abbr>::optionsForSelect</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Generates options for select.</p></dd><dt><a href="Core/FormHelper.html#method_output">
 <abbr title="Core\FormHelper">FormHelper</abbr>::output</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
@@ -1733,7 +1802,9 @@ based tests.</p></dd><dt><a href="Console/Helpers/Testing/VitestTestRunner.html#
 <abbr title="Core\Lib\Http\Api">Api</abbr>::post</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Perform a POST request with a JSON body and expect a JSON response.</p></dd><dt><a href="Core/Lib/Http/JsonResponse.html#method_preflight">
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>::preflight</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
-                    <dd><p>Respond to CORS preflight.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_path">
+                    <dd><p>Respond to CORS preflight.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_paramSummary">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::paramSummary</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Produces a safe &quot;shape&quot; summary of query parameters without logging values.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_path">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::path</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
                     <dd><p>Used to assemble array for attachment when path key is used.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_processAttachments">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::processAttachments</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
@@ -1922,7 +1993,20 @@ element.  Compatible with radio button groups.</p></dd><dt><a href="Core/Lib/Dat
 <abbr title="Core\Lib\Http\Api">Api</abbr>::requestJson</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
                     <dd><p>Core HTTP request using cURL that decodes JSON and throws on errors.</p></dd><dt>$<a href="Core/Lib/Http/JsonResponse.html#property_rawInputOverride">
 <abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr>#rawInputOverride</a> &mdash; <em>Property in class <a href="Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></em></dt>
-                    <dd><p>Raw JSON override for tests</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_renderTemplateFile">
+                    <dd><p>Raw JSON override for tests</p></dd><dt><a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Logging.html">Core\Lib\Logging</a></em></dt>
+                    <dd><p>Utility class responsible for sanitizing and redacting values before
+they are written to log files.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_redactAssoc">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::redactAssoc</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Redact an associative array (key-aware). Use this for request data and
+other structured payloads.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_redact">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::redact</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Redacts or sanitizes a value for safe logging.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_redactArray">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::redactArray</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Recursively sanitizes all values in an array.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_redactKeyValue">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::redactKeyValue</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Redact a value using the key name as an additional signal.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_redactString">
+<abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::redactString</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
+                    <dd><p>Sanitizes a string value for logging.</p></dd><dt><a href="Core/Lib/Mail/MailerService.html#method_renderTemplateFile">
 <abbr title="Core\Lib\Mail\MailerService">MailerService</abbr>::renderTemplateFile</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/MailerService.html"><abbr title="Core\Lib\Mail\MailerService">MailerService</abbr></a></em></dt>
                     <dd><p>Renders template file.</p></dd><dt><a href="Core/Lib/Notifications/ChannelRegistry.html#method_register">
 <abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr>::register</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/ChannelRegistry.html"><abbr title="Core\Lib\Notifications\ChannelRegistry">ChannelRegistry</abbr></a></em></dt>
@@ -2082,7 +2166,9 @@ each child class.</p></dd><dt><a href="Core/View.html#method_render">
                     <dd><p>Runs the command for seeding database with random data.</p></dd><dt><a href="Console/Commands/ServeCommand.html"><abbr title="Console\Commands\ServeCommand">ServeCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Runs built-in PHP server.</p></dd><dt><a href="Console/Commands/ServeDocsCommand.html"><abbr title="Console\Commands\ServeDocsCommand">ServeDocsCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Runs built-in PHP server for serving Doctum API documentation.</p></dd><dt><a href="Console/Commands/ServeUserGuideCommand.html"><abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
-                    <dd><p>Performs the command for serving the Jekyll user guide locally.</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_seed">
+                    <dd><p>Performs the command for serving the Jekyll user guide locally.</p></dd><dt><a href="Console/ConsoleLogger.html#method_setOutput">
+<abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::setOutput</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
+                    <dd><p>Enables output for symfony.</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_seed">
 <abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr>::seed</a>() &mdash; <em>Method in class <a href="Console/Helpers/DBSeeder.html"><abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr></a></em></dt>
                     <dd><p>Runs command for seeding database.</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_seeder">
 <abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr>::seeder</a>() &mdash; <em>Method in class <a href="Console/Helpers/DBSeeder.html"><abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr></a></em></dt>
@@ -2094,7 +2180,9 @@ each child class.</p></dd><dt><a href="Core/View.html#method_render">
 <abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr>#status</a> &mdash; <em>Property in class <a href="Console/Helpers/MigrationStatus.html"><abbr title="Console\Helpers\MigrationStatus">MigrationStatus</abbr></a></em></dt>
                     <dd><p>Indicates either a 'Ran' or 'Pending' status.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_sendViaNotifiable">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::sendViaNotifiable</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>Deliver a notification via a notifiable (or simulate if notifiable is not an object).</p></dd><dt><a href="Console/Helpers/Queue.html#method_shutdownSignals">
+                    <dd><p>Deliver a notification via a notifiable (or simulate if notifiable is not an object).</p></dd><dt><a href="Console/Helpers/Notifications.html#method_setViaList">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::setViaList</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Format a list of channels into PHP code suitable for a generated via() method.</p></dd><dt><a href="Console/Helpers/Queue.html#method_shutdownSignals">
 <abbr title="Console\Helpers\Queue">Queue</abbr>::shutdownSignals</a>() &mdash; <em>Method in class <a href="Console/Helpers/Queue.html"><abbr title="Console\Helpers\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Manages shutdown signals.</p></dd><dt><a href="Console/Helpers/Services.html"><abbr title="Console\Helpers\Services">Services</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports commands related to Services.</p></dd><dt><a href="Console/Helpers/Services.html#method_servicesTemplate">
@@ -2103,9 +2191,7 @@ each child class.</p></dd><dt><a href="Core/View.html#method_render">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::selectByTestName</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
                     <dd><p>Supports ability to run test by class/file name.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method_singleFileWithinSuite">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::singleFileWithinSuite</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
-                    <dd><p>Performs testing against a single class within a test suite.</p></dd><dt><a href="Console/Helpers/Tools.html#method_setOutput">
-<abbr title="Console\Helpers\Tools">Tools</abbr>::setOutput</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
-                    <dd><p>Enables output for symfony.</p></dd><dt><a href="Core/Cookie.html#method_set">
+                    <dd><p>Performs testing against a single class within a test suite.</p></dd><dt><a href="Core/Cookie.html#method_set">
 <abbr title="Core\Cookie">Cookie</abbr>::set</a>() &mdash; <em>Method in class <a href="Core/Cookie.html"><abbr title="Core\Cookie">Cookie</abbr></a></em></dt>
                     <dd><p>Sets a cookie to the $_COOKIE superglobal variable.  Information that
 it needs are its name, a value, and the amount of time we want this
@@ -2120,7 +2206,12 @@ cookie to exist.</p></dd><dt><a href="Core/Exceptions/Session/SessionLevelExcept
 <abbr title="Core\FormHelper">FormHelper</abbr>::submitBlock</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Generates a div containing an input of type submit.</p></dd><dt><a href="Core/FormHelper.html#method_submitTag">
 <abbr title="Core\FormHelper">FormHelper</abbr>::submitTag</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
-                    <dd><p>Create a input element of type submit.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_smallInteger">
+                    <dd><p>Create a input element of type submit.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_setForeignKeys">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::setForeignKeys</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Sets foreign keys during creating of table or renaming of existing
+foreign key.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_setUnique">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::setUnique</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd><p>Sets the unique index on a column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_smallInteger">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::smallInteger</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define a small integer column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_softDeletes">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::softDeletes</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
@@ -2143,7 +2234,10 @@ to avoid leaking into other tests.</p></dd><dt><a href="Core/Lib/Listeners/SendA
                     <dd><p>Class for sending account deactivated E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendPasswordResetEmail.html"><abbr title="Core\Lib\Listeners\SendPasswordResetEmail">SendPasswordResetEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending password reset E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendPasswordUpdateEmail.html"><abbr title="Core\Lib\Listeners\SendPasswordUpdateEmail">SendPasswordUpdateEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
                     <dd><p>Class for sending password updated E-mail.</p></dd><dt><a href="Core/Lib/Listeners/SendRegistrationEmail.html"><abbr title="Core\Lib\Listeners\SendRegistrationEmail">SendRegistrationEmail</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Listeners.html">Core\Lib\Listeners</a></em></dt>
-                    <dd><p>Class for sending user registered E-mail.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_style">
+                    <dd><p>Class for sending user registered E-mail.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_shouldLog">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::shouldLog</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Logs to file based on level.  If level is info the anything with a
+severity level greater or equal to is logged.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_style">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#style</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>The style to be used with email.</p></dd><dt><a href="Core/Lib/Mail/AbstractMailer.html#method_send">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>::send</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
@@ -2284,7 +2378,13 @@ included in our view.</p></dd>        </dl><h2 id="letterT">T</h2>
                     <dd><p>Supports execution for tinker command.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_tableCount">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::tableCount</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Determines number of tables in database before performing migration
-operations.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitRunner.html#method_testByFilter">
+operations.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_toDatabaseTemplate">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::toDatabaseTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Template for a toDatabase() method body within a scaffolded notification.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_toLogTemplate">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::toLogTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Template for a toLog() method body within a scaffolded notification.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_toMailTemplate">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::toMailTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Template for a toMail() method body within a scaffolded notification.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitRunner.html#method_testByFilter">
 <abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr>::testByFilter</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/PHPUnitRunner.html"><abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr></a></em></dt>
                     <dd><p>Run filtered test by function name.</p></dd><dt><a href="Console/Helpers/Testing/TestBuilderInterface.html"><abbr title="Console\Helpers\Testing\TestBuilderInterface">TestBuilderInterface</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Interface to be implemented by test builder classes for PHPUnit, Jest, and Vitest.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
@@ -2314,7 +2414,9 @@ testing frameworks.</p></dd><dt><a href="Console/Helpers/Testing/VitestTestRunne
                     <dd><p>Renders an HTML div element that surrounds an input of type tel.</p></dd><dt><a href="Core/FormHelper.html#method_textareaBlock">
 <abbr title="Core\FormHelper">FormHelper</abbr>::textareaBlock</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Assists in the development of textarea in forms.  It accepts parameters
-for setting  attribute tags in the form section.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_text">
+for setting  attribute tags in the form section.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_table">
+<abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#table</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
+                    <dd></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_text">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::text</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define a text column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_time">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::time</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
@@ -2499,7 +2601,9 @@ in a database.</p></dd><dt><a href="Core/Validators/UpperCharValidator.html"><ab
 upper case character in the field.</p></dd>        </dl><h2 id="letterV">V</h2>
         <dl id="indexV"><dt><a href="Console/Helpers/Events.html#method_verifyListenerParams">
 <abbr title="Console\Helpers\Events">Events</abbr>::verifyListenerParams</a>() &mdash; <em>Method in class <a href="Console/Helpers/Events.html"><abbr title="Console\Helpers\Events">Events</abbr></a></em></dt>
-                    <dd><p>Checks if $eventName and $listerName was provided and that they are not the same.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method_verifyFilterSyntax">
+                    <dd><p>Checks if $eventName and $listerName was provided and that they are not the same.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_viaTemplate">
+<abbr title="Console\Helpers\Notifications">Notifications</abbr>::viaTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
+                    <dd><p>Template for the via() method within a scaffolded notification.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method_verifyFilterSyntax">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::verifyFilterSyntax</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
                     <dd><p>Ensure filter syntax is correct.  Does not test if only one : is in string.</p></dd><dt><a href="Console/Helpers/Testing/VitestStubs.html"><abbr title="Console\Helpers\Testing\VitestStubs">VitestStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Collection of template stub files for vitest unit tests.</p></dd><dt><a href="Console/Helpers/Testing/VitestTestBuilder.html"><abbr title="Console\Helpers\Testing\VitestTestBuilder">VitestTestBuilder</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
@@ -2529,7 +2633,9 @@ class.</p></dd><dt><a href="Core/Exceptions/View/ViewNotFoundException.html"><ab
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::validateFileType</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Validates file type and sets error message if file type is invalid.</p></dd><dt><a href="Core/Lib/FileSystem/Uploads.html#method_validateSize">
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::validateSize</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
-                    <dd><p>Validates file size and sets error message if file is too large.</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_via">
+                    <dd><p>Validates file size and sets error message if file is too large.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_verifyLoggingLevel">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::verifyLoggingLevel</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Tests if the PSR-3 logging level that is provided is valid</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_via">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::via</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
                     <dd><p>The delivery channels (e.g. ['database', 'mail']).</p></dd><dt><a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/React.html">Core\Lib\React</a></em></dt>
                     <dd><p>Supports operations for Vite.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_viteIsRunning">
@@ -2547,7 +2653,10 @@ will not proceed.  This function is just a signature and must be
 implemented by models that run form validation because since it is
 called from within this class.</p></dd><dt><a href="Core/Models/ACL.html#method_validator">
 <abbr title="Core\Models\ACL">ACL</abbr>::validator</a>() &mdash; <em>Method in class <a href="Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a></em></dt>
-                    <dd><p>Ensures fields are required and unique.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_validator">
+                    <dd><p>Function that is called on save.  If validation fails the save function
+will not proceed.  This function is just a signature and must be
+implemented by models that run form validation because since it is
+called from within this class.</p></dd><dt><a href="Core/Models/EmailAttachments.html#method_validator">
 <abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr>::validator</a>() &mdash; <em>Method in class <a href="Core/Models/EmailAttachments.html"><abbr title="Core\Models\EmailAttachments">EmailAttachments</abbr></a></em></dt>
                     <dd><p>Function that is called on save.  If validation fails the save function
 will not proceed.  This function is just a signature and must be
@@ -2565,7 +2674,9 @@ called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title=
 <abbr title="Console\Helpers\Tools">Tools</abbr>::writeFile</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
                     <dd><p>Generates files for console commands</p></dd><dt><a href="Core/Lib/Http/Api.html#method_writeCache">
 <abbr title="Core\Lib\Http\Api">Api</abbr>::writeCache</a>() &mdash; <em>Method in class <a href="Core/Lib/Http/Api.html"><abbr title="Core\Lib\Http\Api">Api</abbr></a></em></dt>
-                    <dd><p>Persist a decoded JSON response to the cache for a given URL.</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
+                    <dd><p>Persist a decoded JSON response to the cache for a given URL.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_writeToLog">
+<abbr title="Core\Lib\Logging\Logger">Logger</abbr>::writeToLog</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
+                    <dd><p>Internal function for writing to log after all checks have passed.</p></dd><dt><a href="Core/Lib/Mail/WelcomeMailer.html"><abbr title="Core\Lib\Mail\WelcomeMailer">WelcomeMailer</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Mail.html">Core\Lib\Mail</a></em></dt>
                     <dd><p>Class for generating a welcome message.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_walkRecursive">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::walkRecursive</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Recursively applies a callback function to each element in an array.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_weightedRandom">
@@ -2604,14 +2715,16 @@ called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title=
 <abbr title="Console\Helpers\Testing\VitestTestRunner">VitestTestRunner</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/VitestTestRunner.html"><abbr title="Console\Helpers\Testing\VitestTestRunner">VitestTestRunner</abbr></a></em></dt>
                     <dd>Constructor</dd><dt><a href="Core/Application.html#method___construct">
 <abbr title="Core\Application">Application</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Application.html"><abbr title="Core\Application">Application</abbr></a></em></dt>
-                    <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt>$<a href="Core/Controller.html#property__action">
+                    <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt><a href="Core/Application.html#method__set_reporting">
+<abbr title="Core\Application">Application</abbr>::_set_reporting</a>() &mdash; <em>Method in class <a href="Core/Application.html"><abbr title="Core\Application">Application</abbr></a></em></dt>
+                    <dd><p>Manages the displaying of error messages and other reporting for this
+application.</p></dd><dt>$<a href="Core/Controller.html#property__action">
 <abbr title="Core\Controller">Controller</abbr>#_action</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd><p>The name of the current action.</p></dd><dt>$<a href="Core/Controller.html#property__controller">
 <abbr title="Core\Controller">Controller</abbr>#_controller</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd><p>The name of the current controller.</p></dd><dt><a href="Core/Controller.html#method___construct">
 <abbr title="Core\Controller">Controller</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
-                    <dd><p>Constructor for the parent Controller class.  This constructor gets
-called when an instance of the child class is instantiated.</p></dd><dt>$<a href="Core/DB.html#property__count">
+                    <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt>$<a href="Core/DB.html#property__count">
 <abbr title="Core\DB">DB</abbr>#_count</a> &mdash; <em>Property in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Number of items returned.</p></dd><dt>$<a href="Core/DB.html#property__dbDriver">
 <abbr title="Core\DB">DB</abbr>#_dbDriver</a> &mdash; <em>Property in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
@@ -2641,12 +2754,7 @@ supports the ability to order and limit the number of results returned
 from a database query.  The user can use parameters such as conditions,
 bind, order, limit, and sort.</p></dd><dt><a href="Core/Exceptions/Console/ConsoleException.html#method___construct">
 <abbr title="Core\Exceptions\Console\ConsoleException">ConsoleException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Console/ConsoleException.html"><abbr title="Core\Exceptions\Console\ConsoleException">ConsoleException</abbr></a></em></dt>
-                    <dd><p>Creates new ConsoleException.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerException.html#method___construct">
-<abbr title="Core\Exceptions\Logger\LoggerException">LoggerException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Logger/LoggerException.html"><abbr title="Core\Exceptions\Logger\LoggerException">LoggerException</abbr></a></em></dt>
-                    <dd><p>Create a new exception to handle faults related to log file write
-operations.</p></dd><dt><a href="Core/Exceptions/Logger/LoggerLevelException.html#method___construct">
-<abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Logger/LoggerLevelException.html"><abbr title="Core\Exceptions\Logger\LoggerLevelException">LoggerLevelException</abbr></a></em></dt>
-                    <dd><p>Create a new LoggerLevelException.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelException.html#method___construct">
+                    <dd><p>Creates new ConsoleException.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelException.html#method___construct">
 <abbr title="Core\Exceptions\Notifications\ChannelException">ChannelException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Notifications/ChannelException.html"><abbr title="Core\Exceptions\Notifications\ChannelException">ChannelException</abbr></a></em></dt>
                     <dd><p>Create a channel-scoped notification exception.</p></dd><dt><a href="Core/Exceptions/Notifications/ChannelSendFailedException.html#method___construct">
 <abbr title="Core\Exceptions\Notifications\ChannelSendFailedException">ChannelSendFailedException</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Exceptions/Notifications/ChannelSendFailedException.html"><abbr title="Core\Exceptions\Notifications\ChannelSendFailedException">ChannelSendFailedException</abbr></a></em></dt>
@@ -2660,7 +2768,9 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Constructor for Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Migration.html#method___construct">
 <abbr title="Core\Lib\Database\Migration">Migration</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Migration.html"><abbr title="Core\Lib\Database\Migration">Migration</abbr></a></em></dt>
-                    <dd><p>Creates instance of Migration class.</p></dd><dt><a href="Core/Lib/Database/Seeder.html#method___construct">
+                    <dd><p>Creates instance of Migration class.</p></dd><dt>$<a href="Core/Lib/Database/Seeder.html#property__db">
+<abbr title="Core\Lib\Database\Seeder">Seeder</abbr>#_db</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Seeder.html"><abbr title="Core\Lib\Database\Seeder">Seeder</abbr></a></em></dt>
+                    <dd><p>Instance of the database connection.</p></dd><dt><a href="Core/Lib/Database/Seeder.html#method___construct">
 <abbr title="Core\Lib\Database\Seeder">Seeder</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Seeder.html"><abbr title="Core\Lib\Database\Seeder">Seeder</abbr></a></em></dt>
                     <dd><p>Constructor for Seeder class.  Primary role is to get DB instance.</p></dd><dt><a href="Core/Lib/Events/AccountDeactivated.html#method___construct">
 <abbr title="Core\Lib\Events\AccountDeactivated">AccountDeactivated</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/AccountDeactivated.html"><abbr title="Core\Lib\Events\AccountDeactivated">AccountDeactivated</abbr></a></em></dt>
