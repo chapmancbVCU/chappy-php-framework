@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
-use Core\Lib\Logging\Logger;
-use Console\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -40,7 +38,7 @@ class Tools {
         $helper = new QuestionHelper(); 
 
         if (!$helper) {
-            ConsoleLogger::log('Helper could not be instantiated.', Logger::DEBUG, ConsoleLogger::BG_RED);
+            console_error('Helper could not be instantiated.');
             return Command::FAILURE;
         }
 
@@ -53,10 +51,10 @@ class Tools {
 
             if ($helper->ask($cmdInput, $cmdOutput, $question)) {
                 self::pathExists($directory, 0755, true);
-                ConsoleLogger::log("Directory created: $directory", Logger::INFO, ConsoleLogger::BG_BLUE);
+                console_info("Directory created: $directory");
                 return Command::SUCCESS;
             } else {
-                ConsoleLogger::log('Operation canceled.', Logger::DEBUG, ConsoleLogger::BG_BLUE);
+                console_info('Operation canceled.');
                 return Command::FAILURE;
             }
         }
@@ -84,10 +82,8 @@ class Tools {
         $arr = explode(".", $input->getArgument($inputName));
 
         if (sizeof($arr) !== 2) {
-            ConsoleLogger::log(
+            console_warning(
                 'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
-                Logger::DEBUG,
-                ConsoleLogger::BG_RED
             );
             return Command::FAILURE;
         }
@@ -120,10 +116,10 @@ class Tools {
     public static function writeFile(string $path, string $content, string $name): int {
         if(!file_exists($path)) {
             $resp = file_put_contents($path, $content);
-            ConsoleLogger::log(ucfirst($name) . ' successfully created', Logger::INFO);
+            console_info(ucfirst($name) . ' successfully created');
             return Command::SUCCESS;
         } else {
-            ConsoleLogger::log(ucfirst($name) . ' already exists', Logger::DEBUG, ConsoleLogger::BG_RED);
+            console_warning(ucfirst($name) . ' already exists');
             return Command::FAILURE;
         }
     }
