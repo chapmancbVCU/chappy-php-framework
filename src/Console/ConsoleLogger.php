@@ -81,6 +81,48 @@ final class ConsoleLogger {
     }
 
     /**
+     * Fixes background color when invalid background color is set for 
+     * originating message.
+     *
+     * @param string $level The severity level passed as a parameter to the 
+     * self::log function.
+     * @return string The correct background color based on severity level.
+     */
+    private static function fixBackgroundColor(string $level): string {
+        $background = '';
+        switch($level) {
+            case Logger::ALERT;
+                $background = self::BG_RED;
+                break;
+            case Logger::CRITICAL;
+                $background = self::BG_MAGENTA;
+                break;
+            case Logger::DEBUG:
+                $background = self::BG_BLUE;
+                break;
+            case Logger::EMERGENCY:
+                $background = self::BG_RED;
+                break;
+            case Logger::ERROR:
+                $background = self::BG_RED;
+                break;
+            case Logger::INFO:
+                $background = self::BG_GREEN;
+                break;
+            case Logger::NOTICE:
+                $background = self::BG_CYAN;
+                break;
+            case Logger::WARNING:
+                $background = self::BG_YELLOW;
+                break;
+            default:
+                $background = self::BG_GREEN;
+                break;
+        }
+        return $background;
+    }
+
+    /**
      * Checks if value for background color or text color matches list of 
      * available constants.
      *
@@ -141,13 +183,12 @@ final class ConsoleLogger {
 
         // Check if text and background color is correct.
         if(!self::hasConstant($background, "BG")) {
-            $output = "\e[0;37;41m\n\n   Invalid background color.  We recommend using built-in constants.\n\e[0m\n";
-            $background = self::BG_MAGENTA;
+            $output = "\e[0;37;41m\n\n   Invalid background color.  Setting default color for severity level.  We recommend using built-in constants.\n\e[0m\n";
+            $background = self::fixBackgroundColor($level);
             self::consoleLog($output);
         }
         if(!self::hasConstant($text, "TEXT")) {
-            $output = "\e[0;37;41m\n\n   Invalid text color.  We recommend using built-in constants.\n\e[0m\n";
-            $background = self::BG_MAGENTA;
+            $output = "\e[0;37;41m\n\n   Invalid text color.  Setting to default.  We recommend using built-in constants.\n\e[0m\n";
             $text = self::TEXT_LIGHT_GREY;
             self::consoleLog($output);
         }
