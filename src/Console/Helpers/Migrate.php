@@ -359,7 +359,7 @@ class Migrate {
             }
         }
 
-        Tools::info("Name ................................. Batch / Status", Logger::INFO, Tools::BG_BLUE);
+        ConsoleLogger::log("Name ................................. Batch / Status", Logger::INFO, Tools::BG_BLUE);
         foreach($migrationStatus as $status) {
             $name = $status->getName();
             $batch = $status->getBatch();

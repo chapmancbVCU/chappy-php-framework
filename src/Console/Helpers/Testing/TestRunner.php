@@ -130,7 +130,7 @@ class TestRunner {
      * @return void
      */
     private function noAvailableTestsMessage(): void {
-        console_notice("No test available to perform", Logger::DEBUG, Tools::BG_YELLOW);
+        console_notice("No test available to perform");
     }
 
     /**

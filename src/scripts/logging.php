@@ -1,7 +1,7 @@
 <?php
 use Core\Lib\Logging\Logger;
 use Console\Helpers\Tools;
-
+use Console\ConsoleLogger;
 /*
  * Contains globals for logging.
  */
@@ -40,10 +40,10 @@ if(!function_exists('console')) {
     function console(
         string $message, 
         string $level = Logger::INFO, 
-        string $background = Tools::BG_GREEN, 
-        string $text = Tools::TEXT_LIGHT_GREY
+        string $background = ConsoleLogger::BG_GREEN, 
+        string $text = ConsoleLogger::TEXT_LIGHT_GREY
     ): void {
-        Tools::info($message, $level, $background, $text);
+        ConsoleLogger::log($message, $level, $background, $text);
     }
 }
 
@@ -55,7 +55,7 @@ if(!function_exists('console_alert')) {
      * @return void
      */
     function console_alert(string $message): void {
-        Tools::info($message, Logger::ALERT, Tools::BG_RED);
+        ConsoleLogger::log($message, Logger::ALERT, ConsoleLogger::BG_RED);
     }
 }
 
@@ -67,7 +67,7 @@ if(!function_exists('console_critical')) {
      * @return void
      */
     function console_critical(string $message): void {
-        Tools::info($message, Logger::CRITICAL, Tools::BG_MAGENTA);
+        ConsoleLogger::log($message, Logger::CRITICAL, ConsoleLogger::BG_MAGENTA);
     }
 }
 
@@ -79,7 +79,7 @@ if(!function_exists('console_debug')) {
      * @return void
      */
     function console_debug(string $message, ): void {
-        Tools::info($message, Logger::DEBUG, Tools::BG_BLUE);
+        ConsoleLogger::log($message, Logger::DEBUG, ConsoleLogger::BG_BLUE);
     }
 }
 
@@ -91,7 +91,7 @@ if(!function_exists('console_emergency')) {
      * @return void
      */
     function console_emergency(string $message): void {
-        Tools::info($message, Logger::EMERGENCY, Tools::BG_RED);
+        ConsoleLogger::log($message, Logger::EMERGENCY, ConsoleLogger::BG_RED);
     }
 }
 
@@ -103,7 +103,7 @@ if(!function_exists('console_error')) {
      * @return void
      */
     function console_error(string $message,): void {
-        Tools::info($message, Logger::ERROR, Tools::BG_RED);
+        ConsoleLogger::log($message, Logger::ERROR, ConsoleLogger::BG_RED);
     }
 }
 
@@ -115,7 +115,7 @@ if(!function_exists('console_info')) {
      * @return void
      */
     function console_info(string $message, ): void {
-        Tools::info($message, Logger::INFO, Tools::BG_GREEN);
+        ConsoleLogger::log($message, Logger::INFO, ConsoleLogger::BG_GREEN);
     }
 }
 
@@ -128,7 +128,7 @@ if(!function_exists('console_notice')) {
      */
     function console_notice(
         string $message): void {
-        Tools::info($message, Logger::NOTICE, Tools::BG_CYAN);
+        ConsoleLogger::log($message, Logger::NOTICE, ConsoleLogger::BG_CYAN);
     }
 }
 
@@ -140,7 +140,7 @@ if(!function_exists('console_warning')) {
      * @return void
      */
     function console_warning(string $message): void {
-        Tools::info($message, Logger::WARNING, Tools::BG_YELLOW);
+        ConsoleLogger::log($message, Logger::WARNING, ConsoleLogger::BG_YELLOW);
     }
 }
 
