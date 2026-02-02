@@ -123,7 +123,7 @@ final class ConsoleLogger {
      * light-magenta.
      * @return void
      */
-    public static function info(
+    public static function log(
         string $message, 
         string $level = Logger::INFO, 
         string $background = self::BG_GREEN, 
