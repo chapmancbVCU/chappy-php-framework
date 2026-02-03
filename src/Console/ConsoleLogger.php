@@ -130,11 +130,6 @@ final class ConsoleLogger {
      * @param string $type The type of value to determine what type of constant.
      * @return bool True if $value matches a available constant for background 
      * color or text color.
-     * 
-     * @throws ConsoleException Thrown when text and background colors are 
-     * passed into info() in the wrong order.  If a value is provided that 
-     * does not match a constant an exception is thrown.  Prints message 
-     * indicating issue.
      */
     private static function hasConstant(string $value, string $type): bool {
         $reflectionClass = new ReflectionClass(__CLASS__);
