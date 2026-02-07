@@ -31,10 +31,10 @@ class AuthService {
     /**
      * Checks if a user is logged in.
      *
-     * @return Users|null An object containing information about current 
+     * @return Users|false An object containing information about current 
      * logged in user from users table.
      */
-    public static function currentUser(): ?Users {
+    public static function currentUser(): false | Users {
         if(!isset(Users::$currentLoggedInUser) && Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
             Users::$currentLoggedInUser = Users::findById((int)Session::get(Env::get('CURRENT_USER_SESSION_NAME')));
         }
