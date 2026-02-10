@@ -43,6 +43,7 @@ class Schema {
     public static function rename(string $from, string $to): void {
         $sql = "ALTER TABLE {$from} RENAME TO {$to}";
         DB::getInstance()->query($sql);
+        console_debug("Migration renamed from {$from} to {$to}");
     }
 
     /**
