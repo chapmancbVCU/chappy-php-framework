@@ -84,7 +84,7 @@ use Core\Model;
  */
 class {$modelName} extends Model {
 
-    // Fields you don\'t want saved on form submit
+    // Fields you don't want saved on form submit
     // public const blackList = [];
 
     // Set to name of database table.
