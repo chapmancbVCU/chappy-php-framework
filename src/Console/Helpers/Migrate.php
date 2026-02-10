@@ -71,9 +71,9 @@ class Migrate {
     }
 
     /**
-     * Generates file/class name for migration.
+     * Generates time stamp for migrations in following format: yyyymmddhhmmss.
      *
-     * @return string The file/class name of the migration.
+     * @return string The migration timestamp.
      */
     public static function fileNameTime(): string {
         return date('YmdHis');
