@@ -9,9 +9,7 @@ use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
 use Console\Helpers\MigrationStatus;
-use Core\Exceptions\Console\ConsoleException;
 use Core\Lib\Logging\Logger;
-use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -66,7 +64,7 @@ class Migrate {
             }
             console_info("All tables dropped successfully.");
             return Command::SUCCESS;
-        } catch(ConsoleException $e) {
+        } catch(\Exception $e) {
             console_error('Error dropping tables: ' . $e->getMessage());
             return Command::FAILURE;
         }
