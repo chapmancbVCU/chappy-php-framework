@@ -1146,6 +1146,7 @@ class Blueprint {
         }
 
         $this->setForeignKeys();
+        console_debug("SUCCESS: Updated the {$this->table} table.");
     }
 
     /**
