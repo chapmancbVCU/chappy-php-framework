@@ -11,6 +11,7 @@ use Core\Lib\Database\Migration;
 use Console\Helpers\MigrationStatus;
 use Core\Exceptions\Console\ConsoleException;
 use Core\Lib\Logging\Logger;
+use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -76,8 +77,8 @@ class Migrate {
      *
      * @return string The file/class name of the migration.
      */
-    public static function fileName(): string {
-        return "Migration".time();
+    public static function fileNameTime(): string {
+        return date('YmdHis');
     }
 
     /**
@@ -90,7 +91,7 @@ class Migrate {
         $tableName = Str::lower($input->getArgument('table_name'));
         
         // Generate Migration class
-        $fileName = self::fileName();
+        $fileName = "MDT".self::fileNameTime()."Create".Str::ucfirst($tableName)."Table";
         return Tools::writeFile(
             self::MIGRATIONS_PATH.$fileName.'.php',
             MigrationStubs::migrationClass($fileName, $tableName),
@@ -109,7 +110,7 @@ class Migrate {
         $to = Str::lower($input->getOption('rename'));
 
         // Generate Migration class
-        $fileName = "Migration".time();
+        $fileName = "MDT".self::fileNameTime()."Rename".Str::ucfirst($from)."TableTo".Str::ucfirst($to);
         return Tools::writeFile(
             self::MIGRATIONS_PATH.$fileName.'.php',
             MigrationStubs::migrationRenameClass($fileName, $from, $to),
@@ -127,7 +128,7 @@ class Migrate {
         $tableName = Str::lower($input->getArgument('table_name'));
         
         // Generate Migration class
-        $fileName = "Migration".time();
+        $fileName = "MDT".self::fileNameTime()."Update".Str::ucfirst($tableName)."Table";
         return Tools::writeFile(
             self::MIGRATIONS_PATH.$fileName.'.php',
             MigrationStubs::migrationUpdateClass($fileName, $tableName),
