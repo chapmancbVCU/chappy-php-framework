@@ -80,7 +80,7 @@ class Queue {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function queueMigration(): int {
-        $fileName = Migrate::fileName();
+        $fileName = "MDT".Migrate::fileNameTime()."CreateQueueTable";
         return Tools::writeFile(
             Migrate::MIGRATIONS_PATH.$fileName.'.php',
             QueueStubs::queueTemplate($fileName),
