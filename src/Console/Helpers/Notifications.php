@@ -248,7 +248,7 @@ PHP;
      * @return int A Tools::writeFile status code.
      */
     public static function notificationsMigration(): int {
-        $fileName = Migrate::fileName();
+        $fileName = "MDT".Migrate::fileNameTime()."CreateNotificationTable";
         return Tools::writeFile(
             Migrate::MIGRATIONS_PATH.$fileName.'.php',
             self::migrationTemplate($fileName),
