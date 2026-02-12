@@ -79,6 +79,11 @@ class Migrate {
         return date('YmdHis');
     }
 
+    /**
+     * Generates migration for acl table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function generateACLTableMigration(): int {
         $path = self::MIGRATIONS_PATH."MDT20240808232014CreateAclTable.php";
         return Tools::writeFile(
@@ -88,6 +93,11 @@ class Migrate {
         );
     }
 
+    /**
+     * Generates migration for email_attachments table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function generateEmailAttachmentsTableMigration(): int {
         $path = self::MIGRATIONS_PATH."MDT20250621195401CreateEmailAttachmentsTable.php";
         return Tools::writeFile(
@@ -97,6 +107,11 @@ class Migrate {
         );
     }
 
+    /**
+     * Generates migration for migration table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function generateMigrationsTableMigration(): int {
         $path = self::MIGRATIONS_PATH."MDT20240805010123CreateMigrationTable.php";
         return Tools::writeFile(
@@ -106,6 +121,11 @@ class Migrate {
         );
     }
 
+    /**
+     * Generates migration for profile_images table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function generateProfileImagesTableMigration(): int {
         $path = self::MIGRATIONS_PATH."MDT20240821210722CreateProfileImagesTable.php";
         return Tools::writeFile(
@@ -115,6 +135,11 @@ class Migrate {
         );
     }
 
+    /**
+     * Generates migration for user_sessions table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function generateUserSessionsTableMigration(): int {
         $path = self::MIGRATIONS_PATH."MDT20241118175443CreateUserSessionsTable.php";
         return Tools::writeFile(
@@ -123,6 +148,12 @@ class Migrate {
             'User Sessions table migration'
         );
     }
+
+    /**
+     * Generates migration for users table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function generateUsersTableMigration(): int {
         $path = self::MIGRATIONS_PATH."MDT20240805010157CreateUsersTable.php";
         return Tools::writeFile(
@@ -131,7 +162,7 @@ class Migrate {
             'Users table migration'
         );
     }
-    
+
     /**
      * Generates a migration class for creating a new table.
      *

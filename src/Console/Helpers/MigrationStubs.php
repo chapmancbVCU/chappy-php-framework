@@ -365,6 +365,11 @@ class MDT20241118175443CreateUserSessionsTable extends Migration {
 PHP;
     }
 
+    /**
+     * Template for users table migration.
+     *
+     * @return string The content for users table migration.
+     */
     public static function usersTableTemplate(): string {
         return <<<PHP
 <?php
