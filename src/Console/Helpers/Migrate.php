@@ -79,6 +79,59 @@ class Migrate {
         return date('YmdHis');
     }
 
+    public static function generateACLTableMigration(): int {
+        $path = self::MIGRATIONS_PATH."MDT20240808232014CreateAclTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::aclTableTemplate(),
+            'ACL table migration'
+        );
+    }
+
+    public static function generateEmailAttachmentsTableMigration(): int {
+        $path = self::MIGRATIONS_PATH."MDT20250621195401CreateEmailAttachmentsTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::aclTableTemplate(),
+            'Email Attachments table migration'
+        );
+    }
+
+    public static function generateMigrationsTableMigration(): int {
+        $path = self::MIGRATIONS_PATH."MDT20240805010123CreateMigrationTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::aclTableTemplate(),
+            'Migrations table migration'
+        );
+    }
+
+    public static function generateProfileImagesTableMigration(): int {
+        $path = self::MIGRATIONS_PATH."MDT20240821210722CreateProfileImagesTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::aclTableTemplate(),
+            'Profile Images table migration'
+        );
+    }
+
+    public static function generateUserSessionsTableMigration(): int {
+        $path = self::MIGRATIONS_PATH."MDT20241118175443CreateUserSessionsTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::aclTableTemplate(),
+            'User Sessions table migration'
+        );
+    }
+    public static function generateUsersTableMigration(): int {
+        $path = self::MIGRATIONS_PATH."MDT20240805010157CreateUsersTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::aclTableTemplate(),
+            'Users table migration'
+        );
+    }
+    
     /**
      * Generates a migration class for creating a new table.
      *
