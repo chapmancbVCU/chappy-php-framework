@@ -6,12 +6,11 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 /**
- * Supports ability to generate new controller class by typing make:controller.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers#creating-a-controller">here</a>.
+ * Supports ability to generate migrations using flags or all if no flag is set.
  */
-class RestoreMigrationsCommand extends Command
-{
+class RestoreMigrationsCommand extends Command{
     /**
      * Configures the command.
      *
@@ -26,37 +25,37 @@ class RestoreMigrationsCommand extends Command
                 'acl',
                 null,
                 InputOption::VALUE_NONE,
-                'Add CRUD functions'
+                'Generates acl table migration when set'
             )
             ->addOption(
                 'email_attachments',
                 null,
                 InputOption::VALUE_NONE,
-                'Add CRUD functions'
+                'Generates email_attachments table migration when set'
             )
             ->addOption(
                 'migrations',
                 null,
                 InputOption::VALUE_NONE,
-                'Add CRUD functions'
+                'Generates migrations table migration when set'
             )
             ->addOption(
                 'profile_images',
                 null,
                 InputOption::VALUE_NONE,
-                'Add CRUD functions'
+                'Generates profile_images table migration when set'
             )
             ->addOption(
                 'user_sessions',
                 null,
                 InputOption::VALUE_NONE,
-                'Add CRUD functions'
+                'Generates user_sessions table migration when set'
             )
             ->addOption(
                 'users',
                 null,
                 InputOption::VALUE_NONE,
-                'Add CRUD functions'
+                'Generates users table migration when set'
             );
     }
  
