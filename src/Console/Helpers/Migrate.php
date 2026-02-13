@@ -94,6 +94,20 @@ class Migrate {
     }
 
     /**
+     * Generates all migrations.
+     *
+     * @return int Command::SUCCESS
+     */
+    public static function generateAllMigrations(): int {
+        self::generateMigrationsTableMigration();
+        self::generateUsersTableMigration();
+        self::generateACLTableMigration();
+        self::generateProfileImagesTableMigration();
+        self::generateUserSessionsTableMigration();
+        self::generateEmailAttachmentsTableMigration();
+        return Command::SUCCESS;
+    }
+    /**
      * Generates migration for email_attachments table.
      *
      * @return int A value that indicates success, invalid, or failure.
@@ -102,9 +116,25 @@ class Migrate {
         $path = self::MIGRATIONS_PATH."MDT20250621195401CreateEmailAttachmentsTable.php";
         return Tools::writeFile(
             $path,
-            MigrationStubs::aclTableTemplate(),
+            MigrationStubs::emailAttachmentsTableTemplate(),
             'Email Attachments table migration'
         );
+    }
+
+    /**
+     * Generates migration by name.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return int Command::SUCCESS
+     */
+    public static function generateMigrationByName(InputInterface $input): int {
+        if($input->getOption('migrations')) self::generateMigrationsTableMigration();
+        if($input->getOption('users')) self::generateUsersTableMigration();
+        if($input->getOption('acl')) self::generateACLTableMigration();
+        if($input->getOption('profile_images')) self::generateProfileImagesTableMigration();
+        if($input->getOption('user_sessions')) self::generateUserSessionsTableMigration();
+        if($input->getOption('email_attachments')) self::generateEmailAttachmentsTableMigration();
+        return Command::SUCCESS;
     }
 
     /**
@@ -116,7 +146,7 @@ class Migrate {
         $path = self::MIGRATIONS_PATH."MDT20240805010123CreateMigrationTable.php";
         return Tools::writeFile(
             $path,
-            MigrationStubs::aclTableTemplate(),
+            MigrationStubs::migrationTableTemplate(),
             'Migrations table migration'
         );
     }
@@ -130,7 +160,7 @@ class Migrate {
         $path = self::MIGRATIONS_PATH."MDT20240821210722CreateProfileImagesTable.php";
         return Tools::writeFile(
             $path,
-            MigrationStubs::aclTableTemplate(),
+            MigrationStubs::profileImagesTableTemplate(),
             'Profile Images table migration'
         );
     }
@@ -144,7 +174,7 @@ class Migrate {
         $path = self::MIGRATIONS_PATH."MDT20241118175443CreateUserSessionsTable.php";
         return Tools::writeFile(
             $path,
-            MigrationStubs::aclTableTemplate(),
+            MigrationStubs::userSessionsTableTemplate(),
             'User Sessions table migration'
         );
     }
@@ -158,7 +188,7 @@ class Migrate {
         $path = self::MIGRATIONS_PATH."MDT20240805010157CreateUsersTable.php";
         return Tools::writeFile(
             $path,
-            MigrationStubs::aclTableTemplate(),
+            MigrationStubs::usersTableTemplate(),
             'Users table migration'
         );
     }
