@@ -106,7 +106,6 @@ PHP;
 <?php
 use Core\Router;
 use Core\Helper;
-use Core\Lib\Utilities\Env;
 \$profileImage = Helper::getProfileImage();
 \$menu = Router::getMenu('{$menuName}_menu_acl');
 \$userMenu = Router::getMenu('user_menu');
@@ -126,11 +125,11 @@ use Core\Lib\Utilities\Env;
     <ul class="navbar-nav me-2 align-items-center"> <!-- Align items vertically -->
       <?= Helper::buildMenuListItems(\$userMenu, "dropdown-menu-end"); ?>
       <li class="nav-item">
-        <a class="nav-link p-0" href="<?=Env::get('APP_DOMAIN', '/')?>profile">
+        <a class="nav-link p-0" href="<?=route('profile')?>">
           <?php if (\$profileImage != null): ?>
             <img class="rounded-circle profile-img ms-2"
               style="width: 40px; height: 40px; object-fit: cover; border: 2px solid #ddd; transition: opacity 0.3s;"
-              src="<?=Env::get('APP_DOMAIN', '/') . \$profileImage->url?>"
+              src="<?=env('APP_DOMAIN', '/') . \$profileImage->url?>"
               alt="Profile Picture">
           <?php endif; ?>
         </a>
