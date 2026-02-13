@@ -116,7 +116,7 @@ use Core\Lib\Utilities\Env;
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_menu" aria-controls="main_menu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="<?=Env::get('APP_DOMAIN', '/')?>home"><?=Env::get('MENU_BRAND', 'My Brand')?></a>
+  <a class="navbar-brand" href="<?=route(env('DEFAULT_CONTROLLER'))?>"><?=env('MENU_BRAND', 'My Brand')?></a>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="main_menu">
