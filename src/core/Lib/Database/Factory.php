@@ -22,7 +22,7 @@ abstract class Factory {
     abstract protected function definition(): array;
 
     /**
-     * Undocumented function
+     * Create a single record in the database.
      *
      * @return void
      */
@@ -31,12 +31,24 @@ abstract class Factory {
         $this->insert($data);
     }
 
+    /**
+     * Create multiple records in the database.
+     *
+     * @param int $count The number of records to create.
+     * @return void
+     */
     public function count(int $count): void {
         for($i = 0; $i < $count; $i++) {
             $this->createOne();
         }
     }
 
+    /**
+     * Insert data into the database table.
+     *
+     * @param array<string, mixed> $data
+     * @return void
+     */
     protected function insert(array $data): void {
         foreach($data as $key => $value) {
             if(property_exists($this->modelName, $key)) {
