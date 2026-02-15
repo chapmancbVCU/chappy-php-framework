@@ -1,10 +1,12 @@
 <?php
-
 declare(strict_types=1);
 namespace Core\Lib\Database;
 
 use Faker\Factory as FakerFactory;
 
+/**
+ * Base abstract class for all factory classes.
+ */
 abstract class Factory {
     protected $faker;
     protected $modelName;
@@ -23,7 +25,8 @@ abstract class Factory {
     /**
      * Create a single record in the database.
      *
-     * @return bool
+     * @return bool True if insert operation was successful.  Otherwise, 
+     * we return false.
      */
     public function createOne(): bool {
         $data = $this->definition();
@@ -47,7 +50,8 @@ abstract class Factory {
      * Insert data into the database table.
      *
      * @param array<string, mixed> $data
-     * @return bool
+     * @return bool True if insert operation was successful.  Otherwise, 
+     * we return false.
      */
     protected function insert(array $data, string $modelName): bool {
         $newModel = null;
@@ -65,7 +69,7 @@ abstract class Factory {
 
         try {
             if($newModel->save()) {
-                console_info("Created record");
+                console_info("Created record: " . json_encode($newModel));
                 return true;
             } else {
                 return false;
