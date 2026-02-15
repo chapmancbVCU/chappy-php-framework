@@ -9,7 +9,7 @@ use Console\Helpers\DBSeeder;
 
 /**
  * Supports operations for the make:factory command.  Use this command to make a new factory.
- * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_seeders#seeder-class">here</a>.
+ * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_seeders#factory-class">here</a>.
  */
 class MakeFactoryCommand extends Command {
     /**
