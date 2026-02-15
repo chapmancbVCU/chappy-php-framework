@@ -244,12 +244,11 @@ class AuthService {
      */
     public static function profileImageUpload(Users $user): ?Uploads{
         return Uploads::handleUpload(
-            $_FILES['profileImage'],
+            'profileImage',
             ProfileImages::class,
             ROOT . DS,
             "5mb",
-            $user,
-            'profileImage'
+            $user
         );
     }
 }

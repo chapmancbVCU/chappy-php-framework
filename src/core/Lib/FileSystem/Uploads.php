@@ -157,29 +157,28 @@ class Uploads {
     /**
      * Handles file uploads and returns an Uploads instance if valid.
      * 
-     * @param array $file The file input from $_FILES.
+     * @param string $name The name of the field for upload from form.
      * @param string $uploadModel The name of the model class responsible for uploads.
      * @param string $bucket Upload destination.
      * @param string $sizeMsg Size description for error messages.
-     * @param Model $model The model associated with the view you are working with.  
+     * @param Model $model The associated with the view you are working with.  
      * May or may not be same as $uploadModel if $uploadModel has index 
      * id field associated with another model.
-     * @param string $name The name of the field for upload from form.
      * @param string $mode Use Uploads::SINGLE for single file uploads or 
      * Uploads::MULTIPLE for multiple file uploads.
      * @return Uploads|null Returns Uploads instance if valid, otherwise null.
      */
     public static function handleUpload(
-        array $file, 
+        string $name, 
         string $uploadModel, 
         string $bucket, 
         string $sizeMsg, 
         Model $model,
-        string $name,
+        
         string $mode = self::SINGLE
     ): ?self {
-
-        if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+        $file = $_FILES[$name];
+        if (empty($file['tmp_name'])) {
             return null;
         }
         
