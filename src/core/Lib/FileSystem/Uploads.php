@@ -161,7 +161,7 @@ class Uploads {
      * @param string $uploadModel The name of the model class responsible for uploads.
      * @param string $bucket Upload destination.
      * @param string $sizeMsg Size description for error messages.
-     * @param Model $model The associated with the view you are working with.  
+     * @param Model $model The model associated with the view you are working with.  
      * May or may not be same as $uploadModel if $uploadModel has index 
      * id field associated with another model.
      * @param string $name The name of the field for upload from form.
