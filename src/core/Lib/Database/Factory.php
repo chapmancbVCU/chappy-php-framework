@@ -4,14 +4,13 @@ declare(strict_types=1);
 namespace Core\Lib\Database;
 
 use Faker\Factory as FakerFactory;
-use Faker\Generator;
 
 abstract class Factory {
-    protected Generator $faker;
+    protected $faker;
     protected $modelName;
-    public function __construct(string $modelName) {
+
+    public function __construct() {
         $this->faker = FakerFactory::create();
-        $this->modelName = new $modelName();
     }
 
     /**
@@ -24,11 +23,11 @@ abstract class Factory {
     /**
      * Create a single record in the database.
      *
-     * @return void
+     * @return bool
      */
-    public function createOne(): void {
+    public function createOne(): bool {
         $data = $this->definition();
-        $this->insert($data);
+        return $this->insert($data, $this->modelName);
     }
 
     /**
@@ -38,8 +37,9 @@ abstract class Factory {
      * @return void
      */
     public function count(int $count): void {
-        for($i = 0; $i < $count; $i++) {
-            $this->createOne();
+        $i = 0;
+        while($i < $count) {
+            if($this->createOne()) $i++;
         }
     }
 
@@ -47,14 +47,32 @@ abstract class Factory {
      * Insert data into the database table.
      *
      * @param array<string, mixed> $data
-     * @return void
+     * @return bool
      */
-    protected function insert(array $data): void {
+    protected function insert(array $data, string $modelName): bool {
+        $newModel = null;
+        if(class_exists($modelName)) {
+            $newModel = new $modelName();
+        } else {
+            console_error("The model {$newModel} does not exist");
+        }
+
         foreach($data as $key => $value) {
-            if(property_exists($this->modelName, $key)) {
-                $this->modelName->$key = $value;
+            if(property_exists($modelName, $key)) {
+                $newModel->$key = $value;
             }
         }
-        $this->modelName->save();
+
+        try {
+            if($newModel->save()) {
+                console_info("Created record");
+                return true;
+            } else {
+                return false;
+            }
+        } catch(\Exception $e) {
+            console_error("Database error " . $e->getMessage());
+        }
+        return false;
     }
 }
