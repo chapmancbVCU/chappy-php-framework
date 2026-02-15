@@ -11,7 +11,7 @@ abstract class Factory {
     protected $modelName;
     public function __construct(string $modelName) {
         $this->faker = FakerFactory::create();
-        $this->modelName = new $modelName;
+        $this->modelName = new $modelName();
     }
 
     /**
@@ -52,7 +52,7 @@ abstract class Factory {
     protected function insert(array $data): void {
         foreach($data as $key => $value) {
             if(property_exists($this->modelName, $key)) {
-                $this->modelName->key = $value;
+                $this->modelName->$key = $value;
             }
         }
         $this->modelName->save();
