@@ -11,6 +11,55 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class DBSeeder {
     /**
+     * Returns contents for new factory class.
+     *
+     * @param string $modelName The name of the model the new factory will
+     * target.
+     * @return string The contents of the new factory class.
+     */
+    public static function factory(string $modelName): string {
+        return <<<PHP
+<?php
+namespace Database\Factories;
+
+use App\Models\\{$modelName};
+use Core\Lib\Database\Factory;
+
+class {$modelName}Factory extends Factory {
+    protected \$modelName = $modelName::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            
+        ];
+    }
+}
+PHP;
+    }
+
+    /**
+     * Creates a new factory class.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeFactory(InputInterface $input): int {
+        $factoryName = Str::ucfirst($input->getArgument('factory-name'));
+
+        return Tools::writeFile(
+            ROOT.DS.'database'.DS.'factories'.DS.$factoryName.'Factory.php',
+            self::factory($factoryName),
+            "The {$factoryName} factory "
+        );
+    }
+
+    /**
      * Creates a class for seeding a database.
      *
      * @param InputInterface $input The Symfony InputInterface object.
@@ -19,7 +68,6 @@ class DBSeeder {
     public static function makeSeeder(InputInterface $input): int {
         $seederName = Str::ucfirst($input->getArgument('seeder-name'));
 
-        // Generate Seeder class
         return Tools::writeFile(
             ROOT.DS.'database'.DS.'seeders'.DS.$seederName.'TableSeeder.php',
             self::seeder($seederName),
