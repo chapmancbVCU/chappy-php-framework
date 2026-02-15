@@ -142,6 +142,16 @@ class Model {
     public function beforeSave(): void {}
 
     /**
+     * Retrieves number of rows affected or returned by the last query.  This 
+     * is a wrapper function for the DB::count function.
+     *
+     * @return int The number of rows affected or returned by the last query.
+     */
+    public static function count(): int {
+        return static::getDb()->count();
+    }
+
+    /**
      * Grab object and if we just need data for smaller result set.
      * 
      * @return object The data associated with an object.
