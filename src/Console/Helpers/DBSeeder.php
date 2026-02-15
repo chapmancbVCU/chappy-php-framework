@@ -100,11 +100,9 @@ PHP;
 <?php
 namespace Database\Seeders;
 
-use Faker\Factory as Faker;
-use Core\Lib\Database\Seeder;
 
-// Import your model
-use App\Models\\{$ucSeederName};
+use Core\Lib\Database\Seeder;
+use Database\Factories\\{$ucSeederName}Factory;
 
 /**
  * Seeder for {$lcSeederName} table.
@@ -118,20 +116,7 @@ class {$ucSeederName}TableSeeder extends Seeder {
      * @return void
      */
     public function run(): void {
-        \$faker = Faker::create();
         
-        // Set number of records to create.
-        \$numberOfRecords = 10;
-        \$i = 0;
-        while(\$i < \$numberOfRecords) {
-            \${$lcSeederName} = new {$ucSeederName}();
-            
-
-            if(\${$ucSeederName}->save()) {
-                \$i++;
-            }
-        }
-        console_info("Seeded {$lcSeederName} table.");
     }
 }
 PHP;
