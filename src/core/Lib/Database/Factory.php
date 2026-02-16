@@ -29,6 +29,10 @@ abstract class Factory {
      */
     protected array $states = [];
 
+    /**
+     * Constructor for Faker class.  Should be called by any child class that 
+     * overrides this constructor.
+     */
     public function __construct() {
         $this->faker = FakerFactory::create();
     }
@@ -64,7 +68,14 @@ abstract class Factory {
         }
     }
 
-    protected function getComputedAttributes(array $overrides) {
+    /**
+     * Merges any overrides, attributes, and definitions into a single array.
+     *
+     * @param array $overrides Any overrides for database values.  Must be an 
+     * associative array.
+     * @return array The combined array.
+     */
+    protected function getComputedAttributes(array $overrides): array {
         $attributes = $this->definition();
         foreach($this->states as $state) {
             $attributes = array_merge($attributes, $state($attributes));
@@ -120,6 +131,14 @@ abstract class Factory {
         return false;
     }
 
+    /**
+     * Manages state for values of keys that should be overrided by state 
+     * functions.
+     *
+     * @param callable $state The anonymous function for overriding a value 
+     * for a specified key.
+     * @return self
+     */
     public function state(callable $state): self {
         $this->states[] = $state;
         return $this;
