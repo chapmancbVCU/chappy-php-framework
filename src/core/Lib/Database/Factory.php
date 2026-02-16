@@ -134,7 +134,7 @@ abstract class Factory {
     }
 
     /**
-     * Manages state for values of keys that should be overrided by state 
+     * Manages state for values of keys that should be overridden by state 
      * functions.
      *
      * @param callable $state The anonymous function for overriding a value 
