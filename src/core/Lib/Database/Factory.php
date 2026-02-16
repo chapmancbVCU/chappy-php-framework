@@ -124,6 +124,8 @@ abstract class Factory {
             if($newModel->save()) {
                 console_info("Created record: " . json_encode($newModel));
                 return true;
+            } else {
+                console_warning("Could not insert record.  Ensure validation passes");
             }
         } catch(\Exception $e) {
             console_error("Database error " . $e->getMessage());
