@@ -47,6 +47,20 @@ abstract class Factory {
     }
 
     /**
+     * Undocumented function
+     *
+     * @param string $factoryName
+     * @return void
+     */
+    public static function factory(string $factoryName) {
+        $newFactory = null;
+        if(class_exists($factoryName)) {
+            $newFactory = new $factoryName();
+        }
+        return $newFactory;
+    }
+    
+    /**
      * Insert data into the database table.
      *
      * @param array<string, mixed> $data
