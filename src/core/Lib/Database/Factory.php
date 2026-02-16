@@ -22,6 +22,11 @@ abstract class Factory {
      */
     protected $modelName;
 
+    /**
+     * States for overriding definition.
+     *
+     * @var array
+     */
     protected array $states = [];
 
     public function __construct() {
