@@ -8,7 +8,18 @@ use Faker\Factory as FakerFactory;
  * Base abstract class for all factory classes.
  */
 abstract class Factory {
+    /**
+     * Instance of Faker\Factory object.
+     *
+     * @var FactoryFaker
+     */
     protected $faker;
+
+    /**
+     * The model used by the child factory class.
+     *
+     * @var string
+     */
     protected $modelName;
 
     public function __construct() {
