@@ -47,23 +47,24 @@ abstract class Factory {
     }
 
     /**
-     * Undocumented function
+     * Returns instance of new child factory class.
      *
-     * @param string $factoryName
-     * @return void
+     * @param string $factoryName The name of the factory class.
+     * @return object The child factory class.
      */
-    public static function factory(string $factoryName) {
+    public static function factory(string $factoryName): object {
         $newFactory = null;
         if(class_exists($factoryName)) {
             $newFactory = new $factoryName();
         }
         return $newFactory;
     }
-    
+
     /**
      * Insert data into the database table.
      *
      * @param array<string, mixed> $data
+     * @param string $modelName The name of the model to reference correct table.
      * @return bool True if insert operation was successful.  Otherwise, 
      * we return false.
      */
