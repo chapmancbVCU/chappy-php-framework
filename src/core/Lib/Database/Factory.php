@@ -22,6 +22,8 @@ abstract class Factory {
      */
     protected $modelName;
 
+    protected array $states = [];
+
     public function __construct() {
         $this->faker = FakerFactory::create();
     }
@@ -39,8 +41,8 @@ abstract class Factory {
      * @return bool True if insert operation was successful.  Otherwise, 
      * we return false.
      */
-    public function createOne(): bool {
-        $data = $this->definition();
+    public function createOne(array $attributes = []): bool {
+        $data = $this->getComputedAttributes($attributes);
         return $this->insert($data, $this->modelName);
     }
 
@@ -55,6 +57,15 @@ abstract class Factory {
         while($i < $count) {
             if($this->createOne()) $i++;
         }
+    }
+
+    protected function getComputedAttributes(array $overrides) {
+        $attributes = $this->definition();
+        foreach($this->states as $state) {
+            $attributes = array_merge($attributes, $state($attributes));
+        }
+
+        return array_merge($attributes, $overrides);
     }
 
     /**
