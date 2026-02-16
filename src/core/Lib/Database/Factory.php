@@ -71,8 +71,6 @@ abstract class Factory {
             if($newModel->save()) {
                 console_info("Created record: " . json_encode($newModel));
                 return true;
-            } else {
-                return false;
             }
         } catch(\Exception $e) {
             console_error("Database error " . $e->getMessage());
