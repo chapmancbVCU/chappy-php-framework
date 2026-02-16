@@ -114,4 +114,9 @@ abstract class Factory {
         }
         return false;
     }
+
+    public function state(callable $state): self {
+        $this->states[] = $state;
+        return $this;
+    }
 }
