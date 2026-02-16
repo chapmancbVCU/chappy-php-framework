@@ -11,7 +11,7 @@ class UserFactory extends Factory {
     protected $modelName = Users::class;
 
     /**
-     * Undocumented function
+     * Overrides default value for acl.
      *
      * @return self
      */
@@ -23,6 +23,11 @@ class UserFactory extends Factory {
         });
     }
 
+    /**
+     * Definition for UsersFactory.
+     *
+     * @return array
+     */
     public function definition(): array
     {
         $tempPassword = $this->faker->password(12,30);
@@ -42,10 +47,40 @@ class UserFactory extends Factory {
         ];
     }
 
+    /**
+     * Overrides default value for inactive.
+     *
+     * @return self
+     */
     public function inactive(): self {
         return $this->state(function (array $attributes) {
             return [
                 'inactive' => 1
+            ];
+        });
+    }
+    /**
+     * Overrides default value for login_attempts.
+     *
+     * @return self
+     */
+    public function loginAttempts(): self {
+        return $this->state(function (array $attributes) {
+            return [
+                'login_attempts' => 1
+            ];
+        });
+    }
+
+    /**
+     * Overrides default value for resetPassword.
+     *
+     * @return self
+     */
+    public function resetPassword(): self {
+        return $this->state(function (array $attributes) {
+            return [
+                'reset_password' => 1
             ];
         });
     }
