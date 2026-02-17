@@ -31,7 +31,12 @@ class UserFactory extends Factory {
      */
     public function definition(): array
     {
-        $tempPassword = $this->faker->password(12,30);
+        $tempPassword = $this->faker->password(env('PW_MIN_LENGTH'), env('PW_MAX_LENGTH'));
+        $tempPassword .= $this->faker->randomDigit();
+        $tempPassword .= lcfirst($this->faker->randomLetter());
+        $tempPassword .= ucfirst($this->faker->randomLetter());
+        $tempPassword .= $this->faker->randomElement(['!', '@', '#', '$', '%', '^', '&', '*']);
+
         return [
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->safeEmail(),
