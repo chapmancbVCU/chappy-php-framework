@@ -40,7 +40,7 @@ trait PasswordPolicy {
      * @return string
      */
     public function maxLength(): string {
-        return env('PW_MAX_LENGTH', 12);
+        return env('PW_MAX_LENGTH', 25);
     }
 
     /**
