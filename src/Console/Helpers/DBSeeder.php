@@ -10,8 +10,14 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports operations related to database seeding.
  */
 class DBSeeder {
+    /**
+     * Path to all user created factory classes.
+     */
     private const FACTORY_PATH = ROOT.DS.'database'.DS.'factories'.DS;
 
+    /**
+     * Path to all seeder classes.
+     */
     private const SEEDER_PATH = ROOT.DS.'database'.DS.'seeders'.DS;
 
     /**
