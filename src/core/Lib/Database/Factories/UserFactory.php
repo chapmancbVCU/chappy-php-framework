@@ -24,6 +24,14 @@ class UserFactory extends Factory {
         });
     }
 
+    protected function configure(): static {
+        return $this->afterCreating(function (Users $user) {
+            (new ProfileImageFactory($user->id))->createOne([
+                'user_id' => $user->id
+            ]);
+        });
+    }
+
     /**
      * Definition for UsersFactory.
      *
@@ -31,14 +39,14 @@ class UserFactory extends Factory {
      */
     public function definition(): array
     {
-        $tempPassword = $this->faker->password(env('PW_MIN_LENGTH'), env('PW_MAX_LENGTH'));
+        $tempPassword = $this->faker->password(14, 20);
         $tempPassword .= $this->faker->randomDigit();
         $tempPassword .= lcfirst($this->faker->randomLetter());
         $tempPassword .= ucfirst($this->faker->randomLetter());
         $tempPassword .= $this->faker->randomElement(['!', '@', '#', '$', '%', '^', '&', '*']);
 
         return [
-            'username' => $this->faker->unique()->userName(),
+            'username' => $this->faker->userName(),
             'email' => $this->faker->safeEmail(),
             'acl' => json_encode([""]),
             'password' => $tempPassword,
