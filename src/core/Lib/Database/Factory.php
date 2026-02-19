@@ -9,6 +9,14 @@ use Faker\Factory as FakerFactory;
  */
 abstract class Factory {
     /**
+     * Array containing callbacks that are used after database record is 
+     * successfully saved.
+     *
+     * @var array
+     */
+    protected array $afterCreatingCallbacks = [];
+
+    /**
      * Instance of Faker\Factory object.
      *
      * @var FactoryFaker
@@ -35,6 +43,7 @@ abstract class Factory {
      */
     public function __construct() {
         $this->faker = FakerFactory::create();
+        $this->configure();
     }
 
     /**
@@ -45,6 +54,17 @@ abstract class Factory {
     abstract protected function definition(): array;
 
     /**
+     * Adds callback to afterCreatingCallbacks array.
+     *
+     * @param callable $callback The anonymous callback for afterCreating.
+     * @return static
+     */
+    public function afterCreating(callable $callback): static {
+        $this->afterCreatingCallbacks[] = $callback;
+        return $this;
+    }
+
+    /**
      * Create a single record in the database.
      *
      * @return bool True if insert operation was successful.  Otherwise, 
@@ -53,6 +73,10 @@ abstract class Factory {
     public function createOne(array $attributes = []): bool {
         $data = $this->getComputedAttributes($attributes);
         return $this->insert($data, $this->modelName);
+    }
+
+    protected function configure(): static {
+        return $this;
     }
 
     /**
@@ -123,6 +147,9 @@ abstract class Factory {
         try {
             if($newModel->save()) {
                 console_info("Created record: " . json_encode($newModel));
+                foreach($this->afterCreatingCallbacks as $callback) {
+                    $callback($newModel);
+                }
                 return true;
             } else {
                 console_warning("Could not insert record: " . json_encode($newModel->getErrorMessages()));
