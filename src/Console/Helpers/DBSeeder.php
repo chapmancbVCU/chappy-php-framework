@@ -10,6 +10,10 @@ use Symfony\Component\Console\Input\InputInterface;
  * Supports operations related to database seeding.
  */
 class DBSeeder {
+    private const FACTORY_PATH = ROOT.DS.'database'.DS.'factories'.DS;
+
+    private const SEEDER_PATH = ROOT.DS.'database'.DS.'seeders'.DS;
+
     /**
      * Returns contents for new factory class.
      *
@@ -51,9 +55,10 @@ PHP;
      */
     public static function makeFactory(InputInterface $input): int {
         $factoryName = Str::ucfirst($input->getArgument('factory-name'));
-
+        Tools::pathExists(self::FACTORY_PATH);
+        
         return Tools::writeFile(
-            ROOT.DS.'database'.DS.'factories'.DS.$factoryName.'Factory.php',
+            self::FACTORY_PATH.$factoryName.'Factory.php',
             self::factory($factoryName),
             "The {$factoryName} factory "
         );
@@ -67,9 +72,10 @@ PHP;
      */
     public static function makeSeeder(InputInterface $input): int {
         $seederName = Str::ucfirst($input->getArgument('seeder-name'));
+        Tools::pathExists(self::SEEDER_PATH);
 
         return Tools::writeFile(
-            ROOT.DS.'database'.DS.'seeders'.DS.$seederName.'TableSeeder.php',
+            self::SEEDER_PATH.$seederName.'TableSeeder.php',
             self::seeder($seederName),
             'Seeder'
         );
