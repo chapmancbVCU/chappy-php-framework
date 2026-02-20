@@ -65,6 +65,20 @@ abstract class Factory {
     }
 
     /**
+     * Helper function for satisfying complexity or length requirements.
+     *
+     * @return string A string containing a random digit, a lower case 
+     * character, an upper case character, and a special character.
+     */
+    protected function append(): string {
+        $contents = $this->faker->randomDigit();
+        $contents .= lcfirst($this->faker->randomLetter());
+        $contents .= ucfirst($this->faker->randomLetter());
+        $contents .= $this->faker->randomElement(['!', '@', '#', '$', '%', '^', '&', '*']);
+        return $contents;
+    }
+
+    /**
      * Create a single record in the database.
      *
      * @return bool True if insert operation was successful.  Otherwise, 
