@@ -24,11 +24,14 @@ class UserFactory extends Factory {
         });
     }
 
+    /**
+     * Overrides configure function from super class.
+     *
+     * @return static
+     */
     protected function configure(): static {
         return $this->afterCreating(function (Users $user) {
-            (new ProfileImageFactory($user->id))->createOne([
-                'user_id' => $user->id
-            ]);
+            (new ProfileImageFactory($user->id))->count(2);
         });
     }
 
@@ -39,14 +42,11 @@ class UserFactory extends Factory {
      */
     public function definition(): array
     {
-        $tempPassword = $this->faker->password(14, 20);
-        $tempPassword .= $this->faker->randomDigit();
-        $tempPassword .= lcfirst($this->faker->randomLetter());
-        $tempPassword .= ucfirst($this->faker->randomLetter());
-        $tempPassword .= $this->faker->randomElement(['!', '@', '#', '$', '%', '^', '&', '*']);
-
+        $tempPassword = $this->faker->password((int)env('PW_MIN_LENGTH'), (int)env('PW_MAX_LENGTH') - 5);
+        $tempPassword .= $this->append();
+    
         return [
-            'username' => $this->faker->userName(),
+            'username' => $this->faker->userName() . $this->append(),
             'email' => $this->faker->safeEmail(),
             'acl' => json_encode([""]),
             'password' => $tempPassword,
