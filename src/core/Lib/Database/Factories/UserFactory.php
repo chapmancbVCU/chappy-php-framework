@@ -29,11 +29,11 @@ class UserFactory extends Factory {
      *
      * @return static
      */
-    protected function configure(): static {
-        return $this->afterCreating(function (Users $user) {
-            (new ProfileImageFactory($user->id))->count(2)->create();
-        });
-    }
+    // protected function configure(): static {
+    //     return $this->afterCreating(function (Users $user) {
+    //         (new ProfileImageFactory($user->id))->count(2)->create();
+    //     });
+    // }
 
     /**
      * Definition for UsersFactory.
@@ -96,6 +96,18 @@ class UserFactory extends Factory {
             return [
                 'reset_password' => 1
             ];
+        });
+    }
+
+    /**
+     * State callback for generating profile images.
+     *
+     * @param int $count Number of images to create.
+     * @return static
+     */
+    public function withImages(int $count = 2): static {
+        return $this->afterCreating(function (Users $user) use ($count) {
+            (new ProfileImageFactory($user->id))->count($count)->create();
         });
     }
 }

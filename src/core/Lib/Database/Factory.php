@@ -139,12 +139,8 @@ abstract class Factory {
      * @param string $factoryName The name of the factory class.
      * @return object The child factory class.
      */
-    public static function factory(string $factoryName): object {
-        $newFactory = null;
-        if(class_exists($factoryName)) {
-            $newFactory = new $factoryName();
-        }
-        return $newFactory;
+    public static function factory(): object {
+        return new static();
     }
 
     /**
