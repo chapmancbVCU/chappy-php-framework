@@ -31,7 +31,7 @@ class UserFactory extends Factory {
      */
     protected function configure(): static {
         return $this->afterCreating(function (Users $user) {
-            (new ProfileImageFactory($user->id))->count(2);
+            (new ProfileImageFactory($user->id))->count(2)->create();
         });
     }
 

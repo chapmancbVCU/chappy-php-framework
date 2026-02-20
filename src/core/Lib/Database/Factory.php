@@ -16,6 +16,8 @@ abstract class Factory {
      */
     protected array $afterCreatingCallbacks = [];
 
+    protected $count = 1;
+
     /**
      * Instance of Faker\Factory object.
      *
@@ -79,47 +81,56 @@ abstract class Factory {
     }
 
     /**
-     * Create a single record in the database.
+     * Create a record(s) in the database.
      *
      * @return bool True if insert operation was successful.  Otherwise, 
      * we return false.
      */
-    public function createOne(array $attributes = []): bool {
-        $data = $this->getComputedAttributes($attributes);
-        return $this->insert($data, $this->modelName);
+    public function create(array $attributes = []) {
+        $results = [];
+
+        for ($i = 0; $i < $this->count; $i++) {
+            $data = $this->definition();
+
+            foreach ($this->states as $state) {
+                $extra = is_callable($state) ? $state($attributes) : $state;
+                $data = array_merge($data, (array)$extra);
+            }
+
+            $data = array_merge($data, $attributes);
+            $model = $this->insert($data, $this->modelName);
+
+            if($model instanceof $this->modelName) {
+                foreach($this->afterCreatingCallbacks as $callback) {
+                    $callback($model);
+                }
+                if ($model) $results[] = $model;
+            }
+
+        }
+
+        return count($results) === 1 ? $results[0] : $results;
     }
 
+    /**
+     * Configure function used for registering afterCreating callbacks.
+     *
+     * @return static
+     */
     protected function configure(): static {
         return $this;
     }
 
     /**
-     * Create multiple records in the database.
+     * Specify number of records to insert into the database.
      *
      * @param int $count The number of records to create.
-     * @return void
+     * @return static
      */
-    public function count(int $count): void {
-        $i = 0;
-        while($i < $count) {
-            if($this->createOne()) $i++;
-        }
-    }
-
-    /**
-     * Merges any overrides, attributes, and definitions into a single array.
-     *
-     * @param array $overrides Any overrides for database values.  Must be an 
-     * associative array.
-     * @return array The combined array.
-     */
-    protected function getComputedAttributes(array $overrides): array {
-        $attributes = $this->definition();
-        foreach($this->states as $state) {
-            $attributes = array_merge($attributes, $state($attributes));
-        }
-
-        return array_merge($attributes, $overrides);
+    public function count(int $count): static {
+        $clone = clone $this;
+        $clone->count = $count;
+        return $clone;
     }
 
     /**
@@ -141,10 +152,10 @@ abstract class Factory {
      *
      * @param array<string, mixed> $data
      * @param string $modelName The name of the model to reference correct table.
-     * @return bool True if insert operation was successful.  Otherwise, 
-     * we return false.
+     * @return object The model object if save is successful.  Otherwise, we 
+     * return null.
      */
-    protected function insert(array $data, string $modelName): bool {
+    protected function insert(array $data, string $modelName): ?object {
         $newModel = null;
         if(class_exists($modelName)) {
             $newModel = new $modelName();
@@ -161,17 +172,26 @@ abstract class Factory {
         try {
             if($newModel->save()) {
                 console_info("Created record: " . json_encode($newModel));
-                foreach($this->afterCreatingCallbacks as $callback) {
-                    $callback($newModel);
-                }
-                return true;
+                return $newModel;
             } else {
                 console_warning("Could not insert record: " . json_encode($newModel->getErrorMessages()));
             }
         } catch(\Exception $e) {
             console_error("Database error " . $e->getMessage());
         }
-        return false;
+        return null;
+    }
+
+    /**
+     * Registers sequence callbacks.
+     *
+     * @param array ...$sequence Sequence of values to alternate between for 
+     * consecutive record creations when using count.
+     * @return static
+     */
+    public function sequence(array ...$sequence): static {
+        $this->states[] = new Sequence(...$sequence);
+        return $this;
     }
 
     /**
