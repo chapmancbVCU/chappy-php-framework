@@ -31,12 +31,29 @@ abstract class Seeder {
     abstract public function run(): void;
 
     /**
-     * Call another seeder class.
+     * Processes parameters provided and calls seed class to perform actual 
+     * work.  This function accepts a string or an array of strings.
+     *
+     * @param string|array $seederClass The name of the seeder class.
+     * @return void
+     */
+    protected function call(string|array $seederClass): void {
+        if(is_array($seederClass)) {
+            foreach($seederClass as $class) {
+                $this->seed($class);
+            }
+        } else {
+            $this->seed($seederClass);
+        }
+    }
+
+    /**
+     * Performs seeding of data.
      *
      * @param string $seederClass The name of the seeder class.
      * @return void
      */
-    protected function call(string $seederClass): void {
+    private function seed(string $seederClass): void {
         if(class_exists($seederClass)) {
             $seeder = new $seederClass();
             console_info("Running {$seederClass}");
