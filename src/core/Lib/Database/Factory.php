@@ -16,6 +16,11 @@ abstract class Factory {
      */
     protected array $afterCreatingCallbacks = [];
 
+    /**
+     * Value for how many insertions to be performed by factory.
+     *
+     * @var int
+     */
     protected $count = 1;
 
     /**
