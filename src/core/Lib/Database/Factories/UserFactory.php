@@ -107,7 +107,7 @@ class UserFactory extends Factory {
      */
     public function withImages(int $count = 2): static {
         return $this->afterCreating(function (Users $user) use ($count) {
-            (new ProfileImageFactory($user->id))->count($count)->create();
+            ProfileImageFactory::factory($user->id)->count($count)->create();
         });
     }
 }
