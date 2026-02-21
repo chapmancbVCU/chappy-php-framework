@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Lib\Database;
 
+use Core\Exceptions\FactorySeeder\FactorySeederException;
 use Faker\Factory as FakerFactory;
 
 /**
@@ -92,6 +93,11 @@ abstract class Factory {
      * we return false.
      */
     public function create(array $attributes = []) {
+        if(env('APP_ENV') === 'production') {
+            throw new FactorySeederException("Factories and seeders can only be run in development mode");
+            return;
+        }
+
         $results = [];
 
         for ($i = 0; $i < $this->count; $i++) {

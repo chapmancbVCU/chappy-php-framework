@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Core\Lib\Database;
 
 use Core\DB;
+use Core\Exceptions\FactorySeeder\FactorySeederException;
 
 /**
  * Abstract class for seeders.
@@ -39,6 +40,11 @@ abstract class Seeder {
      * @return void
      */
     protected function call(string|array $seederClass): void {
+        if(env('APP_ENV') === 'production') {
+            throw new FactorySeederException("Factories and seeders can only be run in development mode");
+            return;
+        }
+        
         if(is_array($seederClass)) {
             foreach($seederClass as $class) {
                 $this->seed($class);
