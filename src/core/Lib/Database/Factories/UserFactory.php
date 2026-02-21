@@ -25,17 +25,6 @@ class UserFactory extends Factory {
     }
 
     /**
-     * Overrides configure function from super class.
-     *
-     * @return static
-     */
-    // protected function configure(): static {
-    //     return $this->afterCreating(function (Users $user) {
-    //         (new ProfileImageFactory($user->id))->count(2)->create();
-    //     });
-    // }
-
-    /**
      * Definition for UsersFactory.
      *
      * @return array
