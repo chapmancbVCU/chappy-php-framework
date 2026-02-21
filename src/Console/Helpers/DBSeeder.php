@@ -36,14 +36,14 @@ use App\Models\\{$modelName};
 use Core\Lib\Database\Factory;
 
 class {$modelName}Factory extends Factory {
-    protected \$modelName = $modelName::class;
+    protected string \$modelName = $modelName::class;
 
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    protected function definition(): array
     {
         return [
             
