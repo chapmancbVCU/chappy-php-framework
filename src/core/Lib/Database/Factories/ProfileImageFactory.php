@@ -11,8 +11,15 @@ use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
  * Factory for generating new profile images.
  */
 class ProfileImageFactory extends Factory {
-    protected $modelName = ProfileImages::class;
-    private $userId;
+    protected string $modelName = ProfileImages::class;
+    private int $userId;
+
+    /**
+     * Creates new instance of this factory.  You must provide user id
+     * to constructor.
+     *
+     * @param int $userId The user_id for the profile image.
+     */
     public function __construct(int $userId)
     {
         $this->userId = $userId;
@@ -24,7 +31,7 @@ class ProfileImageFactory extends Factory {
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    protected function definition(): array
     {
         $this->faker->addProvider(new FakerPicsumImagesProvider($this->faker));
         $basePath = 'storage' . DS . 'app' . DS . 'private' . DS . 'profile_images' . DS;

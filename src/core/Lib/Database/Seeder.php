@@ -2,28 +2,12 @@
 declare(strict_types=1);
 namespace Core\Lib\Database;
 
-use Core\DB;
 use Core\Exceptions\FactorySeeder\FactorySeederException;
 
 /**
  * Abstract class for seeders.
  */
 abstract class Seeder {
-    /**
-     * Instance of the database connection.
-     *
-     * @var DB
-     */
-    protected DB $_db;
-
-
-    /**
-     * Constructor for Seeder class.  Primary role is to get DB instance.
-     */
-    public function __construct() {
-        $this->_db = DB::getInstance();
-    }
-
     /**
      * All seeders must implement the run method.
      *
@@ -42,9 +26,8 @@ abstract class Seeder {
     protected function call(string|array $seederClass): void {
         if(env('APP_ENV') === 'production') {
             throw new FactorySeederException("Factories and seeders can only be run in development mode");
-            return;
         }
-        
+
         if(is_array($seederClass)) {
             foreach($seederClass as $class) {
                 $this->seed($class);

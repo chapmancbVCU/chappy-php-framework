@@ -9,12 +9,12 @@ use Core\Lib\Database\Factory;
  * Factory for creating new user table records.
  */
 class UserFactory extends Factory {
-    protected $modelName = Users::class;
+    protected string $modelName = Users::class;
 
     /**
      * Overrides default value for acl.
      *
-     * @return self
+     * @return static
      */
     public function admin(): static {
         return $this->state(function (array $data , array $attributes) {
@@ -29,9 +29,11 @@ class UserFactory extends Factory {
      *
      * @return array
      */
-    public function definition(): array
+    protected function definition(): array
     {
-        $tempPassword = $this->faker->password((int)env('PW_MIN_LENGTH'), (int)env('PW_MAX_LENGTH') - 5);
+        $min = (int) env('PW_MIN_LENGTH');
+        $max = max($min, (int) env('PW_MAX_LENGTH') - 5);
+        $tempPassword = $this->faker->password($min, $max);
         $tempPassword .= $this->append();
     
         return [
@@ -53,7 +55,7 @@ class UserFactory extends Factory {
     /**
      * Overrides default value for deleted.
      *
-     * @return self
+     * @return static
      */
     public function deleted(): static {
         return $this->state(function (array $data , array $attributes) {
@@ -66,7 +68,7 @@ class UserFactory extends Factory {
     /**
      * Overrides default value for inactive.
      *
-     * @return self
+     * @return static
      */
     public function inactive(): static {
         return $this->state(function (array $data, array $attributes) {
@@ -78,7 +80,7 @@ class UserFactory extends Factory {
     /**
      * Overrides default value for login_attempts.
      *
-     * @return self
+     * @return static
      */
     public function loginAttempts(): static {
         return $this->state(function (array $data , array $attributes) {
@@ -91,7 +93,7 @@ class UserFactory extends Factory {
     /**
      * Overrides default value for resetPassword.
      *
-     * @return self
+     * @return static
      */
     public function resetPassword(): static {
         return $this->state(function (array $data , array $attributes) {

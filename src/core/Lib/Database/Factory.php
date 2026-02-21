@@ -13,7 +13,7 @@ abstract class Factory {
      * Array containing callbacks that are used after database record is 
      * successfully saved.
      *
-     * @var array
+     * @var array<int, callable(object): void>
      */
     protected array $afterCreatingCallbacks = [];
 
@@ -22,21 +22,21 @@ abstract class Factory {
      *
      * @var int
      */
-    protected $count = 1;
+    protected int $count = 1;
 
     /**
      * Instance of Faker\Factory object.
      *
      * @var FactoryFaker
      */
-    protected $faker;
+    protected \Faker\Generator $faker;
 
     /**
      * The model used by the child factory class.
      *
      * @var string
      */
-    protected $modelName;
+    protected string $modelName;
 
     /**
      * States for overriding definition.
@@ -108,7 +108,8 @@ abstract class Factory {
             $model = $this->insert($data, $this->modelName);
 
             if($model instanceof $this->modelName) {
-                $results = $this->invokeAfterCreatingCallbacks($model);
+                $this->invokeAfterCreatingCallbacks($model);
+                if ($model) $results[] = $model;
             }
 
         }
@@ -160,11 +161,11 @@ abstract class Factory {
         if(class_exists($modelName)) {
             $newModel = new $modelName();
         } else {
-            console_error("The model {$newModel} does not exist");
+            console_error("The model {$modelName} does not exist");
         }
 
         foreach($data as $key => $value) {
-            if(property_exists($modelName, $key)) {
+            if(property_exists($newModel, $key)) {
                 $newModel->$key = $value;
             }
         }
@@ -186,15 +187,12 @@ abstract class Factory {
      * Calls all registered afterCreating callbacks associated with a factory.
      *
      * @param object $model The parent model
-     * @return array An array of models.
+     * @return void
      */
-    protected function invokeAfterCreatingCallbacks(object $model): array {
+    protected function invokeAfterCreatingCallbacks(object $model): void {
         foreach($this->afterCreatingCallbacks as $callback) {
             $callback($model);
         }
-        if ($model) $results[] = $model;
-
-        return $results;
     }
     
     /**
