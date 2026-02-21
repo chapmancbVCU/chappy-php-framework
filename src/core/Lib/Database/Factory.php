@@ -89,6 +89,8 @@ abstract class Factory {
     /**
      * Create a record(s) in the database.
      *
+     * @param array $attributes The attributes used to override default definition 
+     * values.
      * @return array|object The array of models that were created or a single object 
      * model if just one record is inserted.
      */
@@ -101,20 +103,12 @@ abstract class Factory {
 
         for ($i = 0; $i < $this->count; $i++) {
             $data = $this->definition();
-
-            foreach ($this->states as $state) {
-                $extra = $state($data, $attributes);
-                $data = array_merge($data, (array)$extra);
-            }
-
+            $data = $this->invokeStateCallbacks($attributes, $data);
             $data = array_merge($data, $attributes);
             $model = $this->insert($data, $this->modelName);
 
             if($model instanceof $this->modelName) {
-                foreach($this->afterCreatingCallbacks as $callback) {
-                    $callback($model);
-                }
-                if ($model) $results[] = $model;
+                $results = $this->invokeAfterCreatingCallbacks($model);
             }
 
         }
@@ -156,7 +150,7 @@ abstract class Factory {
     /**
      * Insert data into the database table.
      *
-     * @param array<string, mixed> $data
+     * @param array<string, mixed> $data Data to be saved in new database record.
      * @param string $modelName The name of the model to reference correct table.
      * @return object The model object if save is successful.  Otherwise, we 
      * return null.
@@ -186,6 +180,38 @@ abstract class Factory {
             console_error("Database error " . $e->getMessage());
         }
         return null;
+    }
+
+    /**
+     * Calls all registered afterCreating callbacks associated with a factory.
+     *
+     * @param object $model The parent model
+     * @return array An array of models.
+     */
+    protected function invokeAfterCreatingCallbacks(object $model): array {
+        foreach($this->afterCreatingCallbacks as $callback) {
+            $callback($model);
+        }
+        if ($model) $results[] = $model;
+
+        return $results;
+    }
+    
+    /**
+     * Calls state callback functions.
+     *
+     * @param array $attributes The attributes used to override default definition 
+     * values.
+     * @param array<string, mixed> $data Data to be saved in new database record.
+     * @return array $data The data that contains values that overrides defaults 
+     * found in definition.
+     */
+    protected function invokeStateCallbacks(array $attributes, array $data): array {
+        foreach ($this->states as $state) {
+            $extra = $state($data, $attributes);
+            $data =  array_merge($data, (array)$extra);
+        }
+        return $data;
     }
 
     /**
