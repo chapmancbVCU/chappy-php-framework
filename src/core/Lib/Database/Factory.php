@@ -89,7 +89,8 @@ abstract class Factory {
     /**
      * Create a record(s) in the database.
      *
-     * @return array The array of models that were created.
+     * @return array|object The array of models that were created or a single object 
+     * model if just one record is inserted.
      */
     public function create(array $attributes = []): array|object {
         if(env('APP_ENV') === 'production') {
