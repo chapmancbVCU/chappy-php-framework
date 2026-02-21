@@ -91,7 +91,7 @@ abstract class Factory {
      *
      * @return array The array of models that were created.
      */
-    public function create(array $attributes = []): array {
+    public function create(array $attributes = []): array|object {
         if(env('APP_ENV') === 'production') {
             throw new FactorySeederException("Factories and seeders can only be run in development mode");
         }
@@ -208,7 +208,8 @@ abstract class Factory {
      * @return self
      */
     public function state(callable $state): self {
+        $clone = clone $this;
         $this->states[] = $state;
-        return $this;
+        return $clone;
     }
 }
