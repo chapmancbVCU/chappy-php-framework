@@ -34,7 +34,8 @@ abstract class Seeder {
      * Processes parameters provided and calls seed class to perform actual 
      * work.  This function accepts a string or an array of strings.
      *
-     * @param string|array $seederClass The name of the seeder class.
+     * @param string|array $seederClass The name of the seeder class or array 
+     * of seeder classes.
      * @return void
      */
     protected function call(string|array $seederClass): void {
