@@ -89,13 +89,11 @@ abstract class Factory {
     /**
      * Create a record(s) in the database.
      *
-     * @return bool True if insert operation was successful.  Otherwise, 
-     * we return false.
+     * @return array The array of models that were created.
      */
-    public function create(array $attributes = []) {
+    public function create(array $attributes = []): array {
         if(env('APP_ENV') === 'production') {
             throw new FactorySeederException("Factories and seeders can only be run in development mode");
-            return;
         }
 
         $results = [];
