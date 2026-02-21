@@ -51,6 +51,19 @@ class UserFactory extends Factory {
     }
 
     /**
+     * Overrides default value for deleted.
+     *
+     * @return self
+     */
+    public function deleted(): static {
+        return $this->state(function (array $data , array $attributes) {
+            return [
+                'deleted' => 1
+            ];
+        });
+    }
+    
+    /**
      * Overrides default value for inactive.
      *
      * @return self
