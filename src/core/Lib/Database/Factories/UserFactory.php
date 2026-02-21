@@ -16,8 +16,8 @@ class UserFactory extends Factory {
      *
      * @return self
      */
-    public function admin(): self {
-        return $this->state(function (array $attributes) {
+    public function admin(): static {
+        return $this->state(function (array $data , array $attributes) {
             return [
                 'acl' => json_encode(["Admin"])
             ];
@@ -66,8 +66,8 @@ class UserFactory extends Factory {
      *
      * @return self
      */
-    public function inactive(): self {
-        return $this->state(function (array $attributes) {
+    public function inactive(): static {
+        return $this->state(function (array $data, array $attributes) {
             return [
                 'inactive' => 1
             ];
@@ -78,8 +78,8 @@ class UserFactory extends Factory {
      *
      * @return self
      */
-    public function loginAttempts(): self {
-        return $this->state(function (array $attributes) {
+    public function loginAttempts(): static {
+        return $this->state(function (array $data , array $attributes) {
             return [
                 'login_attempts' => 1
             ];
@@ -91,8 +91,8 @@ class UserFactory extends Factory {
      *
      * @return self
      */
-    public function resetPassword(): self {
-        return $this->state(function (array $attributes) {
+    public function resetPassword(): static {
+        return $this->state(function (array $data , array $attributes) {
             return [
                 'reset_password' => 1
             ];

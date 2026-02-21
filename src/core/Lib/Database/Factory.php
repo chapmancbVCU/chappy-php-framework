@@ -103,7 +103,7 @@ abstract class Factory {
             $data = $this->definition();
 
             foreach ($this->states as $state) {
-                $extra = is_callable($state) ? $state($attributes) : $state;
+                $extra = $state($data, $attributes);
                 $data = array_merge($data, (array)$extra);
             }
 
@@ -147,9 +147,9 @@ abstract class Factory {
      * Returns instance of new child factory class.
      *
      * @param string $factoryName The name of the factory class.
-     * @return object The child factory class.
+     * @return static The child factory class.
      */
-    public static function factory(...$params): object {
+    public static function factory(...$params): static {
         return new static(...$params);
     }
 
@@ -196,8 +196,9 @@ abstract class Factory {
      * @return static
      */
     public function sequence(array ...$sequence): static {
-        $this->states[] = new Sequence(...$sequence);
-        return $this;
+        $clone = clone $this;
+        $clone->states[] = new Sequence(...$sequence);
+        return $clone;
     }
 
     /**
@@ -206,11 +207,11 @@ abstract class Factory {
      *
      * @param callable $state The anonymous function for overriding a value 
      * for a specified key.
-     * @return self
+     * @return static
      */
-    public function state(callable $state): self {
+    public function state(callable $state): static {
         $clone = clone $this;
-        $this->states[] = $state;
+        $clone->states[] = $state;
         return $clone;
     }
 }
