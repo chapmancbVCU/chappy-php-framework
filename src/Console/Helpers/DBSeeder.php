@@ -18,7 +18,7 @@ class DBSeeder {
     /**
      * Namespace for seeder classes to be accessible outside this class.
      */
-    public const SEEDER_NAMESPACE = "Database\\Seeders\\";
+    private const SEEDER_NAMESPACE = "Database\\Seeders\\";
     
     /**
      * Path to all seeder classes.
@@ -95,12 +95,13 @@ PHP;
     /**
      * Runs command for seeding database.
      *
-     * @param string $classname The name of the seeder class to be used.  The 
-     * default value is DatabaseSeeder::class.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function seed(string $classname = DatabaseSeeder::class): int {
-        $seeder = new $classname();
+    public static function seed(InputInterface $input): int {
+        $seederOption = $input->getOption('seeder');
+        $classname = self::SEEDER_NAMESPACE.$seederOption;
+        $seeder = ($seederOption) ? new $classname() : new DatabaseSeeder();
         $seeder->run();
         console_info('Database seeding complete!.  If you see only this message then uncomment your seeders.');
         return Command::SUCCESS;

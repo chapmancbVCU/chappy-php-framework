@@ -23,7 +23,8 @@ class MigrateFreshCommand extends Command
         $this->setName('migrate:fresh')
             ->setDescription('Drops all tables and runs a Database Migration!')
             ->setHelp('Drops all tables and runs a Database Migration')
-            ->addOption('seed', null, InputOption::VALUE_NONE, 'Seed flag');
+            ->addOption('seed', null, InputOption::VALUE_NONE, 'Seed flag')
+            ->addOption('seeder', null, InputOption::VALUE_REQUIRED, 'Specify the name of a seeder class');
     }
  
     /**
@@ -42,7 +43,7 @@ class MigrateFreshCommand extends Command
         
         $status = Migrate::migrate();
         if($status == Command::SUCCESS && $input->getOption('seed')) {
-            return DBSeeder::seed();
+            return DBSeeder::seed($input);
         }
 
         return $status;

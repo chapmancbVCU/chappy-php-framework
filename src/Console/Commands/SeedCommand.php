@@ -21,7 +21,7 @@ class SeedCommand extends Command {
     {
         $this->setName('seed:run')
             ->setDescription("Runs command to seed database")
-            ->addOption('seeder', null, InputOption::VALUE_REQUIRED, 'Specify name of seeder class', false)
+            ->addOption('seeder', null, InputOption::VALUE_REQUIRED, 'Specify name of a seeder class', false)
             ->setHelp('run seed:run');
     }
 
@@ -34,12 +34,6 @@ class SeedCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $seederClass = $input->getOption('seeder');
-
-        if($seederClass) {
-            return DBSeeder::seed(DBSeeder::SEEDER_NAMESPACE.$seederClass);
-        }
-
-        return DBSeeder::seed();
+        return DBSeeder::seed($input);
     }
 }
