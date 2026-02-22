@@ -61,34 +61,32 @@ PHP;
     /**
      * Creates a new factory class.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $factoryName The name for the new factory class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeFactory(InputInterface $input): int {
-        $factoryName = Str::ucfirst($input->getArgument('factory-name'));
+    public static function makeFactory(string $factoryName): int {
         Tools::pathExists(self::FACTORY_PATH);
         
         return Tools::writeFile(
             self::FACTORY_PATH.$factoryName.'Factory.php',
             self::factory($factoryName),
-            "The {$factoryName} factory "
+            "The {$factoryName}Factory class"
         );
     }
 
     /**
      * Creates a class for seeding a database.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $seederName The name for the new seeder class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeSeeder(InputInterface $input): int {
-        $seederName = Str::ucfirst($input->getArgument('seeder-name'));
+    public static function makeSeeder(string $seederName): int {
         Tools::pathExists(self::SEEDER_PATH);
 
         return Tools::writeFile(
             self::SEEDER_PATH.$seederName.'TableSeeder.php',
             self::seeder($seederName),
-            'Seeder'
+            "The {$seederName}TableSeeder class"
         );
     }
     

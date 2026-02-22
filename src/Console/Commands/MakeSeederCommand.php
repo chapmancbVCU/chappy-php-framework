@@ -6,6 +6,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Console\Helpers\DBSeeder;
+use Core\Lib\Utilities\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Supports operations for the make:seeder command.  Use this command to make a database seeder.
@@ -22,7 +24,8 @@ class MakeSeederCommand extends Command {
         $this->setName('make:seeder')
             ->setDescription('Generates a new Seeder class')
             ->setHelp('php console make:seeder ClassName')
-            ->addArgument('seeder-name', InputArgument::REQUIRED, 'Pass the name of the seeder class you want to create');
+            ->addArgument('seeder-name', InputArgument::REQUIRED, 'Pass the name of the seeder class you want to create')
+            ->addOption('factory', null, InputOption::VALUE_NONE, 'Enter name for a factory');
     }
 
     /**
@@ -34,6 +37,13 @@ class MakeSeederCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return DBSeeder::makeSeeder($input);
+        $seederName = Str::ucfirst($input->getArgument('seeder-name'));
+        $factoryName = Str::ucfirst($input->getOption('factory'));
+        
+        if($factoryName) {
+            DBSeeder::makeFactory($seederName);
+        }
+
+        return DBSeeder::makeSeeder($seederName);
     }
 }
