@@ -89,8 +89,8 @@ abstract class Factory {
     /**
      * Create a record(s) in the database.
      *
-     * @param array $attributes The attributes used to override default definition 
-     * values.
+     * @param array $attributes The an associative array attributes used to 
+     * override default definition values.
      * @return array|object The array of models that were created or a single object 
      * model if just one record is inserted.
      */
