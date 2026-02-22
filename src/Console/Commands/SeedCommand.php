@@ -5,6 +5,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Console\Helpers\DBSeeder;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Runs the command for seeding database with random data.
@@ -20,6 +21,7 @@ class SeedCommand extends Command {
     {
         $this->setName('seed:run')
             ->setDescription("Runs command to seed database")
+            ->addOption('seeder', null, InputOption::VALUE_REQUIRED, 'Specify name of seeder class', false)
             ->setHelp('run seed:run');
     }
 
@@ -32,6 +34,12 @@ class SeedCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $seederClass = $input->getOption('seeder');
+
+        if($seederClass) {
+            return DBSeeder::seed(DBSeeder::SEEDER_NAMESPACE.$seederClass);
+        }
+
         return DBSeeder::seed();
     }
 }

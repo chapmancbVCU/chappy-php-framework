@@ -16,6 +16,11 @@ class DBSeeder {
     private const FACTORY_PATH = ROOT.DS.'database'.DS.'factories'.DS;
 
     /**
+     * Namespace for seeder classes to be accessible outside this class.
+     */
+    public const SEEDER_NAMESPACE = "Database\\Seeders\\";
+    
+    /**
      * Path to all seeder classes.
      */
     private const SEEDER_PATH = ROOT.DS.'database'.DS.'seeders'.DS;
@@ -90,10 +95,12 @@ PHP;
     /**
      * Runs command for seeding database.
      *
+     * @param string $classname The name of the seeder class to be used.  The 
+     * default value is DatabaseSeeder::class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function seed(): int {
-        $seeder = new DatabaseSeeder();
+    public static function seed(string $classname = DatabaseSeeder::class): int {
+        $seeder = new $classname();
         $seeder->run();
         console_info('Database seeding complete!.  If you see only this message then uncomment your seeders.');
         return Command::SUCCESS;
