@@ -101,6 +101,39 @@
             <p><p>Supports operations related to database seeding.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                            private
+                                                                                FACTORY_PATH
+                                    </td>
+                <td class="last">
+                    <p><em><p>Path to all user created factory classes.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                            private
+                                                                                SEEDER_NAMESPACE
+                                    </td>
+                <td class="last">
+                    <p><em><p>Namespace for seeder classes to be accessible outside this class.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                            private
+                                                                                SEEDER_PATH
+                                    </td>
+                <td class="last">
+                    <p><em><p>Path to all seeder classes.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -108,10 +141,30 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_factory">factory</a>(string $modelName)
+        
+                                            <p><p>Returns contents for new factory class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_makeSeeder">makeSeeder</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+                    <a href="#method_makeFactory">makeFactory</a>(string $factoryName)
+        
+                                            <p><p>Creates a new factory class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeSeeder">makeSeeder</a>(string $seederName)
         
                                             <p><p>Creates a class for seeding a database.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -121,7 +174,7 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_seed">seed</a>()
+                    <a href="#method_seed">seed</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         
                                             <p><p>Runs command for seeding database.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -143,10 +196,95 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_makeSeeder">
-        <div class="location">at line 19</div>
+                    <h3 id="method_factory">
+        <div class="location">at line 35</div>
+        <code>        static            string
+    <strong>factory</strong>(string $modelName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns contents for new factory class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$modelName</td>
+                <td><p>The name of the model the new factory will
+target.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents of the new factory class.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeFactory">
+        <div class="location">at line 67</div>
         <code>        static            int
-    <strong>makeSeeder</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+    <strong>makeFactory</strong>(string $factoryName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Creates a new factory class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$factoryName</td>
+                <td><p>The name for the new factory class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeSeeder">
+        <div class="location">at line 83</div>
+        <code>        static            int
+    <strong>makeSeeder</strong>(string $seederName)
         </code>
     </h3>
     <div class="details">    
@@ -155,6 +293,48 @@
 
         <div class="method-description">
                             <p><p>Creates a class for seeding a database.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$seederName</td>
+                <td><p>The name for the new seeder class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_seed">
+        <div class="location">at line 99</div>
+        <code>        static            int
+    <strong>seed</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Runs command for seeding database.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -185,40 +365,8 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_seed">
-        <div class="location">at line 35</div>
-        <code>        static            int
-    <strong>seed</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Runs command for seeding database.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>int</td>
-            <td><p>A value that indicates success, invalid, or failure.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_seeder">
-        <div class="location">at line 48</div>
+        <div class="location">at line 114</div>
         <code>        static            string
     <strong>seeder</strong>(string $seederName)
         </code>

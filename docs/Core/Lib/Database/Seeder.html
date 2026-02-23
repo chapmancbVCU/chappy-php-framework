@@ -102,34 +102,10 @@
             
         
     
-            <h2>Properties</h2>
-
-            <table class="table table-condensed">
-                    <tr>
-                <td class="type" id="property__db">
-                                        protected                                        <a href="../../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
-                                                                                
-                                    </td>
-                <td>$_db</td>
-                <td class="last"><p>Instance of the database connection.</p></td>
-                <td></td>
-            </tr>
-            </table>
-
     
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>()
-        
-                                            <p><p>Constructor for Seeder class.  Primary role is to get DB instance.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     void
@@ -145,9 +121,20 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_call">call</a>(string $seederClass)
+                    <a href="#method_call">call</a>(<abbr title="Core\Lib\Database\string|array">string|array</abbr> $seederClass)
         
-                                            <p><p>Call another seeder class.</p></p>                </div>
+                                            <p><p>Processes parameters provided and calls seed class to perform actual
+work.  This function accepts a string or an array of strings.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_seed">seed</a>(string $seederClass)
+        
+                                            <p><p>Performs seeding of data.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -157,31 +144,8 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method___construct">
-        <div class="location">at line 22</div>
-        <code>                    
-    <strong>__construct</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Constructor for Seeder class.  Primary role is to get DB instance.</p></p>                        
-        </div>
-        <div class="tags">
-            
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_run">
-        <div class="location">at line 31</div>
+        <div class="location">at line 16</div>
         <code>    abstract                void
     <strong>run</strong>()
         </code>
@@ -213,9 +177,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_call">
-        <div class="location">at line 39</div>
+        <div class="location">at line 26</div>
         <code>            protected        void
-    <strong>call</strong>(string $seederClass)
+    <strong>call</strong>(<abbr title="Core\Lib\Database\string|array">string|array</abbr> $seederClass)
         </code>
     </h3>
     <div class="details">    
@@ -223,7 +187,51 @@
             
 
         <div class="method-description">
-                            <p><p>Call another seeder class.</p></p>                        
+                            <p><p>Processes parameters provided and calls seed class to perform actual
+work.  This function accepts a string or an array of strings.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Database\string|array">string|array</abbr></td>
+                <td>$seederClass</td>
+                <td><p>The name of the seeder class or array
+of seeder classes.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_seed">
+        <div class="location">at line 46</div>
+        <code>                private    void
+    <strong>seed</strong>(string $seederClass)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs seeding of data.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>

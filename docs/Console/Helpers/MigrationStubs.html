@@ -111,9 +111,39 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_aclTableTemplate">aclTableTemplate</a>()
+        
+                                            <p><p>Template for acl table migration.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_emailAttachmentsTableTemplate">emailAttachmentsTableTemplate</a>()
+        
+                                            <p><p>Template for email_attachments table migration.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_migrationClass">migrationClass</a>(string $fileName, string $tableName)
         
                                             <p><p>Generates a new Migration class for creating a new table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_migrationTableTemplate">migrationTableTemplate</a>()
+        
+                                            <p><p>Template for migrations table migration.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -136,6 +166,36 @@
                                             <p><p>Generates a new Migration class for updating a table.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_profileImagesTableTemplate">profileImagesTableTemplate</a>()
+        
+                                            <p><p>Template for profile_images table migration.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_userSessionsTableTemplate">userSessionsTableTemplate</a>()
+        
+                                            <p><p>Template for user_sessions table migration.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_usersTableTemplate">usersTableTemplate</a>()
+        
+                                            <p><p>Template for users table migration.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
             </div>
 
 
@@ -143,8 +203,72 @@
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method_aclTableTemplate">
+        <div class="location">at line 16</div>
+        <code>        static            string
+    <strong>aclTableTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for acl table migration.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content for acl table migration.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_emailAttachmentsTableTemplate">
+        <div class="location">at line 60</div>
+        <code>        static            string
+    <strong>emailAttachmentsTableTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for email_attachments table migration.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content for email_attachments table migration.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_migrationClass">
-        <div class="location">at line 18</div>
+        <div class="location">at line 112</div>
         <code>        static            string
     <strong>migrationClass</strong>(string $fileName, string $tableName)
         </code>
@@ -190,8 +314,40 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_migrationTableTemplate">
+        <div class="location">at line 154</div>
+        <code>        static            string
+    <strong>migrationTableTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for migrations table migration.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content for migrations table migration.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_migrationRenameClass">
-        <div class="location">at line 63</div>
+        <div class="location">at line 200</div>
         <code>        static            string
     <strong>migrationRenameClass</strong>(string $fileName, string $from, string $to)
         </code>
@@ -243,7 +399,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_migrationUpdateClass">
-        <div class="location">at line 102</div>
+        <div class="location">at line 239</div>
         <code>        static            string
     <strong>migrationUpdateClass</strong>(string $fileName, string $tableName)
         </code>
@@ -278,6 +434,102 @@
         <tr>
             <td>string</td>
             <td><p>The contents of the new Migration class.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_profileImagesTableTemplate">
+        <div class="location">at line 280</div>
+        <code>        static            string
+    <strong>profileImagesTableTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for profile_images table migration.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content for profile_images table migration.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_userSessionsTableTemplate">
+        <div class="location">at line 327</div>
+        <code>        static            string
+    <strong>userSessionsTableTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for user_sessions table migration.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content for user_sessions table migration.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_usersTableTemplate">
+        <div class="location">at line 373</div>
+        <code>        static            string
+    <strong>usersTableTemplate</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for users table migration.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content for users table migration.</p></td>
         </tr>
     </table>
 

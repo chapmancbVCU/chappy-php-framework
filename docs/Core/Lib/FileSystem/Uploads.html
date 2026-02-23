@@ -251,7 +251,7 @@ presentable to user during validation.</p></p>                </div>
                     static&nbsp;<a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_handleUpload">handleUpload</a>(array $file, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name, string $mode = self::SINGLE)
+                    <a href="#method_handleUpload">handleUpload</a>(string $name, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $mode = self::SINGLE)
         
                                             <p><p>Handles file uploads and returns an Uploads instance if valid.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -569,9 +569,9 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleUpload">
-        <div class="location">at line 172</div>
+        <div class="location">at line 171</div>
         <code>        static            <a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
-    <strong>handleUpload</strong>(array $file, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name, string $mode = self::SINGLE)
+    <strong>handleUpload</strong>(string $name, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $mode = self::SINGLE)
         </code>
     </h3>
     <div class="details">    
@@ -586,9 +586,9 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
-                <td>$file</td>
-                <td><p>The file input from $_FILES.</p></td>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name of the field for upload from form.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -611,11 +611,6 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
                 <td><p>The associated with the view you are working with.
 May or may not be same as $uploadModel if $uploadModel has index
 id field associated with another model.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$name</td>
-                <td><p>The name of the field for upload from form.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -644,7 +639,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_restructureFiles">
-        <div class="location">at line 218</div>
+        <div class="location">at line 217</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, string $mode = self::SINGLE)
         </code>
@@ -691,7 +686,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 250</div>
+        <div class="location">at line 249</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -723,7 +718,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_upload">
-        <div class="location">at line 286</div>
+        <div class="location">at line 285</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -775,7 +770,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validates">
-        <div class="location">at line 306</div>
+        <div class="location">at line 305</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>
@@ -808,7 +803,7 @@ we return the $_errors array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validateFileType">
-        <div class="location">at line 315</div>
+        <div class="location">at line 314</div>
         <code>            protected        void
     <strong>validateFileType</strong>()
         </code>
@@ -840,7 +835,7 @@ we return the $_errors array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validateSize">
-        <div class="location">at line 353</div>
+        <div class="location">at line 352</div>
         <code>            protected        void
     <strong>validateSize</strong>()
         </code>

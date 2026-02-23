@@ -108,61 +108,71 @@ upper case character in the field.</p></p>                    </div>
             <table class="table table-condensed">
                     <tr>
                 <td class="type" id="property_additionalFieldData">
-                                                                                
+                                                                                array
                                                                                 
                                     </td>
                 <td>$additionalFieldData</td>
-                <td class="last"></td>
+                <td class="last"><p>Additional field data.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property_additionalFieldData">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_field">
-                                                                                
+                                                                                string
                                                                                 
                                     </td>
                 <td>$field</td>
-                <td class="last"></td>
+                <td class="last"><p>Name of field being validated.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property_field">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_includeDeleted">
-                                                                                
+                                                                                bool
                                                                                 
                                     </td>
                 <td>$includeDeleted</td>
-                <td class="last"></td>
+                <td class="last"><p>Include deleted default is false.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property_includeDeleted">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
             </tr>
                     <tr>
-                <td class="type" id="property_message">
+                <td class="type" id="property__model">
+                                        protected                                        string
                                                                                 
+                                    </td>
+                <td>$_model</td>
+                <td class="last"><p>Name of the model.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property__model">
+<abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_message">
+                                                                                string
                                                                                 
                                     </td>
                 <td>$message</td>
-                <td class="last"></td>
+                <td class="last"><p>Message when validation fails.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property_message">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_rule">
-                                                                                
+                                                                                mixed
                                                                                 
                                     </td>
                 <td>$rule</td>
-                <td class="last"></td>
+                <td class="last"><p>Rule for validation success.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property_rule">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_success">
-                                                                                
+                                                                                bool
                                                                                 
                                     </td>
                 <td>$success</td>
-                <td class="last"></td>
+                <td class="last"><p>Flag to mark whether or not validation is successful.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Validators/CustomValidator.html#property_success">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></small></td>
             </tr>
@@ -194,9 +204,8 @@ is displayed describing the issue.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_runValidation">runValidation</a>()
         
-                                            <p><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain at least one
-upper case character.</p></p>                </div>
+                                            <p><p>Signature for the runValidation function that must be implemented by
+each child class.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -208,7 +217,7 @@ upper case character.</p></p>                </div>
                     <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../Core/Validators/CustomValidator.html#method___construct">
-<abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a> at line 33</div>
+<abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a> at line 68</div>
         <code>                    
     <strong>__construct</strong>(object $model, array $params)
         </code>
@@ -262,9 +271,8 @@ form is submitted during a post action.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Implements the abstract function of the same name from the parent
-class.  Enforces requirement where a field must contain at least one
-upper case character.</p></p>                        
+                            <p><p>Signature for the runValidation function that must be implemented by
+each child class.</p></p>                        
         </div>
         <div class="tags">
             

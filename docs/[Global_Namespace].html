@@ -96,6 +96,19 @@
             <h2>Functions</h2>
 
         <div class="container-fluid underlined">
+                            <div class="row" id="function_alert">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        alert(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 18
+                        </div>
+                    </div>
+                </div>
                             <div class="row" id="function_asset">
                     <div class="col-md-2 type">
                                                                                                 string
@@ -104,7 +117,7 @@
                         asset(string $path, bool $local = false)<br>
                                                                                                                             <p><p>Retrieves publicly available asset.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 21
+                        <div class="location">at line 18
                         </div>
                     </div>
                 </div>
@@ -142,7 +155,7 @@ the right that is not part of a group.</p></p>                    </div>
                         cl(mixed ...$vars)<br>
                                                                                                                             <p><p>Prints to console using JavaScript.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 38
+                        <div class="location">at line 33
                         </div>
                     </div>
                 </div>
@@ -154,7 +167,129 @@ the right that is not part of a group.</p></p>                    </div>
                         config(string $key, mixed $default = null)<br>
                                                                                                                             <p><p>Get a configuration value.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 53
+                        <div class="location">at line 48
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console(string $message, string $level = Logger::INFO, string $background = ConsoleLogger::BG_GREEN, string $text = ConsoleLogger::TEXT_LIGHT_GREY)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 39
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_alert">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_alert(string $message)<br>
+                                                                                                                            <p><p>Generates an alert console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 56
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_critical">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_critical(string $message)<br>
+                                                                                                                            <p><p>Generates a critical console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 68
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_debug">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_debug(string $message)<br>
+                                                                                                                            <p><p>Generates a debug console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 80
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_emergency">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_emergency(string $message)<br>
+                                                                                                                            <p><p>Generates an emergency console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 92
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_error">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_error(string $message)<br>
+                                                                                                                            <p><p>Generates an error console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 104
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_info">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_info(string $message)<br>
+                                                                                                                            <p><p>Generates an info console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 116
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_notice">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_notice(string $message)<br>
+                                                                                                                            <p><p>Generates a notice console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 128
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_console_warning">
+                    <div class="col-md-2 type">
+                                                                                                void
+                    </div>
+                    <div class="col-md-8">
+                        console_warning(string $message)<br>
+                                                                                                                            <p><p>Generates a warning console message.</p></p>                    </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 141
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_critical">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        critical(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 156
                         </div>
                     </div>
                 </div>
@@ -178,7 +313,20 @@ the right that is not part of a group.</p></p>                    </div>
                         dd(mixed ...$vars)<br>
                                                                                                                             <p><p>Performs var_dump of parameter and kills the page.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 66
+                        <div class="location">at line 61
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_debug">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        debug(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 171
                         </div>
                     </div>
                 </div>
@@ -190,7 +338,7 @@ the right that is not part of a group.</p></p>                    </div>
                         dump(mixed ...$vars)<br>
                                                                                                                             <p><p>Dumps content but continues execution.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 82
+                        <div class="location">at line 77
                         </div>
                     </div>
                 </div>
@@ -202,7 +350,7 @@ the right that is not part of a group.</p></p>                    </div>
                         e(string|null $value)<br>
                                                                                                                             <p><p>Escape a string for safe HTML output.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 102
+                        <div class="location">at line 97
                         </div>
                     </div>
                 </div>
@@ -218,6 +366,19 @@ the right that is not part of a group.</p></p>                    </div>
                         </div>
                     </div>
                 </div>
+                            <div class="row" id="function_emergency">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        emergency(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 186
+                        </div>
+                    </div>
+                </div>
                             <div class="row" id="function_env">
                     <div class="col-md-2 type">
                                                                                                 mixed
@@ -226,7 +387,20 @@ the right that is not part of a group.</p></p>                    </div>
                         env(string $key, mixed $default = null)<br>
                                                                                                                             <p><p>Get an environment variable.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 115
+                        <div class="location">at line 110
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_error">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        error(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 201
                         </div>
                     </div>
                 </div>
@@ -250,7 +424,7 @@ the right that is not part of a group.</p></p>                    </div>
                         flashMessage(string $type, string $message)<br>
                                                                                                                             <p><p>Adds a session alert message.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 130
+                        <div class="location">at line 125
                         </div>
                     </div>
                 </div>
@@ -268,14 +442,14 @@ the right that is not part of a group.</p></p>                    </div>
                 </div>
                             <div class="row" id="function_info">
                     <div class="col-md-2 type">
-                                                                                                void
+                                                                                                
                     </div>
                     <div class="col-md-8">
-                        info(string $message, string $level = Logger::INFO, string $background = Tools::BG_GREEN, string $text = Tools::TEXT_LIGHT_GREY)<br>
+                        info(string $message)<br>
                                                                                                                             <p class="no-description">No description</p>
                                             </div>
                     <div class="col-md-2">
-                        <div class="location">at line 151
+                        <div class="location">at line 216
                         </div>
                     </div>
                 </div>
@@ -302,7 +476,20 @@ or submitTag functions.</p></p>                    </div>
                         logger(string $message, string $level = Logger::INFO)<br>
                                                                                                                             <p><p>Performs operations for adding content to log files.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 170
+                        <div class="location">at line 168
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_notice">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        notice(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 231
                         </div>
                     </div>
                 </div>
@@ -314,7 +501,7 @@ or submitTag functions.</p></p>                    </div>
                         now(string|null $timezone = null, string|null $format = null, string|null $locale = null)<br>
                                                                                                                             <p><p>Get the current time as a formatted string using Carbon.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 194
+                        <div class="location">at line 149
                         </div>
                     </div>
                 </div>
@@ -351,7 +538,7 @@ element.  Compatible with radio button groups.</p></p>                    </div>
                         redirect(string $location, array $params = [])<br>
                                                                                                                             <p><p>Performs redirect operations.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 216
+                        <div class="location">at line 171
                         </div>
                     </div>
                 </div>
@@ -363,7 +550,7 @@ element.  Compatible with radio button groups.</p></p>                    </div>
                         route(string $path, array $params = [])<br>
                                                                                                                             <p><p>Route function for views that supports dot notation and array of parameters.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 230
+                        <div class="location">at line 185
                         </div>
                     </div>
                 </div>
@@ -436,7 +623,20 @@ for setting  attribute tags in the form section.</p></p>                    </di
                         vite(string $asset)<br>
                                                                                                                             <p><p>Generate the URL for a Vite-built asset.</p></p>                    </div>
                     <div class="col-md-2">
-                        <div class="location">at line 258
+                        <div class="location">at line 213
+                        </div>
+                    </div>
+                </div>
+                            <div class="row" id="function_warning">
+                    <div class="col-md-2 type">
+                                                                                                
+                    </div>
+                    <div class="col-md-8">
+                        warning(string $message)<br>
+                                                                                                                            <p class="no-description">No description</p>
+                                            </div>
+                    <div class="col-md-2">
+                        <div class="location">at line 246
                         </div>
                     </div>
                 </div>

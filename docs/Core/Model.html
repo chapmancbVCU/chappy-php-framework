@@ -269,6 +269,17 @@ extendability.</p></p>                    </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_count">count</a>()
+        
+                                            <p><p>Retrieves number of rows affected or returned by the last query.  This
+is a wrapper function for the DB::count function.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     <a target="_blank" rel="noopener" href="https://www.php.net/stdClass">stdClass</a>
                 </div>
                 <div class="col-md-8">
@@ -786,8 +797,41 @@ ModelName::WHITELIST they are whitelisted.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_count">
+        <div class="location">at line 150</div>
+        <code>        static            int
+    <strong>count</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves number of rows affected or returned by the last query.  This
+is a wrapper function for the DB::count function.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>The number of rows affected or returned by the last query.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_data">
-        <div class="location">at line 149</div>
+        <div class="location">at line 159</div>
         <code>                    <a target="_blank" rel="noopener" href="https://www.php.net/stdClass">stdClass</a>
     <strong>data</strong>()
         </code>
@@ -819,7 +863,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_delete">
-        <div class="location">at line 170</div>
+        <div class="location">at line 180</div>
         <code>                    bool
     <strong>delete</strong>()
         </code>
@@ -852,7 +896,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getColumns">
-        <div class="location">at line 192</div>
+        <div class="location">at line 202</div>
         <code>        static            array
     <strong>getColumns</strong>()
         </code>
@@ -885,7 +929,7 @@ from a database table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getColumnsForSave">
-        <div class="location">at line 202</div>
+        <div class="location">at line 212</div>
         <code>                    array
     <strong>getColumnsForSave</strong>()
         </code>
@@ -918,7 +962,7 @@ from model object.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getDb">
-        <div class="location">at line 231</div>
+        <div class="location">at line 241</div>
         <code>        static            <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>getDb</strong>()
         </code>
@@ -950,7 +994,7 @@ from model object.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getErrorMessages">
-        <div class="location">at line 244</div>
+        <div class="location">at line 254</div>
         <code>                    array
     <strong>getErrorMessages</strong>()
         </code>
@@ -983,7 +1027,7 @@ validation.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method__fetchStyleParams">
-        <div class="location">at line 254</div>
+        <div class="location">at line 264</div>
         <code>        static    protected        array
     <strong>_fetchStyleParams</strong>(array $params)
         </code>
@@ -1025,7 +1069,7 @@ validation.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_find">
-        <div class="location">at line 268</div>
+        <div class="location">at line 278</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>find</strong>(array $params = [])
         </code>
@@ -1068,7 +1112,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findById">
-        <div class="location">at line 282</div>
+        <div class="location">at line 292</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findById</strong>(int $id)
         </code>
@@ -1110,7 +1154,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findByTable">
-        <div class="location">at line 298</div>
+        <div class="location">at line 308</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>findByTable</strong>(string $table, array $params = [])
         </code>
@@ -1160,7 +1204,7 @@ selecting from related tables).</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_findAllByUserId">
-        <div class="location">at line 314</div>
+        <div class="location">at line 324</div>
         <code>        static            array
     <strong>findAllByUserId</strong>(int $user_id, array $params = [])
         </code>
@@ -1208,7 +1252,7 @@ default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findFirst">
-        <div class="location">at line 332</div>
+        <div class="location">at line 342</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findFirst</strong>(array $params = [])
         </code>
@@ -1251,7 +1295,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findTotal">
-        <div class="location">at line 347</div>
+        <div class="location">at line 357</div>
         <code>        static            int
     <strong>findTotal</strong>(array $params = [])
         </code>
@@ -1295,7 +1339,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_insert">
-        <div class="location">at line 362</div>
+        <div class="location">at line 372</div>
         <code>                    bool
     <strong>insert</strong>(array $fields)
         </code>
@@ -1338,7 +1382,7 @@ use to populate a database record.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_isNew">
-        <div class="location">at line 374</div>
+        <div class="location">at line 384</div>
         <code>                    bool
     <strong>isNew</strong>()
         </code>
@@ -1371,7 +1415,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
-        <div class="location">at line 383</div>
+        <div class="location">at line 393</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -1403,7 +1447,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
-        <div class="location">at line 391</div>
+        <div class="location">at line 401</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -1445,7 +1489,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_query">
-        <div class="location">at line 406</div>
+        <div class="location">at line 416</div>
         <code>                    <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -1493,7 +1537,7 @@ The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 417</div>
+        <div class="location">at line 427</div>
         <code>                    void
     <strong>runValidation</strong>(object $validator)
         </code>
@@ -1536,7 +1580,7 @@ message if validator fails.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_save">
-        <div class="location">at line 432</div>
+        <div class="location">at line 442</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -1570,7 +1614,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
-        <div class="location">at line 473</div>
+        <div class="location">at line 483</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -1613,7 +1657,7 @@ delete.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 502</div>
+        <div class="location">at line 512</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -1657,7 +1701,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
-        <div class="location">at line 532</div>
+        <div class="location">at line 542</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -1718,7 +1762,7 @@ Supports:</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
-        <div class="location">at line 542</div>
+        <div class="location">at line 552</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -1751,7 +1795,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 553</div>
+        <div class="location">at line 563</div>
         <code>                    void
     <strong>validator</strong>()
         </code>

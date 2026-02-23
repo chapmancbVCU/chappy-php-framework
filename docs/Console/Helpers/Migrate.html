@@ -143,9 +143,89 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_fileName">fileName</a>()
+                    <a href="#method_fileNameTime">fileNameTime</a>()
         
-                                            <p><p>Generates file/class name for migration.</p></p>                </div>
+                                            <p><p>Generates time stamp for migrations in following format: yyyymmddhhmmss.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateACLTableMigration">generateACLTableMigration</a>()
+        
+                                            <p><p>Generates migration for acl table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateAllMigrations">generateAllMigrations</a>()
+        
+                                            <p><p>Generates all migrations.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateEmailAttachmentsTableMigration">generateEmailAttachmentsTableMigration</a>()
+        
+                                            <p><p>Generates migration for email_attachments table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateMigrationByName">generateMigrationByName</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+        
+                                            <p><p>Generates migration by name.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateMigrationsTableMigration">generateMigrationsTableMigration</a>()
+        
+                                            <p><p>Generates migration for migration table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateProfileImagesTableMigration">generateProfileImagesTableMigration</a>()
+        
+                                            <p><p>Generates migration for profile_images table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateUserSessionsTableMigration">generateUserSessionsTableMigration</a>()
+        
+                                            <p><p>Generates migration for user_sessions table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_generateUsersTableMigration">generateUsersTableMigration</a>()
+        
+                                            <p><p>Generates migration for users table.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -257,7 +337,7 @@ operations.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_batchExists">
-        <div class="location">at line 32</div>
+        <div class="location">at line 31</div>
         <code>        static        private    bool
     <strong>batchExists</strong>(int $batch)
         </code>
@@ -299,7 +379,7 @@ operations.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropAllTables">
-        <div class="location">at line 46</div>
+        <div class="location">at line 45</div>
         <code>        static            int
     <strong>dropAllTables</strong>()
         </code>
@@ -330,10 +410,10 @@ operations.</p></p>                </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_fileName">
-        <div class="location">at line 79</div>
+                    <h3 id="method_fileNameTime">
+        <div class="location">at line 78</div>
         <code>        static            string
-    <strong>fileName</strong>()
+    <strong>fileNameTime</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -341,7 +421,7 @@ operations.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Generates file/class name for migration.</p></p>                        
+                            <p><p>Generates time stamp for migrations in following format: yyyymmddhhmmss.</p></p>                        
         </div>
         <div class="tags">
             
@@ -350,7 +430,273 @@ operations.</p></p>                </div>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>The file/class name of the migration.</p></td>
+            <td><p>The migration timestamp.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateACLTableMigration">
+        <div class="location">at line 87</div>
+        <code>        static            int
+    <strong>generateACLTableMigration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration for acl table.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateAllMigrations">
+        <div class="location">at line 101</div>
+        <code>        static            int
+    <strong>generateAllMigrations</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates all migrations.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td>Command::SUCCESS</td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateEmailAttachmentsTableMigration">
+        <div class="location">at line 115</div>
+        <code>        static            int
+    <strong>generateEmailAttachmentsTableMigration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration for email_attachments table.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateMigrationByName">
+        <div class="location">at line 130</div>
+        <code>        static            int
+    <strong>generateMigrationByName</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration by name.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td>Command::SUCCESS</td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateMigrationsTableMigration">
+        <div class="location">at line 145</div>
+        <code>        static            int
+    <strong>generateMigrationsTableMigration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration for migration table.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateProfileImagesTableMigration">
+        <div class="location">at line 159</div>
+        <code>        static            int
+    <strong>generateProfileImagesTableMigration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration for profile_images table.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateUserSessionsTableMigration">
+        <div class="location">at line 173</div>
+        <code>        static            int
+    <strong>generateUserSessionsTableMigration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration for user_sessions table.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_generateUsersTableMigration">
+        <div class="location">at line 187</div>
+        <code>        static            int
+    <strong>generateUsersTableMigration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates migration for users table.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
         </tr>
     </table>
 
@@ -363,7 +709,7 @@ operations.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeMigration">
-        <div class="location">at line 89</div>
+        <div class="location">at line 202</div>
         <code>        static            int
     <strong>makeMigration</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -405,7 +751,7 @@ operations.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeRenameMigration">
-        <div class="location">at line 107</div>
+        <div class="location">at line 220</div>
         <code>        static            int
     <strong>makeRenameMigration</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -447,7 +793,7 @@ operations.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeUpdateMigration">
-        <div class="location">at line 126</div>
+        <div class="location">at line 239</div>
         <code>        static            int
     <strong>makeUpdateMigration</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -489,7 +835,7 @@ operations.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_migrate">
-        <div class="location">at line 143</div>
+        <div class="location">at line 256</div>
         <code>        static            int
     <strong>migrate</strong>()
         </code>
@@ -521,7 +867,7 @@ operations.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_refresh">
-        <div class="location">at line 215</div>
+        <div class="location">at line 328</div>
         <code>        static            int
     <strong>refresh</strong>(<abbr title="Console\Helpers\bool|int">bool|int</abbr> $step = false)
         </code>
@@ -564,7 +910,7 @@ back.  When set to false all tables are dropped one by one.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_rollback">
-        <div class="location">at line 270</div>
+        <div class="location">at line 383</div>
         <code>        static            int
     <strong>rollback</strong>(<abbr title="Console\Helpers\string|int|bool">string|int|bool</abbr> $batch = false)
         </code>
@@ -607,7 +953,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_rollbackStep">
-        <div class="location">at line 318</div>
+        <div class="location">at line 431</div>
         <code>        static            int
     <strong>rollbackStep</strong>(<abbr title="Console\Helpers\string|int">string|int</abbr> $step)
         </code>
@@ -649,7 +995,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_status">
-        <div class="location">at line 331</div>
+        <div class="location">at line 444</div>
         <code>        static            int
     <strong>status</strong>()
         </code>
@@ -681,7 +1027,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_step">
-        <div class="location">at line 387</div>
+        <div class="location">at line 500</div>
         <code>        static        private    <abbr title="Console\Helpers\bool|int">bool|int</abbr>
     <strong>step</strong>(string $klassNamespace, <abbr title="Console\Helpers\bool|int">bool|int</abbr> $step = false)
         </code>
@@ -731,7 +1077,7 @@ when no number of steps is provided.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tableCount">
-        <div class="location">at line 408</div>
+        <div class="location">at line 521</div>
         <code>        static        private    int
     <strong>tableCount</strong>()
         </code>

@@ -13,7 +13,7 @@ abstract class Factory {
      * Array containing callbacks that are used after database record is 
      * successfully saved.
      *
-     * @var array<int, callable(object): void>
+     * @var array
      */
     protected array $afterCreatingCallbacks = [];
 
@@ -141,7 +141,7 @@ abstract class Factory {
     /**
      * Returns instance of new child factory class.
      *
-     * @param string $factoryName The name of the factory class.
+     * @param mixed $params Params for factory.
      * @return static The child factory class.
      */
     public static function factory(...$params): static {
