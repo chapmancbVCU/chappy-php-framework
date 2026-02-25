@@ -24,7 +24,13 @@ final class FrameworkQuestion {
         }
     }
 
-    public function confirm(string $message) {
+    /**
+     * Asks a use to confirm based on question asked.
+     *
+     * @param string $message The 
+     * @return mixed The user answer.
+     */
+    public function confirm(string $message): mixed {
         $question = new ConfirmationQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
             false
