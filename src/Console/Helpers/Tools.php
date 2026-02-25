@@ -39,7 +39,7 @@ class Tools {
         if (!is_dir($directory)) {
             $question = new FrameworkQuestion($cmdInput, $cmdOutput);
             $message = "The directory '$directory' does not exist. Do you want to create it? (y/n) ";
-            if ($question->ask($message)) {
+            if ($question->confirm($message)) {
                 self::pathExists($directory, 0755, true);
                 console_info("Directory created: $directory");
                 return Command::SUCCESS;

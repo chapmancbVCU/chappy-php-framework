@@ -24,7 +24,7 @@ final class FrameworkQuestion {
         }
     }
 
-    public function ask(string $message) {
+    public function confirm(string $message) {
         $question = new ConfirmationQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
             false
