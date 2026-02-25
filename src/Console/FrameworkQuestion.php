@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
@@ -25,7 +26,7 @@ final class FrameworkQuestion {
     }
 
     /**
-     * Asks the user a question..
+     * Asks the user a question.
      *
      * @param string $message The question to ask.
      * @return mixed The user answer.
@@ -40,6 +41,24 @@ final class FrameworkQuestion {
         return $this->helper->ask($this->input, $this->output, $question);
     }
 
+    /**
+     * Asks the user a question where there is a choice to be made.
+     *
+     * @param string $message The question to ask.
+     * @return mixed The user answer.
+     */
+    public function choice(string $message, array $choices): mixed {
+        $this->output->writeln('');
+        $question = new ChoiceQuestion(
+            "<fg=green> {$message} </> ",
+            $choices,
+            false
+        );
+        
+        $question->setErrorMessage(" Option %s is invalid.");
+        return $this->helper->ask($this->input, $this->output, $question);
+    }
+    
     /**
      * Asks a use to confirm based on question asked.
      *
