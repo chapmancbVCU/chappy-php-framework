@@ -83,14 +83,14 @@ class Tools {
     /**
      * Checks if parameter provided is equal to Command::FAILURE.
      *
-     * @param int $param The value to be tested.
+     * @param mixed $param The value to be tested.
      * @return bool True if value is equal to Command::FAILURE.  Otherwise, we 
      * return false.
      */
-    public static function isFailure(int $param) {
+    public static function isFailure(mixed $param): bool {
         return ($param === Command::FAILURE) ? true : false;
     }
-    
+
     /**
      * Tests if a path exits and creates it if necessary.
      *
