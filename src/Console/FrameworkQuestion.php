@@ -25,9 +25,25 @@ final class FrameworkQuestion {
     }
 
     /**
+     * Asks the user a question..
+     *
+     * @param string $message The question to ask.
+     * @return mixed The user answer.
+     */
+    public function ask(string $message): mixed {
+        $question = new Question(
+            "<fg=green> {$message} <fg=cyan>></> ",
+            false
+        );
+        
+        return $this->helper->ask($this->input, $this->output, $question);
+    }
+
+    /**
      * Asks a use to confirm based on question asked.
      *
-     * @param string $message The 
+     * @param string $message The question to ask.  It is advised to phrase it 
+     * such that the user knows to answer y or n.
      * @return mixed The user answer.
      */
     public function confirm(string $message): mixed {
