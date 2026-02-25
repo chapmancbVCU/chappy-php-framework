@@ -31,6 +31,7 @@ final class FrameworkQuestion {
      * @return mixed The user answer.
      */
     public function ask(string $message): mixed {
+        $this->output->writeln('');
         $question = new Question(
             "<fg=green> {$message} <fg=cyan>></> ",
             false
@@ -47,6 +48,7 @@ final class FrameworkQuestion {
      * @return mixed The user answer.
      */
     public function confirm(string $message): mixed {
+        $this->output->writeln('');
         $question = new ConfirmationQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
             false
