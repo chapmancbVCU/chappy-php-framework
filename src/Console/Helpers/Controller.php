@@ -14,8 +14,17 @@ final class Controller {
      * Path for controller classes.
      */
     public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
-    
-    public static function classContents(string $className, InputInterface $input, string $layout): string {
+
+    /**
+     * Returns contents for the controller class.  If the resource flag is 
+     * set then a resource controller is generated.
+     *
+     * @param string $className The name for the new controller class.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $layout The name of the layout to be used.
+     * @return string The contents for the controller class.
+     */
+    public static function contents(string $className, InputInterface $input, string $layout): string {
         if($input->getOption('resource')) {
             return ControllerStubs::resourceTemplate($className, $layout);
         } 
@@ -26,7 +35,7 @@ final class Controller {
     /**
      * Sets layout for controller
      *
-     * @param InputInterface $input
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return string|int The layout or Command::FAILURE if there is an issue.
      */
     public static function layout(InputInterface $input): string|int {
