@@ -10,11 +10,37 @@ use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * Supports questions through the command line interface.
+ */
 final class FrameworkQuestion {
-    public $helper;
+    /**
+     * Instance of QuestionHelper class.
+     *
+     * @var QuestionHelper
+     */
+    private QuestionHelper $helper;
+
+    /**
+     * InputInterface instance created when parent command is ran.
+     *
+     * @var InputInterface
+     */
     private InputInterface $input;
+
+    /**
+     * OutputInterface instance created when parent command is ran.
+     *
+     * @var OutputInterface
+     */
     private OutputInterface $output;
 
+    /**
+     * Creates instance of FrameworkQuestion class.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     */
     public function __construct(InputInterface $input, OutputInterface $output) {
         $this->helper = new QuestionHelper();
         $this->input = $input;
