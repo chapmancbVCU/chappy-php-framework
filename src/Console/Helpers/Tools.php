@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\FrameworkQuestion;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -34,22 +35,11 @@ class Tools {
         InputInterface $cmdInput, 
         OutputInterface $cmdOutput
     ): int {
-        // Manual instantiation to avoid `getHelper()` issues
-        $helper = new QuestionHelper(); 
-
-        if (!$helper) {
-            console_error('Helper could not be instantiated.');
-            return Command::FAILURE;
-        }
-
         // Check if directory exists
         if (!is_dir($directory)) {
-            $question = new ConfirmationQuestion(
-                "The directory '$directory' does not exist. Do you want to create it? (y/n) ", 
-                false
-            );
-
-            if ($helper->ask($cmdInput, $cmdOutput, $question)) {
+            $question = new FrameworkQuestion($cmdInput, $cmdOutput);
+            $message = "The directory '$directory' does not exist. Do you want to create it? (y/n) ";
+            if ($question->ask($message)) {
                 self::pathExists($directory, 0755, true);
                 console_info("Directory created: $directory");
                 return Command::SUCCESS;
