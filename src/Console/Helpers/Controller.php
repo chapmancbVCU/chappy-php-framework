@@ -11,6 +11,19 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 final class Controller {
     /**
+     * Path for controller classes.
+     */
+    public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
+    
+    public static function classContents(string $className, InputInterface $input, string $layout): string {
+        if($input->getOption('resource')) {
+            return ControllerStubs::resourceTemplate($className, $layout);
+        } 
+
+        return ControllerStubs::defaultTemplate($className, $layout);
+    }
+
+    /**
      * Sets layout for controller
      *
      * @param InputInterface $input

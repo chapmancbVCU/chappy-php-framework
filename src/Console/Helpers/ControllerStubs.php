@@ -7,11 +7,6 @@ namespace Console\Helpers;
  */
 class ControllerStubs {
     /**
-     * Path for controller classes.
-     */
-    public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
-    
-    /**
      * The default template for a new controller.
      *
      * @param string $controllerName The name of the controller.

@@ -4,7 +4,6 @@ namespace Console\Commands;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
-use Console\Helpers\ControllerStubs;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -54,17 +53,13 @@ class GenerateControllerCommand extends Command
         $layout = Controller::layout($input);
         
         if(Tools::isFailure($layout)) return Command::FAILURE;
+
+        $content = Controller::classContents($controllerName, $input, $layout);
         
-        // Test if --resource flag is set and generate appropriate version of file
-        if($input->getOption('resource')) {
-            $content = ControllerStubs::resourceTemplate($controllerName, $layout);
-        } else {
-            $content = ControllerStubs::defaultTemplate($controllerName, $layout);
-        }
 
         // Generate Controller class
         return Tools::writeFile(
-            ControllerStubs::CONTROLLER_PATH.$controllerName.'Controller.php',
+            Controller::CONTROLLER_PATH.$controllerName.'Controller.php',
             $content,
             "Controller"
         );
