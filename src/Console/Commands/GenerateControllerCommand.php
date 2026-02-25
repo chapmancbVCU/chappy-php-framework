@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Console\Helpers\ControllerStubs;
@@ -50,21 +51,9 @@ class GenerateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $controllerName = Str::ucfirst($input->getArgument('controllername'));
+        $layout = Controller::layout($input);
         
-        // Test if --layout is properly set
-        $layoutInput = $input->getOption('layout');
-        if($layoutInput === false) {
-            $layout = 'default';
-        } else if ($layoutInput === null) {
-            console_warning('Please supply name of layout.');
-            return Command::FAILURE;
-        } else {
-            if($layoutInput === '') {
-                console_warning('Please supply name of layout.');
-                return Command::FAILURE;
-            }
-            $layout = Str::lower($layoutInput);
-        }
+        if(Tools::isFailure($layout)) return Command::FAILURE;
         
         // Test if --resource flag is set and generate appropriate version of file
         if($input->getOption('resource')) {
