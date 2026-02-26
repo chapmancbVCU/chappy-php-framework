@@ -60,7 +60,7 @@ final class Controller {
             $message = "This field is required.  Please enter name for a controller";
             $response = $question->ask($message);
         }
-        
+
         return Str::ucfirst($response);
     }
 
@@ -112,7 +112,14 @@ final class Controller {
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
             $message = "Enter name for your layout";
-            return Str::lower($question->ask($message));
+            $response = $question->ask($message);
+
+            while($response == '') {
+                $message = "This field is required for a y response to the previous question.  Please enter name for a layout";
+                $response = $question->ask($message);
+            }
+
+            return Str::lower($response);
         } else {
             return 'default';
         }
