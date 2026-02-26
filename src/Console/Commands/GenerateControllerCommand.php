@@ -63,9 +63,6 @@ class GenerateControllerCommand extends Command
             $content = Controller::resourcePrompt($controllerName, $input, $layout, $output);
         }
         
-
-        
-        
         // Generate Controller class
         return Tools::writeFile(
             Controller::CONTROLLER_PATH.$controllerName.'Controller.php',

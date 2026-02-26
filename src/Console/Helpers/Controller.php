@@ -54,7 +54,14 @@ final class Controller {
 
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for controller";
-        return Str::ucfirst($question->ask($message));
+        $response = $question->ask($message);
+
+        while($response == '') {
+            $message = "This field is required.  Please enter name for a controller";
+            $response = $question->ask($message);
+        }
+        
+        return Str::ucfirst($response);
     }
 
     /**
