@@ -31,7 +31,7 @@ final class Controller {
         InputInterface $input, 
         string $layout
     ): string {
-        
+
         if($input->getOption('resource')) {
             return ControllerStubs::resourceTemplate($className, $layout);
         } 
@@ -39,6 +39,14 @@ final class Controller {
         return ControllerStubs::defaultTemplate($className, $layout);
     }
 
+    /**
+     * Handles question for controller name if it is not provided as an 
+     * argument.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the controller class.
+     */
     public static function controllerNamePrompt(
         InputInterface $input, 
         OutputInterface $output
