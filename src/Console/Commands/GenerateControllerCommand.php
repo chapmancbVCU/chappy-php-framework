@@ -1,7 +1,6 @@
 <?php
 namespace Console\Commands;
 
-use Console\FrameworkQuestion;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
