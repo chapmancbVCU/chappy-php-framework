@@ -6,6 +6,7 @@ use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports operations related to generating controllers.
@@ -25,12 +26,27 @@ final class Controller {
      * @param string $layout The name of the layout to be used.
      * @return string The contents for the controller class.
      */
-    public static function contents(string $className, InputInterface $input, string $layout): string {
+    public static function contents(
+        string $className, 
+        InputInterface $input, 
+        string $layout
+    ): string {
+        
         if($input->getOption('resource')) {
             return ControllerStubs::resourceTemplate($className, $layout);
         } 
 
         return ControllerStubs::defaultTemplate($className, $layout);
+    }
+
+    public static function controllerNamePrompt(
+        InputInterface $input, 
+        OutputInterface $output
+    ): string {
+
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Enter name for controller";
+        return Str::ucfirst($question->ask($message));
     }
 
     /**
@@ -67,7 +83,13 @@ final class Controller {
      * @param string $layout Current value set for layout to be used.
      * @return string The name of the layout to be used.
      */
-    public static function layoutPrompt(FrameworkQuestion $question, InputInterface $input, string $layout): string {
+    public static function layoutPrompt(
+        InputInterface $input, 
+        OutputInterface $output, 
+        string $layout
+    ): string {
+    
+        $question = new FrameworkQuestion($input, $output);
         $layoutInput = $input->getOption('layout');
         if($layoutInput === true) return $layout;
 

@@ -57,10 +57,8 @@ class GenerateControllerCommand extends Command
         if($controllerName) {
             $controllerName = Str::ucfirst($controllerName);
         } else {
-            $question = new FrameworkQuestion($input, $output);
-            $message = "Enter name for controller";
-            $controllerName = Str::ucfirst($question->ask($message));
-            $layout = Controller::layoutPrompt($question, $input, $layout);
+            $controllerName = Controller::controllerNamePrompt($input, $output);
+            $layout = Controller::layoutPrompt($input, $output, $layout);
         }
         
 
