@@ -65,6 +65,7 @@ final class Controller {
      */
     public static function layout(InputInterface $input): string|int {
         $layoutInput = $input->getOption('layout');
+
         if($layoutInput === false) {
             $layout = 'default';
         } else if ($layoutInput === null) {
@@ -108,5 +109,34 @@ final class Controller {
         } else {
             return 'default';
         }
+    }
+
+    /**
+     * Prompts user if they want a resource controller if controller name 
+     * argument is not provided and resource flag is not set.  Once the input 
+     * has been processed the contents for the controller class is returned.
+     *
+     * @param string $className The name for the new controller class.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $layout The name of the layout to be used.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The contents for the controller class.
+     */
+    public static function resourcePrompt(
+        string $className, 
+        InputInterface $input, 
+        string $layout, 
+        OutputInterface $output
+    ): string {
+        $resourceInput = $input->getOption('resource');
+        if($resourceInput) return self::contents($className, $input, $layout);
+
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Do you want to use a resource controller? (y/n)";
+        if($question->confirm($message)) {
+            return ControllerStubs::resourceTemplate($className, $layout);
+        }
+
+        return ControllerStubs::defaultTemplate($className, $layout);
     }
 }
