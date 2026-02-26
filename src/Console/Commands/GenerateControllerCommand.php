@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\FrameworkQuestion;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -25,7 +26,7 @@ class GenerateControllerCommand extends Command
         $this->setName('make:controller')
             ->setDescription('Generates a new controller file!')
             ->setHelp('php console make:controller MyController, add --layout=<optional_layout_name> to set layout, and --resource to generate CRUD functions')
-            ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
+            ->addArgument('controllername', InputArgument::OPTIONAL, 'Pass the controller\'s name.')
             ->addOption(
                 'layout',
                 null,
@@ -49,14 +50,22 @@ class GenerateControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $controllerName = Str::ucfirst($input->getArgument('controllername'));
+        $controllerName = $input->getArgument('controllername');
         $layout = Controller::layout($input);
-        
         if(Tools::isFailure($layout)) return Command::FAILURE;
-
-        $content = Controller::classContents($controllerName, $input, $layout);
+        
+        if($controllerName) {
+            $controllerName = Str::ucfirst($controllerName);
+        } else {
+            $question = new FrameworkQuestion($input, $output);
+            $message = "Enter name for controller";
+            $controllerName = Str::ucfirst($question->ask($message));
+            $layout = Controller::layoutPrompt($question, $input, $layout);
+        }
         
 
+        $content = Controller::contents($controllerName, $input, $layout);
+        
         // Generate Controller class
         return Tools::writeFile(
             Controller::CONTROLLER_PATH.$controllerName.'Controller.php',

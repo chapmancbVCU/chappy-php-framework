@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -53,5 +54,29 @@ final class Controller {
             $layout = Str::lower($layoutInput);
         }
         return $layout;
+    }
+
+    /**
+     * Sets layout when user does not enter name of controller as argument.  
+     * If layout flag is not set then user is asked questions about desired 
+     * layout name.
+     *
+     * @param FrameworkQuestion $question Instance of Framework Question 
+     * object.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $layout Current value set for layout to be used.
+     * @return string The name of the layout to be used.
+     */
+    public static function layoutPrompt(FrameworkQuestion $question, InputInterface $input, string $layout): string {
+        $layoutInput = $input->getOption('layout');
+        if($layoutInput === true) return $layout;
+
+        $message = "Do you want to set a name for your layout? (y/n)";
+        if($question->confirm($message)) {
+            $message = "Enter name for your layout";
+            return Str::lower($question->ask($message));
+        } else {
+            return 'default';
+        }
     }
 }
