@@ -32,6 +32,8 @@ class DropTablesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Migrate::dropAllTables();
+        $confirm = Migrate::confirmDropAllTables($input, $output);
+        if($confirm) return Migrate::dropAllTables();
+        return Command::SUCCESS;
     }
 }

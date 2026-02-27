@@ -3,15 +3,18 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\ConsoleLogger;
+use Console\FrameworkQuestion;
 use PDO;
 use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
 use Console\Helpers\MigrationStatus;
+use Core\Exceptions\FrameworkException;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Helper class for migration related console commands.
@@ -68,6 +71,19 @@ class Migrate {
             console_error('Error dropping tables: ' . $e->getMessage());
             return Command::FAILURE;
         }
+    }
+
+    /**
+     * Ask user to confirm if they want to drop all tables.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return mixed The user's response.
+     */
+    public static function confirmDropAllTables(InputInterface $input, OutputInterface $output): mixed {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Are you sure you want to drop all tables? (y/n)";
+        return $question->confirm($message);
     }
 
     /**
