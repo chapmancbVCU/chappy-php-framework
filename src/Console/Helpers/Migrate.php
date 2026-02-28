@@ -539,7 +539,13 @@ class Migrate {
         return self::refresh((int)$step);
     }
 
-    public static function setFlags(InputInterface $input) {
+    /**
+     * Generates an array containing values for rename and update flags.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return array The contents of the rename and update flags.
+     */
+    public static function setFlags(InputInterface $input): array {
         return [
             $renameOption = $input->getOption('rename'),
             $updateOption = $input->getOption('update')
