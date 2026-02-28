@@ -31,6 +31,14 @@ class Model {
         return ModelStubs::modelTemplate($modelName);
     }
 
+    /**
+     * Handles question for model name if it is not provided as an 
+     * argument.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the model class.
+     */
     public static function modelNamePrompt(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for model";
@@ -44,6 +52,17 @@ class Model {
         return Str::ucfirst($response);
     }
 
+    /**
+     * Prompts user if they want an upload model if model name 
+     * argument is not provided and upload flag is not set.  Once the input 
+     * has been processed the contents for the model class is returned.
+     *
+     * @param string $modelName The name of the new model class.
+     * @param InputInterface $input he Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param mixed $uploadOption Value/state of upload flag.
+     * @return string The contents of the model class.
+     */
     public static function uploadPrompt(
         string $modelName, 
         InputInterface $input, 
