@@ -353,6 +353,13 @@ class Migrate {
         return Command::SUCCESS;
     }
 
+    /**
+     * Handles question for which table a new migration will target.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the table the new migration will target.
+     */
     public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for new migration";
