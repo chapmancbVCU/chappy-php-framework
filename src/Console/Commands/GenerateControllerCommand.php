@@ -56,16 +56,16 @@ class GenerateControllerCommand extends Command
         
         if($controllerName) {
             $controllerName = Str::ucfirst($controllerName);
-            $content = Controller::contents($controllerName, $resourceOption, $layout);
+            $contents = Controller::contents($controllerName, $resourceOption, $layout);
         } else {
             $controllerName = Controller::controllerNamePrompt($input, $output);
             $layout = Controller::layoutPrompt($input, $output, $layout);
-            $content = Controller::resourcePrompt($controllerName, $input, $layout, $output, $resourceOption);
+            $contents = Controller::resourcePrompt($controllerName, $input, $layout, $output, $resourceOption);
         }
         
         return Tools::writeFile(
             Controller::CONTROLLER_PATH.$controllerName.'Controller.php',
-            $content,
+            $contents,
             "Controller"
         );
     }  
