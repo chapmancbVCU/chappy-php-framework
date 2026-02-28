@@ -223,7 +223,15 @@ class Migrate {
         );
     }
 
-    public static function isBothFlagsSet($renameOption, $updateOption) {
+    /**
+     * Determines if both rename and update flags are set.  If they are both 
+     * set then a message is displayed and true is returned.
+     *
+     * @param mixed $renameOption Value/state of rename flag.
+     * @param mixed $renameOption Value/state of update flag.
+     * @return bool True if both flags are set.  Otherwise, we return false.
+     */
+    public static function isBothFlagsSet($renameOption, $updateOption): bool {
         if($updateOption && $renameOption) {
             console_warning('Cannot accept update and rename options at the same time.');
             return true;
