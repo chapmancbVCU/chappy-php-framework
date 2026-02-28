@@ -24,7 +24,16 @@ class Migrate {
      */
     public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
 
-    public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption) {
+    /**
+     * Generates new migration class if table-name argument is provided.  If rename or update 
+     * flags are set then appropriate migration class is created.
+     *
+     * @param string $migrationName The name of the table for the new migration class.
+     * @param mixed $renameOption Value/state of rename flag.
+     * @param mixed $updateOption Value/state of update flag.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption): int {
         if($updateOption && $renameOption) {
             console_warning('Cannot accept update and rename options at the same time.');
             return Command::FAILURE;
