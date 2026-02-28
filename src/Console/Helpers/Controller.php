@@ -28,7 +28,7 @@ final class Controller {
      */
     public static function contents(
         string $className, 
-        $resourceOption, 
+        mixed $resourceOption, 
         string $layout
     ): string {
 
