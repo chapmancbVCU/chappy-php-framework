@@ -29,16 +29,9 @@ class Migrate {
      * flags are set then appropriate migration class is created.
      *
      * @param string $migrationName The name of the table for the new migration class.
-     * @param mixed $renameOption Value/state of rename flag.
-     * @param mixed $updateOption Value/state of update flag.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption): int {
-        if($updateOption && $renameOption) {
-            console_warning('Cannot accept update and rename options at the same time.');
-            return Command::FAILURE;
-        }
-
         if($renameOption) return Migrate::makeRenameMigration($migrationName, $renameOption);
         else if($updateOption) return Migrate::makeUpdateMigration($migrationName);
         else return Migrate::makeMigration($migrationName);
@@ -228,6 +221,15 @@ class Migrate {
         );
     }
 
+    public static function isBothFlagsSet($renameOption, $updateOption) {
+        if($updateOption && $renameOption) {
+            console_warning('Cannot accept update and rename options at the same time.');
+            return true;
+        }
+
+        return false;
+    }
+    
     /**
      * Generates a migration class for creating a new table.
      *
@@ -373,6 +375,26 @@ class Migrate {
         return $response;
     }
 
+    public static function migrationTypePrompt(
+        InputInterface $input, 
+        string $migrationName, 
+        OutputInterface $output
+    ) {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "What type of migration do you want?";
+        $response = $question->choice(
+            $message,
+            ['New Table', 'Rename', 'Update']
+        );
+        
+        if($response == 'New Table') return self::makeMigration($migrationName);
+        if($response == 'Rename') return self::renameChoice($migrationName, $input, $output);
+        if($response == 'Update') return self::makeUpdateMigration($migrationName);
+        return Command::FAILURE;
+    }
+    
+    
+
     /**
      * Performs refresh operation.
      * 
@@ -426,6 +448,32 @@ class Migrate {
     
         console_info('All tables have been dropped.');
         return Command::SUCCESS;
+    }
+
+    private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output) {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Provide name for original table";
+        $response = $question->ask($message);
+
+        while($response == '') {
+            $message = "This field is required.  Please provide name for original table";
+            $response = $question->ask($message);
+        }
+
+        return self::makeRenameMigration($response, $migrationName);
+    }
+
+    public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption) {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Enter name for original table";
+        $response = $question->ask($message);
+
+        while($response == '') {
+            $message = "This file is required.  Please enter name for original table";
+            $response = $question->ask($message);
+        }
+
+        return self::makeRenameMigration($response, $renameUOption);
     }
 
     /**
@@ -489,6 +537,13 @@ class Migrate {
             return Command::FAILURE;
         }
         return self::refresh((int)$step);
+    }
+
+    public static function setFlags(InputInterface $input) {
+        return [
+            $renameOption = $input->getOption('rename'),
+            $updateOption = $input->getOption('update')
+        ];
     }
 
     /**

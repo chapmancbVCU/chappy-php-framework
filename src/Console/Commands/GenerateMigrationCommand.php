@@ -40,16 +40,19 @@ class GenerateMigrationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $tableName = $input->getArgument('table_name');
-        $updateOption = $input->getOption('update');
-        $renameOption = $input->getOption('rename');
+        [$renameOption, $updateOption] = Migrate::setFlags($input);
+        $bothFlagsSet = Migrate::isBothFlagsSet($renameOption, $updateOption);
 
-        if($tableName) {
-            return Migrate::contents($tableName, $renameOption, $updateOption);
-        }
+        if($bothFlagsSet) return Command::FAILURE;
+        if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption);
+        if($renameOption) return Migrate::renamePrompt($input, $output, $renameOption);
 
         $tableName = Migrate::migrationNamePrompt($input, $output);
 
+        if($updateOption) return Migrate::makeUpdateMigration($tableName, $input);
 
+        
+        return Migrate::migrationTypePrompt($input, $tableName, $output);
         return Command::SUCCESS;
     }
 }
