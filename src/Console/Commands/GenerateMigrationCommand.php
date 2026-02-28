@@ -25,7 +25,7 @@ class GenerateMigrationCommand extends Command
         $this->setName('make:migration')
             ->setDescription('Generates a Database Migration!')
             ->setHelp('make:migration <table_name>, --rename flag to rename table or --update flag for update table migration')
-            ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.')
+            ->addArgument('table_name', InputArgument::OPTIONAL, 'Pass the table\'s name.')
             ->addOption('update', null, InputOption::VALUE_NONE, 'Update table')
             ->addOption('rename', null, InputOption::VALUE_REQUIRED, 'Rename table', false);
     }
@@ -46,6 +46,9 @@ class GenerateMigrationCommand extends Command
         if($tableName) {
             return Migrate::contents($tableName, $renameOption, $updateOption);
         }
+
+        $tableName = Migrate::migrationNamePrompt($input, $output);
+
 
         return Command::SUCCESS;
     }

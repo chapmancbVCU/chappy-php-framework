@@ -10,7 +10,6 @@ use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Database\Migration;
 use Console\Helpers\MigrationStatus;
-use Core\Exceptions\FrameworkException;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -343,6 +342,19 @@ class Migrate {
         }
 
         return Command::SUCCESS;
+    }
+
+    public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Enter name for new migration";
+        $response = $question->ask($message);
+
+        while($response == '') {
+            $message = "This field is required.  Please enter name for your migration";
+            $response = $question->ask($message);
+        }
+
+        return $response;
     }
 
     /**
