@@ -51,15 +51,16 @@ class GenerateControllerCommand extends Command
     {
         $controllerName = $input->getArgument('controllername');
         $layout = Controller::layout($input);
+        $resourceOption = $input->getOption('resource');
         if(Tools::isFailure($layout)) return Command::FAILURE;
         
         if($controllerName) {
             $controllerName = Str::ucfirst($controllerName);
-            $content = Controller::contents($controllerName, $input, $layout);
+            $content = Controller::contents($controllerName, $resourceOption, $layout);
         } else {
             $controllerName = Controller::controllerNamePrompt($input, $output);
             $layout = Controller::layoutPrompt($input, $output, $layout);
-            $content = Controller::resourcePrompt($controllerName, $input, $layout, $output);
+            $content = Controller::resourcePrompt($controllerName, $input, $layout, $output, $resourceOption);
         }
         
         return Tools::writeFile(

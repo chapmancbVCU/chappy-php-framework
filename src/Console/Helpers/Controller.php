@@ -22,17 +22,17 @@ final class Controller {
      * set then a resource controller is generated.
      *
      * @param string $className The name for the new controller class.
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param mixed $resourceOption Value/state of resource flag.
      * @param string $layout The name of the layout to be used.
      * @return string The contents for the controller class.
      */
     public static function contents(
         string $className, 
-        InputInterface $input, 
+        $resourceOption, 
         string $layout
     ): string {
 
-        if($input->getOption('resource')) {
+        if($resourceOption) {
             return ControllerStubs::resourceTemplate($className, $layout);
         } 
 
@@ -134,16 +134,17 @@ final class Controller {
      * @param InputInterface $input The Symfony InputInterface object.
      * @param string $layout The name of the layout to be used.
      * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param mixed $resourceOption Value/state of resource flag.
      * @return string The contents for the controller class.
      */
     public static function resourcePrompt(
         string $className, 
         InputInterface $input, 
         string $layout, 
-        OutputInterface $output
+        OutputInterface $output,
+        mixed $resourceOption
     ): string {
-        $resourceInput = $input->getOption('resource');
-        if($resourceInput) return self::contents($className, $input, $layout);
+        if($resourceOption) return self::contents($className, $input, $layout);
 
         $question = new FrameworkQuestion($input, $output);
         $message = "Do you want to use a resource controller? (y/n)";
