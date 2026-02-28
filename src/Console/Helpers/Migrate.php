@@ -243,7 +243,8 @@ class Migrate {
     /**
      * Generates a migration class for creating a new table.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $migrationName The name of the table the new migration 
+     * will target.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMigration(string $migrationName): int {
@@ -261,7 +262,9 @@ class Migrate {
     /**
      * Generates a migration class for renaming an existing table.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $migrationName The name of the table the new migration 
+     * will target.
+     * @param mixed $renameOption Value/state of rename flag.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeRenameMigration(string $migrationName, mixed $renameOption): int {
@@ -280,7 +283,8 @@ class Migrate {
     /**
      * Generates a migration class for updating existing table.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param @param string $migrationName The name of the table the new migration 
+     * will target.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeUpdateMigration(string $migrationName): int {
