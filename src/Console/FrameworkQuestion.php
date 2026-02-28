@@ -72,7 +72,7 @@ final class FrameworkQuestion {
     public function choice(string $message, array $choices): mixed {
         $this->output->writeln('');
         $question = new ChoiceQuestion(
-            "<fg=green> {$message} </> ",
+            "<fg=green> {$message} <fg=cyan>></> ",
             $choices,
             false
         );
