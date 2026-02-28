@@ -29,6 +29,8 @@ class Migrate {
      * flags are set then appropriate migration class is created.
      *
      * @param string $migrationName The name of the table for the new migration class.
+     * @param mixed $renameOption Value/state of rename flag.
+     * @param mixed $renameOption Value/state of update flag.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption): int {
