@@ -48,11 +48,7 @@ class GenerateMigrationCommand extends Command
         if($renameOption) return Migrate::renamePrompt($input, $output, $renameOption);
 
         $tableName = Migrate::migrationNamePrompt($input, $output);
-
         if($updateOption) return Migrate::makeUpdateMigration($tableName, $input);
-
-        
         return Migrate::migrationTypePrompt($input, $tableName, $output);
-        return Command::SUCCESS;
     }
 }
