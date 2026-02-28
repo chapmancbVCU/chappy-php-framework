@@ -45,10 +45,6 @@ final class FrameworkQuestion {
         $this->helper = new QuestionHelper();
         $this->input = $input;
         $this->output = $output;
-
-        if(!$this->helper) {
-            console_error("Helper could not be instantiated.");
-        }
     }
 
     /**
