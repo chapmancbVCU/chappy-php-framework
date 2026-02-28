@@ -25,6 +25,17 @@ class Migrate {
      */
     public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
 
+    public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption) {
+        if($updateOption && $renameOption) {
+            console_warning('Cannot accept update and rename options at the same time.');
+            return Command::FAILURE;
+        }
+
+        if($renameOption) return Migrate::makeRenameMigration($migrationName, $renameOption);
+        else if($updateOption) return Migrate::makeUpdateMigration($migrationName);
+        else return Migrate::makeMigration($migrationName);
+    }
+
     /**
      * Test if a particular batch of migrations exists.
      *
@@ -215,8 +226,8 @@ class Migrate {
      * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeMigration(InputInterface $input): int {
-        $tableName = Str::lower($input->getArgument('table_name'));
+    public static function makeMigration(string $migrationName): int {
+        $tableName = Str::lower($migrationName);
         
         // Generate Migration class
         $fileName = "MDT".self::fileNameTime()."Create".Str::ucfirst($tableName)."Table";
@@ -233,9 +244,9 @@ class Migrate {
      * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeRenameMigration(InputInterface $input): int {
-        $from = Str::lower($input->getArgument('table_name'));
-        $to = Str::lower($input->getOption('rename'));
+    public static function makeRenameMigration(string $migrationName, mixed $renameOption): int {
+        $from = Str::lower($migrationName);
+        $to = Str::lower($renameOption);
 
         // Generate Migration class
         $fileName = "MDT".self::fileNameTime()."Rename".Str::ucfirst($from)."TableTo".Str::ucfirst($to);
@@ -252,11 +263,11 @@ class Migrate {
      * @param InputInterface $input The Symfony InputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeUpdateMigration(InputInterface $input): int {
-        $tableName = Str::lower($input->getArgument('table_name'));
+    public static function makeUpdateMigration(string $migrationName): int {
+        $tableName = Str::lower($migrationName);
         
         // Generate Migration class
-        $fileName = "MDT".self::fileNameTime()."Update".Str::ucfirst($tableName)."Table";
+        $fileName = "MDT".self::fileNameTime()."Update".Str::ucfirst($migrationName)."Table";
         return Tools::writeFile(
             self::MIGRATIONS_PATH.$fileName.'.php',
             MigrationStubs::migrationUpdateClass($fileName, $tableName),

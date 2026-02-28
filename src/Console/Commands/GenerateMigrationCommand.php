@@ -2,6 +2,7 @@
 namespace Console\Commands;
  
 use Console\Helpers\Migrate;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,13 +39,14 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if($input->getOption('update') && $input->getOption('rename')) {
-            console_warning('Cannot accept update and rename options at the same time.');
-            return Command::FAILURE;
+        $tableName = $input->getArgument('table_name');
+        $updateOption = $input->getOption('update');
+        $renameOption = $input->getOption('rename');
+
+        if($tableName) {
+            return Migrate::contents($tableName, $renameOption, $updateOption);
         }
 
-        if($input->getOption('rename')) return Migrate::makeRenameMigration($input);
-        else if($input->getOption('update')) return Migrate::makeUpdateMigration($input);
-        else return Migrate::makeMigration($input);
+        return Command::SUCCESS;
     }
 }
