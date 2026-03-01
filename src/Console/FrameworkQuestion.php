@@ -227,6 +227,14 @@ class FrameworkQuestion {
         });
     }
 
+    public function numeric(): static {
+        return $this->setValidator(function($response): void {
+            if(!is_numeric($response)) {
+                throw new FrameworkRuntimeException("Input must consist of only numeric characters");
+            }
+        });
+    }
+
     /**
      * Ensures required input is entered.
      *
