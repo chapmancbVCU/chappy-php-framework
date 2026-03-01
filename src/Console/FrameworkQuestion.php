@@ -51,6 +51,8 @@ class FrameworkQuestion {
      */
     protected ?int $timeout = null;
 
+    protected bool $trimmable = true;
+
     /**
      * Array of validator callbacks.
      *
@@ -93,12 +95,11 @@ class FrameworkQuestion {
      * @param array $suggestions An array of suggestions for when $anticipate 
      * is set to true.  An exception is thrown if this array is empty and 
      * $anticipate = true.
-     * @param bool $trimmable When true trimmable is enabled.  Otherwise, we 
-     * do not trim user input.  Default value is true.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.  Null is returned if there is a timeout 
      * set and input is not received within set amount of time.
+     * 
      * @throws FrameworkException An an exception is thrown for the following 
      * two cases:
      * 1) Both $secret = true and $anticipate = true
@@ -108,7 +109,6 @@ class FrameworkQuestion {
         string $message, 
         bool $anticipate = false, 
         array $suggestions = [],
-        bool $trimmable = true,
         string|bool|int|float|null $default = null
     ): mixed {
 
@@ -120,7 +120,6 @@ class FrameworkQuestion {
             throw new FrameworkException('The $suggestions array cannot be empty when $anticipate = true.');
         }
 
-        
         $this->output->writeln('');
         $question = new Question(
             "<fg=green> {$message} <fg=cyan>></> ",
@@ -133,7 +132,7 @@ class FrameworkQuestion {
         }
         
         if($anticipate) $question->setAutocompleterValues($suggestions);
-        if(!$trimmable) $question->setTrimmable(false);
+        if(!$this->trimmable) $question->setTrimmable(false);
 
         if($this->timeout) {
             $question->setTimeout($this->timeout);
@@ -200,6 +199,18 @@ class FrameworkQuestion {
         );
         
         return $this->promptUser($question);
+    }
+
+    /**
+     * Disables trimmable.  Default value is false.
+     *
+     * @param bool $trimmable Disables trimmable if false is provided.  Otherwise, 
+     * trimmable is set to true.
+     * @return static
+     */
+    public function disableTrimmable(bool $trimmable = false): static {
+        $this->trimmable = $trimmable;
+        return $this;
     }
 
     /**
@@ -329,9 +340,12 @@ class FrameworkQuestion {
      */
     protected function promptUser(Question $question,): mixed {
         $response = $this->helper->ask($this->input, $this->output, $question);
+        dump(get_class($question));
         $this->validate($response);
         $this->secret(false);
         $this->timeout();
+        dump(strlen($response));
+        $this->disableTrimmable(true);
         return $response;
     }
 
