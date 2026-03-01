@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Console;
 
-use Symfony\Component\Console\Command\Command;
+use Core\Exceptions\FrameworkException;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -48,12 +48,24 @@ final class FrameworkQuestion {
     }
 
     /**
-     * Asks the user a question.
+     * Asks the user a question.  This function supports secret input 
+     * and autocomplete.  An exception is thrown when both $secret and 
+     * $anticipate are true.
      *
      * @param string $message The question to ask.
+     * @param bool $secret Hides input when asking sensitive questions when 
+     * set to true.
+     * @param bool $anticipate Enables autocomplete when set to true.
+     * @param array $suggestions An array of suggestions for when $anticipate 
+     * is set to true.  An exception is thrown if this array is empty and 
+     * $anticipate = true.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.
+     * @throws FrameworkException An an exception is thrown for the following 
+     * two cases:
+     * 1) Both $secret = true and $anticipate = true
+     * 2) $suggestions is empty and $anticipate = true.
      */
     public function ask(
         string $message, 
@@ -62,6 +74,14 @@ final class FrameworkQuestion {
         array $suggestions = [],
         string|bool|int|float|null $default = null
     ): mixed {
+
+        if($anticipate && $secret) {
+            throw new FrameworkException('Cannot have $anticipate and $suggestion set to true simultaneously');
+        }
+
+        if($anticipate && empty($suggestion)) {
+            throw new FrameworkException('The $suggestions array cannot be empty when $suggestions = true');
+        }
 
         $this->output->writeln('');
         $question = new Question(
@@ -75,7 +95,7 @@ final class FrameworkQuestion {
         }
         
         if($anticipate) $question->setAutocompleterValues($suggestions);
-
+        
         return $this->helper->ask($this->input, $this->output, $question);
     }
 
