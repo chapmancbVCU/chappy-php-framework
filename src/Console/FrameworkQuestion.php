@@ -169,7 +169,7 @@ class FrameworkQuestion {
     public function min(int $minRule): static {
         return $this->setValidator(function($response) use ($minRule): void {
             if(strlen($response) < $minRule ) {
-                throw new \RuntimeException("This field must be at least {$minRule} characters in length.");
+                throw new FrameworkRuntimeException("This field must be at least {$minRule} characters in length.");
             } 
         });
     }
@@ -182,7 +182,7 @@ class FrameworkQuestion {
     public function required(): static {
         return $this->setValidator(function($response) {
             if($response === '' || $response === null) {
-                throw new \RuntimeException('This field is required.');
+                throw new FrameworkRuntimeException('This field is required.');
             }
         });
     }
