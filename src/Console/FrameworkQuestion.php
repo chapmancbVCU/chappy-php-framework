@@ -251,6 +251,18 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforces rule when input must contain at least one lower case character.
+     *
+     * @return static
+     */
+    public function upper(): static {
+        return $this->setValidator(function($response):void {
+            if(!preg_match('/[A-Z]/', $response)) {
+                throw new FrameworkRuntimeException("Input must contain at least one upper case character");
+            }
+        });
+    }
+    /**
      * Calls validator callbacks.  This function also ensures validators 
      * don't bleed into next question if instance is reused.
      *
