@@ -37,6 +37,11 @@ class FrameworkQuestion {
      */
     protected OutputInterface $output;
 
+    /**
+     * Array of validator callbacks.
+     *
+     * @var array
+     */
     protected array $validators = [];
 
     /**
