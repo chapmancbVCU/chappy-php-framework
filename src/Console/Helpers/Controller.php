@@ -54,7 +54,9 @@ final class Controller {
 
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for controller.";
-        $response = $question->required()->ask($message);
+        $response = $question->required()->between(2, 4)->ask($message);
+        // $message = "test.";
+        // $response = $question->required()->between(2, 4)->ask($message);
         return Str::ucfirst($response);
     }
 

@@ -45,6 +45,13 @@ class FrameworkQuestion {
     protected bool $secret = false;
 
     /**
+     * Timeout for prompt in seconds.
+     *
+     * @var integer|null
+     */
+    protected ?int $timeout = null;
+
+    /**
      * Array of validator callbacks.
      *
      * @var array
@@ -102,8 +109,6 @@ class FrameworkQuestion {
      * $anticipate = true.
      * @param bool $trimmable When true trimmable is enabled.  Otherwise, we 
      * do not trim user input.  Default value is true.
-     * @param ?int $timeout Set timeout when input is expected within a certain 
-     * amount of time.  Default value is null.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.  Null is returned if there is a timeout 
@@ -118,7 +123,6 @@ class FrameworkQuestion {
         bool $anticipate = false, 
         array $suggestions = [],
         bool $trimmable = true,
-        ?int $timeout = null,
         string|bool|int|float|null $default = null
     ): mixed {
 
@@ -145,8 +149,8 @@ class FrameworkQuestion {
         if($anticipate) $question->setAutocompleterValues($suggestions);
         if(!$trimmable) $question->setTrimmable(false);
 
-        if($timeout) {
-            $question->setTimeout($timeout);
+        if($this->timeout) {
+            $question->setTimeout($this->timeout);
             try {
                 return $this->promptUser($question, $message);
             } catch (MissingInputException $e) {
@@ -325,6 +329,7 @@ class FrameworkQuestion {
         $response = $this->helper->ask($this->input, $this->output, $question);
         $this->validate($response);
         $this->secret(false);
+        $this->timeout();
         return $response;
     }
 
@@ -362,6 +367,18 @@ class FrameworkQuestion {
                 throw new FrameworkRuntimeException("Input must contain at least one special character.");
             }
         });
+    }
+
+    /**
+     * Sets timeout for input.
+     *
+     * @param int|null $timeout The time in seconds before prompt timeout.  
+     * Default value is null.
+     * @return static
+     */
+    public function timeout(?int $timeout = null): static {
+        $this->timeout = $timeout;
+        return $this;
     }
 
     /**
