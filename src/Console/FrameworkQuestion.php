@@ -174,6 +174,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforces rule when input must contain at least one lower case character.
+     *
+     * @return static
+     */
+    public function lower(): static {
+        return $this->setValidator(function($response):void {
+            if(!preg_match('/[a-z]/', $response)) {
+                throw new FrameworkRuntimeException("Input must contain at least one lower case character");
+            }
+        });
+    }
+
+    /**
      * Ensures input meets requirements for maximum allowable length.
      *
      * @param int $maxRule The maximum allowed size for input.
