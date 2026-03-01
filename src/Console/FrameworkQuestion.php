@@ -15,29 +15,29 @@ use Symfony\Component\Console\Question\Question;
 /**
  * Supports questions through the command line interface.
  */
-final class FrameworkQuestion {
+class FrameworkQuestion {
     /**
      * Instance of QuestionHelper class.
      *
      * @var QuestionHelper
      */
-    private QuestionHelper $helper;
+    protected QuestionHelper $helper;
 
     /**
      * InputInterface instance created when parent command is ran.
      *
      * @var InputInterface
      */
-    private InputInterface $input;
+    protected InputInterface $input;
 
     /**
      * OutputInterface instance created when parent command is ran.
      *
      * @var OutputInterface
      */
-    private OutputInterface $output;
+    protected OutputInterface $output;
 
-    private array $validators = [];
+    protected array $validators = [];
 
     /**
      * Creates instance of FrameworkQuestion class.
@@ -166,14 +166,12 @@ final class FrameworkQuestion {
      * @param integer $minRule The minimum allowed size for input.
      * @return static
      */
-    public function min(int $minRule) {
-        $this->validators[] = function($response) use ($minRule): static {
+    public function min(int $minRule): static {
+        $this->validators[] = function($response) use ($minRule): void {
             if(strlen($response) < $minRule ) {
                 throw new \RuntimeException("This field must be at least {$minRule} characters in length.");
             } 
-            return $this;
         };
-        return $this;
     }
 
     /**
@@ -182,13 +180,11 @@ final class FrameworkQuestion {
      * @return static
      */
     public function required(): static {
-        $this->validators[] = function($response) {
+        return $this->setValidator(function($response) {
             if($response === '' || $response === null) {
                 throw new \RuntimeException('This field is required.');
             }
-            return $this;
-        };
-        return $this;
+        });
     }
 
     /**
@@ -197,11 +193,17 @@ final class FrameworkQuestion {
      * @param Question $question Represents a question.
      * @return mixed The user answer.
      */
-    private function promptUser(Question $question,): mixed {
+    protected function promptUser(Question $question,): mixed {
         
         $response = $this->helper->ask($this->input, $this->output, $question);
         $this->validate($response);
         return $response;
+    }
+
+    public function setValidator(callable $validator) {
+        dump("setValidator");
+        $this->validators[] = $validator;
+        return $this;
     }
 
     /**
@@ -210,7 +212,7 @@ final class FrameworkQuestion {
      * @param mixed $response The user answer.
      * @return void
      */
-    private function validate(mixed $response): void {
+    protected function validate(mixed $response): void {
         foreach($this->validators as $callback) {
             $callback($response);
         }
