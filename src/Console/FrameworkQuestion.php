@@ -52,6 +52,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforce rule where input must contain only alphabetic characters.
+     *
+     * @return static
+     */
+    public function alpha(): static {
+        return $this->setValidator(function($response):void {
+            if(!preg_match('/[a-z]/', $response) || !preg_match('/[A-Z]/', $response)) {
+                throw new FrameworkRuntimeException("Input must contain only alphabetic characters.");
+            }
+        });
+    }
+
+    /**
      * Asks the user a question.  This function supports secret input 
      * and autocomplete.  An exception is thrown when both $secret and 
      * $anticipate are true.
@@ -87,11 +100,11 @@ class FrameworkQuestion {
     ): mixed {
 
         if($anticipate && $secret) {
-            throw new FrameworkException('Cannot have $anticipate and $suggestion set to true simultaneously');
+            throw new FrameworkException('Cannot have $anticipate and $suggestion set to true simultaneously.');
         }
 
         if($anticipate && empty($suggestions)) {
-            throw new FrameworkException('The $suggestions array cannot be empty when $anticipate = true');
+            throw new FrameworkException('The $suggestions array cannot be empty when $anticipate = true.');
         }
 
         
@@ -114,7 +127,7 @@ class FrameworkQuestion {
             try {
                 return $this->promptUser($question, $message);
             } catch (MissingInputException $e) {
-                console_error("No input received within timeout period");
+                console_error("No input received within timeout period.");
                 return null;
             }
         }
@@ -168,7 +181,7 @@ class FrameworkQuestion {
     public function email(): static {
         return $this->setValidator(function($response): void {
             if(!filter_var($response, FILTER_VALIDATE_EMAIL)) {
-                throw new FrameworkRuntimeException("Input must match valid E-mail format");
+                throw new FrameworkRuntimeException("Input must match valid E-mail format.");
             }
         });
     }
@@ -181,7 +194,7 @@ class FrameworkQuestion {
     public function lower(): static {
         return $this->setValidator(function($response):void {
             if(!preg_match('/[a-z]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain at least one lower case character");
+                throw new FrameworkRuntimeException("Input must contain at least one lower case character.");
             }
         });
     }
@@ -222,7 +235,7 @@ class FrameworkQuestion {
     public function number(): static {
         return $this->setValidator(function($response):void {
             if(!preg_match('/[0-9]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain at least one numeric character");
+                throw new FrameworkRuntimeException("Input must contain at least one numeric character.");
             }
         });
     }
@@ -230,7 +243,7 @@ class FrameworkQuestion {
     public function numeric(): static {
         return $this->setValidator(function($response): void {
             if(!is_numeric($response)) {
-                throw new FrameworkRuntimeException("Input must consist of only numeric characters");
+                throw new FrameworkRuntimeException("Input must consist of only numeric characters.");
             }
         });
     }
@@ -279,7 +292,7 @@ class FrameworkQuestion {
     public function special(): static {
         return $this->setValidator(function($response):void {
             if(!(preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
-                throw new FrameworkRuntimeException("Input must contain at least one special character");
+                throw new FrameworkRuntimeException("Input must contain at least one special character.");
             }
         });
     }
@@ -292,7 +305,7 @@ class FrameworkQuestion {
     public function upper(): static {
         return $this->setValidator(function($response):void {
             if(!preg_match('/[A-Z]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain at least one upper case character");
+                throw new FrameworkRuntimeException("Input must contain at least one upper case character.");
             }
         });
     }
