@@ -233,7 +233,7 @@ class FrameworkQuestion {
     }
 
     /**
-     * Enforces rule when input must contain at least one special character.
+     * Enforces rule when input must contain no special characters.
      *
      * @return static
      */
