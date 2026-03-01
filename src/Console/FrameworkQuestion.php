@@ -192,6 +192,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforce rule where input must be an integer.
+     *
+     * @return static
+     */
+    public function integer(): static {
+        return $this->setValidator(function($response): void {
+            if(!is_numeric($response) || str_contains($response, '.')) {
+                throw new FrameworkRuntimeException("Input must be an integer.");
+            }
+        });
+    }
+
+    /**
      * Enforces rule when input must contain at least one lower case character.
      *
      * @return static
