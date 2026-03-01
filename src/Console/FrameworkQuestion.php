@@ -38,13 +38,19 @@ class FrameworkQuestion {
     protected OutputInterface $output;
 
     /**
+     * Determines whether or not input is hidden.
+     *
+     * @var bool
+     */
+    protected bool $secret = false;
+
+    /**
      * Array of validator callbacks.
      *
      * @var array
      */
     protected array $validators = [];
 
-    protected bool $secret = false;
     /**
      * Creates instance of FrameworkQuestion class.
      *
