@@ -84,20 +84,6 @@ class FrameworkQuestion {
     }
 
     /**
-     * Ensures input is between within a certain range in length.
-     * @param int $minRule The minimum allowed size for input.
-     * @param int $maxRule The maximum allowed size for input.
-     * @return static
-     */
-    public function between(int $minRule, int $maxRule): static {
-        return $this->setValidator(function($response) use ($minRule, $maxRule): void {
-            if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
-                throw new FrameworkRuntimeException("This field must be between {$minRule} and {$maxRule} characters in length.");
-            } 
-        });
-    }
-
-    /**
      * Asks the user a question.  This function supports secret input 
      * and autocomplete.  An exception is thrown when both $secret and 
      * $anticipate are true.
@@ -161,6 +147,20 @@ class FrameworkQuestion {
         return $this->promptUser($question);
     }
 
+    /**
+     * Ensures input is between within a certain range in length.
+     * @param int $minRule The minimum allowed size for input.
+     * @param int $maxRule The maximum allowed size for input.
+     * @return static
+     */
+    public function between(int $minRule, int $maxRule): static {
+        return $this->setValidator(function($response) use ($minRule, $maxRule): void {
+            if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
+                throw new FrameworkRuntimeException("This field must be between {$minRule} and {$maxRule} characters in length.");
+            } 
+        });
+    }
+    
     /**
      * Asks the user a question where there is a choice to be made.
      *
