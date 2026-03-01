@@ -233,6 +233,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforces rule when input must contain at least one special character.
+     *
+     * @return static
+     */
+    public function noSpecialChars(): static {
+        return $this->setValidator(function($response):void {
+            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) && (preg_match('/\s/', $response) == 0)) {
+                throw new FrameworkRuntimeException("Input must contain no special characters.");
+            }
+        });
+    }
+
+    /**
      * Enforces rule when input must contain at least one numeric character.
      *
      * @return static
@@ -245,6 +258,11 @@ class FrameworkQuestion {
         });
     }
 
+    /**
+     * Enforce rule where input must contain only numeric characters.
+     *
+     * @return static
+     */
     public function numeric(): static {
         return $this->setValidator(function($response): void {
             if(!is_numeric($response)) {
