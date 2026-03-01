@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Exceptions\FrameworkException;
+use Symfony\Component\Console\Exception\MissingInputException;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -59,9 +60,14 @@ final class FrameworkQuestion {
      * @param array $suggestions An array of suggestions for when $anticipate 
      * is set to true.  An exception is thrown if this array is empty and 
      * $anticipate = true.
+     * @param bool $trimmable When true trimmable is enabled.  Otherwise, we 
+     * do not trim user input.  Default value is true.
+     * @param ?int $timeout Set timeout when input is expected within a certain 
+     * amount of time.  Default value is null.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
-     * @return mixed The user answer.
+     * @return mixed The user answer.  Null is returned if there is a timeout 
+     * set and input is not received within set amount of time.
      * @throws FrameworkException An an exception is thrown for the following 
      * two cases:
      * 1) Both $secret = true and $anticipate = true
@@ -72,6 +78,8 @@ final class FrameworkQuestion {
         bool $secret = false, 
         bool $anticipate = false, 
         array $suggestions = [],
+        bool $trimmable = true,
+        ?int $timeout = null,
         string|bool|int|float|null $default = null
     ): mixed {
 
@@ -95,7 +103,17 @@ final class FrameworkQuestion {
         }
         
         if($anticipate) $question->setAutocompleterValues($suggestions);
-        
+        if(!$trimmable) $question->setTrimmable(false);
+
+        if($timeout) {
+            $question->setTimeout($timeout);
+            try {
+                return $this->helper->ask($this->input, $this->output, $question);
+            } catch (MissingInputException $e) {
+                console_error("No input received within timeout period");
+                return null;
+            }
+        }
         return $this->helper->ask($this->input, $this->output, $question);
     }
 
