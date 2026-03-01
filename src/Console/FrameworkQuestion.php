@@ -215,6 +215,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforces rule when input must contain at least one numeric character.
+     *
+     * @return static
+     */
+    public function number(): static {
+        return $this->setValidator(function($response):void {
+            if(!preg_match('/[0-9]/', $response)) {
+                throw new FrameworkRuntimeException("Input must contain at least one numeric character");
+            }
+        });
+    }
+
+    /**
      * Ensures required input is entered.
      *
      * @return static
@@ -262,6 +275,7 @@ class FrameworkQuestion {
             }
         });
     }
+
     /**
      * Calls validator callbacks.  This function also ensures validators 
      * don't bleed into next question if instance is reused.
