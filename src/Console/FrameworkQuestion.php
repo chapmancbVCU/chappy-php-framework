@@ -130,7 +130,7 @@ final class FrameworkQuestion {
         $question = new ChoiceQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
             $choices,
-            false
+            $default
         );
         
         $question->setErrorMessage(" Option %s is invalid.");
