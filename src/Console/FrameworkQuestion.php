@@ -167,11 +167,11 @@ class FrameworkQuestion {
      * @return static
      */
     public function min(int $minRule): static {
-        $this->validators[] = function($response) use ($minRule): void {
+        return $this->setValidator(function($response) use ($minRule): void {
             if(strlen($response) < $minRule ) {
                 throw new \RuntimeException("This field must be at least {$minRule} characters in length.");
             } 
-        };
+        });
     }
 
     /**
@@ -194,14 +194,12 @@ class FrameworkQuestion {
      * @return mixed The user answer.
      */
     protected function promptUser(Question $question,): mixed {
-        
         $response = $this->helper->ask($this->input, $this->output, $question);
         $this->validate($response);
         return $response;
     }
 
     public function setValidator(callable $validator) {
-        dump("setValidator");
         $this->validators[] = $validator;
         return $this;
     }
