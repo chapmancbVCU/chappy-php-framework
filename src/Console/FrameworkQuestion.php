@@ -79,8 +79,8 @@ final class FrameworkQuestion {
             throw new FrameworkException('Cannot have $anticipate and $suggestion set to true simultaneously');
         }
 
-        if($anticipate && empty($suggestion)) {
-            throw new FrameworkException('The $suggestions array cannot be empty when $suggestions = true');
+        if($anticipate && empty($suggestions)) {
+            throw new FrameworkException('The $suggestions array cannot be empty when $anticipate = true');
         }
 
         $this->output->writeln('');
