@@ -156,11 +156,13 @@ class FrameworkQuestion {
     public function between(int $minRule, int $maxRule): static {
         return $this->setValidator(function($response) use ($minRule, $maxRule): void {
             if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
-                throw new FrameworkRuntimeException("This field must be between {$minRule} and {$maxRule} characters in length.");
+                throw new FrameworkRuntimeException(
+                    "This field must be between {$minRule} and {$maxRule} characters in length."
+                );
             } 
         });
     }
-    
+
     /**
      * Asks the user a question where there is a choice to be made.
      *
