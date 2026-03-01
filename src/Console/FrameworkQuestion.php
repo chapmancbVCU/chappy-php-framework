@@ -161,9 +161,23 @@ class FrameworkQuestion {
     }
 
     /**
+     * Ensures input meets requirements for maximum allowable length.
+     *
+     * @param int $maxRule The maximum allowed size for input.
+     * @return static
+     */
+    public function max(int $maxRule): static {
+        return $this->setValidator(function($response) use ($maxRule): void {
+            if(strlen($response) > $maxRule ) {
+                throw new FrameworkRuntimeException("This field must be less than {$maxRule} characters in length.");
+            } 
+        });
+    }
+
+    /**
      * Ensures input meets requirements for minimum allowable length.
      *
-     * @param integer $minRule The minimum allowed size for input.
+     * @param int $minRule The minimum allowed size for input.
      * @return static
      */
     public function min(int $minRule): static {
@@ -205,7 +219,8 @@ class FrameworkQuestion {
     }
 
     /**
-     * Calls validator callbacks.
+     * Calls validator callbacks.  This function also ensures validators 
+     * don't bleed into next question if instance is reused.
      *
      * @param mixed $response The user answer.
      * @return void
@@ -214,6 +229,7 @@ class FrameworkQuestion {
         foreach($this->validators as $callback) {
             $callback($response);
         }
+
         $this->validators = [];
     }
 }
