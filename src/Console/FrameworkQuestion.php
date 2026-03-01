@@ -160,12 +160,33 @@ final class FrameworkQuestion {
         return $this->promptUser($question);
     }
 
+    /**
+     * Ensures input meets requirements for minimum allowable length.
+     *
+     * @param integer $minRule The minimum allowed size for input.
+     * @return static
+     */
+    public function min(int $minRule) {
+        $this->validators[] = function($response) use ($minRule): static {
+            if(strlen($response) < $minRule ) {
+                throw new \RuntimeException("This field must be at least {$minRule} characters in length.");
+            } 
+            return $this;
+        };
+        return $this;
+    }
 
-    public function required() {
+    /**
+     * Ensures required input is entered.
+     *
+     * @return static
+     */
+    public function required(): static {
         $this->validators[] = function($response) {
             if($response === '' || $response === null) {
                 throw new \RuntimeException('This field is required.');
             }
+            return $this;
         };
         return $this;
     }
@@ -183,7 +204,13 @@ final class FrameworkQuestion {
         return $response;
     }
 
-    private function validate(mixed $response) {
+    /**
+     * Calls validator callbacks.
+     *
+     * @param mixed $response The user answer.
+     * @return void
+     */
+    private function validate(mixed $response): void {
         foreach($this->validators as $callback) {
             $callback($response);
         }
