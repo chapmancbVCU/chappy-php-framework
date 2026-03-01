@@ -378,14 +378,8 @@ class Migrate {
      */
     public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for new migration";
-        $response = $question->ask($message);
-
-        while($response == '') {
-            $message = "This field is required.  Please enter name for your migration";
-            $response = $question->ask($message);
-        }
-
+        $message = "Enter name for new migration.";
+        $response = $question->required()->ask($message);
         return $response;
     }
 
@@ -407,8 +401,6 @@ class Migrate {
         return Command::FAILURE;
     }
     
-    
-
     /**
      * Performs refresh operation.
      * 
@@ -467,26 +459,14 @@ class Migrate {
     private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output) {
         $question = new FrameworkQuestion($input, $output);
         $message = "Provide name for original table";
-        $response = $question->ask($message);
-
-        while($response == '') {
-            $message = "This field is required.  Please provide name for original table";
-            $response = $question->ask($message);
-        }
-
+        $response = $question->required()->ask($message);
         return self::makeRenameMigration($response, $migrationName);
     }
 
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption) {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for original table";
-        $response = $question->ask($message);
-
-        while($response == '') {
-            $message = "This file is required.  Please enter name for original table";
-            $response = $question->ask($message);
-        }
-
+        $response = $question->required()->ask($message);
         return self::makeRenameMigration($response, $renameUOption);
     }
 

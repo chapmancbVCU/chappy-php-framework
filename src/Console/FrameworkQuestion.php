@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Exceptions\FrameworkException;
+use Core\Exceptions\FrameworkRuntimeException;
 use Symfony\Component\Console\Exception\MissingInputException;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,6 +36,8 @@ final class FrameworkQuestion {
      * @var OutputInterface
      */
     private OutputInterface $output;
+
+    private array $validators = [];
 
     /**
      * Creates instance of FrameworkQuestion class.
@@ -91,6 +94,7 @@ final class FrameworkQuestion {
             throw new FrameworkException('The $suggestions array cannot be empty when $anticipate = true');
         }
 
+        
         $this->output->writeln('');
         $question = new Question(
             "<fg=green> {$message} <fg=cyan>></> ",
@@ -108,7 +112,7 @@ final class FrameworkQuestion {
         if($timeout) {
             $question->setTimeout($timeout);
             try {
-                return $this->promptUser($question);
+                return $this->promptUser($question, $message);
             } catch (MissingInputException $e) {
                 console_error("No input received within timeout period");
                 return null;
@@ -156,13 +160,33 @@ final class FrameworkQuestion {
         return $this->promptUser($question);
     }
 
+
+    public function required() {
+        $this->validators[] = function($response) {
+            if($response === '' || $response === null) {
+                throw new \RuntimeException('This field is required.');
+            }
+        };
+        return $this;
+    }
+
     /**
      * Helper function for asking a question.
      *
      * @param Question $question Represents a question.
      * @return mixed The user answer.
      */
-    private function promptUser(Question $question): mixed {
-        return $this->helper->ask($this->input, $this->output, $question);
+    private function promptUser(Question $question,): mixed {
+        
+        $response = $this->helper->ask($this->input, $this->output, $question);
+        $this->validate($response);
+        return $response;
+    }
+
+    private function validate(mixed $response) {
+        foreach($this->validators as $callback) {
+            $callback($response);
+        }
+        $this->validators = [];
     }
 }

@@ -41,14 +41,8 @@ class Model {
      */
     public static function modelNamePrompt(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for model";
-        $response = $question->ask($message);
-
-        while($response == '') {
-            $message = "This field is required.  Please enter name for a model";
-            $response = $question->ask($message);
-        }
-
+        $message = "Enter name for model.";
+        $response = $question->required()->ask($message);
         return Str::ucfirst($response);
     }
 

@@ -53,14 +53,8 @@ final class Controller {
     ): string {
 
         $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for controller";
-        $response = $question->ask($message);
-
-        while($response == '') {
-            $message = "This field is required.  Please enter name for a controller";
-            $response = $question->ask($message);
-        }
-
+        $message = "Enter name for controller.";
+        $response = $question->required()->ask($message);
         return Str::ucfirst($response);
     }
 
@@ -111,14 +105,8 @@ final class Controller {
 
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
-            $message = "Enter name for your layout";
-            $response = $question->ask($message);
-
-            while($response == '') {
-                $message = "This field is required for a y response to the previous question.  Please enter name for a layout";
-                $response = $question->ask($message);
-            }
-
+            $message = "Enter name for your layout.";
+            $response = $question->required()->ask($message);
             return Str::lower($response);
         } else {
             return 'default';
