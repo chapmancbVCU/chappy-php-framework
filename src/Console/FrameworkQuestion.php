@@ -161,6 +161,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Ensures input is a valid E-mail address.
+     *
+     * @return static
+     */
+    public function email(): static {
+        return $this->setValidator(function($response): void {
+            if(!filter_var($response, FILTER_VALIDATE_EMAIL)) {
+                throw new FrameworkRuntimeException("Input must match valid E-mail format");
+            }
+        });
+    }
+
+    /**
      * Ensures input meets requirements for maximum allowable length.
      *
      * @param int $maxRule The maximum allowed size for input.
@@ -194,7 +207,7 @@ class FrameworkQuestion {
      * @return static
      */
     public function required(): static {
-        return $this->setValidator(function($response) {
+        return $this->setValidator(function($response): void {
             if($response === '' || $response === null) {
                 throw new FrameworkRuntimeException('This field is required.');
             }
