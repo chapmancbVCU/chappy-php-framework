@@ -51,15 +51,31 @@ final class FrameworkQuestion {
      * Asks the user a question.
      *
      * @param string $message The question to ask.
+     * @param string|bool|int|float|null $default The default value if the 
+     * user does not provide an answer.
      * @return mixed The user answer.
      */
-    public function ask(string $message): mixed {
+    public function ask(
+        string $message, 
+        bool $secret = false, 
+        bool $anticipate = false, 
+        array $suggestions = [],
+        string|bool|int|float|null $default = null
+    ): mixed {
+
         $this->output->writeln('');
         $question = new Question(
             "<fg=green> {$message} <fg=cyan>></> ",
-            false
+            $default
         );
+
+        if($secret) {
+            $question->setHidden(true);
+            $question->setHiddenFallback(false);
+        }
         
+        if($anticipate) $question->setAutocompleterValues($suggestions);
+
         return $this->helper->ask($this->input, $this->output, $question);
     }
 
@@ -67,9 +83,11 @@ final class FrameworkQuestion {
      * Asks the user a question where there is a choice to be made.
      *
      * @param string $message The question to ask.
+     * @param string|bool|int|float|null $default The default value if the 
+     * user does not provide an answer.
      * @return mixed The user answer.
      */
-    public function choice(string $message, array $choices): mixed {
+    public function choice(string $message, array $choices, string|bool|int|float|null $default = null): mixed {
         $this->output->writeln('');
         $question = new ChoiceQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
@@ -86,13 +104,15 @@ final class FrameworkQuestion {
      *
      * @param string $message The question to ask.  It is advised to phrase it 
      * such that the user knows to answer y or n.
+     * @param string|bool|int|float|null $default The default value if the 
+     * user does not provide an answer.
      * @return mixed The user answer.
      */
-    public function confirm(string $message): mixed {
+    public function confirm(string $message, string|bool|int|float|null $default = null): mixed {
         $this->output->writeln('');
         $question = new ConfirmationQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
-            false
+            $default
         );
         
         return $this->helper->ask($this->input, $this->output, $question);
