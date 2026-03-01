@@ -108,13 +108,13 @@ final class FrameworkQuestion {
         if($timeout) {
             $question->setTimeout($timeout);
             try {
-                return $this->helper->ask($this->input, $this->output, $question);
+                return $this->promptUser($question);
             } catch (MissingInputException $e) {
                 console_error("No input received within timeout period");
                 return null;
             }
         }
-        return $this->helper->ask($this->input, $this->output, $question);
+        return $this->promptUser($question);
     }
 
     /**
@@ -134,7 +134,7 @@ final class FrameworkQuestion {
         );
         
         $question->setErrorMessage(" Option %s is invalid.");
-        return $this->helper->ask($this->input, $this->output, $question);
+        return $this->promptUser($question);
     }
     
     /**
@@ -146,13 +146,23 @@ final class FrameworkQuestion {
      * user does not provide an answer.
      * @return mixed The user answer.
      */
-    public function confirm(string $message, string|bool|int|float|null $default = null): mixed {
+    public function confirm(string $message, string|bool|int|float|null $default = true): mixed {
         $this->output->writeln('');
         $question = new ConfirmationQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
             $default
         );
         
+        return $this->promptUser($question);
+    }
+
+    /**
+     * Helper function for asking a question.
+     *
+     * @param Question $question Represents a question.
+     * @return mixed The user answer.
+     */
+    private function promptUser(Question $question): mixed {
         return $this->helper->ask($this->input, $this->output, $question);
     }
 }
