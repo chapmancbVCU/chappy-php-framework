@@ -44,6 +44,7 @@ class FrameworkQuestion {
      */
     protected array $validators = [];
 
+    protected bool $secret = false;
     /**
      * Creates instance of FrameworkQuestion class.
      *
@@ -70,13 +71,25 @@ class FrameworkQuestion {
     }
 
     /**
+     * Ensures input is between within a certain range in length.
+     * @param int $minRule The minimum allowed size for input.
+     * @param int $maxRule The maximum allowed size for input.
+     * @return static
+     */
+    public function between(int $minRule, int $maxRule): static {
+        return $this->setValidator(function($response) use ($minRule, $maxRule): void {
+            if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
+                throw new FrameworkRuntimeException("This field must be between {$minRule} and {$maxRule} characters in length.");
+            } 
+        });
+    }
+
+    /**
      * Asks the user a question.  This function supports secret input 
      * and autocomplete.  An exception is thrown when both $secret and 
      * $anticipate are true.
      *
      * @param string $message The question to ask.
-     * @param bool $secret Hides input when asking sensitive questions when 
-     * set to true.
      * @param bool $anticipate Enables autocomplete when set to true.
      * @param array $suggestions An array of suggestions for when $anticipate 
      * is set to true.  An exception is thrown if this array is empty and 
@@ -96,7 +109,6 @@ class FrameworkQuestion {
      */
     public function ask(
         string $message, 
-        bool $secret = false, 
         bool $anticipate = false, 
         array $suggestions = [],
         bool $trimmable = true,
@@ -104,7 +116,7 @@ class FrameworkQuestion {
         string|bool|int|float|null $default = null
     ): mixed {
 
-        if($anticipate && $secret) {
+        if($anticipate && $this->secret) {
             throw new FrameworkException('Cannot have $anticipate and $suggestion set to true simultaneously.');
         }
 
@@ -119,7 +131,7 @@ class FrameworkQuestion {
             $default
         );
 
-        if($secret) {
+        if($this->secret) {
             $question->setHidden(true);
             $question->setHiddenFallback(false);
         }
@@ -225,7 +237,7 @@ class FrameworkQuestion {
      */
     public function max(int $maxRule): static {
         return $this->setValidator(function($response) use ($maxRule): void {
-            if(strlen($response) > $maxRule ) {
+            if(strlen($response) > $maxRule) {
                 throw new FrameworkRuntimeException("This field must be less than {$maxRule} characters in length.");
             } 
         });
@@ -239,7 +251,7 @@ class FrameworkQuestion {
      */
     public function min(int $minRule): static {
         return $this->setValidator(function($response) use ($minRule): void {
-            if(strlen($response) < $minRule ) {
+            if(strlen($response) < $minRule) {
                 throw new FrameworkRuntimeException("This field must be at least {$minRule} characters in length.");
             } 
         });
@@ -306,7 +318,20 @@ class FrameworkQuestion {
     protected function promptUser(Question $question,): mixed {
         $response = $this->helper->ask($this->input, $this->output, $question);
         $this->validate($response);
+        $this->secret(false);
         return $response;
+    }
+
+    /**
+     * Sets input as hidden.
+     *
+     * @param boolean $secret Default value is true.  When true is passed then 
+     * input is hidden.  Otherwise, output is not hidden.
+     * @return static
+     */
+    public function secret(bool $secret = true): static {
+        $this->secret = $secret;
+        return $this;
     }
 
     /**
