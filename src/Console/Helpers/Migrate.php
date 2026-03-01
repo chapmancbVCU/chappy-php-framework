@@ -456,14 +456,30 @@ class Migrate {
         return Command::SUCCESS;
     }
 
-    private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output) {
+    /**
+     * Prompts user to enter name for table to be renamed.
+     *
+     * @param string $migrationName The new name for the table to be renamed.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output): int {
         $question = new FrameworkQuestion($input, $output);
         $message = "Provide name for original table";
         $response = $question->required()->ask($message);
         return self::makeRenameMigration($response, $migrationName);
     }
 
-    public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption) {
+    /**
+     * Prompts user to enter name of table to be updated.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param mixed $renameUOption Value/state of rename flag.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption): int {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for original table";
         $response = $question->required()->ask($message);
