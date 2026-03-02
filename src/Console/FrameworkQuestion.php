@@ -85,8 +85,8 @@ class FrameworkQuestion {
      * @return static
      */
     public function alpha(): static {
-        return $this->setValidator(function($response):void {
-            if(!preg_match('/[a-z]/', $response) || !preg_match('/[A-Z]/', $response)) {
+        return $this->setValidator(function($response): void {
+            if(!preg_match('/[a-zA-z]/', $response)) {
                 throw new FrameworkRuntimeException("Input must contain only alphabetic characters.");
             }
         });
@@ -104,6 +104,7 @@ class FrameworkQuestion {
             }
         });
     }
+
     /**
      * Used to turn on anticipate mode.  
      *
@@ -310,9 +311,17 @@ class FrameworkQuestion {
      * @return static
      */
     public function lower(): static {
-        return $this->setValidator(function($response):void {
+        return $this->setValidator(function($response): void {
             if(!preg_match('/[a-z]/', $response)) {
                 throw new FrameworkRuntimeException("Input must contain at least one lower case character.");
+            }
+        });
+    }
+
+    public function match(mixed $match): static {
+        return $this->setValidator(function($response) use ($match): void {
+            if($response !== $match) {
+                throw new FrameworkRuntimeException("The these values do not match.");
             }
         });
     }
@@ -351,7 +360,7 @@ class FrameworkQuestion {
      * @return static
      */
     public function negative(): static {
-        return $this->setValidator(function($response):void {
+        return $this->setValidator(function($response): void {
             if(!is_numeric($response) || $response >= 0) {
                 throw new FrameworkRuntimeException("Input must be a negative number.");
             }
@@ -364,7 +373,7 @@ class FrameworkQuestion {
      * @return static
      */
     public function noSpecialChars(): static {
-        return $this->setValidator(function($response):void {
+        return $this->setValidator(function($response): void {
             if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) && (preg_match('/\s/', $response) == 0)) {
                 throw new FrameworkRuntimeException("Input must contain no special characters.");
             }
@@ -377,7 +386,7 @@ class FrameworkQuestion {
      * @return static
      */
     public function number(): static {
-        return $this->setValidator(function($response):void {
+        return $this->setValidator(function($response): void {
             if(!preg_match('/[0-9]/', $response)) {
                 throw new FrameworkRuntimeException("Input must contain at least one numeric character.");
             }
@@ -416,7 +425,7 @@ class FrameworkQuestion {
      * @return static
      */
     public function positive(): static {
-        return $this->setValidator(function($response):void {
+        return $this->setValidator(function($response): void {
             if(!is_numeric($response) || $response <= 0) {
                 throw new FrameworkRuntimeException("Input must be a positive number.");
             }
