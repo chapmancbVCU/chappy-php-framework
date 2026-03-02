@@ -280,6 +280,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforce rule where input must be a valid IP address.
+     *
+     * @return static
+     */
+    public function ip(): static {
+        return $this->setValidator(function($response): void {
+            if(!filter_var($response, FILTER_VALIDATE_IP)) {
+                throw new FrameworkRuntimeException("Input must match valid IP address.");
+            }
+        });
+    }
+
+    /**
      * Enforces rule when input must contain at least one lower case character.
      *
      * @return static
