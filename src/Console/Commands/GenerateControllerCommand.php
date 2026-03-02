@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\HasValidators;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -15,6 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateControllerCommand extends Command
 {
+    use HasValidators;
+
     /**
      * Configures the command.
      *
@@ -50,6 +53,14 @@ class GenerateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $controllerName = $input->getArgument('controllername');
+        if($controllerName) {
+            $this->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword()
+                ->max(255)
+                ->validate($controllerName);
+        }
+
         $layout = Controller::layout($input);
         $resourceOption = $input->getOption('resource');
         if(Tools::isFailure($layout)) return Command::FAILURE;

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Supports operations related to generating controllers.
  */
-final class Controller {
+final class Controller extends Console {
     /**
      * Path for controller classes.
      */
@@ -53,10 +54,14 @@ final class Controller {
     ): string {
 
         $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for a controller";
-        $response = $question->required()->alphaNumeric()->ask($message);
-        $message = "test.";
-        $response = $question->required()->match($response)->ask($message);
+        $message = "Enter name for the controller";
+        $response = $question->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->ask($message);
+            
         return Str::ucfirst($response);
     }
 
