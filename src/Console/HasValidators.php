@@ -9,6 +9,36 @@ use Core\Exceptions\FrameworkRuntimeException;
  * Supports ability to validate console input.
  */
 trait HasValidators {
+    protected array $reservedKeywords = [
+        // Reserved keywords
+        'abstract', 'and', 'array', 'as', 'break', 'callable', 'case', 'catch',
+        'class', 'clone', 'const', 'continue', 'declare', 'default', 'die', 'do',
+        'echo', 'else', 'elseif', 'empty', 'enddeclare', 'endfor', 'endforeach',
+        'endif', 'endswitch', 'endwhile', 'eval', 'exit', 'extends', 'final',
+        'finally', 'fn', 'for', 'foreach', 'function', 'global', 'goto', 'if',
+        'implements', 'include', 'include_once', 'instanceof', 'insteadof',
+        'interface', 'isset', 'list', 'match', 'namespace', 'new', 'or', 'print',
+        'private', 'protected', 'public', 'readonly', 'require', 'require_once',
+        'return', 'static', 'switch', 'throw', 'trait', 'try', 'unset', 'use',
+        'var', 'while', 'xor', 'yield',
+
+        // Predefined class names
+        'self', 'parent', 'static',
+
+        // Soft reserved / predefined constants
+        'null', 'true', 'false',
+
+        // Predefined classes worth avoiding
+        'stdclass', 'exception', 'errorexception', 'closure', 'generator',
+        'arithmetic error', 'typeerror', 'valueerror', 'stringable',
+
+        // Enum related (PHP 8.1+)
+        'enum',
+
+        // Fiber related (PHP 8.1+)
+        'fiber',
+    ];
+
     /**
      * Array of validator callbacks.
      *
@@ -172,7 +202,7 @@ trait HasValidators {
      */
     public function noSpecialChars(): static {
         return $this->setValidator(function($response): void {
-            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (preg_match('/\s/', $response) == 0)) {
+            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
                 throw new FrameworkRuntimeException("Input must contain no special characters.");
             }
         });
@@ -217,6 +247,19 @@ trait HasValidators {
         });
     }
 
+    /**
+     * Enforce rule when reserved keywords should be avoided.
+     *
+     * @return static
+     */
+    public function notReservedKeyword(): static {
+        return $this->setValidator(function($response) {
+            if(in_array(strtolower($response), $this->reservedKeywords)) {
+                throw new FrameworkRuntimeException("{$response} is a reserved keyword and cannot be used.");
+            }
+        });
+    }
+    
     /**
      * Enforces rule when input must a positive number.
      *
