@@ -5,6 +5,9 @@ namespace Console;
 
 use Core\Exceptions\FrameworkRuntimeException;
 
+/**
+ * Supports ability to validate console input.
+ */
 trait HasValidators {
     /**
      * Array of validator callbacks.
