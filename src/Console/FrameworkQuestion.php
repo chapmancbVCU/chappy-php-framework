@@ -18,7 +18,7 @@ use Console\HasValidators;
  */
 class FrameworkQuestion {
     use HasValidators;
-    
+
     protected bool $anticipate = false;
 
     /**
@@ -247,17 +247,6 @@ class FrameworkQuestion {
         $this->secret = $secret;
         return $this;
     }
-
-    /**
-     * Adds validator to array of validators to be used.
-     *
-     * @param callable $validator The anonymous function for a validator.
-     * @return static
-     */
-    public function setValidator(callable $validator): static {
-        $this->validators[] = $validator;
-        return $this;
-    } 
 
     /**
      * Sets timeout for input.

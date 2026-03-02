@@ -231,6 +231,17 @@ trait HasValidators {
     }
 
     /**
+     * Adds validator to array of validators to be used.
+     *
+     * @param callable $validator The anonymous function for a validator.
+     * @return static
+     */
+    public function setValidator(callable $validator): static {
+        $this->validators[] = $validator;
+        return $this;
+    } 
+
+    /**
      * Enforces rule when input must contain at least one special character.
      *
      * @return static
