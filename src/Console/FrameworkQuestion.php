@@ -51,6 +51,11 @@ class FrameworkQuestion {
      */
     protected ?int $timeout = null;
 
+    /**
+     * Sets mode for trimmable.
+     *
+     * @var bool
+     */
     protected bool $trimmable = true;
 
     /**
