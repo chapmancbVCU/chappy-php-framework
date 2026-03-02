@@ -110,7 +110,6 @@ class FrameworkQuestion {
      * $anticipate are true.
      *
      * @param string $message The question to ask.
-     * @param bool $anticipate Enables autocomplete when set to true.
      * @param array $suggestions An array of suggestions for when $anticipate 
      * is set to true.  An exception is thrown if this array is empty and 
      * $anticipate = true.
@@ -181,6 +180,27 @@ class FrameworkQuestion {
     }
 
     /**
+     * Checks state of anticipate, secret, and trimmable modes.  If used for 
+     * for certain questions then the user is alerted before being given 
+     * the chance to answer those questions.
+     *
+     * @return void
+     */
+    protected function checkModes(): void {
+        if($this->anticipate) {
+            throw new FrameworkRuntimeException("Anticipate mode not available for this question type.");
+        }
+
+        if($this->secret) {
+            throw new FrameworkRuntimeException("Secret mode not available for this question type.");
+        }
+
+        if(!$this->trimmable) {
+            throw new FrameworkRuntimeException("Trimmable mode cannot be disabled for this question type.");
+        }
+    }
+
+    /**
      * Asks the user a question where there is a choice to be made.
      *
      * @param string $message The question to ask.
@@ -189,6 +209,7 @@ class FrameworkQuestion {
      * @return mixed The user answer.
      */
     public function choice(string $message, array $choices, string|bool|int|float|null $default = null): mixed {
+        $this->checkModes();
         $this->output->writeln('');
         $question = new ChoiceQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
@@ -210,6 +231,7 @@ class FrameworkQuestion {
      * @return mixed The user answer.
      */
     public function confirm(string $message, string|bool|int|float|null $default = true): mixed {
+        $this->checkModes();
         $this->output->writeln('');
         $question = new ConfirmationQuestion(
             "<fg=green> {$message} <fg=cyan>></> ",
@@ -358,7 +380,6 @@ class FrameworkQuestion {
      */
     protected function promptUser(Question $question,): mixed {
         $response = $this->helper->ask($this->input, $this->output, $question);
-        dump(get_class($question));
         $this->anticipate(false);
         $this->disableTrimmable(true);
         $this->secret(false);
