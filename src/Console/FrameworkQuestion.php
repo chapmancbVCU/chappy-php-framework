@@ -16,6 +16,8 @@ use Symfony\Component\Console\Question\Question;
  * Supports questions through the command line interface.
  */
 class FrameworkQuestion {
+    protected bool $anticipate = false;
+
     /**
      * Instance of QuestionHelper class.
      *
@@ -91,6 +93,18 @@ class FrameworkQuestion {
     }
 
     /**
+     * Used to turn on anticipate mode.  
+     *
+     * @param boolean $anticipate Anticipate mode is turned on when true is 
+     * passed.  Otherwise, it is disabled.  Default value is true.
+     * @return static
+     */
+    public function anticipate(bool $anticipate = true): static {
+        $this->anticipate = $anticipate;
+        return $this;
+    }
+
+    /**
      * Asks the user a question.  This function supports secret input 
      * and autocomplete.  An exception is thrown when both $secret and 
      * $anticipate are true.
@@ -112,17 +126,16 @@ class FrameworkQuestion {
      */
     public function ask(
         string $message, 
-        bool $anticipate = false, 
         array $suggestions = [],
         string|bool|int|float|null $default = null
     ): mixed {
 
-        if($anticipate && $this->secret) {
+        if($this->anticipate && $this->secret) {
             throw new FrameworkException('Cannot have $anticipate and $suggestion set to true simultaneously.');
         }
 
-        if($anticipate && empty($suggestions)) {
-            throw new FrameworkException('The $suggestions array cannot be empty when $anticipate = true.');
+        if($this->anticipate && empty($suggestions)) {
+            throw new FrameworkException('The $suggestions array cannot be empty when anticipate is disabled.');
         }
 
         $this->output->writeln('');
@@ -136,7 +149,7 @@ class FrameworkQuestion {
             $question->setHiddenFallback(false);
         }
         
-        if($anticipate) $question->setAutocompleterValues($suggestions);
+        if($this->anticipate) $question->setAutocompleterValues($suggestions);
         if(!$this->trimmable) $question->setTrimmable(false);
 
         if($this->timeout) {
@@ -346,11 +359,11 @@ class FrameworkQuestion {
     protected function promptUser(Question $question,): mixed {
         $response = $this->helper->ask($this->input, $this->output, $question);
         dump(get_class($question));
-        $this->validate($response);
+        $this->anticipate(false);
+        $this->disableTrimmable(true);
         $this->secret(false);
         $this->timeout();
-        dump(strlen($response));
-        $this->disableTrimmable(true);
+        $this->validate($response);
         return $response;
     }
 
