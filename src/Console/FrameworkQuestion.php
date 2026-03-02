@@ -463,6 +463,18 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforce rule where input must be a valid URL.
+     *
+     * @return static
+     */
+    public function url(): static {
+        return $this->setValidator(function($response): void {
+            if(!filter_var($response, FILTER_VALIDATE_URL)) {
+                throw new FrameworkRuntimeException("Input must match valid URL.");
+            }
+        });
+    }
+    /**
      * Calls validator callbacks.  This function also ensures validators 
      * don't bleed into next question if instance is reused.
      *
