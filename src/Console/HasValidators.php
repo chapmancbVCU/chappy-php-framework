@@ -23,7 +23,7 @@ trait HasValidators {
      */
     public function alpha(): static {
         return $this->setValidator(function($response): void {
-            if(!preg_match('/[a-zA-z]/', $response)) {
+            if(preg_match('/[^a-zA-z]/', $response)) {
                 throw new FrameworkRuntimeException("Input must contain only alphabetic characters.");
             }
         });
@@ -172,7 +172,7 @@ trait HasValidators {
      */
     public function noSpecialChars(): static {
         return $this->setValidator(function($response): void {
-            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) && (preg_match('/\s/', $response) == 0)) {
+            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (preg_match('/\s/', $response) == 0)) {
                 throw new FrameworkRuntimeException("Input must contain no special characters.");
             }
         });
