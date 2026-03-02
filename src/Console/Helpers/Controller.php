@@ -53,10 +53,10 @@ final class Controller {
     ): string {
 
         $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for controller.";
-        $response = $question->required()->between(2, 4)->ask($message);
+        $message = "Enter a password.";
+        $response = $question->required()->negative()->ask($message);
         // $message = "test.";
-        // $response = $question->required()->between(2, 4)->ask($message);
+        // $response = $question->required()->ask($message);
         return Str::ucfirst($response);
     }
 

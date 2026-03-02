@@ -93,6 +93,18 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforce rule where input must be alphanumeric characters.
+     *
+     * @return static
+     */
+    public function alphaNumeric(): static {
+        return $this->setValidator(function($response):void {
+            if(preg_match('/[^a-z0-9]/i', $response)) {
+                throw new FrameworkRuntimeException("Input must contain only alphanumeric characters.");
+            }
+        });
+    }
+    /**
      * Used to turn on anticipate mode.  
      *
      * @param boolean $anticipate Anticipate mode is turned on when true is 
@@ -334,6 +346,19 @@ class FrameworkQuestion {
     }
 
     /**
+     * Enforces rule when input must be a negative number.
+     *
+     * @return static
+     */
+    public function negative(): static {
+        return $this->setValidator(function($response):void {
+            if(!is_numeric($response) || $response >= 0) {
+                throw new FrameworkRuntimeException("Input must be a negative number.");
+            }
+        });
+    }
+
+    /**
      * Enforces rule when input must contain no special characters.
      *
      * @return static
@@ -381,6 +406,19 @@ class FrameworkQuestion {
         return $this->setValidator(function($response): void {
             if($response === '' || $response === null) {
                 throw new FrameworkRuntimeException('This field is required.');
+            }
+        });
+    }
+
+    /**
+     * Enforces rule when input must a positive number.
+     *
+     * @return static
+     */
+    public function positive(): static {
+        return $this->setValidator(function($response):void {
+            if(!is_numeric($response) || $response <= 0) {
+                throw new FrameworkRuntimeException("Input must be a positive number.");
             }
         });
     }
@@ -474,6 +512,7 @@ class FrameworkQuestion {
             }
         });
     }
+
     /**
      * Calls validator callbacks.  This function also ensures validators 
      * don't bleed into next question if instance is reused.
