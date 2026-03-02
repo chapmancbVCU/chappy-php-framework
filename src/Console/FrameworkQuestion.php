@@ -318,6 +318,12 @@ class FrameworkQuestion {
         });
     }
 
+    /**
+     * Enforce rule where response and $match parameter needs to match.
+     *
+     * @param mixed $match The value we want to compare.
+     * @return static
+     */
     public function match(mixed $match): static {
         return $this->setValidator(function($response) use ($match): void {
             if($response !== $match) {
