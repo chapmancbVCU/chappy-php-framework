@@ -123,9 +123,9 @@ class View extends Console {
             ->validate($menuName);
 
         return Tools::writeFile(
-          ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
-          ViewStubs::menuAcl(Str::ucfirst($menuName)),
-          "The menu_acl json"
+            ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
+            ViewStubs::menuAcl(Str::ucfirst($menuName)),
+            "The menu_acl json"
         );
     }
 
