@@ -2,7 +2,7 @@
 namespace Console\Commands;
  
 use Console\Helpers\Migrate;
-use Core\Lib\Utilities\Str;
+use Console\HasValidators;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -15,6 +15,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateMigrationCommand extends Command
 {
+    use HasValidators;
+
     /**
      * Configures the command.
      *
@@ -40,6 +42,14 @@ class GenerateMigrationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $tableName = $input->getArgument('table_name');
+        if($tableName) {
+            $this->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword()
+                ->max(255)
+                ->validate($tableName);
+        }
+
         [$renameOption, $updateOption] = Migrate::setFlags($input);
         $bothFlagsSet = Migrate::isBothFlagsSet($renameOption, $updateOption);
 

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use Console\ConsoleLogger;
 use Console\FrameworkQuestion;
 use PDO;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Helper class for migration related console commands.
  */
-class Migrate {
+class Migrate extends Console {
     /**
      * Path to database migration files.
      */
@@ -271,6 +272,14 @@ class Migrate {
         $from = Str::lower($migrationName);
         $to = Str::lower($renameOption);
 
+        self::getInstance()->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->different($from)
+            ->validate($to);
+
         // Generate Migration class
         $fileName = "MDT".self::fileNameTime()."Rename".Str::ucfirst($from)."TableTo".Str::ucfirst($to);
         return Tools::writeFile(
@@ -379,7 +388,13 @@ class Migrate {
     public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for new migration.";
-        $response = $question->required()->ask($message);
+        $response = $question->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->ask($message);
+            
         return $response;
     }
 
@@ -467,7 +482,14 @@ class Migrate {
     private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output): int {
         $question = new FrameworkQuestion($input, $output);
         $message = "Provide name for original table";
-        $response = $question->required()->ask($message);
+        $response = $question->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->different($migrationName)
+            ->ask($message);
+        
         return self::makeRenameMigration($response, $migrationName);
     }
 
@@ -482,7 +504,13 @@ class Migrate {
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption): int {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for original table";
-        $response = $question->required()->ask($message);
+        $response = $question->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->ask($message);
+            
         return self::makeRenameMigration($response, $renameUOption);
     }
 
