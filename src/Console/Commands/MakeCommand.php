@@ -23,7 +23,7 @@ class MakeCommand extends Command
         $this->setName('make:command')
             ->setDescription('Generates a new command class')
             ->setHelp('php console make:command <command_name>')
-            ->addArgument('command-name', InputArgument::REQUIRED, 'Pass the command\'s name.');
+            ->addArgument('command-name', InputArgument::OPTIONAL, 'Pass the command\'s name.');
     }
 
     /**
@@ -35,6 +35,6 @@ class MakeCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-       return CommandHelper::makeCommand($input);
+       return CommandHelper::makeCommand($input, $output);
     }
 }
