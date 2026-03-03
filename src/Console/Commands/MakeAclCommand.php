@@ -22,7 +22,7 @@ class MakeAclCommand extends Command {
         $this->setName('make:acl')
             ->setDescription('Generates a new menu_acl json file.')
             ->setHelp('php console make:acl <menu_acl_json_name>')
-            ->addArgument('acl-name', InputArgument::REQUIRED, 'Pass the name for the new menu_acl json file');
+            ->addArgument('acl-name', InputArgument::OPTIONAL, 'Pass the name for the new menu_acl json file');
     }
 
     /**
@@ -34,7 +34,6 @@ class MakeAclCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $menuName = $input->getArgument('acl-name');
-        return View::makeMenuAcl($menuName);
+        return View::makeMenuAcl($input, $output);
     }
 }

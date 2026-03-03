@@ -2,12 +2,17 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * Supports ability to create views, layouts, components, and menu_acl 
  * json files.
  */
-class View {
+class View extends Console {
   /** Path to components. */
     public const COMPONENTS_PATH = ROOT.DS.'resources'.DS.'views'.DS.'components'.DS;
     /** Path to CSS files. */
@@ -98,10 +103,25 @@ class View {
     /**
      * Generates a new menu_acl file.
      *
-     * @param string $menuName The name of the menu_acl file.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeMenuAcl(string $menuName): int {
+    public static function makeMenuAcl(InputInterface $input, OutputInterface $output): int {
+        $menuName = $input->getArgument('acl-name');
+        if(!$menuName) {
+            $question = new FrameworkQuestion($input, $output);
+            $message = "Enter name for new acl file.";
+            $menuName = $question->ask($message);
+        } 
+
+        self::getInstance()->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->validate($menuName);
+
         return Tools::writeFile(
           ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
           ViewStubs::menuAcl(Str::ucfirst($menuName)),
