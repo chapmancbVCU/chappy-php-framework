@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Helper class for model related console commands.
  */
-class Model {
+class Model extends Console {
     /**
      * Path to model classes.
      */
@@ -41,8 +42,14 @@ class Model {
      */
     public static function modelNamePrompt(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for model.";
-        $response = $question->required()->ask($message);
+        $message = "Enter name for the model.";
+        $response = $question->required()
+            ->noSpecialChars()
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(255)
+            ->ask($message);
+            
         return Str::ucfirst($response);
     }
 

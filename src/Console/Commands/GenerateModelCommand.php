@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\HasValidators;
 use Console\Helpers\Model;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -16,6 +17,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateModelCommand extends Command
 {
+    use HasValidators;
+
     /**
      * Configures the command.
      *
@@ -40,6 +43,15 @@ class GenerateModelCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $modelName = $input->getArgument('modelname');
+
+        if($modelName) {
+            $this->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword()
+                ->max(255)
+                ->validate($modelName);
+        }
+        
         $uploadOption = $input->getOption('upload');
         if($modelName) {
             $modelName = Str::ucfirst($modelName);
