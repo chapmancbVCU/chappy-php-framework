@@ -119,7 +119,7 @@ class View extends Console {
             ->noSpecialChars()
             ->alpha()
             ->notReservedKeyword()
-            ->max(255)
+            ->max(50)
             ->validate($menuName);
 
         return Tools::writeFile(
