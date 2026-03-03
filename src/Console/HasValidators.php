@@ -89,6 +89,20 @@ trait HasValidators {
     }
 
     /**
+     * Enforce rule where response and $match parameter needs to be different.
+     *
+     * @param mixed $data The value we want to compare.
+     * @return static
+     */
+    public function different(mixed $data): static {
+        return $this->setValidator(function($response) use ($data): void {
+            if($response === $data) {
+                throw new FrameworkRuntimeException("The these values must be different.");
+            }
+        });
+    }
+
+    /**
      * Ensures input is a valid E-mail address.
      *
      * @return static
