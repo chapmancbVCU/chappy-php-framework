@@ -76,17 +76,15 @@ final class Controller extends Console {
 
         if($layoutInput === false) {
             $layout = 'default';
-        } else if ($layoutInput === null) {
-            console_warning('Please supply name of layout.');
-            return Command::FAILURE;
-        } else {
-            if($layoutInput === '') {
-                console_warning('Please supply name of layout.');
-                return Command::FAILURE;
-            }
-            $layout = Str::lower($layoutInput);
         }
-        return $layout;
+
+        self::getInstance()->required()
+            ->noSpecialChars()
+            ->notReservedKeyword()
+            ->max(50)
+            ->validate($layoutInput);
+
+        return Str::lower($layoutInput);
     }
 
     /**
