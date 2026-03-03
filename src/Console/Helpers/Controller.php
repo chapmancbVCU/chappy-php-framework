@@ -66,17 +66,15 @@ final class Controller extends Console {
     }
 
     /**
-     * Sets layout for controller
+     * Sets layout for controller.
      *
      * @param InputInterface $input The Symfony InputInterface object.
-     * @return string|int The layout or Command::FAILURE if there is an issue.
+     * @return string The layout to be used with the controller.
      */
-    public static function layout(InputInterface $input): string|int {
+    public static function layout(InputInterface $input): string {
         $layoutInput = $input->getOption('layout');
 
-        if($layoutInput === false) {
-            $layout = 'default';
-        }
+        if($layoutInput === false) return 'default';
 
         self::getInstance()->required()
             ->noSpecialChars()
