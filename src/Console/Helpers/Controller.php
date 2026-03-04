@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Core\Exceptions\FrameworkRuntimeException;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -56,6 +57,7 @@ final class Controller extends Console {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for the controller";
         $response = $question->required()
+            ->fieldName('controller-name')
             ->noSpecialChars()
             ->alpha()
             ->notReservedKeyword()
@@ -76,12 +78,15 @@ final class Controller extends Console {
 
         if($layoutInput === false) return 'default';
 
-        self::getInstance()->required()
+        $isValidated = self::getInstance('layout')
+            ->required()
+            ->alpha()
             ->noSpecialChars()
             ->notReservedKeyword()
             ->max(50)
             ->validate($layoutInput);
 
+        if(!$isValidated) throw new FrameworkRuntimeException();
         return Str::lower($layoutInput);
     }
 
@@ -109,7 +114,13 @@ final class Controller extends Console {
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
             $message = "Enter name for your layout.";
-            $response = $question->required()->ask($message);
+            $response = $question->required()
+                ->fieldName('layout')
+                ->alpha()
+                ->noSpecialChars()
+                ->notReservedKeyword()
+                ->max(50)
+                ->ask($message);
             return Str::lower($response);
         } else {
             return 'default';
