@@ -28,7 +28,7 @@ class GenerateControllerCommand extends Command
         $this->setName('make:controller')
             ->setDescription('Generates a new controller file!')
             ->setHelp('php console make:controller MyController, add --layout=<optional_layout_name> to set layout, and --resource to generate CRUD functions')
-            ->addArgument('controllername', InputArgument::OPTIONAL, 'Pass the controller\'s name.')
+            ->addArgument('controller-name', InputArgument::OPTIONAL, 'Pass the controller\'s name.')
             ->addOption(
                 'layout',
                 null,
@@ -52,9 +52,11 @@ class GenerateControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $controllerName = $input->getArgument('controllername');
+        $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
-            $isValidated = $this->noSpecialChars()
+            $isValidated = $this->required()
+                ->noSpecialChars()
+                ->fieldName('controller-name')
                 ->alpha()
                 ->notReservedKeyword()
                 ->max(255)
