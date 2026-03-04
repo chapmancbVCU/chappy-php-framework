@@ -54,11 +54,12 @@ class GenerateControllerCommand extends Command
     {
         $controllerName = $input->getArgument('controllername');
         if($controllerName) {
-            $this->noSpecialChars()
+            $hasErrors = $this->noSpecialChars()
                 ->alpha()
                 ->notReservedKeyword()
                 ->max(255)
                 ->validate($controllerName);
+            if($hasErrors) return Command::FAILURE;
         }
 
         $layout = Controller::layout($input);

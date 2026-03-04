@@ -138,7 +138,9 @@ trait HasValidators {
         if(Arr::isNotEmpty($this->errors)) {
             $errors = $this->errors;
             $this->errors = [];
-            throw new FrameworkRuntimeException(implode(PHP_EOL, $errors));
+            foreach($errors as $error) {
+                console_error($error);
+            }
         }
         $this->errors = [];
     }
@@ -383,14 +385,19 @@ trait HasValidators {
      * don't bleed into next question if instance is reused.
      *
      * @param mixed $response The user answer.
-     * @return void
+     * @return bool 
      */
-    protected function validate(mixed $response): void {
+    protected function validate(mixed $response): bool {
         foreach($this->validators as $callback) {
             $callback($response);
         }
 
+        if(Arr::isNotEmpty($this->errors)){
+            $this->displayErrorMessages();
+            return false;
+        }
+
         $this->validators = [];
-        $this->displayErrorMessages();
+        return true;
     }
 }

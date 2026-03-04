@@ -226,13 +226,17 @@ class FrameworkQuestion {
      * @param Question $question Represents a question.
      * @return mixed The user answer.
      */
-    protected function promptUser(Question $question,): mixed {
-        $response = $this->helper->ask($this->input, $this->output, $question);
+    protected function promptUser(Question $question): mixed {
+        $validated = false;
+        do {
+            $response = $this->helper->ask($this->input, $this->output, $question);
+            $validated = $this->validate($response);
+        } while(!$validated);
+
         $this->anticipate(false);
         $this->disableTrimmable(true);
         $this->secret(false);
         $this->timeout();
-        $this->validate($response);
         return $response;
     }
 
