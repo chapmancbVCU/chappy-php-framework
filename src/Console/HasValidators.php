@@ -18,6 +18,13 @@ trait HasValidators {
     protected array $errors = [];
 
     /**
+     * The name of the field to be validated.
+     *
+     * @var string
+     */
+    protected string $fieldName = "";
+
+    /**
      * An array of reserved keywords.
      *
      * @var array
@@ -67,7 +74,8 @@ trait HasValidators {
      * @return void
      */
     public function addErrorMessage(string $message): void {
-        $this->errors[] = $message;
+        $prefix = $this->fieldName ? "[$this->fieldName] " : "";
+        $this->errors[] = "{$prefix}{$message}";
     }
 
     /**
@@ -156,6 +164,17 @@ trait HasValidators {
                 $this->addErrorMessage("Input must match valid E-mail format.");
             }
         });
+    }
+
+    /**
+     * Sets name of field to be validated.
+     *
+     * @param string $fieldName The name of the field to be validated.
+     * @return static
+     */
+    public function fieldName(string $fieldName): static {
+        $this->fieldName = $fieldName;
+        return $this;
     }
 
     /**
@@ -398,6 +417,7 @@ trait HasValidators {
         }
 
         $this->validators = [];
+        $this->fieldName = "";
         return true;
     }
 }
