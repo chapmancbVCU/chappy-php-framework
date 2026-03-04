@@ -4,11 +4,24 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Exceptions\FrameworkRuntimeException;
+use Core\Lib\Utilities\Arr;
 
 /**
  * Supports ability to validate console input.
  */
 trait HasValidators {
+    /**
+     * An array of errors.
+     *
+     * @var array
+     */
+    protected array $errors = [];
+
+    /**
+     * An array of reserved keywords.
+     *
+     * @var array
+     */
     protected array $reservedKeywords = [
         // Reserved keywords
         'abstract', 'and', 'array', 'as', 'break', 'callable', 'case', 'catch',
@@ -47,6 +60,17 @@ trait HasValidators {
     protected array $validators = [];
 
     /**
+     * Adds a new error message to the $errors array.
+     *
+     * @param string $message The error message to be added to the $errors 
+     * array.
+     * @return void
+     */
+    public function addErrorMessage(string $message): void {
+        $this->errors[] = $message;
+    }
+
+    /**
      * Enforce rule where input must contain only alphabetic characters.
      *
      * @return static
@@ -54,7 +78,7 @@ trait HasValidators {
     public function alpha(): static {
         return $this->setValidator(function($response): void {
             if(preg_match('/[^a-zA-z]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain only alphabetic characters.");
+                $this->addErrorMessage("Input must contain only alphabetic characters.");
             }
         });
     }
@@ -67,7 +91,7 @@ trait HasValidators {
     public function alphaNumeric(): static {
         return $this->setValidator(function($response):void {
             if(preg_match('/[^a-z0-9]/i', $response)) {
-                throw new FrameworkRuntimeException("Input must contain only alphanumeric characters.");
+                $this->addErrorMessage("Input must contain only alphanumeric characters.");
             }
         });
     }
@@ -81,7 +105,7 @@ trait HasValidators {
     public function between(int $minRule, int $maxRule): static {
         return $this->setValidator(function($response) use ($minRule, $maxRule): void {
             if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
-                throw new FrameworkRuntimeException(
+                $this->addErrorMessage(
                     "This field must be between {$minRule} and {$maxRule} characters in length."
                 );
             } 
@@ -97,9 +121,23 @@ trait HasValidators {
     public function different(mixed $data): static {
         return $this->setValidator(function($response) use ($data): void {
             if($response === $data) {
-                throw new FrameworkRuntimeException("The these values must be different.");
+                $this->addErrorMessage("The these values must be different.");
             }
         });
+    }
+
+    /**
+     * Displays a list of all error messages.
+     *
+     * @return void
+     * 
+     * @throws FrameworkRuntimeException Exception is thrown if an error is 
+     * encountered.
+     */
+    public function displayErrorMessages(): void {
+        if(Arr::isNotEmpty($this->errors)) {
+            throw new FrameworkRuntimeException(implode(PHP_EOL, $this->errors));
+        }
     }
 
     /**
@@ -110,7 +148,7 @@ trait HasValidators {
     public function email(): static {
         return $this->setValidator(function($response): void {
             if(!filter_var($response, FILTER_VALIDATE_EMAIL)) {
-                throw new FrameworkRuntimeException("Input must match valid E-mail format.");
+                $this->addErrorMessage("Input must match valid E-mail format.");
             }
         });
     }
@@ -123,7 +161,7 @@ trait HasValidators {
     public function integer(): static {
         return $this->setValidator(function($response): void {
             if(!is_numeric($response) || str_contains($response, '.')) {
-                throw new FrameworkRuntimeException("Input must be an integer.");
+                $this->addErrorMessage("Input must be an integer.");
             }
         });
     }
@@ -136,7 +174,7 @@ trait HasValidators {
     public function ip(): static {
         return $this->setValidator(function($response): void {
             if(!filter_var($response, FILTER_VALIDATE_IP)) {
-                throw new FrameworkRuntimeException("Input must match valid IP address.");
+                $this->addErrorMessage("Input must match valid IP address.");
             }
         });
     }
@@ -149,7 +187,7 @@ trait HasValidators {
     public function lower(): static {
         return $this->setValidator(function($response): void {
             if(!preg_match('/[a-z]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain at least one lower case character.");
+                $this->addErrorMessage("Input must contain at least one lower case character.");
             }
         });
     }
@@ -163,7 +201,7 @@ trait HasValidators {
     public function match(mixed $match): static {
         return $this->setValidator(function($response) use ($match): void {
             if($response !== $match) {
-                throw new FrameworkRuntimeException("The these values do not match.");
+                $this->addErrorMessage("The these values do not match.");
             }
         });
     }
@@ -177,7 +215,7 @@ trait HasValidators {
     public function max(int $maxRule): static {
         return $this->setValidator(function($response) use ($maxRule): void {
             if(strlen($response) > $maxRule) {
-                throw new FrameworkRuntimeException("This field must be less than {$maxRule} characters in length.");
+                $this->addErrorMessage("This field must be less than {$maxRule} characters in length.");
             } 
         });
     }
@@ -191,7 +229,7 @@ trait HasValidators {
     public function min(int $minRule): static {
         return $this->setValidator(function($response) use ($minRule): void {
             if(strlen($response) < $minRule) {
-                throw new FrameworkRuntimeException("This field must be at least {$minRule} characters in length.");
+                $this->addErrorMessage("This field must be at least {$minRule} characters in length.");
             } 
         });
     }
@@ -204,20 +242,7 @@ trait HasValidators {
     public function negative(): static {
         return $this->setValidator(function($response): void {
             if(!is_numeric($response) || $response >= 0) {
-                throw new FrameworkRuntimeException("Input must be a negative number.");
-            }
-        });
-    }
-
-    /**
-     * Enforces rule when input must contain no special characters.
-     *
-     * @return static
-     */
-    public function noSpecialChars(): static {
-        return $this->setValidator(function($response): void {
-            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
-                throw new FrameworkRuntimeException("Input must contain no special characters.");
+                $this->addErrorMessage("Input must be a negative number.");
             }
         });
     }
@@ -230,33 +255,20 @@ trait HasValidators {
     public function number(): static {
         return $this->setValidator(function($response): void {
             if(!preg_match('/[0-9]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain at least one numeric character.");
+                $this->addErrorMessage("Input must contain at least one numeric character.");
             }
         });
     }
 
     /**
-     * Enforce rule where input must contain only numeric characters.
+     * Enforces rule when input must contain no special characters.
      *
      * @return static
      */
-    public function numeric(): static {
+    public function noSpecialChars(): static {
         return $this->setValidator(function($response): void {
-            if(!is_numeric($response)) {
-                throw new FrameworkRuntimeException("Input must consist of only numeric characters.");
-            }
-        });
-    }
-
-    /**
-     * Ensures required input is entered.
-     *
-     * @return static
-     */
-    public function required(): static {
-        return $this->setValidator(function($response): void {
-            if($response === '' || $response === null) {
-                throw new FrameworkRuntimeException('This field is required.');
+            if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
+                $this->addErrorMessage("Input must contain no special characters.");
             }
         });
     }
@@ -269,7 +281,33 @@ trait HasValidators {
     public function notReservedKeyword(): static {
         return $this->setValidator(function($response) {
             if(in_array(strtolower($response), $this->reservedKeywords)) {
-                throw new FrameworkRuntimeException("{$response} is a reserved keyword and cannot be used.");
+                $this->addErrorMessage("{$response} is a reserved keyword and cannot be used.");
+            }
+        });
+    }
+
+    /**
+     * Enforce rule where input must contain only numeric characters.
+     *
+     * @return static
+     */
+    public function numeric(): static {
+        return $this->setValidator(function($response): void {
+            if(!is_numeric($response)) {
+                $this->addErrorMessage("Input must consist of only numeric characters.");
+            }
+        });
+    }
+
+    /**
+     * Ensures required input is entered.
+     *
+     * @return static
+     */
+    public function required(): static {
+        return $this->setValidator(function($response): void {
+            if($response === '' || $response === null) {
+                $this->addErrorMessage('This field is required.');
             }
         });
     }
@@ -282,7 +320,7 @@ trait HasValidators {
     public function positive(): static {
         return $this->setValidator(function($response): void {
             if(!is_numeric($response) || $response <= 0) {
-                throw new FrameworkRuntimeException("Input must be a positive number.");
+                $this->addErrorMessage("Input must be a positive number.");
             }
         });
     }
@@ -306,7 +344,7 @@ trait HasValidators {
     public function special(): static {
         return $this->setValidator(function($response):void {
             if(!(preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
-                throw new FrameworkRuntimeException("Input must contain at least one special character.");
+                $this->addErrorMessage("Input must contain at least one special character.");
             }
         });
     }
@@ -319,7 +357,7 @@ trait HasValidators {
     public function upper(): static {
         return $this->setValidator(function($response):void {
             if(!preg_match('/[A-Z]/', $response)) {
-                throw new FrameworkRuntimeException("Input must contain at least one upper case character.");
+                $this->addErrorMessage("Input must contain at least one upper case character.");
             }
         });
     }
@@ -332,7 +370,7 @@ trait HasValidators {
     public function url(): static {
         return $this->setValidator(function($response): void {
             if(!filter_var($response, FILTER_VALIDATE_URL)) {
-                throw new FrameworkRuntimeException("Input must match valid URL.");
+                $this->addErrorMessage("Input must match valid URL.");
             }
         });
     }
@@ -350,5 +388,6 @@ trait HasValidators {
         }
 
         $this->validators = [];
+        $this->displayErrorMessages();
     }
 }
