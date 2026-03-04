@@ -385,7 +385,7 @@ trait HasValidators {
      * don't bleed into next question if instance is reused.
      *
      * @param mixed $response The user answer.
-     * @return bool 
+     * @return bool True if validation passed.  Otherwise, we return false.
      */
     protected function validate(mixed $response): bool {
         foreach($this->validators as $callback) {
