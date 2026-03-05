@@ -402,11 +402,20 @@ class Migrate extends Console {
         return $response;
     }
 
+    /**
+     * Prompts user for input when no argument and no options are set.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $migrationName Name of migration to be created or 
+     * renamed to.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function migrationTypePrompt(
         InputInterface $input, 
         string $migrationName, 
         OutputInterface $output
-    ) {
+    ): int {
         $question = new FrameworkQuestion($input, $output);
         $message = "What type of migration do you want?";
         $response = $question->choice(
