@@ -25,7 +25,29 @@ class View extends Console {
     /** Path to widget files. */
     public const WIDGET_PATH = self::VIEW_PATH.'widgets'.DS;
     
-    
+    /**
+     * Generate a component when argument is provided.
+     *
+     * @param string $componentName The name for the new component.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function componentContents(string $componentName, InputInterface $input): int {
+        if($input->getOption('card')) {
+            return View::makeCardComponent($componentName);
+        } else if($input->getOption('form')) {
+            return View::makeFormComponent(
+                $componentName,
+                Str::lower($input->getOption('form-method') ?? 'post'),
+                $input->getOption('enctype') ??  ''
+            );
+        } else if($input->getOption('table')) {
+            return View::makeTableComponent($componentName);
+        }
+
+        console_warning('No component type selected');
+        return Command::FAILURE;
+    }
 
     /**
      * Writes card component to a file.

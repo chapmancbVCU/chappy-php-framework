@@ -49,19 +49,7 @@ class MakeComponentCommand extends Command {
     {
         $componentName = $input->getArgument('component-name');
 
-        if($input->getOption('card')) {
-            return View::makeCardComponent($componentName);
-        } else if($input->getOption('form')) {
-            return View::makeFormComponent(
-                $componentName,
-                Str::lower($input->getOption('form-method') ?? 'post'),
-                $input->getOption('enctype') ??  ''
-            );
-        } else if($input->getOption('table')) {
-            return View::makeTableComponent($componentName);
-        }
-
-        console_warning('No component type selected');
+        if($componentName) return View::componentContents($componentName, $input);
         return Command::FAILURE;
     }
 }
