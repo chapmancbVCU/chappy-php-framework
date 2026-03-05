@@ -109,7 +109,7 @@ final class Controller extends Console {
     
         $question = new FrameworkQuestion($input, $output);
         $layoutInput = $input->getOption('layout');
-        if($layoutInput === true) return $layout;
+        if($layoutInput) return $layout;
 
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
