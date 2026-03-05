@@ -476,7 +476,8 @@ class Migrate extends Console {
     }
 
     /**
-     * Prompts user to enter name for table to be renamed.
+     * Prompts user to enter name for table to be renamed.  Used when 
+     * user responds with the choice to rename.
      *
      * @param string $migrationName The new name for the table to be renamed.
      * @param InputInterface $input The Symfony InputInterface object.
@@ -499,7 +500,8 @@ class Migrate extends Console {
     }
 
     /**
-     * Prompts user to enter name of table to be updated.
+     * Prompts user to enter name of table to be updated.  Used when user 
+     * provides name of controller as an argument.
      *
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
@@ -508,7 +510,6 @@ class Migrate extends Console {
      */
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption): int {
         $question = new FrameworkQuestion($input, $output);
-                dd("foo");
         $message = "Enter name for original table";
         $response = $question->required()
             ->noSpecialChars()
