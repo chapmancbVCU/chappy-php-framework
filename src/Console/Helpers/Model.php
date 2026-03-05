@@ -44,6 +44,7 @@ class Model extends Console {
         $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for the model.";
         $response = $question->required()
+            ->fieldName('model-name')
             ->noSpecialChars()
             ->alpha()
             ->notReservedKeyword()

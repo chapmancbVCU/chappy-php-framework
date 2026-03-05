@@ -28,8 +28,8 @@ class GenerateModelCommand extends Command
     {
         $this->setName('make:model')
             ->setDescription('Generates a new model file!')
-            ->setHelp('make:model <modelname>; add --upload for model configured to support file uploads.')
-            ->addArgument('modelname', InputArgument::OPTIONAL, 'Pass the model\'s name.')
+            ->setHelp('make:model <model-name>; add --upload for model configured to support file uploads.')
+            ->addArgument('model-name', InputArgument::OPTIONAL, 'Pass the model\'s name.')
             ->addOption('upload', null, InputOption::VALUE_NONE, 'Upload flag');
     }
  
@@ -42,14 +42,17 @@ class GenerateModelCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $modelName = $input->getArgument('modelname');
+        $modelName = $input->getArgument('model-name');
 
         if($modelName) {
-            $this->noSpecialChars()
+            $isValidated = $this->required()
+                ->noSpecialChars()
+                ->fieldName('model-name')
                 ->alpha()
                 ->notReservedKeyword()
                 ->max(255)
                 ->validate($modelName);
+            if(!$isValidated) return Command::FAILURE;
         }
         
         $uploadOption = $input->getOption('upload');
