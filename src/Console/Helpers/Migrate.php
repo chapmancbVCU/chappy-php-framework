@@ -272,13 +272,16 @@ class Migrate extends Console {
         $from = Str::lower($migrationName);
         $to = Str::lower($renameOption);
 
-        self::getInstance()->required()
+        $isValidated = self::getInstance()
+            ->required()
             ->noSpecialChars()
+            ->fieldName('rename')
             ->alpha()
             ->notReservedKeyword()
             ->max(255)
             ->different($from)
             ->validate($to);
+        if(!$isValidated) return Command::FAILURE;
 
         // Generate Migration class
         $fileName = "MDT".self::fileNameTime()."Rename".Str::ucfirst($from)."TableTo".Str::ucfirst($to);
@@ -390,6 +393,7 @@ class Migrate extends Console {
         $message = "Enter name for new migration.";
         $response = $question->required()
             ->noSpecialChars()
+            ->fieldName('table_name')
             ->alpha()
             ->notReservedKeyword()
             ->max(255)
@@ -484,6 +488,7 @@ class Migrate extends Console {
         $message = "Provide name for original table";
         $response = $question->required()
             ->noSpecialChars()
+            ->fieldName('original-table')
             ->alpha()
             ->notReservedKeyword()
             ->max(255)
@@ -503,9 +508,11 @@ class Migrate extends Console {
      */
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption): int {
         $question = new FrameworkQuestion($input, $output);
+                dd("foo");
         $message = "Enter name for original table";
         $response = $question->required()
             ->noSpecialChars()
+            ->fieldName('original-table')
             ->alpha()
             ->notReservedKeyword()
             ->max(255)

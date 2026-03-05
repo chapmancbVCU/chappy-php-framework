@@ -43,11 +43,14 @@ class GenerateMigrationCommand extends Command
     {
         $tableName = $input->getArgument('table_name');
         if($tableName) {
-            $this->noSpecialChars()
+            $isValidated = $this->required()
+                ->noSpecialChars()
+                ->fieldName('table_name')
                 ->alpha()
                 ->notReservedKeyword()
                 ->max(255)
                 ->validate($tableName);
+            if(!$isValidated) return Command::FAILURE;
         }
 
         [$renameOption, $updateOption] = Migrate::setFlags($input);
