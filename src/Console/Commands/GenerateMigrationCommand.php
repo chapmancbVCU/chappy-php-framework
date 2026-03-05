@@ -57,11 +57,18 @@ class GenerateMigrationCommand extends Command
         $bothFlagsSet = Migrate::isBothFlagsSet($renameOption, $updateOption);
 
         if($bothFlagsSet) return Command::FAILURE;
-        if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption);
-        if($renameOption) return Migrate::renamePrompt($input, $output, $renameOption);
 
+        // When tableName argument is provided.
+        if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption);
+
+        // tableName not provided with rename option set.
+        if(!$tableName && $renameOption) return Migrate::renamePrompt($input, $output, $renameOption);
+
+        // tableName not provided with update option set.
         $tableName = Migrate::migrationNamePrompt($input, $output);
         if($updateOption) return Migrate::makeUpdateMigration($tableName, $input);
+
+        // Ask questions when tableName is not provided and no options set.
         return Migrate::migrationTypePrompt($input, $tableName, $output);
     }
 }
