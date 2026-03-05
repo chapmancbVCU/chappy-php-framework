@@ -5,6 +5,7 @@ namespace Console\Helpers;
 use Console\Console;
 use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -115,12 +116,14 @@ class View extends Console {
             $menuName = $question->ask($message);
         } 
 
-        self::getInstance()->required()
+        $isValidated = self::getInstance('acl-name')
+            ->required()
             ->noSpecialChars()
             ->alpha()
             ->notReservedKeyword()
             ->max(50)
             ->validate($menuName);
+        if(!$isValidated) return Command::FAILURE;
 
         return Tools::writeFile(
             ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
