@@ -30,9 +30,8 @@ HTML;
     public static function formComponent(string $method, string $encType): string {
         $enctypeAttr = !empty($encType) ? ' enctype="'.$encType.'"' : '';
         return <<<PHP
-<?php use Core\FormHelper; ?>
 <form class="form" action=<?=\$this->postAction?> method="{$method}"{$enctypeAttr}>
-    <?= FormHelper::csrfInput() ?>
+    <?= csrf() ?>
 
 </form>
 PHP;
