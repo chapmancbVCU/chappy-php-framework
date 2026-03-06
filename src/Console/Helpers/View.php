@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to create views, layouts, components, and menu_acl 
+ * Supports ability to create views, layouts, and menu_acl 
  * json files.
  */
 class View extends Console {
