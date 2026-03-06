@@ -30,23 +30,65 @@ class View extends Console {
      *
      * @param string $componentName The name for the new component.
      * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function componentContents(string $componentName, InputInterface $input): int {
-        if($input->getOption('card')) {
+    public static function componentContents(string $componentName, InputInterface $input, OutputInterface $output): int {
+        $card = $input->getOption('card');
+        $form = $input->getOption('form');
+        $table = $input->getOption('table');
+
+        if($card && !$form && !$table) {
             return View::makeCardComponent($componentName);
-        } else if($input->getOption('form')) {
+        } else if($form && !$card && !$table) {
             return View::makeFormComponent(
                 $componentName,
-                Str::lower($input->getOption('form-method') ?? 'post'),
-                $input->getOption('enctype') ??  ''
+                self::formMethod($input, $output),
+                self::enctype($input, $output)
             );
-        } else if($input->getOption('table')) {
+        } else if($table && !$card && !$form) {
             return View::makeTableComponent($componentName);
+        } else {
+            console_warning("You can only choose one component type at a time.");
+            return Command::FAILURE;
         }
 
         console_warning('No component type selected');
         return Command::FAILURE;
+    }
+
+    /**
+     * Prompts user for information about enctype to be used in form component.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The user's response.
+     */
+    public static function enctype(InputInterface $input, OutputInterface $output): string {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Choose a the enctype";
+        $response = $question->choice(
+            $message,
+            ['default: none', 'multipart/form-data', 'text/plain']
+        );
+        if($response == 'default: none') $response = '';
+        return $response;
+    }
+
+    /**
+     * Prompts user for information about which form method to be used in form component.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The user's response.
+     */
+    public static function formMethod(InputInterface $input, OutputInterface $output): string {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Choose a form method";
+        return $question->choice(
+            $message,
+            ['get', 'post', 'put']
+        );
     }
 
     /**
