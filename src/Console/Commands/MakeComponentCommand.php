@@ -60,7 +60,8 @@ class MakeComponentCommand extends Command {
                         ->validate($componentName) ?
                 Component::componentContents($componentName, $input, $output) :
                 Command::FAILURE;
-        } else return Component::componentPrompt($input, $output);
-        return Command::FAILURE;
+        } 
+        
+        return Component::componentPrompt($input, $output);
     }
 }
