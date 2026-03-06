@@ -3,7 +3,7 @@ namespace Console\Commands;
  
 use Core\Lib\Utilities\Str;
 use Console\HasValidators;
-use Console\Helpers\View;
+use Console\Helpers\Component;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -58,10 +58,11 @@ class MakeComponentCommand extends Command {
                         ->notReservedKeyword()
                         ->max(100)
                         ->validate($componentName) ?
-                View::componentContents($componentName, $input, $output) :
+                Component::componentContents($componentName, $input, $output) :
                 Command::FAILURE;
         }
-            
+        
+
         return Command::FAILURE;
     }
 }
