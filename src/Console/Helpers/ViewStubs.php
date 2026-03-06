@@ -164,10 +164,10 @@ JSON;
         return <<<HTML
 <table class="table">
     <thead>
-        <tr><?= \$headers ?></tr>
+        <tr><?= \$this->headers ?></tr>
     </thead>
     <tbody>
-        <?= \$slot ?>
+        <?= \$this->slot ?>
     </tbody>
 </table>
 HTML;
