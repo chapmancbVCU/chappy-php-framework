@@ -71,8 +71,7 @@ class View extends Console {
     /**
      * Generates a new menu_acl file.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param string $menuName The name for the new menu acl file.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMenuAcl(string $menuName): int {
