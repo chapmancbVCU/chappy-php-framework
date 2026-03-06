@@ -75,30 +75,14 @@ class View extends Console {
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeMenuAcl(InputInterface $input, OutputInterface $output): int {
-        $menuName = $input->getArgument('acl-name');
-        if(!$menuName) {
-            $question = new FrameworkQuestion($input, $output);
-            $message = "Enter name for new acl file.";
-            $menuName = $question->ask($message);
-        } 
-
-        $isValidated = self::getInstance('acl-name')
-            ->required()
-            ->noSpecialChars()
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(50)
-            ->validate($menuName);
-        if(!$isValidated) return Command::FAILURE;
-
+    public static function makeMenuAcl(string $menuName): int {
         return Tools::writeFile(
             ROOT.DS.'app'.DS.Str::lower($menuName)."_menu_acl.json",
             ViewStubs::menuAcl(Str::ucfirst($menuName)),
             "The menu_acl json"
         );
     }
-    
+
     /**
      * Writes template for view to a file.
      *
@@ -117,5 +101,32 @@ class View extends Console {
      */
     public static function makeWidget(string $filePath): int {
         return Tools::writeFile($filePath, '', "Widget file");
+    }
+
+    /**
+     * Asks user question about view related file to be created and performs 
+     * validation of input.
+     *
+     * @param string $message The message to present to the user.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param string $fieldName
+     * @return string The user response
+     */
+    public static function prompt(
+        string $message, 
+        InputInterface $input, 
+        OutputInterface $output, 
+        string $fieldName = ''
+    ): string {
+
+        $question = new FrameworkQuestion($input, $output);
+        return $question->required()
+            ->noSpecialChars()
+            ->fieldName($fieldName)
+            ->alpha()
+            ->notReservedKeyword()
+            ->max(50)
+            ->ask($message);
     }
 }
