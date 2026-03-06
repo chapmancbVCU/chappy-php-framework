@@ -48,6 +48,7 @@ class Component extends Console {
         return Command::FAILURE;
     }
 
+
     /**
      * Prompts user for information about enctype to be used in form component.
      *
@@ -57,10 +58,11 @@ class Component extends Console {
      */
     public static function enctype(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
-        $message = "Choose a the enctype";
+        $message = "Choose a the enctype (default: none)";
         $response = $question->choice(
             $message,
-            ['default: none', 'multipart/form-data', 'text/plain']
+            ['default: none', 'multipart/form-data', 'text/plain'],
+            'default: none'
         );
         if($response == 'default: none') $response = '';
         return $response;
@@ -74,10 +76,11 @@ class Component extends Console {
      */
     public static function formMethod(InputInterface $input, OutputInterface $output): string {
         $question = new FrameworkQuestion($input, $output);
-        $message = "Choose a form method";
+        $message = "Choose a form method (default: post).";
         return $question->choice(
             $message,
-            ['get', 'post', 'put']
+            ['get', 'post', 'put'],
+            'post'
         );
     }
 
