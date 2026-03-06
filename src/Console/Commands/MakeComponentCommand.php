@@ -27,7 +27,7 @@ class MakeComponentCommand extends Command {
         $this->setName('make:component')
             ->setDescription('Generates a new component')
             ->setHelp('php console make:component <component_name>')
-            ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new component')
+            ->addArgument('component-name', InputArgument::OPTIONAL, 'Pass the name for the new component')
 
             // Configure form component
             ->addOption('form', null, InputOption::VALUE_NONE, 'Create a form component')
@@ -60,9 +60,7 @@ class MakeComponentCommand extends Command {
                         ->validate($componentName) ?
                 Component::componentContents($componentName, $input, $output) :
                 Command::FAILURE;
-        }
-        
-
+        } else return Component::componentPrompt($input, $output);
         return Command::FAILURE;
     }
 }

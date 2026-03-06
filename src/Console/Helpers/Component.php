@@ -48,6 +48,40 @@ class Component extends Console {
         return Command::FAILURE;
     }
 
+    /**
+     * Prompts uses for information if argument is not provided.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function componentPrompt(InputInterface $input, OutputInterface $output): int {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Choose a component type";
+        $response = $question->choice(
+            $message,
+            ['card', 'form', 'table']
+        );
+
+        $message = "Enter name for your component";
+        $componentName = $question->required()
+                        ->noSpecialChars()
+                        ->fieldName('component-name')
+                        ->alpha()
+                        ->notReservedKeyword()
+                        ->max(100)
+                        ->ask($message);
+
+        if($response === 'card') return self::makeCardComponent($componentName);
+        if($response === 'form') {
+            return self::makeFormComponent(
+                $componentName,
+                self::formMethod($input, $output),
+                self::enctype($input, $output)
+            );
+        }
+        if($response === 'table') return self::makeTableComponent($componentName);
+    }
 
     /**
      * Prompts user for information about enctype to be used in form component.
