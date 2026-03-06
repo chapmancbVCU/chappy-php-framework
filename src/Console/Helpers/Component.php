@@ -81,6 +81,8 @@ class Component extends Console {
             );
         }
         if($response === 'table') return self::makeTableComponent($componentName);
+
+        return Command::FAILURE;
     }
 
     /**
@@ -127,7 +129,7 @@ class Component extends Console {
     public static function makeCardComponent(string $componentName): int {
         return Tools::writeFile(
             self::COMPONENTS_PATH.Str::lower($componentName).".php",
-            ViewStubs::cardComponent(),
+            ComponentStubs::cardComponent(),
             "Form component"
         );
     }
@@ -143,7 +145,7 @@ class Component extends Console {
     public static function makeFormComponent(string $componentName, string $method, string $encType): int {
         return Tools::writeFile(
             self::COMPONENTS_PATH.Str::lower($componentName).".php",
-            ViewStubs::formComponent($method, $encType),
+            ComponentStubs::formComponent($method, $encType),
             "Form component"
         );
     }
@@ -157,7 +159,7 @@ class Component extends Console {
     public static function makeTableComponent(string $componentName): int {
         return Tools::writeFile(
             self::COMPONENTS_PATH.Str::lower($componentName).".php",
-            ViewStubs::tableComponent(),
+            ComponentStubs::tableComponent(),
             "Table component"
         );
     }
