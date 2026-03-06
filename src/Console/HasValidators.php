@@ -85,6 +85,7 @@ trait HasValidators {
      */
     public function alpha(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(preg_match('/[^a-zA-z]/', $response)) {
                 $this->addErrorMessage("Input must contain only alphabetic characters.");
             }
@@ -98,6 +99,7 @@ trait HasValidators {
      */
     public function alphaNumeric(): static {
         return $this->setValidator(function($response):void {
+            if($response == null) return;
             if(preg_match('/[^a-z0-9]/i', $response)) {
                 $this->addErrorMessage("Input must contain only alphanumeric characters.");
             }
@@ -112,6 +114,7 @@ trait HasValidators {
      */
     public function between(int $minRule, int $maxRule): static {
         return $this->setValidator(function($response) use ($minRule, $maxRule): void {
+            if($response == null) return;
             if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
                 $this->addErrorMessage(
                     "This field must be between {$minRule} and {$maxRule} characters in length."
@@ -128,6 +131,7 @@ trait HasValidators {
      */
     public function different(mixed $data): static {
         return $this->setValidator(function($response) use ($data): void {
+            if($response == null) return;
             if($response === $data) {
                 $this->addErrorMessage("The these values must be different.");
             }
@@ -160,6 +164,7 @@ trait HasValidators {
      */
     public function email(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!filter_var($response, FILTER_VALIDATE_EMAIL)) {
                 $this->addErrorMessage("Input must match valid E-mail format.");
             }
@@ -184,6 +189,7 @@ trait HasValidators {
      */
     public function integer(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!is_numeric($response) || str_contains($response, '.')) {
                 $this->addErrorMessage("Input must be an integer.");
             }
@@ -197,6 +203,7 @@ trait HasValidators {
      */
     public function ip(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!filter_var($response, FILTER_VALIDATE_IP)) {
                 $this->addErrorMessage("Input must match valid IP address.");
             }
@@ -210,6 +217,7 @@ trait HasValidators {
      */
     public function lower(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!preg_match('/[a-z]/', $response)) {
                 $this->addErrorMessage("Input must contain at least one lower case character.");
             }
@@ -224,6 +232,7 @@ trait HasValidators {
      */
     public function match(mixed $match): static {
         return $this->setValidator(function($response) use ($match): void {
+            if($response == null) return;
             if($response !== $match) {
                 $this->addErrorMessage("The these values do not match.");
             }
@@ -238,6 +247,7 @@ trait HasValidators {
      */
     public function max(int $maxRule): static {
         return $this->setValidator(function($response) use ($maxRule): void {
+            if($response == null) return;
             if(strlen($response) > $maxRule) {
                 $this->addErrorMessage("This field must be less than {$maxRule} characters in length.");
             } 
@@ -252,6 +262,7 @@ trait HasValidators {
      */
     public function min(int $minRule): static {
         return $this->setValidator(function($response) use ($minRule): void {
+            if($response == null) return;
             if(strlen($response) < $minRule) {
                 $this->addErrorMessage("This field must be at least {$minRule} characters in length.");
             } 
@@ -265,6 +276,7 @@ trait HasValidators {
      */
     public function negative(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!is_numeric($response) || $response >= 0) {
                 $this->addErrorMessage("Input must be a negative number.");
             }
@@ -278,6 +290,7 @@ trait HasValidators {
      */
     public function number(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!preg_match('/[0-9]/', $response)) {
                 $this->addErrorMessage("Input must contain at least one numeric character.");
             }
@@ -291,6 +304,7 @@ trait HasValidators {
      */
     public function noSpecialChars(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if((preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
                 $this->addErrorMessage("Input must contain no special characters.");
             }
@@ -304,6 +318,7 @@ trait HasValidators {
      */
     public function notReservedKeyword(): static {
         return $this->setValidator(function($response) {
+            if($response == null) return;
             if(in_array(strtolower($response), $this->reservedKeywords)) {
                 $this->addErrorMessage("{$response} is a reserved keyword and cannot be used.");
             }
@@ -317,6 +332,7 @@ trait HasValidators {
      */
     public function numeric(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!is_numeric($response)) {
                 $this->addErrorMessage("Input must consist of only numeric characters.");
             }
@@ -343,6 +359,7 @@ trait HasValidators {
      */
     public function positive(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!is_numeric($response) || $response <= 0) {
                 $this->addErrorMessage("Input must be a positive number.");
             }
@@ -367,6 +384,7 @@ trait HasValidators {
      */
     public function special(): static {
         return $this->setValidator(function($response):void {
+            if($response == null) return;
             if(!(preg_match('/[^a-zA-Z0-9]/', $response) == 1) || (!preg_match('/\s/', $response) == 0)) {
                 $this->addErrorMessage("Input must contain at least one special character.");
             }
@@ -380,6 +398,7 @@ trait HasValidators {
      */
     public function upper(): static {
         return $this->setValidator(function($response):void {
+            if($response == null) return;
             if(!preg_match('/[A-Z]/', $response)) {
                 $this->addErrorMessage("Input must contain at least one upper case character.");
             }
@@ -393,6 +412,7 @@ trait HasValidators {
      */
     public function url(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             if(!filter_var($response, FILTER_VALIDATE_URL)) {
                 $this->addErrorMessage("Input must match valid URL.");
             }
