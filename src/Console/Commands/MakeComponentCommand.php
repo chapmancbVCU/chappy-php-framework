@@ -2,6 +2,7 @@
 namespace Console\Commands;
  
 use Core\Lib\Utilities\Str;
+use Console\HasValidators;
 use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -14,6 +15,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/components">here</a>.
  */
 class MakeComponentCommand extends Command {
+    use HasValidators;
+
     /**
      * Configures the command.
      *
@@ -47,7 +50,18 @@ class MakeComponentCommand extends Command {
     {
         $componentName = $input->getArgument('component-name');
 
-        if($componentName) return View::componentContents($componentName, $input, $output);
+        if($componentName) {
+            return $this->required()
+                        ->noSpecialChars()
+                        ->fieldName('component-name')
+                        ->alpha()
+                        ->notReservedKeyword()
+                        ->max(100)
+                        ->validate($componentName) ?
+                View::componentContents($componentName, $input, $output) :
+                Command::FAILURE;
+        }
+            
         return Command::FAILURE;
     }
 }
