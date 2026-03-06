@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
  
+use Console\HasValidators;
 use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,6 +13,8 @@ use Symfony\Component\Console\Input\InputArgument;
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#menu-acls">here</a>.
  */
 class MakeAclCommand extends Command {
+    use HasValidators;
+
     /**
      * Configures the command.
      *
@@ -34,6 +37,20 @@ class MakeAclCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return View::makeMenuAcl($input, $output);
+        $menuName = $input->getArgument('acl-name');
+        if($menuName) {
+            $isValidated = $this->required()
+                ->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword()
+                ->max(50)
+                ->validate($menuName);
+            if(!$isValidated) return Command::FAILURE;
+        } else {
+            $message = "Enter name for new acl file.";
+            $menuName = View::prompt($message, $input, $output);
+        }
+            
+        return View::makeMenuAcl($menuName);
     }
 }
