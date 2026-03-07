@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\Console;
 use Console\HasValidators;
 use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
@@ -48,7 +49,7 @@ class MakeCSSCommand extends Command {
             if(!$isValidated) return Command::FAILURE;
         } else {
             $message = "Enter name for new CSS file.";
-            $fileName = View::prompt($message, $input, $output);
+            $fileName = Console::prompt($message, $input, $output);
         }
 
         return View::makeCSS($fileName);

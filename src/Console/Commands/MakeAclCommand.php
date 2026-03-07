@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\Console;
 use Console\HasValidators;
 use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
@@ -48,7 +49,7 @@ class MakeAclCommand extends Command {
             if(!$isValidated) return Command::FAILURE;
         } else {
             $message = "Enter name for new acl file.";
-            $menuName = View::prompt($message, $input, $output);
+            $menuName = Console::prompt($message, $input, $output);
         }
             
         return View::makeMenuAcl($menuName);

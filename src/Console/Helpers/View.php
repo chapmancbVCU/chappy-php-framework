@@ -101,31 +101,4 @@ class View extends Console {
     public static function makeWidget(string $filePath): int {
         return Tools::writeFile($filePath, '', "Widget file");
     }
-
-    /**
-     * Asks user question about view related file to be created and performs 
-     * validation of input.
-     *
-     * @param string $message The message to present to the user.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
-     * @param string $fieldName
-     * @return string The user response
-     */
-    public static function prompt(
-        string $message, 
-        InputInterface $input, 
-        OutputInterface $output, 
-        string $fieldName = ''
-    ): string {
-
-        $question = new FrameworkQuestion($input, $output);
-        return $question->required()
-            ->noSpecialChars()
-            ->fieldName($fieldName)
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(50)
-            ->ask($message);
-    }
 }
