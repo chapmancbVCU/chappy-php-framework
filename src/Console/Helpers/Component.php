@@ -56,21 +56,12 @@ class Component extends Console {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function componentPrompt(InputInterface $input, OutputInterface $output): int {
-        $question = new FrameworkQuestion($input, $output);
         $message = "Choose a component type";
-        $response = $question->choice(
-            $message,
-            ['card', 'form', 'table']
-        );
+        $choices = ['card', 'form', 'table'];
+        $response = self::choice($message, $choices, $input, $output);
 
         $message = "Enter name for your component";
-        $componentName = $question->required()
-                        ->noSpecialChars()
-                        ->fieldName('component-name')
-                        ->alpha()
-                        ->notReservedKeyword()
-                        ->max(100)
-                        ->ask($message);
+        $componentName = self::prompt($message, $input, $output, 'component-name');
 
         if($response === 'card') return self::makeCardComponent($componentName);
         if($response === 'form') {
