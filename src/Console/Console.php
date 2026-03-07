@@ -49,7 +49,7 @@ class Console {
         OutputInterface $output, 
         string $fieldName = '',
         int $max = 50
-    ) {
+    ): string {
         $isValidated = self::getInstance($field)
                 ->required()
                 ->noSpecialChars()
