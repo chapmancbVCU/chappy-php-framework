@@ -289,19 +289,6 @@ class Migrate extends Console {
     public static function makeRenameMigration(string $migrationName, mixed $renameOption): int {
         $from = Str::lower($migrationName);
         $to = Str::lower($renameOption);
-        // $isValidated = self::getInstance()
-        //     ->required()
-        //     ->noSpecialChars()
-        //     ->fieldName('rename')
-        //     ->alpha()
-        //     ->notReservedKeyword()
-        //     ->max(50)
-        //     ->different($from)
-        //     ->validate($to);
-        // if(!$isValidated) return Command::FAILURE;
-        // $message = "Provide name for original table";
-        // $from = self::argOptionValidate($from, $message, $input, $output, 'original-name', 50, $to);
-        // Generate Migration class
         $fileName = "MDT".self::fileNameTime()."Rename".Str::ucfirst($from)."TableTo".Str::ucfirst($to);
         return Tools::writeFile(
             self::MIGRATIONS_PATH.$fileName.'.php',
