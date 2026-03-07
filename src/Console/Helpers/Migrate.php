@@ -26,7 +26,7 @@ class Migrate extends Console {
     public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
 
     /**
-     * The message to present to use when name of migration is being asked.
+     * The message to present to user when name of migration is being asked.
      */
     public const MIGRATION_PROMPT = "Enter name for new migration.";
 
