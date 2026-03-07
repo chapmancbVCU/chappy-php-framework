@@ -49,7 +49,7 @@ class MakeAclCommand extends Command {
             if(!$isValidated) return Command::FAILURE;
         } else {
             $message = "Enter name for new acl file.";
-            $menuName = Console::prompt($message, $input, $output);
+            $menuName = View::fileNamePrompt($message, $input, $output);
         }
             
         return View::makeMenuAcl($menuName);

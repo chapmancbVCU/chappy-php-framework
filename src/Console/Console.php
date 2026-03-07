@@ -23,25 +23,16 @@ class Console {
     }
 
     /**
-     * Returns instance of this or child helper class.
-     *
-     * @param string $fieldName The name of the field to be validated.
-     * @return static
-     */
-    public static function getInstance(string $fieldName = ""): static {
-        return new static($fieldName);
-    }
-
-    /**
      * Asks user question about file to be created.
      *
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
-     * @param string $fieldName
+     * @param string $fieldName The name of the field being validated.
+     * @param int $max Maximum allowed size for file name.
      * @return string The user response
      */
-    public static function prompt(
+    public static function fileNamePrompt(
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
@@ -57,5 +48,15 @@ class Console {
             ->notReservedKeyword()
             ->max($max)
             ->ask($message);
+    }
+
+    /**
+     * Returns instance of this or child helper class.
+     *
+     * @param string $fieldName The name of the field to be validated.
+     * @return static
+     */
+    public static function getInstance(string $fieldName = ""): static {
+        return new static($fieldName);
     }
 }
