@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Migrate;
-use Console\HasValidators;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -15,8 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateMigrationCommand extends Command
 {
-    use HasValidators;
-
     /**
      * Configures the command.
      *
