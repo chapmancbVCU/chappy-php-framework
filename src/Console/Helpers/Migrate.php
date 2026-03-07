@@ -37,9 +37,18 @@ class Migrate extends Console {
      * @param string $migrationName The name of the table for the new migration class.
      * @param mixed $renameOption Value/state of rename flag.
      * @param mixed $renameOption Value/state of update flag.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption, $input, $output): int {
+    public static function contents(
+        string $migrationName, 
+        mixed $renameOption, 
+        mixed $updateOption, 
+        InputInterface $input, 
+        OutputInterface $output
+        ): int {
+
         if($renameOption) {
             $renameOption = self::validateRenameOption($renameOption, $migrationName, $input, $output);
             return Migrate::makeRenameMigration($migrationName, $renameOption);
