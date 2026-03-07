@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\Console;
-use Console\HasValidators;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -17,8 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateControllerCommand extends Command
 {
-    use HasValidators;
-
     /**
      * Configures the command.
      *
