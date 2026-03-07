@@ -19,6 +19,9 @@ final class Controller extends Console {
      */
     public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
 
+    /**
+     * The message to present to use when name of controller is being asked.
+     */
     public const PROMPT_MESSAGE = "Enter name for the controller";
 
     /**
