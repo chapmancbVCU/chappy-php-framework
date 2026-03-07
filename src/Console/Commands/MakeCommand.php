@@ -2,6 +2,7 @@
 namespace Console\Commands;
 
 use Console\Helpers\CommandHelper;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,6 +36,13 @@ class MakeCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-       return CommandHelper::makeCommand($input, $output);
+        $commandName = $input->getArgument('command-name');
+        $message = "Enter name for new Command class.";
+        if($commandName) {
+            CommandHelper::argOptionValidate($commandName, $message, $input, $output);
+        } else {
+            $commandName = CommandHelper::prompt($message, $input, $output);
+        }
+        return CommandHelper::makeCommand(Str::ucfirst($commandName));
     }
 }
