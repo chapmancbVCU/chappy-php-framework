@@ -57,8 +57,7 @@ class GenerateControllerCommand extends Command
                 Controller::PROMPT_MESSAGE, 
                 $input, 
                 $output, 
-                'controller-name', 
-                255
+                'controller-name'
             );
         }
 
