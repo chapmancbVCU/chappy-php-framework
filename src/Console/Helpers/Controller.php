@@ -20,6 +20,11 @@ final class Controller extends Console {
     public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
 
     /**
+     * Layout prompt message
+     */
+    public const LAYOUT_PROMPT = "Enter name for the layout.";
+
+    /**
      * The message to present to use when name of controller is being asked.
      */
     public const PROMPT_MESSAGE = "Enter name for the controller";
@@ -76,7 +81,7 @@ final class Controller extends Console {
 
         $layoutInput = self::argOptionValidate(
             $layoutInput,
-            "Enter name for the layout.",
+            self::LAYOUT_PROMPT,
             $input,
             $output,
             'layout'
@@ -108,14 +113,7 @@ final class Controller extends Console {
 
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
-            $message = "Enter name for your layout.";
-            $response = $question->required()
-                ->fieldName('layout')
-                ->alpha()
-                ->noSpecialChars()
-                ->notReservedKeyword()
-                ->max(50)
-                ->ask($message);
+            $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'layout');
             return Str::lower($response);
         } else {
             return 'default';
