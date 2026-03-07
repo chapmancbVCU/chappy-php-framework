@@ -16,6 +16,11 @@ class Model extends Console {
      * Path to model classes.
      */
     public const MODEL_PATH = ROOT.DS.'app'.DS.'Models'.DS;
+    
+    /**
+     * The message to present to user when name of model is being asked.
+     */
+    public const PROMPT_MESSAGE = "Enter name for the model.";
 
     /**
      * Generates a new model class.
@@ -41,16 +46,7 @@ class Model extends Console {
      * @return string The name of the model class.
      */
     public static function modelNamePrompt(InputInterface $input, OutputInterface $output): string {
-        $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for the model.";
-        $response = $question->required()
-            ->fieldName('model-name')
-            ->noSpecialChars()
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(255)
-            ->ask($message);
-            
+        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'model-name');
         return Str::ucfirst($response);
     }
 

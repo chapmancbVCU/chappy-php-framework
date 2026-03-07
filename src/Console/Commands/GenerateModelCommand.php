@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\Console;
 use Console\HasValidators;
 use Console\Helpers\Model;
 use Console\Helpers\Tools;
@@ -45,14 +46,13 @@ class GenerateModelCommand extends Command
         $modelName = $input->getArgument('model-name');
 
         if($modelName) {
-            $isValidated = $this->required()
-                ->noSpecialChars()
-                ->fieldName('model-name')
-                ->alpha()
-                ->notReservedKeyword()
-                ->max(255)
-                ->validate($modelName);
-            if(!$isValidated) return Command::FAILURE;
+            Console::argOptionValidate(
+                $modelName, 
+                Model::PROMPT_MESSAGE,
+                $input,
+                $output,
+                'model-name'
+            );
         }
         
         $uploadOption = $input->getOption('upload');
