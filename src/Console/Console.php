@@ -26,6 +26,13 @@ class Console {
      * Validates argument and option input.  If validation fails then the 
      * user is asked to enter a new value.
      *
+     * Validates the following conditions:
+     * 1) required
+     * 2) noSpecialChars
+     * 3) alpha
+     * 4) notReservedKeyword
+     * 5) max
+     * 
      * @param string $field The value to be validated.
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
@@ -59,6 +66,13 @@ class Console {
     /**
      * Asks user question about file to be created.
      *
+     * Validates the following conditions:
+     * 1) required
+     * 2) noSpecialChars
+     * 3) alpha
+     * 4) notReservedKeyword
+     * 5) max
+     * 
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
