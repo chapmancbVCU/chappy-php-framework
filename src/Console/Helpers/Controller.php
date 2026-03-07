@@ -67,7 +67,7 @@ final class Controller extends Console {
     }
 
     /**
-     * Sets layout for controller.
+     * Sets layout for controller when provided as an option.
      *
      * @param InputInterface $input The Symfony InputInterface object.
      * @return string The layout to be used with the controller.
@@ -77,7 +77,7 @@ final class Controller extends Console {
 
         if($layoutInput === false) return 'default';
 
-        $layoutInput = self::argOptionValidate(
+        self::argOptionValidate(
             $layoutInput,
             self::LAYOUT_PROMPT,
             $input,
