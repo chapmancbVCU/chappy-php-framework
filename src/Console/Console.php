@@ -62,8 +62,7 @@ class Console {
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @param string $fieldName The name of the field being validated.
      * @param int $max Maximum allowed size for file name.
-     * @return string The user response or original value of $field if 
-     * validation passed.
+     * @return void
      */
     public static function argOptionValidate(
         string &$field,
@@ -74,25 +73,8 @@ class Console {
         int $max = 50,
         ?string $different = null
     ): void {
-        $object = self::getInstance($fieldName);
 
-        // if(!$different) {
-        //     $isValidated =  $object->required()
-        //         ->noSpecialChars()
-        //         ->alpha()
-        //         ->notReservedKeyword()
-        //         ->max($max)
-        //         ->validate($field);
-        // } else {
-        //     $isValidated =  $object->required()
-        //         ->noSpecialChars()
-        //         ->alpha()
-        //         ->notReservedKeyword()
-        //         ->max($max)
-        //         ->different($different)
-        //         ->validate($field);
-        // }
-        // dump($different);
+        $object = self::getInstance($fieldName);
         if($different) $object->different($different);
         $object->required()
                 ->noSpecialChars()
@@ -102,7 +84,6 @@ class Console {
         if(!$object->validate($field)) {
             $field = self::prompt($message, $input, $output, $fieldName, $max, $different);
         }
-        //return $field;
     }
 
     /**
