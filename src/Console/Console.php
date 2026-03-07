@@ -50,7 +50,7 @@ class Console {
         string $fieldName = '',
         int $max = 50
     ): string {
-        $isValidated = self::getInstance($field)
+        $isValidated = self::getInstance($fieldName)
                 ->required()
                 ->noSpecialChars()
                 ->alpha()
