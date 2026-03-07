@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\Console;
 use Console\Helpers\Migrate;
 use Console\HasValidators;
 use Symfony\Component\Console\Command\Command;
@@ -27,7 +28,7 @@ class GenerateMigrationCommand extends Command
         $this->setName('make:migration')
             ->setDescription('Generates a Database Migration!')
             ->setHelp('make:migration <table_name>, --rename flag to rename table or --update flag for update table migration')
-            ->addArgument('table_name', InputArgument::OPTIONAL, 'Pass the table\'s name.')
+            ->addArgument('table-name', InputArgument::OPTIONAL, 'Pass the table\'s name.')
             ->addOption('update', null, InputOption::VALUE_NONE, 'Update table')
             ->addOption('rename', null, InputOption::VALUE_REQUIRED, 'Rename table', false);
     }
@@ -41,16 +42,15 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $tableName = $input->getArgument('table_name');
+        $tableName = $input->getArgument('table-name');
         if($tableName) {
-            $isValidated = $this->required()
-                ->noSpecialChars()
-                ->fieldName('table_name')
-                ->alpha()
-                ->notReservedKeyword()
-                ->max(255)
-                ->validate($tableName);
-            if(!$isValidated) return Command::FAILURE;
+            $tableName = Console::argOptionValidate(
+                $tableName,
+                Migrate::MIGRATION_PROMPT,
+                $input,
+                $output,
+                'table-name'
+            );
         }
 
         [$renameOption, $updateOption] = Migrate::setFlags($input);

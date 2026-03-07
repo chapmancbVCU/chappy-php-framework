@@ -26,6 +26,11 @@ class Migrate extends Console {
     public const MIGRATIONS_PATH = ROOT.DS.'database'.DS.'migrations'.DS;
 
     /**
+     * The message to present to use when name of migration is being asked.
+     */
+    public const MIGRATION_PROMPT = "Enter name for new migration.";
+
+    /**
      * Generates new migration class if table-name argument is provided.  If rename or update 
      * flags are set then appropriate migration class is created.
      *
@@ -388,18 +393,8 @@ class Migrate extends Console {
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @return string The name of the table the new migration will target.
      */
-    public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {
-        $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for new migration.";
-        $response = $question->required()
-            ->noSpecialChars()
-            ->fieldName('table_name')
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(255)
-            ->ask($message);
-            
-        return $response;
+    public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {        
+        return self::prompt(self::MIGRATION_PROMPT, $input, $output, 'table-name');
     }
 
     /**
