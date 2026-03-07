@@ -411,14 +411,10 @@ class Migrate extends Console {
         string $migrationName, 
         OutputInterface $output
     ): int {
-        $question = new FrameworkQuestion($input, $output);
-        $message = "What type of migration do you want?";
-        $response = $question->choice(
-            $message,
-            ['New Table', 'Rename', 'Update']
-        );
+        $choices = ['New Table (default)', 'Rename', 'Update'];
+        $response = self::choice(self::MIGRATION_PROMPT, $choices, $choices[0], $input, $output);
         
-        if($response == 'New Table') return self::makeMigration($migrationName);
+        if($response == 'New Table (default)') return self::makeMigration($migrationName);
         if($response == 'Rename') return self::renameChoice($migrationName, $input, $output);
         if($response == 'Update') return self::makeUpdateMigration($migrationName);
         return Command::FAILURE;
