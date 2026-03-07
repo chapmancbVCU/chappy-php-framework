@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\Console;
 use Console\HasValidators;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
@@ -54,14 +55,14 @@ class GenerateControllerCommand extends Command
     {
         $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
-            $isValidated = $this->required()
-                ->noSpecialChars()
-                ->fieldName('controller-name')
-                ->alpha()
-                ->notReservedKeyword()
-                ->max(255)
-                ->validate($controllerName);
-            if(!$isValidated) return Command::FAILURE;
+            $controllerName = Console::argOptionValidate(
+                                $controllerName, 
+                                Controller::PROMPT_MESSAGE, 
+                                $input, 
+                                $output, 
+                                'controller-name', 
+                                255
+                            );
         }
 
         $layout = Controller::layout($input);

@@ -49,7 +49,7 @@ class MakeCSSCommand extends Command {
             if(!$isValidated) return Command::FAILURE;
         } else {
             $message = "Enter name for new CSS file.";
-            $fileName = View::fileNamePrompt($message, $input, $output);
+            $fileName = View::prompt($message, $input, $output);
         }
 
         return View::makeCSS($fileName);

@@ -32,7 +32,7 @@ class Console {
      * @param int $max Maximum allowed size for file name.
      * @return string The user response
      */
-    public static function fileNamePrompt(
+    public static function prompt(
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
@@ -48,6 +48,27 @@ class Console {
             ->notReservedKeyword()
             ->max($max)
             ->ask($message);
+    }
+
+    public static function argOptionValidate(
+        string $field,
+        string $message, 
+        InputInterface $input, 
+        OutputInterface $output, 
+        string $fieldName = '',
+        int $max = 50
+    ) {
+        $isValidated = self::getInstance($field)
+                ->required()
+                ->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword()
+                ->max($max)
+                ->validate($field);
+        if(!$isValidated) {
+            $field = self::prompt($message, $input, $output, $fieldName, $max);
+        }
+        return $field;
     }
 
     /**

@@ -19,6 +19,8 @@ final class Controller extends Console {
      */
     public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
 
+    public const PROMPT_MESSAGE = "Enter name for the controller";
+
     /**
      * Returns contents for the controller class.  If the resource flag is 
      * set then a resource controller is generated.
@@ -54,16 +56,7 @@ final class Controller extends Console {
         OutputInterface $output
     ): string {
 
-        $question = new FrameworkQuestion($input, $output);
-        $message = "Enter name for the controller";
-        $response = $question->required()
-            ->fieldName('controller-name')
-            ->noSpecialChars()
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(255)
-            ->ask($message);
-            
+        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'controller-name', 255);
         return Str::ucfirst($response);
     }
 
