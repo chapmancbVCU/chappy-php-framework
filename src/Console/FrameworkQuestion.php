@@ -171,6 +171,7 @@ class FrameworkQuestion {
      * Asks the user a question where there is a choice to be made.
      *
      * @param string $message The question to ask.
+     * @param array $choices An array of choices.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.
