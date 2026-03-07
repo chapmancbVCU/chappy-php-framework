@@ -23,7 +23,7 @@ final class Controller extends Console {
     public const LAYOUT_PROMPT = "Enter name for the layout.";
 
     /**
-     * The message to present to use when name of controller is being asked.
+     * The message to present to user when name of controller is being asked.
      */
     public const PROMPT_MESSAGE = "Enter name for the controller";
 
