@@ -59,7 +59,7 @@ final class Controller extends Console {
         OutputInterface $output
     ): string {
 
-        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'controller-name', 255);
+        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'controller-name');
         return Str::ucfirst($response);
     }
 
@@ -79,8 +79,7 @@ final class Controller extends Console {
             "Enter name for the layout.",
             $input,
             $output,
-            'layout',
-            50
+            'layout'
         );
         
         return Str::lower($layoutInput);
