@@ -1,7 +1,6 @@
 <?php
 namespace Console\Commands;
 
-use Console\Console;
 use Console\Helpers\Migrate;
 use Console\HasValidators;
 use Symfony\Component\Console\Command\Command;
@@ -44,7 +43,7 @@ class GenerateMigrationCommand extends Command
     {
         $tableName = $input->getArgument('table-name');
         if($tableName) {
-            Console::argOptionValidate(
+            Migrate::argOptionValidate(
                 $tableName,
                 Migrate::MIGRATION_PROMPT,
                 $input,

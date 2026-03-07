@@ -1,7 +1,6 @@
 <?php
 namespace Console\Commands;
 
-use Console\Console;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -52,7 +51,7 @@ class GenerateControllerCommand extends Command
     {
         $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
-            Console::argOptionValidate(
+            Controller::argOptionValidate(
                 $controllerName, 
                 Controller::PROMPT_MESSAGE, 
                 $input, 
