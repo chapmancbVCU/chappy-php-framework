@@ -276,14 +276,13 @@ class Migrate extends Console {
     public static function makeRenameMigration(string $migrationName, mixed $renameOption): int {
         $from = Str::lower($migrationName);
         $to = Str::lower($renameOption);
-
         $isValidated = self::getInstance()
             ->required()
             ->noSpecialChars()
             ->fieldName('rename')
             ->alpha()
             ->notReservedKeyword()
-            ->max(255)
+            ->max(50)
             ->different($from)
             ->validate($to);
         if(!$isValidated) return Command::FAILURE;
@@ -492,7 +491,7 @@ class Migrate extends Console {
             ->fieldName('original-table')
             ->alpha()
             ->notReservedKeyword()
-            ->max(255)
+            ->max(50)
             ->different($migrationName)
             ->ask($message);
         
@@ -509,16 +508,8 @@ class Migrate extends Console {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption): int {
-        $question = new FrameworkQuestion($input, $output);
         $message = "Enter name for original table";
-        $response = $question->required()
-            ->noSpecialChars()
-            ->fieldName('original-table')
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(255)
-            ->ask($message);
-            
+        $response = self::prompt($message, $input, $output, 'original-table');  
         return self::makeRenameMigration($response, $renameUOption);
     }
 
