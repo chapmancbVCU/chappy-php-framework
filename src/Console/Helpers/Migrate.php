@@ -412,7 +412,7 @@ class Migrate extends Console {
         OutputInterface $output
     ): int {
         $choices = ['New Table (default)', 'Rename', 'Update'];
-        $response = self::choice(self::MIGRATION_PROMPT, $choices, $choices[0], $input, $output);
+        $response = self::choice(self::MIGRATION_PROMPT, $choices, $input, $output, $choices[0]);
         
         if($response == 'New Table (default)') return self::makeMigration($migrationName);
         if($response == 'Rename') return self::renameChoice($migrationName, $input, $output);

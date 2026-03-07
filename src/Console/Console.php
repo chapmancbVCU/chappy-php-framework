@@ -27,18 +27,18 @@ class Console {
      *
      * @param string $message The message to present to the user.
      * @param array $choices An array of choices.
-     * @param string|boolean|integer|float|null|null $default he default value if the 
-     * user does not provide an answer.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param string|boolean|integer|float|null|null $default he default value if the 
+     * user does not provide an answer.
      * @return mixed The user answer.
      */
     public static function choice(
         string $message, 
         array $choices, 
-        string|bool|int|float|null $default = null, 
         InputInterface $input, 
-        OutputInterface $output
+        OutputInterface $output,
+        string|bool|int|float|null $default = null, 
     ): mixed {
         $question = new FrameworkQuestion($input, $output);
         return $question->choice($message, $choices, $default);
