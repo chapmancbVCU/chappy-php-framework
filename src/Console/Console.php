@@ -41,7 +41,7 @@ class Console {
         OutputInterface $output
     ): mixed {
         $question = new FrameworkQuestion($input, $output);
-        return $question->choice($message,$choices,$default);
+        return $question->choice($message, $choices, $default);
     }
 
     /**
