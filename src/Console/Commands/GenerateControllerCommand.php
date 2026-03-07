@@ -56,13 +56,13 @@ class GenerateControllerCommand extends Command
         $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
             $controllerName = Console::argOptionValidate(
-                                $controllerName, 
-                                Controller::PROMPT_MESSAGE, 
-                                $input, 
-                                $output, 
-                                'controller-name', 
-                                255
-                            );
+                $controllerName, 
+                Controller::PROMPT_MESSAGE, 
+                $input, 
+                $output, 
+                'controller-name', 
+                255
+            );
         }
 
         $layout = Controller::layout($input);
