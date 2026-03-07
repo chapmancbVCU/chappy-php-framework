@@ -66,20 +66,20 @@ final class Controller extends Console {
      * @param InputInterface $input The Symfony InputInterface object.
      * @return string The layout to be used with the controller.
      */
-    public static function layout(InputInterface $input): string {
+    public static function layout(InputInterface $input, OutputInterface $output): string {
         $layoutInput = $input->getOption('layout');
 
         if($layoutInput === false) return 'default';
 
-        $isValidated = self::getInstance('layout')
-            ->required()
-            ->alpha()
-            ->noSpecialChars()
-            ->notReservedKeyword()
-            ->max(50)
-            ->validate($layoutInput);
-
-        if(!$isValidated) throw new FrameworkRuntimeException();
+        $layoutInput = self::argOptionValidate(
+            $layoutInput,
+            "Enter name for the layout.",
+            $input,
+            $output,
+            'layout',
+            50
+        );
+        
         return Str::lower($layoutInput);
     }
 

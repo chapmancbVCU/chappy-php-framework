@@ -65,7 +65,7 @@ class GenerateControllerCommand extends Command
             );
         }
 
-        $layout = Controller::layout($input);
+        $layout = Controller::layout($input, $output);
         $resourceOption = $input->getOption('resource');
         if(Tools::isFailure($layout)) return Command::FAILURE;
         
