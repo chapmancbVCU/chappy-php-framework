@@ -133,7 +133,7 @@ trait HasValidators {
         return $this->setValidator(function($response) use ($data): void {
             if($response == null) return;
             if($response === $data) {
-                $this->addErrorMessage("The these values must be different.");
+                $this->addErrorMessage("These values must be different.");
             }
         });
     }

@@ -39,12 +39,16 @@ class Migrate extends Console {
      * @param mixed $renameOption Value/state of update flag.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption): int {
-        if($renameOption) return Migrate::makeRenameMigration($migrationName, $renameOption);
+    public static function contents(string $migrationName, mixed $renameOption, mixed $updateOption, $input, $output): int {
+        if($renameOption) {
+            $renameOption = self::validateRenameOption($renameOption, $migrationName, $input, $output);
+            return Migrate::makeRenameMigration($migrationName, $renameOption);
+        }
+            
         else if($updateOption) return Migrate::makeUpdateMigration($migrationName);
         else return Migrate::makeMigration($migrationName);
     }
-
+    
     /**
      * Test if a particular batch of migrations exists.
      *
@@ -276,17 +280,18 @@ class Migrate extends Console {
     public static function makeRenameMigration(string $migrationName, mixed $renameOption): int {
         $from = Str::lower($migrationName);
         $to = Str::lower($renameOption);
-        $isValidated = self::getInstance()
-            ->required()
-            ->noSpecialChars()
-            ->fieldName('rename')
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(50)
-            ->different($from)
-            ->validate($to);
-        if(!$isValidated) return Command::FAILURE;
-
+        // $isValidated = self::getInstance()
+        //     ->required()
+        //     ->noSpecialChars()
+        //     ->fieldName('rename')
+        //     ->alpha()
+        //     ->notReservedKeyword()
+        //     ->max(50)
+        //     ->different($from)
+        //     ->validate($to);
+        // if(!$isValidated) return Command::FAILURE;
+        // $message = "Provide name for original table";
+        // $from = self::argOptionValidate($from, $message, $input, $output, 'original-name', 50, $to);
         // Generate Migration class
         $fileName = "MDT".self::fileNameTime()."Rename".Str::ucfirst($from)."TableTo".Str::ucfirst($to);
         return Tools::writeFile(
@@ -484,17 +489,8 @@ class Migrate extends Console {
      * @return int A value that indicates success, invalid, or failure.
      */
     private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output): int {
-        $question = new FrameworkQuestion($input, $output);
         $message = "Provide name for original table";
-        $response = $question->required()
-            ->noSpecialChars()
-            ->fieldName('original-table')
-            ->alpha()
-            ->notReservedKeyword()
-            ->max(50)
-            ->different($migrationName)
-            ->ask($message);
-        
+        $response = self::prompt($message, $input, $output, 'original-table', 50, $migrationName);
         return self::makeRenameMigration($response, $migrationName);
     }
 
@@ -504,13 +500,14 @@ class Migrate extends Console {
      *
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
-     * @param mixed $renameUOption Value/state of rename flag.
+     * @param mixed $renameOption Value/state of rename flag.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameUOption): int {
+    public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameOption): int {
         $message = "Enter name for original table";
-        $response = self::prompt($message, $input, $output, 'original-table');  
-        return self::makeRenameMigration($response, $renameUOption);
+        $response = self::prompt($message, $input, $output, 'original-table');
+        $renameOption = self::validateRenameOption($renameOption, $response, $input, $output);  
+        return self::makeRenameMigration($response, $renameOption);
     }
 
     /**
@@ -684,5 +681,15 @@ class Migrate extends Console {
             $stmt = $db->query("SHOW TABLES");
         }
         return count($stmt->results());
+    }
+
+    private static function validateRenameOption(string $to, string $from, InputInterface $input, OutputInterface $output) {
+        dump("From: {$from}");
+        dump("To: {$to}");
+        $to = Str::lower($to);
+        $from = Str::lower($from);
+        $message = "Provide name for new table.";
+        self::argOptionValidate($to, $message, $input, $output, 'original-name', 50, $from);
+        return $to;
     }
 }

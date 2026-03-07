@@ -44,7 +44,7 @@ class GenerateMigrationCommand extends Command
     {
         $tableName = $input->getArgument('table-name');
         if($tableName) {
-            $tableName = Console::argOptionValidate(
+            Console::argOptionValidate(
                 $tableName,
                 Migrate::MIGRATION_PROMPT,
                 $input,
@@ -59,7 +59,7 @@ class GenerateMigrationCommand extends Command
         if($bothFlagsSet) return Command::FAILURE;
 
         // When tableName argument is provided.
-        if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption);
+        if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption, $input, $output);
 
         // tableName not provided with rename option set.
         if(!$tableName && $renameOption) return Migrate::renamePrompt($input, $output, $renameOption);

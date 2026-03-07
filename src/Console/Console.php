@@ -55,7 +55,7 @@ class Console {
      * 4) notReservedKeyword
      * 5) max
      * 
-     * @param string $field The value to be validated.
+     * @param string $field The reference to the value to be validated.
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
@@ -65,24 +65,43 @@ class Console {
      * validation passed.
      */
     public static function argOptionValidate(
-        string $field,
+        string &$field,
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
         string $fieldName = '',
-        int $max = 50
-    ): string {
-        $isValidated = self::getInstance($fieldName)
-                ->required()
+        int $max = 50,
+        ?string $different = null
+    ): void {
+        $object = self::getInstance($fieldName);
+
+        // if(!$different) {
+        //     $isValidated =  $object->required()
+        //         ->noSpecialChars()
+        //         ->alpha()
+        //         ->notReservedKeyword()
+        //         ->max($max)
+        //         ->validate($field);
+        // } else {
+        //     $isValidated =  $object->required()
+        //         ->noSpecialChars()
+        //         ->alpha()
+        //         ->notReservedKeyword()
+        //         ->max($max)
+        //         ->different($different)
+        //         ->validate($field);
+        // }
+        // dump($different);
+        if($different) $object->different($different);
+        $object->required()
                 ->noSpecialChars()
                 ->alpha()
                 ->notReservedKeyword()
-                ->max($max)
-                ->validate($field);
-        if(!$isValidated) {
-            $field = self::prompt($message, $input, $output, $fieldName, $max);
+                ->max($max);
+        if(!$object->validate($field)) {
+            $field = self::prompt($message, $input, $output, $fieldName, $max, $different);
         }
-        return $field;
+        //return $field;
     }
 
     /**
@@ -107,10 +126,14 @@ class Console {
         InputInterface $input, 
         OutputInterface $output, 
         string $fieldName = '',
-        int $max = 50
+        int $max = 50,
+        ?string $different = null
     ): string {
 
         $question = new FrameworkQuestion($input, $output);
+        if($different) {
+            $question->different($different);
+        }
         return $question->required()
             ->noSpecialChars()
             ->fieldName($fieldName)

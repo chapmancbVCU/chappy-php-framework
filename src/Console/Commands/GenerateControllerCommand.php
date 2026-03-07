@@ -52,7 +52,7 @@ class GenerateControllerCommand extends Command
     {
         $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
-            $controllerName = Console::argOptionValidate(
+            Console::argOptionValidate(
                 $controllerName, 
                 Controller::PROMPT_MESSAGE, 
                 $input, 
