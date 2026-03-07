@@ -23,6 +23,40 @@ class Console {
     }
 
     /**
+     * Validates argument and option input.  If validation fails then the 
+     * user is asked to enter a new value.
+     *
+     * @param string $field The value to be validated.
+     * @param string $message The message to present to the user.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param string $fieldName The name of the field being validated.
+     * @param int $max Maximum allowed size for file name.
+     * @return string The user response or original value of $field if 
+     * validation passed.
+     */
+    public static function argOptionValidate(
+        string $field,
+        string $message, 
+        InputInterface $input, 
+        OutputInterface $output, 
+        string $fieldName = '',
+        int $max = 50
+    ) {
+        $isValidated = self::getInstance($field)
+                ->required()
+                ->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword()
+                ->max($max)
+                ->validate($field);
+        if(!$isValidated) {
+            $field = self::prompt($message, $input, $output, $fieldName, $max);
+        }
+        return $field;
+    }
+
+    /**
      * Asks user question about file to be created.
      *
      * @param string $message The message to present to the user.
@@ -48,27 +82,6 @@ class Console {
             ->notReservedKeyword()
             ->max($max)
             ->ask($message);
-    }
-
-    public static function argOptionValidate(
-        string $field,
-        string $message, 
-        InputInterface $input, 
-        OutputInterface $output, 
-        string $fieldName = '',
-        int $max = 50
-    ) {
-        $isValidated = self::getInstance($field)
-                ->required()
-                ->noSpecialChars()
-                ->alpha()
-                ->notReservedKeyword()
-                ->max($max)
-                ->validate($field);
-        if(!$isValidated) {
-            $field = self::prompt($message, $input, $output, $fieldName, $max);
-        }
-        return $field;
     }
 
     /**
