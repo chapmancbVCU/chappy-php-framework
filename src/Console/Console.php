@@ -54,6 +54,7 @@ class Console {
      * 3) alpha
      * 4) notReservedKeyword
      * 5) max
+     * 6) different
      * 
      * @param string $field The reference to the value to be validated.
      * @param string $message The message to present to the user.
@@ -113,6 +114,7 @@ class Console {
      * 3) alpha
      * 4) notReservedKeyword
      * 5) max
+     * 6) different
      * 
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.

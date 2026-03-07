@@ -683,9 +683,32 @@ class Migrate extends Console {
         return count($stmt->results());
     }
 
-    private static function validateRenameOption(string $to, string $from, InputInterface $input, OutputInterface $output) {
-        dump("From: {$from}");
-        dump("To: {$to}");
+    /**
+     * Validate rename option value.  If validation fails the user is asked to 
+     * resolve the issue.
+     *
+     * Validates the following conditions:
+     * 1) required
+     * 2) noSpecialChars
+     * 3) alpha
+     * 4) notReservedKeyword
+     * 5) max
+     * 6) different
+     * 
+     * @param string $to The new name of the table.
+     * @param string $from The original name of the table.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The original value if validation passed.  The updated 
+     * value if validation failed.
+     */
+    private static function validateRenameOption(
+        string $to, 
+        string $from, 
+        InputInterface $input, 
+        OutputInterface $output
+    ): string {
+
         $to = Str::lower($to);
         $from = Str::lower($from);
         $message = "Provide name for new table.";
