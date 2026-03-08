@@ -55,6 +55,7 @@ class Events extends Console {
      */
     public static function makeEventServiceProvider(string $providerName): int {
         Tools::pathExists(self::PROVIDER_PATH);
+        $providerName = Str::ucfirst($providerName);
         $fullPath = self::PROVIDER_PATH.$providerName.'.php';
         return Tools::writeFile(
             $fullPath,

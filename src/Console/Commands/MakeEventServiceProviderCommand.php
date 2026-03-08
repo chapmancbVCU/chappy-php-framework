@@ -24,7 +24,7 @@ class MakeEventServiceProviderCommand extends Command
         $this->setName('make:provider')
             ->setDescription('Generates a new event service provider')
             ->setHelp('php console make:provider <provider-name>')
-            ->addArgument('provider-name', InputArgument::REQUIRED, 'Pass the name for the new event service provider');
+            ->addArgument('provider-name', InputArgument::OPTIONAL, 'Pass the name for the new event service provider');
     }
 
     /**
@@ -36,7 +36,14 @@ class MakeEventServiceProviderCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $providerName = Str::ucfirst($input->getArgument('provider-name'));
+        $providerName = $input->getArgument('provider-name');
+        $message = "Enter name for event service provider.";
+
+        if($providerName) {
+            Events::argOptionValidate($providerName, $message, $input, $output, '', ['max:50']);
+        } else {
+            $providerName = Events::prompt($message, $input, $output, '', ['max:50']);
+        }
         return Events::makeEventServiceProvider($providerName);
     }
 }
