@@ -37,7 +37,7 @@ class MakeAclCommand extends Command {
         $menuName = $input->getArgument('acl-name');
         $message = "Enter name for new acl file.";
         if($menuName) {
-            View::argOptionValidate($menuName,$message,$input,$output);
+            View::argOptionValidate($menuName, $message, $input, $output, '', ['max:50']);
         } else {
             $menuName = View::prompt($message, $input, $output);
         }
