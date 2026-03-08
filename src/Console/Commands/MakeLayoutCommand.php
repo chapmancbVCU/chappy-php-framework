@@ -27,15 +27,14 @@ class MakeLayoutCommand extends Command {
             ->addOption(
                 'menu',
                 null,
-                InputOption::VALUE_OPTIONAL,
-                'Menu file associated with a layout',
-                false)
+                InputOption::VALUE_NONE,
+                'Menu file associated with a layout')
             ->addOption(
                 'menu-acl',
                 null,
-                InputOption::VALUE_OPTIONAL,
-                'menu_acl json file for menus and layouts',
-                false);
+                InputOption::VALUE_NONE,
+                'menu_acl json file for menus and layouts'
+            );
     }
 
     /**
