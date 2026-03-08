@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
+
+use Console\Console;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
@@ -8,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 /**
  * Supports commands related to the MailerService.
  */
-class Email {
+class Email extends Console {
     /**
      * Path for email layouts.
      */
@@ -105,13 +107,13 @@ PHP;
     /**
      * Generates a new E-mail.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $emailName The name of the new email file.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeEmail(InputInterface $input): int {
+    public static function makeEmail(string $emailName): int {
         Tools::pathExists(self::TEMPLATE_PATH);
-        $emailName = self::TEMPLATE_PATH . $input->getArgument('email-name') . '.php';
-        return Tools::writeFile($emailName, '', 'E-mail file');
+        $emailPath = self::TEMPLATE_PATH . $emailName . '.php';
+        return Tools::writeFile($emailPath, '', 'E-mail file');
     }
 
     /**
