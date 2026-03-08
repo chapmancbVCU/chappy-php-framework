@@ -126,7 +126,17 @@ class Console {
             ->ask($message);
     }
 
-    private static function parseValidators(object $object, array $validators) {
+    /**
+     * Parse array containing additional validators as strings along with any 
+     * additional parameters that maybe expected.
+     *
+     * @param object $object The instance of a class using the HasValidators 
+     * trait.
+     * @param array $validators An array of validators.  Any additional 
+     * parameters must be separated with a ":".
+     * @return void
+     */
+    protected static function parseValidators(object $object, array $validators): void {
         foreach($validators as $validator) {
             $arr = explode(":", $validator);
             $method = $arr[0];
