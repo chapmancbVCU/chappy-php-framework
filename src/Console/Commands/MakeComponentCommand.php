@@ -51,15 +51,14 @@ class MakeComponentCommand extends Command {
         $componentName = $input->getArgument('component-name');
 
         if($componentName) {
-            return $this->required()
-                        ->noSpecialChars()
-                        ->fieldName('component-name')
-                        ->alpha()
-                        ->notReservedKeyword()
-                        ->max(100)
-                        ->validate($componentName) ?
-                Component::componentContents($componentName, $input, $output) :
-                Command::FAILURE;
+            Component::argOptionValidate(
+                $componentName,
+                Component::PROMPT_MESSAGE,
+                $input,
+                $output,
+                'component-name'
+            );
+            return Component::componentContents($componentName, $input, $output);
         } 
         
         return Component::componentPrompt($input, $output);
