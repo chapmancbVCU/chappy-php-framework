@@ -4,8 +4,6 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\Helpers\Tools;
-use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Input\InputInterface;
 
 /**
  * Supports commands related to building console commands and associated 
@@ -38,11 +36,10 @@ class CommandHelper extends Console {
      * Generates new class that contains functions that support multiple 
      * console commands.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $helperName The name for the new helper class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeHelper(InputInterface $input): int {
-        $helperName = Str::ucfirst($input->getArgument('helper-name'));
+    public static function makeHelper(string $helperName): int {
         Tools::pathExists(self::HELPER_PATH);
         $fullPath = self::HELPER_PATH.$helperName.'.php';
         return Tools::writeFile($fullPath, CommandStubs::helperTemplate($helperName), 'Helper');
