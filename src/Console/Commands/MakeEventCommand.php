@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Events;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -48,8 +47,6 @@ class MakeEventCommand extends Command
             $eventName = Events::prompt($message, $input, $output, '', ['max:50']);
             $queue = Events::queue($queue, $input, $output);
         }
-
-        $eventName = Str::ucfirst(($eventName));
         
         if($queue) {
             return Events::makeEvent($eventName, $queue);

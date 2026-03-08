@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -36,6 +37,7 @@ class Events extends Console {
      */
     public static function makeEvent(string $eventName, bool $queue = false): int {
         Tools::pathExists(self::EVENT_PATH);
+        $eventName = Str::ucfirst(($eventName));
         $fullPath = self::EVENT_PATH.$eventName.'.php';
        
         $content = ($queue) 
