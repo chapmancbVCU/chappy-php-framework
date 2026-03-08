@@ -125,7 +125,14 @@ class View extends Console {
         return $menuName;
     }
 
-    public static function menuNamePrompt(InputInterface $input, OutputInterface $output) {
-
+    /**
+     * Prompts user for name of new layout file.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the new layout.
+     */
+    public static function menuNamePrompt(InputInterface $input, OutputInterface $output): string {
+        return self::prompt(self::LAYOUT_PROMPT, $input, $output, 'layout-name', ['max:50']);
     }
 }
