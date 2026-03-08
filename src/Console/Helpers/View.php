@@ -101,4 +101,20 @@ class View extends Console {
     public static function makeWidget(string $filePath): int {
         return Tools::writeFile($filePath, '', "Widget file");
     }
+
+    /**
+     * Sets menu file name when layout-name argument is provided.
+     *
+     * @param string $layoutName The name of the layout.
+     * @param mixed $menu The menu option.
+     * @return string The name of the menu to be used by the layout.
+     */
+    public static function menu(string $layoutName, mixed $menu): string {
+        if(!$menu) $menuName = 'main';
+        else {
+            $menuName = $layoutName;
+            self::makeMenu($menuName);
+        }
+        return $menuName;
+    }
 }
