@@ -23,7 +23,7 @@ class MakeFactoryCommand extends Command {
         $this->setName('make:factory')
             ->setDescription('Generates a new Factory class')
             ->setHelp('php console make:factory ClassName')
-            ->addArgument('factory-name', InputArgument::REQUIRED, 'Pass the name of the factory class you want to create');
+            ->addArgument('factory-name', InputArgument::OPTIONAL, 'Pass the name of the factory class you want to create');
     }
 
     /**
@@ -35,7 +35,13 @@ class MakeFactoryCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $factoryName = Str::ucfirst($input->getArgument('factory-name'));
+        $factoryName = $input->getArgument('factory-name');
+        $message = "Enter name for new factory.";
+        if($factoryName) {
+            DBSeeder::argOptionValidate($factoryName, $message, $input, $output, '', ['max:50']);
+        } else {
+            $factoryName = DBSeeder::prompt($message, $input, $output, '', ['max:50']);
+        }
         return DBSeeder::makeFactory($factoryName);
     }
 }

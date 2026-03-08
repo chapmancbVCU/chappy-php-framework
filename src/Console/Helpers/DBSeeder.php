@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use Core\Lib\Utilities\Str;
 use Database\Seeders\DatabaseSeeder;
 use Symfony\Component\Console\Command\Command;
@@ -9,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 /**
  * Supports operations related to database seeding.
  */
-class DBSeeder {
+class DBSeeder extends Console {
     /**
      * Path to all user created factory classes.
      */
@@ -66,7 +67,7 @@ PHP;
      */
     public static function makeFactory(string $factoryName): int {
         Tools::pathExists(self::FACTORY_PATH);
-        
+        $factoryName = Str::ucfirst($factoryName);
         return Tools::writeFile(
             self::FACTORY_PATH.$factoryName.'Factory.php',
             self::factory($factoryName),
