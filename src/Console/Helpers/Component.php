@@ -66,7 +66,7 @@ class Component extends Console {
         $response = self::choice($message, $choices, $input, $output);
 
         if(!$componentName) {
-            $componentName = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'component-name');
+            $componentName = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'component-name', ['max:5']);
         }
 
         if($response === 'card') return self::makeCardComponent($componentName);

@@ -52,7 +52,8 @@ class MakeComponentCommand extends Command {
                 Component::PROMPT_MESSAGE,
                 $input,
                 $output,
-                'component-name'
+                'component-name',
+                ['max:50']
             );
             return Component::componentContents($componentName, $input, $output);
         } 
