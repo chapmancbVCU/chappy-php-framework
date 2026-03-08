@@ -82,7 +82,8 @@ final class Controller extends Console {
             self::LAYOUT_PROMPT,
             $input,
             $output,
-            'layout'
+            'layout',
+            ['max:50']
         );
         
         return Str::lower($layoutInput);
@@ -111,7 +112,7 @@ final class Controller extends Console {
 
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
-            $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'layout');
+            $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'layout', ['max:50']);
             return Str::lower($response);
         } else {
             return 'default';
