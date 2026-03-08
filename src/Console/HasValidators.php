@@ -108,12 +108,15 @@ trait HasValidators {
 
     /**
      * Ensures input is between within a certain range in length.
-     * @param int $minRule The minimum allowed size for input.
-     * @param int $maxRule The maximum allowed size for input.
+     * 
+     * @param array $range 2 element array where position 0 is min and 
+     * position 1 is max.
      * @return static
      */
-    public function between(int $minRule, int $maxRule): static {
-        return $this->setValidator(function($response) use ($minRule, $maxRule): void {
+    public function between(array $range): static {
+        return $this->setValidator(function($response) use ($range): void {
+            if(is_array($range)) $minRule = $range[0];
+            if(is_array($range)) $maxRule = $range[1];
             if($response == null) return;
             if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
                 $this->addErrorMessage(
