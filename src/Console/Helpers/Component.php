@@ -46,9 +46,6 @@ class Component extends Console {
             console_warning("You can only choose one component type at a time.");
             return Command::FAILURE;
         }
-
-        console_warning('No component type selected');
-        return Command::FAILURE;
     }
 
     /**
