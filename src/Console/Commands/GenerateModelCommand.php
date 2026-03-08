@@ -51,7 +51,8 @@ class GenerateModelCommand extends Command
                 Model::PROMPT_MESSAGE,
                 $input,
                 $output,
-                'model-name'
+                'model-name',
+                ['max:50']
             );
         }
         
