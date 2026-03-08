@@ -39,7 +39,10 @@ class Component extends Console {
             );
         } else if($table && !$card && !$form) {
             return self::makeTableComponent($componentName);
-        } else {
+        } else if(!$table && !$card && !$form){
+            return self::componentPrompt($input, $output, $componentName);
+        }
+        else {
             console_warning("You can only choose one component type at a time.");
             return Command::FAILURE;
         }
@@ -55,13 +58,15 @@ class Component extends Console {
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function componentPrompt(InputInterface $input, OutputInterface $output): int {
+    public static function componentPrompt(InputInterface $input, OutputInterface $output, ?string $componentName = null): int {
         $message = "Choose a component type";
         $choices = ['card', 'form', 'table'];
         $response = self::choice($message, $choices, $input, $output);
 
-        $message = "Enter name for your component";
-        $componentName = self::prompt($message, $input, $output, 'component-name');
+        if(!$componentName) {
+            $message = "Enter name for your component";
+            $componentName = self::prompt($message, $input, $output, 'component-name');
+        }
 
         if($response === 'card') return self::makeCardComponent($componentName);
         if($response === 'form') {
@@ -94,6 +99,7 @@ class Component extends Console {
         if($response == 'default: none') $response = '';
         return $response;
     }
+
     /**
      * Prompts user for information about which form method to be used in form component.
      *
