@@ -51,9 +51,8 @@ class MakeLayoutCommand extends Command {
         $menu = $input->getOption('menu');
         $menuAcl = $input->getOption('menu-acl');
     
-        $message = "Enter name for new layout";
         if($layoutName) {
-            View::argOptionValidate($layoutName, $message, $input, $output, 'layout-name', ['max:50']);
+            View::argOptionValidate($layoutName, View::LAYOUT_PROMPT, $input, $output, 'layout-name', ['max:50']);
             $menuName = View::menu($layoutName, $menu);
             if($menuAcl) View::makeMenuAcl($layoutName);
             return View::makeLayout($layoutName, $menuName);

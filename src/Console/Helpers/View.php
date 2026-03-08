@@ -7,6 +7,7 @@ use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -19,6 +20,12 @@ class View extends Console {
     public const CSS_PATH = ROOT.DS.'resources'.DS.'css'.DS;
     /** Path to layout files. */
     public const LAYOUT_PATH = ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS;
+
+    /**
+     * Message presented to user when asking for name of a new layout file.
+     */
+    public const LAYOUT_PROMPT = "Enter name for new layout";
+
     /** Path to view files. */
     public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
     /** Path to widget files. */
@@ -116,5 +123,9 @@ class View extends Console {
             self::makeMenu($menuName);
         }
         return $menuName;
+    }
+
+    public static function menuNamePrompt(InputInterface $input, OutputInterface $output) {
+
     }
 }
