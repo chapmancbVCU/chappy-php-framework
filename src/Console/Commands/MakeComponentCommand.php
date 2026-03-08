@@ -1,8 +1,6 @@
 <?php
 namespace Console\Commands;
  
-use Core\Lib\Utilities\Str;
-use Console\HasValidators;
 use Console\Helpers\Component;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,8 +13,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/components">here</a>.
  */
 class MakeComponentCommand extends Command {
-    use HasValidators;
-
     /**
      * Configures the command.
      *
