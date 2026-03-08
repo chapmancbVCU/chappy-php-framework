@@ -394,7 +394,7 @@ class Migrate extends Console {
      * @return string The name of the table the new migration will target.
      */
     public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {        
-        return self::prompt(self::MIGRATION_PROMPT, $input, $output, 'table-name');
+        return self::prompt(self::MIGRATION_PROMPT, $input, $output, 'table-name', ['max:50']);
     }
 
     /**
@@ -501,7 +501,7 @@ class Migrate extends Console {
      */
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameOption): int {
         $message = "Enter name for original table";
-        $response = self::prompt($message, $input, $output, 'original-table');
+        $response = self::prompt($message, $input, $output, 'original-table', ['max:50']);
         $renameOption = self::validateRenameOption($renameOption, $response, $input, $output);  
         return self::makeRenameMigration($response, $renameOption);
     }
