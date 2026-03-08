@@ -58,7 +58,9 @@ class MakeLayoutCommand extends Command {
             return View::makeLayout($layoutName, $menuName);
         }
 
-        $menuName = View::menuNamePrompt($input, $output);
-        return Command::FAILURE;
+        $layoutName = View::layoutNamePrompt($input, $output);
+        $menuName = View::menuConfirm($layoutName, $menu, $input, $output);
+        View::menuAclConfirm($layoutName, $menuAcl, $input, $output);
+        return View::makeLayout($layoutName, $menuName);
     }
 }

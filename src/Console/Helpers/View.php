@@ -132,7 +132,69 @@ class View extends Console {
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @return string The name of the new layout.
      */
-    public static function menuNamePrompt(InputInterface $input, OutputInterface $output): string {
+    public static function layoutNamePrompt(InputInterface $input, OutputInterface $output): string {
         return self::prompt(self::LAYOUT_PROMPT, $input, $output, 'layout-name', ['max:50']);
+    }
+
+    /**
+     * Generates a menu if --menu flag is created with layout-name.  If layout-name 
+     * is not provided the user is asked if they want to create a new menu that is 
+     * associated with the layout.  If the user answers no then the main is returned.  
+     * Otherwise, a string matching the name of the layout is returned.
+     *
+     * @param string $layoutName The name of the layout.
+     * @param mixed $menu The --menu flag.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the menu to be associated with the layout.
+     */
+    public static function menuConfirm(
+        string $layoutName, 
+        mixed $menu, 
+        InputInterface $input, 
+        OutputInterface $output
+    ): string {
+        if($menu) {
+            self::makeMenu($layoutName);
+            return $layoutName;
+        }
+            
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Do you want to create a menu specific to this layout? (y/n)";
+        if($question->confirm($message)) {
+            self::makeMenu($layoutName);
+            return $layoutName;
+        }
+
+        return 'main';
+    }
+
+    /**
+     * Generates a new menu acl file if --menu-acl flag is provided.  If no flag 
+     * is set then the user is asked if they want to generate a menu acl file 
+     * associated with the layout.
+     *
+     * @param string $layoutName The name of the layout.
+     * @param mixed $menuACL The --menu-acl flag.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return void
+     */
+    public static function menuAclConfirm(
+        string $layoutName, 
+        mixed $menuACL, 
+        InputInterface $input, 
+        OutputInterface $output
+    ): void {
+        if($menuACL) {
+            self::makeMenuAcl($layoutName);
+            return;
+        }
+            
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Do you want to create a menu-acl file? (y/n)";
+        if($question->confirm($message)) {
+            self::makeMenuAcl($layoutName);
+        }
     }
 }
