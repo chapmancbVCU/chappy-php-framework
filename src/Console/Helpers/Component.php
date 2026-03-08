@@ -17,6 +17,11 @@ class Component extends Console {
     public const COMPONENTS_PATH = ROOT.DS.'resources'.DS.'views'.DS.'components'.DS;
 
     /**
+     * The message to present to user when name of component is being asked.
+     */
+    public const PROMPT_MESSAGE = "Enter name for your component";
+    
+    /**
      * Generate a component when argument is provided.
      *
      * @param string $componentName The name for the new component.
@@ -61,8 +66,7 @@ class Component extends Console {
         $response = self::choice($message, $choices, $input, $output);
 
         if(!$componentName) {
-            $message = "Enter name for your component";
-            $componentName = self::prompt($message, $input, $output, 'component-name');
+            $componentName = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'component-name');
         }
 
         if($response === 'card') return self::makeCardComponent($componentName);
