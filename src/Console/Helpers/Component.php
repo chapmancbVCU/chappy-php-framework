@@ -86,13 +86,9 @@ class Component extends Console {
      * @return string The user's response.
      */
     public static function enctype(InputInterface $input, OutputInterface $output): string {
-        $question = new FrameworkQuestion($input, $output);
         $message = "Choose a the enctype (default: none)";
-        $response = $question->choice(
-            $message,
-            ['default: none', 'multipart/form-data', 'text/plain'],
-            'default: none'
-        );
+        $choices = ['default: none', 'multipart/form-data', 'text/plain'];
+        $response = self::choice($message, $choices, $input, $output, $choices[0]);
         if($response == 'default: none') $response = '';
         return $response;
     }
