@@ -2,10 +2,15 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
+use Console\FrameworkQuestion;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * Supports operations related to Events/Listeners.
  */
-class Events {
+class Events extends Console {
     /**
      * Path for event classes.
      */
@@ -77,6 +82,28 @@ class Events {
         return Tools::writeFile($fullPath, $content,'Listener');
     }
 
+    /**
+     * Called when event-name is not provided.  It exits early if --queue flag 
+     * is provided.  Otherwise, the user is asked if they want to create a 
+     * queued event class.
+     *
+     * @param mixed $queue The queue option.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return mixed If flag is provided then it is returned.  If a response 
+     * is provided the string 'queue' is returned.  Otherwise, we return null.
+     */
+    public static function queue(mixed $queue, InputInterface $input, OutputInterface $output): mixed {
+        if($queue) return $queue;
+
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Do you want to create a queued event class? (y/n)";
+        if($question->confirm($message)) {
+            return 'queue';
+        }
+
+        return null;
+    }
     /**
      * Checks if $eventName and $listerName was provided and that they are not the same.
      *

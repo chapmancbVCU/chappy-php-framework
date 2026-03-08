@@ -25,7 +25,7 @@ class MakeEventCommand extends Command
         $this->setName('make:event')
             ->setDescription('Generates a new event class')
             ->setHelp('php console make:event <event-name>')
-            ->addArgument('event-name', InputArgument::REQUIRED, 'Pass the name for the new event')
+            ->addArgument('event-name', InputArgument::OPTIONAL, 'Pass the name for the new event')
             ->addOption('queue', null, InputOption::VALUE_NONE, 'Version of class for queues');
     }
 
@@ -38,8 +38,19 @@ class MakeEventCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $eventName = Str::ucfirst($input->getArgument('event-name'));
+        $eventName = $input->getArgument('event-name');
         $queue = $input->getOption('queue');
+        $message = "Enter name for new event.";
+
+        if($eventName) {
+            Events::argOptionValidate($eventName, $message, $input, $output, '', ['max:50']);
+        } else {
+            $eventName = Events::prompt($message, $input, $output, '', ['max:50']);
+            $queue = Events::queue($queue, $input, $output);
+        }
+
+        $eventName = Str::ucfirst(($eventName));
+        
         if($queue) {
             return Events::makeEvent($eventName, $queue);
         }
