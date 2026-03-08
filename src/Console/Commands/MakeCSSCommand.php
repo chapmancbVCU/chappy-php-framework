@@ -39,17 +39,11 @@ class MakeCSSCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $fileName = $input->getArgument('css-name');
+        $message = "Enter name for new CSS file.";
         if($fileName) {
-            $isValidated = $this->required()
-                ->noSpecialChars()
-                ->alpha()
-                ->notReservedKeyword()
-                ->max(50)
-                ->validate($fileName);
-            if(!$isValidated) return Command::FAILURE;
+            View::argOptionValidate($fileName, $message, $input, $output, '', ['max:50']);
         } else {
-            $message = "Enter name for new CSS file.";
-            $fileName = View::prompt($message, $input, $output);
+            $fileName = View::prompt($message, $input, $output, '', ['max:50']);
         }
 
         return View::makeCSS($fileName);
