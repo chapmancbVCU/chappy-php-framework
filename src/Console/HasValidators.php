@@ -131,6 +131,7 @@ trait HasValidators {
      */
     public function different(mixed $data): static {
         return $this->setValidator(function($response) use ($data): void {
+            if(is_array($data)) $data = $data[0];
             if($response == null) return;
             if($response === $data) {
                 $this->addErrorMessage("These values must be different.");
@@ -242,11 +243,12 @@ trait HasValidators {
     /**
      * Ensures input meets requirements for maximum allowable length.
      *
-     * @param int $maxRule The maximum allowed size for input.
+     * @param int|array $maxRule The maximum allowed size for input.
      * @return static
      */
-    public function max(int $maxRule): static {
+    public function max(int|array $maxRule): static {
         return $this->setValidator(function($response) use ($maxRule): void {
+            if(is_array($maxRule)) $maxRule = $maxRule[0];
             if($response == null) return;
             if(strlen($response) > $maxRule) {
                 $this->addErrorMessage("This field must be less than {$maxRule} characters in length.");
@@ -257,11 +259,12 @@ trait HasValidators {
     /**
      * Ensures input meets requirements for minimum allowable length.
      *
-     * @param int $minRule The minimum allowed size for input.
+     * @param int|array $minRule The minimum allowed size for input.
      * @return static
      */
-    public function min(int $minRule): static {
+    public function min(int|array $minRule): static {
         return $this->setValidator(function($response) use ($minRule): void {
+            if(is_array($minRule)) $minRule = $minRule[0];
             if($response == null) return;
             if(strlen($response) < $minRule) {
                 $this->addErrorMessage("This field must be at least {$minRule} characters in length.");

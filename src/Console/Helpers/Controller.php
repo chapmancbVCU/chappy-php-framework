@@ -62,7 +62,7 @@ final class Controller extends Console {
         OutputInterface $output
     ): string {
 
-        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'controller-name');
+        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'controller-name', ['max:50']);
         return Str::ucfirst($response);
     }
 

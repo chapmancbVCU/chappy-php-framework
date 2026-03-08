@@ -56,7 +56,8 @@ class GenerateControllerCommand extends Command
                 Controller::PROMPT_MESSAGE, 
                 $input, 
                 $output, 
-                'controller-name'
+                'controller-name',
+                ['max:50']
             );
         }
 

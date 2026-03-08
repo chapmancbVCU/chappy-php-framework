@@ -486,7 +486,7 @@ class Migrate extends Console {
      */
     private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output): int {
         $message = "Provide name for original table";
-        $response = self::prompt($message, $input, $output, 'original-table', 50, $migrationName);
+        $response = self::prompt($message, $input, $output, 'original-table', ['max:50', "different:{$migrationName}"]);
         return self::makeRenameMigration($response, $migrationName);
     }
 
@@ -708,7 +708,7 @@ class Migrate extends Console {
         $to = Str::lower($to);
         $from = Str::lower($from);
         $message = "Provide name for new table.";
-        self::argOptionValidate($to, $message, $input, $output, 'original-name', 50, $from);
+        self::argOptionValidate($to, $message, $input, $output, 'original-name', ['max:50', "different:{$from}"]);
         return $to;
     }
 }
