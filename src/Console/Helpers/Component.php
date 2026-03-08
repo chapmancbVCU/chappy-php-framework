@@ -101,13 +101,9 @@ class Component extends Console {
      * @return string The user's response.
      */
     public static function formMethod(InputInterface $input, OutputInterface $output): string {
-        $question = new FrameworkQuestion($input, $output);
         $message = "Choose a form method (default: post).";
-        return $question->choice(
-            $message,
-            ['get', 'post', 'put'],
-            'post'
-        );
+        $choices = ['get', 'post', 'put'];
+        return self::choice($message, $choices, $input, $output, $choices[0]);
     }
 
     /**
