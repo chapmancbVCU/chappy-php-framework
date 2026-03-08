@@ -24,7 +24,7 @@ class MakeJobCommand extends Command
         $this->setName('make:job')
             ->setDescription('Generates a new job class')
             ->setHelp('php console make:job <job-name>')
-            ->addArgument('job-name', InputArgument::REQUIRED, 'Pass the name for the new job');
+            ->addArgument('job-name', InputArgument::OPTIONAL, 'Pass the name for the new job');
     }
 
     /**
@@ -36,7 +36,13 @@ class MakeJobCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $jobName = Str::ucfirst($input->getArgument('job-name'));
-        return Queue::makeJob($jobName);
+        $jobName = $input->getArgument('job-name');
+        $message = "Enter name for new job.";
+        if($jobName) {
+            Queue::argOptionValidate($jobName, $message, $input, $output, '', ['max:50']);
+        } else {
+            $jobName = Queue::prompt($message, $input, $output, '', ['max:50']);
+        }
+        return Queue::makeJob(Str::ucfirst($jobName));
     }
 }

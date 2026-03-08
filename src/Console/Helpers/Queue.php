@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Queue\QueueManager;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Command\Command;
 /**
  * Supports commands related to queues.
  */
-class Queue {
+class Queue extends Console {
     /**
      * Path to jobs classes.
      */
