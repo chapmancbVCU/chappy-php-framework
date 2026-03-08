@@ -119,13 +119,13 @@ PHP;
     /**
      * Generates a new E-mail layout.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $layoutName The name of the new email layout file.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeLayout(InputInterface $input): int {
+    public static function makeLayout(string $layoutName): int {
         Tools::pathExists(self::LAYOUT_PATH);
-        $layoutName = self::LAYOUT_PATH . $input->getArgument('email-layout') . '.php';
-        return Tools::writeFile($layoutName, self::layoutTemplate(), 'E-mail layout');
+        $layoutPath = self::LAYOUT_PATH . $layoutName . '.php';
+        return Tools::writeFile($layoutPath, self::layoutTemplate(), 'E-mail layout');
     }
 
     /**

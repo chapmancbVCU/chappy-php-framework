@@ -22,7 +22,7 @@ class MakeEmailLayoutCommand extends Command {
         $this->setName('make:email:layout')
             ->setDescription('Generates a new email layout')
             ->setHelp('php console make:email <email_layout>')
-            ->addArgument('email-layout', InputArgument::REQUIRED, 'Pass the name of the new email layout');
+            ->addArgument('email-layout', InputArgument::OPTIONAL, 'Pass the name of the new email layout');
     }
 
     /**
@@ -34,6 +34,13 @@ class MakeEmailLayoutCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Email::makeLayout($input);
+        $layoutName = $input->getArgument('email-layout');
+        $message = "Enter name for email layout.";
+        if($layoutName) {
+            Email::argOptionValidate($layoutName, $message, $input, $output, '', ['max:50']);
+        } else {
+            $layoutName = Email::prompt($message, $input, $output, '', ['max:50']);
+        }
+        return Email::makeLayout($layoutName);
     }
 }
