@@ -39,7 +39,7 @@ class MakeAclCommand extends Command {
         if($menuName) {
             View::argOptionValidate($menuName, $message, $input, $output, '', ['max:50']);
         } else {
-            $menuName = View::prompt($message, $input, $output);
+            $menuName = View::prompt($message, $input, $output, '', ['max:50']);
         }
             
         return View::makeMenuAcl($menuName);
