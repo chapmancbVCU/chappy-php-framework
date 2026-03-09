@@ -170,7 +170,7 @@ PHP;
 <?php
 namespace Core\Lib\Listeners;
 
-use App\Events\{$eventName};
+use App\Events\\$eventName;
 use Core\Lib\Events\Contracts\ShouldQueue;
 use Core\Lib\Events\Contracts\QueuePreferences;
 
