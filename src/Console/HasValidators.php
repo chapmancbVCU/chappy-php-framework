@@ -178,10 +178,11 @@ trait HasValidators {
     /**
      * Sets name of field to be validated.
      *
-     * @param string $fieldName The name of the field to be validated.
+     * @param string|array $fieldName The name of the field to be validated.
      * @return static
      */
-    public function fieldName(string $fieldName): static {
+    public function fieldName(string|array $fieldName): static {
+        if(is_array($fieldName)) $fieldName = $fieldName[0];
         $this->fieldName = $fieldName;
         return $this;
     }

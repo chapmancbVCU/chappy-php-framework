@@ -133,7 +133,7 @@ class View extends Console {
      * @return string The name of the new layout.
      */
     public static function layoutNamePrompt(InputInterface $input, OutputInterface $output): string {
-        return self::prompt(self::LAYOUT_PROMPT, $input, $output, 'layout-name', ['max:50']);
+        return self::prompt(self::LAYOUT_PROMPT, $input, $output, ['max:50', 'fieldName:layout-name']);
     }
 
     /**

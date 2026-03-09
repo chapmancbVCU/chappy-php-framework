@@ -62,7 +62,7 @@ final class Controller extends Console {
         OutputInterface $output
     ): string {
 
-        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'controller-name', ['max:50']);
+        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:50', 'fieldName:controller-name']);
         return Str::ucfirst($response);
     }
 
@@ -82,8 +82,7 @@ final class Controller extends Console {
             self::LAYOUT_PROMPT,
             $input,
             $output,
-            'layout',
-            ['max:50']
+            ['max:50', 'fieldName:layout']
         );
         
         return Str::lower($layoutInput);
@@ -112,7 +111,7 @@ final class Controller extends Console {
 
         $message = "Do you want to set a name for your layout? (y/n)";
         if($question->confirm($message)) {
-            $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'layout', ['max:50']);
+            $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:50', 'fieldName:layout']);
             return Str::lower($response);
         } else {
             return 'default';

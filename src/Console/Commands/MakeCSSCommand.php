@@ -41,9 +41,9 @@ class MakeCSSCommand extends Command {
         $fileName = $input->getArgument('css-name');
         $message = "Enter name for new CSS file.";
         if($fileName) {
-            View::argOptionValidate($fileName, $message, $input, $output, '', ['max:50']);
+            View::argOptionValidate($fileName, $message, $input, $output, ['max:50']);
         } else {
-            $fileName = View::prompt($message, $input, $output, '', ['max:50']);
+            $fileName = View::prompt($message, $input, $output, ['max:50']);
         }
 
         return View::makeCSS($fileName);

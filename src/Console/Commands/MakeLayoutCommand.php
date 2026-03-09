@@ -52,7 +52,7 @@ class MakeLayoutCommand extends Command {
         $menuAcl = $input->getOption('menu-acl');
     
         if($layoutName) {
-            View::argOptionValidate($layoutName, View::LAYOUT_PROMPT, $input, $output, 'layout-name', ['max:50']);
+            View::argOptionValidate($layoutName, View::LAYOUT_PROMPT, $input, $output, ['max:50', 'fieldName:layout-name']);
             $menuName = View::menu($layoutName, $menu);
             if($menuAcl) View::makeMenuAcl($layoutName);
             return View::makeLayout($layoutName, $menuName);

@@ -44,8 +44,7 @@ class GenerateMigrationCommand extends Command
                 $tableName,
                 Migrate::MIGRATION_PROMPT,
                 $input,
-                $output,
-                'table-name'
+                $output
             );
         }
 

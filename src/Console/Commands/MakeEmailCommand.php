@@ -37,9 +37,9 @@ class MakeEmailCommand extends Command {
         $emailName = $input->getArgument('email-name');
         $message = "Enter name for new email.";
         if($emailName) {
-            Email::argOptionValidate($emailName, $message, $input, $output, '', ['max:50']);
+            Email::argOptionValidate($emailName, $message, $input, $output, ['max:50']);
         } else {
-            $emailName = Email::prompt($message, $input, $output, '', ['max:50']);
+            $emailName = Email::prompt($message, $input, $output, ['max:50']);
         }
         return Email::makeEmail($emailName);
     }

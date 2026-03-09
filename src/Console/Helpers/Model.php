@@ -46,7 +46,7 @@ class Model extends Console {
      * @return string The name of the model class.
      */
     public static function modelNamePrompt(InputInterface $input, OutputInterface $output): string {
-        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, 'model-name', ['max:50']);
+        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:50', 'fieldName:model-name']);
         return Str::ucfirst($response);
     }
 

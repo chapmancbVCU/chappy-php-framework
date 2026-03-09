@@ -39,9 +39,9 @@ class MakeHelperCommand extends Command {
         $helperName = $input->getArgument('helper-name');
         $message = "Enter name for new command helper class";
         if($helperName) {
-            CommandHelper::argOptionValidate($helperName, $message, $input, $output, '', ['max:50']);
+            CommandHelper::argOptionValidate($helperName, $message, $input, $output, ['max:50']);
         } else {
-            $helperName = CommandHelper::prompt($message, $input, $output, '', ['max:50']);
+            $helperName = CommandHelper::prompt($message, $input, $output, ['max:50']);
         }
         return CommandHelper::makeHelper(Str::ucfirst($helperName));
     }

@@ -40,9 +40,9 @@ class MakeEventServiceProviderCommand extends Command
         $message = "Enter name for event service provider.";
 
         if($providerName) {
-            Events::argOptionValidate($providerName, $message, $input, $output, '', ['max:50']);
+            Events::argOptionValidate($providerName, $message, $input, $output, ['max:50']);
         } else {
-            $providerName = Events::prompt($message, $input, $output, '', ['max:50']);
+            $providerName = Events::prompt($message, $input, $output, ['max:50']);
         }
         return Events::makeEventServiceProvider($providerName);
     }

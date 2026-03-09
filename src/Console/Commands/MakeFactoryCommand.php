@@ -38,9 +38,9 @@ class MakeFactoryCommand extends Command {
         $factoryName = $input->getArgument('factory-name');
         $message = "Enter name for new factory.";
         if($factoryName) {
-            DBSeeder::argOptionValidate($factoryName, $message, $input, $output, '', ['max:50']);
+            DBSeeder::argOptionValidate($factoryName, $message, $input, $output, ['max:50']);
         } else {
-            $factoryName = DBSeeder::prompt($message, $input, $output, '', ['max:50']);
+            $factoryName = DBSeeder::prompt($message, $input, $output, ['max:50']);
         }
         return DBSeeder::makeFactory($factoryName);
     }

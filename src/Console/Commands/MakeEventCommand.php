@@ -42,9 +42,9 @@ class MakeEventCommand extends Command
         $message = "Enter name for new event.";
 
         if($eventName) {
-            Events::argOptionValidate($eventName, $message, $input, $output, '', ['max:50']);
+            Events::argOptionValidate($eventName, $message, $input, $output, ['max:50']);
         } else {
-            $eventName = Events::prompt($message, $input, $output, '', ['max:50']);
+            $eventName = Events::prompt($message, $input, $output, ['max:50']);
             $queue = Events::queueEvent($queue, $input, $output);
         }
         

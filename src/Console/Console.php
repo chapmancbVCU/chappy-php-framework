@@ -58,7 +58,6 @@ class Console {
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
-     * @param string $fieldName The name of the field being validated.
      * @return void
      */
     public static function argOptionValidate(
@@ -66,19 +65,18 @@ class Console {
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
-        string $fieldName = '',
         array $validators = []
     ): void {
 
-        $object = self::getInstance($fieldName);
-        self::parseValidators($object, $validators);
+        $object = self::getInstance();
+        self::parseAttributes($object, $validators);
         $object->required()
                 ->noSpecialChars()
                 ->alpha()
                 ->notReservedKeyword();
 
         if(!$object->validate($field)) {
-            $field = self::prompt($message, $input, $output, $fieldName, $validators);
+            $field = self::prompt($message, $input, $output, $validators);
         }
     }
 
@@ -104,31 +102,28 @@ class Console {
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
-     * @param string $fieldName The name of the field being validated.
-     * @param array $validators An array of additional validators.
+     * @param array $attributes An array of additional validators.
      * @return string The user response
      */
     public static function prompt(
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
-        string $fieldName = '',
-        array $validators = []
+        array $attributes = []
     ): string {
         $question = new FrameworkQuestion($input, $output);
-        self::parseValidators($question, $validators);
+        self::parseAttributes($question, $attributes);
 
         return $question->required()
             ->noSpecialChars()
-            ->fieldName($fieldName)
             ->alpha()
             ->notReservedKeyword()
             ->ask($message);
     }
 
     /**
-     * Parse array containing additional validators as strings along with any 
-     * additional parameters that maybe expected.
+     * Parse array containing additional validators or attributes for FrameworkQuestion 
+     * as strings along with any additional parameters that maybe expected.
      *
      * @param object $object The instance of a class using the HasValidators 
      * trait.
@@ -136,7 +131,7 @@ class Console {
      * parameters must be separated with a ":".
      * @return void
      */
-    protected static function parseValidators(object $object, array $validators): void {
+    protected static function parseAttributes(object $object, array $validators): void {
         foreach($validators as $validator) {
             $arr = explode(":", $validator);
             $method = $arr[0];

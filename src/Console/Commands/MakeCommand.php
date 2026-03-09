@@ -39,9 +39,9 @@ class MakeCommand extends Command
         $commandName = $input->getArgument('command-name');
         $message = "Enter name for new Command class.";
         if($commandName) {
-            CommandHelper::argOptionValidate($commandName, $message, $input, $output, '', ['max:50']);
+            CommandHelper::argOptionValidate($commandName, $message, $input, $output, ['max:50']);
         } else {
-            $commandName = CommandHelper::prompt($message, $input, $output, '', ['max:50']);
+            $commandName = CommandHelper::prompt($message, $input, $output, ['max:50']);
         }
         return CommandHelper::makeCommand(Str::ucfirst($commandName));
     }

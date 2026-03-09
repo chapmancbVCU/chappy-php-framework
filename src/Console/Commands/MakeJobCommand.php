@@ -39,9 +39,9 @@ class MakeJobCommand extends Command
         $jobName = $input->getArgument('job-name');
         $message = "Enter name for new job.";
         if($jobName) {
-            Queue::argOptionValidate($jobName, $message, $input, $output, '', ['max:50']);
+            Queue::argOptionValidate($jobName, $message, $input, $output, ['max:50']);
         } else {
-            $jobName = Queue::prompt($message, $input, $output, '', ['max:50']);
+            $jobName = Queue::prompt($message, $input, $output, ['max:50']);
         }
         return Queue::makeJob(Str::ucfirst($jobName));
     }

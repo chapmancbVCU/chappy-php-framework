@@ -394,7 +394,7 @@ class Migrate extends Console {
      * @return string The name of the table the new migration will target.
      */
     public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {        
-        return self::prompt(self::MIGRATION_PROMPT, $input, $output, 'table-name', ['max:50']);
+        return self::prompt(self::MIGRATION_PROMPT, $input, $output, ['max:50', 'fieldName:table-name']);
     }
 
     /**
@@ -486,7 +486,7 @@ class Migrate extends Console {
      */
     private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output): int {
         $message = "Provide name for original table";
-        $response = self::prompt($message, $input, $output, 'original-table', ['max:50', "different:{$migrationName}"]);
+        $response = self::prompt($message, $input, $output, ['max:50', 'fieldName:original-table', "different:{$migrationName}"]);
         return self::makeRenameMigration($response, $migrationName);
     }
 
@@ -501,7 +501,7 @@ class Migrate extends Console {
      */
     public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameOption): int {
         $message = "Enter name for original table";
-        $response = self::prompt($message, $input, $output, 'original-table', ['max:50']);
+        $response = self::prompt($message, $input, $output, ['max:50', 'fieldName:original-table']);
         $renameOption = self::validateRenameOption($renameOption, $response, $input, $output);  
         return self::makeRenameMigration($response, $renameOption);
     }
@@ -708,7 +708,7 @@ class Migrate extends Console {
         $to = Str::lower($to);
         $from = Str::lower($from);
         $message = "Provide name for new table.";
-        self::argOptionValidate($to, $message, $input, $output, 'original-name', ['max:50', "different:{$from}"]);
+        self::argOptionValidate($to, $message, $input, $output, ['max:50', 'fieldName:original-name', "different:{$from}"]);
         return $to;
     }
 }

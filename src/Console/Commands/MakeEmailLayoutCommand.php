@@ -37,9 +37,9 @@ class MakeEmailLayoutCommand extends Command {
         $layoutName = $input->getArgument('email-layout');
         $message = "Enter name for email layout.";
         if($layoutName) {
-            Email::argOptionValidate($layoutName, $message, $input, $output, '', ['max:50']);
+            Email::argOptionValidate($layoutName, $message, $input, $output, ['max:50']);
         } else {
-            $layoutName = Email::prompt($message, $input, $output, '', ['max:50']);
+            $layoutName = Email::prompt($message, $input, $output, ['max:50']);
         }
         return Email::makeLayout($layoutName);
     }
