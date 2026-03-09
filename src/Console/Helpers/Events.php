@@ -18,9 +18,19 @@ class Events extends Console {
     private const EVENT_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Events'.DS;
 
     /**
+     * The message to present to user when name of event listener is being asked.
+     */
+    public const EVENT_PROMPT = "Enter name for event associated with listener.";
+
+    /**
      * Path for listener classes.
      */
     private const LISTENER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Listeners'.DS;
+
+    /**
+     * The message to present to user when name of event listener is being asked.
+     */
+    public const LISTENER_PROMPT = "Enter name for new listener.";
 
     /**
      * Path for provider classes.
