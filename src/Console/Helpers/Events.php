@@ -96,7 +96,7 @@ class Events extends Console {
      * @return mixed If flag is provided then it is returned.  If a response 
      * is provided the string 'queue' is returned.  Otherwise, we return null.
      */
-    public static function queue(mixed $queue, InputInterface $input, OutputInterface $output): mixed {
+    public static function queueEvent(mixed $queue, InputInterface $input, OutputInterface $output): mixed {
         if($queue) return $queue;
 
         $question = new FrameworkQuestion($input, $output);
@@ -107,6 +107,7 @@ class Events extends Console {
 
         return null;
     }
+    
     /**
      * Checks if $eventName and $listerName was provided and that they are not the same.
      *
