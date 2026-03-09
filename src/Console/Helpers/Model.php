@@ -68,10 +68,8 @@ class Model extends Console {
         mixed $uploadOption
     ): string {
         if($uploadOption) return self::contents($modelName, $output);
-
-        $question = new FrameworkQuestion($input, $output);
         $message = "Do you want to create a model that supports uploads? (y/n)";
-        if($question->confirm($message)) {
+        if(self::confirm($message, $input, $output)) {
             return ModelStubs::uploadModelTemplate($modelName);
         }
 

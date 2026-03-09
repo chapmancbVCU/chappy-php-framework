@@ -114,9 +114,8 @@ class Migrate extends Console {
      * @return mixed The user's response.
      */
     public static function confirmDropAllTables(InputInterface $input, OutputInterface $output): mixed {
-        $question = new FrameworkQuestion($input, $output);
         $message = "Are you sure you want to drop all tables? (y/n)";
-        return $question->confirm($message);
+        return self::confirm($message, $input, $output);
     }
 
     /**
