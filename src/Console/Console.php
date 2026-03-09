@@ -150,7 +150,8 @@ class Console {
             if(method_exists($object, $method)) {
                 call_user_func_array([$object, $method], $params);
             } else {
-                console_error("Validator rule does not exist");
+                $class = get_class($object);
+                throw new FrameworkException("[{$method}] Validator rule or attribute does not exist within the {$class} class.");
             }
             $arr = [];
             $params = [];
