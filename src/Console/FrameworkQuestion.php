@@ -78,11 +78,13 @@ class FrameworkQuestion {
     /**
      * Used to turn on anticipate mode.  
      *
-     * @param boolean $anticipate Anticipate mode is turned on when true is 
+     * @param boolean|array $anticipate Anticipate mode is turned on when true is 
      * passed.  Otherwise, it is disabled.  Default value is true.
      * @return static
      */
-    public function anticipate(bool $anticipate = true): static {
+    public function anticipate(bool|array $anticipate = true): static {
+        if(is_array($anticipate) && sizeof($anticipate) == 0) $anticipate = true;
+        
         $this->anticipate = $anticipate;
         return $this;
     }
@@ -212,11 +214,12 @@ class FrameworkQuestion {
     /**
      * Disables trimmable.  Default value is false.
      *
-     * @param bool $trimmable Disables trimmable if false is provided.  Otherwise, 
+     * @param bool|array $trimmable Disables trimmable if false is provided.  Otherwise, 
      * trimmable is set to true.
      * @return static
      */
-    public function disableTrimmable(bool $trimmable = false): static {
+    public function disableTrimmable(bool|array $trimmable = false): static {
+        if(is_array($trimmable) && sizeof($trimmable) == 0) $trimmable = false;
         $this->trimmable = $trimmable;
         return $this;
     }
@@ -244,11 +247,12 @@ class FrameworkQuestion {
     /**
      * Sets input as hidden.
      *
-     * @param boolean $secret Default value is true.  When true is passed then 
+     * @param boolean|array $secret Default value is true.  When true is passed then 
      * input is hidden.  Otherwise, output is not hidden.
      * @return static
      */
-    public function secret(bool $secret = true): static {
+    public function secret(bool|array $secret = true): static {
+        if(is_array($secret) && sizeof($secret) == 0) $secret = true;
         $this->secret = $secret;
         return $this;
     }
@@ -256,12 +260,13 @@ class FrameworkQuestion {
     /**
      * Sets timeout for input.
      *
-     * @param int|null $timeout The time in seconds before prompt timeout.  
+     * @param int|array $timeout The time in seconds before prompt timeout.  
      * Default value is null.
      * @return static
      */
-    public function timeout(?int $timeout = null): static {
-        $this->timeout = $timeout;
+    public function timeout(mixed $timeout = null): static {
+        if(is_array($timeout) && sizeof($timeout) == 0) $this->timeout = (int)$timeout[0];
+        else $this->timeout = (int)$timeout;
         return $this;
     }
 }

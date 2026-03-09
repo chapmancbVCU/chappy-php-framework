@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Console;
 
 use Console\HasValidators;
+use Core\Exceptions\FrameworkException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -103,22 +104,32 @@ class Console {
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @param array $attributes An array of additional validators.
-     * @return string The user response
+     * @param array $suggestions An array of suggestions for when $anticipate 
+     * is set to true.  An exception is thrown if this array is empty and 
+     * $anticipate = true.
+     * @param string|bool|int|float|null $default The default value if the 
+     * user does not provide an answer.
+     * @return mixed The user response
      */
     public static function prompt(
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
-        array $attributes = []
+        array $attributes = [],
+        array $suggestions = [],
+        string|bool|int|float|null $default = null
     ): string {
         $question = new FrameworkQuestion($input, $output);
         self::parseAttributes($question, $attributes);
 
-        return $question->required()
+        $response = $question->required()
             ->noSpecialChars()
             ->alpha()
             ->notReservedKeyword()
-            ->ask($message);
+            ->ask($message, $suggestions, $default);
+
+        if(!$response) die;
+        return $response;
     }
 
     /**
