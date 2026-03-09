@@ -158,10 +158,8 @@ class View extends Console {
             self::makeMenu($layoutName);
             return $layoutName;
         }
-            
-        $question = new FrameworkQuestion($input, $output);
         $message = "Do you want to create a menu specific to this layout? (y/n)";
-        if($question->confirm($message)) {
+        if(self::confirm($message, $input, $output)) {
             self::makeMenu($layoutName);
             return $layoutName;
         }
@@ -190,10 +188,8 @@ class View extends Console {
             self::makeMenuAcl($layoutName);
             return;
         }
-            
-        $question = new FrameworkQuestion($input, $output);
         $message = "Do you want to create a menu-acl file? (y/n)";
-        if($question->confirm($message)) {
+        if(self::confirm($message, $input, $output)) {
             self::makeMenuAcl($layoutName);
         }
     }

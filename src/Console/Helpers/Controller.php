@@ -104,13 +104,11 @@ final class Controller extends Console {
         OutputInterface $output, 
         string $layout
     ): string {
-    
-        $question = new FrameworkQuestion($input, $output);
         $layoutInput = $input->getOption('layout');
         if($layoutInput) return $layout;
 
         $message = "Do you want to set a name for your layout? (y/n)";
-        if($question->confirm($message)) {
+        if(self::confirm($message, $input, $output)) {
             $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:50', 'fieldName:layout']);
             return Str::lower($response);
         } else {
@@ -138,10 +136,8 @@ final class Controller extends Console {
         mixed $resourceOption
     ): string {
         if($resourceOption) return self::contents($className, $input, $layout);
-
-        $question = new FrameworkQuestion($input, $output);
         $message = "Do you want to use a resource controller? (y/n)";
-        if($question->confirm($message)) {
+        if(self::confirm($message, $input, $output)) {
             return ControllerStubs::resourceTemplate($className, $layout);
         }
 
