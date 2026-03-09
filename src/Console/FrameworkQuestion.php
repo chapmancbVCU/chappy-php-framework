@@ -192,7 +192,7 @@ class FrameworkQuestion {
     }
     
     /**
-     * Asks a use to confirm based on question asked.
+     * Asks a user to confirm based on question asked.
      *
      * @param string $message The question to ask.  It is advised to phrase it 
      * such that the user knows to answer y or n.
