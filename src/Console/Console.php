@@ -24,7 +24,7 @@ class Console {
     }
 
     /**
-     * Undocumented function
+     * Ask user to confirm among several options based on question asked.
      *
      * @param string $message The message to present to the user.
      * @param array $choices An array of choices.
