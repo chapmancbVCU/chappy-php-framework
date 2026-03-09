@@ -86,7 +86,7 @@ PHP;
 <?php
 namespace App\Listeners;
 
-use App\Events\{$eventName};
+use App\Events\\$eventName;
 
 /**
  * Add description for class here
