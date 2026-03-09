@@ -18,7 +18,7 @@ final class Controller extends Console {
     public const CONTROLLER_PATH = ROOT.DS.'app'.DS.'Controllers'.DS;
 
     /**
-     * Layout prompt message
+     * The message to present to user when name of controller is being asked.
      */
     public const LAYOUT_PROMPT = "Enter name for the layout.";
 
