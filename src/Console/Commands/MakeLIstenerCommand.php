@@ -25,8 +25,8 @@ class MakeListenerCommand extends Command
         $this->setName('make:listener')
             ->setDescription('Generates a new listener class')
             ->setHelp('php console make:listener <listener-name>')
-            ->addArgument('listener-name', InputArgument::REQUIRED, 'Pass the name for the new listener')
-            ->addOption('event', null, InputOption::VALUE_REQUIRED, 'Event name for listener', false)
+            ->addArgument('listener-name', InputArgument::OPTIONAL, 'Pass the name for the new listener')
+            ->addOption('event', null, InputOption::VALUE_OPTIONAL, 'Event name for listener', false)
             ->addOption('queue', null, InputOption::VALUE_NONE, 'Version of class for queues');
     }
 
@@ -40,16 +40,25 @@ class MakeListenerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $listenerName = Str::ucfirst($input->getArgument('listener-name'));
-        $eventName = Str::ucfirst($input->getOption('event'));
-
-        if(!$eventName) {
-            console_warning('Please provide name of the event');
-            return Command::FAILURE;
+        if($listenerName) {
+            Events::argOptionValidate(
+                $listenerName, 
+                Events::LISTENER_PROMPT, 
+                $input, 
+                $output, 
+                ['max:50', 'fieldName:listener-name']
+            );
         }
 
-        if(!Events::verifyListenerParams($eventName, $listenerName)) {
-            console_warning('Either event option was not provided or both event and listener names are the same');
-            return Command::FAILURE;
+        $eventName = Str::ucfirst($input->getOption('event'));
+        if($eventName) {
+            Events::argOptionValidate(
+                $eventName, 
+                Events::EVENT_PROMPT, 
+                $input, 
+                $output, 
+                ['max:50', 'fieldName:event', "different:{$listenerName}"]
+            );
         }
         
         $queue = $input->getOption('queue');
