@@ -39,32 +39,38 @@ class MakeListenerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $listenerName = Str::ucfirst($input->getArgument('listener-name'));
-        if($listenerName) {
-            Events::argOptionValidate(
-                $listenerName, 
-                Events::LISTENER_PROMPT, 
-                $input, 
-                $output, 
-                ['max:50', 'fieldName:listener-name']
-            );
-        }
+        $listenerName = $input->getArgument('listener-name');
+        $listenerAttributes = ['max:50', 'fieldName:listener-name'];
 
-        $eventName = Str::ucfirst($input->getOption('event'));
-        if($eventName) {
-            Events::argOptionValidate(
-                $eventName, 
-                Events::EVENT_PROMPT, 
-                $input, 
-                $output, 
-                ['max:50', 'fieldName:event', "different:{$listenerName}"]
-            );
+        // Process listener name.
+        if($listenerName) {
+            Events::argOptionValidate($listenerName, Events::LISTENER_PROMPT, $input, $output, $listenerAttributes);
+            $isArgument = true;
+        } else {
+            $isArgument = false;
+            $listenerName = Events::prompt(Events::LISTENER_PROMPT, $input, $output, $listenerAttributes);
         }
+        $listenerNameInput = Str::ucfirst($listenerName);
+
+        // Process event name.
+        $eventName = $input->getOption('event');
+        $eventAttributes = ['max:50', 'fieldName:event', "different:{$listenerNameInput}"];
+        if($eventName) {
+            Events::argOptionValidate($eventName, Events::EVENT_PROMPT, $input, $output, $eventAttributes);
+        } else {
+            $eventName = Events::prompt(Events::EVENT_PROMPT, $input, $output, $eventAttributes);
+        }
+        $eventName = Str::ucfirst($eventName);
         
+        // Determine if listener will use queue.
         $queue = $input->getOption('queue');
         if($queue) {
-            return Events::makeListener($eventName, $listenerName, $queue);    
+            return Events::makeListener($eventName, $listenerNameInput, $queue);    
         }
-        return Events::makeListener($eventName, $listenerName);
+
+        if(!$isArgument) {
+            $queue = Events::queuePrompt($queue, $input, $output);
+        }
+        return Events::makeListener($eventName, $listenerNameInput, $queue);
     }
 }
