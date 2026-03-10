@@ -103,21 +103,34 @@ class Events extends Console {
      * @param mixed $queue The queue option.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
-     * @return mixed If flag is provided then it is returned.  If a response 
+     * @return bool If flag is provided then it is returned.  If a response 
      * is provided the string 'queue' is returned.  Otherwise, we return null.
      */
-    public static function queueEvent(mixed $queue, InputInterface $input, OutputInterface $output): mixed {
+    public static function queueEvent(mixed $queue, InputInterface $input, OutputInterface $output): bool {
         if($queue) return $queue;
-
-        $question = new FrameworkQuestion($input, $output);
         $message = "Do you want to create a queued event class? (y/n)";
-        if($question->confirm($message)) {
-            return 'queue';
+        if(self::confirm($message, $input, $output)) {
+            return true;
         }
 
-        return null;
+        return false;
     }
     
+    /**
+     * Returns value of $queue if option is set.  Otherwise we ask user if they event listener 
+     * will be associated with a queue.
+     *
+     * @param mixed $queue Value of --queue option.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return mixed The user response
+     */
+    public static function queuePrompt(mixed $queue, InputInterface $input, OutputInterface $output): mixed {
+        if($queue) return $queue;
+        $message = "Do you want to create a version of the listener class to support queues? (y/n)";
+        return self::confirm($message, $input, $output);
+    }
+
     /**
      * Checks if $eventName and $listerName was provided and that they are not the same.
      *
