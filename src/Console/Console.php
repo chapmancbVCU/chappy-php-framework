@@ -37,6 +37,9 @@ class Console {
      * @param string $message The message to present to the user.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param array $attributes An array of additional validators.
+     * @param bool $defaultNone When set to true user will have to specify 
+     * all validators.
      * @return void
      */
     public static function argOptionValidate(
@@ -44,18 +47,22 @@ class Console {
         string $message, 
         InputInterface $input, 
         OutputInterface $output, 
-        array $validators = []
+        array $validators = [],
+        bool $defaultNone = false
     ): void {
 
         $object = self::getInstance();
         self::parseAttributes($object, $validators);
-        $object->required()
-                ->noSpecialChars()
-                ->alpha()
-                ->notReservedKeyword();
+
+        if(!$defaultNone) {
+            $object->required()
+                    ->noSpecialChars()
+                    ->alpha()
+                    ->notReservedKeyword();
+        }
 
         if(!$object->validate($field)) {
-            $field = self::prompt($message, $input, $output, $validators);
+            $field = self::prompt($message, $input, $output, $validators, [], null, $defaultNone);
         }
     }
 
@@ -129,6 +136,8 @@ class Console {
      * $anticipate = true.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
+     * @param bool $defaultNone When set to true user will have to specify 
+     * all validators and attributes.
      * @return mixed The user response
      */
     public static function prompt(
@@ -137,17 +146,20 @@ class Console {
         OutputInterface $output, 
         array $attributes = [],
         array $suggestions = [],
-        string|bool|int|float|null $default = null
+        string|bool|int|float|null $default = null,
+        bool $defaultNone = false
     ): string {
         $question = new FrameworkQuestion($input, $output);
         self::parseAttributes($question, $attributes);
 
-        $response = $question->required()
-            ->noSpecialChars()
-            ->alpha()
-            ->notReservedKeyword()
-            ->ask($message, $suggestions, $default);
+        if(!$defaultNone) {
+            $response = $question->required()->noSpecialChars()
+                ->alpha()
+                ->notReservedKeyword();
+                //->ask($message, $suggestions, $default);
+        }
 
+        $response = $question->ask($message, $suggestions, $default);
         if(!$response) die;
         return $response;
     }
