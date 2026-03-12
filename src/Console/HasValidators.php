@@ -128,37 +128,6 @@ trait HasValidators {
     }
 
     /**
-     * Ensure user inputs valid list of channels for notifications.
-     *
-     * @return static
-     */
-    public function channelOptions(): static {
-        return $this->setValidator(function($response): void {
-            if($response === null || $response === '') {
-                return;
-            }
-            
-            $all = Notification::channelValues();
-
-            // Split on commas (tolerate spaces), normalize to lowercase, drop empties
-            $tokens = preg_split('/\s*,\s*/', $response, -1, PREG_SPLIT_NO_EMPTY);
-            $tokens = array_map(static fn($s) => strtolower($s), $tokens);
-    
-            if (in_array('all', $tokens, true)) {
-                return;
-            }
-            // Validate + dedupe
-            $invalid = array_diff($tokens, $all);
-            if (!empty($invalid)) {
-                $this->addErrorMessage(
-                    'Unknown channel(s): ' . implode(', ', $invalid) .
-                    '. Allowed: ' . implode(', ', $all) . ' or "all".'
-                );
-            }
-        });
-    }
-
-    /**
      * Enforce rule where response and $match parameter needs to be different.
      *
      * @param mixed $data The value we want to compare.
@@ -243,6 +212,51 @@ trait HasValidators {
             if($response == null) return;
             if(!filter_var($response, FILTER_VALIDATE_IP)) {
                 $this->addErrorMessage("Input must match valid IP address.");
+            }
+        });
+    }
+
+    /**
+     * Ensure user inputs valid comma separated list of values.  The user must 
+     * provide the following in the $attributes parameter:
+     * 1) Class containing full namespaced path
+     * 2) Name of function that returns an array of strings
+     * 3) A string value in this array as an alias (optional).
+     * 
+     * @param array $attributes A : separate list in the following format: 
+     * NamespaceToClass\\Class:Method:Alias.
+     * @return static
+     */
+    public function list(array $attributes): static {
+        return $this->setValidator(function($response) use($attributes): void {
+            if(is_array($attributes)) {
+                $class = $attributes[0];
+                $method = $attributes[1];
+                $alias = $attributes[2] ?? '';
+            }
+
+            if($response === null || $response === '') {
+                console_debug("list Validator: No value provided.  May produce unexpected results if required validator is not used.");
+                return;
+            }
+            
+            if(method_exists($class, $method)) $all = $class::$method();
+
+            // Split on commas (tolerate spaces), normalize to lowercase, drop empties
+            $tokens = preg_split('/\s*,\s*/', $response, -1, PREG_SPLIT_NO_EMPTY);
+            $tokens = array_map(static fn($s) => strtolower($s), $tokens);
+    
+            if (in_array($alias, $tokens, true)) {
+                return;
+            }
+
+            // Validate + dedupe
+            $invalid = array_diff($tokens, $all);
+            if (!empty($invalid)) {
+                $this->addErrorMessage(
+                    'Unknown channel(s): ' . implode(', ', $invalid) .
+                    '. Allowed: ' . implode(', ', $all) . ' or "an alias (optional)".'
+                );
             }
         });
     }

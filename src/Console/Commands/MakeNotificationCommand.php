@@ -56,7 +56,12 @@ class MakeNotificationCommand extends Command
 
         $channels = $input->getOption('channels');
         $message = "Enter comma separated list of channels.";
-        $attributes = ['required', 'notReservedKeyword', 'channelOptions'];
+        $attributes = [
+            'required', 
+            'notReservedKeyword', 
+            'list:Core\\Lib\\Notifications\\Notification:channelValues:all'
+        ];
+        
         if($channels) {
             Notifications::argOptionValidate($channels, $message, $input, $output, $attributes, true);
         } else {
