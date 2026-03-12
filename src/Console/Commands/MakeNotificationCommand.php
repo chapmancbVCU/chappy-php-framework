@@ -27,13 +27,13 @@ class MakeNotificationCommand extends Command
             ->setHelp('php console make:notification <notification-name>')
             ->addArgument(
                 'notification-name', 
-                InputArgument::REQUIRED, 
+                InputArgument::OPTIONAL, 
                 'Pass the name for the new notification'
             )->addOption(
                 'channels', 
                 null, 
-                InputOption::VALUE_REQUIRED, 
-                'Comma separated list of channel names'
+                InputOption::VALUE_OPTIONAL, 
+                'Comma separated list of channel names with no spaces'
             );
     }
 
@@ -47,7 +47,24 @@ class MakeNotificationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $notificationName = Str::ucfirst($input->getArgument('notification-name'));
-        $channels = Notifications::channelOptions($input);
+        $message = "Enter name for new notification.";
+        if($notificationName) {
+            Notifications::argOptionValidate($notificationName, $message, $input, $output, ['max:50']);
+        } else {
+            $notificationName = Notifications::prompt($message, $input, $output, ['max:50']);
+        }
+
+        $channels = $input->getOption('channels');
+        $message = "Enter comma separated list of channels.";
+        $attributes = ['required', 'notReservedKeyword', 'channelOptions'];
+        if($channels) {
+            Notifications::argOptionValidate($channels, $message, $input, $output, $attributes, true);
+        } else {
+            $channels = Notifications::prompt($message, $input, $output, $attributes, [], null, true);
+        }
+
+        $channels = Notifications::channels($channels);
+        
         return Notifications::makeNotification($channels, $notificationName);
     }
 }

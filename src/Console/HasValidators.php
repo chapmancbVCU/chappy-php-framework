@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Exceptions\FrameworkRuntimeException;
+use Core\Lib\Notifications\Notification;
 use Core\Lib\Utilities\Arr;
 
 /**
@@ -123,6 +124,37 @@ trait HasValidators {
                     "This field must be between {$minRule} and {$maxRule} characters in length."
                 );
             } 
+        });
+    }
+
+    /**
+     * Ensure user inputs valid list of channels for notifications.
+     *
+     * @return static
+     */
+    public function channelOptions(): static {
+        return $this->setValidator(function($response): void {
+            if($response === null || $response === '') {
+                return;
+            }
+            
+            $all = Notification::channelValues();
+
+            // Split on commas (tolerate spaces), normalize to lowercase, drop empties
+            $tokens = preg_split('/\s*,\s*/', $response, -1, PREG_SPLIT_NO_EMPTY);
+            $tokens = array_map(static fn($s) => strtolower($s), $tokens);
+    
+            if (in_array('all', $tokens, true)) {
+                return;
+            }
+            // Validate + dedupe
+            $invalid = array_diff($tokens, $all);
+            if (!empty($invalid)) {
+                $this->addErrorMessage(
+                    'Unknown channel(s): ' . implode(', ', $invalid) .
+                    '. Allowed: ' . implode(', ', $all) . ' or "all".'
+                );
+            }
         });
     }
 

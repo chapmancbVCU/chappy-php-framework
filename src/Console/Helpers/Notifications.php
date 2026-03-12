@@ -9,6 +9,7 @@ use Core\Lib\Notifications\Notification;
 use Symfony\Component\Console\Command\Command;
 use Core\Models\Notifications as NotificationModel;
 use App\Models\Users;
+use Console\Console;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Input\InputInterface;
  * - Scaffolding notification classes and the notifications migration
  * - Performing dry-runs and actual sends via a notifiable
  */
-class Notifications {
+class Notifications extends Console {
     /** @var non-empty-string Namespace prefix where app notifications live. */
     public const NOTIFICATION_NAMESPACE = "App\\Notifications\\";
 
@@ -53,42 +54,31 @@ class Notifications {
      *   (use {@see resolveChannelsOverride()} if you prefer NULL to defer to via()).
      * - Accepts a comma-separated list, whitespace tolerated.
      * - Accepts the special token "all" to mean all channel enum values.
-     * - Validates unknown names and deduplicates while preserving order.
      *
      * @param InputInterface $input The Symfony InputInterface object.
      * @return list<string>         Normalized channel names (e.g., ['database','log']).
      *
      * @throws \InvalidArgumentException on unknown channel names.
      */
-    public static function channelOptions(InputInterface $input): array {
-        $channelsFromInput = $input->getOption('channels');
+    public static function channels(string $channels) {
         $all = Notification::channelValues();
-
-        if($channelsFromInput === null || $channelsFromInput === '') {
+    
+        if($channels === null || $channels === '') {
             return $all;
         }
 
         // Split on commas (tolerate spaces), normalize to lowercase, drop empties
-        $tokens = preg_split('/\s*,\s*/', $channelsFromInput, -1, PREG_SPLIT_NO_EMPTY);
+        $tokens = preg_split('/\s*,\s*/', $channels, -1, PREG_SPLIT_NO_EMPTY);
         $tokens = array_map(static fn($s) => strtolower($s), $tokens);
 
         // Special alias
         if (in_array('all', $tokens, true)) {
             return $all;
         }
-
-        // Validate + dedupe
-        $invalid = array_diff($tokens, $all);
-        if (!empty($invalid)) {
-            throw new \InvalidArgumentException(
-                'Unknown channel(s): ' . implode(', ', $invalid) .
-                '. Allowed: ' . implode(', ', $all) . ' or "all".'
-            );
-        }
-
         return array_values(array_unique($tokens));
     }
 
+    
     /**
      * Perform a dry-run (no delivery). Prints the intended action and payload.
      *
