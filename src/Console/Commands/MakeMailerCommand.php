@@ -22,7 +22,7 @@ class MakeMailerCommand extends Command {
         $this->setName('make:mailer')
             ->setDescription('Generates a new custom mailer')
             ->setHelp('php console make:mailer <email_name>')
-            ->addArgument('mailer-name', InputArgument::REQUIRED, 'Pass the name of the new custom mailer');
+            ->addArgument('mailer-name', InputArgument::OPTIONAL, 'Pass the name of the new custom mailer');
     }
 
     /**
@@ -34,6 +34,13 @@ class MakeMailerCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Email::makeMailer($input);
+        $emailName = $input->getArgument('mailer-name');
+        $message = "Enter name for new Email.";
+        if($emailName) {
+            Email::argOptionValidate($emailName, $message, $input, $output, ['max:50']);
+        } else {
+            $emailName = Email::prompt($message, $input, $output, ['max:50']);
+        }
+        return Email::makeMailer($emailName);
     }
 }
