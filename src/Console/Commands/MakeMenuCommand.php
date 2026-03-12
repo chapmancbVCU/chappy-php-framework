@@ -23,7 +23,7 @@ class MakeMenuCommand extends Command {
         $this->setName('make:menu')
             ->setDescription('Generates a new menu')
             ->setHelp('php console make:menu <menu_name>')
-            ->addArgument('menu-name', InputArgument::REQUIRED, 'Pass the name for the new menu');
+            ->addArgument('menu-name', InputArgument::OPTIONAL, 'Pass the name for the new menu');
     }
 
     /**
@@ -36,6 +36,12 @@ class MakeMenuCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $menuName = $input->getArgument('menu-name');
+        $message = "Enter name for new menu file.";
+        if($menuName) {
+            View::argOptionValidate($menuName, $message, $input, $output, ['max:50']);
+        } else {
+            $menuName = View::prompt($message, $input, $output, ['max:50']);
+        }
         return View::makeMenu(Str::lcfirst($menuName));
     }
 }
