@@ -55,7 +55,7 @@ class Notifications extends Console {
      * - Accepts a comma-separated list, whitespace tolerated.
      * - Accepts the special token "all" to mean all channel enum values.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $channels A comma separated list of channels.
      * @return list<string>         Normalized channel names (e.g., ['database','log']).
      *
      * @throws \InvalidArgumentException on unknown channel names.
@@ -78,7 +78,7 @@ class Notifications extends Console {
         return array_values(array_unique($tokens));
     }
 
-    
+
     /**
      * Perform a dry-run (no delivery). Prints the intended action and payload.
      *
