@@ -2,14 +2,17 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use Console\Helpers\ReactStubs;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Contains functions that perform operations for React.js relate CLI commands.
  */
-class React {
+class React extends Console {
     /**
      * Path to React.js components.
      */
@@ -127,6 +130,13 @@ class React {
         Tools::pathExists(self::UTILS_PATH);
         $filePath = self::UTILS_PATH.$utilityName.'.js';
         return Tools::writeFile($filePath, '', 'JavaScript utility');
+    }
+
+    public static function namedComponentPrompt(mixed $named, InputInterface $input, OutputInterface $output) {
+        if($named) return $named;
+
+        $message = "Do you want this to be a named component? (y/n)";
+        return self::confirm($message, $input, $output);
     }
 
     /**

@@ -23,7 +23,7 @@ class MakeReactComponentCommand extends Command {
         $this->setName('react:component')
             ->setDescription('Generates a new React.js component')
             ->setHelp('php console react:component <component_name>')
-            ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new React.js component')
+            ->addArgument('component-name', InputArgument::OPTIONAL, 'Pass the name for the new React.js component')
             ->addOption('named', null, InputOption::VALUE_NONE, 'Creates as a named export');
     }
 
@@ -37,7 +37,15 @@ class MakeReactComponentCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $componentName = $input->getArgument('component-name');
+        $message = "Enter name for new component.";
+        
         $named = $input->getOption('named');
+        if($componentName) {
+            React::argOptionValidate($componentName, $message, $input, $output, ['max:50']);
+        } else {
+            $componentName = React::prompt($message, $input, $output, ['max:50']);
+            $named = React::namedComponentPrompt($named, $input, $output);
+        }
         return React::makeComponent($componentName, $named);
     }
 }
