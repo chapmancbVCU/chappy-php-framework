@@ -62,17 +62,13 @@ class Notifications extends Console {
      */
     public static function channels(string $channels) {
         $all = Notification::channelValues();
-    
-        if($channels === null || $channels === '') {
-            return $all;
-        }
-
+        
+        if($channels === null || $channels === '') return $all;
         $tokens = self::tokens($channels);
 
         // Special alias
-        if (in_array('all', $tokens, true)) {
-            return $all;
-        }
+        if (in_array('all', $tokens, true)) return $all;
+        
         return array_values(array_unique($tokens));
     }
 
