@@ -228,7 +228,7 @@ trait HasValidators {
      * @return static
      */
     public function list(array $attributes): static {
-        return $this->setValidator(function($response) use($attributes): void {
+        return $this->setValidator(function($response) use ($attributes): void {
             if(is_array($attributes)) {
                 $class = $attributes[0];
                 $method = $attributes[1];
