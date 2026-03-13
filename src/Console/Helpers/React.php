@@ -132,9 +132,21 @@ class React extends Console {
         return Tools::writeFile($filePath, '', 'JavaScript utility');
     }
 
-    public static function namedComponentPrompt(mixed $named, InputInterface $input, OutputInterface $output) {
+    /**
+     * Asks user if they want to create a named component when component-name 
+     * argument is not provided.
+     *
+     * @param mixed $named The --named flag.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return mixed The user response.
+     */
+    public static function namedComponentPrompt(
+        mixed $named, 
+        InputInterface $input, 
+        OutputInterface $output
+    ): mixed {
         if($named) return $named;
-
         $message = "Do you want this to be a named component? (y/n)";
         return self::confirm($message, $input, $output);
     }
