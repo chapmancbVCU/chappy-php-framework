@@ -241,15 +241,9 @@ trait HasValidators {
             }
             
             if(method_exists($class, $method)) $all = $class::$method();
-
-            // Split on commas (tolerate spaces), normalize to lowercase, drop empties
-            $tokens = preg_split('/\s*,\s*/', $response, -1, PREG_SPLIT_NO_EMPTY);
-            $tokens = array_map(static fn($s) => strtolower($s), $tokens);
-    
-            if (in_array($alias, $tokens, true)) {
-                return;
-            }
-
+            $tokens = self::tokens($response);
+            if (in_array($alias, $tokens, true)) return;
+            
             // Validate + dedupe
             $invalid = array_diff($tokens, $all);
             if (!empty($invalid)) {
@@ -442,6 +436,20 @@ trait HasValidators {
                 $this->addErrorMessage("Input must contain at least one special character.");
             }
         });
+    }
+
+    /**
+     * Split on commas (tolerate spaces), normalize to lowercase, drop empties.  
+     * Useful for cases where you have a comma separated string.
+     *
+     * @param string $data Comma separated strings of values to be converted 
+     * into an array.
+     * @return array An array containing values originally found in comma 
+     * separated string.
+     */
+    protected static function tokens(string $data): array {
+        $tokens = preg_split('/\s*,\s*/', $data, -1, PREG_SPLIT_NO_EMPTY);
+        return array_map(static fn($s) => strtolower($s), $tokens);
     }
 
     /**

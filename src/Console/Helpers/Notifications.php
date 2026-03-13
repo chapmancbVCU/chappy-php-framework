@@ -67,9 +67,7 @@ class Notifications extends Console {
             return $all;
         }
 
-        // Split on commas (tolerate spaces), normalize to lowercase, drop empties
-        $tokens = preg_split('/\s*,\s*/', $channels, -1, PREG_SPLIT_NO_EMPTY);
-        $tokens = array_map(static fn($s) => strtolower($s), $tokens);
+        $tokens = self::tokens($channels);
 
         // Special alias
         if (in_array('all', $tokens, true)) {
