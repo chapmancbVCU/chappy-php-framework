@@ -25,7 +25,7 @@ class MakeReactPageCommand extends Command {
         $this->setName('react:page')
             ->setDescription('Generates a new React Page')
             ->setHelp('php console react:page <directory_name>.<page_name>')
-            ->addArgument('page-name', InputArgument::REQUIRED, 'Pass name of directory and React page')
+            ->addArgument('page-name', InputArgument::OPTIONAL, 'Pass name of directory and React page')
             ->addOption('named', null, InputOption::VALUE_NONE, 'Creates as a named export');
     }
 
@@ -38,18 +38,32 @@ class MakeReactPageCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $pageArray = Tools::dotNotationVerify('page-name', $input);
-        if($pageArray == Command::FAILURE) return Command::FAILURE;
-
-        $directory = React::PAGE_PATH . $pageArray[0];
-        $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
-
-        if($isDirMade == Command::FAILURE) return Command::FAILURE;
-        
-        $pageName = Str::ucfirst($pageArray[1]);
-        $filePath = $directory . DS . $pageName.'.jsx';
+        $pageName = $input->getArgument('page-name');
         $named = $input->getOption('named');
+        $message = "Enter name for new directory and page in following format: <directory_name>.<page_name>";
+        $attributes = ['max:100', 'dotNotation'];
 
-        return React::makePage($filePath, $pageName, $named);
+        if($pageName) {
+            React::argOptionValidate($pageName, $message, $input, $output, $attributes, true);
+        } else {
+            $pageName = React::prompt($message, $input, $output, $attributes, [], null, true);
+            $named = React::namedComponentPrompt($named, $input, $output);
+        }
+
+        // Validate directory and page.
+        [$directory, $page] = explode('.', $pageName);
+        $message = "Enter name for directory";
+        React::argOptionValidate($directory, $message, $input, $output, ['max:50']);
+        $message = "Enter name for the new page";
+        React::argOptionValidate($page, $message, $input, $output, ['max:50']);
+
+        // Check if directory exists and create it.
+        $directory = React::PAGE_PATH . $directory;
+        $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
+        if($isDirMade == Command::FAILURE) return Command::FAILURE;
+
+        $page = Str::ucfirst($page);
+        $filePath = $directory . DS . $page.'.jsx';
+        return React::makePage($filePath, $page, $named);
     }
 }
