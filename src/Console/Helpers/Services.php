@@ -2,13 +2,13 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
-use Core\Lib\Utilities\Str;
+use Console\Console;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
  * Supports commands related to Services.
  */
-class Services {
+class Services extends Console {
     /**
      * Path to service classes.
      */
@@ -17,12 +17,11 @@ class Services {
     /**
      * Creates new Services class.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $serviceName The name for the new service.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeService(InputInterface $input): int {
+    public static function makeService(string $serviceName): int {
         Tools::pathExists(self::SERVICES_PATH);
-        $serviceName = Str::ucfirst($input->getArgument('service-name'));
         $servicePath = self::SERVICES_PATH . $serviceName . 'Service.php';
         return Tools::writeFile(
             $servicePath, 
