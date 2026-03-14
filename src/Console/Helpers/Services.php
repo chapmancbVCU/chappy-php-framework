@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
-use Symfony\Component\Console\Input\InputInterface;
 
 /**
  * Supports commands related to Services.
