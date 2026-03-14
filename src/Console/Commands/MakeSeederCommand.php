@@ -24,7 +24,7 @@ class MakeSeederCommand extends Command {
         $this->setName('make:seeder')
             ->setDescription('Generates a new Seeder class')
             ->setHelp('php console make:seeder ClassName')
-            ->addArgument('seeder-name', InputArgument::REQUIRED, 'Pass the name of the seeder class you want to create')
+            ->addArgument('seeder-name', InputArgument::OPTIONAL, 'Pass the name of the seeder class you want to create')
             ->addOption('factory', null, InputOption::VALUE_NONE, 'Enter name for a factory');
     }
 
@@ -37,13 +37,20 @@ class MakeSeederCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $seederName = Str::ucfirst($input->getArgument('seeder-name'));
-        $factoryName = Str::ucfirst($input->getOption('factory'));
-        
-        if($factoryName) {
+        $seederName = $input->getArgument('seeder-name');
+        $factory = $input->getOption('factory');
+        $message = "Enter name for new database seeder.";
+        if($seederName) {
+            DBSeeder::argOptionValidate($seederName, $message, $input, $output, ['max:50']);
+        } else {
+            $seederName = DBSeeder::prompt($message, $input, $output, ['max:50']);
+            $factory = DBSeeder::factoryPrompt($factory, $input, $output);
+        }
+        // dd($factory);
+        $seederName = Str::ucfirst($seederName);
+        if($factory) {
             DBSeeder::makeFactory($seederName);
         }
-
         return DBSeeder::makeSeeder($seederName);
     }
 }
