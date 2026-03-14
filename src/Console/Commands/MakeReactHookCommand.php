@@ -22,8 +22,8 @@ class MakeReactHookCommand extends Command {
     {
         $this->setName('react:hook')
             ->setDescription('Generates a new hook file')
-            ->setHelp('php console react:hook <component_name>')
-            ->addArgument('hook-name', InputArgument::REQUIRED, 'Pass the name for the new React.js hook');
+            ->setHelp('php console react:hook <hook-name>')
+            ->addArgument('hook-name', InputArgument::OPTIONAL, 'Pass the name for the new React.js hook');
     }
 
     /**
@@ -35,7 +35,14 @@ class MakeReactHookCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $hookName = Str::ucfirst($input->getArgument('hook-name'));
-        return React::makeHook($hookName);
+        $hookName = $input->getArgument('hook-name');
+        $message = "Enter name for the new hook.";
+        if($hookName) {
+            React::argOptionValidate($hookName, $message, $input, $output, ['max:50']);
+        } else {
+            $hookName = React::prompt($message, $input, $output, ['max:50']);
+        }
+        
+        return React::makeHook(Str::ucfirst($hookName));
     }
 }
