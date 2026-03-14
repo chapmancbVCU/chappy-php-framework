@@ -2,13 +2,17 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+use Console\Console;
 use Console\Helpers\Tools;
 
 /**
  * Contains collection of functions that allows uses to add support for third 
  * parting unit testing frameworks.
  */
-class ThirdPartyTests {
+class ThirdPartyTests extends Console {
+    /**
+     * Path for 3rd party test builders.
+     */
     public const THIRD_PARTY_TEST_PATH = ROOT.DS.'app'.DS.'Testing'.DS;
 
     /**
