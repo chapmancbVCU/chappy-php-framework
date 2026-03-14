@@ -36,6 +36,12 @@ class MakeReactUtilCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $utilityName = $input->getArgument('utility-name');
+        $message = "Enter name for new JavaScript utility";
+        if($utilityName) {
+            React::argOptionValidate($utilityName, $message, $input, $output, ['max:50']);
+        } else {
+            $utilityName = React::prompt($message, $input, $output, ['max:50']);
+        }
         return React::makeUtility($utilityName);
     }
 }
