@@ -22,7 +22,7 @@ class MakeTestBuilderCommand extends Command {
         $this->setName('make:test:builder')
             ->setDescription('Generates a test builder for a 3rd party suite')
             ->setHelp('php console make:test:builder <builder-name>')
-            ->addArgument('builder-name', InputArgument::REQUIRED, 'Pass name of directory and builder');
+            ->addArgument('builder-name', InputArgument::OPTIONAL, 'Pass name of directory and builder');
     }
 
     /**
@@ -34,7 +34,13 @@ class MakeTestBuilderCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $className = Str::ucfirst($input->getArgument('builder-name'));
-        return ThirdPartyTests::makeBuilder($className."Builder");
+        $className = $input->getArgument('builder-name');
+        $message = "Enter name for new test builder.";
+        if($className) {
+            ThirdPartyTests::argOptionValidate($className, $message, $input, $output, ['max:50']);
+        } else {
+            $className = ThirdPartyTests::prompt($message, $input, $output, ['max:50']);
+        }
+        return ThirdPartyTests::makeBuilder(Str::ucfirst($className)."Builder");
     }
 }
