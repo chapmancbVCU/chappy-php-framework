@@ -12,8 +12,8 @@ interface TestBuilderInterface {
      * Creates a new test class.
      *
      * @param string $testName The name for the test.
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $suite The currently suite flag if available.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeTest(string $testName, InputInterface $input): int;
+    public static function makeTest(string $testName, string $suite): int;
 }

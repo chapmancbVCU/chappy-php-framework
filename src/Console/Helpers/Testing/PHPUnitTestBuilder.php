@@ -17,10 +17,10 @@ class PHPUnitTestBuilder implements TestBuilderInterface {
      * feature class is created.
      *
      * @param string $testName The name for the test.
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $feature The --feature flag.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeTest(string $testName, InputInterface $input): int {
+    public static function makeTest(string $testName, string $suite): int {
         $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
         
         if(PHPUnitRunner::testExists($testName, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION)) {
@@ -28,7 +28,7 @@ class PHPUnitTestBuilder implements TestBuilderInterface {
             return Command::FAILURE;
         }
 
-        if($input->getOption('feature')) {
+        if($suite) {
             return Tools::writeFile(
                 ROOT.DS.PHPUnitRunner::FEATURE_PATH.$testName.PHPUnitRunner::TEST_FILE_EXTENSION,
                 PHPUnitStubs::featureTestStub($testName),
