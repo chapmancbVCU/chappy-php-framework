@@ -163,6 +163,22 @@ trait HasValidators {
     }
 
     /**
+     * Ensures response is in dot notation format.
+     *
+     * @return static
+     */
+    public function dotNotation(): static {
+        return $this->setValidator(function($response): void {
+            $arr = explode(".", $response);
+            if(sizeof($arr) !== 2) {
+                $this->addErrorMessage(
+                    'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>'
+                );
+            }
+        });
+    }
+
+    /**
      * Ensures input is a valid E-mail address.
      *
      * @return static
