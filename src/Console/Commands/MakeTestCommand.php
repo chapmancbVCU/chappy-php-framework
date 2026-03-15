@@ -43,9 +43,9 @@ class MakeTestCommand extends Command
         $message = "Enter name for new test case class.";
 
         if($testName) {
-            PHPUnitTestBuilder::argOptionValidate($testName, $message, $input, $output, ['max:50']);
+            PHPUnitTestBuilder::argOptionValidate($testName, $message, $input, $output, ['max:150']);
         } else {
-            $testName = PHPUnitTestBuilder::prompt($message, $input, $output, ['max:50']);
+            $testName = PHPUnitTestBuilder::prompt($message, $input, $output, ['max:150']);
             $feature = PHPUnitTestBuilder::featurePrompt($feature, $input, $output);
         }
 
