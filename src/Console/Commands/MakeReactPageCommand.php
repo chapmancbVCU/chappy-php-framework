@@ -58,7 +58,7 @@ class MakeReactPageCommand extends Command {
         React::argOptionValidate($page, $message, $input, $output, ['max:50']);
 
         // Check if directory exists and create it.
-        $directory = React::PAGE_PATH . $directory;
+        $directory = React::PAGE_PATH . Str::ucfirst($directory);
         $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
         if($isDirMade == Command::FAILURE) return Command::FAILURE;
 
