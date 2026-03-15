@@ -22,7 +22,7 @@ class MakeValidatorCommand extends Command {
         $this->setName('make:validator')
             ->setDescription('Creates a new custom form validator')
             ->setHelp('run php console make:validator')
-            ->addArgument('validator-name', InputArgument::REQUIRED, 'Pass the name for the custom form validator');
+            ->addArgument('validator-name', InputArgument::OPTIONAL, 'Pass the name for the custom form validator');
     }
 
     /**
@@ -34,7 +34,13 @@ class MakeValidatorCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $validatorName = Str::ucfirst($input->getArgument('validator-name'));
-        return Validator::makeValidator($validatorName);
+        $validatorName = $input->getArgument('validator-name');
+        $message = "Enter name for new validator.";
+        if($validatorName) {
+            Validator::argOptionValidate($validatorName, $message, $input, $output, ['max:50']);
+        } else {
+            $validatorName = Validator::prompt($message, $input, $output, ['max:50']);
+        }
+        return Validator::makeValidator(Str::ucfirst($validatorName));
     }
 }

@@ -1,12 +1,14 @@
 <?php
 declare(strict_types=1);
 namespace Console\Helpers;
+
+use Console\Console;
 use Console\Helpers\Tools;
 
 /**
  * Supports operations for the make:validator command.
  */
-class Validator {
+class Validator extends Console {
     /** Path to custom form validators. */
     private const VALIDATOR_PATH = ROOT.DS.'app'.DS.'Lib'.DS.'Validators'.DS;
     /**
