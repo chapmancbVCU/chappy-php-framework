@@ -22,7 +22,7 @@ class MakeTestRunnerCommand extends Command {
         $this->setName('make:test:runner')
             ->setDescription('Generates a test runner for a 3rd party suite')
             ->setHelp('php console make:test:runner <runner-name>')
-            ->addArgument('runner-name', InputArgument::REQUIRED, 'Pass name of directory and runner');
+            ->addArgument('runner-name', InputArgument::OPTIONAL, 'Pass name of runner');
     }
 
     /**
@@ -34,7 +34,13 @@ class MakeTestRunnerCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $className = Str::ucfirst($input->getArgument('runner-name'));
-        return ThirdPartyTests::makeRunner($className."Runner");
+        $className = $input->getArgument('runner-name');
+        $message = "Enter name for new test runner.";
+        if($className) {
+            ThirdPartyTests::argOptionValidate($className, $message, $input, $output, ['max:50']);
+        } else {
+            $className = ThirdPartyTests::prompt($message, $input, $output, ['max:50']);
+        }
+        return ThirdPartyTests::makeRunner(Str::ucfirst($className)."Runner");
     }
 }
