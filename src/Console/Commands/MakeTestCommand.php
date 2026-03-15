@@ -25,7 +25,7 @@ class MakeTestCommand extends Command
         $this->setName('make:test')
             ->setDescription('Generates a new test file!')
             ->setHelp('php console make:test <test_name>')
-            ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
+            ->addArgument('test-name', InputArgument::OPTIONAL, 'Pass the test\'s name.')
             ->addOption('feature', null, InputOption::VALUE_NONE, 'Create feature test');
     }
  
@@ -38,7 +38,17 @@ class MakeTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = Str::ucfirst($input->getArgument('testname'));
-        return PHPUnitTestBuilder::makeTest($testName, $input);
+        $testName = $input->getArgument('test-name');
+        $feature = $input->getOption('feature');
+        $message = "Enter name for new test case class.";
+
+        if($testName) {
+            PHPUnitTestBuilder::argOptionValidate($testName, $message, $input, $output, ['max:50']);
+        } else {
+            $testName = PHPUnitTestBuilder::prompt($message, $input, $output, ['max:50']);
+            $feature = PHPUnitTestBuilder::featurePrompt($feature, $input, $output);
+        }
+
+        return PHPUnitTestBuilder::makeTest(Str::ucfirst($testName), $feature);
     }
 }
