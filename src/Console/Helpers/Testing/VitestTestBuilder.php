@@ -7,6 +7,7 @@ use Console\Helpers\Tools;
 use ReflectionClass;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Utility class that supports ability to create new tests for Vitest based 
@@ -16,6 +17,12 @@ class VitestTestBuilder extends Console implements TestBuilderInterface {
     private const COMPONENT = 'component';
     private const UNIT = 'unit';
     private const VIEW = 'view';
+
+    private const SUITES = [
+        self::COMPONENT,
+        self::UNIT,
+        self::VIEW
+    ];
 
     /**
      * Creates a new test class.  Three types of test can be generated based 
@@ -29,7 +36,7 @@ class VitestTestBuilder extends Console implements TestBuilderInterface {
      * @param string $suite The flag for --unit, --component, or --view suites.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeTest(string $testName, mixed $suite): int { 
+    public static function makeTest(string $testName, string $suite): int { 
         $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
         $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
 
@@ -38,35 +45,28 @@ class VitestTestBuilder extends Console implements TestBuilderInterface {
             return Command::FAILURE;
         }
 
-        $component = $input->getOption('component');
-        $unit = $input->getOption('unit');
-        $view = $input->getOption('view');
-
-        if($component && !$unit && !$view) {
+        if($suite === self::COMPONENT) {
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::COMPONENT_PATH.$testName.VitestTestRunner::REACT_TEST_FILE_EXTENSION,
                 VitestStubs::componentAndViewTestStub(),
                 'Component test'
             );
-        } else if($unit && !$component && !$view) {
+        }
+        else if($suite === self::UNIT) {
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::UNIT_PATH.$testName.VitestTestRunner::UNIT_TEST_FILE_EXTENSION,
                 VitestStubs::unitTestStub(),
                 'Unit test'
             );
-        } else if($view && !$component && !$unit){
+        }
+        else if($suite === self::VIEW) {
             return Tools::writeFile(
                 ROOT.DS.VitestTestRunner::VIEW_PATH.$testName.VitestTestRunner::REACT_TEST_FILE_EXTENSION,
                 VitestStubs::componentAndViewTestStub(),
                 'View test'
             );
-        } else {
-            console_warning("More than one flag has been supplied.");
-            return Command::FAILURE;
         }
 
-        console_warning("Please use a flag to ensure test is created in intended test suite.");
-        
         return Command::SUCCESS;
     }
 
@@ -94,7 +94,23 @@ class VitestTestBuilder extends Console implements TestBuilderInterface {
                 console_debug("More than one suite flag was set.  Proceed to ask user which suite to use.");
                 return null;
             }
+            if($count == 0) return null;
         }
         return $result;
+    }
+
+    /**
+     * Prompts user to choose which suite to use if test-name argument and now 
+     * suite flags are not provided.
+     *
+     * @param mixed $suite The particular suite flag if provided.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the suite
+     */
+    public static function suiteChoice(mixed $suite, InputInterface $input, OutputInterface $output): string {
+        if($suite) return $suite;
+        $message = "Select a suite for the new test file.";
+        return self::choice($message, self::SUITES, $input, $output);
     }
 }

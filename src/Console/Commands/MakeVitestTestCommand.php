@@ -25,7 +25,7 @@ class MakeVitestTestCommand extends Command
         $this->setName('react:make:test')
             ->setDescription('Generates a new test file!')
             ->setHelp('php console react:make:test <test_name>')
-            ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.')
+            ->addArgument('test-name', InputArgument::OPTIONAL, 'Pass the test\'s name.')
             ->addOption('unit', null, InputOption::VALUE_NONE, 'Create unit test')
             ->addOption('component', null, InputOption::VALUE_NONE, 'Create component test')
             ->addOption('view', null, InputOption::VALUE_NONE, 'Create view test');
@@ -40,7 +40,17 @@ class MakeVitestTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = $input->getArgument('testname');
-        return VitestTestBuilder::makeTest($testName, $input);
+        $testName = $input->getArgument('test-name');
+        $suite = VitestTestBuilder::suite($input);
+        
+        $message = "Enter new name for new test file.";
+        if($testName) {
+            VitestTestBuilder::argOptionValidate($testName, $message, $input, $output, ['max:150']);
+        } else {
+            $testName = VitestTestBuilder::prompt($message, $input, $output, ['max:150']);
+            $suite = VitestTestBuilder::suiteChoice($suite, $input, $output);
+        }
+
+        return VitestTestBuilder::makeTest($testName, $suite);
     }
 }
