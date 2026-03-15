@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\Helpers\View;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,7 +24,7 @@ class MakeViewCommand extends Command {
         $this->setName('make:view')
             ->setDescription('Generates a new view')
             ->setHelp('php console make:view <directory_name>.<view_name>')
-            ->addArgument('view-name', InputArgument::REQUIRED, 'Pass name of directory and view');
+            ->addArgument('view-name', InputArgument::OPTIONAL, 'Pass name of directory and view');
     }
 
     /**
@@ -35,14 +36,29 @@ class MakeViewCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $viewArray = Tools::dotNotationVerify('view-name', $input);
-        if($viewArray == Command::FAILURE) return Command::FAILURE;
+        $viewName = $input->getArgument('view-name');
+        $message = "Enter name for new directory and page in following format: <directory_name>.<view_name>";
+        $attributes = ['max:100', 'dotNotation'];
 
-        $directory = View::VIEW_PATH.$viewArray[0];
+        if($viewName) {
+            View::argOptionValidate($viewName, $message, $input, $output, $attributes, true);
+        } else {
+            $viewName = View::prompt($message, $input, $output, $attributes, [], null, true);
+        }
+
+        // Validate directory and view.
+        [$directory, $view] = explode('.', $viewName);
+        $message = "Enter name for directory";
+        View::argOptionValidate($directory, $message, $input, $output, ['max:50']);
+        $message = "Enter name for the new view";
+        View::argOptionValidate($view, $message, $input, $output, ['max:50']);
+
+        // Check if directory exists and create it.
+        $directory = View::VIEW_PATH.Str::ucfirst($directory);
         $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
-        
         if($isDirMade == Command::FAILURE) return Command::FAILURE;
 
-        return View::makeView($directory . DS . $viewArray[1].'.php');
+        $view = Str::ucfirst($view);
+        return View::makeView($directory . DS . $view.'.php');
     }
 }
