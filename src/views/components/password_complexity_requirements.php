@@ -8,8 +8,7 @@
         <?php if ($this->user->isMaxLength()): ?>
             <li>Maximum of <?= $this->user->maxLength() ?> characters in length</li>
         <?php endif; ?>
-
-        <?php if ($this->user->upperChar() === 'true'): ?>
+        <?php if ($this->user->upperChar()): ?>
             <li>At least 1 upper case character</li>
         <?php endif; ?>
 
@@ -17,11 +16,11 @@
             <li>At least 1 lower case character</li>
         <?php endif; ?>
 
-        <?php if ($this->user->numericChar() === 'true'): ?>
+        <?php if ($this->user->numericChar()): ?>
             <li>At least 1 number</li>
         <?php endif; ?>
 
-        <?php if ($this->user->specialChar() === 'true'): ?>
+        <?php if ($this->user->specialChar()): ?>
             <li>Must contain at least 1 special character</li>
         <?php endif; ?>  
 

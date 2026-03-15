@@ -76,6 +76,6 @@ trait PasswordPolicy {
      * @return bool
      */
     public function upperChar(): bool {
-        return (env('PW_LOWER_CHAR', false) === "true") ? true : false;
+        return (env('PW_UPPER_CHAR', false) === "true") ? true : false;
     }
 }
