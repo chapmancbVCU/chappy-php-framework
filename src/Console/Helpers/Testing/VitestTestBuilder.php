@@ -14,10 +14,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  * tests.
  */
 class VitestTestBuilder extends Console implements TestBuilderInterface {
+    /**
+     * The name of component suite.
+     */
     private const COMPONENT = 'component';
+
+    /**
+     * The name of unit suite.
+     */
     private const UNIT = 'unit';
+
+    /**
+     * The name of view suite.
+     */
     private const VIEW = 'view';
 
+    /**
+     * Array of constants for available suites.
+     */
     private const SUITES = [
         self::COMPONENT,
         self::UNIT,
