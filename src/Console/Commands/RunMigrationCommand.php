@@ -24,7 +24,7 @@ class RunMigrationCommand extends Command
             ->setDescription('Runs a Database Migration!')
             ->setHelp('Runs a Database Migration')
             ->addOption('seed', null, InputOption::VALUE_NONE, 'Seed flag')
-            ->addOption('seeder', null, InputOption::VALUE_REQUIRED, 'Specify name of a seeder class', false);
+            ->addOption('seeder', null, InputOption::VALUE_OPTIONAL, 'Specify name of a seeder class', false);
     }
  
     /**
@@ -38,7 +38,7 @@ class RunMigrationCommand extends Command
     {
         $status = Migrate::migrate();
         if($status == Command::SUCCESS && $input->getOption('seed')) {
-            return DBSeeder::seed($input);
+            return DBSeeder::seed($input, $output);
         }
 
         return $status;

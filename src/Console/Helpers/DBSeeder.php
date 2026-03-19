@@ -118,11 +118,19 @@ PHP;
      * Runs command for seeding database.
      *
      * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function seed(InputInterface $input): int {
+    public static function seed(InputInterface $input, OutputInterface $output): int {
         $seederOption = $input->getOption('seeder');
-        $classname = self::SEEDER_NAMESPACE.$seederOption;
+        $namespace = self::SEEDER_NAMESPACE;
+        if($seederOption !== null) {
+            $message = "Enter name for seeder class.";
+            $attributes = ['between:1:5', "classExists:{$namespace}"];
+            self::argOptionValidate($seederOption, $message, $input, $output, $attributes);
+        }
+        $classname = $namespace.$seederOption;
+        
         $seeder = ($seederOption) ? new $classname() : new DatabaseSeeder();
         $seeder->run();
         console_info('Database seeding complete!.  If you see only this message then uncomment your seeders.');
