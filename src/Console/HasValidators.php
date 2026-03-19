@@ -121,8 +121,7 @@ trait HasValidators {
             if($minRule >= $maxRule) {
                 throw new FrameworkRuntimeException("between(): Min must be less than max.");
             }
-            if($response == null) return;
-            if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
+            if(($response == "" || $response == null || strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
                 $this->addErrorMessage(
                     "This field must be between {$minRule} and {$maxRule} characters in length."
                 );
