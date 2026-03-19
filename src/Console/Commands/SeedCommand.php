@@ -34,6 +34,6 @@ class SeedCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return DBSeeder::seed($input);
+        return DBSeeder::seed($input, $output);
     }
 }
