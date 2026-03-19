@@ -118,12 +118,31 @@ trait HasValidators {
         return $this->setValidator(function($response) use ($range): void {
             if(is_array($range)) $minRule = $range[0];
             if(is_array($range)) $maxRule = $range[1];
+            if($minRule >= $maxRule) {
+                throw new FrameworkRuntimeException("between(): Min must be less than max.");
+            }
             if($response == null) return;
             if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
                 $this->addErrorMessage(
                     "This field must be between {$minRule} and {$maxRule} characters in length."
                 );
             } 
+        });
+    }
+
+    /**
+     * Checks if class exists within the specified namespace.
+     *
+     * @param array $namespace An array containing one element with string for 
+     * the namespace.
+     * @return static
+     */
+    public function classExists(array $namespace): static {
+        return $this->setValidator(function($response) use ($namespace): void {
+            if(is_array($namespace)) $namespace = $namespace[0];
+            if(!class_exists($namespace.$response)) {
+                $this->addErrorMessage("This class does not exist in specified namespace.");
+            }
         });
     }
 
