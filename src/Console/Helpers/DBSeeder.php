@@ -126,7 +126,7 @@ PHP;
         $namespace = self::SEEDER_NAMESPACE;
         if($seederOption !== null) {
             $message = "Enter name for seeder class.";
-            $attributes = ['between:1:5', "classExists:{$namespace}"];
+            $attributes = ['max:100', "classExists:{$namespace}"];
             self::argOptionValidate($seederOption, $message, $input, $output, $attributes);
         }
         $classname = $namespace.$seederOption;
