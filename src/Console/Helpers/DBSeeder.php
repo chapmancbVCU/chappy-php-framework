@@ -123,13 +123,12 @@ PHP;
      */
     public static function seed(InputInterface $input, OutputInterface $output): int {
         $seederOption = $input->getOption('seeder');
-        $namespace = self::SEEDER_NAMESPACE;
         if($seederOption !== null) {
             $message = "Enter name for seeder class.";
-            $attributes = ['max:100', "classExists:{$namespace}"];
+            $attributes = ['max:100', 'classExists:'.self::SEEDER_NAMESPACE];
             self::argOptionValidate($seederOption, $message, $input, $output, $attributes);
         }
-        $classname = $namespace.$seederOption;
+        $classname = self::SEEDER_NAMESPACE.$seederOption;
         
         $seeder = ($seederOption) ? new $classname() : new DatabaseSeeder();
         $seeder->run();
