@@ -48,7 +48,8 @@ class NotificationTestCommand extends Command
                 'with', 
                 null, 
                 InputOption::VALUE_REQUIRED, 
-                'Key:value pairs, comma-separated');
+                'Key:value pairs, comma-separated'
+            );
     }
 
     /**
