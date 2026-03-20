@@ -28,8 +28,7 @@ class NotificationTestCommand extends Command
             ->addArgument(
                 'notification-name', 
                 InputArgument::REQUIRED, 
-                'Pass the name for the notification to test'
-            )
+                'Pass the name for the notification to test')
             ->addOption(
                 'user', 
                 null, 
@@ -39,18 +38,17 @@ class NotificationTestCommand extends Command
                 'channels', 
                 null, 
                 InputOption::VALUE_REQUIRED, 
-                'Comma separated list of channel names'
-            )->addOption(
+                'Comma separated list of channel names')
+            ->addOption(
                 'dry-run', 
                 null, 
                 InputOption::VALUE_NONE, 
-                'Do not send, just output'
-            )->addOption(
+                'Do not send, just output')
+            ->addOption(
                 'with', 
                 null, 
                 InputOption::VALUE_REQUIRED, 
-                'Key:value pairs, comma-separated'
-            );
+                'Key:value pairs, comma-separated');
     }
 
     /**
