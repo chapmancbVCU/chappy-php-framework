@@ -110,12 +110,12 @@ class Notifications extends Console {
     /**
      * Find a user/notifiable record by numeric id, email, or username.
      *
-     * @param non-empty-string $user String token from CLI (id|email|username).
+     * @param mixed $user String token from CLI (id|email|username).
      * @return Users|null            The matched user or NULL if not found.
      */
-    private static function findUser(string $user): ?Users {
-        if(is_numeric((int)$user)) {
-            return Users::findById($user);
+    private static function findUser(mixed $user): ?Users {
+        if(is_numeric($user)) {
+            return Users::findById((int)$user);
         }
         
         $params = str_contains($user, '@')
