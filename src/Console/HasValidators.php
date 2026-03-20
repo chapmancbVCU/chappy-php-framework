@@ -122,7 +122,8 @@ trait HasValidators {
             if($minRule >= $maxRule) {
                 throw new FrameworkRuntimeException("between(): Min must be less than max.");
             }
-            if(($response == "" || $response == null || strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
+            if($response == null) return;
+            if((strlen($response) < $minRule) || (strlen($response) > $maxRule)) {
                 $this->addErrorMessage(
                     "This field must be between {$minRule} and {$maxRule} characters in length."
                 );
@@ -140,6 +141,7 @@ trait HasValidators {
     public function classExists(array $namespace): static {
         return $this->setValidator(function($response) use ($namespace): void {
             if(is_array($namespace)) $namespace = $namespace[0];
+            if($response == null) return;
             if(!class_exists($namespace.$response)) {
                 $this->addErrorMessage("This class does not exist in specified namespace.");
             }
