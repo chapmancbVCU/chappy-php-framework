@@ -256,6 +256,7 @@ PHP;
 namespace App\Notifications;
 
 use App\Models\Users;
+use Core\Lib\Notifications\Channel;
 use Core\Lib\Notifications\Notification;
 
 /**
