@@ -1,7 +1,5 @@
 <?php
 namespace Console\Commands;
-use Console\Helpers\Migrate;
-use Console\Helpers\DBSeeder;
 use Console\Helpers\Notifications;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
