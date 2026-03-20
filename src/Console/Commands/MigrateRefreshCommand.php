@@ -48,10 +48,9 @@ class MigrateRefreshCommand extends Command
         if($step === false) {
             $status = Migrate::refresh();
         } else {
-            if($step === '') {
-                console_warning('Please enter number of migrations to roll back');
-                return Command::FAILURE;
-            }
+            $message = "Enter number of steps to roll back.";
+            $attributes = ['required', 'noSpecialChars', 'number'];
+            Migrate::argOptionValidate($step, $message, $input, $output, $attributes, true);
             $status = Migrate::refresh($step);
         }
 
