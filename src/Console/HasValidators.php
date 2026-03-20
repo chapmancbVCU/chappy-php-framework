@@ -116,8 +116,10 @@ trait HasValidators {
      */
     public function between(array $range): static {
         return $this->setValidator(function($response) use ($range): void {
-            if(is_array($range)) $minRule = $range[0];
-            if(is_array($range)) $maxRule = $range[1];
+            if(is_array($range)) {
+                $minRule = $range[0];
+                $maxRule = $range[1];
+            }
             if($minRule >= $maxRule) {
                 throw new FrameworkRuntimeException("between(): Min must be less than max.");
             }
