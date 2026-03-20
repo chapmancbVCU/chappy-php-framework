@@ -34,7 +34,10 @@ class NotificationsPruneCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $days = (int)$input->getOption('days');
-        return Notifications::prune($days);
+        $days = $input->getOption('days');
+        $message = "Enter number of days to retain.";
+        $attributes = ['required', 'noSpecialChars', 'integer'];
+        Notifications::argOptionValidate($days, $message, $input, $output, $attributes, true);
+        return Notifications::prune((int)$days);
     }
 }
