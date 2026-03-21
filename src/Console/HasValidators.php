@@ -143,7 +143,7 @@ trait HasValidators {
             if(is_array($namespace)) $namespace = $namespace[0];
             if($response == null) return;
             if(!class_exists($namespace.$response)) {
-                $this->addErrorMessage("This class does not exist in specified namespace.");
+                $this->addErrorMessage("The '{$response}' class does not exist in the '{$namespace}' namespace.");
             }
         });
     }
