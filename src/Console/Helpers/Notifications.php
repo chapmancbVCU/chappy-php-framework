@@ -510,7 +510,7 @@ PHP;
      */
     private static function toLogTemplate(): string {
         return <<<PHP
-    /**
+/**
     * Logs notification to log file.
     *
     * @param object \$notifiable Any model/object that uses the Notifiable trait.
