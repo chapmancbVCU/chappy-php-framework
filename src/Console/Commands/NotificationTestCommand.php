@@ -66,9 +66,9 @@ class NotificationTestCommand extends Command
         $message = "Enter name of notification class.";
         $attributes = ['max:50', 'classExists:'.Notifications::NOTIFICATION_NAMESPACE];
         Notifications::argOptionValidate($notificationName, $message, $input, $output, $attributes);
-        
         $className = Notifications::notificationClass($notificationName);
-        $channels = Notifications::resolveChannelsOverride($input);
+
+        $channels = Notifications::resolveChannelsOverride($input, $output);
         $overrides = Notifications::resolveOverridesFromWith($input);
         $notifiable = Notifications::resolveNotifiable($input);
 

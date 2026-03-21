@@ -13,6 +13,7 @@ use Console\Console;
 use Core\DB;
 use Core\Lib\Database\Factories\UserFactory;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Utilities that support console commands related to Notifications:
@@ -311,11 +312,24 @@ PHP;
      * If the option is omitted/empty, returns NULL so callers can defer to via().
      *
      * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return list<string>|null Normalized channels or NULL to defer.
      */
-    public static function resolveChannelsOverride(InputInterface $input): ?array {
-        return $input->getOption('channels')
-            ? array_map('trim', explode(',', $input->getOption('channels')))
+    public static function resolveChannelsOverride(InputInterface $input, OutputInterface $output): ?array {
+        $channels = $input->getOption('channels');
+        $message = "Enter comma separated list of channels.";
+        $attributes = [
+            'required', 
+            'notReservedKeyword', 
+            "list:Core\\Lib\\Notifications\\Notification:log,database:all"
+        ];
+        
+        if($channels) {
+            Notifications::argOptionValidate($channels, $message, $input, $output, $attributes, true);
+        }
+
+        return $channels
+            ? array_map('trim', explode(',', $channels))
             : null;     //null => use via()
     }
 
@@ -356,7 +370,7 @@ PHP;
 
         return $overrides;
     }
-    
+
     /**
      * Deliver a notification via a notifiable (or simulate if notifiable is not an object).
      *
