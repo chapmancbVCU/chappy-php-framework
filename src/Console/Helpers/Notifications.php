@@ -293,6 +293,33 @@ PHP;
     }
 
     /**
+     * Prune old notifications using the model layer.
+     *
+     * @param int $days Number of days to retain; older rows are deleted.
+     * @return int Command::SUCCESS on completion.
+     */
+    public static function prune(int $days): int {
+        $recordsDeleted = NotificationModel::notificationsToPrune($days);
+        $message = "{$recordsDeleted} has been deleted";
+        console_info($message);
+        return Command::SUCCESS;
+    }
+
+    /**
+     * Resolve a channels override list from CLI input.
+     *
+     * If the option is omitted/empty, returns NULL so callers can defer to via().
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @return list<string>|null Normalized channels or NULL to defer.
+     */
+    public static function resolveChannelsOverride(InputInterface $input): ?array {
+        return $input->getOption('channels')
+            ? array_map('trim', explode(',', $input->getOption('channels')))
+            : null;     //null => use via()
+    }
+
+    /**
      * Resolve a notifiable instance (or a sentinel string) from CLI input.
      *
      * @param InputInterface $input The Symfony InputInterface object.
@@ -329,34 +356,7 @@ PHP;
 
         return $overrides;
     }
-
-    /**
-     * Prune old notifications using the model layer.
-     *
-     * @param int $days Number of days to retain; older rows are deleted.
-     * @return int Command::SUCCESS on completion.
-     */
-    public static function prune(int $days): int {
-        $recordsDeleted = NotificationModel::notificationsToPrune($days);
-        $message = "{$recordsDeleted} has been deleted";
-        console_info($message);
-        return Command::SUCCESS;
-    }
-
-    /**
-     * Resolve a channels override list from CLI input.
-     *
-     * If the option is omitted/empty, returns NULL so callers can defer to via().
-     *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @return list<string>|null Normalized channels or NULL to defer.
-     */
-    public static function resolveChannelsOverride(InputInterface $input): ?array {
-        return $input->getOption('channels')
-            ? array_map('trim', explode(',', $input->getOption('channels')))
-            : null;     //null => use via()
-    }
-
+    
     /**
      * Deliver a notification via a notifiable (or simulate if notifiable is not an object).
      *
