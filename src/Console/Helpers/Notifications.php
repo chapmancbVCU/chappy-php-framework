@@ -112,7 +112,7 @@ class Notifications extends Console {
      * Return a dummy notifiable.  Creates a temporary record, retrieves its 
      * data and deletes it before returning.
      *
-     * @return Users The dummy user to be notified
+     * @return Users The dummy user to be notified.
      */
     public static function dummy(): Users {
         UserFactory::factory(UserFactory::class)->create([
@@ -120,7 +120,7 @@ class Notifications extends Console {
             'lname' => 'User',
             'email' => 'dummy@example.com',
             'username' => 'dummyuser',
-            'description' => 'PHPUnit seeded user',
+            'description' => 'notification:test command user',
         ]);
 
         $lastId = DB::getInstance()->lastID();
