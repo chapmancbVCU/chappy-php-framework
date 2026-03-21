@@ -149,6 +149,23 @@ trait HasValidators {
     }
 
     /**
+     * Ensures response is in colon notation format.
+     *
+     * @return static
+     */
+    public function colonNotation(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            $arr = explode(":", $response);
+            if(sizeof($arr) !== 2) {
+                $this->addErrorMessage(
+                    'Issue parsing data. Make sure your input is in the format: <arg_1>:<arg_2>'
+                );
+            }
+        });
+    }
+    
+    /**
      * Enforce rule where response and $match parameter needs to be different.
      *
      * @param mixed $data The value we want to compare.
@@ -181,24 +198,6 @@ trait HasValidators {
             }
         }
         $this->errors = [];
-    }
-
-
-    /**
-     * Ensures response is in colon notation format.
-     *
-     * @return static
-     */
-    public function colonNotation(): static {
-        return $this->setValidator(function($response): void {
-            if($response == null) return;
-            $arr = explode(":", $response);
-            if(sizeof($arr) !== 2) {
-                $this->addErrorMessage(
-                    'Issue parsing data. Make sure your input is in the format: <arg_1>:<arg_2>'
-                );
-            }
-        });
     }
 
     /**
