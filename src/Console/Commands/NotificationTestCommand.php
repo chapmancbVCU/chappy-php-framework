@@ -63,13 +63,11 @@ class NotificationTestCommand extends Command
     {
         ConsoleLogger::setOutput($output);
         $notificationName = $input->getArgument('notification-name');
+        $message = "Enter name of notification class.";
+        $attributes = ['max:50', 'classExists:'.Notifications::NOTIFICATION_NAMESPACE];
+        Notifications::argOptionValidate($notificationName, $message, $input, $output, $attributes);
+        
         $className = Notifications::notificationClass($notificationName);
-
-        if(!Notifications::notificationClassExists($className)) {
-            console_error("The {$className} does not exist.");
-            return Command::FAILURE;
-        }
-
         $channels = Notifications::resolveChannelsOverride($input);
         $overrides = Notifications::resolveOverridesFromWith($input);
         $notifiable = Notifications::resolveNotifiable($input);

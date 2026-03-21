@@ -129,7 +129,7 @@ class Notifications extends Console {
 
         return $last;
     }
-    
+
     /**
      * Find a user/notifiable record by numeric id, email, or username.
      *
@@ -237,16 +237,6 @@ PHP;
         return str_starts_with($notificationName, '\\')
             ? ltrim($notificationName, '\\')
             : self::NOTIFICATION_NAMESPACE.$notificationName;
-    }
-
-    /**
-     * Determine if a notification class exists.
-     *
-     * @param class-string $className FQCN to check.
-     * @return bool                   TRUE if loadable; FALSE otherwise.
-     */
-    public static function notificationClassExists(string $className): bool {
-        return class_exists($className) ? true : false;
     }
 
     /**
