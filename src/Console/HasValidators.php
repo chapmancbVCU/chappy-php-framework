@@ -183,6 +183,24 @@ trait HasValidators {
         $this->errors = [];
     }
 
+
+    /**
+     * Ensures response is in colon notation format.
+     *
+     * @return static
+     */
+    public function colonNotation(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            $arr = explode(":", $response);
+            if(sizeof($arr) !== 2) {
+                $this->addErrorMessage(
+                    'Issue parsing data. Make sure your input is in the format: <arg_1>:<arg_2>'
+                );
+            }
+        });
+    }
+
     /**
      * Ensures response is in dot notation format.
      *
@@ -190,10 +208,11 @@ trait HasValidators {
      */
     public function dotNotation(): static {
         return $this->setValidator(function($response): void {
+            if($response == null) return;
             $arr = explode(".", $response);
             if(sizeof($arr) !== 2) {
                 $this->addErrorMessage(
-                    'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>'
+                    'Issue parsing data. Make sure your input is in the format: <arg_1>.<arg_2>'
                 );
             }
         });
