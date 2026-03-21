@@ -257,7 +257,8 @@ trait HasValidators {
      * Ensure user inputs valid comma separated list of values.  The user must 
      * provide the following in the $attributes parameter:
      * 1) Class containing full namespaced path
-     * 2) Name of function that returns an array of strings
+     * 2) Name of function that returns an array of strings or a comma 
+     * separated array of strings.
      * 3) A string value in this array as an alias (optional).
      * 
      * @param array $attributes A : separate list in the following format: 
@@ -268,7 +269,7 @@ trait HasValidators {
         return $this->setValidator(function($response) use ($attributes): void {
             if(is_array($attributes)) {
                 $class = $attributes[0];
-                $method = $attributes[1];
+                $list = $attributes[1];
                 $alias = $attributes[2] ?? '';
             }
 
@@ -277,7 +278,12 @@ trait HasValidators {
                 return;
             }
             
-            if(method_exists($class, $method)) $all = $class::$method();
+            if(method_exists($class, $list)) $all = $class::$list();
+            if(is_string($list)) {
+                if(str_contains($list, ','))   $all = explode(',', $list);
+                else $all = $list;
+            }
+            
             $tokens = self::tokens($response);
             if (in_array($alias, $tokens, true)) return;
             
