@@ -135,18 +135,68 @@ class Notifications extends Console {
      * Find a user/notifiable record by numeric id, email, or username.
      *
      * @param mixed $user String token from CLI (id|email|username).
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return Users|null            The matched user or NULL if not found.
      */
-    private static function findUser(mixed $user): ?Users {
+    private static function findUser(mixed $user, InputInterface $input, OutputInterface $output): ?Users {
         if(is_numeric($user)) {
-            return Users::findById((int)$user);
+            return self::findUserById((int)$user, $input, $output);
         }
-        
-        $params = str_contains($user, '@')
-            ? ['conditions' => 'email = ?', 'bind' => [$user]]
-            : ['conditions' => 'username = ?', 'bind' => [$user]];
+        return self::findUserByString($user, $input, $output);
+    }
 
-        return Users::findFirst($params);
+    /**
+     * Find a user/notifiable record by id.  If user is not 
+     * found the a prompt is presented that asks for user id.
+     *
+     * @param int $user Token from CLI (id).
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return Users The matched user.
+     */
+    private static function findUserById(int $user, InputInterface $input, OutputInterface $output) {
+        $foundUser = null;
+        $count = 0;
+        do {
+            if(!$foundUser && $count != 0) {
+                $message = "User was not found.  Enter a user id";
+                $attributes = ['number'];   
+                $user = self::prompt($message, $input, $output, $attributes, [], null, true);
+            }
+
+            $foundUser = Users::findById((int)$user);
+            $count++;
+        } while(!$foundUser);
+
+        return $foundUser;
+    }
+
+    /**
+     * Find a user/notifiable record by email, or username.  If user is not 
+     * found the a prompt is presented that asks for valid email or username.
+     *
+     * @param string $user String token from CLI (email|username).
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return Users The matched user.
+     */
+    private static function findUserByString(string $user, InputInterface $input, OutputInterface $output) {
+        $foundUser = null;
+        $count = 0;
+        do {
+            if(!$foundUser && $count != 0) {
+                $message = "User was not found.  Enter a user name or email.";
+                $attributes = ['between:6:150'];   
+                $user = self::prompt($message, $input, $output, $attributes, [], null, true);
+            }
+
+            $params = self::userParams($user);
+            $foundUser = Users::findFirst($params);
+            $count++;
+        } while(!$foundUser);
+
+        return $foundUser;
     }
 
     /**
@@ -337,15 +387,16 @@ PHP;
      * Resolve a notifiable instance (or a sentinel string) from CLI input.
      *
      * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return object|string A model instance or "dummy" if none found/provided.
      */
-    public static function resolveNotifiable(InputInterface $input): object|string {
+    public static function resolveNotifiable(InputInterface $input, OutputInterface $output): object|string {
         $userOpt = $input->getOption('user');
         if(!$userOpt) {
             console_info('No --user provided; using a dummy notifiable string');
             return 'dummy';
         }   
-        return self::findUser($userOpt) ?? 'dummy';
+        return self::findUser($userOpt, $input, $output) ?? 'dummy';
     }
 
     /**
@@ -488,6 +539,18 @@ PHP;
         return [];
     }
 PHP;
+    }
+
+    /**
+     * Returns parameters for finding user based on E-mail or username.
+     *
+     * @param string $user The username or E-mail.
+     * @return array An array of parameters for finding a user.
+     */
+    private static function userParams(string $user): array {
+        return str_contains($user, '@')
+            ? ['conditions' => 'email = ?', 'bind' => [$user]]
+            : ['conditions' => 'username = ?', 'bind' => [$user]];
     }
 
     /**

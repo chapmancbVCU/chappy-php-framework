@@ -70,7 +70,7 @@ class NotificationTestCommand extends Command
 
         $channels = Notifications::resolveChannelsOverride($input, $output);
         $overrides = Notifications::resolveOverridesFromWith($input);
-        $notifiable = Notifications::resolveNotifiable($input);
+        $notifiable = Notifications::resolveNotifiable($input, $output);
 
         if($notifiable === 'dummy') {
             $notifiable = Notifications::dummy();   
