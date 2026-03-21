@@ -279,7 +279,7 @@ trait HasValidators {
             }
             
             if(method_exists($class, $list)) $all = $class::$list();
-            if(is_string($list)) {
+            else if(is_string($list)) {
                 if(str_contains($list, ','))   $all = explode(',', $list);
                 else $all = $list;
             }
