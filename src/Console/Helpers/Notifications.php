@@ -161,7 +161,7 @@ class Notifications extends Console {
         do {
             if(!$foundUser && $count != 0) {
                 $message = "User was not found.  Enter a user id";
-                $attributes = ['number'];   
+                $attributes = ['integer'];   
                 $user = self::prompt($message, $input, $output, $attributes, [], null, true);
             }
 
