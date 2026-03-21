@@ -10,6 +10,8 @@ use Symfony\Component\Console\Command\Command;
 use Core\Models\Notifications as NotificationModel;
 use App\Models\Users;
 use Console\Console;
+use Core\DB;
+use Core\Lib\Database\Factories\UserFactory;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
@@ -72,7 +74,6 @@ class Notifications extends Console {
         return array_values(array_unique($tokens));
     }
 
-
     /**
      * Perform a dry-run (no delivery). Prints the intended action and payload.
      *
@@ -107,6 +108,28 @@ class Notifications extends Console {
         return true;
     }
 
+    /**
+     * Return a dummy notifiable.  Creates a temporary record, retrieves its 
+     * data and deletes it before returning.
+     *
+     * @return Users The dummy user to be notified
+     */
+    public static function dummy(): Users {
+        UserFactory::factory(UserFactory::class)->create([
+            'fname' => 'Dummy',
+            'lname' => 'User',
+            'email' => 'dummy@example.com',
+            'username' => 'dummyuser',
+            'description' => 'PHPUnit seeded user',
+        ]);
+
+        $lastId = DB::getInstance()->lastID();
+        $last = Users::findById((int)$lastId);
+        $last->delete();
+
+        return $last;
+    }
+    
     /**
      * Find a user/notifiable record by numeric id, email, or username.
      *
