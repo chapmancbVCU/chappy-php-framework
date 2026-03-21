@@ -371,9 +371,9 @@ PHP;
         $attributes = [
             'required', 
             'notReservedKeyword', 
-            "list:Core\\Lib\\Notifications\\Notification:log,database:all"
+            "list:Core\\Lib\\Notifications\\Notification:log,database,mail:all"
         ];
-        
+
         if($channels) {
             Notifications::argOptionValidate($channels, $message, $input, $output, $attributes, true);
         }
@@ -411,7 +411,7 @@ PHP;
             : [];
         
         $overrides = [];
-
+        dd($kv);
         foreach($kv as $pair){
             if(str_contains($pair, ':')) {
                 [$k, $v] = explode(':', $pair, 2);
@@ -475,7 +475,6 @@ PHP;
                 $channelList .= ', ';
             }
         }
-
         return $channelList .= ']';
     }
 
