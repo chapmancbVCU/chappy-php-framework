@@ -156,7 +156,6 @@ class Console {
             $response = $question->required()->noSpecialChars()
                 ->alpha()
                 ->notReservedKeyword();
-                //->ask($message, $suggestions, $default);
         }
 
         $response = $question->ask($message, $suggestions, $default);
