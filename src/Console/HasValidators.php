@@ -285,7 +285,7 @@ trait HasValidators {
             $invalid = array_diff($tokens, $all);
             if (!empty($invalid)) {
                 $this->addErrorMessage(
-                    'Unknown channel(s): ' . implode(', ', $invalid) .
+                    'Unknown value(s): ' . implode(', ', $invalid) .
                     '. Allowed: ' . implode(', ', $all) . ' or "an alias (optional)".'
                 );
             }
