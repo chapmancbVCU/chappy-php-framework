@@ -183,7 +183,7 @@ class TestRunner {
         // No such test class exists.
         if(!$this->testExists($testArg, $testSuites, $extensions)) {
             console_warning(
-                "The {$testArg} test file does not exist or missing :: syntax error when filtering.", 
+                "The {$testArg} test file does not exist.", 
             );
             return Command::FAILURE;
         }
