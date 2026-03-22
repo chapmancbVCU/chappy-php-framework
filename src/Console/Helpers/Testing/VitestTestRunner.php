@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+use Console\Console;
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -112,11 +113,9 @@ final class VitestTestRunner extends TestRunner {
      * @param array $extensions An array of file extensions supported by Vitest.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testByFilter(string $testArg, array $testSuites, array $extensions): int {
-        if(!self::verifyFilterSyntax($testArg)) {
-            console_error("Syntax error when filtering.");
-            return Command::FAILURE;
-        }
+    public function testByFilter(string $testArg, array $testSuites, array $extensions, $input, $output): int {
+        $message = "Enter particular test using filter syntax (::).";
+        Console::argOptionValidate($testArg, $message, $input, $output, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
         if(self::testIfSame($testFile, $testSuites, $extensions)) { 
