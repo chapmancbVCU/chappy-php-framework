@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Exceptions\FrameworkRuntimeException;
-use Core\Lib\Queue\RedisQueueDriver;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Models\Queue;
 use Predis\Client as PredisClient;
+
 /**
  * Supports ability to validate console input.
  */
