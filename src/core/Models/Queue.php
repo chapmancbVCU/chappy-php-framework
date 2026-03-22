@@ -149,6 +149,17 @@ class Queue extends Model {
     }
 
     /**
+     * Returns record for job based on queue name.
+     *
+     * @param string $name The name of the queue we want to check if it exists.
+     * @return object|bool A record in the queue table that is part of a 
+     * particular queue.
+     */
+    public static function findQueueByName(string $name): object|bool {
+        return static::findFirst(['conditions' => "queue = ?", 'bind' => [$name]]);
+    }
+
+    /**
      * Test if job as exceeded limit for maximum allowed attempts.
      *
      * @param DB $db Instance of DB class.
