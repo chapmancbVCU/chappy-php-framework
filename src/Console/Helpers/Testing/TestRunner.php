@@ -33,6 +33,11 @@ class TestRunner {
     protected OutputInterface $output;
 
     /**
+     * Test command for unit testing framework.
+     */
+    public const TEST_COMMAND = "";
+
+    /**
      * Array of supported test file extensions.
      */
     public const TEST_FILE_EXTENSIONS = [];
@@ -209,6 +214,15 @@ class TestRunner {
             return Command::SUCCESS;
         }
         return Command::FAILURE;
+    }
+
+    /**
+     * Returns value of TEST_COMMAND constant.
+     *
+     * @return string The test command string.
+     */
+    public static function testCommand(): string {
+        return static::TEST_COMMAND;
     }
 
     /**
