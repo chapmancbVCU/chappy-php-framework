@@ -4,8 +4,11 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Exceptions\FrameworkRuntimeException;
+use Core\Lib\Queue\RedisQueueDriver;
 use Core\Lib\Utilities\Arr;
-
+use Core\Lib\Utilities\Config;
+use Core\Models\Queue;
+use Predis\Client as PredisClient;
 /**
  * Supports ability to validate console input.
  */
@@ -164,7 +167,7 @@ trait HasValidators {
             }
         });
     }
-    
+
     /**
      * Enforce rule where response and $match parameter needs to be different.
      *
@@ -471,6 +474,29 @@ trait HasValidators {
             if(!is_numeric($response) || $response <= 0) {
                 $this->addErrorMessage("Input must be a positive number.");
             }
+        });
+    }
+
+    /**
+     * Validates if queue exists in database or redis.
+     *
+     * @return static
+     */
+    public function queue(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            $driver = Config::get('queue.driver');
+            if($driver === 'database') {
+                $queueName = Queue::findQueueByName($response);
+            } else if($driver === 'redis') {
+                $redis = new PredisClient([
+                    'scheme' => 'tcp',
+                    'host' => Config::get('queue.redis.host'),
+                    'port' => Config::get('queue.redis.port'),
+                ]);
+                $queueName = $redis->exists($response);
+            }
+            if(!$queueName) $this->addErrorMessage("The {$response} queue does not exist.");
         });
     }
 
