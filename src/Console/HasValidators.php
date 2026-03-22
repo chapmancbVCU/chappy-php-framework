@@ -526,6 +526,23 @@ trait HasValidators {
     }
 
     /**
+     * Ensures response is in colon notation format.
+     *
+     * @return static
+     */
+    public function testFilterNotation(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            $pattern = '/(?<!:)::(?!:)/';
+            if(!preg_match($pattern, $response)) {
+               $this->addErrorMessage(
+                    'Issue parsing data. Make sure your input is in the format: <test_file>::<function_name_or_line_number>'
+                ); 
+            }
+        });
+    }
+
+    /**
      * Split on commas (tolerate spaces), normalize to lowercase, drop empties.  
      * Useful for cases where you have a comma separated string.
      *

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+use Console\Console;
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -147,12 +148,9 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $extensions The file extension for PHPUnit test files.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testByFilter(string $testArg, array $testSuites, string $extension): int {
-        if(!self::verifyFilterSyntax($testArg)) {
-            console_error("Syntax error when filtering.");
-            return Command::FAILURE;
-        }
-
+    public function testByFilter(string $testArg, array $testSuites, string $extension, $input, $output): int {
+        $message = "Enter particular test using filter syntax (::).";
+        Console::argOptionValidate($testArg, $message, $input, $output, ['testFilterNotation'], true);
         [$class, $method] = explode('::', $testArg);
         if(self::testIfSame($class, $testSuites, $extension)) { 
             return Command::FAILURE; 
