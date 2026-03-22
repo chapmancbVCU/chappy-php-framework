@@ -162,13 +162,13 @@ class TestRunner {
         $extensions = self::testFileExtensions();
         $testSuites = self::testSuites();
         $statuses = [];
-        if(is_array($extensions)) {
-            foreach($testSuites as $testSuite) {
-                foreach($extensions as $ext) {
-                    $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, $testCommand);    
-                }
+
+        foreach($testSuites as $testSuite) {
+            foreach($extensions as $ext) {
+                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, $testCommand);    
             }
         }
+        
 
         if($this->testSuiteStatus($statuses)) {
             console_info("Selected tests have been completed");
