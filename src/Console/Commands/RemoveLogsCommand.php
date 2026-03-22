@@ -21,19 +21,7 @@ class RemoveLogsCommand extends Command {
     {
         $this->setName('log:clear')
             ->setDescription('Removes log file')
-            ->setHelp('Run php console log:clear to remove log files.')
-
-            // Remove app.log
-            ->addOption('app', null, InputOption::VALUE_NONE, 'Delete app.log')
-
-            // Remove cli.log
-            ->addOption('cli', null, InputOption::VALUE_NONE, 'Delete cli.log')
-
-            // Remove all logs
-            ->addOption('all', null, InputOption::VALUE_NONE, 'Delete all logs')
-            
-            // Remove unit test logs
-            ->addOption('unit', null, InputOption::VALUE_NONE, 'Delete phpunit.log');
+            ->setHelp('Run php console log:clear to remove log files.');
     }
 
     /**
@@ -45,18 +33,12 @@ class RemoveLogsCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if($input->getOption('app')) {
-            Log::deleteAppLog();
-        } else if($input->getOption('cli')) {
-            Log::deleteCliLog();
-        } else if($input->getOption('unit')) {
-            Log::deletePHPUnitLog();
-        } else if($input->getOption('all')) {
-            Log::deleteAllLogs();
-        } else {
-            console_error('Please provide one of the flags: --app, --cli, --unit, or --all');
-            return COMMAND::FAILURE;
+        $logType = Log::deletePrompt($input, $output);
+        if(Log::deleteConfirm($logType, $input, $output)) {
+            $method = 'delete'.$logType;
+            Log::$method();
         }
+
         return COMMAND::SUCCESS;
     }
 }
