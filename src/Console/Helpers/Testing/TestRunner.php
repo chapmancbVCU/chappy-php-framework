@@ -134,6 +134,12 @@ class TestRunner {
         console_notice("No test available to perform");
     }
 
+    /**
+     * Parses related arguments and ignore Symfony arguments.
+     *
+     * @return string A string containing the arguments to be provided to 
+     * test command.
+     */
     public function parseOptions(): string { return ""; }
 
     /**
