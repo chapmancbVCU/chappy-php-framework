@@ -146,6 +146,8 @@ final class PHPUnitRunner extends TestRunner {
      * @param string $testArg The name of the class.
      * @param array $testSuites An array of test suite paths.
      * @param string $extensions The file extension for PHPUnit test files.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public function testByFilter(string $testArg, array $testSuites, string $extension, $input, $output): int {

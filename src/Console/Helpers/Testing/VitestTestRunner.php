@@ -111,6 +111,8 @@ final class VitestTestRunner extends TestRunner {
      * @param string $testArg The name of the test file.
      * @param array $testSuites An array of test suite paths.
      * @param array $extensions An array of file extensions supported by Vitest.
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public function testByFilter(string $testArg, array $testSuites, array $extensions, $input, $output): int {
