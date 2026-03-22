@@ -403,20 +403,33 @@ PHP;
      * Parse overrides from the --with option (key:value,key2:value2).
      *
      * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return array<string,string> Flattened k=>v overrides.
      */
-    public static function resolveOverridesFromWith(InputInterface $input): array {
-        $kv = $input->getOption('with')
-            ? array_map('trim', explode(',', $input->getOption('with')))
-            : [];
+    public static function resolveOverridesFromWith(InputInterface $input, OutputInterface $output): array {
+        $with = $input->getOption('with');
+        if($with === false) return [];
+        $attributes = ['required'];
+        $message = "Enter key value pairs (key:value,key2:value2).";
+        self::argOptionValidate($with, $message, $input, $output, $attributes, true);
+        $kv = array_map('trim', explode(',', $with));
         
         $overrides = [];
-        dd($kv);
+
         foreach($kv as $pair){
-            if(str_contains($pair, ':')) {
-                [$k, $v] = explode(':', $pair, 2);
-                $overrides[$k] = $v;
+            if(!str_contains($pair, ':')) {
+                $message = "Enter additional payload in following format <key>:<value>.";
+                $kvAttributes = ['required', 'colonNotation'];
+                self::argOptionValidate($pair, $message, $input, $output, $kvAttributes, true);
             }
+
+            [$k, $v] = explode(':', $pair, 2);
+            $message = "Enter data for key";
+            self::argOptionValidate($k, $message, $input, $output, $attributes, true);
+            $message = "Enter data for value";
+            self::argOptionValidate($v, $message, $input, $output, $attributes, true);
+            $overrides[$k] = $v;
+
         }
 
         return $overrides;

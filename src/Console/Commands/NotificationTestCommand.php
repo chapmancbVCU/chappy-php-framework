@@ -47,8 +47,9 @@ class NotificationTestCommand extends Command
             ->addOption(
                 'with', 
                 null, 
-                InputOption::VALUE_REQUIRED, 
-                'Key:value pairs, comma-separated'
+                InputOption::VALUE_OPTIONAL, 
+                'Key:value pairs, comma-separated',
+                false
             );
     }
 
@@ -69,7 +70,7 @@ class NotificationTestCommand extends Command
         $className = Notifications::notificationClass($notificationName);
 
         $channels = Notifications::resolveChannelsOverride($input, $output);
-        $overrides = Notifications::resolveOverridesFromWith($input);
+        $overrides = Notifications::resolveOverridesFromWith($input, $output);
         $notifiable = Notifications::resolveNotifiable($input, $output);
 
         if($notifiable === 'dummy') {
