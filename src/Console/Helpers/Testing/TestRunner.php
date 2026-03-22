@@ -5,6 +5,7 @@ namespace Console\Helpers\Testing;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -20,9 +21,9 @@ class TestRunner {
      * A string of input options provided as input when running the 
      * test command.
      *
-     * @var string 
+     * @var InputInterface
      */
-    protected string $inputOptions;
+    protected InputInterface $input;
 
     /**
      * The Symfony OutputInterface object.
@@ -133,6 +134,8 @@ class TestRunner {
         console_notice("No test available to perform");
     }
 
+    public function parseOptions(): string { return ""; }
+
     /**
      * Runs the unit test for your testing suite.
      *
@@ -141,7 +144,7 @@ class TestRunner {
      * @return void
      */
     public function runTest(string $test, string $testCommand): void {
-        $command = $testCommand . ' ' . $test . $this->inputOptions;
+        $command = $testCommand . ' ' . $test . $this->parseOptions();
         console_info('File: '.$test);
         $this->output->writeln(shell_exec($command));
     }

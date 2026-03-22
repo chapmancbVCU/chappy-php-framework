@@ -75,7 +75,7 @@ final class VitestTestRunner extends TestRunner {
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
     public function __construct(InputInterface $input, OutputInterface $output) {
-        $this->inputOptions = self::parseOptions($input);
+        $this->input = $input;
         parent::__construct($output);
     }
 
@@ -86,14 +86,14 @@ final class VitestTestRunner extends TestRunner {
      * @return string A string containing the arguments to be provided to 
      * PHPUnit.
      */
-    public static function parseOptions(InputInterface $input): string { 
+    public function parseOptions(): string { 
         $args = [];
 
         foreach(self::ALLOWED_OPTIONS as $allowed) {
-            if($input->hasOption($allowed) && $input->getOption($allowed)) {
+            if($this->input->hasOption($allowed) && $this->input->getOption($allowed)) {
                 switch($allowed) {
                     case 'bail':
-                        $args[] = '--bail ' . $input->getOption('bail');
+                        $args[] = '--bail ' . $this->input->getOption('bail');
                         break;
                     case 'clearCache':
                         $args[] = '--clearCache';
@@ -105,7 +105,7 @@ final class VitestTestRunner extends TestRunner {
                         $args[] = '--pass-with-no-tests';
                         break;
                     case 'retry':
-                        $args[] = '--retry ' . $input->getOption('retry');
+                        $args[] = '--retry ' . $this->input->getOption('retry');
                         break;
                     case 'update':
                         $args[] = '--update';

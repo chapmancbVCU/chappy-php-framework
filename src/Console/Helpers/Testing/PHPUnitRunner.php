@@ -74,22 +74,21 @@ final class PHPUnitRunner extends TestRunner {
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
     public function __construct(InputInterface $input, OutputInterface $output) {
-        $this->inputOptions = self::parseOptions($input);
+        $this->input = $input;
         parent::__construct($output);
     }
 
     /**
      * Parses PHPUnit related arguments and ignore Symfony arguments.
      *
-     * @param InputInterface $input Instance of InputInterface from command.
      * @return string A string containing the arguments to be provided to 
      * PHPUnit.
      */
-    public static function parseOptions(InputInterface $input): string {
+    public function parseOptions(): string {
         $args = [];
 
         foreach(self::ALLOWED_OPTIONS as $allowed) {
-            if($input->hasOption($allowed) && $input->getOption($allowed)) {
+            if($this->input->hasOption($allowed) && $this->input->getOption($allowed)) {
                 switch ($allowed) {
                     case 'coverage':
                         $args[] = '--coverage-text';
