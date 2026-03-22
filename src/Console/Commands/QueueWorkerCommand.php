@@ -38,8 +38,18 @@ class QueueWorkerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $once = $input->getOption('once');
+
         $max = $input->getOption('max');
+        if($max || $max === '') {
+            $message = "Enter value for max jobs.";
+            Queue::argOptionValidate($max, $message, $input, $output, ['integer', 'required'], true);
+        }
+
         $queueName = $input->getOption('queue');
+        if($queueName || $queueName === '') {
+            $message = "Enter name for the queue you want to use.";
+            Queue::argOptionValidate($queueName, $message, $input, $output, ['max:50', 'queue'], true);
+        }
 
         if($once && $max) {
             console_warning('You can only set one option at a time');
