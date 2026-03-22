@@ -65,7 +65,6 @@ class RunTestCommand extends Command
         $feature = $input->getOption('feature');
         
         $test = new PHPUnitRunner($input, $output);
-        $testSuites = [PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::UNIT_PATH];
 
         // Run all tests.
         if(!$feature && !$unit && !$testArg) {
