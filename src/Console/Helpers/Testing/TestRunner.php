@@ -73,12 +73,9 @@ class TestRunner {
     /**
      * Performs all available tests.
      *
-     * @param string|array $extensions A string or an array of supported file 
-     * extensions.  Best practice is to use const provided by child class.
-     * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function allTests(string $testCommand): int {
+    public function allTests(): int {
         $suites = [];
 
         foreach(static::testSuites() as $testSuite) {
@@ -94,7 +91,7 @@ class TestRunner {
 
         $statuses = [];
         foreach($suites as $suite) {
-            $statuses[] = $this->testSuite($suite, $testCommand);
+            $statuses[] = $this->testSuite($suite, self::testCommand());
         }
 
         if($this->testSuiteStatus($statuses)) {

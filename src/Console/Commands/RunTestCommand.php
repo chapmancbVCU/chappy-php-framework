@@ -68,7 +68,7 @@ class RunTestCommand extends Command
 
         // Run all tests.
         if(!$feature && !$unit && !$testArg) {
-            return $test->allTests(PHPUnitRunner::TEST_COMMAND);
+            return $test->allTests();
         }
         
         // Select test based on file name or function name.
