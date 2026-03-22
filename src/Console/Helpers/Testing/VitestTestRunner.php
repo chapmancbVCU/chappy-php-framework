@@ -55,6 +55,13 @@ final class VitestTestRunner extends TestRunner {
     public const UNIT_TEST_FILE_EXTENSION = ".test.js";
     
     /**
+     * Array of available test suites.
+     */
+    public const TEST_SUITES = [
+        self::COMPONENT_PATH, self::UNIT_PATH, self::VIEW_PATH 
+    ];
+
+    /**
      * Constructor
      *
      * @param InputInterface $input The Symfony InputInterface object.
