@@ -153,19 +153,16 @@ class TestRunner {
      *
      * @param string $testArg The name of the class/file.
      * @param array $testSuites An array of test suite paths.  Best practice 
-     * is to use const provided by child class.
-     * @param string|array $extensions A string or an array of supported file 
-     * extensions.  Best practice is to use const provided by child class.
+     * is to use const provided by child class
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
     public function selectByTestName(
         string $testArg, 
         array $testSuites, 
-        string|array $extensions, 
         string $testCommand
     ): int {
-
+        $extensions = self::testFileExtensions();
         $statuses = [];
         if(is_array($extensions)) {
             foreach($testSuites as $testSuite) {
