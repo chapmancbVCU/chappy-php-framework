@@ -128,12 +128,12 @@ final class VitestTestRunner extends TestRunner {
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testByFilter(string $testArg, array $extensions, $input, $output): int {
+    public function testByFilter(string $testArg, $input, $output): int {
         $message = "Enter particular test using filter syntax (::).";
         Console::argOptionValidate($testArg, $message, $input, $output, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
-        if(self::testIfSame($testFile, self::testSuites(), $extensions)) { 
+        if(self::testIfSame($testFile, self::testSuites())) { 
             return Command::FAILURE; 
         }
 
