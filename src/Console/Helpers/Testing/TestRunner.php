@@ -32,6 +32,11 @@ class TestRunner {
     protected OutputInterface $output;
 
     /**
+     * Array of available test suites.
+     */
+    public const TEST_SUITES = [];
+
+    /**
      * Constructor
      *
      * @param OutputInterface $output The Symfony OutputInterface object.
@@ -57,24 +62,22 @@ class TestRunner {
     /**
      * Performs all available tests.
      *
-     * @param array $testSuites An array of test suite paths.  
-     * Best practice is to use const provided by child class.
      * @param string|array $extensions A string or an array of supported file 
      * extensions.  Best practice is to use const provided by child class.
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function allTests(array $testSuites, string|array $extensions, string $testCommand): int {
+    public function allTests(string|array $extensions, string $testCommand): int {
         $suites = [];
 
         if(is_array($extensions)) {
-            foreach($testSuites as $testSuite) {
+            foreach(static::testSuites() as $testSuite) {
                 foreach($extensions as $extension) {
                     $suites[] = self::getAllTestsInSuite($testSuite, $extension);
                 }
             }
         } else {
-            foreach($testSuites as $testSuite) {
+            foreach(static::testSuites() as $testSuite) {
                 $suites[] = self::getAllTestsInSuite($testSuite, $extensions);
             }
         }
@@ -290,6 +293,15 @@ class TestRunner {
         }
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * Return array of available test suites.
+     *
+     * @return array
+     */
+    public static function testSuites(): array {
+        return static::TEST_SUITES;
     }
 
     /**
