@@ -32,6 +32,11 @@ class TestRunner {
     protected OutputInterface $output;
 
     /**
+     * Array of supported test file extensions.
+     */
+    public const TEST_FILE_EXTENSIONS = [];
+
+    /**
      * Array of available test suites.
      */
     public const TEST_SUITES = [];
@@ -239,6 +244,15 @@ class TestRunner {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns array of supported test file extensions.
+     *
+     * @return array An array of supported test file extensions.
+     */
+    public static function testFileExtensions(): array {
+        return static::TEST_FILE_EXTENSIONS;
     }
 
     /**
