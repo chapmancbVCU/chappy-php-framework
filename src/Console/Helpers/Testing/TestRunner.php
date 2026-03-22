@@ -91,7 +91,7 @@ class TestRunner {
 
         $statuses = [];
         foreach($suites as $suite) {
-            $statuses[] = $this->testSuite($suite, self::testCommand());
+            $statuses[] = $this->testSuite($suite);
         }
 
         if($this->testSuiteStatus($statuses)) {
@@ -287,16 +287,15 @@ class TestRunner {
      * Run all test files in an individual test suite.
      *
      * @param array $collection All classes in a particular test suite.
-     * @param string $testCommand The test command to be executed.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testSuite(array $collection, string $testCommand): int {
+    public function testSuite(array $collection): int {
         if(Arr::isEmpty($collection)) {
             return Command::FAILURE;
         }
 
         foreach($collection as $fileName) {
-            $this->runTest($fileName, $testCommand);
+            $this->runTest($fileName, self::testCommand());
         }
 
         return Command::SUCCESS;

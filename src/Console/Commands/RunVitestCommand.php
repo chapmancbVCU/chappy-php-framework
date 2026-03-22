@@ -75,20 +75,17 @@ class RunVitestCommand extends Command
         // Run tests based on flag provided (--component, --unit, --view).
         if(!$testArg && $component) {
             $runBySuiteStatus[] = $test->testSuite(
-                TestRunner::getAllTestsInSuite(VitestTestRunner::COMPONENT_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION),
-                VitestTestRunner::TEST_COMMAND
+                TestRunner::getAllTestsInSuite(VitestTestRunner::COMPONENT_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION)
             );
         }
         if(!$testArg && $unit) {
             $runBySuiteStatus[] = $test->testSuite(
-                TestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, VitestTestRunner::UNIT_TEST_FILE_EXTENSION),
-                VitestTestRunner::TEST_COMMAND
+                TestRunner::getAllTestsInSuite(VitestTestRunner::UNIT_PATH, VitestTestRunner::UNIT_TEST_FILE_EXTENSION)
             );
         }
         if(!$testArg && $view) {
             $runBySuiteStatus[] = $test->testSuite(
-                TestRunner::getAllTestsInSuite(VitestTestRunner::VIEW_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION),
-                VitestTestRunner::TEST_COMMAND
+                TestRunner::getAllTestsInSuite(VitestTestRunner::VIEW_PATH, VitestTestRunner::REACT_TEST_FILE_EXTENSION)
             );
         }
         if(!$testArg && VitestTestRunner::testSuiteStatus($runBySuiteStatus)) {

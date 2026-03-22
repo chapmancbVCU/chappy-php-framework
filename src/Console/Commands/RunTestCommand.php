@@ -86,14 +86,12 @@ class RunTestCommand extends Command
         $runBySuiteStatus = [];
         if(!$testArg && $unit) {
             $runBySuiteStatus[] = $test->testSuite(
-                TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
-                PHPUnitRunner::TEST_COMMAND
+                TestRunner::getAllTestsInSuite(PHPUnitRunner::UNIT_PATH, PHPUnitRunner::TEST_FILE_EXTENSION)
             );
         }
         if(!$testArg && $feature) {
             $runBySuiteStatus[] = $test->testSuite(
-                TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::TEST_FILE_EXTENSION), 
-                PHPUnitRunner::TEST_COMMAND
+                TestRunner::getAllTestsInSuite(PHPUnitRunner::FEATURE_PATH, PHPUnitRunner::TEST_FILE_EXTENSION)
             );
         }
         if(!$testArg && PHPUnitRunner::testSuiteStatus($runBySuiteStatus)) {
