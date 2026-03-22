@@ -53,7 +53,14 @@ final class VitestTestRunner extends TestRunner {
      * File extension for Vitest unit tests.
      */
     public const UNIT_TEST_FILE_EXTENSION = ".test.js";
-    
+
+    /**
+     * Array of supported test file extensions.
+     */
+    public const TEST_FILE_EXTENSIONS = [
+        self::REACT_TEST_FILE_EXTENSION, self::UNIT_TEST_FILE_EXTENSION
+    ];
+
     /**
      * Array of available test suites.
      */

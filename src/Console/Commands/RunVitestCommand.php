@@ -60,7 +60,7 @@ class RunVitestCommand extends Command
         $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
 
         if(!$testArg && !$component && !$unit && !$view) {
-            return $test->allTests($extensions, VitestTestRunner::TEST_COMMAND);
+            return $test->allTests(VitestTestRunner::TEST_COMMAND);
         }
         
         // Select test based on file name or function name.

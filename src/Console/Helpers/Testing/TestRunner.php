@@ -72,18 +72,14 @@ class TestRunner {
      * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function allTests(string|array $extensions, string $testCommand): int {
+    public function allTests(string $testCommand): int {
         $suites = [];
 
-        if(is_array($extensions)) {
+        if(is_array(static::testFileExtensions())) {
             foreach(static::testSuites() as $testSuite) {
-                foreach($extensions as $extension) {
+                foreach(static::testFileExtensions() as $extension) {
                     $suites[] = self::getAllTestsInSuite($testSuite, $extension);
                 }
-            }
-        } else {
-            foreach(static::testSuites() as $testSuite) {
-                $suites[] = self::getAllTestsInSuite($testSuite, $extensions);
             }
         }
 
