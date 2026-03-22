@@ -66,7 +66,7 @@ class RunVitestCommand extends Command
         // Select test based on file name or function name.
         if($testArg && !$component && !$unit && !$view) {
             if(Str::contains($testArg, ':')) {
-                return $test->testByFilter($testArg, $input, $output);
+                return $test->testByFilter($testArg);
             }
             return $test->selectByTestName($testArg, VitestTestRunner::TEST_COMMAND);
         }
