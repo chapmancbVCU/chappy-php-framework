@@ -33,6 +33,10 @@ class RemoveProfileImagesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return ProfileImageDir::rmdirProfileImageDirectories();
+        $message = "Are you sure you want to delete all profile images? (y/n)";
+        if(ProfileImageDir::confirm($message, $input, $output)) {
+            return ProfileImageDir::rmdirProfileImageDirectories();
+        }
+        return Command::SUCCESS;
     }
 }

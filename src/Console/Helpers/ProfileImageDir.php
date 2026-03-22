@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Console;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Symfony\Component\Console\Command\Command;
@@ -9,7 +10,7 @@ use Symfony\Component\Console\Command\Command;
 /**
  * Contains functions for creating and deleting the profile images directory.
  */
-class ProfileImageDir {
+class ProfileImageDir extends Console {
     /**
      * Path to profile images.
      */
