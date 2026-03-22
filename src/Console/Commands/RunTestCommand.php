@@ -75,7 +75,7 @@ class RunTestCommand extends Command
         // Select test based on file name or function name.
         if($testArg && !$unit && !$feature) {
             if(Str::contains($testArg, ':')) {
-               return $test->testByFilter($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, $input, $output); 
+               return $test->testByFilter($testArg, PHPUnitRunner::TEST_FILE_EXTENSION, $input, $output); 
             }
             return $test->selectByTestName($testArg, $testSuites, PHPUnitRunner::TEST_FILE_EXTENSION, PHPUnitRunner::TEST_COMMAND);
         }

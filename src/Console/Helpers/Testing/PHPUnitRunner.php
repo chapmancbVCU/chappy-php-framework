@@ -151,21 +151,20 @@ final class PHPUnitRunner extends TestRunner {
      * Run filtered test by function name.
      *
      * @param string $testArg The name of the class.
-     * @param array $testSuites An array of test suite paths.
      * @param string $extensions The file extension for PHPUnit test files.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testByFilter(string $testArg, array $testSuites, string $extension, $input, $output): int {
+    public function testByFilter(string $testArg, string $extension, $input, $output): int {
         $message = "Enter particular test using filter syntax (::).";
         Console::argOptionValidate($testArg, $message, $input, $output, ['testFilterNotation'], true);
         [$class, $method] = explode('::', $testArg);
-        if(self::testIfSame($class, $testSuites, $extension)) { 
+        if(self::testIfSame($class, self::testSuites(), $extension)) { 
             return Command::FAILURE; 
         }
 
-        foreach($testSuites as $testSuite) {
+        foreach(self::testSuites() as $testSuite) {
             $file = $testSuite.$class;
             if(file_exists($file.self::TEST_FILE_EXTENSION)) {
                 $filter = "--filter " . escapeshellarg("{$class}::{$method}");
