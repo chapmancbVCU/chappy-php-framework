@@ -51,6 +51,11 @@ final class PHPUnitRunner extends TestRunner {
     public const TEST_FILE_EXTENSION = ".php";
 
     /**
+     * Array of supported test file extensions.
+     */
+    public const TEST_FILE_EXTENSIONS = [self::TEST_FILE_EXTENSION];
+    
+    /**
      * The path for unit tests.
      */
     public const UNIT_PATH = 'tests'.DS.'Unit'.DS;
