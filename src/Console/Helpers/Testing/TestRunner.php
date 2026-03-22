@@ -75,11 +75,9 @@ class TestRunner {
     public function allTests(string $testCommand): int {
         $suites = [];
 
-        if(is_array(static::testFileExtensions())) {
-            foreach(static::testSuites() as $testSuite) {
-                foreach(static::testFileExtensions() as $extension) {
-                    $suites[] = self::getAllTestsInSuite($testSuite, $extension);
-                }
+        foreach(static::testSuites() as $testSuite) {
+            foreach(static::testFileExtensions() as $extension) {
+                $suites[] = self::getAllTestsInSuite($testSuite, $extension);
             }
         }
 
@@ -168,7 +166,6 @@ class TestRunner {
                 $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, $testCommand);    
             }
         }
-        
 
         if($this->testSuiteStatus($statuses)) {
             console_info("Selected tests have been completed");
