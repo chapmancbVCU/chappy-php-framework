@@ -48,13 +48,13 @@ class RemoveLogsCommand extends Command {
         if($input->getOption('app')) {
             Log::deleteAppLog();
         } else if($input->getOption('cli')) {
-            Log::deleteCliLog('cli.log');
+            Log::deleteCliLog();
         } else if($input->getOption('unit')) {
-            Log::deletePHPUnitLog('phpunit.log',);
+            Log::deletePHPUnitLog();
         } else if($input->getOption('all')) {
             Log::deleteAllLogs();
         } else {
-            console_error('There was an issue removing the log file');
+            console_error('Please provide one of the flags: --app, --cli, --unit, or --all');
             return COMMAND::FAILURE;
         }
         return COMMAND::SUCCESS;
