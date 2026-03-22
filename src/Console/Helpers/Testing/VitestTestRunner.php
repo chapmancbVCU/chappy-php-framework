@@ -124,13 +124,11 @@ final class VitestTestRunner extends TestRunner {
      *
      * @param string $testArg The name of the test file.
      * @param array $extensions An array of file extensions supported by Vitest.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testByFilter(string $testArg, InputInterface $input, OutputInterface $output): int {
+    public function testByFilter(string $testArg): int {
         $message = "Enter particular test using filter syntax (::).";
-        Console::argOptionValidate($testArg, $message, $input, $output, ['testFilterNotation'], true);
+        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
         if(self::testIfSame($testFile, self::testSuites())) { 
