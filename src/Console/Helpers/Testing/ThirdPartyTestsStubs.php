@@ -64,6 +64,11 @@ final class {$className} extends TestRunner {
     public const TEST_COMMAND = '';
 
     /**
+     * Array of supported test file extensions.
+     */
+    public const TEST_FILE_EXTENSIONS = [];
+    
+    /**
      * Array of available test suites.
      */
     public const TEST_SUITES = [];
