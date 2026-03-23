@@ -161,7 +161,7 @@ final class PHPUnitRunner extends TestRunner {
         $message = "Enter particular test using filter syntax (::).";
         Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
         [$class, $method] = explode('::', $testArg);
-        if(self::testIfSame($class, self::testSuites())) { 
+        if(self::testIfSame($class)) { 
             return Command::FAILURE; 
         }
 

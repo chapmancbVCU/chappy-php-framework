@@ -250,14 +250,12 @@ class TestRunner {
      * Enforces rule that classes/files across test suites should be unique for filtering.
      *
      * @param string $name name of the test class to be executed.
-     * @param array $testSuites The array of test suites.  Best practice is to use const provided 
-     * by child class.
      * @return bool True if the class or file name exists in multiple test suites.  Otherwise, 
      * we return false.
      */
-    public static function testIfSame(string $name, array $testSuites): bool {
+    public static function testIfSame(string $name): bool {
         $count = 0;
-        foreach($testSuites as $testSuite) {
+        foreach(self::testSuites() as $testSuite) {
             foreach(self::testFileExtensions() as $extension) {
                 if(file_exists($testSuite.$name.$extension)) $count++;
                 if($count > 1) {

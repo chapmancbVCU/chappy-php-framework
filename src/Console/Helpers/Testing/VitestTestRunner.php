@@ -131,7 +131,7 @@ final class VitestTestRunner extends TestRunner {
         Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
-        if(self::testIfSame($testFile, self::testSuites())) { 
+        if(self::testIfSame($testFile)) { 
             return Command::FAILURE; 
         }
 
