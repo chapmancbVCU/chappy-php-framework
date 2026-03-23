@@ -167,13 +167,11 @@ class TestRunner {
         string $testArg, 
         string $testCommand
     ): int {
-        $extensions = self::testFileExtensions();
-        $testSuites = self::testSuites();
         $statuses = [];
 
-        foreach($testSuites as $testSuite) {
-            foreach($extensions as $ext) {
-                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $ext, $testCommand);    
+        foreach(self::testSuites() as $testSuite) {
+            foreach(self::testFileExtensions() as $extension) {
+                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extension, $testCommand);    
             }
         }
 
@@ -183,7 +181,7 @@ class TestRunner {
         }
 
         // No such test class exists.
-        if(!$this->testExists($testArg, $testSuites, $extensions)) {
+        if(!$this->testExists($testArg)) {
             console_warning(
                 "The {$testArg} test file does not exist.", 
             );
