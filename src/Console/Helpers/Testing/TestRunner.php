@@ -59,20 +59,6 @@ class TestRunner extends Console {
     }
 
     /**
-     * Test to ensure there is not an empty test suite.
-     *
-     * @param array $testSuites The collection of all available test suites.  
-     * Best practice is to use const provided by child class.
-     * @return bool True if all test suites are empty.  Otherwise, we return 
-     * false.
-     */
-    public function areAllSuitesEmpty(array $testSuites): bool {
-        $flattened = Arr::collapse($testSuites);
-        if(Arr::isNotEmpty($flattened)) return false; 
-        else return true;
-    }
-
-    /**
      * Performs all available tests.
      *
      * @return int A value that indicates success, invalid, or failure.
@@ -103,6 +89,21 @@ class TestRunner extends Console {
 
         return Command::FAILURE;
     }
+    
+    /**
+     * Test to ensure there is not an empty test suite.
+     *
+     * @param array $testSuites The collection of all available test suites.  
+     * Best practice is to use const provided by child class.
+     * @return bool True if all test suites are empty.  Otherwise, we return 
+     * false.
+     */
+    public function areAllSuitesEmpty(array $testSuites): bool {
+        $flattened = Arr::collapse($testSuites);
+        if(Arr::isNotEmpty($flattened)) return false; 
+        else return true;
+    }
+
     /**
      * Present message to the user if the following conditions are true:
      * - Test case files in multiple suites with the same name
