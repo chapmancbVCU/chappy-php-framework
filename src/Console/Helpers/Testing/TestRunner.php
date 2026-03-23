@@ -224,24 +224,13 @@ class TestRunner {
      * Determine if test file exists in any of the available test suites.
      *
      * @param string $name The name of the test we want to confirm if it exists.
-     * @param array $testSuites The array of test suites.  Best practice is to use const provided 
-     * by child class.
-     * @param string|array $extensions A string or an array of supported file extensions.  
-     * Best practice is to use const provided by child class.
      * @return bool True if test does exist.  Otherwise, we return false.
      */
-    public static function testExists(string $name, array $testSuites, string|array $extensions): bool {
-        $count = 0;
-        if(is_array($extensions)) {    
-            foreach($testSuites as $testSuite) {
-                foreach($extensions as $ext) {
-                    if(file_exists($testSuite.$name.$ext)) $count++;
-                    if($count > 0) return true;
-                }
-            }
-        } else {
-            foreach($testSuites as $testSuite) {
-                if(file_exists($testSuite.$name.$extensions)) $count++;
+    public static function testExists(string $name): bool {
+        $count = 0; 
+        foreach(self::testSuites() as $testSuite) {
+            foreach(self::testFileExtensions() as $extension) {
+                if(file_exists($testSuite.$name.$extension)) $count++;
                 if($count > 0) return true;
             }
         }
