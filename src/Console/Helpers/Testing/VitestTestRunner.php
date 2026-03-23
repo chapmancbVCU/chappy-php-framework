@@ -127,10 +127,11 @@ final class VitestTestRunner extends TestRunner {
      */
     public function testByFilter(string $testArg): int {
         $message = "Enter particular test using filter syntax (::).";
-        self::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
+        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
-
+        if(self::testIfSame($testFile)) return Command::FAILURE; 
+        
         $exists = false;
         foreach(self::testSuites() as $testSuite) {
             $file = $testSuite.$testFile;

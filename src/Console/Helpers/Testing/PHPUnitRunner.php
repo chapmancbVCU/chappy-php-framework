@@ -158,8 +158,9 @@ final class PHPUnitRunner extends TestRunner {
      */
     public function testByFilter(string $testArg): int {
         $message = "Enter particular test using filter syntax (::).";
-        self::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
+        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
         [$class, $method] = explode('::', $testArg);
+        if(self::testIfSame($class)) return Command::FAILURE; 
 
         foreach(self::testSuites() as $testSuite) {
             $file = $testSuite.$class;
