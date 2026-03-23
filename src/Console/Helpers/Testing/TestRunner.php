@@ -247,7 +247,7 @@ class TestRunner {
     /**
      * Enforces rule that classes/files across test suites should be unique for filtering.
      *
-     * @param string $name name of the test class to be executed.
+     * @param string $name Name of the test class to be executed.
      * @return bool True if the class or file name exists in multiple test suites.  Otherwise, 
      * we return false.
      */
