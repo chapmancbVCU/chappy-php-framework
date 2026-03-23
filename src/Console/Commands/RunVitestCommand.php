@@ -58,8 +58,6 @@ class RunVitestCommand extends Command
         $view = $input->getOption('view');
 
         $test = new VitestTestRunner($input, $output);
-        $testSuites = [VitestTestRunner::COMPONENT_PATH, VitestTestRunner::UNIT_PATH, VitestTestRunner::VIEW_PATH];
-        $extensions = [VitestTestRunner::REACT_TEST_FILE_EXTENSION, VitestTestRunner::UNIT_TEST_FILE_EXTENSION];
 
         if(!$testArg && !$component && !$unit && !$view) {
             return $test->allTests();
