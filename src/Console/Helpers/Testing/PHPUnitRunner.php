@@ -78,6 +78,23 @@ final class PHPUnitRunner extends TestRunner {
     }
 
     /**
+     * Generates filter when testing by particular line number/function 
+     * within a test file
+     *
+     * @param string $file The name of the test file.
+     * @param string $location Line number/function within the test file
+     * @param string $extension The file extension.  Default value is an 
+     * empty string.
+     * @return string The formatted string for filtering tests by location 
+     * within a file.
+     */
+    protected static function filter(string $file, string $location, string $extension = ""): string {
+        $array = explode('/', $file);
+        $class = $array[2];
+        return "--filter " . escapeshellarg("{$class}::{$location}"); 
+    }
+
+    /**
      * Parses PHPUnit related arguments and ignore Symfony arguments.
      *
      * @return string A string containing the arguments to be provided to 
@@ -148,29 +165,5 @@ final class PHPUnitRunner extends TestRunner {
         }
 
         return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
-    }
-
-    /**
-     * Run filtered test by function name.
-     *
-     * @param string $testArg The name of the class.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public function testByFilter(string $testArg): int {
-        $message = "Enter particular test using filter syntax (::).";
-        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
-        [$class, $method] = explode('::', $testArg);
-        if(self::testIfSame($class)) return Command::FAILURE; 
-
-        foreach(self::testSuites() as $testSuite) {
-            $file = $testSuite.$class;
-            if(file_exists($file.self::TEST_FILE_EXTENSION)) {
-                $filter = "--filter " . escapeshellarg("{$class}::{$method}");
-                $this->runTest($filter, self::TEST_COMMAND);
-                return Command::SUCCESS;
-            }
-        }
-        
-        return Command::FAILURE;
     }
 }

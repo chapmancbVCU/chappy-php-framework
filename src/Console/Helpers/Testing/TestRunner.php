@@ -89,7 +89,7 @@ class TestRunner extends Console {
 
         return Command::FAILURE;
     }
-    
+
     /**
      * Test to ensure there is not an empty test suite.
      *
@@ -115,6 +115,19 @@ class TestRunner extends Console {
     private static function duplicateTestNameMessage(): void {
         console_warning("You have more than one test file with the same name.");
     }
+
+    /**
+     * Generates filter when testing by particular line number/function 
+     * within a test file
+     *
+     * @param string $file The name of the test file.
+     * @param string $location Line number/function within the test file
+     * @param string $extension The file extension.  Default value is an 
+     * empty string.
+     * @return string The formatted string for filtering tests by location 
+     * within a file.
+     */
+    protected static function filter(string $file, string $location, string $extension = ""): string { return ""; }
 
     /**
      * Retrieves all files in test suite so they can be run.
@@ -205,6 +218,42 @@ class TestRunner extends Console {
         if(file_exists($testSuite.$testArg.$ext)) {
             $test = ' '.$testSuite.$testArg.$ext;
             $this->runTest($test);
+            return Command::SUCCESS;
+        }
+        return Command::FAILURE;
+    }
+    
+    /**
+     * Run filtered test by line number or function within a test file.  This 
+     * function works across multiple test suite types and supports multiple 
+     * file extensions.  Correct filter syntax must be implemented in separate 
+     * filter() function that must be implemented before this function can 
+     * successfully execute.
+     *
+     * @param string $testArg The name of the test file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public function testByFilter(string $testArg): int {
+        $message = "Enter particular test using filter syntax (::).";
+        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
+
+        [$testFile, $location] = explode('::', $testArg);
+        if(self::testIfSame($testFile)) return Command::FAILURE; 
+        
+        $exists = false;
+        foreach(self::testSuites() as $testSuite) {
+            $file = $testSuite.$testFile;
+            foreach(self::testFileExtensions() as $extension) {
+                if(file_exists($file.$extension)) {
+                    $filter = static::filter($file, $location, $extension);
+                    $exists = true;
+                    break;
+                }
+            }
+        }
+            
+        if($exists) {
+            $this->runTest($filter);
             return Command::SUCCESS;
         }
         return Command::FAILURE;

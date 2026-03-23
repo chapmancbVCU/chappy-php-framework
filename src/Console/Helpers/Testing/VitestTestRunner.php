@@ -79,6 +79,21 @@ final class VitestTestRunner extends TestRunner {
     }
 
     /**
+     * Generates filter when testing by particular line number/function 
+     * within a test file
+     *
+     * @param string $file The name of the test file.
+     * @param string $location Line number/function within the test file
+     * @param string $extension The file extension.  Default value is an 
+     * empty string.
+     * @return string The formatted string for filtering tests by location 
+     * within a file.
+     */
+    protected static function filter(string $file, string $location, string $extension = ""): string {
+        return $file.$extension.":".$location;
+    }
+    
+    /**
      * Parses Vitest related arguments and ignore Symfony arguments.
      *
      * @param InputInterface $input Instance of InputInterface from command.
@@ -116,40 +131,5 @@ final class VitestTestRunner extends TestRunner {
             }
         }
         return (Arr::isEmpty($args)) ? '' : ' ' . implode(' ', $args);
-    }
-
-    /**
-     * Run filtered test by line number.
-     *
-     * @param string $testArg The name of the test file.
-     * @param array $extensions An array of file extensions supported by Vitest.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public function testByFilter(string $testArg): int {
-        $message = "Enter particular test using filter syntax (::).";
-        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
-
-        [$testFile, $location] = explode('::', $testArg);
-        if(self::testIfSame($testFile)) return Command::FAILURE; 
-        
-        $exists = false;
-        foreach(self::testSuites() as $testSuite) {
-            $file = $testSuite.$testFile;
-            if(file_exists($file.self::UNIT_TEST_FILE_EXTENSION)) {
-                $filter = $file.self::UNIT_TEST_FILE_EXTENSION.":".$location;
-                $exists = true;
-            }
-            if(file_exists($file.self::REACT_TEST_FILE_EXTENSION)) {
-                $filter = $file.self::REACT_TEST_FILE_EXTENSION.":".$location;
-                $exists = true;
-            }
-
-            if($exists) {
-                $this->runTest($filter, self::TEST_COMMAND);
-                return Command::SUCCESS;
-            }
-        }
-
-        return Command::FAILURE;
     }
 }
