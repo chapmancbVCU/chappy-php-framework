@@ -359,14 +359,4 @@ class TestRunner extends Console {
         }
         return false;
     }
-
-    /**
-     * Ensure filter syntax is correct.  Does not test if only one : is in string.
-     *
-     * @param string $testArg The name of the test file with filter.
-     * @return bool True if filter syntax is correct.  Otherwise, we return false.
-     */
-    public static function verifyFilterSyntax($testArg): bool {
-        return (Str::contains($testArg, '::') && !Str::contains($testArg, ':::'));
-    }
 }
