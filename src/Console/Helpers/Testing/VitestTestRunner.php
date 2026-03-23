@@ -75,8 +75,7 @@ final class VitestTestRunner extends TestRunner {
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
     public function __construct(InputInterface $input, OutputInterface $output) {
-        $this->input = $input;
-        parent::__construct($output);
+        parent::__construct($input, $output);
     }
 
     /**
@@ -128,12 +127,9 @@ final class VitestTestRunner extends TestRunner {
      */
     public function testByFilter(string $testArg): int {
         $message = "Enter particular test using filter syntax (::).";
-        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
+        self::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
-        if(self::testIfSame($testFile)) { 
-            return Command::FAILURE; 
-        }
 
         $exists = false;
         foreach(self::testSuites() as $testSuite) {

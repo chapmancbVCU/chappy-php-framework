@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
+use Console\Console;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Class that contains functions that can be used by runner child classes.
  */
-class TestRunner {
+class TestRunner extends Console {
     /**
      * The array of options allowed as input for the test command.
      */
@@ -52,7 +53,8 @@ class TestRunner {
      *
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
-    public function __construct(OutputInterface $output) {
+    public function __construct(InputInterface $input, OutputInterface $output) {
+        $this->input = $input;
         $this->output = $output;
     }
 
@@ -110,9 +112,7 @@ class TestRunner {
      * @return void
      */
     private static function duplicateTestNameMessage(): void {
-        console_warning(
-            "You have the same test name in files with the same name.  Cannot use built in filtering"
-        );
+        console_warning("You have more than one test file with the same name.");
     }
 
     /**

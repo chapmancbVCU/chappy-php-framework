@@ -74,8 +74,7 @@ final class PHPUnitRunner extends TestRunner {
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
     public function __construct(InputInterface $input, OutputInterface $output) {
-        $this->input = $input;
-        parent::__construct($output);
+        parent::__construct($input, $output);
     }
 
     /**
@@ -159,11 +158,8 @@ final class PHPUnitRunner extends TestRunner {
      */
     public function testByFilter(string $testArg): int {
         $message = "Enter particular test using filter syntax (::).";
-        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
+        self::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
         [$class, $method] = explode('::', $testArg);
-        if(self::testIfSame($class)) { 
-            return Command::FAILURE; 
-        }
 
         foreach(self::testSuites() as $testSuite) {
             $file = $testSuite.$class;
