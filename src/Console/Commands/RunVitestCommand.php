@@ -99,23 +99,20 @@ class RunVitestCommand extends Command
             $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 VitestTestRunner::COMPONENT_PATH, 
-                VitestTestRunner::REACT_TEST_FILE_EXTENSION, 
-                VitestTestRunner::TEST_COMMAND
+                VitestTestRunner::REACT_TEST_FILE_EXTENSION
             );
         }
         if($testArg && $unit) {
             $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 VitestTestRunner::UNIT_PATH, 
-                VitestTestRunner::UNIT_TEST_FILE_EXTENSION, 
-                VitestTestRunner::TEST_COMMAND
+                VitestTestRunner::UNIT_TEST_FILE_EXTENSION
             );
         }
         if($testArg && $view) {
             $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, VitestTestRunner::VIEW_PATH, 
-                VitestTestRunner::REACT_TEST_FILE_EXTENSION, 
-                VitestTestRunner::TEST_COMMAND
+                VitestTestRunner::REACT_TEST_FILE_EXTENSION
             );
         }
         if($testArg && VitestTestRunner::testSuiteStatus($testNameByFlagStatus)) {

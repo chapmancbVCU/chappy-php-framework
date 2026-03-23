@@ -108,16 +108,14 @@ class RunTestCommand extends Command
             $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 PHPUnitRunner::UNIT_PATH, 
-                PHPUnitRunner::TEST_FILE_EXTENSION, 
-                PHPUnitRunner::TEST_COMMAND
+                PHPUnitRunner::TEST_FILE_EXTENSION
             );
         }
         if($testArg && $feature) {
             $testNameByFlagStatus[] = $test->singleFileWithinSuite(
                 $testArg, 
                 PHPUnitRunner::FEATURE_PATH, 
-                PHPUnitRunner::TEST_FILE_EXTENSION, 
-                PHPUnitRunner::TEST_COMMAND
+                PHPUnitRunner::TEST_FILE_EXTENSION
             );
         }
         if($testArg && PHPUnitRunner::testSuiteStatus($testNameByFlagStatus)) {

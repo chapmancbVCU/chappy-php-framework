@@ -148,16 +148,15 @@ class TestRunner {
      * Runs the unit test for your testing suite.
      *
      * @param string $test The test to be performed.
-     * @param string $testCommand The test command to be executed.
      * @return void
      */
-    public function runTest(string $test, string $testCommand): void {
-        $command = $testCommand . ' ' . $test . $this->parseOptions();
+    public function runTest(string $test): void {
+        $command = self::testCommand() . ' ' . $test . $this->parseOptions();
         console_info('File: '.$test);
         $this->output->writeln(shell_exec($command));
     }
 
-     /**
+    /**
      * Supports ability to run test by class/file name.
      *
      * @param string $testArg The name of the class/file.
@@ -201,13 +200,12 @@ class TestRunner {
      * @param string $testSuite The name of the test suite.  Best practice is 
      * to use const provided by child class.
      * @param string $ext The file extension.  Best practice is to use const provided by child class.
-     * @param string $command The test command.  Best practice is to use const provided by child class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function singleFileWithinSuite(string $testArg, string $testSuite, string $ext, string $command): int {
+    public function singleFileWithinSuite(string $testArg, string $testSuite, string $ext): int {
         if(file_exists($testSuite.$testArg.$ext)) {
             $test = ' '.$testSuite.$testArg.$ext;
-            $this->runTest($test, $command);
+            $this->runTest($test);
             return Command::SUCCESS;
         }
         return Command::FAILURE;
@@ -295,7 +293,7 @@ class TestRunner {
         }
 
         foreach($collection as $fileName) {
-            $this->runTest($fileName, self::testCommand());
+            $this->runTest($fileName);
         }
 
         return Command::SUCCESS;
