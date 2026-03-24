@@ -51,7 +51,7 @@ class RunVitestCommand extends Command
     {
         // Get options and arguments
         $testArg = $input->getArgument('testname');
-        if(VitestTestRunner::testIfSame($testArg)) return Command::FAILURE;
+        if($testArg && VitestTestRunner::testIfSame($testArg)) return Command::FAILURE;
 
         $component = $input->getOption('component');
         $unit = $input->getOption('unit');

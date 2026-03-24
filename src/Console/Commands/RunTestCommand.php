@@ -61,7 +61,7 @@ class RunTestCommand extends Command
     {
         // Get options and arguments
         $testArg = $input->getArgument('testname');
-        if(PHPUnitRunner::testIfSame($testArg)) return Command::FAILURE;
+        if($testArg && PHPUnitRunner::testIfSame($testArg)) return Command::FAILURE;
 
         $unit = $input->getOption('unit');
         $feature = $input->getOption('feature');
