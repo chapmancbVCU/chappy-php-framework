@@ -51,6 +51,7 @@ class TestRunner extends Console {
     /**
      * Constructor
      *
+     * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
      */
     public function __construct(InputInterface $input, OutputInterface $output) {
