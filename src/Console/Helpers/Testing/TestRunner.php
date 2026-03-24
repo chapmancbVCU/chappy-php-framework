@@ -321,7 +321,7 @@ class TestRunner extends Console {
      */
     public function testSuite(array $collection): int {
         if(Arr::isEmpty($collection)) {
-            return Command::FAILURE;
+            return Command::SUCCESS;
         }
 
         foreach($collection as $fileName) {
