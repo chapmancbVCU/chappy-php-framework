@@ -186,7 +186,7 @@ class TestRunner extends Console {
             }
         }
 
-        if($this->testSuiteStatus($statuses)) {
+        if(self::testSuiteStatus($statuses)) {
             console_info("Selected tests have been completed");
             return Command::SUCCESS;
         }
