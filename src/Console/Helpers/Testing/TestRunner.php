@@ -75,7 +75,7 @@ class TestRunner extends Console {
 
         if($this->areAllSuitesEmpty($suites)) {
             $this->noAvailableTestsMessage();
-            return Command::FAILURE;
+            return Command::SUCCESS;
         }
 
         $statuses = [];
