@@ -74,7 +74,7 @@ class TestRunner extends Console {
         }
 
         if($this->areAllSuitesEmpty($suites)) {
-            $this->noAvailableTestsMessage();
+            self::noAvailableTestsMessage();
             return Command::SUCCESS;
         }
 
@@ -147,7 +147,7 @@ class TestRunner extends Console {
      *
      * @return void
      */
-    private function noAvailableTestsMessage(): void {
+    private static function noAvailableTestsMessage(): void {
         console_notice("No test available to perform");
     }
 
