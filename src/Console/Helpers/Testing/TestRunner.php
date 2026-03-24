@@ -175,18 +175,14 @@ class TestRunner extends Console {
      * Supports ability to run test by class/file name.
      *
      * @param string $testArg The name of the class/file.
-     * @param string $testCommand The command for running the tests.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function selectByTestName(
-        string $testArg, 
-        string $testCommand
-    ): int {
+    public function selectByTestName(string $testArg): int {
         $statuses = [];
 
         foreach(self::testSuites() as $testSuite) {
             foreach(self::testFileExtensions() as $extension) {
-                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extension, $testCommand);    
+                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extension);    
             }
         }
 

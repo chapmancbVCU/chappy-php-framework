@@ -78,7 +78,7 @@ class RunTestCommand extends Command
             if(Str::contains($testArg, ':')) {
                return $test->testByFilter($testArg); 
             }
-            return $test->selectByTestName($testArg, PHPUnitRunner::TEST_COMMAND);
+            return $test->selectByTestName($testArg);
         }
         
         /* 

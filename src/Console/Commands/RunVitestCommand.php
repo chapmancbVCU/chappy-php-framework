@@ -68,7 +68,7 @@ class RunVitestCommand extends Command
             if(Str::contains($testArg, ':')) {
                 return $test->testByFilter($testArg);
             }
-            return $test->selectByTestName($testArg, VitestTestRunner::TEST_COMMAND);
+            return $test->selectByTestName($testArg);
         }
 
         $runBySuiteStatus = [];
