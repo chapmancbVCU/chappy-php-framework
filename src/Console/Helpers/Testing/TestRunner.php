@@ -182,7 +182,7 @@ class TestRunner extends Console {
 
         foreach(self::testSuites() as $testSuite) {
             foreach(self::testFileExtensions() as $extension) {
-                $statuses[] = self::singleFileWithinSuite($testArg, $testSuite, $extension);    
+                $statuses[] = $this->singleFileWithinSuite($testArg, $testSuite, $extension);    
             }
         }
 
