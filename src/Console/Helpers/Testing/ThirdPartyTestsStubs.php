@@ -24,7 +24,14 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class {$className} implements TestBuilderInterface {
 
-    public static function makeTest(string \$testName, InputInterface \$input): int {
+    /**
+     * Creates a new file
+     *
+     * @param string \$testName The name for the test.
+     * @param mixed \$suite The flag for a particular suite.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeTest(string \$testName, mixed \$suite): int {
 
         return Command::SUCCESS;
     }
@@ -44,11 +51,8 @@ PHP;
 declare(strict_types=1);
 namespace App\Testing;
 
-use Console\Helpers\Tools;
 use Console\Helpers\Testing\TestRunner;
-use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\Arr;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -67,7 +71,7 @@ final class {$className} extends TestRunner {
      * Array of supported test file extensions.
      */
     public const TEST_FILE_EXTENSIONS = [];
-    
+
     /**
      * Array of available test suites.
      */
@@ -80,22 +84,20 @@ final class {$className} extends TestRunner {
      * @param OutputInterface \$output The Symfony OutputInterface object.
      */
     public function __construct(InputInterface \$input, OutputInterface \$output) {
-        \$this->inputOptions = self::parseOptions(\$input);
-        parent::__construct(\$output);
+        parent::__construct(\$input, \$output);
     }
 
     /**
      * Parses unit test related arguments and ignore Symfony arguments.
      *
-     * @param InputInterface \$input Instance of InputInterface from command.
      * @return string A string containing the arguments to be provided to 
      * to your testing framework.
      */
-    public static function parseOptions(InputInterface \$input): string { 
+    public function parseOptions(): string { 
         \$args = [];
 
         foreach(self::ALLOWED_OPTIONS as \$allowed) {
-            if(\$input->hasOption(\$allowed) && \$input->getOption(\$allowed)) {
+            if(\$this->input->hasOption(\$allowed) && \$this->input->getOption(\$allowed)) {
                 switch(\$allowed) {
                     default;
                         \$args[] = '--' . \$allowed;
