@@ -153,7 +153,8 @@ class Console {
         self::parseAttributes($question, $attributes);
 
         if(!$defaultNone) {
-            $response = $question->required()->noSpecialChars()
+            $response = $question->required()
+                ->noSpecialChars()
                 ->alpha()
                 ->notReservedKeyword();
         }
