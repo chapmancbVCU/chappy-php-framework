@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\FrameworkQuestion;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -49,6 +50,10 @@ class GenerateControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $message = "Enter a response";
+        $question = new FrameworkQuestion($input, $output);
+        $response = $question->timeout(5)->ask($message);
+
         $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
             Controller::argOptionValidate(

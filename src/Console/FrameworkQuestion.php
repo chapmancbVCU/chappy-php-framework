@@ -141,8 +141,8 @@ class FrameworkQuestion {
             try {
                 return $this->promptUser($question, $message);
             } catch (MissingInputException $e) {
-                console_error("No input received within timeout period.");
-                return null;
+                console_error($e->getMessage());
+                die;
             }
         }
         return $this->promptUser($question);
