@@ -188,9 +188,6 @@ trait HasValidators {
      * Displays a list of all error messages.
      *
      * @return void
-     * 
-     * @throws FrameworkRuntimeException Exception is thrown if an error is 
-     * encountered.
      */
     public function displayErrorMessages(): void {
         if(Arr::isNotEmpty($this->errors)) {
