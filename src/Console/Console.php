@@ -73,7 +73,7 @@ class Console {
      * @param array $choices An array of choices.
      * @param InputInterface $input The Symfony InputInterface object.
      * @param OutputInterface $output The Symfony OutputInterface object.
-     * @param string|boolean|integer|float|null|null $default he default value if the 
+     * @param string|boolean|integer|float|null|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.
      */
