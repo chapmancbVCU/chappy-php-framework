@@ -100,8 +100,7 @@ class FrameworkQuestion {
      * $anticipate = true.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
-     * @return mixed The user answer.  Null is returned if there is a timeout 
-     * set and input is not received within set amount of time.
+     * @return mixed The user answer.
      * 
      * @throws FrameworkException An an exception is thrown for the following 
      * two cases:
