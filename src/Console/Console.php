@@ -138,7 +138,7 @@ class Console {
      * user does not provide an answer.
      * @param bool $defaultNone When set to true user will have to specify 
      * all validators and attributes.
-     * @return mixed The user response
+     * @return mixed The user response.
      */
     public static function prompt(
         string $message, 
