@@ -137,11 +137,11 @@ trait HasValidators {
     /**
      * Checks if class exists within the specified namespace.
      *
-     * @param array $namespace An array containing one element with string for 
-     * the namespace.
+     * @param string|array $namespace A string or an array containing one 
+     * element with string for the namespace.
      * @return static
      */
-    public function classExists(array $namespace): static {
+    public function classExists(string|array $namespace): static {
         return $this->setValidator(function($response) use ($namespace): void {
             if(is_array($namespace)) $namespace = $namespace[0];
             if($response == null) return;
