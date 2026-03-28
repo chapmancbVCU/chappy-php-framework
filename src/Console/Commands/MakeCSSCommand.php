@@ -1,7 +1,6 @@
 <?php
 namespace Console\Commands;
 
-use Console\Console;
 use Console\HasValidators;
 use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
