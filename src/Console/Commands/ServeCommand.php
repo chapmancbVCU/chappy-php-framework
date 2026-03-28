@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,7 +36,12 @@ class ServeCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $host = $input->getOption('host');
+        $message = "Enter name/IP Address for host";
+        Console::argOptionValidate($host, $message, $input, $output, ['required'], true);
+
         $port = $input->getOption('port');
+        $message = "Enter value for an unused port";
+        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required'], true);
 
         $output->writeln("<info>Starting PHP development server at http://{$host}:{$port}</info>");
         $output->writeln("<info>Press Ctrl+C to stop the server.</info>");
