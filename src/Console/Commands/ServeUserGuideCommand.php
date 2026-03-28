@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,8 +31,13 @@ class ServeUserGuideCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $host = $input->getOption('host') ?: '127.0.0.1';
-        $port = (int) $input->getOption('port') ?: 4000;
+        $message = "Enter name/IP Address for host";
+        Console::argOptionValidate($host, $message, $input, $output, ['required'], true);
 
+        $port = (int) $input->getOption('port') ?: 4000;
+        $message = "Enter value for an unused port";
+        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required'], true);
+        
         // Change to the `docs` directory and serve the Jekyll site with specified host and port
         $command = sprintf('cd docs && bundle exec jekyll serve --host=%s --port=%d', escapeshellarg($host), $port);
 
