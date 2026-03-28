@@ -6,7 +6,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Console\Helpers\DBSeeder;
-use Core\Lib\Utilities\Str;
 
 /**
  * Supports operations for the make:factory command.  Use this command to make a new factory.
