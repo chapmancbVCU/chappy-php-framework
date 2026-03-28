@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\Helpers\Events;
-use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
