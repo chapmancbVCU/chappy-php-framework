@@ -1,5 +1,6 @@
 <?php
 namespace Console\Commands;
+
 use Console\Helpers\Migrate;
 use Console\Helpers\DBSeeder;
 use Symfony\Component\Console\Command\Command;
