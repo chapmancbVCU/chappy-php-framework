@@ -392,20 +392,6 @@ trait HasValidators {
     }
 
     /**
-     * Enforces rule when input must contain at least one numeric character.
-     *
-     * @return static
-     */
-    public function number(): static {
-        return $this->setValidator(function($response): void {
-            if($response == null) return;
-            if(!preg_match('/[0-9]/', $response)) {
-                $this->addErrorMessage("Input must contain at least one numeric character.");
-            }
-        });
-    }
-
-    /**
      * Enforces rule when input must contain no special characters.
      *
      * @return static
@@ -433,6 +419,20 @@ trait HasValidators {
         });
     }
 
+    /**
+     * Enforces rule when input must contain at least one numeric character.
+     *
+     * @return static
+     */
+    public function number(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            if(!preg_match('/[0-9]/', $response)) {
+                $this->addErrorMessage("Input must contain at least one numeric character.");
+            }
+        });
+    }
+    
     /**
      * Enforce rule where input must contain only numeric characters.
      *
