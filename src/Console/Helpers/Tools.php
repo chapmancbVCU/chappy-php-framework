@@ -49,35 +49,6 @@ class Tools extends Console {
     }
 
     /**
-     * Checks if input is in dot notation.  If in dot notation the string is 
-     * placed in an array where the first index is the directory name.  The 
-     * second element is the file name.  The structure is shown below:
-     * 
-     * ["directory_name","file_name"]
-     * 
-     * 
-     * If not in the <directory_name>.<file_name> an error message is 
-     * displayed an a Command::FAILURE integer value is returned.
-     *
-     * @param string $inputName The name in <directory_name>.<file_name> format.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @return array|int An array containing the contents of the $inputName 
-     * variable.  If $inputName is not in correct format then Command::FAILURE 
-     * is returned.
-     */
-    public static function dotNotationVerify(string $inputName, InputInterface $input): array|int {
-        $arr = explode(".", $input->getArgument($inputName));
-
-        if (sizeof($arr) !== 2) {
-            console_warning(
-                'Issue parsing argument. Make sure your input is in the format: <directory_name>.<file_name>',
-            );
-            return Command::FAILURE;
-        }
-        return $arr;
-    } 
-
-    /**
      * Checks if parameter provided is equal to Command::FAILURE.
      *
      * @param mixed $param The value to be tested.

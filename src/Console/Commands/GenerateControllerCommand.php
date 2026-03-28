@@ -50,6 +50,13 @@ class GenerateControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $question = new FrameworkQuestion($input, $output);
+        $message = "Enter a value:";
+        $response1 = $question->ask($message);
+
+        $message = "Enter a different value";
+        $response2 = Controller::prompt($message, $input, $output, ["different:$response1"]);
+
         $controllerName = $input->getArgument('controller-name');
         if($controllerName) {
             Controller::argOptionValidate(
