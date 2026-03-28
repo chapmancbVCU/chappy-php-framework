@@ -244,20 +244,6 @@ trait HasValidators {
     }
 
     /**
-     * Enforce rule where input must be an integer.
-     *
-     * @return static
-     */
-    public function integer(): static {
-        return $this->setValidator(function($response): void {
-            if($response == null) return;
-            if(!is_numeric($response) || str_contains($response, '.')) {
-                $this->addErrorMessage("Input must be an integer.");
-            }
-        });
-    }
-
-    /**
      * Enforce rule where input must be a valid IP address.
      *
      * @return static
@@ -267,6 +253,20 @@ trait HasValidators {
             if($response == null) return;
             if(!filter_var($response, FILTER_VALIDATE_IP)) {
                 $this->addErrorMessage("Input must match valid IP address.");
+            }
+        });
+    }
+
+    /**
+     * Enforce rule where input must be an integer.
+     *
+     * @return static
+     */
+    public function integer(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            if(!is_numeric($response) || str_contains($response, '.')) {
+                $this->addErrorMessage("Input must be an integer.");
             }
         });
     }
