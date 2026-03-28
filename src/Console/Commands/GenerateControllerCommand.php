@@ -1,7 +1,6 @@
 <?php
 namespace Console\Commands;
 
-use Console\FrameworkQuestion;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -10,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * Supports ability to generate new controller class by typing make:controller.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers#creating-a-controller">here</a>.
