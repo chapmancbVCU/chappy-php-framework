@@ -249,7 +249,7 @@ class Migrate extends Console {
      * @param mixed $renameOption Value/state of update flag.
      * @return bool True if both flags are set.  Otherwise, we return false.
      */
-    public static function isBothFlagsSet($renameOption, $updateOption): bool {
+    public static function isBothFlagsSet(mixed $renameOption, mixed $updateOption): bool {
         if($updateOption && $renameOption) {
             console_warning('Cannot accept update and rename options at the same time.');
             return true;
@@ -299,7 +299,7 @@ class Migrate extends Console {
     /**
      * Generates a migration class for updating existing table.
      *
-     * @param @param string $migrationName The name of the table the new migration 
+     * @param string $migrationName The name of the table the new migration 
      * will target.
      * @return int A value that indicates success, invalid, or failure.
      */
