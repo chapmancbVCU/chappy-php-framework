@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\Helpers\DBSeeder;
 use Console\Helpers\Migrate;
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -44,6 +45,11 @@ class MigrateRefreshCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        if(Tools::isProduction() && !Migrate::confirmMigrationInProduction($input, $output)) {
+            console_info("Cancelling operation.");
+            return Command::SUCCESS;
+        }
+
         $step = $input->getOption('step');
         if($step === false) {
             $status = Migrate::refresh();
