@@ -277,7 +277,7 @@ trait HasValidators {
      * use an error message is presented to the user.
      *
      * @param array $attributes An array that assumes index 0 is the host and 
-     * index 1 is timeout variable which is set to 3 if not set.
+     * index 1 is timeout variable which is set to 3 if not provided.
      * @return static
      */
     public function isPortUsed(array $attributes): static {
