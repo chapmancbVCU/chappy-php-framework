@@ -276,7 +276,8 @@ trait HasValidators {
      * if a port is available for a serve command.  If the port is already in 
      * use an error message is presented to the user.
      *
-     * @param array $attributes
+     * @param array $attributes An array that assumes index 0 is the host and 
+     * index 1 is timeout variable which is set to 3 if not set.
      * @return static
      */
     public function isPortUsed(array $attributes): static {
