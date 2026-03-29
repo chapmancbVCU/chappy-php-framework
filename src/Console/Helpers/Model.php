@@ -26,9 +26,10 @@ class Model extends Console {
      *
      * @param InputInterface $input The Symfony InputInterface object.
      * @param string $modelName The name for the new model class.
+     * @param string $uploadOption Value of --upload flag.
      * @return string A value that indicates success, invalid, or failure.
      */
-    public static function contents(string $modelName, $uploadOption): string {
+    public static function contents(string $modelName, mixed $uploadOption): string {
         if($uploadOption) {
             return ModelStubs::uploadModelTemplate($modelName);
         }
