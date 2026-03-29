@@ -119,6 +119,19 @@ class Migrate extends Console {
     }
 
     /**
+     * Ask user to confirm if they want to proceed with migration operation 
+     * when in production mode.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return mixed The user's response.
+     */
+    public static function confirmMigrationInProduction(InputInterface $input, OutputInterface $output): mixed {
+        $message = "You are in production mode.  Are you sure you want to proceed with migration operation? (y/n)";
+        return self::confirm($message, $input, $output);
+    }
+
+    /**
      * Generates time stamp for migrations in following format: yyyymmddhhmmss.
      *
      * @return string The migration timestamp.
