@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Console\Console | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../fonts/doctum-font.css">
+        <script src="../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../doctum.js"></script>
+        <script async defer src="../js/bootstrap.min.js"></script>
+        <script async defer src="../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Console_Console" data-root-path="../" data-search-index-url="../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../classes.html">Classes</a></li>
+                    <li><a href="../namespaces.html">Namespaces</a></li>
+                    <li><a href="../interfaces.html">Interfaces</a></li>
+                    <li><a href="../traits.html">Traits</a></li>
+                    <li><a href="../doc-index.html">Index</a></li>
+                    <li><a href="../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../Console.html">Console</a></li><li class="backslash">\</li><li>Console</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>Console    
+            </h1>
+    </div>
+
+    
+    <p>        class
+    <strong>Console</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Class that can be extended by helpers when validators needs to be used.</p></p>                    </div>
+            
+                <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>    </div>
+                <div class="col-md-6"><p>Supports ability to validate console input.</p></div>
+            </div>
+            </div>
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_errors">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$errors</td>
+                <td class="last"><p>An array of errors.</p></td>
+                <td><small>from&nbsp;<a href="../Console/HasValidators.html#property_errors">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_fieldName">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$fieldName</td>
+                <td class="last"><p>The name of the field to be validated.</p></td>
+                <td><small>from&nbsp;<a href="../Console/HasValidators.html#property_fieldName">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_reservedKeywords">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$reservedKeywords</td>
+                <td class="last"><p>An array of reserved keywords.</p></td>
+                <td><small>from&nbsp;<a href="../Console/HasValidators.html#property_reservedKeywords">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_validators">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$validators</td>
+                <td class="last"><p>Array of validator callbacks.</p></td>
+                <td><small>from&nbsp;<a href="../Console/HasValidators.html#property_validators">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_addErrorMessage">addErrorMessage</a>(string $message)
+        
+                                            <p><p>Adds a new error message to the $errors array.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_addErrorMessage">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_alpha">alpha</a>()
+        
+                                            <p><p>Enforce rule where input must contain only alphabetic characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_alpha">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_alphaNumeric">alphaNumeric</a>()
+        
+                                            <p><p>Enforce rule where input must be alphanumeric characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_alphaNumeric">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_between">between</a>(array $range)
+        
+                                            <p><p>Ensures input is between within a certain range in length.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_between">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_classExists">classExists</a>(<abbr title="Console\string|array">string|array</abbr> $namespace)
+        
+                                            <p><p>Checks if class exists within the specified namespace.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_classExists">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_colonNotation">colonNotation</a>()
+        
+                                            <p><p>Ensures response is in colon notation format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_colonNotation">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_different">different</a>(mixed $data)
+        
+                                            <p><p>Enforce rule where response and $match parameter needs to be different.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_different">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_displayErrorMessages">displayErrorMessages</a>()
+        
+                                            <p><p>Displays a list of all error messages.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_displayErrorMessages">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dotNotation">dotNotation</a>()
+        
+                                            <p><p>Ensures response is in dot notation format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_dotNotation">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_email">email</a>()
+        
+                                            <p><p>Ensures input is a valid E-mail address.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_email">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_fieldName">fieldName</a>(<abbr title="Console\string|array">string|array</abbr> $fieldName)
+        
+                                            <p><p>Sets name of field to be validated.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_fieldName">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_ip">ip</a>()
+        
+                                            <p><p>Enforce rule where input must be a valid IP address.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_ip">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_integer">integer</a>()
+        
+                                            <p><p>Enforce rule where input must be an integer.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_integer">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isPortUsed">isPortUsed</a>(array $attributes)
+        
+                                            <p><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_isPortUsed">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_list">list</a>(array $attributes)
+        
+                                            <p><p>Ensure user inputs valid comma separated list of values.  The user must
+provide the following in the $attributes parameter:
+1) Class containing full namespaced path
+2) Name of function that returns an array of strings or a comma
+separated array of strings.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_list">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_lower">lower</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_lower">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_match">match</a>(mixed $match)
+        
+                                            <p><p>Enforce rule where response and $match parameter needs to match.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_match">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_max">max</a>(<abbr title="Console\int|array">int|array</abbr> $maxRule)
+        
+                                            <p><p>Ensures input meets requirements for maximum allowable length.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_max">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_min">min</a>(<abbr title="Console\int|array">int|array</abbr> $minRule)
+        
+                                            <p><p>Ensures input meets requirements for minimum allowable length.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_min">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_negative">negative</a>()
+        
+                                            <p><p>Enforces rule when input must be a negative number.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_negative">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_noSpecialChars">noSpecialChars</a>()
+        
+                                            <p><p>Enforces rule when input must contain no special characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_noSpecialChars">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_notReservedKeyword">notReservedKeyword</a>()
+        
+                                            <p><p>Enforce rule when reserved keywords should be avoided.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_notReservedKeyword">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_number">number</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one numeric character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_number">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_numeric">numeric</a>()
+        
+                                            <p><p>Enforce rule where input must contain only numeric characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_numeric">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_required">required</a>()
+        
+                                            <p><p>Ensures required input is entered.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_required">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_positive">positive</a>()
+        
+                                            <p><p>Enforces rule when input must a positive number.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_positive">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_queue">queue</a>()
+        
+                                            <p><p>Validates if queue exists in database or redis.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_queue">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setValidator">setValidator</a>(callable $validator)
+        
+                                            <p><p>Adds validator to array of validators to be used.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_setValidator">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_special">special</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one special character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_special">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testFilterNotation">testFilterNotation</a>()
+        
+                                            <p><p>Ensures response is in colon notation format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_testFilterNotation">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_tokens">tokens</a>(string $data)
+        
+                                            <p><p>Split on commas (tolerate spaces), normalize to lowercase, drop empties.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_tokens">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_upper">upper</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_upper">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_url">url</a>()
+        
+                                            <p><p>Enforce rule where input must be a valid URL.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_url">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_validate">validate</a>(mixed $response)
+        
+                                            <p><p>Calls validator callbacks.  This function also ensures validators
+don't bleed into next question if instance is reused.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/HasValidators.html#method_validate">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(string $fieldName = &quot;&quot;)
+        
+                                            <p><p>Creates new instance of Console class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_argOptionValidate">argOptionValidate</a>(string $field, string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $validators = [], bool $defaultNone = false)
+        
+                                            <p><p>Validates argument and option input.  If validation fails then the
+user is asked to enter a new value.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_choice">choice</a>(string $message, array $choices, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
+        
+                                            <p><p>Ask user to confirm among several options based on question asked.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_confirm">confirm</a>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
+        
+                                            <p><p>Asks a user to confirm based on question asked.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../Console/Console.html"><abbr title="Console\Console">Console</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getInstance">getInstance</a>(string $fieldName = &quot;&quot;)
+        
+                                            <p><p>Returns instance of this or child helper class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_prompt">prompt</a>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
+        
+                                            <p><p>Asks user question about file to be created.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_parseAttributes">parseAttributes</a>(object $object, array $validators)
+        
+                                            <p><p>Parse array containing additional validators or attributes for FrameworkQuestion
+as strings along with any additional parameters that maybe expected.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_addErrorMessage">
+        <div class="location">in <a href="../Console/HasValidators.html#method_addErrorMessage">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 79</div>
+        <code>                    void
+    <strong>addErrorMessage</strong>(string $message)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds a new error message to the $errors array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The error message to be added to the $errors
+array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_alpha">
+        <div class="location">in <a href="../Console/HasValidators.html#method_alpha">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 89</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>alpha</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must contain only alphabetic characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_alphaNumeric">
+        <div class="location">in <a href="../Console/HasValidators.html#method_alphaNumeric">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 103</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>alphaNumeric</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be alphanumeric characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_between">
+        <div class="location">in <a href="../Console/HasValidators.html#method_between">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 119</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>between</strong>(array $range)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input is between within a certain range in length.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$range</td>
+                <td><p>2 element array where position 0 is min and
+position 1 is max.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_classExists">
+        <div class="location">in <a href="../Console/HasValidators.html#method_classExists">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 144</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>classExists</strong>(<abbr title="Console\string|array">string|array</abbr> $namespace)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if class exists within the specified namespace.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Console\string|array">string|array</abbr></td>
+                <td>$namespace</td>
+                <td><p>A string or an array containing one
+element with string for the namespace.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_colonNotation">
+        <div class="location">in <a href="../Console/HasValidators.html#method_colonNotation">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 159</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>colonNotation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures response is in colon notation format.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_different">
+        <div class="location">in <a href="../Console/HasValidators.html#method_different">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 177</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>different</strong>(mixed $data)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where response and $match parameter needs to be different.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$data</td>
+                <td><p>The value we want to compare.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_displayErrorMessages">
+        <div class="location">in <a href="../Console/HasValidators.html#method_displayErrorMessages">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 192</div>
+        <code>                    void
+    <strong>displayErrorMessages</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Displays a list of all error messages.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dotNotation">
+        <div class="location">in <a href="../Console/HasValidators.html#method_dotNotation">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 208</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>dotNotation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures response is in dot notation format.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_email">
+        <div class="location">in <a href="../Console/HasValidators.html#method_email">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 225</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>email</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input is a valid E-mail address.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_fieldName">
+        <div class="location">in <a href="../Console/HasValidators.html#method_fieldName">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 240</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>fieldName</strong>(<abbr title="Console\string|array">string|array</abbr> $fieldName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets name of field to be validated.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Console\string|array">string|array</abbr></td>
+                <td>$fieldName</td>
+                <td><p>The name of the field to be validated.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ip">
+        <div class="location">in <a href="../Console/HasValidators.html#method_ip">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 251</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>ip</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be a valid IP address.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_integer">
+        <div class="location">in <a href="../Console/HasValidators.html#method_integer">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 265</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>integer</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be an integer.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isPortUsed">
+        <div class="location">in <a href="../Console/HasValidators.html#method_isPortUsed">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 283</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>isPortUsed</strong>(array $attributes)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>An array that assumes index 0 is the host and
+index 1 is timeout variable which is set to 3 if not provided.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_list">
+        <div class="location">in <a href="../Console/HasValidators.html#method_list">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 312</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>list</strong>(array $attributes)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensure user inputs valid comma separated list of values.  The user must
+provide the following in the $attributes parameter:
+1) Class containing full namespaced path
+2) Name of function that returns an array of strings or a comma
+separated array of strings.</p></p>                <p><p>3) A string value in this array as an alias (optional).</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>A : separate list in the following format:
+NamespaceToClass\Class:Method:Alias.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_lower">
+        <div class="location">in <a href="../Console/HasValidators.html#method_lower">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 350</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>lower</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_match">
+        <div class="location">in <a href="../Console/HasValidators.html#method_match">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 365</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>match</strong>(mixed $match)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where response and $match parameter needs to match.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$match</td>
+                <td><p>The value we want to compare.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_max">
+        <div class="location">in <a href="../Console/HasValidators.html#method_max">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 380</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>max</strong>(<abbr title="Console\int|array">int|array</abbr> $maxRule)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input meets requirements for maximum allowable length.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Console\int|array">int|array</abbr></td>
+                <td>$maxRule</td>
+                <td><p>The maximum allowed size for input.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_min">
+        <div class="location">in <a href="../Console/HasValidators.html#method_min">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 396</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>min</strong>(<abbr title="Console\int|array">int|array</abbr> $minRule)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input meets requirements for minimum allowable length.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Console\int|array">int|array</abbr></td>
+                <td>$minRule</td>
+                <td><p>The minimum allowed size for input.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_negative">
+        <div class="location">in <a href="../Console/HasValidators.html#method_negative">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 411</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>negative</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must be a negative number.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_noSpecialChars">
+        <div class="location">in <a href="../Console/HasValidators.html#method_noSpecialChars">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 425</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>noSpecialChars</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain no special characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notReservedKeyword">
+        <div class="location">in <a href="../Console/HasValidators.html#method_notReservedKeyword">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 439</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>notReservedKeyword</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule when reserved keywords should be avoided.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_number">
+        <div class="location">in <a href="../Console/HasValidators.html#method_number">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 453</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>number</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one numeric character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_numeric">
+        <div class="location">in <a href="../Console/HasValidators.html#method_numeric">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 467</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>numeric</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must contain only numeric characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_required">
+        <div class="location">in <a href="../Console/HasValidators.html#method_required">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 481</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>required</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures required input is entered.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_positive">
+        <div class="location">in <a href="../Console/HasValidators.html#method_positive">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 494</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>positive</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must a positive number.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_queue">
+        <div class="location">in <a href="../Console/HasValidators.html#method_queue">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 508</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>queue</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Validates if queue exists in database or redis.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setValidator">
+        <div class="location">in <a href="../Console/HasValidators.html#method_setValidator">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 532</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>setValidator</strong>(callable $validator)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds validator to array of validators to be used.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$validator</td>
+                <td><p>The anonymous function for a validator.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_special">
+        <div class="location">in <a href="../Console/HasValidators.html#method_special">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 542</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>special</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one special character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testFilterNotation">
+        <div class="location">in <a href="../Console/HasValidators.html#method_testFilterNotation">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 556</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>testFilterNotation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures response is in colon notation format.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tokens">
+        <div class="location">in <a href="../Console/HasValidators.html#method_tokens">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 577</div>
+        <code>        static    protected        array
+    <strong>tokens</strong>(string $data)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Split on commas (tolerate spaces), normalize to lowercase, drop empties.</p></p>                <p><p>Useful for cases where you have a comma separated string.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$data</td>
+                <td><p>Comma separated strings of values to be converted
+into an array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>An array containing values originally found in comma
+separated string.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_upper">
+        <div class="location">in <a href="../Console/HasValidators.html#method_upper">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 587</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>upper</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_url">
+        <div class="location">in <a href="../Console/HasValidators.html#method_url">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 601</div>
+        <code>                    <a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>url</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be a valid URL.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validate">
+        <div class="location">in <a href="../Console/HasValidators.html#method_validate">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 617</div>
+        <code>            protected        bool
+    <strong>validate</strong>(mixed $response)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Calls validator callbacks.  This function also ensures validators
+don't bleed into next question if instance is reused.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$response</td>
+                <td><p>The user answer.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if validation passed.  Otherwise, we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line 22</div>
+        <code>                    
+    <strong>__construct</strong>(string $fieldName = &quot;&quot;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Creates new instance of Console class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fieldName</td>
+                <td><p>The name of the field to be validated.</p></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_argOptionValidate">
+        <div class="location">at line 45</div>
+        <code>        static            void
+    <strong>argOptionValidate</strong>(string $field, string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $validators = [], bool $defaultNone = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Validates argument and option input.  If validation fails then the
+user is asked to enter a new value.</p></p>                <p><p>Validates the following conditions:
+1) required
+2) noSpecialChars
+3) alpha
+4) notReservedKeyword</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$field</td>
+                <td><p>The reference to the value to be validated.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The message to present to the user.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td><p>The Symfony OutputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$validators</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$defaultNone</td>
+                <td><p>When set to true user will have to specify
+all validators.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_choice">
+        <div class="location">at line 80</div>
+        <code>        static            mixed
+    <strong>choice</strong>(string $message, array $choices, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ask user to confirm among several options based on question asked.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The message to present to the user.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$choices</td>
+                <td><p>An array of choices.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td><p>The Symfony OutputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
+                <td>$default</td>
+                <td><p>The default value if the
+user does not provide an answer.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td><p>The user answer.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_confirm">
+        <div class="location">at line 101</div>
+        <code>        static            mixed
+    <strong>confirm</strong>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Asks a user to confirm based on question asked.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The message to present to the user.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
+                <td>$default</td>
+                <td><p>The default value if the
+user does not provide an answer.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td><p>The user answer.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getInstance">
+        <div class="location">at line 117</div>
+        <code>        static            <a href="../Console/Console.html"><abbr title="Console\Console">Console</abbr></a>
+    <strong>getInstance</strong>(string $fieldName = &quot;&quot;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns instance of this or child helper class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fieldName</td>
+                <td><p>The name of the field to be validated.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Console/Console.html"><abbr title="Console\Console">Console</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_prompt">
+        <div class="location">at line 143</div>
+        <code>        static            string
+    <strong>prompt</strong>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Asks user question about file to be created.</p></p>                <p><p>Validates the following conditions:
+1) required
+2) noSpecialChars
+3) alpha
+4) notReservedKeyword</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The message to present to the user.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td><p>The Symfony OutputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>An array of additional validators.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$suggestions</td>
+                <td><p>An array of suggestions for when $anticipate
+is set to true.  An exception is thrown if this array is empty and
+$anticipate = true.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
+                <td>$default</td>
+                <td><p>The default value if the
+user does not provide an answer.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$defaultNone</td>
+                <td><p>When set to true user will have to specify
+all validators and attributes.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The user response.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_parseAttributes">
+        <div class="location">at line 177</div>
+        <code>        static    protected        void
+    <strong>parseAttributes</strong>(object $object, array $validators)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Parse array containing additional validators or attributes for FrameworkQuestion
+as strings along with any additional parameters that maybe expected.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$object</td>
+                <td><p>The instance of a class using the HasValidators
+trait.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$validators</td>
+                <td><p>An array of validators.  Any additional
+parameters must be separated with a &quot;:&quot;.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

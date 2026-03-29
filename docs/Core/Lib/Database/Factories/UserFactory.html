@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Lib\Database\Factories\UserFactory | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../../fonts/doctum-font.css">
+        <script src="../../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../../doctum.js"></script>
+        <script async defer src="../../../../js/bootstrap.min.js"></script>
+        <script async defer src="../../../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Lib_Database_Factories_UserFactory" data-root-path="../../../../" data-search-index-url="../../../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../../classes.html">Classes</a></li>
+                    <li><a href="../../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../../traits.html">Traits</a></li>
+                    <li><a href="../../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../../Core/Lib/Database.html">Database</a></li><li class="backslash">\</li><li><a href="../../../../Core/Lib/Database/Factories.html">Factories</a></li><li class="backslash">\</li><li>UserFactory</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>UserFactory    
+            </h1>
+    </div>
+
+    
+    <p>        class
+    <strong>UserFactory</strong>        extends <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Factory for creating new user table records.</p></p>                    </div>
+            
+        
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_afterCreatingCallbacks">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$afterCreatingCallbacks</td>
+                <td class="last"><p>Array containing callbacks that are used after database record is
+successfully saved.</p></td>
+                <td><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#property_afterCreatingCallbacks">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_count">
+                                        protected                                        int
+                                                                                
+                                    </td>
+                <td>$count</td>
+                <td class="last"><p>Value for how many insertions to be performed by factory.</p></td>
+                <td><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#property_count">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_faker">
+                                        protected                                        <abbr title="Core\Lib\Database\FactoryFaker">FactoryFaker</abbr>
+                                                                                
+                                    </td>
+                <td>$faker</td>
+                <td class="last"><p>Instance of Faker\Factory object.</p></td>
+                <td><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#property_faker">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_modelName">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$modelName</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_states">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$states</td>
+                <td class="last"><p>States for overriding definition.</p></td>
+                <td><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#property_states">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>()
+        
+                                            <p><p>Constructor for Faker class.  Should be called by any child class that
+overrides this constructor.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method___construct">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_definition">definition</a>()
+        
+                                            <p><p>Define the model's default state.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_afterCreating">afterCreating</a>(callable $callback)
+        
+                                            <p><p>Adds callback to afterCreatingCallbacks array.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_afterCreating">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_append">append</a>()
+        
+                                            <p><p>Helper function for satisfying complexity or length requirements.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_append">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Core\Lib\Database\array|object">array|object</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_create">create</a>(array $attributes = [])
+        
+                                            <p><p>Create a record(s) in the database.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_create">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_configure">configure</a>()
+        
+                                            <p><p>Configure function used for registering afterCreating callbacks.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_configure">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_count">count</a>(int $count)
+        
+                                            <p><p>Specify number of records to insert into the database.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_count">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_factory">factory</a>(mixed ...$params)
+        
+                                            <p><p>Returns instance of new child factory class.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_factory">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    object|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_insert">insert</a>(array $data, string $modelName)
+        
+                                            <p><p>Insert data into the database table.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_insert">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_invokeAfterCreatingCallbacks">invokeAfterCreatingCallbacks</a>(object $model)
+        
+                                            <p><p>Calls all registered afterCreating callbacks associated with a factory.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_invokeAfterCreatingCallbacks">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_invokeStateCallbacks">invokeStateCallbacks</a>(array $attributes, array $data)
+        
+                                            <p><p>Calls state callback functions.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_invokeStateCallbacks">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_sequence">sequence</a>(array ...$sequence)
+        
+                                            <p><p>Registers sequence callbacks.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_sequence">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_state">state</a>(callable $state)
+        
+                                            <p><p>Manages state for values of keys that should be overridden by state
+functions.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method_state">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_admin">admin</a>()
+        
+                                            <p><p>Overrides default value for acl.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_deleted">deleted</a>()
+        
+                                            <p><p>Overrides default value for deleted.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_inactive">inactive</a>()
+        
+                                            <p><p>Overrides default value for inactive.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_loginAttempts">loginAttempts</a>()
+        
+                                            <p><p>Overrides default value for login_attempts.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resetPassword">resetPassword</a>()
+        
+                                            <p><p>Overrides default value for resetPassword.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_withImages">withImages</a>(int $count = 2)
+        
+                                            <p><p>State callback for generating profile images.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method___construct">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 53</div>
+        <code>                    
+    <strong>__construct</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Constructor for Faker class.  Should be called by any child class that
+overrides this constructor.</p></p>                        
+        </div>
+        <div class="tags">
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_definition">
+        <div class="location">at line 32</div>
+        <code>            protected        array
+    <strong>definition</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Define the model's default state.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_afterCreating">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_afterCreating">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 71</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+    <strong>afterCreating</strong>(callable $callback)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds callback to afterCreatingCallbacks array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$callback</td>
+                <td><p>The anonymous callback for afterCreating.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_append">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_append">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 82</div>
+        <code>            protected        string
+    <strong>append</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Helper function for satisfying complexity or length requirements.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A string containing a random digit, a lower case
+character, an upper case character, and a special character.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_create">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_create">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 98</div>
+        <code>                    <abbr title="Core\Lib\Database\array|object">array|object</abbr>
+    <strong>create</strong>(array $attributes = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Create a record(s) in the database.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>The an associative array attributes used to
+override default definition values.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Lib\Database\array|object">array|object</abbr></td>
+            <td><p>The array of models that were created or a single object
+model if just one record is inserted.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_configure">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_configure">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 126</div>
+        <code>            protected        <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+    <strong>configure</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Configure function used for registering afterCreating callbacks.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_count">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_count">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 136</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+    <strong>count</strong>(int $count)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Specify number of records to insert into the database.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$count</td>
+                <td><p>The number of records to create.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_factory">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_factory">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 148</div>
+        <code>        static            <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+    <strong>factory</strong>(mixed ...$params)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns instance of new child factory class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>...$params</td>
+                <td><p>Params for factory.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></td>
+            <td><p>The child factory class.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_insert">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_insert">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 160</div>
+        <code>            protected        object|null
+    <strong>insert</strong>(array $data, string $modelName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Insert data into the database table.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Data to be saved in new database record.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$modelName</td>
+                <td><p>The name of the model to reference correct table.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>object|null</td>
+            <td><p>The model object if save is successful.  Otherwise, we
+return null.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_invokeAfterCreatingCallbacks">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_invokeAfterCreatingCallbacks">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 193</div>
+        <code>            protected        void
+    <strong>invokeAfterCreatingCallbacks</strong>(object $model)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Calls all registered afterCreating callbacks associated with a factory.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$model</td>
+                <td><p>The parent model</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_invokeStateCallbacks">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_invokeStateCallbacks">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 208</div>
+        <code>            protected        array
+    <strong>invokeStateCallbacks</strong>(array $attributes, array $data)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Calls state callback functions.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>The attributes used to override default definition
+values.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td><p>Data to be saved in new database record.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>$data The data that contains values that overrides defaults
+found in definition.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_sequence">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_sequence">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 223</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+    <strong>sequence</strong>(array ...$sequence)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Registers sequence callbacks.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>...$sequence</td>
+                <td><p>Sequence of values to alternate between for
+consecutive record creations when using count.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_state">
+        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method_state">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 237</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a>
+    <strong>state</strong>(callable $state)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Manages state for values of keys that should be overridden by state
+functions.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$state</td>
+                <td><p>The anonymous function for overriding a value
+for a specified key.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_admin">
+        <div class="location">at line 19</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+    <strong>admin</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Overrides default value for acl.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_deleted">
+        <div class="location">at line 60</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+    <strong>deleted</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Overrides default value for deleted.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_inactive">
+        <div class="location">at line 73</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+    <strong>inactive</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Overrides default value for inactive.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loginAttempts">
+        <div class="location">at line 85</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+    <strong>loginAttempts</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Overrides default value for login_attempts.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resetPassword">
+        <div class="location">at line 98</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+    <strong>resetPassword</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Overrides default value for resetPassword.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_withImages">
+        <div class="location">at line 112</div>
+        <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
+    <strong>withImages</strong>(int $count = 2)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>State callback for generating profile images.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$count</td>
+                <td><p>Number of images to create.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>
