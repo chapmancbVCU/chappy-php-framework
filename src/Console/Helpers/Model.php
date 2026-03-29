@@ -24,7 +24,6 @@ class Model extends Console {
     /**
      * Generates a new model class.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
      * @param string $modelName The name for the new model class.
      * @param string $uploadOption Value of --upload flag.
      * @return string A value that indicates success, invalid, or failure.

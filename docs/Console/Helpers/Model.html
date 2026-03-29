@@ -647,7 +647,7 @@ as strings along with any additional parameters that maybe expected.</p></p>    
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_contents">contents</a>(string $modelName, $uploadOption)
+                    <a href="#method_contents">contents</a>(string $modelName, mixed $uploadOption)
         
                                             <p><p>Generates a new model class.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -2355,9 +2355,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_contents">
-        <div class="location">at line 31</div>
+        <div class="location">at line 32</div>
         <code>        static            string
-    <strong>contents</strong>(string $modelName, $uploadOption)
+    <strong>contents</strong>(string $modelName, mixed $uploadOption)
         </code>
     </h3>
     <div class="details">    
@@ -2377,9 +2377,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
                 <td><p>The name for the new model class.</p></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>mixed</td>
                 <td>$uploadOption</td>
-                <td></td>
+                <td><p>Value of --upload flag.</p></td>
             </tr>
             </table>
 
@@ -2402,7 +2402,7 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_modelNamePrompt">
-        <div class="location">at line 47</div>
+        <div class="location">at line 48</div>
         <code>        static            string
     <strong>modelNamePrompt</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -2450,7 +2450,7 @@ argument.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_uploadPrompt">
-        <div class="location">at line 63</div>
+        <div class="location">at line 64</div>
         <code>        static            string
     <strong>uploadPrompt</strong>(string $modelName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, mixed $uploadOption)
         </code>
