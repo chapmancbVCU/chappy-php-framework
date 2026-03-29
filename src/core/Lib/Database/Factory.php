@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Lib\Database;
 
+use Console\Helpers\Tools;
 use Core\Exceptions\FactorySeeder\FactorySeederException;
 use Faker\Factory as FakerFactory;
 
@@ -95,7 +96,7 @@ abstract class Factory {
      * model if just one record is inserted.
      */
     public function create(array $attributes = []): array|object {
-        if(env('APP_ENV') === 'production') {
+        if(Tools::isProduction()) {
             throw new FactorySeederException("Factories and seeders can only be run in development mode");
         }
 
