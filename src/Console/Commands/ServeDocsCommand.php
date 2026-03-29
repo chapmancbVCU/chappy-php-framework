@@ -35,7 +35,7 @@ class ServeDocsCommand extends Command {
 
         $port = $input->getOption('port');
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required'], true);
+        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required', "isPortUsed:$host"], true);
 
         // Define the Doctum documentation directory
         $docsDir = ROOT.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'docs';

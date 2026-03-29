@@ -36,8 +36,8 @@ class ServeUserGuideCommand extends Command {
 
         $port = (int) $input->getOption('port') ?: 4000;
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required'], true);
-        
+        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required',  "isPortUsed:$host"], true);
+
         // Change to the `docs` directory and serve the Jekyll site with specified host and port
         $command = sprintf('cd docs && bundle exec jekyll serve --host=%s --port=%d', escapeshellarg($host), $port);
 

@@ -272,6 +272,31 @@ trait HasValidators {
     }
 
     /**
+     * Checks if a port on a particular host is in use.  Assists in verifying 
+     * if a port is available for a serve command.  If the port is already in 
+     * use an error message is presented to the user.
+     *
+     * @param array $attributes
+     * @return static
+     */
+    public function isPortUsed(array $attributes): static {
+        return $this->setValidator(function($response) use($attributes): void {
+            if(is_array($attributes)) {
+                $host = $attributes[0];
+                $timeout = $attributes[1] ?? 3;
+            }
+            $errno = null;
+            $errstr = null;
+            $connection = @fsockopen($host, (int)$response, $errno, $errstr, (float)$timeout);
+
+            if(is_resource($connection)) {
+                fclose($connection);
+                $this->addErrorMessage("Port $response on $host is in use.");
+            }
+        });
+    }
+
+    /**
      * Ensure user inputs valid comma separated list of values.  The user must 
      * provide the following in the $attributes parameter:
      * 1) Class containing full namespaced path

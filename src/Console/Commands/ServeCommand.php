@@ -41,7 +41,7 @@ class ServeCommand extends Command {
 
         $port = $input->getOption('port');
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required'], true);
+        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required',  "isPortUsed:$host"], true);
 
         $output->writeln("<info>Starting PHP development server at http://{$host}:{$port}</info>");
         $output->writeln("<info>Press Ctrl+C to stop the server.</info>");
