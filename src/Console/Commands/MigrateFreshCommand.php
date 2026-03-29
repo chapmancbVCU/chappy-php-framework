@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\Helpers\Migrate;
 use Console\Helpers\DBSeeder;
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,6 +38,11 @@ class MigrateFreshCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        if(Tools::isProduction() && !Migrate::confirmMigrationInProduction($input, $output)) {
+            console_info("Cancelling operation.");
+            return Command::SUCCESS;
+        }
+        
         $status = Migrate::dropAllTables();
         if($status == Command::FAILURE) {
             return $status;
