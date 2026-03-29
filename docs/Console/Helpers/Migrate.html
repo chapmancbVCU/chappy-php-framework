@@ -330,6 +330,19 @@
                     <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_isPortUsed">isPortUsed</a>(array $attributes)
+        
+                                            <p><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Console/HasValidators.html#method_isPortUsed">
+<abbr title="Console\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
                     <a href="#method_list">list</a>(array $attributes)
         
                                             <p><p>Ensure user inputs valid comma separated list of values.  The user must
@@ -668,6 +681,17 @@ flags are set then appropriate migration class is created.</p></p>              
                     <a href="#method_confirmDropAllTables">confirmDropAllTables</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         
                                             <p><p>Ask user to confirm if they want to drop all tables.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_confirmMigrationInProduction">confirmMigrationInProduction</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+        
+                                            <p><p>Ask user to confirm if they want to proceed with migration operation
+when in production mode.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -1424,9 +1448,55 @@ element with string for the namespace.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_isPortUsed">
+        <div class="location">in <a href="../../Console/HasValidators.html#method_isPortUsed">
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 283</div>
+        <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
+    <strong>isPortUsed</strong>(array $attributes)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>An array that assumes index 0 is the host and
+index 1 is timeout variable which is set to 3 if not provided.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_list">
         <div class="location">in <a href="../../Console/HasValidators.html#method_list">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 286</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 312</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>list</strong>(array $attributes)
         </code>
@@ -1474,7 +1544,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_lower">
         <div class="location">in <a href="../../Console/HasValidators.html#method_lower">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 324</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 350</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>lower</strong>()
         </code>
@@ -1507,7 +1577,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_match">
         <div class="location">in <a href="../../Console/HasValidators.html#method_match">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 339</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 365</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>match</strong>(mixed $match)
         </code>
@@ -1550,7 +1620,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_max">
         <div class="location">in <a href="../../Console/HasValidators.html#method_max">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 354</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 380</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>max</strong>(<abbr title="Console\int|array">int|array</abbr> $maxRule)
         </code>
@@ -1593,7 +1663,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_min">
         <div class="location">in <a href="../../Console/HasValidators.html#method_min">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 370</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 396</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>min</strong>(<abbr title="Console\int|array">int|array</abbr> $minRule)
         </code>
@@ -1636,7 +1706,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_negative">
         <div class="location">in <a href="../../Console/HasValidators.html#method_negative">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 385</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 411</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>negative</strong>()
         </code>
@@ -1669,7 +1739,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_noSpecialChars">
         <div class="location">in <a href="../../Console/HasValidators.html#method_noSpecialChars">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 399</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 425</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>noSpecialChars</strong>()
         </code>
@@ -1702,7 +1772,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_notReservedKeyword">
         <div class="location">in <a href="../../Console/HasValidators.html#method_notReservedKeyword">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 413</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 439</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>notReservedKeyword</strong>()
         </code>
@@ -1735,7 +1805,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_number">
         <div class="location">in <a href="../../Console/HasValidators.html#method_number">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 427</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 453</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>number</strong>()
         </code>
@@ -1768,7 +1838,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_numeric">
         <div class="location">in <a href="../../Console/HasValidators.html#method_numeric">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 441</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 467</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>numeric</strong>()
         </code>
@@ -1801,7 +1871,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_required">
         <div class="location">in <a href="../../Console/HasValidators.html#method_required">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 455</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 481</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>required</strong>()
         </code>
@@ -1834,7 +1904,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_positive">
         <div class="location">in <a href="../../Console/HasValidators.html#method_positive">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 468</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 494</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>positive</strong>()
         </code>
@@ -1867,7 +1937,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_queue">
         <div class="location">in <a href="../../Console/HasValidators.html#method_queue">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 482</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 508</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>queue</strong>()
         </code>
@@ -1900,7 +1970,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_setValidator">
         <div class="location">in <a href="../../Console/HasValidators.html#method_setValidator">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 506</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 532</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>setValidator</strong>(callable $validator)
         </code>
@@ -1943,7 +2013,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_special">
         <div class="location">in <a href="../../Console/HasValidators.html#method_special">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 516</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 542</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>special</strong>()
         </code>
@@ -1976,7 +2046,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_testFilterNotation">
         <div class="location">in <a href="../../Console/HasValidators.html#method_testFilterNotation">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 530</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 556</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>testFilterNotation</strong>()
         </code>
@@ -2009,7 +2079,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_tokens">
         <div class="location">in <a href="../../Console/HasValidators.html#method_tokens">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 551</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 577</div>
         <code>        static    protected        array
     <strong>tokens</strong>(string $data)
         </code>
@@ -2054,7 +2124,7 @@ separated string.</p></td>
                     <div class="method-item">
                     <h3 id="method_upper">
         <div class="location">in <a href="../../Console/HasValidators.html#method_upper">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 561</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 587</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>upper</strong>()
         </code>
@@ -2087,7 +2157,7 @@ separated string.</p></td>
                     <div class="method-item">
                     <h3 id="method_url">
         <div class="location">in <a href="../../Console/HasValidators.html#method_url">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 575</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 601</div>
         <code>                    <a href="../../Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a>
     <strong>url</strong>()
         </code>
@@ -2120,7 +2190,7 @@ separated string.</p></td>
                     <div class="method-item">
                     <h3 id="method_validate">
         <div class="location">in <a href="../../Console/HasValidators.html#method_validate">
-<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 591</div>
+<abbr title="Console\HasValidators">HasValidators</abbr></a> at line 617</div>
         <code>            protected        bool
     <strong>validate</strong>(mixed $response)
         </code>
@@ -2569,7 +2639,7 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_contents">
-        <div class="location">at line 44</div>
+        <div class="location">at line 43</div>
         <code>        static            int
     <strong>contents</strong>(string $migrationName, mixed $renameOption, mixed $updateOption, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -2632,7 +2702,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_batchExists">
-        <div class="location">at line 67</div>
+        <div class="location">at line 66</div>
         <code>        static        private    bool
     <strong>batchExists</strong>(int $batch)
         </code>
@@ -2674,7 +2744,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropAllTables">
-        <div class="location">at line 81</div>
+        <div class="location">at line 80</div>
         <code>        static            int
     <strong>dropAllTables</strong>()
         </code>
@@ -2706,7 +2776,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_confirmDropAllTables">
-        <div class="location">at line 116</div>
+        <div class="location">at line 115</div>
         <code>        static            mixed
     <strong>confirmDropAllTables</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -2752,8 +2822,56 @@ flags are set then appropriate migration class is created.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_confirmMigrationInProduction">
+        <div class="location">at line 128</div>
+        <code>        static            mixed
+    <strong>confirmMigrationInProduction</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ask user to confirm if they want to proceed with migration operation
+when in production mode.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
+                <td>$output</td>
+                <td><p>The Symfony OutputInterface object.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td><p>The user's response.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_fileNameTime">
-        <div class="location">at line 126</div>
+        <div class="location">at line 138</div>
         <code>        static            string
     <strong>fileNameTime</strong>()
         </code>
@@ -2785,7 +2903,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateACLTableMigration">
-        <div class="location">at line 135</div>
+        <div class="location">at line 147</div>
         <code>        static            int
     <strong>generateACLTableMigration</strong>()
         </code>
@@ -2817,7 +2935,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateAllMigrations">
-        <div class="location">at line 149</div>
+        <div class="location">at line 161</div>
         <code>        static            int
     <strong>generateAllMigrations</strong>()
         </code>
@@ -2849,7 +2967,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateEmailAttachmentsTableMigration">
-        <div class="location">at line 163</div>
+        <div class="location">at line 175</div>
         <code>        static            int
     <strong>generateEmailAttachmentsTableMigration</strong>()
         </code>
@@ -2881,7 +2999,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateMigrationByName">
-        <div class="location">at line 178</div>
+        <div class="location">at line 190</div>
         <code>        static            int
     <strong>generateMigrationByName</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -2923,7 +3041,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateMigrationsTableMigration">
-        <div class="location">at line 193</div>
+        <div class="location">at line 205</div>
         <code>        static            int
     <strong>generateMigrationsTableMigration</strong>()
         </code>
@@ -2955,7 +3073,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateProfileImagesTableMigration">
-        <div class="location">at line 207</div>
+        <div class="location">at line 219</div>
         <code>        static            int
     <strong>generateProfileImagesTableMigration</strong>()
         </code>
@@ -2987,7 +3105,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateUserSessionsTableMigration">
-        <div class="location">at line 221</div>
+        <div class="location">at line 233</div>
         <code>        static            int
     <strong>generateUserSessionsTableMigration</strong>()
         </code>
@@ -3019,7 +3137,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateUsersTableMigration">
-        <div class="location">at line 235</div>
+        <div class="location">at line 247</div>
         <code>        static            int
     <strong>generateUsersTableMigration</strong>()
         </code>
@@ -3051,7 +3169,7 @@ flags are set then appropriate migration class is created.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_isBothFlagsSet">
-        <div class="location">at line 252</div>
+        <div class="location">at line 264</div>
         <code>        static            bool
     <strong>isBothFlagsSet</strong>(mixed $renameOption, mixed $updateOption)
         </code>
@@ -3099,7 +3217,7 @@ set then a message is displayed and true is returned.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeMigration">
-        <div class="location">at line 268</div>
+        <div class="location">at line 280</div>
         <code>        static            int
     <strong>makeMigration</strong>(string $migrationName)
         </code>
@@ -3142,7 +3260,7 @@ will target.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeRenameMigration">
-        <div class="location">at line 288</div>
+        <div class="location">at line 300</div>
         <code>        static            int
     <strong>makeRenameMigration</strong>(string $migrationName, mixed $renameOption)
         </code>
@@ -3190,7 +3308,7 @@ will target.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeUpdateMigration">
-        <div class="location">at line 306</div>
+        <div class="location">at line 318</div>
         <code>        static            int
     <strong>makeUpdateMigration</strong>(string $migrationName)
         </code>
@@ -3233,7 +3351,7 @@ will target.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_migrate">
-        <div class="location">at line 323</div>
+        <div class="location">at line 335</div>
         <code>        static            int
     <strong>migrate</strong>()
         </code>
@@ -3265,7 +3383,7 @@ will target.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_migrationNamePrompt">
-        <div class="location">at line 395</div>
+        <div class="location">at line 407</div>
         <code>        static            string
     <strong>migrationNamePrompt</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -3312,7 +3430,7 @@ will target.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_migrationTypePrompt">
-        <div class="location">at line 408</div>
+        <div class="location">at line 420</div>
         <code>        static            int
     <strong>migrationTypePrompt</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, string $migrationName, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -3365,7 +3483,7 @@ renamed to.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_refresh">
-        <div class="location">at line 429</div>
+        <div class="location">at line 441</div>
         <code>        static            int
     <strong>refresh</strong>(<abbr title="Console\Helpers\bool|int">bool|int</abbr> $step = false)
         </code>
@@ -3408,7 +3526,7 @@ back.  When set to false all tables are dropped one by one.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renameChoice">
-        <div class="location">at line 486</div>
+        <div class="location">at line 498</div>
         <code>        static        private    int
     <strong>renameChoice</strong>(string $migrationName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -3461,7 +3579,7 @@ user responds with the choice to rename.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_renamePrompt">
-        <div class="location">at line 501</div>
+        <div class="location">at line 513</div>
         <code>        static            int
     <strong>renamePrompt</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, mixed $renameOption)
         </code>
@@ -3514,7 +3632,7 @@ provides name of controller as an argument.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_rollback">
-        <div class="location">at line 515</div>
+        <div class="location">at line 527</div>
         <code>        static            int
     <strong>rollback</strong>(<abbr title="Console\Helpers\string|int|bool">string|int|bool</abbr> $batch = false)
         </code>
@@ -3557,7 +3675,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_rollbackStep">
-        <div class="location">at line 563</div>
+        <div class="location">at line 575</div>
         <code>        static            int
     <strong>rollbackStep</strong>(<abbr title="Console\Helpers\string|int">string|int</abbr> $step)
         </code>
@@ -3599,7 +3717,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setFlags">
-        <div class="location">at line 577</div>
+        <div class="location">at line 589</div>
         <code>        static            array
     <strong>setFlags</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
         </code>
@@ -3641,7 +3759,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_status">
-        <div class="location">at line 589</div>
+        <div class="location">at line 601</div>
         <code>        static            int
     <strong>status</strong>()
         </code>
@@ -3673,7 +3791,7 @@ that we want to roll back latest batch of migrations.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_step">
-        <div class="location">at line 645</div>
+        <div class="location">at line 657</div>
         <code>        static        private    <abbr title="Console\Helpers\bool|int">bool|int</abbr>
     <strong>step</strong>(string $klassNamespace, <abbr title="Console\Helpers\bool|int">bool|int</abbr> $step = false)
         </code>
@@ -3723,7 +3841,7 @@ when no number of steps is provided.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tableCount">
-        <div class="location">at line 666</div>
+        <div class="location">at line 678</div>
         <code>        static        private    int
     <strong>tableCount</strong>()
         </code>
@@ -3756,7 +3874,7 @@ operations.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_validateRenameOption">
-        <div class="location">at line 700</div>
+        <div class="location">at line 712</div>
         <code>        static        private    string
     <strong>validateRenameOption</strong>(string $to, string $from, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>

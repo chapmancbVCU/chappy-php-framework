@@ -495,7 +495,10 @@ argument.</p></dd><dt><a href="Console/Helpers/ControllerStubs.html"><abbr title
                     <dd><p>Generates new migration class if table-name argument is provided.  If rename or update
 flags are set then appropriate migration class is created.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmDropAllTables">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::confirmDropAllTables</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
-                    <dd><p>Ask user to confirm if they want to drop all tables.</p></dd><dt><a href="Console/Helpers/Model.html#method_contents">
+                    <dd><p>Ask user to confirm if they want to drop all tables.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmMigrationInProduction">
+<abbr title="Console\Helpers\Migrate">Migrate</abbr>::confirmMigrationInProduction</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
+                    <dd><p>Ask user to confirm if they want to proceed with migration operation
+when in production mode.</p></dd><dt><a href="Console/Helpers/Model.html#method_contents">
 <abbr title="Console\Helpers\Model">Model</abbr>::contents</a>() &mdash; <em>Method in class <a href="Console/Helpers/Model.html"><abbr title="Console\Helpers\Model">Model</abbr></a></em></dt>
                     <dd><p>Generates a new model class.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_channels">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::channels</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
@@ -1369,7 +1372,11 @@ that updates timestamps.</p></dd>        </dl><h2 id="letterI">I</h2>
 <abbr title="Console\HasValidators">HasValidators</abbr>::ip</a>() &mdash; <em>Method in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
                     <dd><p>Enforce rule where input must be a valid IP address.</p></dd><dt><a href="Console/HasValidators.html#method_integer">
 <abbr title="Console\HasValidators">HasValidators</abbr>::integer</a>() &mdash; <em>Method in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
-                    <dd><p>Enforce rule where input must be an integer.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_isBothFlagsSet">
+                    <dd><p>Enforce rule where input must be an integer.</p></dd><dt><a href="Console/HasValidators.html#method_isPortUsed">
+<abbr title="Console\HasValidators">HasValidators</abbr>::isPortUsed</a>() &mdash; <em>Method in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
+                    <dd><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_isBothFlagsSet">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::isBothFlagsSet</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Determines if both rename and update flags are set.  If they are both
 set then a message is displayed and true is returned.</p></dd><dt><a href="Console/Helpers/Queue.html#method_isValidJob">
@@ -1381,7 +1388,9 @@ set then a message is displayed and true is returned.</p></dd><dt><a href="Conso
                     <dd><p>A string of input options provided as input when running the
 test command.</p></dd><dt><a href="Console/Helpers/Tools.html#method_isFailure">
 <abbr title="Console\Helpers\Tools">Tools</abbr>::isFailure</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
-                    <dd><p>Checks if parameter provided is equal to Command::FAILURE.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_indexAction">
+                    <dd><p>Checks if parameter provided is equal to Command::FAILURE.</p></dd><dt><a href="Console/Helpers/Tools.html#method_isProduction">
+<abbr title="Console\Helpers\Tools">Tools</abbr>::isProduction</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
+                    <dd><p>Checks if application is in production mode.</p></dd><dt><a href="Core/Controllers/RestrictedController.html#method_indexAction">
 <abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr>::indexAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a></em></dt>
                     <dd><p>This controller's default action.</p></dd><dt><a href="Core/DB.html#method_insert">
 <abbr title="Core\DB">DB</abbr>::insert</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
@@ -2048,14 +2057,14 @@ as strings along with any additional parameters that maybe expected.</p></dd><dt
                     <dd><p>Stub for profile/UpdatePassword.jsx page component</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitRunner.html"><abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Supports PHPUnit testing operations.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitRunner.html#method_parseOptions">
 <abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr>::parseOptions</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/PHPUnitRunner.html"><abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr></a></em></dt>
-                    <dd><p>Parses PHPUnit related arguments and ignore Symfony arguments.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitStubs.html"><abbr title="Console\Helpers\Testing\PHPUnitStubs">PHPUnitStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
+                    <dd><p>Parses related arguments and ignore Symfony arguments.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitStubs.html"><abbr title="Console\Helpers\Testing\PHPUnitStubs">PHPUnitStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Collection of template stub files for feature and unit test files.</p></dd><dt><a href="Console/Helpers/Testing/PHPUnitTestBuilder.html"><abbr title="Console\Helpers\Testing\PHPUnitTestBuilder">PHPUnitTestBuilder</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Utility class that supports ability to create new test classes for PHPUnit
 based tests.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method_parseOptions">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::parseOptions</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
                     <dd><p>Parses related arguments and ignore Symfony arguments.</p></dd><dt><a href="Console/Helpers/Testing/VitestTestRunner.html#method_parseOptions">
 <abbr title="Console\Helpers\Testing\VitestTestRunner">VitestTestRunner</abbr>::parseOptions</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/VitestTestRunner.html"><abbr title="Console\Helpers\Testing\VitestTestRunner">VitestTestRunner</abbr></a></em></dt>
-                    <dd><p>Parses Vitest related arguments and ignore Symfony arguments.</p></dd><dt><a href="Console/Helpers/Tools.html#method_pathExists">
+                    <dd><p>Parses related arguments and ignore Symfony arguments.</p></dd><dt><a href="Console/Helpers/Tools.html#method_pathExists">
 <abbr title="Console\Helpers\Tools">Tools</abbr>::pathExists</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
                     <dd><p>Tests if a path exits and creates it if necessary.</p></dd><dt><a href="Core/FormHelper.html#method_posted_values">
 <abbr title="Core\FormHelper">FormHelper</abbr>::posted_values</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
