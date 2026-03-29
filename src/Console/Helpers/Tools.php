@@ -60,6 +60,15 @@ class Tools extends Console {
     }
 
     /**
+     * Checks if application is in production mode.
+     *
+     * @return bool True if in production, otherwise we return false.
+     */
+    public static function isProduction(): bool {
+        return env('APP_ENV') === 'production' ? true : false;
+    }
+
+    /**
      * Tests if a path exits and creates it if necessary.
      *
      * @param string $path The path to check if it exists.
