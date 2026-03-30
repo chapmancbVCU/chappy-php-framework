@@ -78,7 +78,6 @@ class Console {
         FrameworkQuestion $question,
         string|bool|int|float|null $default = null, 
     ): mixed {
-        //$question = new FrameworkQuestion($input, $output);
         return $question->choice($message, $choices, $default);
     }
 
