@@ -14,7 +14,6 @@ use Console\Helpers\MigrationStatus;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Helper class for migration related console commands.
@@ -29,34 +28,6 @@ class Migrate extends Console {
      * The message to present to user when name of migration is being asked.
      */
     public const MIGRATION_PROMPT = "Enter name for new migration.";
-
-    /**
-     * Generates new migration class if table-name argument is provided.  If rename or update 
-     * flags are set then appropriate migration class is created.
-     *
-     * @param string $migrationName The name of the table for the new migration class.
-     * @param mixed $renameOption Value/state of rename flag.
-     * @param mixed $renameOption Value/state of update flag.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function contents(
-        string $migrationName, 
-        mixed $renameOption, 
-        mixed $updateOption, 
-        InputInterface $input, 
-        OutputInterface $output
-        ): int {
-
-        if($renameOption) {
-            $renameOption = self::validateRenameOption($renameOption, $migrationName, $input, $output);
-            return Migrate::makeRenameMigration($migrationName, $renameOption);
-        }
-            
-        else if($updateOption) return Migrate::makeUpdateMigration($migrationName);
-        else return Migrate::makeMigration($migrationName);
-    }
     
     /**
      * Test if a particular batch of migrations exists.
@@ -71,6 +42,32 @@ class Migrate extends Console {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Generates new migration class if table-name argument is provided.  If rename or update 
+     * flags are set then appropriate migration class is created.
+     *
+     * @param string $migrationName The name of the table for the new migration class.
+     * @param mixed $renameOption Value/state of rename flag.
+     * @param mixed $renameOption Value/state of update flag.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function contents(
+        string $migrationName, 
+        mixed $renameOption, 
+        mixed $updateOption, 
+        FrameworkQuestion $question
+        ): int {
+
+        if($renameOption) {
+            $renameOption = self::validateRenameOption($renameOption, $migrationName, $question);
+            return Migrate::makeRenameMigration($migrationName, $renameOption);
+        }
+            
+        else if($updateOption) return Migrate::makeUpdateMigration($migrationName);
+        else return Migrate::makeMigration($migrationName);
     }
 
     /**
@@ -121,13 +118,12 @@ class Migrate extends Console {
      * Ask user to confirm if they want to proceed with migration operation 
      * when in production mode.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return mixed The user's response.
      */
-    public static function confirmMigrationInProduction(InputInterface $input, OutputInterface $output): mixed {
+    public static function confirmMigrationInProduction(FrameworkQuestion $question): mixed {
         $message = "You are in production mode.  Are you sure you want to proceed with migration operation? (y/n)";
-        return self::confirm($message, $input, $output);
+        return self::confirm($message, $question);
     }
 
     /**
@@ -400,33 +396,30 @@ class Migrate extends Console {
     /**
      * Handles question for which table a new migration will target.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The name of the table the new migration will target.
      */
-    public static function migrationNamePrompt(InputInterface $input, OutputInterface $output): string {        
-        return self::prompt(self::MIGRATION_PROMPT, $input, $output, ['max:50', 'fieldName:table-name']);
+    public static function migrationNamePrompt(FrameworkQuestion $question): string {        
+        return self::prompt(self::MIGRATION_PROMPT, $question, ['max:50', 'fieldName:table-name']);
     }
 
     /**
      * Prompts user for input when no argument and no options are set.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @param string $migrationName Name of migration to be created or 
      * renamed to.
-     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function migrationTypePrompt(
-        InputInterface $input, 
+        FrameworkQuestion $question,
         string $migrationName, 
-        OutputInterface $output
     ): int {
         $choices = ['New Table (default)', 'Rename', 'Update'];
-        $response = self::choice(self::MIGRATION_PROMPT, $choices, $input, $output, $choices[0]);
+        $response = self::choice(self::MIGRATION_PROMPT, $choices, $question, $choices[0]);
         
         if($response == 'New Table (default)') return self::makeMigration($migrationName);
-        if($response == 'Rename') return self::renameChoice($migrationName, $input, $output);
+        if($response == 'Rename') return self::renameChoice($migrationName, $question);
         if($response == 'Update') return self::makeUpdateMigration($migrationName);
         return Command::FAILURE;
     }
@@ -491,13 +484,12 @@ class Migrate extends Console {
      * user responds with the choice to rename.
      *
      * @param string $migrationName The new name for the table to be renamed.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    private static function renameChoice(string $migrationName, InputInterface $input, OutputInterface $output): int {
+    private static function renameChoice(string $migrationName, FrameworkQuestion $question): int {
         $message = "Provide name for original table";
-        $response = self::prompt($message, $input, $output, ['max:50', 'fieldName:original-table', "different:{$migrationName}"]);
+        $response = self::prompt($message, $question, ['max:50', 'fieldName:original-table', "different:{$migrationName}"]);
         return self::makeRenameMigration($response, $migrationName);
     }
 
@@ -505,15 +497,14 @@ class Migrate extends Console {
      * Prompts user to enter name of table to be updated.  Used when user 
      * provides name of controller as an argument.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @param mixed $renameOption Value/state of rename flag.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function renamePrompt(InputInterface $input, OutputInterface $output, mixed $renameOption): int {
+    public static function renamePrompt(FrameworkQuestion $question, mixed $renameOption): int {
         $message = "Enter name for original table";
-        $response = self::prompt($message, $input, $output, ['max:50', 'fieldName:original-table']);
-        $renameOption = self::validateRenameOption($renameOption, $response, $input, $output);  
+        $response = self::prompt($message, $question, ['max:50', 'fieldName:original-table']);
+        $renameOption = self::validateRenameOption($renameOption, $response, $question);  
         return self::makeRenameMigration($response, $renameOption);
     }
 
@@ -704,22 +695,20 @@ class Migrate extends Console {
      * 
      * @param string $to The new name of the table.
      * @param string $from The original name of the table.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The original value if validation passed.  The updated 
      * value if validation failed.
      */
     private static function validateRenameOption(
         string $to, 
         string $from, 
-        InputInterface $input, 
-        OutputInterface $output
+        FrameworkQuestion $question
     ): string {
 
         $to = Str::lower($to);
         $from = Str::lower($from);
         $message = "Provide name for new table.";
-        self::argOptionValidate($to, $message, $input, $output, ['max:50', 'fieldName:original-name', "different:{$from}"]);
+        self::argOptionValidate($to, $message, $question, ['max:50', 'fieldName:original-name', "different:{$from}"]);
         return $to;
     }
 }
