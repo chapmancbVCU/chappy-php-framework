@@ -5,13 +5,15 @@ namespace Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
+use Console\ConsoleIO;
 /**
  * Extends Command class and provides $input and $output as instance 
  * variables of their respective classes.  Also contains helper for returning 
  * an instance of the FrameworkQuestion class.
  */
 abstract class ConsoleCommand extends Command {
+    use ConsoleIO;
+    
     /**
      * The Symfony InputInterface object.
      *
