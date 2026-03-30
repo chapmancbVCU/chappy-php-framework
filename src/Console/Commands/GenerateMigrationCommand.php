@@ -3,7 +3,6 @@ namespace Console\Commands;
 
 use Console\ConsoleCommand;
 use Console\Helpers\Migrate;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -47,7 +46,7 @@ class GenerateMigrationCommand extends ConsoleCommand
         [$renameOption, $updateOption] = Migrate::setFlags($this->input);
         $bothFlagsSet = Migrate::isBothFlagsSet($renameOption, $updateOption);
 
-        if($bothFlagsSet) return Command::FAILURE;
+        if($bothFlagsSet) return self::FAILURE;
 
         // When tableName argument is provided.
         if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption, $this->question());
