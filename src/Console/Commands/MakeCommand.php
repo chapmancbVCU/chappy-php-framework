@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\CommandHelper;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Supports ability to create new console command by running make:command.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#build-command">here</a>.
  */
-class MakeCommand extends Command
+class MakeCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -30,18 +28,17 @@ class MakeCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $commandName = $input->getArgument('command-name');
+        $commandName = $this->input->getArgument('command-name');
         $message = "Enter name for new Command class.";
         if($commandName) {
-            CommandHelper::argOptionValidate($commandName, $message, $input, $output, ['max:50']);
+            CommandHelper::argOptionValidate($commandName, $message, $this->question(), ['max:50']);
         } else {
-            $commandName = CommandHelper::prompt($message, $input, $output, ['max:50']);
+            $commandName = CommandHelper::prompt($message, $this->question(), ['max:50']);
         }
         return CommandHelper::makeCommand(Str::ucfirst($commandName));
     }
