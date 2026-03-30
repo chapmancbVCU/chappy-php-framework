@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\HasValidators;
 use Console\Helpers\View;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new css file by typing make:css.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/views#make-css">here</a>.
  */
-class MakeCSSCommand extends Command {
+class MakeCSSCommand extends ConsoleCommand {
     use HasValidators;
 
     /**
@@ -31,18 +29,16 @@ class MakeCSSCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $fileName = $input->getArgument('css-name');
+        $fileName = $this->getArgument('css-name');
         $message = "Enter name for new CSS file.";
         if($fileName) {
-            View::argOptionValidate($fileName, $message, $input, $output, ['max:50']);
+            View::argOptionValidate($fileName, $message, $this->question(), ['max:50']);
         } else {
-            $fileName = View::prompt($message, $input, $output, ['max:50']);
+            $fileName = View::prompt($message, $this->question(), ['max:50']);
         }
 
         return View::makeCSS($fileName);
