@@ -34,7 +34,7 @@ class GenerateMigrationCommand extends ConsoleCommand
      */
     protected function handle(): int
     {
-        $tableName = $this->input->getArgument('table-name');
+        $tableName = $this->getArgument('table-name');
         if($tableName) {
             Migrate::argOptionValidate(
                 $tableName,
