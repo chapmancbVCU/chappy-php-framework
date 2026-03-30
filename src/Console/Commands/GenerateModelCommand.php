@@ -2,21 +2,19 @@
 namespace Console\Commands;
 
 use Console\Console;
+use Console\ConsoleCommand;
 use Console\HasValidators;
 use Console\Helpers\Model;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to generate new model class by typing make:model.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/models#overview">here</a>.
  */
-class GenerateModelCommand extends Command
+class GenerateModelCommand extends ConsoleCommand
 {
     use HasValidators;
 
@@ -37,31 +35,28 @@ class GenerateModelCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $modelName = $input->getArgument('model-name');
+        $modelName = $this->input->getArgument('model-name');
 
         if($modelName) {
             Console::argOptionValidate(
                 $modelName, 
                 Model::PROMPT_MESSAGE,
-                $input,
-                $output,
+                $this->question(),
                 ['max:50', 'fieldName:model-name']
             );
         }
         
-        $uploadOption = $input->getOption('upload');
+        $uploadOption = $this->input->getOption('upload');
         if($modelName) {
             $modelName = Str::ucfirst($modelName);
             $contents =  Model::contents($modelName, $uploadOption);
         } else {
-            $modelName = Model::modelNamePrompt($input, $output);
-            $contents = Model::uploadPrompt($modelName, $input, $output, $uploadOption);
+            $modelName = Model::modelNamePrompt($this->question());
+            $contents = Model::uploadPrompt($modelName, $this->question(), $this->output, $uploadOption);
         }
 
         return Tools::writeFile(Model::MODEL_PATH.$modelName.'.php', $contents, "Model");
