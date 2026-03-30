@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Console;
 
+/**
+ * Wrapper class for InputInterface functions.
+ */
 trait ConsoleIO {
     /**
      * Wrapper for InputInterface::getArgument function.
