@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\ConsoleLogger;
+use Console\FrameworkQuestion;
 use PDO;
 use Core\DB;
 use Core\Lib\Utilities\Arr;
@@ -108,13 +109,12 @@ class Migrate extends Console {
     /**
      * Ask user to confirm if they want to drop all tables.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return mixed The user's response.
      */
-    public static function confirmDropAllTables(InputInterface $input, OutputInterface $output): mixed {
+    public static function confirmDropAllTables(FrameworkQuestion $question): mixed {
         $message = "Are you sure you want to drop all tables? (y/n)";
-        return self::confirm($message, $input, $output);
+        return self::confirm($message, $question);
     }
 
     /**
