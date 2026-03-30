@@ -3,8 +3,6 @@ namespace Console\Commands;
 
 use Console\ConsoleCommand;
 use Console\Helpers\Log;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to delete log file.
