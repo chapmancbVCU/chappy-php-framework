@@ -26,8 +26,6 @@ class RemoveLogsCommand extends ConsoleCommand {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
     protected function handle(): int
