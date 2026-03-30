@@ -3,9 +3,9 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
-use Symfony\Component\Console\Output\OutputInterface;
+use Console\FrameworkQuestion;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
+
 
 /**
  * Contains functions for miscellaneous tasks.
@@ -24,19 +24,17 @@ class Tools extends Console {
      * Creates a directory.  It checks if it already exists.  If not, user is asked to confirm the want to create a new directory.
      *
      * @param string $directory The full path for the directory to be created.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function createDirWithPrompt(
         string $directory, 
-        InputInterface $input, 
-        OutputInterface $output
+        FrameworkQuestion $question
     ): int {
         // Check if directory exists
         if (!is_dir($directory)) {
             $message = "The directory '$directory' does not exist. Do you want to create it? (y/n)";
-            if (self::confirm($message, $input, $output)) {
+            if (self::confirm($message, $question)) {
                 self::pathExists($directory, 0755, true);
                 console_info("Directory created: $directory");
                 return Command::SUCCESS;
