@@ -50,10 +50,10 @@ class MakeComponentCommand extends ConsoleCommand {
                 $this->question(),
                 ['max:50', 'fieldName:component-name']
             );
-            return Component::componentContents($componentName, $flag, $this->question());
+            return Component::makeComponent($componentName, $flag, $this->question());
         } 
 
         $componentName = Component::componentNamePrompt($this->question());
-        return Component::componentContents($componentName, $flag, $this->question());
+        return Component::makeComponent($componentName, $flag, $this->question());
     }
 }

@@ -19,29 +19,6 @@ class Component extends Console {
      * The message to present to user when name of component is being asked.
      */
     public const PROMPT_MESSAGE = "Enter name for your component";
-    
-    /**
-     * Generate a component when argument is provided.
-     *
-     * @param string $componentName The name for the new component.
-     * @param string $componentFlag The type of component to be created.
-     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function componentContents(string $componentName, string $componentFlag, FrameworkQuestion $question): int {
-        if($componentFlag === 'card') {
-            return self::makeCardComponent($componentName);
-        } else if($componentFlag === 'form') {
-            return self::makeFormComponent(
-                $componentName,
-                self::formMethod($question),
-                self::enctype($question)
-            );
-        } else if($componentFlag === 'table') {
-            return self::makeTableComponent($componentName);
-        }
-        return Command::FAILURE;
-    }
 
     /**
      * Prompts uses for information if argument is not provided.
@@ -73,7 +50,7 @@ class Component extends Console {
         $flag = null;
         $count = 0;
         $multipleFlags = false;
-        
+
         foreach($types as $k => $v) {
             if($v) {
                 $flag = $k;
@@ -134,6 +111,29 @@ class Component extends Console {
         );
     }
 
+    /**
+     * Generate a component when argument is provided.
+     *
+     * @param string $componentName The name for the new component.
+     * @param string $componentFlag The type of component to be created.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeComponent(string $componentName, string $componentFlag, FrameworkQuestion $question): int {
+        if($componentFlag === 'card') {
+            return self::makeCardComponent($componentName);
+        } else if($componentFlag === 'form') {
+            return self::makeFormComponent(
+                $componentName,
+                self::formMethod($question),
+                self::enctype($question)
+            );
+        } else if($componentFlag === 'table') {
+            return self::makeTableComponent($componentName);
+        }
+        return Command::FAILURE;
+    }
+    
     /**
      * Writes form component to file.
      *
