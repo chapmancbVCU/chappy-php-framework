@@ -10,10 +10,20 @@ trait ConsoleIO {
     /**
      * Wrapper for InputInterface::getArgument function.
      *
-     * @param mixed $argument The argument
-     * @return mixed The value for the argument
+     * @param mixed $argument The argument.
+     * @return mixed The value for the argument.
      */
     public function getArgument(mixed $argument): mixed {
-        return $this->input->getOption($argument);
+        return $this->input->getArgument($argument);
+    }
+
+    /**
+     * Wrapper for InputInterface::getOption function.
+     *
+     * @param mixed $option The option.
+     * @return mixed The value for the option.
+     */
+    public function getOption(mixed $option): mixed {
+        return $this->input->getOption($option);
     }
 }
