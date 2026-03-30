@@ -50,7 +50,7 @@ class GenerateModelCommand extends ConsoleCommand
             );
         }
         
-        $uploadOption = $this->input->getOption('upload');
+        $uploadOption = $this->getOption('upload');
         if($modelName) {
             $modelName = Str::ucfirst($modelName);
             $contents =  Model::contents($modelName, $uploadOption);
