@@ -40,7 +40,7 @@ class MakeComponentCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
-        $componentName = $this->input->getArgument('component-name');
+        $componentName = $this->getArgument('component-name');
 
         if($componentName) {
             Component::argOptionValidate(
