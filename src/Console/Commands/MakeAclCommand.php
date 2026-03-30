@@ -30,7 +30,7 @@ class MakeAclCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
-        $menuName = $this->input->getArgument('acl-name');
+        $menuName = $this->getArgument('acl-name');
         $message = "Enter name for new acl file.";
         if($menuName) {
             View::argOptionValidate($menuName, $message, $this->question(), ['max:50']);
