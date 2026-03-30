@@ -3,10 +3,10 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports operations related to the creation of components.
@@ -25,10 +25,10 @@ class Component extends Console {
      *
      * @param string $componentName The name for the new component.
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function componentContents(string $componentName, InputInterface $input, OutputInterface $output): int {
+    public static function componentContents(string $componentName, InputInterface $input, FrameworkQuestion $question): int {
         $card = $input->getOption('card');
         $form = $input->getOption('form');
         $table = $input->getOption('table');
@@ -38,13 +38,13 @@ class Component extends Console {
         } else if($form && !$card && !$table) {
             return self::makeFormComponent(
                 $componentName,
-                self::formMethod($input, $output),
-                self::enctype($input, $output)
+                self::formMethod($question),
+                self::enctype($question)
             );
         } else if($table && !$card && !$form) {
             return self::makeTableComponent($componentName);
         } else if(!$table && !$card && !$form){
-            return self::componentPrompt($input, $output, $componentName);
+            return self::componentPrompt($question, $componentName);
         }
         else {
             console_warning("You can only choose one component type at a time.");
@@ -55,25 +55,24 @@ class Component extends Console {
     /**
      * Prompts uses for information if argument is not provided.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function componentPrompt(InputInterface $input, OutputInterface $output, ?string $componentName = null): int {
+    public static function componentPrompt(FrameworkQuestion $question, ?string $componentName = null): int {
         $message = "Choose a component type";
         $choices = ['card', 'form', 'table'];
-        $response = self::choice($message, $choices, $input, $output);
+        $response = self::choice($message, $choices, $question);
 
         if(!$componentName) {
-            $componentName = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:5', 'fieldName:component-name']);
+            $componentName = self::prompt(self::PROMPT_MESSAGE, $question, ['max:5', 'fieldName:component-name']);
         }
 
         if($response === 'card') return self::makeCardComponent($componentName);
         if($response === 'form') {
             return self::makeFormComponent(
                 $componentName,
-                self::formMethod($input, $output),
-                self::enctype($input, $output)
+                self::formMethod($question),
+                self::enctype($question)
             );
         }
         if($response === 'table') return self::makeTableComponent($componentName);
@@ -84,14 +83,13 @@ class Component extends Console {
     /**
      * Prompts user for information about enctype to be used in form component.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The user's response.
      */
-    public static function enctype(InputInterface $input, OutputInterface $output): string {
+    public static function enctype(FrameworkQuestion $question): string {
         $message = "Choose a the enctype (default: none)";
         $choices = ['default: none', 'multipart/form-data', 'text/plain'];
-        $response = self::choice($message, $choices, $input, $output, $choices[0]);
+        $response = self::choice($message, $choices, $question, $choices[0]);
         if($response == 'default: none') $response = '';
         return $response;
     }
@@ -99,14 +97,13 @@ class Component extends Console {
     /**
      * Prompts user for information about which form method to be used in form component.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The user's response.
      */
-    public static function formMethod(InputInterface $input, OutputInterface $output): string {
+    public static function formMethod(FrameworkQuestion $question): string {
         $message = "Choose a form method (default: post).";
         $choices = ['get', 'post', 'put'];
-        return self::choice($message, $choices, $input, $output, $choices[0]);
+        return self::choice($message, $choices, $question, $choices[0]);
     }
 
     /**

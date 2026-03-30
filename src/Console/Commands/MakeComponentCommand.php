@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\ConsoleCommand;
 use Console\Helpers\Component;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to create components by running make:component.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/components">here</a>.
  */
-class MakeComponentCommand extends Command {
+class MakeComponentCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -38,25 +36,22 @@ class MakeComponentCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $componentName = $input->getArgument('component-name');
+        $componentName = $this->input->getArgument('component-name');
 
         if($componentName) {
             Component::argOptionValidate(
                 $componentName,
                 Component::PROMPT_MESSAGE,
-                $input,
-                $output,
+                $this->question(),
                 ['max:50', 'fieldName:component-name']
             );
-            return Component::componentContents($componentName, $input, $output);
+            return Component::componentContents($componentName, $this->input, $this->question());
         } 
         
-        return Component::componentPrompt($input, $output);
+        return Component::componentPrompt($this->question());
     }
 }
