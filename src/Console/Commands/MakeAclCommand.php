@@ -1,17 +1,15 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\View;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Supports ability to generate a menu_acl json file by running make:acl.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#menu-acls">here</a>.
  */
-class MakeAclCommand extends Command {
+class MakeAclCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -28,18 +26,16 @@ class MakeAclCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $menuName = $input->getArgument('acl-name');
+        $menuName = $this->input->getArgument('acl-name');
         $message = "Enter name for new acl file.";
         if($menuName) {
-            View::argOptionValidate($menuName, $message, $input, $output, ['max:50']);
+            View::argOptionValidate($menuName, $message, $this->question(), ['max:50']);
         } else {
-            $menuName = View::prompt($message, $input, $output, ['max:50']);
+            $menuName = View::prompt($message, $this->question(), ['max:50']);
         }
             
         return View::makeMenuAcl($menuName);
