@@ -1,8 +1,8 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\ConsoleCommand;
 use Console\Helpers\Email;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Generates a new email layout by typing make:email-layout.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/email#templates-and-layouts">here</a>.
  */
-class MakeEmailLayoutCommand extends Command {
+class MakeEmailLayoutCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -28,18 +28,16 @@ class MakeEmailLayoutCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $layoutName = $input->getArgument('email-layout');
+        $layoutName = $this->getArgument('email-layout');
         $message = "Enter name for email layout.";
         if($layoutName) {
-            Email::argOptionValidate($layoutName, $message, $input, $output, ['max:50']);
+            Email::argOptionValidate($layoutName, $message, $this->question(), ['max:50']);
         } else {
-            $layoutName = Email::prompt($message, $input, $output, ['max:50']);
+            $layoutName = Email::prompt($message, $this->question(), ['max:50']);
         }
         return Email::makeLayout($layoutName);
     }
