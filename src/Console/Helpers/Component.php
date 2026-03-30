@@ -24,60 +24,74 @@ class Component extends Console {
      * Generate a component when argument is provided.
      *
      * @param string $componentName The name for the new component.
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param string $componentFlag The type of component to be created.
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function componentContents(string $componentName, InputInterface $input, FrameworkQuestion $question): int {
-        $card = $input->getOption('card');
-        $form = $input->getOption('form');
-        $table = $input->getOption('table');
-
-        if($card && !$form && !$table) {
+    public static function componentContents(string $componentName, string $componentFlag, FrameworkQuestion $question): int {
+        if($componentFlag === 'card') {
             return self::makeCardComponent($componentName);
-        } else if($form && !$card && !$table) {
+        } else if($componentFlag === 'form') {
             return self::makeFormComponent(
                 $componentName,
                 self::formMethod($question),
                 self::enctype($question)
             );
-        } else if($table && !$card && !$form) {
+        } else if($componentFlag === 'table') {
             return self::makeTableComponent($componentName);
-        } else if(!$table && !$card && !$form){
-            return self::componentPrompt($question, $componentName);
         }
-        else {
-            console_warning("You can only choose one component type at a time.");
-            return Command::FAILURE;
-        }
+        return Command::FAILURE;
     }
 
     /**
      * Prompts uses for information if argument is not provided.
      *
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
-     * @return int A value that indicates success, invalid, or failure.
+     * @return mixed The user response.
      */
-    public static function componentPrompt(FrameworkQuestion $question, ?string $componentName = null): int {
-        $message = "Choose a component type";
-        $choices = ['card', 'form', 'table'];
-        $response = self::choice($message, $choices, $question);
+    public static function componentNamePrompt(FrameworkQuestion $question,): mixed {
+        return self::prompt(self::PROMPT_MESSAGE, $question, ['max:5', 'fieldName:component-name']);
+    }
 
-        if(!$componentName) {
-            $componentName = self::prompt(self::PROMPT_MESSAGE, $question, ['max:5', 'fieldName:component-name']);
+    /**
+     * Determines the type of component to be created based on flag 
+     * provided.  If no flag is provided or multiple flags are set then user 
+     * is presented with relevant message and asked which type of component 
+     * that they want to create.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @return string A string with the name of the component to be created.
+     */
+    public static function componentType(InputInterface $input, FrameworkQuestion $question): string {
+        $types = [
+            'card' => $input->getOption('card'),
+            'form' => $input->getOption('form'),
+            'table' => $input->getOption('table')
+        ];
+
+        $flag = null;
+        $count = 0;
+        $multipleFlags = false;
+        
+        foreach($types as $k => $v) {
+            if($v) {
+                $flag = $k;
+                $count++;
+            }
+            if($count > 1) {
+                $multipleFlags = true;
+                console_warning("You can only choose one component type at a time.");
+            }
         }
 
-        if($response === 'card') return self::makeCardComponent($componentName);
-        if($response === 'form') {
-            return self::makeFormComponent(
-                $componentName,
-                self::formMethod($question),
-                self::enctype($question)
-            );
+        if(!$flag) console_warning("Component flag not set.");
+        if($multipleFlags || $flag == null) {
+            $message = "Choose a component type";
+            $choices = ['card', 'form', 'table'];
+            $flag = self::choice($message, $choices, $question);
         }
-        if($response === 'table') return self::makeTableComponent($componentName);
-
-        return Command::FAILURE;
+        return $flag;
     }
 
     /**

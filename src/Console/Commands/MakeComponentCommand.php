@@ -41,7 +41,8 @@ class MakeComponentCommand extends ConsoleCommand {
     protected function handle(): int
     {
         $componentName = $this->getArgument('component-name');
-
+        $flag = Component::componentType($this->input, $this->question());
+  
         if($componentName) {
             Component::argOptionValidate(
                 $componentName,
@@ -49,9 +50,10 @@ class MakeComponentCommand extends ConsoleCommand {
                 $this->question(),
                 ['max:50', 'fieldName:component-name']
             );
-            return Component::componentContents($componentName, $this->input, $this->question());
+            return Component::componentContents($componentName, $flag, $this->question());
         } 
-        
-        return Component::componentPrompt($this->question());
+
+        $componentName = Component::componentNamePrompt($this->question());
+        return Component::componentContents($componentName, $flag, $this->question());
     }
 }
