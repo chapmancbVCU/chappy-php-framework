@@ -47,7 +47,7 @@ class GenerateControllerCommand extends ConsoleCommand
      */
     protected function handle(): int
     {
-        $controllerName = $this->input->getArgument('controller-name');
+        $controllerName = $this->getArgument('controller-name');
         if($controllerName) {
             Controller::argOptionValidate(
                 $controllerName, 
