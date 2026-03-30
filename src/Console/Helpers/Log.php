@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -51,27 +52,25 @@ class Log extends Console {
      * Asks user to confirm if they want to delete log files.
      *
      * @param string $logType The type of log to be deleted.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return bool True if user confirms, otherwise we return false.
      */
-    public static function deleteConfirm(string $logType, InputInterface $input, OutputInterface $output): bool {
+    public static function deleteConfirm(string $logType, FrameworkQuestion $question): bool {
         if($logType === "All") $message = "Are you sure you want to all of the logs?";
         else $message = "Are you sure you want to delete the {$logType} log?";
-        return self::confirm($message, $input, $output);
+        return self::confirm($message, $question);
     }
 
     /**
      * Asks user which log they want to delete.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The log type selected by the user.
      */
-    public static function deletePrompt(InputInterface $input, OutputInterface $output): string {
+    public static function deletePrompt(FrameworkQuestion $question): string {
         $message = "Which log do you want to delete (default: App)?";
         $options = ['App', 'CLI', 'PHPUnit', 'All'];
-        return self::choice($message, $options, $input, $output, $options[0]);
+        return self::choice($message, $options, $question, $options[0]);
     }
 
     /**

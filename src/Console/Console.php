@@ -71,8 +71,7 @@ class Console {
      *
      * @param string $message The message to present to the user.
      * @param array $choices An array of choices.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @param string|boolean|integer|float|null|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.
@@ -80,11 +79,10 @@ class Console {
     public static function choice(
         string $message, 
         array $choices, 
-        InputInterface $input, 
-        OutputInterface $output,
+        FrameworkQuestion $question,
         string|bool|int|float|null $default = null, 
     ): mixed {
-        $question = new FrameworkQuestion($input, $output);
+        //$question = new FrameworkQuestion($input, $output);
         return $question->choice($message, $choices, $default);
     }
 
@@ -92,19 +90,16 @@ class Console {
      * Asks a user to confirm based on question asked.
      *
      * @param string $message The message to present to the user.
-     * @param string $message The question to ask.  It is advised to phrase it 
-     * such that the user knows to answer y or n.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
      * @return mixed The user answer.
      */
     public static function confirm(
         string $message,
-        InputInterface $input,
-        OutputInterface $output,
+        FrameworkQuestion $question,
         string|bool|int|float|null $default = true
     ): mixed {
-        $question = new FrameworkQuestion($input, $output);
         return $question->confirm($message, $default);
     }
 
