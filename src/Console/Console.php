@@ -5,8 +5,6 @@ namespace Console;
 
 use Console\HasValidators;
 use Core\Exceptions\FrameworkException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class that can be extended by helpers when validators needs to be used.
@@ -35,8 +33,7 @@ class Console {
      * 
      * @param string $field The reference to the value to be validated.
      * @param string $message The message to present to the user.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion Instance of FrameworkQuestion class.
      * @param array $attributes An array of additional validators.
      * @param bool $defaultNone When set to true user will have to specify 
      * all validators.
@@ -45,8 +42,7 @@ class Console {
     public static function argOptionValidate(
         string &$field,
         string $message, 
-        InputInterface $input, 
-        OutputInterface $output, 
+        FrameworkQuestion $question,
         array $validators = [],
         bool $defaultNone = false
     ): void {
@@ -62,7 +58,7 @@ class Console {
         }
 
         if(!$object->validate($field)) {
-            $field = self::prompt($message, $input, $output, $validators, [], null, $defaultNone);
+            $field = self::prompt($message, $question, $validators, [], null, $defaultNone);
         }
     }
 
@@ -123,8 +119,7 @@ class Console {
      * 4) notReservedKeyword
      * 
      * @param string $message The message to present to the user.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion Instance of FrameworkQuestion class.
      * @param array $attributes An array of additional validators.
      * @param array $suggestions An array of suggestions for when $anticipate 
      * is set to true.  An exception is thrown if this array is empty and 
@@ -137,14 +132,12 @@ class Console {
      */
     public static function prompt(
         string $message, 
-        InputInterface $input, 
-        OutputInterface $output, 
+        FrameworkQuestion $question, 
         array $attributes = [],
         array $suggestions = [],
         string|bool|int|float|null $default = null,
         bool $defaultNone = false
     ): string {
-        $question = new FrameworkQuestion($input, $output);
         self::parseAttributes($question, $attributes);
 
         if(!$defaultNone) {
