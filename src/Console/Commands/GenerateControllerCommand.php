@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Controller;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
@@ -14,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Supports ability to generate new controller class by typing make:controller.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers#creating-a-controller">here</a>.
  */
-class GenerateControllerCommand extends Command
+class GenerateControllerCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -44,34 +45,31 @@ class GenerateControllerCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $controllerName = $input->getArgument('controller-name');
+        $controllerName = $this->input->getArgument('controller-name');
         if($controllerName) {
             Controller::argOptionValidate(
                 $controllerName, 
                 Controller::PROMPT_MESSAGE, 
-                $input, 
-                $output, 
+                $this->question(),
                 ['max:50', 'fieldName:controller-name']
             );
         }
 
-        $layout = Controller::layout($input, $output);
-        $resourceOption = $input->getOption('resource');
+        $layout = Controller::layout($this->input, $this->question());
+        $resourceOption = $this->input->getOption('resource');
         if(Tools::isFailure($layout)) return Command::FAILURE;
         
         if($controllerName) {
             $controllerName = Str::ucfirst($controllerName);
             $contents = Controller::contents($controllerName, $resourceOption, $layout);
         } else {
-            $controllerName = Controller::controllerNamePrompt($input, $output);
-            $layout = Controller::layoutPrompt($input, $output, $layout);
-            $contents = Controller::resourcePrompt($controllerName, $input, $layout, $output, $resourceOption);
+            $controllerName = Controller::controllerNamePrompt($this->question());
+            $layout = Controller::layoutPrompt($this->input, $this->question(), $layout);
+            $contents = Controller::resourcePrompt($controllerName, $this->question(), $layout, $resourceOption);
         }
         
         return Tools::writeFile(

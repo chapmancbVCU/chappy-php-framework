@@ -53,16 +53,12 @@ final class Controller extends Console {
      * Handles question for controller name if it is not provided as an 
      * argument.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The name of the controller class.
      */
-    public static function controllerNamePrompt(
-        InputInterface $input, 
-        OutputInterface $output
-    ): string {
+    public static function controllerNamePrompt(FrameworkQuestion $question): string {
 
-        $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:50', 'fieldName:controller-name']);
+        $response = self::prompt(self::PROMPT_MESSAGE, $question, ['max:50', 'fieldName:controller-name']);
         return Str::ucfirst($response);
     }
 
@@ -70,9 +66,10 @@ final class Controller extends Console {
      * Sets layout for controller when provided as an option.
      *
      * @param InputInterface $input The Symfony InputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The layout to be used with the controller.
      */
-    public static function layout(InputInterface $input, OutputInterface $output): string {
+    public static function layout(InputInterface $input, FrameworkQuestion $question): string {
         $layoutInput = $input->getOption('layout');
 
         if($layoutInput === false) return 'default';
@@ -80,8 +77,7 @@ final class Controller extends Console {
         self::argOptionValidate(
             $layoutInput,
             self::LAYOUT_PROMPT,
-            $input,
-            $output,
+            $question,
             ['max:50', 'fieldName:layout']
         );
         
@@ -93,23 +89,23 @@ final class Controller extends Console {
      * If layout flag is not set then user is asked questions about desired 
      * layout name.
      *
+     * @param InputInterface $input The Symfony InputInterface object.
      * @param FrameworkQuestion $question Instance of Framework Question 
      * object.
-     * @param InputInterface $input The Symfony InputInterface object.
      * @param string $layout Current value set for layout to be used.
      * @return string The name of the layout to be used.
      */
     public static function layoutPrompt(
         InputInterface $input, 
-        OutputInterface $output, 
+        FrameworkQuestion $question,
         string $layout
     ): string {
         $layoutInput = $input->getOption('layout');
         if($layoutInput) return $layout;
 
         $message = "Do you want to set a name for your layout? (y/n)";
-        if(self::confirm($message, $input, $output)) {
-            $response = self::prompt(self::PROMPT_MESSAGE, $input, $output, ['max:50', 'fieldName:layout']);
+        if(self::confirm($message, $question)) {
+            $response = self::prompt(self::PROMPT_MESSAGE, $question, ['max:50', 'fieldName:layout']);
             return Str::lower($response);
         } else {
             return 'default';
@@ -122,22 +118,20 @@ final class Controller extends Console {
      * has been processed the contents for the controller class is returned.
      *
      * @param string $className The name for the new controller class.
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @param string $layout The name of the layout to be used.
-     * @param OutputInterface $output The Symfony OutputInterface object.
      * @param mixed $resourceOption Value/state of resource flag.
      * @return string The contents for the controller class.
      */
     public static function resourcePrompt(
         string $className, 
-        InputInterface $input, 
+        FrameworkQuestion $question,
         string $layout, 
-        OutputInterface $output,
         mixed $resourceOption
     ): string {
-        if($resourceOption) return self::contents($className, $input, $layout);
+        if($resourceOption) return self::contents($className, $resourceOption, $layout);
         $message = "Do you want to use a resource controller? (y/n)";
-        if(self::confirm($message, $input, $output)) {
+        if(self::confirm($message, $question)) {
             return ControllerStubs::resourceTemplate($className, $layout);
         }
 
