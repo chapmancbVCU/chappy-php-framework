@@ -1,17 +1,15 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Email;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new email by running make:email.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/email#templates-and-layouts">here</a>.
  */
-class MakeEmailCommand extends Command {
+class MakeEmailCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -28,18 +26,16 @@ class MakeEmailCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $emailName = $input->getArgument('email-name');
+        $emailName = $this->getArgument('email-name');
         $message = "Enter name for new email.";
         if($emailName) {
-            Email::argOptionValidate($emailName, $message, $input, $output, ['max:50']);
+            Email::argOptionValidate($emailName, $message, $this->question(), ['max:50']);
         } else {
-            $emailName = Email::prompt($message, $input, $output, ['max:50']);
+            $emailName = Email::prompt($message, $this->question(), ['max:50']);
         }
         return Email::makeEmail($emailName);
     }
