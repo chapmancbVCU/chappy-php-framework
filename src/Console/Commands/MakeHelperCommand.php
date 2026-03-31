@@ -1,11 +1,9 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\CommandHelper;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
@@ -13,7 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
  * for your custom commands.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#command-helpers">here</a>.
  */
-class MakeHelperCommand extends Command {
+class MakeHelperCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -30,18 +28,16 @@ class MakeHelperCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $helperName = $input->getArgument('helper-name');
+        $helperName = $this->getArgument('helper-name');
         $message = "Enter name for new command helper class";
         if($helperName) {
-            CommandHelper::argOptionValidate($helperName, $message, $input, $output, ['max:50']);
+            CommandHelper::argOptionValidate($helperName, $message, $this->question(), ['max:50']);
         } else {
-            $helperName = CommandHelper::prompt($message, $input, $output, ['max:50']);
+            $helperName = CommandHelper::prompt($message, $this->question(), ['max:50']);
         }
         return CommandHelper::makeHelper(Str::ucfirst($helperName));
     }
