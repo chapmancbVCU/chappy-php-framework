@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\React;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for making a new JavaScript utility by running react:hook.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/react_utils#overview">here</a>.
  */
-class MakeReactHookCommand extends Command {
+class MakeReactHookCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -29,18 +27,16 @@ class MakeReactHookCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $hookName = $input->getArgument('hook-name');
+        $hookName = $this->getArgument('hook-name');
         $message = "Enter name for the new hook.";
         if($hookName) {
-            React::argOptionValidate($hookName, $message, $input, $output, ['max:50']);
+            React::argOptionValidate($hookName, $message, $this->question(), ['max:50']);
         } else {
-            $hookName = React::prompt($message, $input, $output, ['max:50']);
+            $hookName = React::prompt($message, $this->question(), ['max:50']);
         }
         
         return React::makeHook(Str::ucfirst($hookName));
