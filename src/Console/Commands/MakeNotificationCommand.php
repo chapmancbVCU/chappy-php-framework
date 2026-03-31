@@ -1,19 +1,17 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Notifications;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new Notification class by running make:notification.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/notifications#writing-a-notification">here</a>.
  */
-class MakeNotificationCommand extends Command
+class MakeNotificationCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -40,21 +38,19 @@ class MakeNotificationCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $notificationName = Str::ucfirst($input->getArgument('notification-name'));
+        $notificationName = Str::ucfirst($this->getArgument('notification-name'));
         $message = "Enter name for new notification.";
         if($notificationName) {
-            Notifications::argOptionValidate($notificationName, $message, $input, $output, ['max:50']);
+            Notifications::argOptionValidate($notificationName, $message, $this->question(), ['max:50']);
         } else {
-            $notificationName = Notifications::prompt($message, $input, $output, ['max:50']);
+            $notificationName = Notifications::prompt($message, $this->question(), ['max:50']);
         }
 
-        $channels = $input->getOption('channels');
+        $channels = $this->getOption('channels');
         $message = "Enter comma separated list of channels.";
         $attributes = [
             'required', 
@@ -63,9 +59,9 @@ class MakeNotificationCommand extends Command
         ];
         
         if($channels) {
-            Notifications::argOptionValidate($channels, $message, $input, $output, $attributes, true);
+            Notifications::argOptionValidate($channels, $message, $this->question(), $attributes, true);
         } else {
-            $channels = Notifications::prompt($message, $input, $output, $attributes, [], null, true);
+            $channels = Notifications::prompt($message, $this->question(), $attributes, [], null, true);
         }
 
         $channels = Notifications::channels($channels);
