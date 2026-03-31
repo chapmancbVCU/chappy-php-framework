@@ -29,6 +29,17 @@ class View extends Console {
     public const WIDGET_PATH = self::VIEW_PATH.'widgets'.DS;
 
     /**
+     * Prompts user for name of new layout file.
+     *
+     * @param InputInterface $input The Symfony InputInterface object.
+     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @return string The name of the new layout.
+     */
+    public static function layoutNamePrompt(InputInterface $input, OutputInterface $output): string {
+        return self::prompt(self::LAYOUT_PROMPT, $input, $output, ['max:50', 'fieldName:layout-name']);
+    }
+    
+    /**
      * Generates a new CSS file.
      *
      * @param string $fileName The name of the CSS file.
@@ -120,17 +131,6 @@ class View extends Console {
             self::makeMenu($menuName);
         }
         return $menuName;
-    }
-
-    /**
-     * Prompts user for name of new layout file.
-     *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
-     * @return string The name of the new layout.
-     */
-    public static function layoutNamePrompt(InputInterface $input, OutputInterface $output): string {
-        return self::prompt(self::LAYOUT_PROMPT, $input, $output, ['max:50', 'fieldName:layout-name']);
     }
 
     /**
