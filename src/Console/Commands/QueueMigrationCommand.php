@@ -1,16 +1,14 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Queue;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to create new notifications migration file. 
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/queue#migration">here</a>.
  */
-class QueueMigrationCommand extends Command
+class QueueMigrationCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -27,11 +25,9 @@ class QueueMigrationCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
        return Queue::queueMigration();
     }
