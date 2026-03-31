@@ -6,6 +6,8 @@ use Console\Helpers\Tools;
 use Console\Helpers\Testing\PHPUnitStubs;
 use Symfony\Component\Console\Command\Command;
 use Console\Console;
+use Console\FrameworkQuestion;
+use Core\Exceptions\FrameworkException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -18,21 +20,16 @@ class PHPUnitTestBuilder extends Console implements TestBuilderInterface {
      * Asks user if they want to create a test in the feature suite.
      *
      * @param mixed $feature The value of the --feature flag.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return mixed If the feature flat is set then $feature is returned.  
      * If the user answers yes then a string with the value "feature" is 
      * returned.  Otherwise, null is returned to match case when feature 
      * flag is not set.
      */
-    public static function featurePrompt(
-        mixed $feature, 
-        InputInterface $input, 
-        OutputInterface $output
-    ): mixed {
+    public static function featurePrompt(mixed $feature, FrameworkQuestion $question): mixed {
         if($feature) return $feature;
         $message = "Do you want this to be a feature test? (y/n)";
-        if(self::confirm($message, $input, $output)) return "feature";
+        if(self::confirm($message, $question)) return "feature";
         return null;
     }
 
