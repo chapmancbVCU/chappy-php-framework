@@ -1,20 +1,18 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Testing\PHPUnitRunner;
 use Console\Helpers\Testing\TestRunner;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to run a phpunit test with only the name of the test file is accepted as a required input.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/php_unit#running-tests">here</a>.
  */
-class RunTestCommand extends Command
+class RunTestCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -53,20 +51,18 @@ class RunTestCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
         // Get options and arguments
-        $testArg = $input->getArgument('testname');
-        if($testArg && PHPUnitRunner::testIfSame($testArg)) return Command::FAILURE;
+        $testArg = $this->getArgument('testname');
+        if($testArg && PHPUnitRunner::testIfSame($testArg)) return self::FAILURE;
 
-        $unit = $input->getOption('unit');
-        $feature = $input->getOption('feature');
+        $unit = $this->getOption('unit');
+        $feature = $this->getOption('feature');
         
-        $test = new PHPUnitRunner($input, $output);
+        $test = new PHPUnitRunner($this->input, $this->output);
 
         // Run all tests.
         if(!$feature && !$unit && !$testArg) {
@@ -98,7 +94,7 @@ class RunTestCommand extends Command
         }
         if(!$testArg && PHPUnitRunner::testSuiteStatus($runBySuiteStatus)) {
             console_info("Completed tests by suite(s)");
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
         /* 
@@ -122,10 +118,10 @@ class RunTestCommand extends Command
         }
         if($testArg && PHPUnitRunner::testSuiteStatus($testNameByFlagStatus)) {
             console_info("Completed tests by name and suite(s)");
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
         console_error("There was an issue running unit tests.  Check your command line input.");
-        return Command::FAILURE;
+        return self::FAILURE;
     }
 }
