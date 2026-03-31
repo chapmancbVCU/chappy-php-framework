@@ -30,7 +30,7 @@ class MakeFactoryCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
-        $factoryName = $input->getArgument('factory-name');
+        $factoryName = $this->getArgument('factory-name');
         $message = "Enter name for new factory.";
         if($factoryName) {
             DBSeeder::argOptionValidate($factoryName, $message, $this->question(), ['max:50']);
