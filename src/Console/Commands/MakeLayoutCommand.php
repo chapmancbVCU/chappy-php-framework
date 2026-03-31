@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\ConsoleCommand;
 use Console\Helpers\View;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Generates a new layout by running make:layout.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#build-layout">here</a>.
  */
-class MakeLayoutCommand extends Command {
+class MakeLayoutCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -40,27 +41,25 @@ class MakeLayoutCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
         // Get inputs
-        $layoutName = $input->getArgument('layout-name');
-        $menu = $input->getOption('menu');
-        $menuAcl = $input->getOption('menu-acl');
+        $layoutName = $this->getArgument('layout-name');
+        $menu = $this->getOption('menu');
+        $menuAcl = $this->getOption('menu-acl');
     
         if($layoutName) {
-            View::argOptionValidate($layoutName, View::LAYOUT_PROMPT, $input, $output, ['max:50', 'fieldName:layout-name']);
+            View::argOptionValidate($layoutName, View::LAYOUT_PROMPT, $this->question(), ['max:50', 'fieldName:layout-name']);
             $menuName = View::menu($layoutName, $menu);
             if($menuAcl) View::makeMenuAcl($layoutName);
             return View::makeLayout($layoutName, $menuName);
         }
 
-        $layoutName = View::layoutNamePrompt($input, $output);
-        $menuName = View::menuConfirm($layoutName, $menu, $input, $output);
-        View::menuAclConfirm($layoutName, $menuAcl, $input, $output);
+        $layoutName = View::layoutNamePrompt($this->question());
+        $menuName = View::menuConfirm($layoutName, $menu, $this->question());
+        View::menuAclConfirm($layoutName, $menuAcl, $this->question());
         return View::makeLayout($layoutName, $menuName);
     }
 }

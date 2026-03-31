@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -31,14 +32,13 @@ class View extends Console {
     /**
      * Prompts user for name of new layout file.
      *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The name of the new layout.
      */
-    public static function layoutNamePrompt(InputInterface $input, OutputInterface $output): string {
-        return self::prompt(self::LAYOUT_PROMPT, $input, $output, ['max:50', 'fieldName:layout-name']);
+    public static function layoutNamePrompt(FrameworkQuestion $question): string {
+        return self::prompt(self::LAYOUT_PROMPT, $question, ['max:50', 'fieldName:layout-name']);
     }
-    
+
     /**
      * Generates a new CSS file.
      *
@@ -141,22 +141,20 @@ class View extends Console {
      *
      * @param string $layoutName The name of the layout.
      * @param mixed $menu The --menu flag.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The name of the menu to be associated with the layout.
      */
     public static function menuConfirm(
         string $layoutName, 
         mixed $menu, 
-        InputInterface $input, 
-        OutputInterface $output
+        FrameworkQuestion $question
     ): string {
         if($menu) {
             self::makeMenu($layoutName);
             return $layoutName;
         }
         $message = "Do you want to create a menu specific to this layout? (y/n)";
-        if(self::confirm($message, $input, $output)) {
+        if(self::confirm($message, $question)) {
             self::makeMenu($layoutName);
             return $layoutName;
         }
@@ -171,22 +169,20 @@ class View extends Console {
      *
      * @param string $layoutName The name of the layout.
      * @param mixed $menuACL The --menu-acl flag.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return void
      */
     public static function menuAclConfirm(
         string $layoutName, 
         mixed $menuACL, 
-        InputInterface $input, 
-        OutputInterface $output
+        FrameworkQuestion $question
     ): void {
         if($menuACL) {
             self::makeMenuAcl($layoutName);
             return;
         }
         $message = "Do you want to create a menu-acl file? (y/n)";
-        if(self::confirm($message, $input, $output)) {
+        if(self::confirm($message, $question)) {
             self::makeMenuAcl($layoutName);
         }
     }
