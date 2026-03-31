@@ -14,7 +14,6 @@ use Console\FrameworkQuestion;
 use Core\DB;
 use Core\Lib\Database\Factories\UserFactory;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Utilities that support console commands related to Notifications:
