@@ -1,19 +1,17 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Testing\TestRunner;
 use Console\Helpers\Testing\VitestTestRunner;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports operations related to running Jest unit tests.
  */
-class RunVitestCommand extends Command
+class RunVitestCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -43,21 +41,19 @@ class RunVitestCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
         // Get options and arguments
-        $testArg = $input->getArgument('testname');
-        if($testArg && VitestTestRunner::testIfSame($testArg)) return Command::FAILURE;
+        $testArg = $this->getArgument('testname');
+        if($testArg && VitestTestRunner::testIfSame($testArg)) return self::FAILURE;
 
-        $component = $input->getOption('component');
-        $unit = $input->getOption('unit');
-        $view = $input->getOption('view');
+        $component = $this->getOption('component');
+        $unit = $this->getOption('unit');
+        $view = $this->getOption('view');
 
-        $test = new VitestTestRunner($input, $output);
+        $test = new VitestTestRunner($this->input, $this->output);
 
         if(!$testArg && !$component && !$unit && !$view) {
             return $test->allTests();
@@ -90,7 +86,7 @@ class RunVitestCommand extends Command
         }
         if(!$testArg && VitestTestRunner::testSuiteStatus($runBySuiteStatus)) {
             console_info("Completed tests by suite(s)");
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
         // Run individual test file based on flag provided.
@@ -117,10 +113,10 @@ class RunVitestCommand extends Command
         }
         if($testArg && VitestTestRunner::testSuiteStatus($testNameByFlagStatus)) {
             console_info("Completed tests by name and suite(s)");
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
         console_error("There was an issue running unit tests.  Check your command line input.");
-        return Command::FAILURE;
+        return self::FAILURE;
     }
 }
