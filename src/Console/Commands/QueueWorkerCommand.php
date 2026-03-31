@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\ConsoleCommand;
 use Console\Helpers\Queue;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Executes a queue worker.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/queue#worker">here</a>.
  */
-class QueueWorkerCommand extends Command
+class QueueWorkerCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -31,24 +32,22 @@ class QueueWorkerCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $once = $input->getOption('once');
+        $once = $this->getOption('once');
 
-        $max = $input->getOption('max');
+        $max = $this->getOption('max');
         if($max || $max === '') {
             $message = "Enter value for max jobs.";
-            Queue::argOptionValidate($max, $message, $input, $output, ['integer', 'required'], true);
+            Queue::argOptionValidate($max, $message, $this->question(), ['integer', 'required'], true);
         }
 
-        $queueName = $input->getOption('queue');
+        $queueName = $this->getOption('queue');
         if($queueName || $queueName === '') {
             $message = "Enter name for the queue you want to use.";
-            Queue::argOptionValidate($queueName, $message, $input, $output, ['max:50', 'queue'], true);
+            Queue::argOptionValidate($queueName, $message, $this->question(), ['max:50', 'queue'], true);
         }
 
         if($once && $max) {
