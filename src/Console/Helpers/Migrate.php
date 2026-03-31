@@ -45,6 +45,29 @@ class Migrate extends Console {
     }
 
     /**
+     * Ask user to confirm if they want to drop all tables.
+     *
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @return mixed The user's response.
+     */
+    public static function confirmDropAllTables(FrameworkQuestion $question): mixed {
+        $message = "Are you sure you want to drop all tables? (y/n)";
+        return self::confirm($message, $question);
+    }
+
+    /**
+     * Ask user to confirm if they want to proceed with migration operation 
+     * when in production mode.
+     *
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @return mixed The user's response.
+     */
+    public static function confirmMigrationInProduction(FrameworkQuestion $question): mixed {
+        $message = "You are in production mode.  Are you sure you want to proceed with migration operation? (y/n)";
+        return self::confirm($message, $question);
+    }
+    
+    /**
      * Generates new migration class if table-name argument is provided.  If rename or update 
      * flags are set then appropriate migration class is created.
      *
@@ -101,29 +124,6 @@ class Migrate extends Console {
             console_error('Error dropping tables: ' . $e->getMessage());
             return Command::FAILURE;
         }
-    }
-
-    /**
-     * Ask user to confirm if they want to drop all tables.
-     *
-     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
-     * @return mixed The user's response.
-     */
-    public static function confirmDropAllTables(FrameworkQuestion $question): mixed {
-        $message = "Are you sure you want to drop all tables? (y/n)";
-        return self::confirm($message, $question);
-    }
-
-    /**
-     * Ask user to confirm if they want to proceed with migration operation 
-     * when in production mode.
-     *
-     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
-     * @return mixed The user's response.
-     */
-    public static function confirmMigrationInProduction(FrameworkQuestion $question): mixed {
-        $message = "You are in production mode.  Are you sure you want to proceed with migration operation? (y/n)";
-        return self::confirm($message, $question);
     }
 
     /**
