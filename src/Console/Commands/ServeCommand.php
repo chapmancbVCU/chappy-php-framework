@@ -2,16 +2,14 @@
 namespace Console\Commands;
 
 use Console\Console;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Console\ConsoleCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Runs built-in PHP server.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#local-servers">here</a>.
  */
-class ServeCommand extends Command {
+class ServeCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -29,27 +27,25 @@ class ServeCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $host = $input->getOption('host');
+        $host = $this->getOption('host');
         $message = "Enter name/IP Address for host";
-        Console::argOptionValidate($host, $message, $input, $output, ['required'], true);
+        Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
 
-        $port = $input->getOption('port');
+        $port = $this->getOption('port');
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required',  "isPortUsed:$host"], true);
+        Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
 
-        $output->writeln("<info>Starting PHP development server at http://{$host}:{$port}</info>");
-        $output->writeln("<info>Press Ctrl+C to stop the server.</info>");
+        $this->output->writeln("<info>Starting PHP development server at http://{$host}:{$port}</info>");
+        $this->output->writeln("<info>Press Ctrl+C to stop the server.</info>");
 
         // Run PHP built-in server
         $command = sprintf('php -S %s:%s -t . server.php', escapeshellarg($host), escapeshellarg($port));
         passthru($command);
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
