@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\React;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for making a new react component by running react:component.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers_and_views#view-commands">here</a>.
  */
-class MakeReactComponentCommand extends Command {
+class MakeReactComponentCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -30,21 +28,19 @@ class MakeReactComponentCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $componentName = $input->getArgument('component-name');
+        $componentName = $this->getArgument('component-name');
         $message = "Enter name for new component.";
         
-        $named = $input->getOption('named');
+        $named = $this->getOption('named');
         if($componentName) {
-            React::argOptionValidate($componentName, $message, $input, $output, ['max:50']);
+            React::argOptionValidate($componentName, $message, $this->question(), ['max:50']);
         } else {
-            $componentName = React::prompt($message, $input, $output, ['max:50']);
-            $named = React::namedComponentPrompt($named, $input, $output);
+            $componentName = React::prompt($message, $this->question(), ['max:50']);
+            $named = React::namedComponentPrompt($named, $this->question());
         }
         return React::makeComponent($componentName, $named);
     }

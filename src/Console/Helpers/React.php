@@ -3,11 +3,10 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Console\Helpers\ReactStubs;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Contains functions that perform operations for React.js relate CLI commands.
@@ -137,18 +136,13 @@ class React extends Console {
      * argument is not provided.
      *
      * @param mixed $named The --named flag.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return mixed The user response.
      */
-    public static function namedComponentPrompt(
-        mixed $named, 
-        InputInterface $input, 
-        OutputInterface $output
-    ): mixed {
+    public static function namedComponentPrompt(mixed $named, FrameworkQuestion $question): mixed {
         if($named) return $named;
         $message = "Do you want this to be a named component? (y/n)";
-        return self::confirm($message, $input, $output);
+        return self::confirm($message, $question);
     }
 
     /**
