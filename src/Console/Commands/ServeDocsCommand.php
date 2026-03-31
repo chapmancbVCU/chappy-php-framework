@@ -2,16 +2,14 @@
 namespace Console\Commands;
 
 use Console\Console;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Console\ConsoleCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Runs built-in PHP server for serving Doctum API documentation.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#local-servers">here</a>.
  */
-class ServeDocsCommand extends Command {
+class ServeDocsCommand extends ConsoleCommand {
     /**
      * Configures the command.
      */
@@ -27,31 +25,31 @@ class ServeDocsCommand extends Command {
     /**
      * Executes the command.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $host = $input->getOption('host');
+        $host = $this->getOption('host');
         $message = "Enter name/IP Address for host";
-        Console::argOptionValidate($host, $message, $input, $output, ['required'], true);
+        Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
 
-        $port = $input->getOption('port');
+        $port = $this->getOption('port');
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required', "isPortUsed:$host"], true);
+        Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required', "isPortUsed:$host"], true);
 
         // Define the Doctum documentation directory
         $docsDir = ROOT.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'docs';
 
         if (!is_dir($docsDir)) {
-            $output->writeln("<error>Doctum documentation directory not found: $docsDir</error>");
-            return Command::FAILURE;
+            $this->output->writeln("<error>Doctum documentation directory not found: $docsDir</error>");
+            return self::FAILURE;
         }
 
-        $output->writeln("<info>Starting Doctum server at http://{$host}:{$port}</info>");
-        $output->writeln("<info>Press Ctrl+C to stop the server.</info>");
+        $this->output->writeln("<info>Starting Doctum server at http://{$host}:{$port}</info>");
+        $this->output->writeln("<info>Press Ctrl+C to stop the server.</info>");
 
         // Run PHP built-in server
         $command = sprintf('php -S %s:%s -t %s', escapeshellarg($host), escapeshellarg($port), escapeshellarg($docsDir));
         passthru($command);
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
