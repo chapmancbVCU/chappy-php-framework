@@ -4,11 +4,8 @@ namespace Console\Commands;
 use Console\ConsoleCommand;
 use Console\Helpers\Events;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new listener class by running make:listener.
@@ -62,13 +59,13 @@ class MakeListenerCommand extends ConsoleCommand
         $eventName = Str::ucfirst($eventName);
         
         // Determine if listener will use queue.
-        $queue = $input->getOption('queue');
+        $queue = $this->getOption('queue');
         if($queue) {
             return Events::makeListener($eventName, $listenerNameInput, $queue);    
         }
 
         if(!$isArgument) {
-            $queue = Events::queuePrompt($queue, $input, $output);
+            $queue = Events::queuePrompt($queue, $this->question());
         }
         return Events::makeListener($eventName, $listenerNameInput, $queue);
     }
