@@ -1,17 +1,15 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Testing\ThirdPartyTests;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Command for generating new unit test runner.
  */
-class MakeTestRunnerCommand extends Command {
+class MakeTestRunnerCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -28,18 +26,16 @@ class MakeTestRunnerCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $className = $input->getArgument('runner-name');
+        $className = $this->getArgument('runner-name');
         $message = "Enter name for new test runner.";
         if($className) {
-            ThirdPartyTests::argOptionValidate($className, $message, $input, $output, ['max:50']);
+            ThirdPartyTests::argOptionValidate($className, $message, $this->question(), ['max:50']);
         } else {
-            $className = ThirdPartyTests::prompt($message, $input, $output, ['max:50']);
+            $className = ThirdPartyTests::prompt($message, $this->question(), ['max:50']);
         }
         return ThirdPartyTests::makeRunner(Str::ucfirst($className)."Runner");
     }
