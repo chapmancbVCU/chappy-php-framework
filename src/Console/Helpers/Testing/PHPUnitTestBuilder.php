@@ -7,9 +7,6 @@ use Console\Helpers\Testing\PHPUnitStubs;
 use Symfony\Component\Console\Command\Command;
 use Console\Console;
 use Console\FrameworkQuestion;
-use Core\Exceptions\FrameworkException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Utility class that supports ability to create new test classes for PHPUnit 
