@@ -3,10 +3,7 @@ namespace Console\Commands;
 
 use Console\ConsoleCommand;
 use Console\Helpers\Migrate;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to generate migrations using flags or all if no flag is set.
