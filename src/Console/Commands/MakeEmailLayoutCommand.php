@@ -4,8 +4,6 @@ namespace Console\Commands;
 use Console\ConsoleCommand;
 use Console\Helpers\Email;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new email layout by typing make:email-layout.
