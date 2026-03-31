@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\ConsoleCommand;
 use Console\Helpers\Validator;
 use Core\Lib\Utilities\Str;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /** 
  * Generates a new Custom Form Validator by running make:validator.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/server_side_validation#custom-validators">here</a>.
  */
-class MakeValidatorCommand extends Command {
+class MakeValidatorCommand extends ConsoleCommand {
     /**
      * Configures the command
      *
@@ -28,18 +26,16 @@ class MakeValidatorCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $validatorName = $input->getArgument('validator-name');
+        $validatorName = $this->getArgument('validator-name');
         $message = "Enter name for new validator.";
         if($validatorName) {
-            Validator::argOptionValidate($validatorName, $message, $input, $output, ['max:50']);
+            Validator::argOptionValidate($validatorName, $message, $this->question(), ['max:50']);
         } else {
-            $validatorName = Validator::prompt($message, $input, $output, ['max:50']);
+            $validatorName = Validator::prompt($message, $this->question(), ['max:50']);
         }
         return Validator::makeValidator(Str::ucfirst($validatorName));
     }
