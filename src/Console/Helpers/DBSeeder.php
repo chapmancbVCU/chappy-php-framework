@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Database\Seeders\DatabaseSeeder;
 use Symfony\Component\Console\Command\Command;
@@ -65,20 +66,15 @@ PHP;
      * Asks user if they want to create factory with DB seeder if seeder-name argument is not set.
      *
      * @param mixed $factory The --factory flag.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return mixed Original value if --factory flag is provided.  If user confirms the string 
      * "factory" is returned which matches value of --factory flag if provided.  When user answers 
      * now to question then null is returned.
      */
-    public static function factoryPrompt(
-        mixed $factory, 
-        InputInterface $input, 
-        OutputInterface $output
-    ): mixed {
+    public static function factoryPrompt(mixed $factory, FrameworkQuestion $question): mixed {
         if($factory) return $factory;
         $message = "Do you want to create a factory for this seeder? (y/n)";
-        if(self::confirm($message, $input, $output)) return "factory";
+        if(self::confirm($message, $question)) return "factory";
         return null;
     }
 

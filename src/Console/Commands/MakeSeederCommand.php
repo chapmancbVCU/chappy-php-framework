@@ -1,9 +1,7 @@
 <?php
 namespace Console\Commands;
- 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+
+use Console\ConsoleCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Console\Helpers\DBSeeder;
 use Core\Lib\Utilities\Str;
@@ -13,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
  * Supports operations for the make:seeder command.  Use this command to make a database seeder.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_seeders#seeder-class">here</a>.
  */
-class MakeSeederCommand extends Command {
+class MakeSeederCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -31,20 +29,18 @@ class MakeSeederCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $seederName = $input->getArgument('seeder-name');
-        $factory = $input->getOption('factory');
+        $seederName = $this->getArgument('seeder-name');
+        $factory = $this->getOption('factory');
         $message = "Enter name for new database seeder.";
         if($seederName) {
-            DBSeeder::argOptionValidate($seederName, $message, $input, $output, ['max:50']);
+            DBSeeder::argOptionValidate($seederName, $message, $this->question(), ['max:50']);
         } else {
-            $seederName = DBSeeder::prompt($message, $input, $output, ['max:50']);
-            $factory = DBSeeder::factoryPrompt($factory, $input, $output);
+            $seederName = DBSeeder::prompt($message, $this->question(), ['max:50']);
+            $factory = DBSeeder::factoryPrompt($factory, $this->question());
         }
         // dd($factory);
         $seederName = Str::ucfirst($seederName);
