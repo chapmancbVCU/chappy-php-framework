@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -105,10 +106,10 @@ class Events extends Console {
      * @return bool If flag is provided then it is returned.  If a response 
      * is provided the string 'queue' is returned.  Otherwise, we return null.
      */
-    public static function queueEvent(mixed $queue, InputInterface $input, OutputInterface $output): bool {
+    public static function queueEvent(mixed $queue, FrameworkQuestion $question): bool {
         if($queue) return $queue;
         $message = "Do you want to create a queued event class? (y/n)";
-        if(self::confirm($message, $input, $output)) {
+        if(self::confirm($message, $question)) {
             return true;
         }
 
