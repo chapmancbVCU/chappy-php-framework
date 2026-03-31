@@ -1,17 +1,15 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Notifications;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to run a migration file.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/notifications#notification-prune">here</a>.
  */
-class NotificationsPruneCommand extends Command
+class NotificationsPruneCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -29,16 +27,14 @@ class NotificationsPruneCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $days = $input->getOption('days');
+        $days = $this->getOption('days');
         $message = "Enter number of days to retain.";
         $attributes = ['required', 'noSpecialChars', 'integer'];
-        Notifications::argOptionValidate($days, $message, $input, $output, $attributes, true);
+        Notifications::argOptionValidate($days, $message, $this->question(), $attributes, true);
         return Notifications::prune((int)$days);
     }
 }
