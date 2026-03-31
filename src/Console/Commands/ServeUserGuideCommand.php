@@ -2,16 +2,14 @@
 namespace Console\Commands;
 
 use Console\Console;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Console\ConsoleCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Performs the command for serving the Jekyll user guide locally.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/console#local-servers">here</a>.
  */
-class ServeUserGuideCommand extends Command {
+class ServeUserGuideCommand extends ConsoleCommand {
     /**
      * Configures the command.
      */
@@ -28,40 +26,40 @@ class ServeUserGuideCommand extends Command {
     /**
      * Executes the command.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $host = $input->getOption('host') ?: '127.0.0.1';
+        $host = $this->getOption('host') ?: '127.0.0.1';
         $message = "Enter name/IP Address for host";
-        Console::argOptionValidate($host, $message, $input, $output, ['required'], true);
+        Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
 
-        $port = (int) $input->getOption('port') ?: 4000;
+        $port = (int) $this->getOption('port') ?: 4000;
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $input, $output, ['integer', 'required',  "isPortUsed:$host"], true);
+        Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
 
         // Change to the `docs` directory and serve the Jekyll site with specified host and port
         $command = sprintf('cd docs && bundle exec jekyll serve --host=%s --port=%d', escapeshellarg($host), $port);
 
-        $output->writeln("<info>Starting Jekyll server at http://{$host}:{$port}</info>");
-        $output->writeln("<info>Press Ctrl+C to stop the server.</info>");
+        $this->output->writeln("<info>Starting Jekyll server at http://{$host}:{$port}</info>");
+        $this->output->writeln("<info>Press Ctrl+C to stop the server.</info>");
 
         // Execute command and capture output
         $process = popen($command, 'r');
 
         if (!$process) {
-            $output->writeln('<error>Failed to start Jekyll server</error>');
-            return Command::FAILURE;
+            $this->output->writeln('<error>Failed to start Jekyll server</error>');
+            return self::FAILURE;
         }
 
         // Stream output to console
         while (!feof($process)) {
             $line = fgets($process);
             if ($line !== false) {
-                $output->writeln(trim($line));
+                $this->output->writeln(trim($line));
             }
         }
         
         pclose($process);
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
