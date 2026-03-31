@@ -1,10 +1,8 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\View;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Core\Lib\Utilities\Str;
 
@@ -12,7 +10,7 @@ use Core\Lib\Utilities\Str;
  * Supports ability to generate a new menu file by running make:menu.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/layouts#menus">here</a>.
  */
-class MakeMenuCommand extends Command {
+class MakeMenuCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -29,18 +27,16 @@ class MakeMenuCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $menuName = $input->getArgument('menu-name');
+        $menuName = $this->getArgument('menu-name');
         $message = "Enter name for new menu file.";
         if($menuName) {
-            View::argOptionValidate($menuName, $message, $input, $output, ['max:50']);
+            View::argOptionValidate($menuName, $message, $this->question(), ['max:50']);
         } else {
-            $menuName = View::prompt($message, $input, $output, ['max:50']);
+            $menuName = View::prompt($message, $this->question(), ['max:50']);
         }
         return View::makeMenu(Str::lcfirst($menuName));
     }
