@@ -1,9 +1,7 @@
 <?php
 namespace Console\Commands;
- 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+
+use Console\ConsoleCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Console\Helpers\DBSeeder;
 
@@ -11,7 +9,7 @@ use Console\Helpers\DBSeeder;
  * Supports operations for the make:factory command.  Use this command to make a new factory.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_seeders#factory-class">here</a>.
  */
-class MakeFactoryCommand extends Command {
+class MakeFactoryCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -28,18 +26,16 @@ class MakeFactoryCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
         $factoryName = $input->getArgument('factory-name');
         $message = "Enter name for new factory.";
         if($factoryName) {
-            DBSeeder::argOptionValidate($factoryName, $message, $input, $output, ['max:50']);
+            DBSeeder::argOptionValidate($factoryName, $message, $this->question(), ['max:50']);
         } else {
-            $factoryName = DBSeeder::prompt($message, $input, $output, ['max:50']);
+            $factoryName = DBSeeder::prompt($message, $this->question(), ['max:50']);
         }
         return DBSeeder::makeFactory($factoryName);
     }
