@@ -8,7 +8,6 @@ use Core\Lib\Utilities\Str;
 use Database\Seeders\DatabaseSeeder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports operations related to database seeding.
@@ -114,15 +113,15 @@ PHP;
      * Runs command for seeding database.
      *
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function seed(InputInterface $input, OutputInterface $output): int {
+    public static function seed(InputInterface $input, FrameworkQuestion $question): int {
         $seederOption = $input->getOption('seeder');
         if($seederOption !== null) {
             $message = "Enter name for seeder class.";
             $attributes = ['max:100', 'classExists:'.self::SEEDER_NAMESPACE];
-            self::argOptionValidate($seederOption, $message, $input, $output, $attributes);
+            self::argOptionValidate($seederOption, $message, $question, $attributes);
         }
         $classname = self::SEEDER_NAMESPACE.$seederOption;
         
