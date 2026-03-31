@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Events;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Generates a new event service provider class by running make:provider.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/events#make-provider">here</a>.
  */
-class MakeEventServiceProviderCommand extends Command
+class MakeEventServiceProviderCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -29,19 +30,17 @@ class MakeEventServiceProviderCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $providerName = $input->getArgument('provider-name');
+        $providerName = $this->getArgument('provider-name');
         $message = "Enter name for event service provider.";
 
         if($providerName) {
-            Events::argOptionValidate($providerName, $message, $input, $output, ['max:50']);
+            Events::argOptionValidate($providerName, $message, $this->question(), ['max:50']);
         } else {
-            $providerName = Events::prompt($message, $input, $output, ['max:50']);
+            $providerName = Events::prompt($message, $this->question(), ['max:50']);
         }
         return Events::makeEventServiceProvider($providerName);
     }
