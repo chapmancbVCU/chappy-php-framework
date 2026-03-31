@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Core\Models\Notifications as NotificationModel;
 use App\Models\Users;
 use Console\Console;
+use Console\FrameworkQuestion;
 use Core\DB;
 use Core\Lib\Database\Factories\UserFactory;
 use Symfony\Component\Console\Input\InputInterface;
@@ -136,14 +137,13 @@ class Notifications extends Console {
      *
      * @param mixed $user String token from CLI (id|email|username).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return Users|null            The matched user or NULL if not found.
      */
-    private static function findUser(mixed $user, InputInterface $input, OutputInterface $output): ?Users {
+    private static function findUser(mixed $user, FrameworkQuestion $question): ?Users {
         if(is_numeric($user)) {
-            return self::findUserById((int)$user, $input, $output);
+            return self::findUserById((int)$user, $question);
         }
-        return self::findUserByString($user, $input, $output);
+        return self::findUserByString($user, $question);
     }
 
     /**
@@ -152,17 +152,16 @@ class Notifications extends Console {
      *
      * @param int $user Token from CLI (id).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return Users The matched user.
      */
-    private static function findUserById(int $user, InputInterface $input, OutputInterface $output) {
+    private static function findUserById(int $user, FrameworkQuestion $question) {
         $foundUser = null;
         $count = 0;
         do {
             if(!$foundUser && $count != 0) {
                 $message = "User was not found.  Enter a user id";
                 $attributes = ['integer'];   
-                $user = self::prompt($message, $input, $output, $attributes, [], null, true);
+                $user = self::prompt($message, $question, $attributes, [], null, true);
             }
 
             $foundUser = Users::findById((int)$user);
@@ -178,17 +177,16 @@ class Notifications extends Console {
      *
      * @param string $user String token from CLI (email|username).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
      * @return Users The matched user.
      */
-    private static function findUserByString(string $user, InputInterface $input, OutputInterface $output) {
+    private static function findUserByString(string $user, FrameworkQuestion $question) {
         $foundUser = null;
         $count = 0;
         do {
             if(!$foundUser && $count != 0) {
                 $message = "User was not found.  Enter a user name or email.";
                 $attributes = ['between:6:150'];   
-                $user = self::prompt($message, $input, $output, $attributes, [], null, true);
+                $user = self::prompt($message, $question, $attributes, [], null, true);
             }
 
             $params = self::userParams($user);
@@ -360,12 +358,12 @@ PHP;
      * Resolve a channels override list from CLI input.
      *
      * If the option is omitted/empty, returns NULL so callers can defer to via().
-     *
+     * 
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return list<string>|null Normalized channels or NULL to defer.
      */
-    public static function resolveChannelsOverride(InputInterface $input, OutputInterface $output): ?array {
+    public static function resolveChannelsOverride(InputInterface $input, FrameworkQuestion $question): ?array {
         $channels = $input->getOption('channels');
         $message = "Enter comma separated list of channels.";
         $attributes = [
@@ -375,7 +373,7 @@ PHP;
         ];
 
         if($channels) {
-            Notifications::argOptionValidate($channels, $message, $input, $output, $attributes, true);
+            Notifications::argOptionValidate($channels, $message, $question, $attributes, true);
         }
 
         return $channels
@@ -387,31 +385,31 @@ PHP;
      * Resolve a notifiable instance (or a sentinel string) from CLI input.
      *
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return object|string A model instance or "dummy" if none found/provided.
      */
-    public static function resolveNotifiable(InputInterface $input, OutputInterface $output): object|string {
+    public static function resolveNotifiable(InputInterface $input, FrameworkQuestion $question): object|string {
         $userOpt = $input->getOption('user');
         if(!$userOpt) {
             console_info('No --user provided; using a dummy notifiable string');
             return 'dummy';
         }   
-        return self::findUser($userOpt, $input, $output) ?? 'dummy';
+        return self::findUser($userOpt, $question) ?? 'dummy';
     }
 
     /**
      * Parse overrides from the --with option (key:value,key2:value2).
      *
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param InputInterface $input The Symfony InputInterface object.
      * @return array<string,string> Flattened k=>v overrides.
      */
-    public static function resolveOverridesFromWith(InputInterface $input, OutputInterface $output): array {
+    public static function resolveOverridesFromWith(InputInterface $input, FrameworkQuestion $question): array {
         $with = $input->getOption('with');
         if($with === false) return [];
         $attributes = ['required'];
         $message = "Enter key value pairs (key:value,key2:value2).";
-        self::argOptionValidate($with, $message, $input, $output, $attributes, true);
+        self::argOptionValidate($with, $message, $question, $attributes, true);
         $kv = array_map('trim', explode(',', $with));
         
         $overrides = [];
@@ -420,14 +418,14 @@ PHP;
             if(!str_contains($pair, ':')) {
                 $message = "Enter additional payload in following format <key>:<value>.";
                 $kvAttributes = ['required', 'colonNotation'];
-                self::argOptionValidate($pair, $message, $input, $output, $kvAttributes, true);
+                self::argOptionValidate($pair, $message, $question, $kvAttributes, true);
             }
 
             [$k, $v] = explode(':', $pair, 2);
             $message = "Enter data for key";
-            self::argOptionValidate($k, $message, $input, $output, $attributes, true);
+            self::argOptionValidate($k, $message, $question, $attributes, true);
             $message = "Enter data for value";
-            self::argOptionValidate($v, $message, $input, $output, $attributes, true);
+            self::argOptionValidate($v, $message, $question, $attributes, true);
             $overrides[$k] = $v;
 
         }

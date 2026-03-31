@@ -1,19 +1,17 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\ConsoleLogger;
 use Console\Helpers\Notifications;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports operations for testing a notification. 
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/notifications#cli-commands">here</a>.
  */
-class NotificationTestCommand extends Command
+class NotificationTestCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -56,35 +54,33 @@ class NotificationTestCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        ConsoleLogger::setOutput($output);
-        $notificationName = $input->getArgument('notification-name');
+        ConsoleLogger::setOutput($this->output);
+        $notificationName = $this->input->getArgument('notification-name');
         $message = "Enter name of notification class.";
         $attributes = ['max:50', 'classExists:'.Notifications::NOTIFICATION_NAMESPACE];
-        Notifications::argOptionValidate($notificationName, $message, $input, $output, $attributes);
+        Notifications::argOptionValidate($notificationName, $message, $this->question(), $attributes);
         $className = Notifications::notificationClass($notificationName);
 
-        $channels = Notifications::resolveChannelsOverride($input, $output);
-        $overrides = Notifications::resolveOverridesFromWith($input, $output);
-        $notifiable = Notifications::resolveNotifiable($input, $output);
+        $channels = Notifications::resolveChannelsOverride($this->input, $this->question());
+        $overrides = Notifications::resolveOverridesFromWith($this->input, $this->question());
+        $notifiable = Notifications::resolveNotifiable($this->input, $this->question());
 
         if($notifiable === 'dummy') {
             $notifiable = Notifications::dummy();   
         } 
 
         $notification = new $className($notifiable);
-        $payload = Notifications::buildPayload($input, $overrides);
+        $payload = Notifications::buildPayload($this->input, $overrides);
 
         if(Notifications::dryRun($notifiable, $notification, $payload, $channels)) {
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
         Notifications::sendViaNotifiable($notifiable, $notification, $payload, $channels);
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
