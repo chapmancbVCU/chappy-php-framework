@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Queue;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
@@ -12,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Generates a new Job class by running make:job.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/queue#job-class">here</a>.
  */
-class MakeJobCommand extends Command
+class MakeJobCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -30,18 +31,16 @@ class MakeJobCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $jobName = $input->getArgument('job-name');
+        $jobName = $this->getArgument('job-name');
         $message = "Enter name for new job.";
         if($jobName) {
-            Queue::argOptionValidate($jobName, $message, $input, $output, ['max:50']);
+            Queue::argOptionValidate($jobName, $message, $this->question(), ['max:50']);
         } else {
-            $jobName = Queue::prompt($message, $input, $output, ['max:50']);
+            $jobName = Queue::prompt($message, $this->question(), ['max:50']);
         }
         return Queue::makeJob(Str::ucfirst($jobName));
     }
