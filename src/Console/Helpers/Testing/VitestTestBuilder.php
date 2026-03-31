@@ -3,11 +3,11 @@ declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Console\Helpers\Tools;
 use ReflectionClass;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Utility class that supports ability to create new tests for Vitest based 
@@ -118,13 +118,12 @@ class VitestTestBuilder extends Console implements TestBuilderInterface {
      * suite flags are not provided.
      *
      * @param mixed $suite The particular suite flag if provided.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The name of the suite
      */
-    public static function suiteChoice(mixed $suite, InputInterface $input, OutputInterface $output): string {
+    public static function suiteChoice(mixed $suite, FrameworkQuestion $question): string {
         if($suite) return $suite;
         $message = "Select a suite for the new test file.";
-        return self::choice($message, self::SUITES, $input, $output);
+        return self::choice($message, self::SUITES, $question);
     }
 }

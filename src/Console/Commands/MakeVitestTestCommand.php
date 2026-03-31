@@ -1,19 +1,17 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Testing\VitestTestBuilder;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Creates test for React.js or JavaScript files.  Use flags to determine which one
  * to generate.  More information can be found 
  * <a href="https://chapmancbvcu.github.io/chappy-php-starter/vitest#creating-tests">here</a>.
  */
-class MakeVitestTestCommand extends Command
+class MakeVitestTestCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -34,21 +32,19 @@ class MakeVitestTestCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $testName = $input->getArgument('test-name');
-        $suite = VitestTestBuilder::suite($input);
+        $testName = $this->getArgument('test-name');
+        $suite = VitestTestBuilder::suite($this->input);
         
         $message = "Enter new name for new test file.";
         if($testName) {
-            VitestTestBuilder::argOptionValidate($testName, $message, $input, $output, ['max:150']);
+            VitestTestBuilder::argOptionValidate($testName, $message, $this->question(), ['max:150']);
         } else {
-            $testName = VitestTestBuilder::prompt($message, $input, $output, ['max:150']);
-            $suite = VitestTestBuilder::suiteChoice($suite, $input, $output);
+            $testName = VitestTestBuilder::prompt($message, $this->question(), ['max:150']);
+            $suite = VitestTestBuilder::suiteChoice($suite, $this->question());
         }
 
         return VitestTestBuilder::makeTest($testName, $suite);
