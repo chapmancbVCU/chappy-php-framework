@@ -1,16 +1,14 @@
 <?php
 namespace Console\Commands;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Console\ConsoleCommand;
 use Psy\Shell;
 
 /**
  * Supports execution for tinker command.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/tinker#startup">here</a>.
  */
-class TinkerCommand extends Command
+class TinkerCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -26,11 +24,9 @@ class TinkerCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int 
+    protected function handle(): int 
     {
         $variables = [
             'db' => \Core\DB::getInstance(),
