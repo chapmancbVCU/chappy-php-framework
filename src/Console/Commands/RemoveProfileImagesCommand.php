@@ -1,16 +1,14 @@
 <?php
 namespace Console\Commands;
- 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+
+use Console\ConsoleCommand;
 use Console\Helpers\ProfileImageDir;
 
 /**
  * Run this after performing the migrate:refresh command to delete all 
  * existing profile images.  May need sudo privileges.  
  */
-class RemoveProfileImagesCommand extends Command
+class RemoveProfileImagesCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -27,16 +25,14 @@ class RemoveProfileImagesCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
         $message = "Are you sure you want to delete all profile images? (y/n)";
-        if(ProfileImageDir::confirm($message, $input, $output)) {
+        if(ProfileImageDir::confirm($message, $this->question())) {
             return ProfileImageDir::rmdirProfileImageDirectories();
         }
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
