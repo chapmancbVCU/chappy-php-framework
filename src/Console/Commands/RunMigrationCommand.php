@@ -1,19 +1,17 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Migrate;
 use Console\Helpers\DBSeeder;
 use Console\Helpers\Tools;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to run a migration file.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_operations#overview">here</a>.
  */
-class RunMigrationCommand extends Command
+class RunMigrationCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -32,20 +30,18 @@ class RunMigrationCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        if(Tools::isProduction() && !Migrate::confirmMigrationInProduction($input, $output)) {
+        if(Tools::isProduction() && !Migrate::confirmMigrationInProduction($this->question())) {
             console_info("Cancelling operation.");
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
         $status = Migrate::migrate();
-        if($status == Command::SUCCESS && $input->getOption('seed')) {
-            return DBSeeder::seed($input, $output);
+        if($status == self::SUCCESS && $this->getOption('seed')) {
+            return DBSeeder::seed($this->input, $this->question());
         }
 
         return $status;
