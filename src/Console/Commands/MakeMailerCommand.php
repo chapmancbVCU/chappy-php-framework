@@ -1,17 +1,15 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Email;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generates a new custom mailer by running make:mailer.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/email#custom-mailers">here</a>.
  */
-class MakeMailerCommand extends Command {
+class MakeMailerCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -28,18 +26,16 @@ class MakeMailerCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $emailName = $input->getArgument('mailer-name');
+        $emailName = $this->getArgument('mailer-name');
         $message = "Enter name for new Email.";
         if($emailName) {
-            Email::argOptionValidate($emailName, $message, $input, $output, ['max:50']);
+            Email::argOptionValidate($emailName, $message, $this->question(), ['max:50']);
         } else {
-            $emailName = Email::prompt($message, $input, $output, ['max:50']);
+            $emailName = Email::prompt($message, $this->question(), ['max:50']);
         }
         return Email::makeMailer($emailName);
     }
