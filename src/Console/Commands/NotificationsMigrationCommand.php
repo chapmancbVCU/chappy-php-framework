@@ -1,16 +1,14 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Notifications;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to create new notifications migration file. 
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/notifications#notification-migration">here</a>.
  */
-class NotificationsMigrationCommand extends Command
+class NotificationsMigrationCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -27,11 +25,9 @@ class NotificationsMigrationCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
        return Notifications::notificationsMigration();
     }
