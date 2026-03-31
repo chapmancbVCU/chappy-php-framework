@@ -1,20 +1,18 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;
 use Console\Helpers\React;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Implements command for making a new react view by running react:page.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers_and_views#view-commands">here</a>.
  */
-class MakeReactPageCommand extends Command {
+class MakeReactPageCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -32,35 +30,33 @@ class MakeReactPageCommand extends Command {
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $pageName = $input->getArgument('page-name');
-        $named = $input->getOption('named');
+        $pageName = $this->getArgument('page-name');
+        $named = $this->getOption('named');
         $message = "Enter name for new directory and page in following format: <directory_name>.<page_name>";
         $attributes = ['max:100', 'dotNotation'];
 
         if($pageName) {
-            React::argOptionValidate($pageName, $message, $input, $output, $attributes, true);
+            React::argOptionValidate($pageName, $message, $this->question(), $attributes, true);
         } else {
-            $pageName = React::prompt($message, $input, $output, $attributes, [], null, true);
-            $named = React::namedComponentPrompt($named, $input, $output);
+            $pageName = React::prompt($message, $this->question(), $attributes, [], null, true);
+            $named = React::namedComponentPrompt($named, $this->question());
         }
 
         // Validate directory and page.
         [$directory, $page] = explode('.', $pageName);
         $message = "Enter name for directory";
-        React::argOptionValidate($directory, $message, $input, $output, ['max:50']);
+        React::argOptionValidate($directory, $message, $this->question(), ['max:50']);
         $message = "Enter name for the new page";
-        React::argOptionValidate($page, $message, $input, $output, ['max:50']);
+        React::argOptionValidate($page, $message, $this->question(), ['max:50']);
 
         // Check if directory exists and create it.
         $directory = React::PAGE_PATH . Str::ucfirst($directory);
-        $isDirMade = Tools::createDirWithPrompt($directory, $input, $output);
-        if($isDirMade == Command::FAILURE) return Command::FAILURE;
+        $isDirMade = Tools::createDirWithPrompt($directory, $this->question());
+        if($isDirMade == self::FAILURE) return self::FAILURE;
 
         $page = Str::ucfirst($page);
         $filePath = $directory . DS . $page.'.jsx';
