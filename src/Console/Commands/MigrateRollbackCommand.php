@@ -1,18 +1,16 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Migrate;
 use Console\Helpers\Tools;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to roll back database migrations. 
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/database_operations#rollback">here</a>.
  */
-class MigrateRollbackCommand extends Command
+class MigrateRollbackCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -43,23 +41,21 @@ class MigrateRollbackCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        if(Tools::isProduction() && !Migrate::confirmMigrationInProduction($input, $output)) {
+        if(Tools::isProduction() && !Migrate::confirmMigrationInProduction($this->question())) {
             console_info("Cancelling operation.");
-            return Command::SUCCESS;
+            return self::SUCCESS;
         }
 
-        $step = $input->getOption('step');
-        $batch = $input->getOption('batch');
+        $step = $this->getOption('step');
+        $batch = $this->getOption('batch');
 
         if($step && $batch) {
             console_warning("Can't perform step and batch operations at the same time");
-            return Command::FAILURE;
+            return self::FAILURE;
         }
 
         $status = 1;
@@ -71,9 +67,9 @@ class MigrateRollbackCommand extends Command
             $status = Migrate::rollback($batch);
         }
 
-        if($status == Command::FAILURE) {
+        if($status == self::FAILURE) {
             return $status;
         }
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
