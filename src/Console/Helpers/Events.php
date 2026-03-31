@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -121,14 +122,13 @@ class Events extends Console {
      * will be associated with a queue.
      *
      * @param mixed $queue Value of --queue option.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return mixed The user response
      */
-    public static function queuePrompt(mixed $queue, InputInterface $input, OutputInterface $output): mixed {
+    public static function queuePrompt(mixed $queue, FrameworkException $question): mixed {
         if($queue) return $queue;
         $message = "Do you want to create a version of the listener class to support queues? (y/n)";
-        return self::confirm($message, $input, $output);
+        return self::confirm($message, $question);
     }
 
     /**

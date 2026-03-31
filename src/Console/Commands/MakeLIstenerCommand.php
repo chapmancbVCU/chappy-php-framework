@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
 
+use Console\ConsoleCommand;
 use Console\Helpers\Events;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Generates a new listener class by running make:listener.
  * More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/events#event-flag">here</a>.
  */
-class MakeListenerCommand extends Command
+class MakeListenerCommand extends ConsoleCommand
 {
     /**
      * Configures the command.
@@ -33,32 +34,30 @@ class MakeListenerCommand extends Command
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
-        $listenerName = $input->getArgument('listener-name');
+        $listenerName = $this->getArgument('listener-name');
         $listenerAttributes = ['max:50', 'fieldName:listener-name'];
 
         // Process listener name.
         if($listenerName) {
-            Events::argOptionValidate($listenerName, Events::LISTENER_PROMPT, $input, $output, $listenerAttributes);
+            Events::argOptionValidate($listenerName, Events::LISTENER_PROMPT, $this->question(), $listenerAttributes);
             $isArgument = true;
         } else {
             $isArgument = false;
-            $listenerName = Events::prompt(Events::LISTENER_PROMPT, $input, $output, $listenerAttributes);
+            $listenerName = Events::prompt(Events::LISTENER_PROMPT, $this->question(), $listenerAttributes);
         }
         $listenerNameInput = Str::ucfirst($listenerName);
 
         // Process event name.
-        $eventName = $input->getOption('event');
+        $eventName = $this->getOption('event');
         $eventAttributes = ['max:50', 'fieldName:event', "different:{$listenerNameInput}"];
         if($eventName) {
-            Events::argOptionValidate($eventName, Events::EVENT_PROMPT, $input, $output, $eventAttributes);
+            Events::argOptionValidate($eventName, Events::EVENT_PROMPT, $this->question(), $eventAttributes);
         } else {
-            $eventName = Events::prompt(Events::EVENT_PROMPT, $input, $output, $eventAttributes);
+            $eventName = Events::prompt(Events::EVENT_PROMPT, $this->question(), $eventAttributes);
         }
         $eventName = Str::ucfirst($eventName);
         
