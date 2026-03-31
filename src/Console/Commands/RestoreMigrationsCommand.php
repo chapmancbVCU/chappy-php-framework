@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\ConsoleCommand;
 use Console\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Supports ability to generate migrations using flags or all if no flag is set.
  */
-class RestoreMigrationsCommand extends Command{
+class RestoreMigrationsCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
@@ -62,17 +63,15 @@ class RestoreMigrationsCommand extends Command{
     /**
      * Executes the command
      *
-     * @param InputInterface $input The input.
-     * @param OutputInterface $output The output.
      * @return int A value that indicates success, invalid, or failure.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function handle(): int
     {
         $tables = ['acl', 'email_attachments', 'migrations', 'profile_images', 'user_sessions', 'users'];
          
         foreach($tables as $table) {
-            if($input->hasOption($table) && $input->getOption($table)) {
-                return Migrate::generateMigrationByName($input);
+            if($this->hasOption($table) && $this->getOption($table)) {
+                return Migrate::generateMigrationByName($this->input);
             }
         }
         

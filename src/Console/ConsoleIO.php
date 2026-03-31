@@ -26,4 +26,14 @@ trait ConsoleIO {
     public function getOption(mixed $option): mixed {
         return $this->input->getOption($option);
     }
+
+    /**
+     * Wrapper for InputInterface::hasOption function.
+     *
+     * @param string $name The name for the option.
+     * @return bool True if exists, otherwise false.
+     */
+    public function hasOption(string $name): bool {
+        return $this->input->hasOption($name);
+    }
 }
