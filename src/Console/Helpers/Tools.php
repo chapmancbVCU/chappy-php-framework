@@ -27,10 +27,7 @@ class Tools extends Console {
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function createDirWithPrompt(
-        string $directory, 
-        FrameworkQuestion $question
-    ): int {
+    public static function createDirWithPrompt(string $directory, FrameworkQuestion $question): int {
         // Check if directory exists
         if (!is_dir($directory)) {
             $message = "The directory '$directory' does not exist. Do you want to create it? (y/n)";
