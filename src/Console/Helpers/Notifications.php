@@ -229,7 +229,7 @@ class Notifications extends Console {
      * Template for the notifications migration class file.
      *
      * @param non-empty-string $fileName The base filename/classname to use.
-     * @return string                    The complete PHP contents of the migration.
+     * @return string The complete PHP contents of the migration.
      */
     public static function migrationTemplate(string $fileName): string {
         return <<<PHP
