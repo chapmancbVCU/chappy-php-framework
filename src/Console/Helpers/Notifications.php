@@ -566,7 +566,7 @@ PHP;
      * Template for the via() method within a scaffolded notification.
      *
      * @param non-empty-string $channelList PHP expression representing the channel list.
-     * @return non-empty-string             PHP code snippet for inclusion.
+     * @return non-empty-string PHP code snippet for inclusion.
      */
     private static function viaTemplate(string $channelList): string {
         return <<<PHP
