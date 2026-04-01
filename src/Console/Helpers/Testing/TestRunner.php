@@ -134,12 +134,12 @@ class TestRunner extends Console {
      * Retrieves all files in test suite so they can be run.
      *
      * @param string $path Path to test suite.
-     * @param string $ext File extension to specify between php and js related 
+     * @param string $extension File extension to specify between php and js related 
      * tests.  Best practice is to use const provided by child class.
      * @return array The array of all filenames in a particular directory.
      */
-    public static function getAllTestsInSuite(string $path, string $ext): array {
-        return glob($path."*".$ext);
+    public static function getAllTestsInSuite(string $path, string $extension): array {
+        return glob($path."*".$extension);
     }
 
     /**
