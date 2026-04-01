@@ -400,7 +400,7 @@ PHP;
      * Parse overrides from the --with option (key:value,key2:value2).
      *
      * @param InputInterface $input The Symfony InputInterface object.
-     * @param InputInterface $input The Symfony InputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return array<string,string> Flattened k=>v overrides.
      */
     public static function resolveOverridesFromWith(InputInterface $input, FrameworkQuestion $question): array {
