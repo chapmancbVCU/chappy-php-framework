@@ -304,9 +304,9 @@ PHP;
     /**
      * Generate the PHP contents for a notification class.
      *
-     * @param string           $classFunctions   Concatenated channel method bodies + via().
+     * @param string $classFunctions Concatenated channel method bodies + via().
      * @param non-empty-string $notificationName Class name (no namespace).
-     * @return string                            Full PHP file contents for the notification class.
+     * @return string Full PHP file contents for the notification class.
      */
     private static function notificationTemplate(
         string $classFunctions, 
