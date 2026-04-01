@@ -110,6 +110,7 @@ class TestRunner extends Console {
      * - There exists a function in both classes with the same name
      * 
      * This function is called internally by the selectTest function.
+     * 
      * @return void
      */
     private static function duplicateTestNameMessage(): void {
