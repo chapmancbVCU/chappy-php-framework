@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Console\Commands\ReactHomeCommand | Chappy.php API</title>
+    <title>Console\ConsoleCommand | Chappy.php API</title>
 
-            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
-        <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
-        <script src="../../js/jquery-3.5.1.slim.min.js"></script>
-        <script async defer src="../../doctum.js"></script>
-        <script async defer src="../../js/bootstrap.min.js"></script>
-        <script async defer src="../../js/autocomplete.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../fonts/doctum-font.css">
+        <script src="../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../doctum.js"></script>
+        <script async defer src="../js/bootstrap.min.js"></script>
+        <script async defer src="../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
@@ -23,7 +23,7 @@
           title="Chappy.php API (main)" />
     </head>
 
-    <body id="class" data-name="class:Console_Commands_ReactHomeCommand" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+    <body id="class" data-name="class:Console_ConsoleCommand" data-root-path="../" data-search-index-url="../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -33,7 +33,7 @@
                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
         </div>
-        <form id="search-form" action="../../search.html">
+        <form id="search-form" action="../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
                    id="doctum-search-auto-complete"
@@ -61,16 +61,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
+                <a class="navbar-brand" href="../index.html">Chappy.php API</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-elements">
                 <ul class="nav navbar-nav">
-                    <li><a href="../../classes.html">Classes</a></li>
-                    <li><a href="../../namespaces.html">Namespaces</a></li>
-                    <li><a href="../../interfaces.html">Interfaces</a></li>
-                    <li><a href="../../traits.html">Traits</a></li>
-                    <li><a href="../../doc-index.html">Index</a></li>
-                    <li><a href="../../search.html">Search</a></li>
+                    <li><a href="../classes.html">Classes</a></li>
+                    <li><a href="../namespaces.html">Namespaces</a></li>
+                    <li><a href="../interfaces.html">Interfaces</a></li>
+                    <li><a href="../traits.html">Traits</a></li>
+                    <li><a href="../doc-index.html">Index</a></li>
+                    <li><a href="../search.html">Search</a></li>
                 </ul>
             </div>
         </div>
@@ -79,18 +79,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../Console.html">Console</a></li><li class="backslash">\</li><li><a href="../../Console/Commands.html">Commands</a></li><li class="backslash">\</li><li>ReactHomeCommand</li>
+                        <li><a href="../Console.html">Console</a></li><li class="backslash">\</li><li>ConsoleCommand</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>ReactHomeCommand    
+        <h1>ConsoleCommand    
             </h1>
     </div>
 
     
-    <p>        class
-    <strong>ReactHomeCommand</strong>        extends <a href="../../Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a>
+    <p>    abstract     class
+    <strong>ConsoleCommand</strong>        extends <abbr title="Symfony\Component\Console\Command\Command">Command</abbr>
 </p>
 
         
@@ -98,7 +98,9 @@
         
 
             <div class="description">
-            <p><p>Implements command for generating the home/Index.jsx page component.</p></p>            <p><p>More information can be found <a href="https://chapmancbvcu.github.io/chappy-php-starter/controllers_and_views#view-commands">here</a>.</p></p>        </div>
+            <p><p>Extends Command class and provides $input and $output as instance
+variables of their respective classes.  Also contains helper for returning
+an instance of the FrameworkQuestion class.</p></p>                    </div>
             
                 <h2>Traits</h2>
 
@@ -106,7 +108,7 @@
     <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="../../Console/ConsoleIO.html"><abbr title="Console\ConsoleIO">ConsoleIO</abbr></a>    </div>
+                    <a href="../Console/ConsoleIO.html"><abbr title="Console\ConsoleIO">ConsoleIO</abbr></a>    </div>
                 <div class="col-md-6"><p>Wrapper class for InputInterface functions.</p></div>
             </div>
             </div>
@@ -122,8 +124,7 @@
                                     </td>
                 <td>$input</td>
                 <td class="last"><p>The Symfony InputInterface object.</p></td>
-                <td><small>from&nbsp;<a href="../../Console/ConsoleCommand.html#property_input">
-<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></small></td>
+                <td></td>
             </tr>
                     <tr>
                 <td class="type" id="property_output">
@@ -132,8 +133,7 @@
                                     </td>
                 <td>$output</td>
                 <td class="last"><p>The Symfony OutputInterface object.</p></td>
-                <td><small>from&nbsp;<a href="../../Console/ConsoleCommand.html#property_output">
-<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></small></td>
+                <td></td>
             </tr>
             </table>
 
@@ -149,7 +149,7 @@
                     <a href="#method_getArgument">getArgument</a>(mixed $argument)
         
                                             <p><p>Wrapper for InputInterface::getArgument function.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Console/ConsoleIO.html#method_getArgument">
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/ConsoleIO.html#method_getArgument">
 <abbr title="Console\ConsoleIO">ConsoleIO</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -160,7 +160,7 @@
                     <a href="#method_getOption">getOption</a>(mixed $option)
         
                                             <p><p>Wrapper for InputInterface::getOption function.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Console/ConsoleIO.html#method_getOption">
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/ConsoleIO.html#method_getOption">
 <abbr title="Console\ConsoleIO">ConsoleIO</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -171,7 +171,7 @@
                     <a href="#method_hasOption">hasOption</a>(string $name)
         
                                             <p><p>Wrapper for InputInterface::hasOption function.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Console/ConsoleIO.html#method_hasOption">
+                <div class="col-md-2"><small>from&nbsp;<a href="../Console/ConsoleIO.html#method_hasOption">
 <abbr title="Console\ConsoleIO">ConsoleIO</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -182,8 +182,7 @@
                     <a href="#method_execute">execute</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         
                                             <p><p>Implements execute from parent class.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Console/ConsoleCommand.html#method_execute">
-<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -197,23 +196,12 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a>
+                    <a href="../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_question">question</a>()
         
                                             <p><p>Returns instance of the FrameworkQuestion class.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Console/ConsoleCommand.html#method_question">
-<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    void
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_configure">configure</a>()
-        
-                                            <p><p>Configures the command.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -224,7 +212,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_getArgument">
-        <div class="location">in <a href="../../Console/ConsoleIO.html#method_getArgument">
+        <div class="location">in <a href="../Console/ConsoleIO.html#method_getArgument">
 <abbr title="Console\ConsoleIO">ConsoleIO</abbr></a> at line 16</div>
         <code>                    mixed
     <strong>getArgument</strong>(mixed $argument)
@@ -267,7 +255,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getOption">
-        <div class="location">in <a href="../../Console/ConsoleIO.html#method_getOption">
+        <div class="location">in <a href="../Console/ConsoleIO.html#method_getOption">
 <abbr title="Console\ConsoleIO">ConsoleIO</abbr></a> at line 26</div>
         <code>                    mixed
     <strong>getOption</strong>(mixed $option)
@@ -310,7 +298,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_hasOption">
-        <div class="location">in <a href="../../Console/ConsoleIO.html#method_hasOption">
+        <div class="location">in <a href="../Console/ConsoleIO.html#method_hasOption">
 <abbr title="Console\ConsoleIO">ConsoleIO</abbr></a> at line 36</div>
         <code>                    bool
     <strong>hasOption</strong>(string $name)
@@ -353,8 +341,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_execute">
-        <div class="location">in <a href="../../Console/ConsoleCommand.html#method_execute">
-<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a> at line 39</div>
+        <div class="location">at line 39</div>
         <code>            protected        int
     <strong>execute</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
         </code>
@@ -401,8 +388,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_handle">
-        <div class="location">at line 29</div>
-        <code>            protected        int
+        <div class="location">at line 50</div>
+        <code>    abstract        protected        int
     <strong>handle</strong>()
         </code>
     </h3>
@@ -433,9 +420,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_question">
-        <div class="location">in <a href="../../Console/ConsoleCommand.html#method_question">
-<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a> at line 57</div>
-        <code>            protected        <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a>
+        <div class="location">at line 57</div>
+        <code>            protected        <a href="../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a>
     <strong>question</strong>()
         </code>
     </h3>
@@ -452,40 +438,8 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+            <td><a href="../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
             <td><p>The instance of the FrameworkQuestion class.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_configure">
-        <div class="location">at line 17</div>
-        <code>            protected        void
-    <strong>configure</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Configures the command.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>void</td>
-            <td></td>
         </tr>
     </table>
 

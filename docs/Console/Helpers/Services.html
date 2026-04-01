@@ -571,7 +571,7 @@ don't bleed into next question if instance is reused.</p></p>                </d
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_argOptionValidate">argOptionValidate</a>(string $field, string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $validators = [], bool $defaultNone = false)
+                    <a href="#method_argOptionValidate">argOptionValidate</a>(string $field, string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $validators = [], bool $defaultNone = false)
         
                                             <p><p>Validates argument and option input.  If validation fails then the
 user is asked to enter a new value.</p></p>                </div>
@@ -583,7 +583,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;mixed
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_choice">choice</a>(string $message, array $choices, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
+                    <a href="#method_choice">choice</a>(string $message, array $choices, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
         
                                             <p><p>Ask user to confirm among several options based on question asked.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Console/Console.html#method_choice">
@@ -594,7 +594,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;mixed
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_confirm">confirm</a>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
+                    <a href="#method_confirm">confirm</a>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
         
                                             <p><p>Asks a user to confirm based on question asked.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Console/Console.html#method_confirm">
@@ -616,7 +616,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_prompt">prompt</a>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
+                    <a href="#method_prompt">prompt</a>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
         
                                             <p><p>Asks user question about file to be created.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Console/Console.html#method_prompt">
@@ -1929,7 +1929,7 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../Console/Console.html#method___construct">
-<abbr title="Console\Console">Console</abbr></a> at line 22</div>
+<abbr title="Console\Console">Console</abbr></a> at line 20</div>
         <code>                    
     <strong>__construct</strong>(string $fieldName = &quot;&quot;)
         </code>
@@ -1963,9 +1963,9 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method_argOptionValidate">
         <div class="location">in <a href="../../Console/Console.html#method_argOptionValidate">
-<abbr title="Console\Console">Console</abbr></a> at line 45</div>
+<abbr title="Console\Console">Console</abbr></a> at line 42</div>
         <code>        static            void
-    <strong>argOptionValidate</strong>(string $field, string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $validators = [], bool $defaultNone = false)
+    <strong>argOptionValidate</strong>(string $field, string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $validators = [], bool $defaultNone = false)
         </code>
     </h3>
     <div class="details">    
@@ -1995,14 +1995,9 @@ user is asked to enter a new value.</p></p>                <p><p>Validates the f
                 <td><p>The message to present to the user.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -2037,9 +2032,9 @@ all validators.</p></td>
                     <div class="method-item">
                     <h3 id="method_choice">
         <div class="location">in <a href="../../Console/Console.html#method_choice">
-<abbr title="Console\Console">Console</abbr></a> at line 80</div>
+<abbr title="Console\Console">Console</abbr></a> at line 75</div>
         <code>        static            mixed
-    <strong>choice</strong>(string $message, array $choices, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
+    <strong>choice</strong>(string $message, array $choices, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
         </code>
     </h3>
     <div class="details">    
@@ -2064,14 +2059,9 @@ all validators.</p></td>
                 <td><p>An array of choices.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
@@ -2101,9 +2091,9 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_confirm">
         <div class="location">in <a href="../../Console/Console.html#method_confirm">
-<abbr title="Console\Console">Console</abbr></a> at line 101</div>
+<abbr title="Console\Console">Console</abbr></a> at line 93</div>
         <code>        static            mixed
-    <strong>confirm</strong>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
+    <strong>confirm</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
         </code>
     </h3>
     <div class="details">    
@@ -2123,14 +2113,9 @@ user does not provide an answer.</p></td>
                 <td><p>The message to present to the user.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
@@ -2160,7 +2145,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_getInstance">
         <div class="location">in <a href="../../Console/Console.html#method_getInstance">
-<abbr title="Console\Console">Console</abbr></a> at line 117</div>
+<abbr title="Console\Console">Console</abbr></a> at line 107</div>
         <code>        static            <a href="../../Console/Console.html"><abbr title="Console\Console">Console</abbr></a>
     <strong>getInstance</strong>(string $fieldName = &quot;&quot;)
         </code>
@@ -2203,9 +2188,9 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_prompt">
         <div class="location">in <a href="../../Console/Console.html#method_prompt">
-<abbr title="Console\Console">Console</abbr></a> at line 143</div>
+<abbr title="Console\Console">Console</abbr></a> at line 132</div>
         <code>        static            string
-    <strong>prompt</strong>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
+    <strong>prompt</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
         </code>
     </h3>
     <div class="details">    
@@ -2229,14 +2214,9 @@ user does not provide an answer.</p></td>
                 <td><p>The message to present to the user.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -2284,7 +2264,7 @@ all validators and attributes.</p></td>
                     <div class="method-item">
                     <h3 id="method_parseAttributes">
         <div class="location">in <a href="../../Console/Console.html#method_parseAttributes">
-<abbr title="Console\Console">Console</abbr></a> at line 177</div>
+<abbr title="Console\Console">Console</abbr></a> at line 164</div>
         <code>        static    protected        void
     <strong>parseAttributes</strong>(object $object, array $validators)
         </code>
