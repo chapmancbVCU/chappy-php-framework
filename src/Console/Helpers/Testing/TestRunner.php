@@ -208,12 +208,13 @@ class TestRunner extends Console {
      * @param string $testArg The name of the test file without extension.
      * @param string $testSuite The name of the test suite.  Best practice is 
      * to use const provided by child class.
-     * @param string $ext The file extension.  Best practice is to use const provided by child class.
+     * @param string $extension The file extension.  Best practice is to use 
+     * const provided by child class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function singleFileWithinSuite(string $testArg, string $testSuite, string $ext): int {
-        if(file_exists($testSuite.$testArg.$ext)) {
-            $test = ' '.$testSuite.$testArg.$ext;
+    public function singleFileWithinSuite(string $testArg, string $testSuite, string $extension): int {
+        if(file_exists($testSuite.$testArg.$extension)) {
+            $test = ' '.$testSuite.$testArg.$extension;
             $this->runTest($test);
             return Command::SUCCESS;
         }
