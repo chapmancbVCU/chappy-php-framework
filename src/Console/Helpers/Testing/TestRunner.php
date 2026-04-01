@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers\Testing;
 
 use Console\Console;
+use Console\FrameworkQuestion;
 use Core\Lib\Utilities\Arr;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -229,11 +230,12 @@ class TestRunner extends Console {
      * successfully execute.
      *
      * @param string $testArg The name of the test file.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public function testByFilter(string $testArg): int {
+    public function testByFilter(string $testArg, FrameworkQuestion $question): int {
         $message = "Enter particular test using filter syntax (::).";
-        Console::argOptionValidate($testArg, $message, $this->input, $this->output, ['testFilterNotation'], true);
+        Console::argOptionValidate($testArg, $message, $question, ['testFilterNotation'], true);
 
         [$testFile, $location] = explode('::', $testArg);
         if(self::testIfSame($testFile)) return Command::FAILURE; 
