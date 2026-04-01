@@ -435,10 +435,10 @@ PHP;
     /**
      * Deliver a notification via a notifiable (or simulate if notifiable is not an object).
      *
-     * @param list<string>|null $channels    Channel override (NULL → use via()).
-     * @param object|string     $notifiable  Notifiable instance or a sentinel string.
-     * @param Notification      $notification The notification instance.
-     * @param array<string,mixed> $payload   Per-send payload/overrides.
+     * @param list<string>|null $channels Channel override (NULL → use via()).
+     * @param object|string $notifiable Notifiable instance or a sentinel string.
+     * @param Notification $notification The notification instance.
+     * @param array<string,mixed> $payload Per-send payload/overrides.
      * @return void
      */
     public static function sendViaNotifiable(
