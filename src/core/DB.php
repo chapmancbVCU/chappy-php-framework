@@ -256,8 +256,7 @@ class DB {
     }
 
     /**
-     * Returns the first result performed by an SQL query.  It is a wrapper
-     * for the _read function for this purpose.
+     * Returns only the first row of the last query
      *
      * @param string $table The name or the table we want to perform 
      * our query against.
@@ -592,7 +591,7 @@ class DB {
     }
 
     /**
-     * Returns value of query results.
+     * Returns all rows from the last query
      *
      * @return array An array of objects that contain results of a database 
      * query.
