@@ -28,7 +28,6 @@ class MakeCommand extends ConsoleCommand
     /**
      * Executes the command
      *
-     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
     protected function handle(): int

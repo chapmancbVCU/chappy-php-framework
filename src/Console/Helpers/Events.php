@@ -101,8 +101,7 @@ class Events extends Console {
      * queued event class.
      *
      * @param mixed $queue The queue option.
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @param OutputInterface $output The Symfony OutputInterface object.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return bool If flag is provided then it is returned.  If a response 
      * is provided the string 'queue' is returned.  Otherwise, we return null.
      */

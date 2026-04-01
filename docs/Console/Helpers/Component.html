@@ -579,7 +579,7 @@ don't bleed into next question if instance is reused.</p></p>                </d
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_argOptionValidate">argOptionValidate</a>(string $field, string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $validators = [], bool $defaultNone = false)
+                    <a href="#method_argOptionValidate">argOptionValidate</a>(string $field, string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $validators = [], bool $defaultNone = false)
         
                                             <p><p>Validates argument and option input.  If validation fails then the
 user is asked to enter a new value.</p></p>                </div>
@@ -591,7 +591,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;mixed
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_choice">choice</a>(string $message, array $choices, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
+                    <a href="#method_choice">choice</a>(string $message, array $choices, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
         
                                             <p><p>Ask user to confirm among several options based on question asked.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Console/Console.html#method_choice">
@@ -602,7 +602,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;mixed
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_confirm">confirm</a>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
+                    <a href="#method_confirm">confirm</a>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
         
                                             <p><p>Asks a user to confirm based on question asked.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Console/Console.html#method_confirm">
@@ -624,7 +624,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_prompt">prompt</a>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
+                    <a href="#method_prompt">prompt</a>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
         
                                             <p><p>Asks user question about file to be created.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Console/Console.html#method_prompt">
@@ -644,20 +644,10 @@ as strings along with any additional parameters that maybe expected.</p></p>    
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;int
+                    static&nbsp;mixed
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_componentContents">componentContents</a>(string $componentName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
-        
-                                            <p><p>Generate a component when argument is provided.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;int
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_componentPrompt">componentPrompt</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, string|null $componentName = null)
+                    <a href="#method_componentNamePrompt">componentNamePrompt</a>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         
                                             <p><p>Prompts uses for information if argument is not provided.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -667,7 +657,20 @@ as strings along with any additional parameters that maybe expected.</p></p>    
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_enctype">enctype</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+                    <a href="#method_componentType">componentType</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
+        
+                                            <p><p>Determines the type of component to be created based on flag
+provided.  If no flag is provided or multiple flags are set then user
+is presented with relevant message and asked which type of component
+that they want to create.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_enctype">enctype</a>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         
                                             <p><p>Prompts user for information about enctype to be used in form component.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -677,7 +680,7 @@ as strings along with any additional parameters that maybe expected.</p></p>    
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_formMethod">formMethod</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+                    <a href="#method_formMethod">formMethod</a>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         
                                             <p><p>Prompts user for information about which form method to be used in form component.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -690,6 +693,16 @@ as strings along with any additional parameters that maybe expected.</p></p>    
                     <a href="#method_makeCardComponent">makeCardComponent</a>(string $componentName)
         
                                             <p><p>Writes card component to a file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeComponent">makeComponent</a>(string $componentName, string $componentFlag, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
+        
+                                            <p><p>Generate a component when argument is provided.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -1987,7 +2000,7 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../Console/Console.html#method___construct">
-<abbr title="Console\Console">Console</abbr></a> at line 22</div>
+<abbr title="Console\Console">Console</abbr></a> at line 20</div>
         <code>                    
     <strong>__construct</strong>(string $fieldName = &quot;&quot;)
         </code>
@@ -2021,9 +2034,9 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method_argOptionValidate">
         <div class="location">in <a href="../../Console/Console.html#method_argOptionValidate">
-<abbr title="Console\Console">Console</abbr></a> at line 45</div>
+<abbr title="Console\Console">Console</abbr></a> at line 42</div>
         <code>        static            void
-    <strong>argOptionValidate</strong>(string $field, string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $validators = [], bool $defaultNone = false)
+    <strong>argOptionValidate</strong>(string $field, string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $validators = [], bool $defaultNone = false)
         </code>
     </h3>
     <div class="details">    
@@ -2053,14 +2066,9 @@ user is asked to enter a new value.</p></p>                <p><p>Validates the f
                 <td><p>The message to present to the user.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -2095,9 +2103,9 @@ all validators.</p></td>
                     <div class="method-item">
                     <h3 id="method_choice">
         <div class="location">in <a href="../../Console/Console.html#method_choice">
-<abbr title="Console\Console">Console</abbr></a> at line 80</div>
+<abbr title="Console\Console">Console</abbr></a> at line 75</div>
         <code>        static            mixed
-    <strong>choice</strong>(string $message, array $choices, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
+    <strong>choice</strong>(string $message, array $choices, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
         </code>
     </h3>
     <div class="details">    
@@ -2122,14 +2130,9 @@ all validators.</p></td>
                 <td><p>An array of choices.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
@@ -2159,9 +2162,9 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_confirm">
         <div class="location">in <a href="../../Console/Console.html#method_confirm">
-<abbr title="Console\Console">Console</abbr></a> at line 101</div>
+<abbr title="Console\Console">Console</abbr></a> at line 93</div>
         <code>        static            mixed
-    <strong>confirm</strong>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
+    <strong>confirm</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
         </code>
     </h3>
     <div class="details">    
@@ -2181,14 +2184,9 @@ user does not provide an answer.</p></td>
                 <td><p>The message to present to the user.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td><abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr></td>
@@ -2218,7 +2216,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_getInstance">
         <div class="location">in <a href="../../Console/Console.html#method_getInstance">
-<abbr title="Console\Console">Console</abbr></a> at line 117</div>
+<abbr title="Console\Console">Console</abbr></a> at line 107</div>
         <code>        static            <a href="../../Console/Console.html"><abbr title="Console\Console">Console</abbr></a>
     <strong>getInstance</strong>(string $fieldName = &quot;&quot;)
         </code>
@@ -2261,9 +2259,9 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_prompt">
         <div class="location">in <a href="../../Console/Console.html#method_prompt">
-<abbr title="Console\Console">Console</abbr></a> at line 143</div>
+<abbr title="Console\Console">Console</abbr></a> at line 132</div>
         <code>        static            string
-    <strong>prompt</strong>(string $message, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
+    <strong>prompt</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
         </code>
     </h3>
     <div class="details">    
@@ -2287,14 +2285,9 @@ user does not provide an answer.</p></td>
                 <td><p>The message to present to the user.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -2342,7 +2335,7 @@ all validators and attributes.</p></td>
                     <div class="method-item">
                     <h3 id="method_parseAttributes">
         <div class="location">in <a href="../../Console/Console.html#method_parseAttributes">
-<abbr title="Console\Console">Console</abbr></a> at line 177</div>
+<abbr title="Console\Console">Console</abbr></a> at line 164</div>
         <code>        static    protected        void
     <strong>parseAttributes</strong>(object $object, array $validators)
         </code>
@@ -2391,62 +2384,10 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_componentContents">
-        <div class="location">at line 31</div>
-        <code>        static            int
-    <strong>componentContents</strong>(string $componentName, <abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Generate a component when argument is provided.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$componentName</td>
-                <td><p>The name for the new component.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>int</td>
-            <td><p>A value that indicates success, invalid, or failure.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_componentPrompt">
-        <div class="location">at line 62</div>
-        <code>        static            int
-    <strong>componentPrompt</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output, string|null $componentName = null)
+                    <h3 id="method_componentNamePrompt">
+        <div class="location">at line 29</div>
+        <code>        static            mixed
+    <strong>componentNamePrompt</strong>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         </code>
     </h3>
     <div class="details">    
@@ -2461,19 +2402,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td>string|null</td>
-                <td>$componentName</td>
-                <td></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
             </table>
 
@@ -2482,8 +2413,58 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td>int</td>
-            <td><p>A value that indicates success, invalid, or failure.</p></td>
+            <td>mixed</td>
+            <td><p>The user response.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_componentType">
+        <div class="location">at line 43</div>
+        <code>        static            string
+    <strong>componentType</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determines the type of component to be created based on flag
+provided.  If no flag is provided or multiple flags are set then user
+is presented with relevant message and asked which type of component
+that they want to create.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
+                <td>$input</td>
+                <td><p>The Symfony InputInterface object.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A string with the name of the component to be created.</p></td>
         </tr>
     </table>
 
@@ -2496,9 +2477,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_enctype">
-        <div class="location">at line 91</div>
+        <div class="location">at line 80</div>
         <code>        static            string
-    <strong>enctype</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+    <strong>enctype</strong>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         </code>
     </h3>
     <div class="details">    
@@ -2513,14 +2494,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
             </table>
 
@@ -2543,9 +2519,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_formMethod">
-        <div class="location">at line 106</div>
+        <div class="location">at line 94</div>
         <code>        static            string
-    <strong>formMethod</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr> $output)
+    <strong>formMethod</strong>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         </code>
     </h3>
     <div class="details">    
@@ -2560,14 +2536,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The Symfony InputInterface object.</p></td>
-            </tr>
-                    <tr>
-                <td><abbr title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></td>
-                <td>$output</td>
-                <td><p>The Symfony OutputInterface object.</p></td>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
             </table>
 
@@ -2590,7 +2561,7 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeCardComponent">
-        <div class="location">at line 118</div>
+        <div class="location">at line 106</div>
         <code>        static            int
     <strong>makeCardComponent</strong>(string $componentName)
         </code>
@@ -2631,8 +2602,60 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_makeComponent">
+        <div class="location">at line 122</div>
+        <code>        static            int
+    <strong>makeComponent</strong>(string $componentName, string $componentFlag, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generate a component when argument is provided.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$componentName</td>
+                <td><p>The name for the new component.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$componentFlag</td>
+                <td><p>The type of component to be created.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_makeFormComponent">
-        <div class="location">at line 134</div>
+        <div class="location">at line 145</div>
         <code>        static            int
     <strong>makeFormComponent</strong>(string $componentName, string $method, string $encType)
         </code>
@@ -2684,7 +2707,7 @@ parameters must be separated with a &quot;:&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeTableComponent">
-        <div class="location">at line 148</div>
+        <div class="location">at line 159</div>
         <code>        static            int
     <strong>makeTableComponent</strong>(string $componentName)
         </code>

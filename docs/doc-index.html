@@ -453,7 +453,11 @@ block.  Supports ability to have functions for event handlers&quot;.</p></dd><dt
 <abbr title="Console\Console">Console</abbr>::choice</a>() &mdash; <em>Method in class <a href="Console/Console.html"><abbr title="Console\Console">Console</abbr></a></em></dt>
                     <dd><p>Ask user to confirm among several options based on question asked.</p></dd><dt><a href="Console/Console.html#method_confirm">
 <abbr title="Console\Console">Console</abbr>::confirm</a>() &mdash; <em>Method in class <a href="Console/Console.html"><abbr title="Console\Console">Console</abbr></a></em></dt>
-                    <dd><p>Asks a user to confirm based on question asked.</p></dd><dt><a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a> &mdash; <em>Class in namespace <a href="Console.html">Console</a></em></dt>
+                    <dd><p>Asks a user to confirm based on question asked.</p></dd><dt><a href="Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console.html">Console</a></em></dt>
+                    <dd><p>Extends Command class and provides $input and $output as instance
+variables of their respective classes.  Also contains helper for returning
+an instance of the FrameworkQuestion class.</p></dd><dt><a href="Console/ConsoleIO.html"><abbr title="Console\ConsoleIO">ConsoleIO</abbr></a> &mdash; <em>Class in namespace <a href="Console.html">Console</a></em></dt>
+                    <dd><p>Wrapper class for InputInterface functions.</p></dd><dt><a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a> &mdash; <em>Class in namespace <a href="Console.html">Console</a></em></dt>
                     <dd><p>Supports all operations related to writing output to console.</p></dd><dt><a href="Console/ConsoleLogger.html#method_consoleLog">
 <abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::consoleLog</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
                     <dd><p>Performs actual action of writing output to console with specified
@@ -475,11 +479,14 @@ helper classes.</p></dd><dt><a href="Console/Helpers/CommandStubs.html"><abbr ti
                     <dd><p>Contains stubs for command and command helper templates.</p></dd><dt><a href="Console/Helpers/CommandStubs.html#method_commandTemplate">
 <abbr title="Console\Helpers\CommandStubs">CommandStubs</abbr>::commandTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/CommandStubs.html"><abbr title="Console\Helpers\CommandStubs">CommandStubs</abbr></a></em></dt>
                     <dd><p>Creates template for new command class.</p></dd><dt><a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
-                    <dd><p>Supports operations related to the creation of components.</p></dd><dt><a href="Console/Helpers/Component.html#method_componentContents">
-<abbr title="Console\Helpers\Component">Component</abbr>::componentContents</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
-                    <dd><p>Generate a component when argument is provided.</p></dd><dt><a href="Console/Helpers/Component.html#method_componentPrompt">
-<abbr title="Console\Helpers\Component">Component</abbr>::componentPrompt</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
-                    <dd><p>Prompts uses for information if argument is not provided.</p></dd><dt><a href="Console/Helpers/ComponentStubs.html"><abbr title="Console\Helpers\ComponentStubs">ComponentStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
+                    <dd><p>Supports operations related to the creation of components.</p></dd><dt><a href="Console/Helpers/Component.html#method_componentNamePrompt">
+<abbr title="Console\Helpers\Component">Component</abbr>::componentNamePrompt</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
+                    <dd><p>Prompts uses for information if argument is not provided.</p></dd><dt><a href="Console/Helpers/Component.html#method_componentType">
+<abbr title="Console\Helpers\Component">Component</abbr>::componentType</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
+                    <dd><p>Determines the type of component to be created based on flag
+provided.  If no flag is provided or multiple flags are set then user
+is presented with relevant message and asked which type of component
+that they want to create.</p></dd><dt><a href="Console/Helpers/ComponentStubs.html"><abbr title="Console\Helpers\ComponentStubs">ComponentStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Collection of stubs for available components.</p></dd><dt><a href="Console/Helpers/ComponentStubs.html#method_cardComponent">
 <abbr title="Console\Helpers\ComponentStubs">ComponentStubs</abbr>::cardComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/ComponentStubs.html"><abbr title="Console\Helpers\ComponentStubs">ComponentStubs</abbr></a></em></dt>
                     <dd><p>Returns contents of a card component.</p></dd><dt><a href="Console/Helpers/Controller.html"><abbr title="Console\Helpers\Controller">Controller</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
@@ -490,15 +497,15 @@ set then a resource controller is generated.</p></dd><dt><a href="Console/Helper
 <abbr title="Console\Helpers\Controller">Controller</abbr>::controllerNamePrompt</a>() &mdash; <em>Method in class <a href="Console/Helpers/Controller.html"><abbr title="Console\Helpers\Controller">Controller</abbr></a></em></dt>
                     <dd><p>Handles question for controller name if it is not provided as an
 argument.</p></dd><dt><a href="Console/Helpers/ControllerStubs.html"><abbr title="Console\Helpers\ControllerStubs">ControllerStubs</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
-                    <dd><p>Helper class for controller related console commands.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_contents">
-<abbr title="Console\Helpers\Migrate">Migrate</abbr>::contents</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
-                    <dd><p>Generates new migration class if table-name argument is provided.  If rename or update
-flags are set then appropriate migration class is created.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmDropAllTables">
+                    <dd><p>Helper class for controller related console commands.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmDropAllTables">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::confirmDropAllTables</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Ask user to confirm if they want to drop all tables.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmMigrationInProduction">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::confirmMigrationInProduction</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Ask user to confirm if they want to proceed with migration operation
-when in production mode.</p></dd><dt><a href="Console/Helpers/Model.html#method_contents">
+when in production mode.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_contents">
+<abbr title="Console\Helpers\Migrate">Migrate</abbr>::contents</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
+                    <dd><p>Generates new migration class if table-name argument is provided.  If rename or update
+flags are set then appropriate migration class is created.</p></dd><dt><a href="Console/Helpers/Model.html#method_contents">
 <abbr title="Console\Helpers\Model">Model</abbr>::contents</a>() &mdash; <em>Method in class <a href="Console/Helpers/Model.html"><abbr title="Console\Helpers\Model">Model</abbr></a></em></dt>
                     <dd><p>Generates a new model class.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_channels">
 <abbr title="Console\Helpers\Notifications">Notifications</abbr>::channels</a>() &mdash; <em>Method in class <a href="Console/Helpers/Notifications.html"><abbr title="Console\Helpers\Notifications">Notifications</abbr></a></em></dt>
@@ -826,121 +833,9 @@ is set to true.</p></dd><dt><a href="Core/Services/UserService.html#method_delet
 when a user logs out of a user session.</p></dd><dt><a href="Core/Session.html#method_displayMessage">
 <abbr title="Core\Session">Session</abbr>::displayMessage</a>() &mdash; <em>Method in class <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a></em></dt>
                     <dd><p>Displays messages related to actions a user may perform.</p></dd>        </dl><h2 id="letterE">E</h2>
-        <dl id="indexE"><dt><a href="Console/Commands/DropTablesCommand.html#method_execute">
-<abbr title="Console\Commands\DropTablesCommand">DropTablesCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/DropTablesCommand.html"><abbr title="Console\Commands\DropTablesCommand">DropTablesCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/GenerateControllerCommand.html#method_execute">
-<abbr title="Console\Commands\GenerateControllerCommand">GenerateControllerCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/GenerateControllerCommand.html"><abbr title="Console\Commands\GenerateControllerCommand">GenerateControllerCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/GenerateMigrationCommand.html#method_execute">
-<abbr title="Console\Commands\GenerateMigrationCommand">GenerateMigrationCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/GenerateMigrationCommand.html"><abbr title="Console\Commands\GenerateMigrationCommand">GenerateMigrationCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/GenerateModelCommand.html#method_execute">
-<abbr title="Console\Commands\GenerateModelCommand">GenerateModelCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/GenerateModelCommand.html"><abbr title="Console\Commands\GenerateModelCommand">GenerateModelCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeAclCommand.html#method_execute">
-<abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeAclCommand.html"><abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeCSSCommand.html#method_execute">
-<abbr title="Console\Commands\MakeCSSCommand">MakeCSSCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeCSSCommand.html"><abbr title="Console\Commands\MakeCSSCommand">MakeCSSCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeCommand.html#method_execute">
-<abbr title="Console\Commands\MakeCommand">MakeCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeCommand.html"><abbr title="Console\Commands\MakeCommand">MakeCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeComponentCommand.html#method_execute">
-<abbr title="Console\Commands\MakeComponentCommand">MakeComponentCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeComponentCommand.html"><abbr title="Console\Commands\MakeComponentCommand">MakeComponentCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEmailCommand.html#method_execute">
-<abbr title="Console\Commands\MakeEmailCommand">MakeEmailCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEmailCommand.html"><abbr title="Console\Commands\MakeEmailCommand">MakeEmailCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEmailLayoutCommand.html#method_execute">
-<abbr title="Console\Commands\MakeEmailLayoutCommand">MakeEmailLayoutCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEmailLayoutCommand.html"><abbr title="Console\Commands\MakeEmailLayoutCommand">MakeEmailLayoutCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEventCommand.html#method_execute">
-<abbr title="Console\Commands\MakeEventCommand">MakeEventCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEventCommand.html"><abbr title="Console\Commands\MakeEventCommand">MakeEventCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEventServiceProviderCommand.html#method_execute">
-<abbr title="Console\Commands\MakeEventServiceProviderCommand">MakeEventServiceProviderCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEventServiceProviderCommand.html"><abbr title="Console\Commands\MakeEventServiceProviderCommand">MakeEventServiceProviderCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeFactoryCommand.html#method_execute">
-<abbr title="Console\Commands\MakeFactoryCommand">MakeFactoryCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeFactoryCommand.html"><abbr title="Console\Commands\MakeFactoryCommand">MakeFactoryCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeHelperCommand.html#method_execute">
-<abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeJobCommand.html#method_execute">
-<abbr title="Console\Commands\MakeJobCommand">MakeJobCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeJobCommand.html"><abbr title="Console\Commands\MakeJobCommand">MakeJobCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeLayoutCommand.html#method_execute">
-<abbr title="Console\Commands\MakeLayoutCommand">MakeLayoutCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeLayoutCommand.html"><abbr title="Console\Commands\MakeLayoutCommand">MakeLayoutCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeListenerCommand.html#method_execute">
-<abbr title="Console\Commands\MakeListenerCommand">MakeListenerCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeListenerCommand.html"><abbr title="Console\Commands\MakeListenerCommand">MakeListenerCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeMailerCommand.html#method_execute">
-<abbr title="Console\Commands\MakeMailerCommand">MakeMailerCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeMailerCommand.html"><abbr title="Console\Commands\MakeMailerCommand">MakeMailerCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeMenuCommand.html#method_execute">
-<abbr title="Console\Commands\MakeMenuCommand">MakeMenuCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeMenuCommand.html"><abbr title="Console\Commands\MakeMenuCommand">MakeMenuCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeNotificationCommand.html#method_execute">
-<abbr title="Console\Commands\MakeNotificationCommand">MakeNotificationCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeNotificationCommand.html"><abbr title="Console\Commands\MakeNotificationCommand">MakeNotificationCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactComponentCommand.html#method_execute">
-<abbr title="Console\Commands\MakeReactComponentCommand">MakeReactComponentCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactComponentCommand.html"><abbr title="Console\Commands\MakeReactComponentCommand">MakeReactComponentCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactHookCommand.html#method_execute">
-<abbr title="Console\Commands\MakeReactHookCommand">MakeReactHookCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactHookCommand.html"><abbr title="Console\Commands\MakeReactHookCommand">MakeReactHookCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactPageCommand.html#method_execute">
-<abbr title="Console\Commands\MakeReactPageCommand">MakeReactPageCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactPageCommand.html"><abbr title="Console\Commands\MakeReactPageCommand">MakeReactPageCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactUtilCommand.html#method_execute">
-<abbr title="Console\Commands\MakeReactUtilCommand">MakeReactUtilCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactUtilCommand.html"><abbr title="Console\Commands\MakeReactUtilCommand">MakeReactUtilCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeSeederCommand.html#method_execute">
-<abbr title="Console\Commands\MakeSeederCommand">MakeSeederCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeSeederCommand.html"><abbr title="Console\Commands\MakeSeederCommand">MakeSeederCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeServiceCommand.html#method_execute">
-<abbr title="Console\Commands\MakeServiceCommand">MakeServiceCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeServiceCommand.html"><abbr title="Console\Commands\MakeServiceCommand">MakeServiceCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeTestBuilderCommand.html#method_execute">
-<abbr title="Console\Commands\MakeTestBuilderCommand">MakeTestBuilderCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeTestBuilderCommand.html"><abbr title="Console\Commands\MakeTestBuilderCommand">MakeTestBuilderCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeTestCommand.html#method_execute">
-<abbr title="Console\Commands\MakeTestCommand">MakeTestCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeTestCommand.html"><abbr title="Console\Commands\MakeTestCommand">MakeTestCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeTestRunnerCommand.html#method_execute">
-<abbr title="Console\Commands\MakeTestRunnerCommand">MakeTestRunnerCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeTestRunnerCommand.html"><abbr title="Console\Commands\MakeTestRunnerCommand">MakeTestRunnerCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeValidatorCommand.html#method_execute">
-<abbr title="Console\Commands\MakeValidatorCommand">MakeValidatorCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeValidatorCommand.html"><abbr title="Console\Commands\MakeValidatorCommand">MakeValidatorCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeViewCommand.html#method_execute">
-<abbr title="Console\Commands\MakeViewCommand">MakeViewCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeViewCommand.html"><abbr title="Console\Commands\MakeViewCommand">MakeViewCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeVitestTestCommand.html#method_execute">
-<abbr title="Console\Commands\MakeVitestTestCommand">MakeVitestTestCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeVitestTestCommand.html"><abbr title="Console\Commands\MakeVitestTestCommand">MakeVitestTestCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeWidgetCommand.html#method_execute">
-<abbr title="Console\Commands\MakeWidgetCommand">MakeWidgetCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeWidgetCommand.html"><abbr title="Console\Commands\MakeWidgetCommand">MakeWidgetCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateFreshCommand.html#method_execute">
-<abbr title="Console\Commands\MigrateFreshCommand">MigrateFreshCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateFreshCommand.html"><abbr title="Console\Commands\MigrateFreshCommand">MigrateFreshCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateRefreshCommand.html#method_execute">
-<abbr title="Console\Commands\MigrateRefreshCommand">MigrateRefreshCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateRefreshCommand.html"><abbr title="Console\Commands\MigrateRefreshCommand">MigrateRefreshCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateRollbackCommand.html#method_execute">
-<abbr title="Console\Commands\MigrateRollbackCommand">MigrateRollbackCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateRollbackCommand.html"><abbr title="Console\Commands\MigrateRollbackCommand">MigrateRollbackCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateStatusCommand.html#method_execute">
-<abbr title="Console\Commands\MigrateStatusCommand">MigrateStatusCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateStatusCommand.html"><abbr title="Console\Commands\MigrateStatusCommand">MigrateStatusCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/NotificationTestCommand.html#method_execute">
-<abbr title="Console\Commands\NotificationTestCommand">NotificationTestCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/NotificationTestCommand.html"><abbr title="Console\Commands\NotificationTestCommand">NotificationTestCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/NotificationsMigrationCommand.html#method_execute">
-<abbr title="Console\Commands\NotificationsMigrationCommand">NotificationsMigrationCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/NotificationsMigrationCommand.html"><abbr title="Console\Commands\NotificationsMigrationCommand">NotificationsMigrationCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/NotificationsPruneCommand.html#method_execute">
-<abbr title="Console\Commands\NotificationsPruneCommand">NotificationsPruneCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/NotificationsPruneCommand.html"><abbr title="Console\Commands\NotificationsPruneCommand">NotificationsPruneCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/QueueMigrationCommand.html#method_execute">
-<abbr title="Console\Commands\QueueMigrationCommand">QueueMigrationCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/QueueMigrationCommand.html"><abbr title="Console\Commands\QueueMigrationCommand">QueueMigrationCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/QueueWorkerCommand.html#method_execute">
-<abbr title="Console\Commands\QueueWorkerCommand">QueueWorkerCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/QueueWorkerCommand.html"><abbr title="Console\Commands\QueueWorkerCommand">QueueWorkerCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactAuthCommand.html#method_execute">
-<abbr title="Console\Commands\ReactAuthCommand">ReactAuthCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactAuthCommand.html"><abbr title="Console\Commands\ReactAuthCommand">ReactAuthCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactErrorCommand.html#method_execute">
-<abbr title="Console\Commands\ReactErrorCommand">ReactErrorCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactErrorCommand.html"><abbr title="Console\Commands\ReactErrorCommand">ReactErrorCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactHomeCommand.html#method_execute">
-<abbr title="Console\Commands\ReactHomeCommand">ReactHomeCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactHomeCommand.html"><abbr title="Console\Commands\ReactHomeCommand">ReactHomeCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactProfileCommand.html#method_execute">
-<abbr title="Console\Commands\ReactProfileCommand">ReactProfileCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactProfileCommand.html"><abbr title="Console\Commands\ReactProfileCommand">ReactProfileCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RemoveLogsCommand.html#method_execute">
-<abbr title="Console\Commands\RemoveLogsCommand">RemoveLogsCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/RemoveLogsCommand.html"><abbr title="Console\Commands\RemoveLogsCommand">RemoveLogsCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RemoveProfileImagesCommand.html#method_execute">
-<abbr title="Console\Commands\RemoveProfileImagesCommand">RemoveProfileImagesCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/RemoveProfileImagesCommand.html"><abbr title="Console\Commands\RemoveProfileImagesCommand">RemoveProfileImagesCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RestoreMigrationsCommand.html#method_execute">
-<abbr title="Console\Commands\RestoreMigrationsCommand">RestoreMigrationsCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/RestoreMigrationsCommand.html"><abbr title="Console\Commands\RestoreMigrationsCommand">RestoreMigrationsCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RunMigrationCommand.html#method_execute">
-<abbr title="Console\Commands\RunMigrationCommand">RunMigrationCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/RunMigrationCommand.html"><abbr title="Console\Commands\RunMigrationCommand">RunMigrationCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RunTestCommand.html#method_execute">
-<abbr title="Console\Commands\RunTestCommand">RunTestCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/RunTestCommand.html"><abbr title="Console\Commands\RunTestCommand">RunTestCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RunVitestCommand.html#method_execute">
-<abbr title="Console\Commands\RunVitestCommand">RunVitestCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/RunVitestCommand.html"><abbr title="Console\Commands\RunVitestCommand">RunVitestCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/SeedCommand.html#method_execute">
-<abbr title="Console\Commands\SeedCommand">SeedCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/SeedCommand.html"><abbr title="Console\Commands\SeedCommand">SeedCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ServeCommand.html#method_execute">
-<abbr title="Console\Commands\ServeCommand">ServeCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeCommand.html"><abbr title="Console\Commands\ServeCommand">ServeCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ServeDocsCommand.html#method_execute">
-<abbr title="Console\Commands\ServeDocsCommand">ServeDocsCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeDocsCommand.html"><abbr title="Console\Commands\ServeDocsCommand">ServeDocsCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command.</p></dd><dt><a href="Console/Commands/ServeUserGuideCommand.html#method_execute">
-<abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeUserGuideCommand.html"><abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command.</p></dd><dt><a href="Console/Commands/TinkerCommand.html#method_execute">
-<abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/Commands/TinkerCommand.html"><abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr></a></em></dt>
-                    <dd><p>Executes the command</p></dd><dt>$<a href="Console/HasValidators.html#property_errors">
+        <dl id="indexE"><dt><a href="Console/ConsoleCommand.html#method_execute">
+<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr>::execute</a>() &mdash; <em>Method in class <a href="Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></em></dt>
+                    <dd><p>Implements execute from parent class.</p></dd><dt>$<a href="Console/HasValidators.html#property_errors">
 <abbr title="Console\HasValidators">HasValidators</abbr>#errors</a> &mdash; <em>Property in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
                     <dd><p>An array of errors.</p></dd><dt><a href="Console/HasValidators.html#method_email">
 <abbr title="Console\HasValidators">HasValidators</abbr>::email</a>() &mdash; <em>Method in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
@@ -1177,7 +1072,11 @@ in user.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_fie
                     <dd><p>Supports ability to generate new migration file.</p></dd><dt><a href="Console/Commands/GenerateModelCommand.html"><abbr title="Console\Commands\GenerateModelCommand">GenerateModelCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to generate new model class by typing make:model.</p></dd><dt><a href="Console/Console.html#method_getInstance">
 <abbr title="Console\Console">Console</abbr>::getInstance</a>() &mdash; <em>Method in class <a href="Console/Console.html"><abbr title="Console\Console">Console</abbr></a></em></dt>
-                    <dd><p>Returns instance of this or child helper class.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_generateACLTableMigration">
+                    <dd><p>Returns instance of this or child helper class.</p></dd><dt><a href="Console/ConsoleIO.html#method_getArgument">
+<abbr title="Console\ConsoleIO">ConsoleIO</abbr>::getArgument</a>() &mdash; <em>Method in class <a href="Console/ConsoleIO.html"><abbr title="Console\ConsoleIO">ConsoleIO</abbr></a></em></dt>
+                    <dd><p>Wrapper for InputInterface::getArgument function.</p></dd><dt><a href="Console/ConsoleIO.html#method_getOption">
+<abbr title="Console\ConsoleIO">ConsoleIO</abbr>::getOption</a>() &mdash; <em>Method in class <a href="Console/ConsoleIO.html"><abbr title="Console\ConsoleIO">ConsoleIO</abbr></a></em></dt>
+                    <dd><p>Wrapper for InputInterface::getOption function.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_generateACLTableMigration">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::generateACLTableMigration</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Generates migration for acl table.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_generateAllMigrations">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::generateAllMigrations</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
@@ -1303,7 +1202,125 @@ of user.</p></dd><dt><a href="Core/Session.html#method_get">
 <abbr title="Core\Session">Session</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a></em></dt>
                     <dd><p>Getter function that returns the $_SESSION superglobal associative
 array.</p></dd>        </dl><h2 id="letterH">H</h2>
-        <dl id="indexH"><dt><a href="Console/ConsoleLogger.html#method_hasConstant">
+        <dl id="indexH"><dt><a href="Console/Commands/DropTablesCommand.html#method_handle">
+<abbr title="Console\Commands\DropTablesCommand">DropTablesCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/DropTablesCommand.html"><abbr title="Console\Commands\DropTablesCommand">DropTablesCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/GenerateControllerCommand.html#method_handle">
+<abbr title="Console\Commands\GenerateControllerCommand">GenerateControllerCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/GenerateControllerCommand.html"><abbr title="Console\Commands\GenerateControllerCommand">GenerateControllerCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/GenerateMigrationCommand.html#method_handle">
+<abbr title="Console\Commands\GenerateMigrationCommand">GenerateMigrationCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/GenerateMigrationCommand.html"><abbr title="Console\Commands\GenerateMigrationCommand">GenerateMigrationCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/GenerateModelCommand.html#method_handle">
+<abbr title="Console\Commands\GenerateModelCommand">GenerateModelCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/GenerateModelCommand.html"><abbr title="Console\Commands\GenerateModelCommand">GenerateModelCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeAclCommand.html#method_handle">
+<abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeAclCommand.html"><abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeCSSCommand.html#method_handle">
+<abbr title="Console\Commands\MakeCSSCommand">MakeCSSCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeCSSCommand.html"><abbr title="Console\Commands\MakeCSSCommand">MakeCSSCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeCommand.html#method_handle">
+<abbr title="Console\Commands\MakeCommand">MakeCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeCommand.html"><abbr title="Console\Commands\MakeCommand">MakeCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeComponentCommand.html#method_handle">
+<abbr title="Console\Commands\MakeComponentCommand">MakeComponentCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeComponentCommand.html"><abbr title="Console\Commands\MakeComponentCommand">MakeComponentCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEmailCommand.html#method_handle">
+<abbr title="Console\Commands\MakeEmailCommand">MakeEmailCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEmailCommand.html"><abbr title="Console\Commands\MakeEmailCommand">MakeEmailCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEmailLayoutCommand.html#method_handle">
+<abbr title="Console\Commands\MakeEmailLayoutCommand">MakeEmailLayoutCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEmailLayoutCommand.html"><abbr title="Console\Commands\MakeEmailLayoutCommand">MakeEmailLayoutCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEventCommand.html#method_handle">
+<abbr title="Console\Commands\MakeEventCommand">MakeEventCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEventCommand.html"><abbr title="Console\Commands\MakeEventCommand">MakeEventCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeEventServiceProviderCommand.html#method_handle">
+<abbr title="Console\Commands\MakeEventServiceProviderCommand">MakeEventServiceProviderCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeEventServiceProviderCommand.html"><abbr title="Console\Commands\MakeEventServiceProviderCommand">MakeEventServiceProviderCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeFactoryCommand.html#method_handle">
+<abbr title="Console\Commands\MakeFactoryCommand">MakeFactoryCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeFactoryCommand.html"><abbr title="Console\Commands\MakeFactoryCommand">MakeFactoryCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeHelperCommand.html#method_handle">
+<abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeJobCommand.html#method_handle">
+<abbr title="Console\Commands\MakeJobCommand">MakeJobCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeJobCommand.html"><abbr title="Console\Commands\MakeJobCommand">MakeJobCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeLayoutCommand.html#method_handle">
+<abbr title="Console\Commands\MakeLayoutCommand">MakeLayoutCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeLayoutCommand.html"><abbr title="Console\Commands\MakeLayoutCommand">MakeLayoutCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeListenerCommand.html#method_handle">
+<abbr title="Console\Commands\MakeListenerCommand">MakeListenerCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeListenerCommand.html"><abbr title="Console\Commands\MakeListenerCommand">MakeListenerCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeMailerCommand.html#method_handle">
+<abbr title="Console\Commands\MakeMailerCommand">MakeMailerCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeMailerCommand.html"><abbr title="Console\Commands\MakeMailerCommand">MakeMailerCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeMenuCommand.html#method_handle">
+<abbr title="Console\Commands\MakeMenuCommand">MakeMenuCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeMenuCommand.html"><abbr title="Console\Commands\MakeMenuCommand">MakeMenuCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeNotificationCommand.html#method_handle">
+<abbr title="Console\Commands\MakeNotificationCommand">MakeNotificationCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeNotificationCommand.html"><abbr title="Console\Commands\MakeNotificationCommand">MakeNotificationCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactComponentCommand.html#method_handle">
+<abbr title="Console\Commands\MakeReactComponentCommand">MakeReactComponentCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactComponentCommand.html"><abbr title="Console\Commands\MakeReactComponentCommand">MakeReactComponentCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactHookCommand.html#method_handle">
+<abbr title="Console\Commands\MakeReactHookCommand">MakeReactHookCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactHookCommand.html"><abbr title="Console\Commands\MakeReactHookCommand">MakeReactHookCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactPageCommand.html#method_handle">
+<abbr title="Console\Commands\MakeReactPageCommand">MakeReactPageCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactPageCommand.html"><abbr title="Console\Commands\MakeReactPageCommand">MakeReactPageCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeReactUtilCommand.html#method_handle">
+<abbr title="Console\Commands\MakeReactUtilCommand">MakeReactUtilCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeReactUtilCommand.html"><abbr title="Console\Commands\MakeReactUtilCommand">MakeReactUtilCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeSeederCommand.html#method_handle">
+<abbr title="Console\Commands\MakeSeederCommand">MakeSeederCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeSeederCommand.html"><abbr title="Console\Commands\MakeSeederCommand">MakeSeederCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeServiceCommand.html#method_handle">
+<abbr title="Console\Commands\MakeServiceCommand">MakeServiceCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeServiceCommand.html"><abbr title="Console\Commands\MakeServiceCommand">MakeServiceCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeTestBuilderCommand.html#method_handle">
+<abbr title="Console\Commands\MakeTestBuilderCommand">MakeTestBuilderCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeTestBuilderCommand.html"><abbr title="Console\Commands\MakeTestBuilderCommand">MakeTestBuilderCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeTestCommand.html#method_handle">
+<abbr title="Console\Commands\MakeTestCommand">MakeTestCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeTestCommand.html"><abbr title="Console\Commands\MakeTestCommand">MakeTestCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeTestRunnerCommand.html#method_handle">
+<abbr title="Console\Commands\MakeTestRunnerCommand">MakeTestRunnerCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeTestRunnerCommand.html"><abbr title="Console\Commands\MakeTestRunnerCommand">MakeTestRunnerCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeValidatorCommand.html#method_handle">
+<abbr title="Console\Commands\MakeValidatorCommand">MakeValidatorCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeValidatorCommand.html"><abbr title="Console\Commands\MakeValidatorCommand">MakeValidatorCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeViewCommand.html#method_handle">
+<abbr title="Console\Commands\MakeViewCommand">MakeViewCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeViewCommand.html"><abbr title="Console\Commands\MakeViewCommand">MakeViewCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeVitestTestCommand.html#method_handle">
+<abbr title="Console\Commands\MakeVitestTestCommand">MakeVitestTestCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeVitestTestCommand.html"><abbr title="Console\Commands\MakeVitestTestCommand">MakeVitestTestCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MakeWidgetCommand.html#method_handle">
+<abbr title="Console\Commands\MakeWidgetCommand">MakeWidgetCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MakeWidgetCommand.html"><abbr title="Console\Commands\MakeWidgetCommand">MakeWidgetCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateFreshCommand.html#method_handle">
+<abbr title="Console\Commands\MigrateFreshCommand">MigrateFreshCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateFreshCommand.html"><abbr title="Console\Commands\MigrateFreshCommand">MigrateFreshCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateRefreshCommand.html#method_handle">
+<abbr title="Console\Commands\MigrateRefreshCommand">MigrateRefreshCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateRefreshCommand.html"><abbr title="Console\Commands\MigrateRefreshCommand">MigrateRefreshCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateRollbackCommand.html#method_handle">
+<abbr title="Console\Commands\MigrateRollbackCommand">MigrateRollbackCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateRollbackCommand.html"><abbr title="Console\Commands\MigrateRollbackCommand">MigrateRollbackCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/MigrateStatusCommand.html#method_handle">
+<abbr title="Console\Commands\MigrateStatusCommand">MigrateStatusCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/MigrateStatusCommand.html"><abbr title="Console\Commands\MigrateStatusCommand">MigrateStatusCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/NotificationTestCommand.html#method_handle">
+<abbr title="Console\Commands\NotificationTestCommand">NotificationTestCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/NotificationTestCommand.html"><abbr title="Console\Commands\NotificationTestCommand">NotificationTestCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/NotificationsMigrationCommand.html#method_handle">
+<abbr title="Console\Commands\NotificationsMigrationCommand">NotificationsMigrationCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/NotificationsMigrationCommand.html"><abbr title="Console\Commands\NotificationsMigrationCommand">NotificationsMigrationCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/NotificationsPruneCommand.html#method_handle">
+<abbr title="Console\Commands\NotificationsPruneCommand">NotificationsPruneCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/NotificationsPruneCommand.html"><abbr title="Console\Commands\NotificationsPruneCommand">NotificationsPruneCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/QueueMigrationCommand.html#method_handle">
+<abbr title="Console\Commands\QueueMigrationCommand">QueueMigrationCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/QueueMigrationCommand.html"><abbr title="Console\Commands\QueueMigrationCommand">QueueMigrationCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/QueueWorkerCommand.html#method_handle">
+<abbr title="Console\Commands\QueueWorkerCommand">QueueWorkerCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/QueueWorkerCommand.html"><abbr title="Console\Commands\QueueWorkerCommand">QueueWorkerCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactAuthCommand.html#method_handle">
+<abbr title="Console\Commands\ReactAuthCommand">ReactAuthCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactAuthCommand.html"><abbr title="Console\Commands\ReactAuthCommand">ReactAuthCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactErrorCommand.html#method_handle">
+<abbr title="Console\Commands\ReactErrorCommand">ReactErrorCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactErrorCommand.html"><abbr title="Console\Commands\ReactErrorCommand">ReactErrorCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactHomeCommand.html#method_handle">
+<abbr title="Console\Commands\ReactHomeCommand">ReactHomeCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactHomeCommand.html"><abbr title="Console\Commands\ReactHomeCommand">ReactHomeCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ReactProfileCommand.html#method_handle">
+<abbr title="Console\Commands\ReactProfileCommand">ReactProfileCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ReactProfileCommand.html"><abbr title="Console\Commands\ReactProfileCommand">ReactProfileCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RemoveLogsCommand.html#method_handle">
+<abbr title="Console\Commands\RemoveLogsCommand">RemoveLogsCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/RemoveLogsCommand.html"><abbr title="Console\Commands\RemoveLogsCommand">RemoveLogsCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RemoveProfileImagesCommand.html#method_handle">
+<abbr title="Console\Commands\RemoveProfileImagesCommand">RemoveProfileImagesCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/RemoveProfileImagesCommand.html"><abbr title="Console\Commands\RemoveProfileImagesCommand">RemoveProfileImagesCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RestoreMigrationsCommand.html#method_handle">
+<abbr title="Console\Commands\RestoreMigrationsCommand">RestoreMigrationsCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/RestoreMigrationsCommand.html"><abbr title="Console\Commands\RestoreMigrationsCommand">RestoreMigrationsCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RunMigrationCommand.html#method_handle">
+<abbr title="Console\Commands\RunMigrationCommand">RunMigrationCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/RunMigrationCommand.html"><abbr title="Console\Commands\RunMigrationCommand">RunMigrationCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RunTestCommand.html#method_handle">
+<abbr title="Console\Commands\RunTestCommand">RunTestCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/RunTestCommand.html"><abbr title="Console\Commands\RunTestCommand">RunTestCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/RunVitestCommand.html#method_handle">
+<abbr title="Console\Commands\RunVitestCommand">RunVitestCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/RunVitestCommand.html"><abbr title="Console\Commands\RunVitestCommand">RunVitestCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/SeedCommand.html#method_handle">
+<abbr title="Console\Commands\SeedCommand">SeedCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/SeedCommand.html"><abbr title="Console\Commands\SeedCommand">SeedCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ServeCommand.html#method_handle">
+<abbr title="Console\Commands\ServeCommand">ServeCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeCommand.html"><abbr title="Console\Commands\ServeCommand">ServeCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/Commands/ServeDocsCommand.html#method_handle">
+<abbr title="Console\Commands\ServeDocsCommand">ServeDocsCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeDocsCommand.html"><abbr title="Console\Commands\ServeDocsCommand">ServeDocsCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command.</p></dd><dt><a href="Console/Commands/ServeUserGuideCommand.html#method_handle">
+<abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/ServeUserGuideCommand.html"><abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command.</p></dd><dt><a href="Console/Commands/TinkerCommand.html#method_handle">
+<abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/Commands/TinkerCommand.html"><abbr title="Console\Commands\TinkerCommand">TinkerCommand</abbr></a></em></dt>
+                    <dd><p>Executes the command</p></dd><dt><a href="Console/ConsoleCommand.html#method_handle">
+<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr>::handle</a>() &mdash; <em>Method in class <a href="Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></em></dt>
+                    <dd><p>Executes logic for command.</p></dd><dt><a href="Console/ConsoleIO.html#method_hasOption">
+<abbr title="Console\ConsoleIO">ConsoleIO</abbr>::hasOption</a>() &mdash; <em>Method in class <a href="Console/ConsoleIO.html"><abbr title="Console\ConsoleIO">ConsoleIO</abbr></a></em></dt>
+                    <dd><p>Wrapper for InputInterface::hasOption function.</p></dd><dt><a href="Console/ConsoleLogger.html#method_hasConstant">
 <abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>::hasConstant</a>() &mdash; <em>Method in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
                     <dd><p>Checks if value for background color or text color matches list of
 available constants.</p></dd><dt>$<a href="Console/FrameworkQuestion.html#property_helper">
@@ -1366,7 +1383,9 @@ and grants access if that is the case.</p></dd><dt><a href="Core/Services/AuthSe
                     <dd><p>Uploads and sorts profile images.</p></dd><dt><a href="Core/Traits/HasTimestamps.html"><abbr title="Core\Traits\HasTimestamps">HasTimestamps</abbr></a> &mdash; <em>Class in namespace <a href="Core/Traits.html">Core\Traits</a></em></dt>
                     <dd><p>Creates the $created_at and $updated_at fields and performs the operation
 that updates timestamps.</p></dd>        </dl><h2 id="letterI">I</h2>
-        <dl id="indexI"><dt>$<a href="Console/FrameworkQuestion.html#property_input">
+        <dl id="indexI"><dt>$<a href="Console/ConsoleCommand.html#property_input">
+<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr>#input</a> &mdash; <em>Property in class <a href="Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></em></dt>
+                    <dd><p>The Symfony InputInterface object.</p></dd><dt>$<a href="Console/FrameworkQuestion.html#property_input">
 <abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr>#input</a> &mdash; <em>Property in class <a href="Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></em></dt>
                     <dd><p>InputInterface instance created when parent command is ran.</p></dd><dt><a href="Console/HasValidators.html#method_ip">
 <abbr title="Console\HasValidators">HasValidators</abbr>::ip</a>() &mdash; <em>Method in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
@@ -1715,7 +1734,9 @@ to generate.  More information can be found
                     <dd><p>Generates new class that contains functions that support multiple
 console commands.</p></dd><dt><a href="Console/Helpers/Component.html#method_makeCardComponent">
 <abbr title="Console\Helpers\Component">Component</abbr>::makeCardComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
-                    <dd><p>Writes card component to a file.</p></dd><dt><a href="Console/Helpers/Component.html#method_makeFormComponent">
+                    <dd><p>Writes card component to a file.</p></dd><dt><a href="Console/Helpers/Component.html#method_makeComponent">
+<abbr title="Console\Helpers\Component">Component</abbr>::makeComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
+                    <dd><p>Generate a component when argument is provided.</p></dd><dt><a href="Console/Helpers/Component.html#method_makeFormComponent">
 <abbr title="Console\Helpers\Component">Component</abbr>::makeFormComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
                     <dd><p>Writes form component to file.</p></dd><dt><a href="Console/Helpers/Component.html#method_makeTableComponent">
 <abbr title="Console\Helpers\Component">Component</abbr>::makeTableComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/Component.html"><abbr title="Console\Helpers\Component">Component</abbr></a></em></dt>
@@ -2004,7 +2025,9 @@ NotificationException class.</p></dd><dt><a href="Core/Exceptions/Notifications/
 numeric character in the field.</p></dd><dt><a href="Core/Validators/NumericValidator.html"><abbr title="Core\Validators\NumericValidator">NumericValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class that performs validation for fields than only accept numeric
 values.</p></dd>        </dl><h2 id="letterO">O</h2>
-        <dl id="indexO"><dt>$<a href="Console/ConsoleLogger.html#property_output">
+        <dl id="indexO"><dt>$<a href="Console/ConsoleCommand.html#property_output">
+<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr>#output</a> &mdash; <em>Property in class <a href="Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></em></dt>
+                    <dd><p>The Symfony OutputInterface object.</p></dd><dt>$<a href="Console/ConsoleLogger.html#property_output">
 <abbr title="Console\ConsoleLogger">ConsoleLogger</abbr>#output</a> &mdash; <em>Property in class <a href="Console/ConsoleLogger.html"><abbr title="Console\ConsoleLogger">ConsoleLogger</abbr></a></em></dt>
                     <dd><p>Supports ability to log information to console.</p></dd><dt>$<a href="Console/FrameworkQuestion.html#property_output">
 <abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr>#output</a> &mdash; <em>Property in class <a href="Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></em></dt>
@@ -2176,7 +2199,9 @@ regarding your password policy.</p></dd><dt><a href="Core/Validators/PhoneNumber
 a rule.</p></dd>        </dl><h2 id="letterQ">Q</h2>
         <dl id="indexQ"><dt><a href="Console/Commands/QueueMigrationCommand.html"><abbr title="Console\Commands\QueueMigrationCommand">QueueMigrationCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to create new notifications migration file.</p></dd><dt><a href="Console/Commands/QueueWorkerCommand.html"><abbr title="Console\Commands\QueueWorkerCommand">QueueWorkerCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
-                    <dd><p>Executes a queue worker.</p></dd><dt><a href="Console/HasValidators.html#method_queue">
+                    <dd><p>Executes a queue worker.</p></dd><dt><a href="Console/ConsoleCommand.html#method_question">
+<abbr title="Console\ConsoleCommand">ConsoleCommand</abbr>::question</a>() &mdash; <em>Method in class <a href="Console/ConsoleCommand.html"><abbr title="Console\ConsoleCommand">ConsoleCommand</abbr></a></em></dt>
+                    <dd><p>Returns instance of the FrameworkQuestion class.</p></dd><dt><a href="Console/HasValidators.html#method_queue">
 <abbr title="Console\HasValidators">HasValidators</abbr>::queue</a>() &mdash; <em>Method in class <a href="Console/HasValidators.html"><abbr title="Console\HasValidators">HasValidators</abbr></a></em></dt>
                     <dd><p>Validates if queue exists in database or redis.</p></dd><dt><a href="Console/Helpers/EventStubs.html#method_queueEventTemplate">
 <abbr title="Console\Helpers\EventStubs">EventStubs</abbr>::queueEventTemplate</a>() &mdash; <em>Method in class <a href="Console/Helpers/EventStubs.html"><abbr title="Console\Helpers\EventStubs">EventStubs</abbr></a></em></dt>
@@ -3087,7 +3112,7 @@ called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title=
 <abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/PHPUnitRunner.html"><abbr title="Console\Helpers\Testing\PHPUnitRunner">PHPUnitRunner</abbr></a></em></dt>
                     <dd>Constructor</dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method___construct">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>
-                    <dd>Constructor</dd><dt><a href="Console/Helpers/Testing/VitestTestRunner.html#method___construct">
+                    <dd><p>Creates new instance of Console class.</p></dd><dt><a href="Console/Helpers/Testing/VitestTestRunner.html#method___construct">
 <abbr title="Console\Helpers\Testing\VitestTestRunner">VitestTestRunner</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/VitestTestRunner.html"><abbr title="Console\Helpers\Testing\VitestTestRunner">VitestTestRunner</abbr></a></em></dt>
                     <dd>Constructor</dd><dt><a href="Core/Application.html#method___construct">
 <abbr title="Core\Application">Application</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Application.html"><abbr title="Core\Application">Application</abbr></a></em></dt>
