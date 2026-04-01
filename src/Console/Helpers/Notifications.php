@@ -136,7 +136,7 @@ class Notifications extends Console {
      *
      * @param mixed $user String token from CLI (id|email|username).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @return Users|null            The matched user or NULL if not found.
+     * @return Users|null The matched user or NULL if not found.
      */
     private static function findUser(mixed $user, FrameworkQuestion $question): ?Users {
         if(is_numeric($user)) {
