@@ -113,7 +113,7 @@ PHP;
      * Runs command for seeding database.
      *
      * @param InputInterface $input The Symfony InputInterface object.
-     * FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function seed(InputInterface $input, FrameworkQuestion $question): int {
