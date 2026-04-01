@@ -203,9 +203,9 @@ class Notifications extends Console {
      * plus a via() that references those channels. If $channels is NULL or empty,
      * all enum channel values are used.
      *
-     * @param list<string>|null $channels       Channel names to scaffold (e.g., ['database','log']).
+     * @param list<string>|null $channels Channel names to scaffold (e.g., ['database','log']).
      * @param non-empty-string  $notificationName Class name (without namespace).
-     * @return int                              A Tools::writeFile status code.
+     * @return int A Tools::writeFile status code.
      */
     public static function makeNotification(?array $channels, string $notificationName): int {
         $sortedChannels = Arr::sort($channels);
