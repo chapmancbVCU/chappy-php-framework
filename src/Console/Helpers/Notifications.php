@@ -469,7 +469,7 @@ PHP;
      * string "Notification::channelValues()" to keep the generated class concise.
      *
      * @param list<string>|null $channels Channel names to embed.
-     * @return non-empty-string           PHP expression to place inside via().
+     * @return non-empty-string PHP expression to place inside via().
      */
     private static function setViaList(?array $channels): string  {
         $channelArraySize = sizeof($channels);
