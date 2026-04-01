@@ -279,7 +279,7 @@ PHP;
      * Build a fully-qualified notification class name.
      *
      * @param non-empty-string $notificationName Short class name or FQCN (leading backslash allowed).
-     * @return class-string<Notification>        FQCN of the notification.
+     * @return class-string<Notification> FQCN of the notification.
      */
     public static function notificationClass(string $notificationName): string {
         return str_starts_with($notificationName, '\\')
