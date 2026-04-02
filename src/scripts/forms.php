@@ -152,7 +152,7 @@ if(!function_exists('csrf')) {
 
 if(!function_exists('errorBag')) {
     /**
-     * Returns list of errors.
+     * Returns list of errors.  A wrapper for the FormHelper::displayErrors() function.
      * 
      * @param array|ArraySet $errors A list of errors and their description that is 
      * generated during server side form validation.
