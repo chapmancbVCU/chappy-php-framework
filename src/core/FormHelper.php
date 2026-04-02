@@ -41,8 +41,7 @@ class FormHelper {
     }
     
     /**
-     * Supports ability to create a styled button.  Supports ability to have 
-     * functions for event handlers.
+     * Supports ability to create a styled button.
      * 
      * An example function call is shown below:
      * FormHelper::button("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']);

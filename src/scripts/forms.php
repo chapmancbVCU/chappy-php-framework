@@ -3,6 +3,27 @@
 use Core\FormHelper;
 use Core\Lib\Utilities\ArraySet;
 
+/**
+     * Supports ability to create a styled button.
+     * 
+     * An example function call is shown below:
+     * FormHelper::button("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']);
+     * 
+     * Example HTML output is shown below:
+     * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
+     * 
+     * @param string $buttonText The contents of the button's label.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return string An HTML button element with its label set and any other 
+     * optional attributes set.
+     */
+if(!function_exists('button')) {
+    function button(string $buttonText, array $inputAttrs = []) {
+        return FormHelper::button($buttonText, $inputAttrs);
+    }
+}
+
 if(!function_exists('checkboxLabelLeft')) {
     /**
      * Generates a div containing an input of type checkbox with the label to 
