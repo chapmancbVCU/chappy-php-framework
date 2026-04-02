@@ -19,7 +19,7 @@ use Core\Lib\Utilities\ArraySet;
  * optional attributes set.
  */
 if(!function_exists('button')) {
-    function button(string $buttonText, array $inputAttrs = []) {
+    function button(string $buttonText, array $inputAttrs = []): string {
         return FormHelper::button($buttonText, $inputAttrs);
     }
 }
