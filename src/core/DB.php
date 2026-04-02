@@ -190,7 +190,7 @@ class DB {
     }
 
     /**
-     * Number of rows affected or returned by the last query
+     * Number of rows affected or returned by the last query.
      *
      * @return int The number of results found in an SQL query.
      */
