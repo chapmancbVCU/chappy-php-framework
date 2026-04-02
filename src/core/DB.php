@@ -255,7 +255,7 @@ class DB {
     }
 
     /**
-     * Returns only the first row of the last query
+     * Returns only the first row of the last query.
      *
      * @param string $table The name or the table we want to perform 
      * our query against.
