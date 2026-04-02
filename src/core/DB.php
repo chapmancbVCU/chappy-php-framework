@@ -282,7 +282,7 @@ class DB {
      * @param array $params An associative array that contains key value pair 
      * parameters for our query such as conditions, bind, limit, offset, 
      * join, order, and sort.  The default value is an empty array.
-     * @return int $count The number of records in a table.
+     * @return int The number of records in a table.
      */
     public function findTotal(string $table, array $params=[]): int {
         $count = 0;
