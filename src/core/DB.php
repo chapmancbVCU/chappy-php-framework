@@ -190,7 +190,7 @@ class DB {
     }
 
     /**
-     * Getter function for the private _count variable.
+     * Number of rows affected or returned by the last query
      *
      * @return int The number of results found in an SQL query.
      */
