@@ -24,6 +24,34 @@ if(!function_exists('button')) {
     }
 }
 
+/**
+ * Supports ability to create a styled button and styled surrounding div 
+ * block.  Supports ability to have functions for event handlers".
+ * 
+ * An example function call is shown below:
+ * FormHelper::buttonBlock("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], ['class' => 'form-group']);
+ * 
+ * Example HTML output is shown below:
+ * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
+ * 
+ * @param string $buttonText The contents of the button's label.
+ * @param array $inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty array.
+ * @param array $divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty array.
+ * @return string An HTML div surrounding a button element with its label 
+ * set and any other optional attributes set.
+ */
+if(!function_exists('buttonBlock')) {
+    function buttonBlock(string $buttonText, array $inputAttrs = [], array $divAttrs = []): string {
+        return FormHelper::buttonBlock(
+            $buttonText,
+            $inputAttrs,
+            $divAttrs
+        );
+    }
+}
+
 if(!function_exists('checkboxLabelLeft')) {
     /**
      * Generates a div containing an input of type checkbox with the label to 
