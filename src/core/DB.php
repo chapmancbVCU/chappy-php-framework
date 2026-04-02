@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core;
 
-use Core\Lib\Logging\Logger;
 use Core\Lib\Logging\Redactor;
 use \PDO;
 use Exception;
