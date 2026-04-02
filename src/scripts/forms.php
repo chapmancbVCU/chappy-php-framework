@@ -26,7 +26,7 @@ if(!function_exists('button')) {
 
 /**
  * Supports ability to create a styled button and styled surrounding div 
- * block.  Supports ability to have functions for event handlers".
+ * block.
  * 
  * An example function call is shown below:
  * FormHelper::buttonBlock("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], ['class' => 'form-group']);
