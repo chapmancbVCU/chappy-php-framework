@@ -22,7 +22,7 @@ class AuthService {
      * Gets value of password confirm field.  Assumes field value is "confirm".
      *
      * @param Input $request The request.
-     * @return void
+     * @return string The value of the confirm field.
      */
     public static function confirm(Input $request): string {
         return $request->get('confirm');
