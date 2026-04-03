@@ -46,7 +46,7 @@ class AuthService {
      *
      * @param string $password Original password submitted on a registration 
      * or update password form.
-     * @return void
+     * @return string The hashed version of the password.
      */
     public static function hashPassword(string $password): string {
         return password_hash($password, PASSWORD_DEFAULT);
