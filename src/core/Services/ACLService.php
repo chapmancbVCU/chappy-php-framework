@@ -25,7 +25,7 @@ class ACLService {
     }
     
     /**
-     * Ensures that we are always dealing with an array of ACLs
+     * Ensures that we are always dealing with an array of ACLs.
      *
      * @param mixed $acls An array or any type that we want to add to an array.
      * @return array An array of acls.
