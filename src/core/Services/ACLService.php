@@ -101,7 +101,7 @@ class ACLService {
      * Manages the adding and removing of ACLs.
      *
      * @param array $acls ACLs stored in acl table.
-     * @param Users $user The user we want to modify 
+     * @param Users $user The user we want to modify.
      * @param array $newAcls The new ACLs for the user.
      * @param array $userAcls The user's existing ACLs.
      * @return void
