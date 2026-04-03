@@ -42,7 +42,7 @@ class AuthService {
     }
 
     /**
-     * Hashes password.
+     * Hashes a plain text password using PHP's `password_hash()` with the default algorithm.
      *
      * @param string $password Original password submitted on a registration 
      * or update password form.
