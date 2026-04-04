@@ -241,7 +241,8 @@ class AuthService {
     }
 
     /**
-     * Handles upload for profile image.
+     * Processes a profile image upload and returns an `Uploads` object. 
+     * Assumes the input name is `profileImage`.
      *
      * @param Users $user The user who uploaded a profile image.
      * @return Uploads|null The uploads object if it's created or null.
