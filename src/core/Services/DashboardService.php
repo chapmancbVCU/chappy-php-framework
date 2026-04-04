@@ -18,7 +18,7 @@ final class DashboardService {
      * @param string $redirect The destination for redirect.
      * @return void
      */
-    public static function checkIfCurrentUser(Users $user, string $redirect = '') {
+    public static function checkIfCurrentUser(Users $user, string $redirect = ''): void {
         if($user == AuthService::currentUser()) {
             flashMessage(Session::DANGER, 'Logged in admin user can\'t be edited or viewed through admin dashboard.');
             redirect($redirect);
