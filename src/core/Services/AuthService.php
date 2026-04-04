@@ -53,7 +53,9 @@ class AuthService {
     }
 
     /**
-     * Processes login attempts
+     * Attempts to log a user in. If successful, resets login attempts and 
+     * creates a session. Otherwise, tracks failed attempts and optionally 
+     * triggers an email notification.
      *
      * @param Input $request The request for the login.
      * @param Login $loginModel The login model.
