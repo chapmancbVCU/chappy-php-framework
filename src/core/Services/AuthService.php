@@ -181,7 +181,8 @@ class AuthService {
     }
 
     /**
-     * Logs user out.
+     * Logs out the currently logged-in user by clearing the session and 
+     * deleting any active cookies.
      *
      * @return void
      */
