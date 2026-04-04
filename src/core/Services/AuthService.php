@@ -216,7 +216,8 @@ class AuthService {
     }
 
     /**
-     * Resets password.
+     * Handles the complete flow of resetting a user’s password, including 
+     * setting the confirmation field and updating the record.
      *
      * @param Input $request The request for the password reset action.
      * @param Users $user The user whose password we will reset.
