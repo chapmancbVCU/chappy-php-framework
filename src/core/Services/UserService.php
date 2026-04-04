@@ -122,7 +122,7 @@ final class UserService {
      * @param Users $user The user whose status we want to set.
      * @param Input $request The request.
      * @param int|null $currentInactive Value of $user->inactive before post.
-     * @return bool true if we want to send mail and otherwise false.
+     * @return bool True if we want to send mail and otherwise false.
      */
     public static function toggleAccountStatus(Users $user, Input $request, ?int $currentInactive = null): bool {
         $user->inactive = ($request->get('inactive') == 'on') ? 1 : 0;
