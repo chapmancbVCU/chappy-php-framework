@@ -17,7 +17,8 @@ use Core\Session;
 final class UserService {
     /**
      * Deletes user if not admin and unlinks profile images if $unlink
-     * is set to true.
+     * is set to true.  Appropriate messaging is displayed based on success or 
+     * failure.
      *
      * @param int $id The id for user we want to delete.
      * @param bool $unlink Determines if profile images are deleted.
