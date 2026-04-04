@@ -124,7 +124,7 @@ class Arr
 
         return $result;
     }
-    
+
     /**
      * Determine if a given value exists in an array.
      *
@@ -514,28 +514,6 @@ class Arr
     }
 
     /**
-     * Insert an element before a given key in an array.
-     *
-     * @param array $array The original array.
-     * @param string|int $key The key to insert before.
-     * @param string|int $newKey The new key.
-     * @param mixed $value The value to insert.
-     * @return array The modified array.
-     */
-    public static function insertBefore(array $array, string|int $key, string|int $newKey, mixed $value): array
-    {
-        $position = array_search($key, array_keys($array));
-        
-        if ($position === false) {
-            return $array;
-        }
-
-        return array_slice($array, 0, $position, true)
-            + [$newKey => $value]
-            + array_slice($array, $position, null, true);
-    }
-
-    /**
      * Insert an element after a given key in an array.
      *
      * @param array $array The original array.
@@ -555,6 +533,28 @@ class Arr
         return array_slice($array, 0, $position + 1, true)
             + [$newKey => $value]
             + array_slice($array, $position + 1, null, true);
+    }
+
+    /**
+     * Insert an element before a given key in an array.
+     *
+     * @param array $array The original array.
+     * @param string|int $key The key to insert before.
+     * @param string|int $newKey The new key.
+     * @param mixed $value The value to insert.
+     * @return array The modified array.
+     */
+    public static function insertBefore(array $array, string|int $key, string|int $newKey, mixed $value): array
+    {
+        $position = array_search($key, array_keys($array));
+        
+        if ($position === false) {
+            return $array;
+        }
+
+        return array_slice($array, 0, $position, true)
+            + [$newKey => $value]
+            + array_slice($array, $position, null, true);
     }
 
     /**
