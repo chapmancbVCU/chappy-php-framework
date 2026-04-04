@@ -28,7 +28,7 @@ final class DashboardService {
     /**
      * Returns list of paginated users.
      *
-     * @param Pagination $pagination Instance of Pagination class
+     * @param Pagination $pagination Instance of Pagination class.
      * @return array An array of paginated users.
      */
     public static function paginateUsers(Pagination $pagination): array {
