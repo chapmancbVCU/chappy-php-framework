@@ -69,24 +69,6 @@ class Arr
     }
 
     /**
-     * Collapse a multi-dimensional array into a single-level array.
-     *
-     * @param array $array The multi-dimensional array.
-     * @return array The collapsed array.
-     */
-    public static function collapse(array $array): array {
-        $result = [];
-
-        foreach ($array as $values) {
-            if (is_array($values)) {
-                $result = array_merge($result, $values);
-            }
-        }
-
-        return $result;
-    }
-
-    /**
      * Split an array into chunks of a given size.
      *
      * @param array $array The array to split.
@@ -125,6 +107,24 @@ class Arr
         return $result;
     }
 
+    /**
+     * Collapse a multi-dimensional array into a single-level array.
+     *
+     * @param array $array The multi-dimensional array.
+     * @return array The collapsed array.
+     */
+    public static function collapse(array $array): array {
+        $result = [];
+
+        foreach ($array as $values) {
+            if (is_array($values)) {
+                $result = array_merge($result, $values);
+            }
+        }
+
+        return $result;
+    }
+    
     /**
      * Determine if a given value exists in an array.
      *
