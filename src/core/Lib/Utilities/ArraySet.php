@@ -398,7 +398,7 @@ class ArraySet
      * Check if a key exists in the array.
      *
      * @param string|int $key The key to check (can be a string or integer).
-     * @return self Returns the current ArraySet instance.
+     * @return self
      */
     public function has(string|int $key): self
 {
