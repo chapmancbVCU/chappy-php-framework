@@ -63,7 +63,7 @@ class ArraySet
      * This method sorts the array in ascending order while preserving 
      * the original keys.
      *
-     * @return self The modified Arr instance.
+     * @return self The modified ArraySet instance.
      */
     public function asort(): self
     {
