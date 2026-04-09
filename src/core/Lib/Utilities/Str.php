@@ -42,6 +42,7 @@ class Str
      * Base64 encode a string.
      *
      * @param string $value The input string.
+     * @return string The Base64 encoded string.
      */
     public static function base64Encode(string $value): string
     {
