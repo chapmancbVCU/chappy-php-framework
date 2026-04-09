@@ -246,7 +246,7 @@ class Str
      * @param string $needle The substring to search for.
      * @return int|false
      */
-    public static function lastPosition(string $haystack, string $needle)
+    public static function lastPosition(string $haystack, string $needle): int|bool
     {
         return strrpos($haystack, $needle);
     }
@@ -397,7 +397,7 @@ class Str
      * @param string $needle The substring to search for.
      * @return int|false
      */
-    public static function position(string $haystack, string $needle)
+    public static function position(string $haystack, string $needle): int|false
     {
         return strpos($haystack, $needle);
     }
