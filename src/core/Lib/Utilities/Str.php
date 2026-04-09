@@ -483,6 +483,7 @@ class Str
      * @param string $search The placeholder string to replace.
      * @param array $replace Array of replacement values.
      * @param string $subject The string to perform replacements on.
+     * @return string The placeholders replaced with values from an array.
      */
     public static function replaceArray(string $search, array $replace, string $subject): string
     {
