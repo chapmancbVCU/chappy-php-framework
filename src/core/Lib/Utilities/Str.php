@@ -383,6 +383,7 @@ class Str
      * @param string $value The input string.
      * @param int $length The desired total length after padding.
      * @param string $pad The padding character.
+     * @return string The string that is padded to the left with a given character.
      */
     public static function padLeft(string $value, int $length, string $pad = ' '): string
     {
@@ -395,6 +396,7 @@ class Str
      * @param string $value The input string.
      * @param int $length The desired total length after padding.
      * @param string $pad The padding character.
+     * @return string The string that is padded to the right with a given character.
      */
     public static function padRight(string $value, int $length, string $pad = ' '): string
     {
