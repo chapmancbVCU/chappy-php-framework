@@ -264,9 +264,10 @@ class Str
      *
      * @param string $haystack The string to search in.
      * @param string $needle The substring to search for.
-     * @return int|false the position where the needle exists relative to the 
+     * @return int|false The position where the needle exists relative to the 
      * beginning of the haystack string (independent of search direction or 
-     * offset). Also note that string positions start at 0, and not 1.
+     * offset). Also note that string positions start at 0, and not 1.  Returns 
+     * FALSE if the needle was not found.
      */
     public static function lastPosition(string $haystack, string $needle): int|false
     {
@@ -288,6 +289,8 @@ class Str
      * Get the length of a string using multibyte support.
      *
      * @param string $value The input string.
+     * @return int The number of characters in string str having character 
+     * encoding. A multi-byte character is counted as 1.
      */
     public static function length(string $value): int
     {
