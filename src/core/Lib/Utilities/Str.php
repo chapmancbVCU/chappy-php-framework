@@ -241,7 +241,7 @@ class Str
      * Check if a string is a valid UUID.
      *
      * @param string $value The input string.
-     * @return bool True if the string is a valid UUID, false otherwise
+     * @return bool True if the string is a valid UUID, false otherwise.
      */
     public static function isUuid(string $value): bool
     {
@@ -252,6 +252,7 @@ class Str
      * Convert a string to kebab-case.
      *
      * @param string $value The input string.
+     * @return string The string in kebab-case.
      */
     public static function kebab(string $value): string
     {
