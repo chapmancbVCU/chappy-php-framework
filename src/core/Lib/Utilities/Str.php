@@ -106,6 +106,7 @@ class Str
      *
      * @param string $value The input string.
      * @param int $length The chunk length.
+     * @return array An array consisting of a string split into chunks.
      */
     public static function chunk(string $value, int $length = 1): array
     {
