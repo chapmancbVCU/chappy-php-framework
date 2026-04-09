@@ -196,6 +196,7 @@ class Str
      * Convert a string to headline case.
      *
      * @param string $value The input string.
+     * @param string The string in headline case.
      */
     public static function headline(string $value): string
     {
