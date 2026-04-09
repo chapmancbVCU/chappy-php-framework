@@ -17,6 +17,7 @@ class Str
      *
      * @param string $subject The input string.
      * @param string $search The substring to search for.
+     * @return string Portion of a string after first occurrence of a given value.
      */
     public static function after(string $subject, string $search): string
     {
