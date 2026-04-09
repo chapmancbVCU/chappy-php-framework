@@ -268,7 +268,7 @@ class Str
      * beginning of the haystack string (independent of search direction or 
      * offset). Also note that string positions start at 0, and not 1.
      */
-    public static function lastPosition(string $haystack, string $needle): int|bool
+    public static function lastPosition(string $haystack, string $needle): int|false
     {
         return strrpos($haystack, $needle);
     }
