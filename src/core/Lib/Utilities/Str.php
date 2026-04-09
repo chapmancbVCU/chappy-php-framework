@@ -415,10 +415,11 @@ class Str
     }
 
     /**
-     * Pluralize a word.
+     * Pluralizes a given word based on the count.
      *
      * @param string $word The word to pluralize.
      * @param int $count The number to determine singular or plural.
+     * @return string The Pluralized string.
      */
     public static function plural(string $word, int $count = 2): string
     {
