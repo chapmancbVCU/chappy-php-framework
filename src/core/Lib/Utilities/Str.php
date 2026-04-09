@@ -302,6 +302,9 @@ class Str
      *
      * @param string $string1 The first string.
      * @param string $string2 The second string.
+     * @return int This function returns the Levenshtein-Distance between the 
+     * two argument strings or -1, if one of the argument strings is longer 
+     * than the limit of 255 characters.
      */
     public static function levenshtein(string $string1, string $string2): int
     {
