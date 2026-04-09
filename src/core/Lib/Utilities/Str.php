@@ -94,6 +94,7 @@ class Str
      * Convert a string to camelCase.
      *
      * @param string $value The input string.
+     * @return string The string in camelCase.
      */
     public static function camel(string $value): string
     {
