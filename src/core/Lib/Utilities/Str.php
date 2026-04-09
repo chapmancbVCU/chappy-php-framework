@@ -53,6 +53,7 @@ class Str
      * Base64 decode a string.
      *
      * @param string $value The base64 encoded string.
+     * @param string The decoded string.
      */
     public static function base64Decode(string $value): string
     {
