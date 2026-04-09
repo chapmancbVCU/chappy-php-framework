@@ -342,6 +342,7 @@ class Str
      * @param string $character The mask character.
      * @param int $start The starting position for masking.
      * @param int|null $length The number of characters to mask.
+     * @return string The masked string.
      */
     public static function mask(string $string, string $character = '*', int $start = 0, ?int $length = null): string
     {
