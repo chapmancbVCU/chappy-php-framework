@@ -167,6 +167,7 @@ class Str
      * @param string $text The input string.
      * @param string $phrase The phrase to excerpt around.
      * @param int $radius The number of characters around the phrase.
+     * @return string The portion of str specified by the start and length parameters.
      */
     public static function excerpt(string $text, string $phrase, int $radius = 100): string
     {
