@@ -141,6 +141,7 @@ class Str
      * Calculate CRC32 hash of a string.
      *
      * @param string $value The input string.
+     * @return int The crc32 checksum of string as an integer.
      */
     public static function crc32(string $value): int
     {
