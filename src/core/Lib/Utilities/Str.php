@@ -118,6 +118,7 @@ class Str
      *
      * @param string $string1 The first string.
      * @param string $string2 The second string.
+     * @return int Less 0 if str1 is less than str2; > 0 if str1 is greater than str2, and 0 if they are equal.
      */
     public static function compare(string $string1, string $string2): int
     {
