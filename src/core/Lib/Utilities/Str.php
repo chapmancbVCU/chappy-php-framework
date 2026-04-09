@@ -65,6 +65,7 @@ class Str
      *
      * @param string $subject The input string.
      * @param string $search The substring to search for.
+     * @return string The portion of a string before the first occurrence of a given value.
      */
     public static function before(string $subject, string $search): string
     {
