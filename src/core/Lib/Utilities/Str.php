@@ -370,6 +370,7 @@ class Str
      * @param int $decimals Number of decimal points.
      * @param string $decimalSeparator Decimal separator.
      * @param string $thousandSeparator Thousand separator.
+     * @return string A formatted version of number.
      */
     public static function numberFormat(float $number, int $decimals = 0, string $decimalSeparator = '.', string $thousandSeparator = ','): string
     {
