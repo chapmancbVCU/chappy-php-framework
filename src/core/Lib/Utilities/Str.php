@@ -218,6 +218,7 @@ class Str
      * Determine if a string is empty.
      *
      * @param string $value The input string.
+     * @return bool True if empty string, otherwise false.
      */
     public static function isEmpty(string $value): bool
     {
