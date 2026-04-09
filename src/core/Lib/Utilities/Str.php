@@ -328,6 +328,7 @@ class Str
      * Convert a string to lowercase.
      *
      * @param string $value The input string.
+     * @return string The lower case string.
      */
     public static function lower(string $value): string
     {
