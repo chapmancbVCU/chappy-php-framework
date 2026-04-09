@@ -317,6 +317,7 @@ class Str
      * @param string $value The input string.
      * @param int $limit Maximum number of characters.
      * @param string $end Ending to append if truncated.
+     * @return string A substring of original string with limit set on length.
      */
     public static function limit(string $value, int $limit = 100, string $end = '...'): string
     {
