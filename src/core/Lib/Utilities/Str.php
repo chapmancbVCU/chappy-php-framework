@@ -356,6 +356,7 @@ class Str
      * Return the MD5 hash of a string.
      *
      * @param string $value The input string.
+     * @return string The MD5 has of a string.
      */
     public static function md5(string $value): string
     {
