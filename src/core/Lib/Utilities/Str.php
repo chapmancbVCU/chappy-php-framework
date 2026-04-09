@@ -229,6 +229,7 @@ class Str
      * Determine if a string is a valid JSON.
      *
      * @param string $value The input string.
+     * @return bool True if valid JSON, otherwise false.
      */
     public static function isJson(string $value): bool
     {
