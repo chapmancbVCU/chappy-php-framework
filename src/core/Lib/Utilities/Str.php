@@ -407,6 +407,7 @@ class Str
      * Convert a string to PascalCase (StudlyCase).
      *
      * @param string $value The input string.
+     * @return string The string in PascalCase.
      */
     public static function pascal(string $value): string
     {
