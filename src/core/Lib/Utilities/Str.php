@@ -241,6 +241,7 @@ class Str
      * Check if a string is a valid UUID.
      *
      * @param string $value The input string.
+     * @return bool True if the string is a valid UUID, false otherwise
      */
     public static function isUuid(string $value): bool
     {
