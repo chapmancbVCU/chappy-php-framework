@@ -458,6 +458,7 @@ class Str
      *
      * @param string $value The input string.
      * @param int $times Number of times to repeat.
+     * @return string The repeated string.
      */
     public static function repeat(string $value, int $times): string
     {
