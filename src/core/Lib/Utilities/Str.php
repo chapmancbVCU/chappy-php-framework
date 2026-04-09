@@ -130,6 +130,7 @@ class Str
      *
      * @param string $haystack The string to search within.
      * @param string $needle The substring to search for.
+     * @return bool True if substring exists, otherwise false.
      */
     public static function contains(string $haystack, string $needle): bool
     {
