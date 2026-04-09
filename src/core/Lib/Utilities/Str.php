@@ -80,6 +80,7 @@ class Str
      * @param string $value The input string.
      * @param string $start The starting substring.
      * @param string $end The ending substring.
+     * @return string The substring between two given substrings.
      */
     public static function between(string $value, string $start, string $end): string
     {
