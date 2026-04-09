@@ -31,6 +31,7 @@ class Str
      * Convert a string to its ASCII representation.
      *
      * @param string $value The input string.
+     * @return string The ASCII representation of a string.
      */
     public static function ascii(string $value): string
     {
