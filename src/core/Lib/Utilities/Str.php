@@ -185,6 +185,7 @@ class Str
      *
      * @param string $value The input string.
      * @param string $cap The ending string to append if missing.
+     * @param string The string with the desired ending.
      */
     public static function finish(string $value, string $cap): string
     {
