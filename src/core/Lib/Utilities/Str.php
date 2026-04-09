@@ -446,6 +446,7 @@ class Str
      * Generate a random string of a specified length.
      *
      * @param int $length The desired length of the random string.
+     * @return string A random string of a specified length.
      */
     public static function random(int $length = 16): string
     {
