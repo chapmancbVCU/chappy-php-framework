@@ -264,7 +264,9 @@ class Str
      *
      * @param string $haystack The string to search in.
      * @param string $needle The substring to search for.
-     * @return int|false
+     * @return int|false the position where the needle exists relative to the 
+     * beginning of the haystack string (independent of search direction or 
+     * offset). Also note that string positions start at 0, and not 1.
      */
     public static function lastPosition(string $haystack, string $needle): int|bool
     {
