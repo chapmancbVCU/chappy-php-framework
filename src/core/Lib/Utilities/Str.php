@@ -207,6 +207,7 @@ class Str
      * Check if the given string is pure ASCII.
      *
      * @param string $value The input string.
+     * @return bool True on success or false on failure.
      */
     public static function isAscii(string $value): bool
     {
