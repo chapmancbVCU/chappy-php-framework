@@ -153,6 +153,8 @@ class Str
      *
      * @param string $haystack The string to check.
      * @param string $needle The substring to check for.
+     * @return bool True if string ends with given substring, otherwise we 
+     * return false.
      */
     public static function endsWith(string $haystack, string $needle): bool
     {
