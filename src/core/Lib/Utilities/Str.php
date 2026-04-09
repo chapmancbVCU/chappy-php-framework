@@ -471,7 +471,7 @@ class Str
      * @param string|string[] $search The value(s) being searched for.
      * @param string|string[] $replace The replacement value(s).
      * @param string $subject The string being searched and replaced on.
-     * @return string
+     * @return string A string with the replaced values.
      */
     public static function replace(string|array $search, string|array $replace, string $subject): string
     {
