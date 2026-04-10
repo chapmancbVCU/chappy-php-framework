@@ -692,6 +692,7 @@ class Str
      * Convert a string to title case.
      *
      * @param string $value The input string.
+     * @return string The string in title case.
      */
     public static function title(string $value): string
     {
