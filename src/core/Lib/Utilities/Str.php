@@ -538,6 +538,7 @@ class Str
      * Reverse a given string.
      *
      * @param string $value The input string.
+     * @return string The reversed string.
      */
     public static function reverse(string $value): string
     {
