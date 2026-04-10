@@ -599,6 +599,7 @@ class Str
      *
      * @param string $title The input string.
      * @param string $separator The separator used in the slug.
+     * @return string The string represented as a URL-friendly slug.
      */
     public static function slug(string $title, string $separator = '-'): string
     {
