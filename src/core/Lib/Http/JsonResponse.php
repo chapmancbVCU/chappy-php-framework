@@ -90,7 +90,7 @@ trait JsonResponse {
      * Makes JSON Response for error payloads.
      *
      * @param string $message The error message.
-     * @param integer $status The status code.
+     * @param int $status The status code.
      * @param array $errors The array of errors.
      * @return void
      */
