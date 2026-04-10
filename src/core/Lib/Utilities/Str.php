@@ -611,6 +611,7 @@ class Str
      * Remove excessive whitespace from a string.
      *
      * @param string $value The input string.
+     * @return string The modified string.
      */
     public static function squish(string $value): string
     {
