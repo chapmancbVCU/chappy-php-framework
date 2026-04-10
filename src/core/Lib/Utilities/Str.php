@@ -572,6 +572,7 @@ class Str
      *
      * @param string $string1 The first string.
      * @param string $string2 The second string.
+     * @return int The number of matching chars in both strings.
      */
     public static function similarity(string $string1, string $string2): int
     {
