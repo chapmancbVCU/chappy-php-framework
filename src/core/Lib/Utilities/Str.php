@@ -670,6 +670,7 @@ class Str
      *
      * @param string $haystack The input string.
      * @param string $needle The substring to count.
+     * @return int The number of occurrences of a substring.
      */
     public static function substrCount(string $haystack, string $needle): int
     {
