@@ -549,6 +549,7 @@ class Str
      * Return the SHA1 hash of a string.
      *
      * @param string $value The input string.
+     * @return string The SHA1 hash of a string.
      */
     public static function sha1(string $value): string
     {
