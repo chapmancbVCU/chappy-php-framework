@@ -634,6 +634,7 @@ class Str
      * Strip all whitespace from a string.
      *
      * @param string $value The input string.
+     * @return string The string with all whitespace removed.
      */
     public static function stripWhitespace(string $value): string
     {
