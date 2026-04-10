@@ -645,6 +645,7 @@ class Str
      * Convert a string to StudlyCase (PascalCase).
      *
      * @param string $value The input string.
+     * @return string The string in StudlyCase.
      */
     public static function studly(string $value): string
     {
