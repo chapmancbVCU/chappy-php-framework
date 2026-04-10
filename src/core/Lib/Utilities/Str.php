@@ -745,6 +745,8 @@ class Str
 
     /**
      * Generate a UUID (Universally Unique Identifier).
+     * 
+     * @return string A UUID string.
      */
     public static function uuid(): string
     {
