@@ -109,10 +109,9 @@ class Uploads {
      *
      * @param bool|array $errors The errors, if any are detected will be an array.
      * @param Model $model The model associated with the errors.
-     * @param string $name The name of the field in the model for the errors.
      * @return void
      */
-    public function errorReporting(bool|array $errors, Model $model, string $name): void {
+    public function errorReporting(bool|array $errors, Model $model): void {
         if (is_array($errors)) {
             foreach ($errors as $field => $messages) {
                 if (is_array($messages)) {
@@ -174,7 +173,6 @@ class Uploads {
         string $bucket, 
         string $sizeMsg, 
         Model $model,
-        
         string $mode = self::SINGLE
     ): ?self {
         $file = $_FILES[$name];
