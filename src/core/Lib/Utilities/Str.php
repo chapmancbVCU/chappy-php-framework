@@ -770,6 +770,7 @@ class Str
      * @param string $value The input string.
      * @param int $words Number of words to limit to.
      * @param string $end Ending to append if truncated.
+     * @return string The string with the limited number of words.
      */
     public static function words(string $value, int $words = 10, string $end = '...'): string
     {
