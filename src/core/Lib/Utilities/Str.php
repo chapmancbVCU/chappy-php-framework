@@ -757,6 +757,7 @@ class Str
      * Count the number of words in a string.
      *
      * @param string $value The input string.
+     * @return int The number of words in a string.
      */
     public static function wordCount(string $value): int
     {
