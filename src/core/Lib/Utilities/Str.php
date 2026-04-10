@@ -658,6 +658,7 @@ class Str
      * @param string $value The input string.
      * @param int $start The starting position.
      * @param int|null $length The number of characters to extract.
+     * @return string The portion of str specified by the start and length parameters.
      */
     public static function substr(string $value, int $start, ?int $length = null): string
     {
