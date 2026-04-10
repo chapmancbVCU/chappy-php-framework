@@ -56,8 +56,8 @@ trait JsonResponse {
      * Similar in behavior to the get function from the Input class but for 
      * JSON related operations.
      *
-     * @param string|null $input Field name from POST/GET request, or null to get all
-     * @return array|string Sanitized input as array or string
+     * @param string|null $input Field name from POST/GET request, or null to get all.
+     * @return array|string Sanitized input as array or string.
      */
     public function get(string|null $input = null): array| string {
         $raw = self::$rawInputOverride ?? (file_get_contents('php://input') ?: '');
