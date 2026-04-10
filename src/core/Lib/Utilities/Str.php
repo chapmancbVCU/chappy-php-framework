@@ -736,6 +736,7 @@ class Str
      * Convert a string to UPPERCASE.
      *
      * @param string $value The input string.
+     * @return string The string in all upper case characters.
      */
     public static function upper(string $value): string
     {
