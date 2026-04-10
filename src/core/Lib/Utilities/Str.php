@@ -623,6 +623,7 @@ class Str
      *
      * @param string $haystack The string to search within.
      * @param string $needle The substring to check for.
+     * @return bool True if string starts with given substring, otherwise false.
      */
     public static function startsWith(string $haystack, string $needle): bool
     {
