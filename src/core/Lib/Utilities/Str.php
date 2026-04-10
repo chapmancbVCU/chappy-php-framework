@@ -585,6 +585,7 @@ class Str
      *
      * @param string $value The input string.
      * @param string $delimiter The delimiter used for snake casing.
+     * @return string The string in snake case.
      */
     public static function snake(string $value, string $delimiter = '_'): string
     {
