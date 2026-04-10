@@ -703,6 +703,7 @@ class Str
      * Convert a string into an array.
      *
      * @param string $value The input string.
+     * @return array The string as an array of characters.
      */
     public static function toArray(string $value): array
     {
