@@ -714,6 +714,7 @@ class Str
      * Capitalize the first character of a string.
      *
      * @param string $value The input string.
+     * @return string The string with first character capitalized.
      */
     public static function ucfirst(string $value): string
     {
