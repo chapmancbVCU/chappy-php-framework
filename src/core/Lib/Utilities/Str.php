@@ -783,6 +783,7 @@ class Str
      *
      * @param string $value The input string.
      * @param string $wrapWith The wrapping string.
+     * @return string The string wrapped with a given value.
      */
     public static function wrap(string $value, string $wrapWith): string
     {
