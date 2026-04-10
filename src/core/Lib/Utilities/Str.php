@@ -560,6 +560,7 @@ class Str
      * Shuffle characters in a string.
      *
      * @param string $value The input string.
+     * @return string The shuffled string.
      */
     public static function shuffle(string $value): string
     {
