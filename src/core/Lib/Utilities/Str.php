@@ -681,6 +681,7 @@ class Str
      * Swap keys with values in an array and return as a string.
      *
      * @param array $array The input array.
+     * @return string The swapped keys and values as a string.
      */
     public static function swapKeyValue(array $array): string
     {
