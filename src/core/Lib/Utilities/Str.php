@@ -725,6 +725,7 @@ class Str
      * Capitalize the first letter of each word.
      *
      * @param string $value The input string.
+     * @return string The modified string where first letter of each word is capitalized.
      */
     public static function ucwords(string $value): string
     {
