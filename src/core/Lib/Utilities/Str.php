@@ -527,6 +527,7 @@ class Str
      *
      * @param array $replacements Associative array of replacements [search => replace].
      * @param string $subject The string to perform replacements on.
+     * @return string The updated string.
      */
     public static function replaceMultiple(array $replacements, string $subject): string
     {
