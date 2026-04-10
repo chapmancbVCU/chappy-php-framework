@@ -500,6 +500,7 @@ class Str
      * @param string $search The substring to find.
      * @param string $replace The substring to replace with.
      * @param string $subject The string to perform replacement on.
+     * @return string The updated string.
      */
     public static function replaceFirst(string $search, string $replace, string $subject): string
     {
