@@ -36,6 +36,7 @@ class Queue extends Console {
      *
      * @param string $jobClass The name of class to test.
      * @return void
+     * @throws FrameworkException
      */
     private static function isValidJob(string $jobClass): void {
         if (!$jobClass || !class_exists($jobClass)) {
