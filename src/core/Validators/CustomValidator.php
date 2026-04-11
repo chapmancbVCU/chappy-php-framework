@@ -64,6 +64,7 @@ abstract class CustomValidator {
      * validation when submitting a form.
      * @param array $params A list of values obtained from an input when a 
      * form is submitted during a post action.
+     * @throws FrameworkException
      */
     public function __construct(object $model, array $params) {
         $this->_model = $model;
