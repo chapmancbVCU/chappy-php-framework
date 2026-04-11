@@ -68,6 +68,7 @@ class Uploads {
      * size usually described as <size_as_an_int><bytes|mb|gb> (e.g.: 5mb).
      * @param string $mode A constant to set whether or not we are 
      * working with a single file upload or an array regarding form setup.
+     * @throws InvalidArgumentException
      */
     public function __construct(
         array|string $files, 
