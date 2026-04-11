@@ -62,12 +62,12 @@ class Api {
 
     /**
      * Constructor for Api object.
-     * @param string               $baseUrl         Service base URL (e.g., "https://api.example.com")
-     * @param string               $cacheNamespace  Subdirectory under cache root (e.g., "api", "weather")
-     * @param array<string,string> $defaultHeaders  Default headers for all requests
-     * @param array<string,mixed>  $defaultQuery    Default query params for all requests
-     * @param int                  $defaultTtl      Default cache TTL (seconds) for GET; 0 disables caching
-     * @param int                  $timeout         cURL timeout in seconds (also used as connect timeout)
+     * @param string $baseUrl Service base URL (e.g., "https://api.example.com")
+     * @param string $cacheNamespace Subdirectory under cache root (e.g., "api", "weather")
+     * @param array<string,string> $defaultHeaders Default headers for all requests
+     * @param array<string,mixed> $defaultQuery Default query params for all requests
+     * @param int $defaultTtl Default cache TTL (seconds) for GET; 0 disables caching
+     * @param int $timeout cURL timeout in seconds (also used as connect timeout)
      */
     public function __construct(
         string $baseUrl,
@@ -92,9 +92,9 @@ class Api {
      * Build an absolute URL with merged default + per-call query parameters.
      * Per-call parameters override defaults on conflict.
      *
-     * @param string              $path   Path relative to the base URL (e.g., "/weather")
-     * @param array<string,mixed> $query  Per-call query parameters
-     * @return string                     Absolute URL including query string
+     * @param string $path Path relative to the base URL (e.g., "/weather")
+     * @param array<string,mixed> $query Per-call query parameters
+     * @return string Absolute URL including query string
      */
     protected function buildUrl(string $path, array $query): string {
         $q = array_merge($this->defaultQuery, $query);
@@ -106,7 +106,7 @@ class Api {
      * Compute the cache filename for a given URL.
      *
      * @param string $url Absolute URL
-     * @return string     Absolute path to the cache file
+     * @return string Absolute path to the cache file
      */
     protected function cacheFile(string $url): string {
         return $this->cacheDir . DS . 'cache_' . md5($url) . '.json';
@@ -131,12 +131,12 @@ class Api {
      * Perform a GET request that expects a JSON response.
      * Utilizes on-disk caching when TTL > 0.
      *
-     * @param string              $path  Path relative to base URL (e.g., "/weather")
+     * @param string $path Path relative to base URL (e.g., "/weather")
      * @param array<string,mixed> $query Query parameters for this call
-     * @param int|null            $ttl   Override cache TTL (seconds); null uses default; 0 disables caching
-     * @return array<string,mixed>       Decoded JSON as an associative array
+     * @param int|null $ttl Override cache TTL (seconds); null uses default; 0 disables caching
+     * @return array<string,mixed> Decoded JSON as an associative array
      *
-     * @throws APIException         On transport errors or invalid/upstream error JSON
+     * @throws APIException On transport errors or invalid/upstream error JSON
      */
     public function get(string $path, array $query = [], ?int $ttl = null): array {
         $ttl = $ttl ?? $this->defaultTtl;
@@ -158,11 +158,11 @@ class Api {
     /**
      * Perform a POST request with a JSON body and expect a JSON response.
      *
-     * @param string               $path     Path relative to base URL
-     * @param array<string,mixed>  $body     Payload to JSON-encode and send
-     * @param array<string,mixed>  $query    Extra query parameters
-     * @param array<string,string> $headers  Extra headers (merged over defaults)
-     * @return array<string,mixed>           Decoded JSON as an associative array
+     * @param string $path Path relative to base URL
+     * @param array<string,mixed> $body Payload to JSON-encode and send
+     * @param array<string,mixed> $query Extra query parameters
+     * @param array<string,string> $headers Extra headers (merged over defaults)
+     * @return array<string,mixed> Decoded JSON as an associative array
      *
      * @throws APIException             When JSON encoding fails or upstream returns an error
      */
@@ -182,7 +182,7 @@ class Api {
      * Read a cached JSON response for a URL if it exists and is fresh.
      *
      * @param string $url Absolute URL used as cache key
-     * @param int    $ttl TTL in seconds
+     * @param int $ttl TTL in seconds
      * @return array<string,mixed>|null Decoded JSON or null if cache miss/stale
      */
     protected function readCache(string $url, int $ttl): ?array {
@@ -198,13 +198,13 @@ class Api {
     /**
      * Core HTTP request using cURL that decodes JSON and throws on errors.
      *
-     * @param string               $method  HTTP method (e.g., "GET", "POST")
-     * @param string               $url     Absolute URL
-     * @param string|null          $body    Raw request body (e.g., JSON) or null
+     * @param string $method HTTP method (e.g., "GET", "POST")
+     * @param string $url Absolute URL
+     * @param string|null $body Raw request body (e.g., JSON) or null
      * @param array<string,string> $headers Extra headers (merged over defaults)
-     * @return array<string,mixed>          Decoded JSON as an associative array
+     * @return array<string,mixed> Decoded JSON as an associative array
      *
-     * @throws APIException            On transport errors, invalid JSON, or upstream HTTP >= 400
+     * @throws APIException On transport errors, invalid JSON, or upstream HTTP >= 400
      */
     protected function requestJson(string $method, string $url, ?string $body, array $headers): array {
         $flatHeaders = $this->flattenHeaders($this->defaultHeaders + $headers);
@@ -248,7 +248,7 @@ class Api {
     /**
      * Persist a decoded JSON response to the cache for a given URL.
      *
-     * @param string              $url  Absolute URL used as cache key
+     * @param string $url Absolute URL used as cache key
      * @param array<string,mixed> $data Decoded JSON to write
      * @return void
      */
