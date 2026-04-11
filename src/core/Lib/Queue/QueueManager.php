@@ -17,6 +17,7 @@ class QueueManager {
     
     /**
      * Constructor for QueueManager class.
+     * @throws \Exception
      */
     public function __construct() {
         $driver = Config::get('queue.driver');
