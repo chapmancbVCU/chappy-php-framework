@@ -94,6 +94,7 @@ abstract class Factory {
      * override default definition values.
      * @return array|object The array of models that were created or a single object 
      * model if just one record is inserted.
+     * @throws FactorySeederException
      */
     public function create(array $attributes = []): array|object {
         if(Tools::isProduction()) {
