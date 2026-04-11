@@ -220,6 +220,7 @@ class Router {
      * the correct controller and action to use.
      * 
      * @return void
+     * @throws FrameworkException
      */
     public static function route(): void
     {
