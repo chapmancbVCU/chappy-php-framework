@@ -159,7 +159,7 @@ class FrameworkQuestion {
      *
      * @return void
      * 
-     * 
+     * @throws FrameworkRuntimeException
      */
     protected function checkModes(): void {
         if($this->anticipate) {
