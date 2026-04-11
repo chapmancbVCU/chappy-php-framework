@@ -102,8 +102,8 @@ class Blueprint {
      * Create a foreign key (MySQL only).
      *
      * @param string $fk The full SQL statement to create the foreign key constraint.
-     *                   This should be a valid `ALTER TABLE` query for adding a foreign key.
-     *                   Example: "ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)"
+     * This should be a valid `ALTER TABLE` query for adding a foreign key. Example: 
+     * "ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)"
      * @return void
      */
     protected function createForeignKey(string $fk): void {
@@ -124,7 +124,7 @@ class Blueprint {
      * Note: Actual SQL index creation occurs in the `create()` method via `createIndex()`.
      *
      * @param string|array $column The name of the column or an array of columns to index.
-     *                              If a string is provided, a default index name will be generated.
+     * If a string is provided, a default index name will be generated.
      * @return void
      */
     protected function createIndex(array|string $index): void {
@@ -195,7 +195,7 @@ class Blueprint {
      * In SQLite, default values for certain column types like TEXT and BLOB are skipped.
      *
      * @param string|int|float|bool $value The default value to assign to the last defined column.
-     *                                     Strings will be wrapped in quotes. Other types will be cast directly.
+     * Strings will be wrapped in quotes. Other types will be cast directly.
      * @return Blueprint Returns the current Blueprint instance for method chaining.
      *
      * @throws Exception If no column has been defined yet or the column type cannot be determined.
