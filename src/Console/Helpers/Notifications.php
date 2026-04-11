@@ -60,8 +60,6 @@ class Notifications extends Console {
      *
      * @param string $channels A comma separated list of channels.
      * @return list<string>         Normalized channel names (e.g., ['database','log']).
-     *
-     * @throws \InvalidArgumentException on unknown channel names.
      */
     public static function channels(string $channels) {
         $all = Notification::channelValues();
