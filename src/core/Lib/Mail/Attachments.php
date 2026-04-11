@@ -81,6 +81,7 @@ class Attachments {
      *
      * @param EmailAttachments $attachment Instance of the EmailAttachment model.
      * @return array The full path to the file.
+     * @throws FrameworkRuntimeException
      */
     public static function content(EmailAttachments $attachment): array {
         $path = $attachment->path;
