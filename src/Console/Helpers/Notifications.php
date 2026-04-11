@@ -59,7 +59,7 @@ class Notifications extends Console {
      * - Accepts the special token "all" to mean all channel enum values.
      *
      * @param string $channels A comma separated list of channels.
-     * @return list<string>         Normalized channel names (e.g., ['database','log']).
+     * @return list<string> Normalized channel names (e.g., ['database','log']).
      */
     public static function channels(string $channels) {
         $all = Notification::channelValues();
@@ -76,11 +76,11 @@ class Notifications extends Console {
     /**
      * Perform a dry-run (no delivery). Prints the intended action and payload.
      *
-     * @param object|string $notifiable  Notifiable instance or a sentinel string (e.g., "dummy").
+     * @param object|string $notifiable Notifiable instance or a sentinel string (e.g., "dummy").
      * @param Notification  $notification The notification instance.
      * @param array<string,mixed> $payload Payload merged from defaults and overrides.
-     * @param list<string>|null $channels  Channels override (NULL → will use via()).
-     * @return bool                       TRUE if dry-run occurred; FALSE otherwise.
+     * @param list<string>|null $channels Channels override (NULL → will use via()).
+     * @return bool TRUE if dry-run occurred; FALSE otherwise.
      */
     public static function dryRun(
         object|string $notifiable, 
