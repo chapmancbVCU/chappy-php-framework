@@ -160,6 +160,9 @@ class Console {
      * @param array $validators An array of validators.  Any additional 
      * parameters must be separated with a ":".
      * @return void
+     * 
+     * @throws FrameworkException Exception is thrown when validator rule or 
+     * attribute does not exist in class.
      */
     protected static function parseAttributes(object $object, array $validators): void {
         foreach($validators as $validator) {
