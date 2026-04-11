@@ -115,6 +115,8 @@ trait HasValidators {
      * @param array $range 2 element array where position 0 is min and 
      * position 1 is max.
      * @return static
+     * 
+     * @throws FrameworkRuntimeException
      */
     public function between(array $range): static {
         return $this->setValidator(function($response) use ($range): void {
