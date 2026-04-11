@@ -109,6 +109,7 @@ final class MailChannel implements Channel {
      * @param string $subject The subject for the E-mail.
      * @param string $to The recipient for the E-mail.
      * @return void
+     * @throws ChannelSendFailedException
      */
     private function notifyWithHTML(mixed $notification, array $payload, string $subject, string $to): void {
         $html = (string)$payload['html'];
