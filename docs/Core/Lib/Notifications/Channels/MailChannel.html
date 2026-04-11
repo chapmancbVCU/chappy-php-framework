@@ -414,7 +414,7 @@ text body exists it uses sendWithText.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_notifyWithHTML">
-        <div class="location">at line 113</div>
+        <div class="location">at line 114</div>
         <code>                private    void
     <strong>notifyWithHTML</strong>(mixed $notification, array $payload, string $subject, string $to)
         </code>
@@ -463,6 +463,15 @@ text body exists it uses sendWithText.</p></p>                </div>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\ChannelSendFailedException">ChannelSendFailedException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -471,7 +480,7 @@ text body exists it uses sendWithText.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_notifyWithTemplate">
-        <div class="location">at line 139</div>
+        <div class="location">at line 141</div>
         <code>                private    void
     <strong>notifyWithTemplate</strong>(mixed $notification, array $payload, string $subject, string $to)
         </code>
@@ -520,6 +529,15 @@ text body exists it uses sendWithText.</p></p>                </div>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\ChannelSendFailedException">ChannelSendFailedException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -528,7 +546,7 @@ text body exists it uses sendWithText.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_requireUser">
-        <div class="location">at line 169</div>
+        <div class="location">at line 172</div>
         <code>        static        private    object
     <strong>requireUser</strong>(object $notifiable)
         </code>
@@ -562,6 +580,15 @@ text body exists it uses sendWithText.</p></p>                </div>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\InvalidPayloadException">InvalidPayloadException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -570,7 +597,7 @@ text body exists it uses sendWithText.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_route">
-        <div class="location">at line 184</div>
+        <div class="location">at line 188</div>
         <code>                private    string
     <strong>route</strong>(object $notifiable)
         </code>
@@ -604,6 +631,15 @@ text body exists it uses sendWithText.</p></p>                </div>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\NotifiableRoutingException">NotifiableRoutingException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -612,7 +648,7 @@ text body exists it uses sendWithText.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 198</div>
+        <div class="location">at line 202</div>
         <code>                    void
     <strong>send</strong>(object $notifiable, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, mixed $payload)
         </code>
@@ -665,7 +701,7 @@ If delivery fails, throw an exception to allow the caller (or a queue worker) to
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWithHTML">
-        <div class="location">at line 257</div>
+        <div class="location">at line 263</div>
         <code>                private    bool
     <strong>sendWithHTML</strong>(string $to, string $subject, string $html, string|null $text = null, string|null $template = null, array $attachments = [])
         </code>
@@ -726,6 +762,19 @@ attachments.</p></td>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\InvalidPayloadException">InvalidPayloadException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\ChannelSendFailedException">ChannelSendFailedException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -734,7 +783,7 @@ attachments.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWithCustomMailer">
-        <div class="location">at line 276</div>
+        <div class="location">at line 282</div>
         <code>                private    void
     <strong>sendWithCustomMailer</strong>(object $notifiable, array $payload)
         </code>

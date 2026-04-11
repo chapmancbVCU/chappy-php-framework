@@ -180,7 +180,7 @@ If your channel requires dependencies, adapt this class to use your container.</
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_all">
-        <div class="location">at line 44</div>
+        <div class="location">at line 43</div>
         <code>        static            array
     <strong>all</strong>()
         </code>
@@ -213,7 +213,7 @@ classes.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_has">
-        <div class="location">at line 54</div>
+        <div class="location">at line 53</div>
         <code>        static            bool
     <strong>has</strong>(string $name)
         </code>
@@ -255,7 +255,7 @@ classes.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_register">
-        <div class="location">at line 68</div>
+        <div class="location">at line 67</div>
         <code>        static            void
     <strong>register</strong>(string $name, string $channelClass)
         </code>
@@ -302,7 +302,7 @@ classes.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_resolve">
-        <div class="location">at line 84</div>
+        <div class="location">at line 83</div>
         <code>        static            <a href="../../../Core/Lib/Notifications/Contracts/Channel.html"><abbr title="Core\Lib\Notifications\Contracts\Channel">Channel</abbr></a>
     <strong>resolve</strong>(string $name)
         </code>
@@ -313,7 +313,7 @@ classes.</p></td>
 
         <div class="method-description">
                             <p><p>Resolve a channel by name into a concrete {Channel} instance.</p></p>                <p><p>The channel class is instantiated with a zero-argument constructor.
-If the channel is not registered, a {\RuntimeException} is thrown.</p></p>        
+If the channel is not registered, a {\Core\Lib\Notifications\RuntimeException} is thrown.</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -341,7 +341,7 @@ If the channel is not registered, a {\RuntimeException} is thrown.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a target="_blank" rel="noopener" href="https://www.php.net/RuntimeException">RuntimeException</a></td>
+                <td><a href="../../../Core/Exceptions/Notifications/UnregisteredChannelException.html"><abbr title="Core\Exceptions\Notifications\UnregisteredChannelException">UnregisteredChannelException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
