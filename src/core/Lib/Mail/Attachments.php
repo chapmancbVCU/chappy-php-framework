@@ -121,6 +121,7 @@ class Attachments {
      *
      * @param EmailAttachment $attachment Instance of the EmailAttachment model.
      * @return array The data needed to assemble an attachment.
+     * @throws FrameworkRuntimeException
      */
     public static function path(EmailAttachments $attachment): array {
         $path = $attachment->path;
