@@ -19,6 +19,11 @@ use Console\HasValidators;
 class FrameworkQuestion {
     use HasValidators;
 
+    /**
+     * Flag that tracks if anticipate mode is on or off.
+     *
+     * @var boolean
+     */
     protected bool $anticipate = false;
 
     /**
@@ -153,6 +158,8 @@ class FrameworkQuestion {
      * the chance to answer those questions.
      *
      * @return void
+     * 
+     * 
      */
     protected function checkModes(): void {
         if($this->anticipate) {
