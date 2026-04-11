@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core\Lib\Notifications;
 
-use RuntimeException;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Contracts\Channel;
 use Core\Exceptions\Notifications\UnregisteredChannelException;
