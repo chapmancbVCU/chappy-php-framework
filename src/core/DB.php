@@ -71,6 +71,7 @@ class DB {
     /**
      * This constructor creates a new PDO object as an instance variable.  If 
      * there are any failures the application quits with an error message.
+     * @throws \Exception
      */
     private function __construct() {
         $config = require CHAPPY_BASE_PATH . DS . 'config' . DS . 'database.php';
