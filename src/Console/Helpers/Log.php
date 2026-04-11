@@ -4,8 +4,6 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Supports ability to manage logs.
