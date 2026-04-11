@@ -53,8 +53,8 @@ class EventDispatcher {
      * and pushes the job to the specified queue via the {@see QueueManager}.
      *
      * @param string $listenerClass Fully qualified class name of the listener.
-     * @param object $instance      The instantiated listener object.
-     * @param object $event         The event object being dispatched.
+     * @param object $instance The instantiated listener object.
+     * @param object $event The event object being dispatched.
      *
      * @return void
      */
@@ -78,8 +78,8 @@ class EventDispatcher {
      * the queue system instead of being executed immediately.
      *
      * @param string $listenerClass Fully qualified class name of the listener.
-     * @param object $instance      The instantiated listener object.
-     * @param object $event         The event object being dispatched.
+     * @param object $instance The instantiated listener object.
+     * @param object $event The event object being dispatched.
      *
      * @return bool True if the listener was enqueued, false otherwise.
      */
@@ -99,7 +99,7 @@ class EventDispatcher {
      *  - array callable: [FQCN|object, 'method'] (calls given method)
      *
      * @param mixed  $listener The listener definition (string FQCN or [target, method]).
-     * @param object $event    The event instance being dispatched.
+     * @param object $event The event instance being dispatched.
      *
      * @return void
      */
@@ -132,7 +132,7 @@ class EventDispatcher {
      * Process a listener provided as [FQCN|object, 'method'].
      *
      * @param array  $listener A two-item array: [FQCN|string|object $target, string $method].
-     * @param object $event     The event instance being dispatched.
+     * @param object $event The event instance being dispatched.
      *
      * @return void
      */
@@ -154,7 +154,7 @@ class EventDispatcher {
      * Assumes a conventional handle($event) method.
      *
      * @param string $listenerClass Fully qualified class name of the listener.
-     * @param object $event         The event instance being dispatched.
+     * @param object $event The event instance being dispatched.
      *
      * @return void
      */
