@@ -56,7 +56,10 @@ final class DatabaseChannel implements Channel {
      * @psalm-param \Core\Lib\Notifications\Notification $notification
      * @psalm-param array<string,mixed>|null $payload
      *
-     * @throws InvalidPayloadException|NotifiableRoutingException|InvalidPayloadException|ChannelSendFailedException
+     * @throws InvalidPayloadException
+     * @throws NotifiableRoutingException
+     * @throws InvalidPayloadException
+     * @throws ChannelSendFailedException
      * @return void
      */
     #[\Override] // PHP 8.3+ (optional): ensures the signature matches the interface
