@@ -165,6 +165,7 @@ class Uploads {
      * @param string $mode Use Uploads::SINGLE for single file uploads or 
      * Uploads::MULTIPLE for multiple file uploads.
      * @return Uploads|null Returns Uploads instance if valid, otherwise null.
+     * @throws InvalidArgumentException
      */
     public static function handleUpload(
         string $name, 
