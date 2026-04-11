@@ -22,6 +22,7 @@ abstract class Seeder {
      * @param string|array $seederClass The name of the seeder class or array 
      * of seeder classes.
      * @return void
+     * @throws FactorySeederException
      */
     protected function call(string|array $seederClass): void {
         if(env('APP_ENV') === 'production') {
