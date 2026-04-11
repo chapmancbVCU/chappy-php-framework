@@ -136,6 +136,7 @@ final class MailChannel implements Channel {
      * @param string $subject The subject for the E-mail.
      * @param string $to The recipient for the E-mail.
      * @return void
+     * @throws ChannelSendFailedException
      */
     private function notifyWithTemplate(mixed $notification, array $payload, string $subject, string $to): void {
         $ok = $this->service->sendTemplate(
@@ -166,6 +167,7 @@ final class MailChannel implements Channel {
      * 
      * @param object $notifiable The user/entity receiving the notification.
      * @return \App\Models\Users
+     * @throws InvalidPayloadException
      */
     private static function requireUser(object $notifiable): object {
         if($notifiable instanceof \App\Models\Users) {
@@ -181,6 +183,7 @@ final class MailChannel implements Channel {
      * 
      * @param object $notifiable The user/entity receiving the notification.
      * @return string The recipient of the E-mail
+     * @throws NotifiableRoutingException
      */
     private function route(object $notifiable): string {
         if(method_exists($notifiable, 'routeNotificationForMail')) {
@@ -206,8 +209,8 @@ final class MailChannel implements Channel {
      * @phpstan-param Notification $notification
      * @phpstan-param array<string,mixed>|null $payload
      *
-     * @throws InvalidArgumentException|RuntimeException
      * @return void
+     * @throws InvalidArgumentException
      */
     public function send(object $notifiable, Notification $notification, mixed $payload): void {
         if(!($notification instanceof Notification)) {
@@ -254,6 +257,8 @@ final class MailChannel implements Channel {
      * @param array $attachments An array containing information about 
      * attachments.
      * @return bool
+     * @throws InvalidPayloadException
+     * @throws ChannelSendFailedException
      */
     private function sendWithHTML(
         string $to,
