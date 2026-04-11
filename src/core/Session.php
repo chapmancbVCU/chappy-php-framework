@@ -33,6 +33,7 @@ class Session {
      * secondary, light, or dark.
      * @param string $message The message you want to display in the alert.
      * @return void
+     * @throws SessionLevelException
      */
     public static function addMessage(string $type, string $message): void {
         $reflectionClass = new ReflectionClass(__CLASS__);
