@@ -13,6 +13,7 @@ class Config
      * Load all config files from a directory.
      *
      * @param string $path Path to config directory
+     * @throws \Exception
      */
     public static function load(string $path): void {
         foreach (glob($path . '/*.php') as $file) {
