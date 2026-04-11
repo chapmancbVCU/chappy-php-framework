@@ -79,7 +79,7 @@ final class ChannelRegistry {
      *
      * @return Channel The instantiated channel driver.
      *
-     * @throws RuntimeException If the channel name is not registered.
+     * @throws UnregisteredChannelException If the channel name is not registered.
      */
     public static function resolve(string $name): Channel {
         $key = Str::lower($name);
