@@ -42,6 +42,7 @@ class EventManager {
      * Get the dispatcher (after boot)
      *
      * @return EventDispatcher
+     * @throws FrameworkRuntimeException
      */
     public static function dispatcher(): EventDispatcher
     {
