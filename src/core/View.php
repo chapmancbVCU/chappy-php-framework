@@ -128,6 +128,8 @@ class View extends stdClass {
      * @param bool $frameworkViewPath When true we use built in controllers under Core, 
      * otherwise controllers defined by users are utilized.
      * @return void
+     * @throws LayoutNotFoundException
+     * @throws ViewNotFoundException
      */
     public function render(string $viewName, bool $frameworkViewPath = false, bool $frameworkLayoutPath = false): void {
         $viewArray = explode('.', $viewName);
