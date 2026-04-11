@@ -151,16 +151,6 @@
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_collapse">collapse</a>(array $array)
-        
-                                            <p><p>Collapse a multi-dimensional array into a single-level array.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;array
-                </div>
-                <div class="col-md-8">
                     <a href="#method_chunk">chunk</a>(array $array, int $size, bool $preserveKeys = false)
         
                                             <p><p>Split an array into chunks of a given size.</p></p>                </div>
@@ -174,6 +164,16 @@
                     <a href="#method_chunkBy">chunkBy</a>(array $array, callable $callback)
         
                                             <p><p>Chunk an array into groups based on a callback function.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_collapse">collapse</a>(array $array)
+        
+                                            <p><p>Collapse a multi-dimensional array into a single-level array.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -401,9 +401,9 @@
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_insertBefore">insertBefore</a>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
+                    <a href="#method_insertAfter">insertAfter</a>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
         
-                                            <p><p>Insert an element before a given key in an array.</p></p>                </div>
+                                            <p><p>Insert an element after a given key in an array.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -411,9 +411,9 @@
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_insertAfter">insertAfter</a>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
+                    <a href="#method_insertBefore">insertBefore</a>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
         
-                                            <p><p>Insert an element after a given key in an array.</p></p>                </div>
+                                            <p><p>Insert an element before a given key in an array.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -1027,50 +1027,8 @@ One where the callback returns true, the other where it returns false.</p></p>  
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_collapse">
-        <div class="location">at line 77</div>
-        <code>        static            array
-    <strong>collapse</strong>(array $array)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Collapse a multi-dimensional array into a single-level array.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array</td>
-                <td>$array</td>
-                <td><p>The multi-dimensional array.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>array</td>
-            <td><p>The collapsed array.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_chunk">
-        <div class="location">at line 97</div>
+        <div class="location">at line 79</div>
         <code>        static            array
     <strong>chunk</strong>(array $array, int $size, bool $preserveKeys = false)
         </code>
@@ -1122,7 +1080,7 @@ One where the callback returns true, the other where it returns false.</p></p>  
             </div>
                     <div class="method-item">
                     <h3 id="method_chunkBy">
-        <div class="location">at line 109</div>
+        <div class="location">at line 91</div>
         <code>        static            array
     <strong>chunkBy</strong>(array $array, callable $callback)
         </code>
@@ -1157,6 +1115,48 @@ One where the callback returns true, the other where it returns false.</p></p>  
         <tr>
             <td>array</td>
             <td><p>The chunked array.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_collapse">
+        <div class="location">at line 116</div>
+        <code>        static            array
+    <strong>collapse</strong>(array $array)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Collapse a multi-dimensional array into a single-level array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$array</td>
+                <td><p>The multi-dimensional array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The collapsed array.</p></td>
         </tr>
     </table>
 
@@ -2212,10 +2212,10 @@ One where the callback returns true, the other where it returns false.</p></p>  
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_insertBefore">
+                    <h3 id="method_insertAfter">
         <div class="location">at line 525</div>
         <code>        static            array
-    <strong>insertBefore</strong>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
+    <strong>insertAfter</strong>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
         </code>
     </h3>
     <div class="details">    
@@ -2223,7 +2223,7 @@ One where the callback returns true, the other where it returns false.</p></p>  
             
 
         <div class="method-description">
-                            <p><p>Insert an element before a given key in an array.</p></p>                        
+                            <p><p>Insert an element after a given key in an array.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -2237,7 +2237,7 @@ One where the callback returns true, the other where it returns false.</p></p>  
                     <tr>
                 <td><abbr title="Core\Lib\Utilities\string|int">string|int</abbr></td>
                 <td>$key</td>
-                <td><p>The key to insert before.</p></td>
+                <td><p>The key to insert after.</p></td>
             </tr>
                     <tr>
                 <td><abbr title="Core\Lib\Utilities\string|int">string|int</abbr></td>
@@ -2269,10 +2269,10 @@ One where the callback returns true, the other where it returns false.</p></p>  
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_insertAfter">
+                    <h3 id="method_insertBefore">
         <div class="location">at line 547</div>
         <code>        static            array
-    <strong>insertAfter</strong>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
+    <strong>insertBefore</strong>(array $array, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $key, <abbr title="Core\Lib\Utilities\string|int">string|int</abbr> $newKey, mixed $value)
         </code>
     </h3>
     <div class="details">    
@@ -2280,7 +2280,7 @@ One where the callback returns true, the other where it returns false.</p></p>  
             
 
         <div class="method-description">
-                            <p><p>Insert an element after a given key in an array.</p></p>                        
+                            <p><p>Insert an element before a given key in an array.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -2294,7 +2294,7 @@ One where the callback returns true, the other where it returns false.</p></p>  
                     <tr>
                 <td><abbr title="Core\Lib\Utilities\string|int">string|int</abbr></td>
                 <td>$key</td>
-                <td><p>The key to insert after.</p></td>
+                <td><p>The key to insert before.</p></td>
             </tr>
                     <tr>
                 <td><abbr title="Core\Lib\Utilities\string|int">string|int</abbr></td>

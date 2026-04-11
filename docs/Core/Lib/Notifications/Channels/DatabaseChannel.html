@@ -171,7 +171,7 @@ $user-&gt;notify(new \App\Notifications\UserRegistered($user));</p></p>        <
             </div>
                     <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 62</div>
+        <div class="location">at line 65</div>
         <code>                    void
     <strong>send</strong>(object $notifiable, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, mixed $payload)
         </code>
@@ -224,7 +224,19 @@ $user-&gt;notify(new \App\Notifications\UserRegistered($user));</p></p>        <
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Core\Lib\Notifications\Channels\InvalidPayloadException|\Core\Lib\Notifications\Channels\NotifiableRoutingException|\Core\Lib\Notifications\Channels\ChannelSendFailedException">ChannelSendFailedException</abbr></td>
+                <td><abbr title="Core\Lib\Notifications\Channels\InvalidPayloadException">InvalidPayloadException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\NotifiableRoutingException">NotifiableRoutingException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\InvalidPayloadException">InvalidPayloadException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Notifications\Channels\ChannelSendFailedException">ChannelSendFailedException</abbr></td>
                 <td></td>
             </tr>
             </table>

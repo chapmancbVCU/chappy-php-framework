@@ -53,7 +53,7 @@ class Str
      * Base64 decode a string.
      *
      * @param string $value The base64 encoded string.
-     * @param string The decoded string.
+     * @return string The decoded string.
      */
     public static function base64Decode(string $value): string
     {
@@ -185,7 +185,7 @@ class Str
      *
      * @param string $value The input string.
      * @param string $cap The ending string to append if missing.
-     * @param string The string with the desired ending.
+     * @return string The string with the desired ending.
      */
     public static function finish(string $value, string $cap): string
     {
@@ -196,7 +196,7 @@ class Str
      * Convert a string to headline case.
      *
      * @param string $value The input string.
-     * @param string The string in headline case.
+     * @return string The string in headline case.
      */
     public static function headline(string $value): string
     {

@@ -220,7 +220,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_errorReporting">errorReporting</a>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
+                    <a href="#method_errorReporting">errorReporting</a>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model)
         
                                             <p><p>Processes list of errors associated with uploads and makes them
 presentable to user during validation.</p></p>                </div>
@@ -324,7 +324,7 @@ presentable to user during validation.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 72</div>
+        <div class="location">at line 73</div>
         <code>                    
     <strong>__construct</strong>(<abbr title="Core\Lib\FileSystem\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, string $bucket, string $sizeMsg, string $mode)
         </code>
@@ -377,6 +377,15 @@ working with a single file upload or an array regarding form setup.</p></td>
 
             
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -385,7 +394,7 @@ working with a single file upload or an array regarding form setup.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_addErrorMessage">
-        <div class="location">at line 98</div>
+        <div class="location">at line 99</div>
         <code>            protected        void
     <strong>addErrorMessage</strong>(string $name, string $message)
         </code>
@@ -434,7 +443,7 @@ working with a single file upload or an array regarding form setup.</p></td>
                     <h3 id="method_errorReporting">
         <div class="location">at line 115</div>
         <code>                    void
-    <strong>errorReporting</strong>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
+    <strong>errorReporting</strong>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model)
         </code>
     </h3>
     <div class="details">    
@@ -459,11 +468,6 @@ presentable to user during validation.</p></p>
                 <td>$model</td>
                 <td><p>The model associated with the errors.</p></td>
             </tr>
-                    <tr>
-                <td>string</td>
-                <td>$name</td>
-                <td><p>The name of the field in the model for the errors.</p></td>
-            </tr>
             </table>
 
             
@@ -485,7 +489,7 @@ presentable to user during validation.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_generateUploadFilename">
-        <div class="location">at line 140</div>
+        <div class="location">at line 138</div>
         <code>                    string
     <strong>generateUploadFilename</strong>(string $originalFilename)
         </code>
@@ -520,15 +524,6 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
     </table>
 
             
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a target="_blank" rel="noopener" href="https://www.php.net/Exception">Exception</a></td>
-                <td></td>
-            </tr>
-            </table>
-
             
             
                     </div>
@@ -537,7 +532,7 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getFiles">
-        <div class="location">at line 153</div>
+        <div class="location">at line 151</div>
         <code>                    array
     <strong>getFiles</strong>()
         </code>
@@ -569,7 +564,7 @@ Falls back to 'bin' if no extension is found in the original filename.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleUpload">
-        <div class="location">at line 171</div>
+        <div class="location">at line 170</div>
         <code>        static            <a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
     <strong>handleUpload</strong>(string $name, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $mode = self::SINGLE)
         </code>
@@ -631,6 +626,15 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -639,7 +643,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_restructureFiles">
-        <div class="location">at line 217</div>
+        <div class="location">at line 215</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, string $mode = self::SINGLE)
         </code>
@@ -686,7 +690,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 249</div>
+        <div class="location">at line 247</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -718,7 +722,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_upload">
-        <div class="location">at line 285</div>
+        <div class="location">at line 283</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -770,7 +774,7 @@ Uploads::MULTIPLE for multiple file uploads.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validates">
-        <div class="location">at line 305</div>
+        <div class="location">at line 303</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>
@@ -803,7 +807,7 @@ we return the $_errors array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validateFileType">
-        <div class="location">at line 314</div>
+        <div class="location">at line 312</div>
         <code>            protected        void
     <strong>validateFileType</strong>()
         </code>
@@ -835,7 +839,7 @@ we return the $_errors array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validateSize">
-        <div class="location">at line 352</div>
+        <div class="location">at line 350</div>
         <code>            protected        void
     <strong>validateSize</strong>()
         </code>

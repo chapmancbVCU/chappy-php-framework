@@ -160,7 +160,6 @@ class FormHelper {
      *     <label for="remember_me">Remember Me</label>
      * </div> 
      * 
-     * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.

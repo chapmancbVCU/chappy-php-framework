@@ -133,7 +133,7 @@
                 <div class="col-md-8">
                     <a href="#method_hashPassword">hashPassword</a>(string $password)
         
-                                            <p><p>Hashes password.</p></p>                </div>
+                                            <p><p>Hashes a plain text password using PHP's <code>password_hash()</code> with the default algorithm.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -143,7 +143,9 @@
                 <div class="col-md-8">
                     <a href="#method_login">login</a>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, string $username, bool $mailer = false)
         
-                                            <p><p>Processes login attempts</p></p>                </div>
+                                            <p><p>Attempts to log a user in. If successful, resets login attempts and
+creates a session. Otherwise, tracks failed attempts and optionally
+triggers an email notification.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -186,7 +188,8 @@ selected.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_logout">logout</a>()
         
-                                            <p><p>Logs user out.</p></p>                </div>
+                                            <p><p>Logs out the currently logged-in user by clearing the session and
+deleting any active cookies.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -208,7 +211,8 @@ corresponding cookie is deleted.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_passwordReset">passwordReset</a>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <abbr title="App\Models\Users">Users</abbr> $user)
         
-                                            <p><p>Resets password.</p></p>                </div>
+                                            <p><p>Handles the complete flow of resetting a user’s password, including
+setting the confirmation field and updating the record.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -218,7 +222,7 @@ corresponding cookie is deleted.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_profileImageUpload">profileImageUpload</a>(<abbr title="App\Models\Users">Users</abbr> $user)
         
-                                            <p><p>Handles upload for profile image.</p></p>                </div>
+                                            <p><p>Processes a profile image upload and returns an <code>Uploads</code> object.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -258,7 +262,7 @@ corresponding cookie is deleted.</p></p>                </div>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td></td>
+            <td><p>The value of the confirm field.</p></td>
         </tr>
     </table>
 
@@ -314,7 +318,7 @@ logged in user from users table.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Hashes password.</p></p>                        
+                            <p><p>Hashes a plain text password using PHP's <code>password_hash()</code> with the default algorithm.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -334,7 +338,7 @@ or update password form.</p></td>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td></td>
+            <td><p>The hashed version of the password.</p></td>
         </tr>
     </table>
 
@@ -347,7 +351,7 @@ or update password form.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_login">
-        <div class="location">at line 65</div>
+        <div class="location">at line 67</div>
         <code>        static            <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a>
     <strong>login</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, string $username, bool $mailer = false)
         </code>
@@ -357,7 +361,9 @@ or update password form.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Processes login attempts</p></p>                        
+                            <p><p>Attempts to log a user in. If successful, resets login attempts and
+creates a session. Otherwise, tracks failed attempts and optionally
+triggers an email notification.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -405,7 +411,7 @@ surpasses max number of login attempts before account is locked.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginAttempts">
-        <div class="location">at line 105</div>
+        <div class="location">at line 107</div>
         <code>        static            <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a>
     <strong>loginAttempts</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, bool $mailer = false)
         </code>
@@ -461,7 +467,7 @@ and session messages are assigned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginUser">
-        <div class="location">at line 134</div>
+        <div class="location">at line 136</div>
         <code>        static            void
     <strong>loginUser</strong>(<abbr title="App\Models\Users">Users</abbr> $loginUser, bool $rememberMe = false)
         </code>
@@ -511,7 +517,7 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginUserFromCookie">
-        <div class="location">at line 169</div>
+        <div class="location">at line 171</div>
         <code>        static            <abbr title="Core\Services\App\Models\Users">Users</abbr>|null
     <strong>loginUserFromCookie</strong>()
         </code>
@@ -543,7 +549,7 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_logout">
-        <div class="location">at line 186</div>
+        <div class="location">at line 189</div>
         <code>        static            void
     <strong>logout</strong>()
         </code>
@@ -553,7 +559,8 @@ found in login form.  Default value is false.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Logs user out.</p></p>                        
+                            <p><p>Logs out the currently logged-in user by clearing the session and
+deleting any active cookies.</p></p>                        
         </div>
         <div class="tags">
             
@@ -575,7 +582,7 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_logoutUser">
-        <div class="location">at line 201</div>
+        <div class="location">at line 204</div>
         <code>        static            bool
     <strong>logoutUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -619,7 +626,7 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_passwordReset">
-        <div class="location">at line 222</div>
+        <div class="location">at line 226</div>
         <code>        static            void
     <strong>passwordReset</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -629,7 +636,8 @@ corresponding cookie is deleted.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Resets password.</p></p>                        
+                            <p><p>Handles the complete flow of resetting a user’s password, including
+setting the confirmation field and updating the record.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -666,7 +674,7 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileImageUpload">
-        <div class="location">at line 245</div>
+        <div class="location">at line 250</div>
         <code>        static            <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null
     <strong>profileImageUpload</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -676,7 +684,7 @@ corresponding cookie is deleted.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Handles upload for profile image.</p></p>                        
+                            <p><p>Processes a profile image upload and returns an <code>Uploads</code> object.</p></p>                <p><p>Assumes the input name is <code>profileImage</code>.</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>

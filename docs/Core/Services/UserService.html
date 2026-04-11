@@ -114,7 +114,8 @@
                     <a href="#method_deleteIfAllowed">deleteIfAllowed</a>(int $id, bool $unlink = false)
         
                                             <p><p>Deletes user if not admin and unlinks profile images if $unlink
-is set to true.</p></p>                </div>
+is set to true.  Appropriate messaging is displayed based on success or
+failure.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -207,7 +208,7 @@ get value of $user-&gt;inactive before post.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_deleteIfAllowed">
-        <div class="location">at line 26</div>
+        <div class="location">at line 27</div>
         <code>        static            void
     <strong>deleteIfAllowed</strong>(int $id, bool $unlink = false)
         </code>
@@ -218,7 +219,8 @@ get value of $user-&gt;inactive before post.</p></p>                </div>
 
         <div class="method-description">
                             <p><p>Deletes user if not admin and unlinks profile images if $unlink
-is set to true.</p></p>                        
+is set to true.  Appropriate messaging is displayed based on success or
+failure.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -255,7 +257,7 @@ is set to true.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteProfileImage">
-        <div class="location">at line 43</div>
+        <div class="location">at line 44</div>
         <code>        static            array
     <strong>deleteProfileImage</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
@@ -297,7 +299,7 @@ is set to true.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_ensureAuthenticatedUser">
-        <div class="location">at line 59</div>
+        <div class="location">at line 60</div>
         <code>        static            void
     <strong>ensureAuthenticatedUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -339,7 +341,7 @@ is set to true.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleProfileImages">
-        <div class="location">at line 76</div>
+        <div class="location">at line 77</div>
         <code>        static            void
     <strong>handleProfileImages</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
         </code>
@@ -391,7 +393,7 @@ is set to true.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWhenSetToInactive">
-        <div class="location">at line 93</div>
+        <div class="location">at line 94</div>
         <code>        static            void
     <strong>sendWhenSetToInactive</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
         </code>
@@ -438,7 +440,7 @@ is set to true.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWhenSetToResetPW">
-        <div class="location">at line 108</div>
+        <div class="location">at line 109</div>
         <code>        static            void
     <strong>sendWhenSetToResetPW</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
         </code>
@@ -485,7 +487,7 @@ is set to true.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toggleAccountStatus">
-        <div class="location">at line 126</div>
+        <div class="location">at line 127</div>
         <code>        static            bool
     <strong>toggleAccountStatus</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
         </code>
@@ -526,7 +528,7 @@ get value of $user-&gt;inactive before post.</p></p>
                     <table class="table table-condensed">
         <tr>
             <td>bool</td>
-            <td><p>true if we want to send mail and otherwise false.</p></td>
+            <td><p>True if we want to send mail and otherwise false.</p></td>
         </tr>
     </table>
 
@@ -539,7 +541,7 @@ get value of $user-&gt;inactive before post.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toggleResetPassword">
-        <div class="location">at line 141</div>
+        <div class="location">at line 142</div>
         <code>        static            bool
     <strong>toggleResetPassword</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
         </code>
@@ -591,7 +593,7 @@ get value of $user-&gt;inactive before post.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_updatePassword">
-        <div class="location">at line 153</div>
+        <div class="location">at line 154</div>
         <code>        static            <abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr>
     <strong>updatePassword</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
@@ -625,7 +627,7 @@ get value of $user-&gt;inactive before post.</p></p>
                     <table class="table table-condensed">
         <tr>
             <td><abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr></td>
-            <td><p>True if password is updated, otherwise false</p></td>
+            <td><p>True if password is updated, otherwise false.</p></td>
         </tr>
     </table>
 
