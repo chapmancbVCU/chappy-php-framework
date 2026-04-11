@@ -134,8 +134,6 @@ class Uploads {
      *
      * @param string $originalFilename The original filename (used to extract the extension).
      * @return string A unique, safely generated filename with the original extension.
-     *
-     * @throws \Exception If it was not possible to gather sufficient entropy (from random_bytes).
      */
     public function generateUploadFilename($originalFilename): string {
         // Generate extension and fallback if no extension
