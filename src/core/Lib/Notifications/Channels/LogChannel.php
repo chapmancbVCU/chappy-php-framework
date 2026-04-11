@@ -66,7 +66,7 @@ final class LogChannel implements Channel {
      *  2) Merge in the payload array *minus* control keys, allowing payload
      *     to override keys from step 1 so per‑send overrides are visible.
      *
-     * @param object       $notifiable   The entity receiving the notification.
+     * @param object $notifiable The entity receiving the notification.
      * @param Notification $notification The notification instance.
      * @param array<string,mixed> $payloadArr Payload provided to the channel.
      *
@@ -99,12 +99,12 @@ final class LogChannel implements Channel {
      *  3) "data['message']" if present and string
      *  4) A synthesized "Notification X for Y" fallback
      *
-     * @param array<string,mixed> $data               Final data bag (may contain 'message').
-     * @param object              $notifiable         The notifiable entity.
-     * @param class-string        $notifiableClass    Class name of the notifiable.
-     * @param Notification        $notification       The notification instance.
-     * @param class-string        $notificationClass  Class name of the notification.
-     * @param string|null         $payloadMessage     Message extracted from payload, if any.
+     * @param array<string,mixed> $data Final data bag (may contain 'message').
+     * @param object $notifiable The notifiable entity.
+     * @param class-string $notifiableClass Class name of the notifiable.
+     * @param Notification $notification The notification instance.
+     * @param class-string $notificationClass Class name of the notification.
+     * @param string|null $payloadMessage Message extracted from payload, if any.
      *
      * @return string Human‑readable message to include in the log entry.
      */
@@ -168,12 +168,12 @@ final class LogChannel implements Channel {
      *
      * The output is encoded as JSON and written at INFO level.
      *
-     * @param object $notifiable   The entity that is receiving the notification
-     *                            (e.g., a User model instance or identifier).
+     * @param object $notifiable The entity that is receiving the notification
+     * (e.g., a User model instance or identifier).
      * @param Notification $notification The notification instance being sent. Must
-     *                            optionally implement `toLog()` or `toArray()`.
-     * @param mixed $payload      Additional payload or metadata provided by
-     *                            the dispatcher (e.g., context or overrides).
+     * optionally implement `toLog()` or `toArray()`.
+     * @param mixed $payload Additional payload or metadata provided by
+     * the dispatcher (e.g., context or overrides).
      *
      * @return void
      */
