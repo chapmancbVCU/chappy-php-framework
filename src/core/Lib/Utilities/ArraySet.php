@@ -141,6 +141,9 @@ class ArraySet
      * @param array $keys The keys.
      * @param array $values The values.
      * @return self
+     * 
+     * @throws \InvalidArgumentException Thrown when array of values and keys 
+     * are not the same length.
      */
     public static function combine(array $keys, array $values): self
     {
