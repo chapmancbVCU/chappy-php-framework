@@ -616,6 +616,7 @@ class Arr
      * @param array $array The source array.
      * @param string|int $key The key to index by.
      * @return array The reindexed array.
+     * @throws \InvalidArgumentException
      */
     public static function keyBy(array $array, string|int $key): array {
         $result = [];
@@ -661,6 +662,7 @@ class Arr
      * @param array $array The source array.
      * @param callable $callback The function to apply.
      * @return array The modified array with new keys.
+     * @throws \InvalidArgumentException
      */
     public static function mapWithKeys(array $array, callable $callback): array {
         $result = [];
