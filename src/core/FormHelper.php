@@ -291,6 +291,7 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type email.
+     * @throws FrameworkException
      */
     public static function emailBlock(
         string $label, 
