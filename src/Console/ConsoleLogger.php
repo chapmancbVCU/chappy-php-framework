@@ -91,10 +91,10 @@ final class ConsoleLogger {
     private static function fixBackgroundColor(string $level): string {
         $background = '';
         switch($level) {
-            case Logger::ALERT;
+            case Logger::ALERT:
                 $background = self::BG_RED;
                 break;
-            case Logger::CRITICAL;
+            case Logger::CRITICAL:
                 $background = self::BG_MAGENTA;
                 break;
             case Logger::DEBUG:
