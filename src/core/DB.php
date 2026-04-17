@@ -96,7 +96,7 @@ class DB {
                 $this->_pdo = new PDO($dsn, $dbConfig['username'], $dbConfig['password']);
                 $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $this->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+                $this->_pdo->setAttribute(PDO\Mysql::ATTR_USE_BUFFERED_QUERY, true);
             }
             $this->_dbDriver = $dbConfig['driver']; // Store database driver
         } catch (PDOException $e) {
