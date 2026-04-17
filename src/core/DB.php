@@ -180,7 +180,7 @@ class DB {
                 $instance->_pdo = new PDO($dsn, $override['username'], $override['password']);
                 $instance->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $instance->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $instance->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+                $instance->_pdo->setAttribute(PDO\Mysql::ATTR_USE_BUFFERED_QUERY, true);
             }
 
             $instance->_dbDriver = $override['driver'];
