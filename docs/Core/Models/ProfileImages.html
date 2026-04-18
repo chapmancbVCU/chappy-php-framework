@@ -375,7 +375,7 @@ that updates timestamps.</p></div>
                 <div class="col-md-8">
                     <a href="#method_beforeSave">beforeSave</a>()
         
-                                            <p><p>Called after save.</p></p>                </div>
+                                            <p><p>Implements beforeSave function described in Model parent class.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -748,6 +748,17 @@ to permanently image file.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_tableExists">tableExists</a>()
+        
+                                            <p><p>Checks if profile_images table exists.  Guards against exceptions when
+users choose not to support profile images.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
@@ -1012,7 +1023,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Called after save.</p></p>                        
+                            <p><p>Implements beforeSave function described in Model parent class.</p></p>                <p><p>Generates timestamps.</p></p>        
         </div>
         <div class="tags">
             
@@ -2262,7 +2273,7 @@ exits, otherwise we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findByUserId">
-        <div class="location">at line 163</div>
+        <div class="location">at line 165</div>
         <code>        static            <abbr title="Core\Models\bool|array">bool|array</abbr>
     <strong>findByUserId</strong>(int $user_id)
         </code>
@@ -2306,7 +2317,7 @@ user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getAllowedFileTypes">
-        <div class="location">at line 176</div>
+        <div class="location">at line 180</div>
         <code>        static            array
     <strong>getAllowedFileTypes</strong>()
         </code>
@@ -2338,7 +2349,7 @@ user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getMaxAllowedFileSize">
-        <div class="location">at line 186</div>
+        <div class="location">at line 190</div>
         <code>        static            int
     <strong>getMaxAllowedFileSize</strong>()
         </code>
@@ -2370,8 +2381,41 @@ file.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_tableExists">
+        <div class="location">at line 200</div>
+        <code>        static            bool
+    <strong>tableExists</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if profile_images table exists.  Guards against exceptions when
+users choose not to support profile images.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_updateSortByUserId">
-        <div class="location">at line 199</div>
+        <div class="location">at line 218</div>
         <code>        static            void
     <strong>updateSortByUserId</strong>(int $user_id, array $sortOrder = [])
         </code>
@@ -2420,7 +2464,7 @@ image.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uploadProfileImage">
-        <div class="location">at line 220</div>
+        <div class="location">at line 239</div>
         <code>        static            void
     <strong>uploadProfileImage</strong>(int $user_id, <a href="../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a> $uploads)
         </code>

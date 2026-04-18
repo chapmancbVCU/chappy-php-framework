@@ -328,7 +328,7 @@ block.</p></dd><dt><a href="Core/Helper.html#method_buildMenuListItems">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Called after save.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
+                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Implements beforeSave.</p></dd><dt><a href="Core/Models/UserSessions.html#method_beforeSave">
 <abbr title="Core\Models\UserSessions">UserSessions</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/UserSessions.html"><abbr title="Core\Models\UserSessions">UserSessions</abbr></a></em></dt>
@@ -2851,7 +2851,10 @@ Output: &quot;7 hours before&quot;</p></dd><dt><a href="Core/Lib/Utilities/DateT
 <abbr title="Core\Lib\Utilities\Str">Str</abbr>::toArray</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Str.html"><abbr title="Core\Lib\Utilities\Str">Str</abbr></a></em></dt>
                     <dd><p>Convert a string into an array.</p></dd><dt>$<a href="Core/Models/Notifications.html#property_type">
 <abbr title="Core\Models\Notifications">Notifications</abbr>#type</a> &mdash; <em>Property in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
-                    <dd><p>The type of notification.</p></dd><dt><a href="Core/Services/DashboardService.html#method_totalUserCountExceptCurrent">
+                    <dd><p>The type of notification.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_tableExists">
+<abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::tableExists</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
+                    <dd><p>Checks if profile_images table exists.  Guards against exceptions when
+users choose not to support profile images.</p></dd><dt><a href="Core/Services/DashboardService.html#method_totalUserCountExceptCurrent">
 <abbr title="Core\Services\DashboardService">DashboardService</abbr>::totalUserCountExceptCurrent</a>() &mdash; <em>Method in class <a href="Core/Services/DashboardService.html"><abbr title="Core\Services\DashboardService">DashboardService</abbr></a></em></dt>
                     <dd><p>Returns query number of users excluding current.</p></dd><dt><a href="Core/Services/UserService.html#method_toggleAccountStatus">
 <abbr title="Core\Services\UserService">UserService</abbr>::toggleAccountStatus</a>() &mdash; <em>Method in class <a href="Core/Services/UserService.html"><abbr title="Core\Services\UserService">UserService</abbr></a></em></dt>
