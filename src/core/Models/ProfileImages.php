@@ -146,6 +146,8 @@ final class ProfileImages extends Model {
      * exits, otherwise we return false.
      */
     public static function findCurrentProfileImage(int $user_id): ProfileImages|bool {
+        if(!self::tableExists()) return false;
+
         return self::findFirst([
             'conditions' => 'user_id = ? AND sort = 0',
             'bind' => ['user_id' => $user_id]
@@ -161,6 +163,8 @@ final class ProfileImages extends Model {
      * user.
      */
     public static function findByUserId(int $user_id): bool|array {
+        if(!self::tableExists()) return false;
+        
         return self::find([
             'conditions' => 'user_id = ?',
             'bind' => ['user_id' => $user_id],
@@ -187,6 +191,21 @@ final class ProfileImages extends Model {
         return self::$maxAllowedFileSize;
     }
     
+    /**
+     * Checks if profile_images table exists.  Guards against exceptions when 
+     * users choose not to support profile images.
+     *
+     * @return bool
+     */
+    public static function tableExists(): bool {
+        try {
+            \Core\DB::getInstance()->query("SELECT 1 from profile_images LIMIT 1");
+        } catch (\Exception $e) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Updates sort order by user id.
      *

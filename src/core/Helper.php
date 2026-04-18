@@ -95,6 +95,8 @@ class Helper {
    * record.
    */
   public static function getProfileImage(): ProfileImages|false|null {
+    if(!ProfileImages::tableExists()) return null;
+    
     $user = AuthService::currentUser();
     if($user) {
       return ProfileImages::findCurrentProfileImage($user->id);
