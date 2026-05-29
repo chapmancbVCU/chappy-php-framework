@@ -143,9 +143,10 @@ if(!function_exists('csrf')) {
     /**
      * Inserts csrf token into form.
      *
-     * @return void
+     * @return string The hidden input of type hidden with the generated token 
+     * set as the value.
      */
-    function csrf() {
+    function csrf():string {
         return FormHelper::csrfInput();
     }  
 }
