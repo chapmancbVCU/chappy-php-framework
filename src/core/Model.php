@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1); 
-namespace Core\Traits;
+namespace Core;
 
 use Core\DB;
 use Core\Lib\Utilities\Arr;
