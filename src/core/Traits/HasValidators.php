@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Console;
+namespace Core\Traits;
 
 use Core\Exceptions\FrameworkRuntimeException;
 use Core\Lib\Utilities\Arr;
