@@ -2,7 +2,7 @@
 namespace Console\Commands;
 
 use Console\ConsoleCommand;
-use Console\HasValidators;
+use Core\Traits\HasValidators;
 use Console\Helpers\View;
 use Symfony\Component\Console\Input\InputArgument;
 

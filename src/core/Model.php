@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1); 
-namespace Core;
+namespace Core\Traits;
+
+use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;

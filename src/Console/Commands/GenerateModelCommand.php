@@ -3,7 +3,7 @@ namespace Console\Commands;
 
 use Console\Console;
 use Console\ConsoleCommand;
-use Console\HasValidators;
+use Core\Traits\HasValidators;
 use Console\Helpers\Model;
 use Console\Helpers\Tools;
 use Core\Lib\Utilities\Str;

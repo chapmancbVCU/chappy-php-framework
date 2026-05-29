@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Console;
 
-use Console\HasValidators;
+use Core\Traits\HasValidators;
 use Core\Exceptions\FrameworkException;
 
 /**
