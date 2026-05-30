@@ -117,10 +117,10 @@ class Uploads {
             foreach ($errors as $field => $messages) {
                 if (is_array($messages)) {
                     foreach ($messages as $msg) {
-                        $model->addErrorMessage($field, $msg);
+                        $model->addErrorMessage($msg);
                     }
                 } else {
-                    $model->addErrorMessage($field, $messages);
+                    $model->addErrorMessage($messages);
                 }
             }
         }
