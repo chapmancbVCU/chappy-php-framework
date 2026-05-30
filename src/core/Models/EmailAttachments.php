@@ -167,9 +167,9 @@ final class EmailAttachments extends Model {
     }
 
     public function validator(): void {
-        $this->runValidation(new Required($this, ['field' => 'description', 'message' => 'Description is required']));
+        $this->runValidation($this->required()->fieldName('description')->validate($this->description));
         if($this->isNew()) {
-            $this->runValidation(new Required($this, ['field' => 'attachment_name', 'message' => 'You must upload an attachment']));
+            $this->runValidation($this->required()->fieldName('attachment_name')->validate($this->attachment_name));
         }
     }
 }
