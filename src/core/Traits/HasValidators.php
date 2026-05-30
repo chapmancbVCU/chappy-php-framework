@@ -8,6 +8,8 @@ use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
 use Core\Models\Queue;
 use Predis\Client as PredisClient;
+use libphonenumber\NumberParseException;
+use libphonenumber\PhoneNumberUtil;
 
 /**
  * Supports ability to validate console input.
@@ -563,6 +565,30 @@ trait HasValidators {
     }
 
     /**
+     * Enforces rule where input must be a valid phone number.
+     *
+     * @return static
+     */
+    public function tel(): static {
+        return $this->setValidator(function($response):void {
+            if($response == null) return;
+            $number = preg_replace('/\D/', '', $response);
+            $number = '+' . env('COUNTRY_CODE') . $number;
+            $phoneUtil = PhoneNumberUtil::getInstance();
+            
+            try {
+                $numberToValidate = $phoneUtil->parse($number, env('COUNTRY_CODE'));
+                $results = ($phoneUtil->isValidNumber($numberToValidate)) ? true : false;
+                    if(!$results) {
+                    $this->addErrorMessage("Phone number is in an invalid format");
+                }
+            } catch (NumberParseException $e) {
+                $this->addErrorMessage($e->getMessage());
+            }
+        });
+    }
+    
+    /**
      * Ensures response is in colon notation format.
      *
      * @return static
@@ -604,6 +630,7 @@ trait HasValidators {
      */
     public function unique(string $modelName, string $fieldName): static {
         return $this->setValidator(function($response) use ($modelName, $fieldName):void {
+            if($response == null) return;
             $newModel = null;
             if(class_exists($modelName)) {
                 $newModel = new $modelName();
