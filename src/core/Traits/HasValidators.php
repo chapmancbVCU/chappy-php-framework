@@ -522,6 +522,7 @@ trait HasValidators {
         return $this->setValidator(function($response): void {
             if($response == null) return;
             $driver = Config::get('queue.driver');
+            $queueName = null;
             if($driver === 'database') {
                 $queueName = Queue::findQueueByName($response);
             } else if($driver === 'redis') {
@@ -592,9 +593,41 @@ trait HasValidators {
         return array_map(static fn($s) => strtolower($s), $tokens);
     }
 
-    public function unique(string $modelName): static {
-        return $this->setValidator(function($response) use ($modelName):void {
+    /**
+     * Checks if value already exists in a database.
+     *
+     * @param string $modelName The name of the model we will use for our 
+     * query.
+     * @param string $fieldName The name to check if it exists.
+     * 
+     * @return static
+     */
+    public function unique(string $modelName, string $fieldName): static {
+        return $this->setValidator(function($response) use ($modelName, $fieldName):void {
+            $newModel = null;
             if(class_exists($modelName)) {
+                $newModel = new $modelName();
+            } else {
+                $this->addErrorMessage("[unique] The model name does not exist");
+                return;
+            }
+
+            // Ensure we don't interfere with required validator.
+            if($fieldName == '' || !isset($fieldName)) return;
+
+            $conditions = ["{$fieldName} = ?"];
+            $bind = [$response];
+
+            if(!empty($newModel->id)) {
+                $conditions[] = "id != ?";
+                $bind[] = $newModel->id;    
+            }
+
+            $queryParams = ['conditions' => $conditions, 'bind' => $bind];
+            $dbResults = $newModel::findFirst($queryParams);
+
+            if($dbResults) {
+                $this->addErrorMessage("This value already exists.");
             }
         });
     }
