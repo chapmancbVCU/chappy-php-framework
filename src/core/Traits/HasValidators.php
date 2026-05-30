@@ -489,6 +489,17 @@ trait HasValidators {
     }
     
     /**
+     * Resets fieldname and validators instance variables so duplicate 
+     * messages are not displayed in forms.
+     *
+     * @return void
+     */
+    protected function resetAfterValidation():void {
+        $this->fieldName = "";
+        $this->validators = [];
+    }
+
+    /**
      * Enforces rule when input must a positive number.
      *
      * @return static
@@ -581,6 +592,13 @@ trait HasValidators {
         return array_map(static fn($s) => strtolower($s), $tokens);
     }
 
+    public function unique(string $modelName): static {
+        return $this->setValidator(function($response) use ($modelName):void {
+            if(class_exists($modelName)) {
+            }
+        });
+    }
+
     /**
      * Enforces rule when input must contain at least one lower case character.
      *
@@ -622,12 +640,12 @@ trait HasValidators {
         }
 
         if(Arr::isNotEmpty($this->errors)){
-            $this->displayErrorMessages();
+            if(defined('STDOUT')) $this->displayErrorMessages();
+            $this->resetAfterValidation();
             return false;
         }
 
-        $this->validators = [];
-        $this->fieldName = "";
+        $this->resetAfterValidation();
         return true;
     }
 }
