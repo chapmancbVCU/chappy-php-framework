@@ -79,12 +79,12 @@ class AuthService {
             $user->save();
             self::loginUser($user, $remember);
             redirect(env('DEFAULT_CONTROLLER'));
-        }  else {
+        } else {
             if($user) {
                 $loginModel = self::loginAttempts($user, $loginModel, $mailer);
             }
             else {
-                $loginModel->addErrorMessage('username','There is an error with your username or password');
+                $loginModel->addErrorMessage('There is an error with your username or password');
                 warning('User failed to log in');
             }
         }
@@ -114,7 +114,7 @@ class AuthService {
         }
 
         if($user->login_attempts < Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
-            $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
+            $loginModel->addErrorMessage('There is an error with your username or password.');
         } else {
             flashMessage(Session::DANGER, 'Your account has been locked due to too many failed login attempts.');
         }

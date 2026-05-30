@@ -153,7 +153,7 @@ final class UserService {
      */
     public static function updatePassword(Users $user, Input $request): Users|bool {
         if(!password_verify($request->get('current_password'), $user->password)) {
-            $user->addErrorMessage('password', 'You entered your current password incorrectly.');
+            $user->addErrorMessage('[current password] You entered your current password incorrectly.');
         }
 
         $user->assign($request->get(), Users::blackListedFormKeys);
