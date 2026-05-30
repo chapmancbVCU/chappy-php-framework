@@ -626,10 +626,21 @@ trait HasValidators {
      * query.
      * @param string $fieldName The name of the field to check for uniqueness.
      * @param bool $includeDeleted Enforce uniqueness among deleted records.
+     * @param array $additionalFieldData Use multiple fields when testing for uniqueness.
      * @return static
      */
-    public function unique(string $modelName, string $fieldName, bool $includeDeleted = false): static {
-        return $this->setValidator(function($response) use ($modelName, $fieldName, $includeDeleted):void {
+    public function unique(
+        string $modelName, 
+        string $fieldName, 
+        bool $includeDeleted = false,
+        array $additionalFieldData = []
+    ): static {
+        return $this->setValidator(function($response) use (
+            $modelName, 
+            $fieldName, 
+            $includeDeleted,
+            $additionalFieldData
+        ):void {
             if($response == null) return;
             $newModel = null;
             if(class_exists($modelName)) {
@@ -638,7 +649,7 @@ trait HasValidators {
                 $this->addErrorMessage("[unique] The model name does not exist");
                 return;
             }
-
+            
             // Ensure we don't interfere with required validator.
             if($fieldName == '' || !isset($fieldName)) return;
 
@@ -650,12 +661,17 @@ trait HasValidators {
                 $bind[] = $newModel->id;    
             }
                 
-                
+            foreach($additionalFieldData as $k => $v) {
+                $conditions[] = "{$k} = ?";
+                $bind[] = $v;
+            }
+
             $queryParams = ['conditions' => $conditions, 'bind' => $bind];
+
             if($includeDeleted) {
                 $queryParams['includeDeleted'] = $includeDeleted;
             }
-
+            dump($queryParams);
             $dbResults = $newModel::findFirst($queryParams);
 
             if($dbResults) {
