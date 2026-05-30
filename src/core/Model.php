@@ -458,7 +458,7 @@ class Model {
      * @return array $params parameters with appended conditions for soft 
      * delete.
      */
-    protected static function _softDeleteParams(array$params): array {
+    protected static function _softDeleteParams(array $params): array {
         if(isset($params['includeDeleted']) && $params['includeDeleted'] == true) return $params;
         if(static::$_softDelete){
             $dbDriver = static::getDb()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
