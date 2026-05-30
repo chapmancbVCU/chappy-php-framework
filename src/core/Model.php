@@ -6,6 +6,7 @@ use Core\DB;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
+use Core\Traits\HasValidators;
 
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
@@ -14,6 +15,8 @@ use Core\Lib\Utilities\ArraySet;
  */
 #[\AllowDynamicProperties]
 class Model {
+    use HasValidators;
+
     /** Constant for blacklist. */
     const BLACKLIST = 'blacklist';
     
@@ -52,12 +55,6 @@ class Model {
      * @var bool
      */
     protected $_validates = true;
-    
-    /**
-     * The array of validation errors.
-     * @var array
-     */
-    protected $_validationErrors = [];
 
     /** Constant for whitelist. */
     const WHITELIST = 'whitelist';
@@ -69,23 +66,6 @@ class Model {
         $this->_modelName = Str::replace(' ', '', Str::ucwords(Str::replace('_',' ', static::$_table)));
         $this->onConstruct();
     }
-
-    /**
-     * Generates error messages that occur during form validation.
-     *
-     * @param string $field The form field associated with failed form 
-     * validation
-     * @param string $message A message that describes to the user the cause 
-     * for failed form validation.
-     * @return void
-     */
-    public function addErrorMessage(string $field, string $message): void {
-        $this->_validates = false;
-        if (!isset($this->_validationErrors[$field])) {
-            $this->_validationErrors[$field] = [];
-        }
-            $this->_validationErrors[$field][] = $message;
-        }
 
     /**
      * Called before delete.
@@ -254,7 +234,7 @@ class Model {
      * validation.
      */
     public function getErrorMessages(): array {
-        return $this->_validationErrors;
+        return $this->errors;
     }
 
     /**
@@ -420,18 +400,14 @@ class Model {
     }
 
     /**
-     * Runs a validator object and sets validates boolean and adds error 
-     * message if validator fails.
+     * Checks if results of validation is true or false.  If false, the 
+     * $this->_validates boolean instance variable is set to false.
      *
-     * @param object $validator The validator object.
+     * @param bool $results of validation.
      * @return void
      */
-    public function runValidation(object $validator): void {
-        // $validator->field is the field we ar validating.
-        $key = $validator->field;
-        if(!$validator->success){
-            $this->addErrorMessage($key,$validator->message);
-        }
+    public function runValidation(bool $results): void {
+        if(!$results) $this->_validates = false;
     }
 
     /**
