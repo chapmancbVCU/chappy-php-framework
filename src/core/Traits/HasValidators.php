@@ -575,7 +575,7 @@ trait HasValidators {
             $number = preg_replace('/\D/', '', $response);
             $number = '+' . env('COUNTRY_CODE') . $number;
             $phoneUtil = PhoneNumberUtil::getInstance();
-            
+
             try {
                 $numberToValidate = $phoneUtil->parse($number, env('COUNTRY_CODE'));
                 $results = ($phoneUtil->isValidNumber($numberToValidate)) ? true : false;
@@ -624,12 +624,12 @@ trait HasValidators {
      *
      * @param string $modelName The name of the model we will use for our 
      * query.
-     * @param string $fieldName The name to check if it exists.
-     * 
+     * @param string $fieldName The name of the field to check for uniqueness.
+     * @param bool $includeDeleted Enforce uniqueness among deleted records.
      * @return static
      */
-    public function unique(string $modelName, string $fieldName): static {
-        return $this->setValidator(function($response) use ($modelName, $fieldName):void {
+    public function unique(string $modelName, string $fieldName, bool $includeDeleted = false): static {
+        return $this->setValidator(function($response) use ($modelName, $fieldName, $includeDeleted):void {
             if($response == null) return;
             $newModel = null;
             if(class_exists($modelName)) {
@@ -644,13 +644,18 @@ trait HasValidators {
 
             $conditions = ["{$fieldName} = ?"];
             $bind = [$response];
-
+            
             if(!empty($newModel->id)) {
                 $conditions[] = "id != ?";
                 $bind[] = $newModel->id;    
             }
-
+                
+                
             $queryParams = ['conditions' => $conditions, 'bind' => $bind];
+            if($includeDeleted) {
+                $queryParams['includeDeleted'] = $includeDeleted;
+            }
+
             $dbResults = $newModel::findFirst($queryParams);
 
             if($dbResults) {
