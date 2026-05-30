@@ -24,12 +24,11 @@ final class AttachmentService {
     public static function attachmentUpload(EmailAttachments $attachment): ?Uploads {
         if($attachment->isNew()) {
             $upload = Uploads::handleUpload(
-                $_FILES['attachment_name'],
+                'attachment_name',
                 EmailAttachments::class,
                 ROOT.DS,
                 '15mb',
                 $attachment,
-                'attachment_name'
             );
             return $upload;
         }
