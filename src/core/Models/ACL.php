@@ -98,7 +98,6 @@ final class ACL extends Model {
      * @return void
      */
     public function validator(): void {
-        $this->runValidation(new UniqueValidator($this, ['field' => 'acl', 'message' => 'That acl already exists.  Please chose a new one.']));
-        $this->runValidation(new RequiredValidator($this, ['field' => 'acl', 'message' => 'ACL name is required.'])); 
+        $this->runValidation($this->required()->unique(self::class)->fieldName('acl')->validate($this->acl));
     }
 }
