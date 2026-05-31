@@ -173,6 +173,23 @@ trait HasValidators {
     }
 
     /**
+     * Tests form validation with multiple fields.  Used by the unique 
+     * validator to test several fields for uniqueness.
+     *
+     * @param array $additionalFieldData Additional fields and values to 
+     * test.  Assumes an associative array is passed.
+     * @param array $conditions The conditions array passed by reference.
+     * @param array $bind The binds array passed by reference.
+     * @return void
+     */
+    public function compositeFieldValidation(array $additionalFieldData, array &$conditions, array &$bind): void {
+        foreach($additionalFieldData as $k => $v) {
+            $conditions[] = "{$k} = ?";
+            $bind[] = $v;
+        }
+    }
+
+    /**
      * Enforce rule where response and $match parameter needs to be different.
      *
      * @param mixed $data The value we want to compare.
@@ -675,11 +692,7 @@ trait HasValidators {
                 $bind[] = $newModel->id;    
             }
                 
-            foreach($additionalFieldData as $k => $v) {
-                $conditions[] = "{$k} = ?";
-                $bind[] = $v;
-            }
-
+            $this->compositeFieldValidation($additionalFieldData, $conditions, $bind);
             $queryParams = ['conditions' => $conditions, 'bind' => $bind];
             $this->includeDeleted($includeDeleted, $queryParams);
             $dbResults = $newModel::findFirst($queryParams);
