@@ -3,7 +3,6 @@ namespace Core\Models;
 use Core\Model;
 use Core\Lib\Mail\Attachments;
 use App\Models\Users;
-use Core\Validators\RequiredValidator as Required;
 use Core\Traits\HasTimestamps;
 
 /**
