@@ -248,17 +248,19 @@ trait HasValidators {
     }
 
     /**
-     * Enforce rule where input must be a valid IP address.
+     * Supports includeDeleted feature for database operations.
      *
-     * @return static
+     * @param bool $includeDeleted The includedDeleted flag.  When true the 
+     * 'includeDeleted' element with a value of true is added to the 
+     * $queryParams associative array.
+     * @param array $queryParams The parameters for the query that is passed 
+     * by reference.
+     * @return void
      */
-    public function ip(): static {
-        return $this->setValidator(function($response): void {
-            if($response == null) return;
-            if(!filter_var($response, FILTER_VALIDATE_IP)) {
-                $this->addErrorMessage("Input must match valid IP address.");
-            }
-        });
+    public function includeDeleted(bool $includeDeleted, array &$queryParams):void {
+        if($includeDeleted) {
+            $queryParams['includeDeleted'] = $includeDeleted;
+        }
     }
 
     /**
@@ -271,6 +273,20 @@ trait HasValidators {
             if($response == null) return;
             if(!is_numeric($response) || str_contains($response, '.')) {
                 $this->addErrorMessage("Input must be an integer.");
+            }
+        });
+    }
+
+    /**
+     * Enforce rule where input must be a valid IP address.
+     *
+     * @return static
+     */
+    public function ip(): static {
+        return $this->setValidator(function($response): void {
+            if($response == null) return;
+            if(!filter_var($response, FILTER_VALIDATE_IP)) {
+                $this->addErrorMessage("Input must match valid IP address.");
             }
         });
     }
@@ -665,11 +681,7 @@ trait HasValidators {
             }
 
             $queryParams = ['conditions' => $conditions, 'bind' => $bind];
-
-            if($includeDeleted) {
-                $queryParams['includeDeleted'] = $includeDeleted;
-            }
-
+            $this->includeDeleted($includeDeleted, $queryParams);
             $dbResults = $newModel::findFirst($queryParams);
 
             if($dbResults) {
