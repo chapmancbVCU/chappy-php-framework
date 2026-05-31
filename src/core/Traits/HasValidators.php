@@ -274,7 +274,7 @@ trait HasValidators {
      * by reference.
      * @return void
      */
-    public function includeDeleted(bool $includeDeleted, array &$queryParams):void {
+    public function includeDeleted(bool $includeDeleted, array &$queryParams): void {
         if($includeDeleted) {
             $queryParams['includeDeleted'] = $includeDeleted;
         }
