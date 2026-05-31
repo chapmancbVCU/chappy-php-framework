@@ -1,7 +1,6 @@
 <?php
 namespace Core\Models;
 use Core\Model;
-use Core\Validators\RequiredValidator;
 
 /**
  * Extends the Model class.  Supports functions for the Login model.
