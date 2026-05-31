@@ -1,8 +1,9 @@
 <?php
 namespace Core\Models;
+
 use Core\Model;
-use Core\Validators\{RequiredValidator, UniqueValidator};
 use Core\Traits\HasTimestamps;
+
 /**
  * Describes ACL model.
  */
