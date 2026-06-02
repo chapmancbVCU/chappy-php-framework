@@ -109,6 +109,35 @@ class Console {
     }
 
     /**
+     * Parse array containing additional validators or attributes for FrameworkQuestion 
+     * as strings along with any additional parameters that maybe expected.
+     *
+     * @param object $object The instance of a class using the HasValidators 
+     * trait.
+     * @param array $validators An array of validators.  Any additional 
+     * parameters must be separated with a ":".
+     * @return void
+     * 
+     * @throws FrameworkException Exception is thrown when validator rule or 
+     * attribute does not exist in class.
+     */
+    protected static function parseAttributes(object $object, array $validators): void {
+        foreach($validators as $validator) {
+            $arr = explode(":", $validator);
+            $method = $arr[0];
+            $params[] = array_slice($arr, 1);
+            if(method_exists($object, $method)) {
+                call_user_func_array([$object, $method], $params);
+            } else {
+                $class = get_class($object);
+                throw new FrameworkException("[{$method}] Validator rule or attribute does not exist within the {$class} class.");
+            }
+            $arr = [];
+            $params = [];
+        }
+    }
+    
+    /**
      * Asks user question about file to be created.
      *
      * Validates the following conditions:
@@ -149,34 +178,5 @@ class Console {
         $response = $question->ask($message, $suggestions, $default);
         if(!$response) die;
         return $response;
-    }
-
-    /**
-     * Parse array containing additional validators or attributes for FrameworkQuestion 
-     * as strings along with any additional parameters that maybe expected.
-     *
-     * @param object $object The instance of a class using the HasValidators 
-     * trait.
-     * @param array $validators An array of validators.  Any additional 
-     * parameters must be separated with a ":".
-     * @return void
-     * 
-     * @throws FrameworkException Exception is thrown when validator rule or 
-     * attribute does not exist in class.
-     */
-    protected static function parseAttributes(object $object, array $validators): void {
-        foreach($validators as $validator) {
-            $arr = explode(":", $validator);
-            $method = $arr[0];
-            $params[] = array_slice($arr, 1);
-            if(method_exists($object, $method)) {
-                call_user_func_array([$object, $method], $params);
-            } else {
-                $class = get_class($object);
-                throw new FrameworkException("[{$method}] Validator rule or attribute does not exist within the {$class} class.");
-            }
-            $arr = [];
-            $params = [];
-        }
     }
 }
