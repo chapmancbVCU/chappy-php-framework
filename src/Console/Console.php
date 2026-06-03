@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Console;
 
 use Core\Traits\HasValidators;
-use Core\Exceptions\FrameworkException;
 
 /**
  * Class that can be extended by helpers when validators needs to be used.
