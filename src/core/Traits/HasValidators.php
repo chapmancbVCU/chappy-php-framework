@@ -185,9 +185,8 @@ trait HasValidators {
      * @return void
      */
     public function compositeFieldValidation(array|string $additionalFieldData, array &$conditions, array &$bind): void {
-        if(is_string($additionalFieldData) && $additionalFieldData[0] == '<' && substr($additionalFieldData, -1) == '>') {
-            $tempArray = Str::between($additionalFieldData, '<', '>');
-            $tempArray = explode(',', $tempArray);
+        if(is_string($additionalFieldData)) {
+            $tempArray = explode(',', $additionalFieldData);
             $data = [];
             foreach($tempArray as $tempIndex) {
                 $index = explode('|', $tempIndex);
