@@ -7,6 +7,7 @@ use Core\Exceptions\FrameworkRuntimeException;
 use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
+use Core\Lib\Utilities\Str;
 use Core\Models\Queue;
 use Predis\Client as PredisClient;
 use libphonenumber\NumberParseException;
@@ -177,13 +178,24 @@ trait HasValidators {
      * Tests form validation with multiple fields.  Used by the unique 
      * validator to test several fields for uniqueness.
      *
-     * @param array $additionalFieldData Additional fields and values to 
-     * test.  Assumes an associative array is passed.
+     * @param array|string $additionalFieldData Additional fields and values to 
+     * test.
      * @param array $conditions The conditions array passed by reference.
      * @param array $bind The binds array passed by reference.
      * @return void
      */
-    public function compositeFieldValidation(array $additionalFieldData, array &$conditions, array &$bind): void {
+    public function compositeFieldValidation(array|string $additionalFieldData, array &$conditions, array &$bind): void {
+        if(is_string($additionalFieldData) && $additionalFieldData[0] == '<' && substr($additionalFieldData, -1) == '>') {
+            $tempArray = Str::between($additionalFieldData, '<', '>');
+            $tempArray = explode(',', $tempArray);
+            $data = [];
+            foreach($tempArray as $tempIndex) {
+                $index = explode('|', $tempIndex);
+                $data[$index[0]] = $index[1];
+            }
+            $additionalFieldData = $data;
+        }
+      
         foreach($additionalFieldData as $k => $v) {
             $conditions[] = "{$k} = ?";
             $bind[] = $v;
@@ -268,16 +280,16 @@ trait HasValidators {
     /**
      * Supports includeDeleted feature for database operations.
      *
-     * @param bool $includeDeleted The includedDeleted flag.  When true the 
+     * @param bool|string $includeDeleted The includedDeleted flag.  When true the 
      * 'includeDeleted' element with a value of true is added to the 
      * $queryParams associative array.
      * @param array $queryParams The parameters for the query that is passed 
      * by reference.
      * @return void
      */
-    public function includeDeleted(bool $includeDeleted, array &$queryParams): void {
+    public function includeDeleted(bool|string $includeDeleted, array &$queryParams): void {
         if($includeDeleted) {
-            $queryParams['includeDeleted'] = $includeDeleted;
+            $queryParams['includeDeleted'] = (bool)$includeDeleted;
         }
     }
 
@@ -685,26 +697,22 @@ trait HasValidators {
     /**
      * Checks if value already exists in a database.
      *
-     * @param string $modelName The name of the model we will use for our 
-     * query.
-     * @param bool $includeDeleted Enforce uniqueness among deleted records.
-     * @param array $additionalFieldData Use multiple fields when testing for uniqueness.
+     * @param array $attributes The model, includeDeleted flag, and list of 
+     * additional fields.
      * 
      * @return static
      */
-    public function unique(
-        string $modelName, 
-        bool $includeDeleted = false,
-        array $additionalFieldData = []
-    ): static {
-        return $this->setValidator(function($response) use (
-            $modelName, 
-            $includeDeleted,
-            $additionalFieldData
-        ):void {
+    public function unique(array $attributes): static {
+        return $this->setValidator(function($response) use ($attributes):void {
             if($response == null) return;
+            if(is_array($attributes)) {
+                $modelName = $attributes[0];
+                $includeDeleted = $attributes[1] ?? false;
+                $additionalFieldData = $attributes[2] ?? [];
+            }
+            
             $newModel = null;
-            if(class_exists($modelName)) {
+            if(class_exists((string)$modelName)) {
                 $newModel = new $modelName();
             } else {
                 $this->addErrorMessage("[unique] The model name does not exist");
