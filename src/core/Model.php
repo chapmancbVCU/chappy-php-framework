@@ -406,23 +406,21 @@ class Model {
      * $this->_validates boolean instance variable is set to false.
      *
      * @param bool|object $param The results of the validation operation or 
-     * the instance of the model we will test.
-     * @param string $fieldName The name of the field to be tested for 
-     * validation
+     * the name of the field to be tested.
      * @param array $validators An array of validators and any attributes that 
      * affect validation behavior.
      * @return void
      */
-    public function runValidation(bool|object $param, string $fieldName = "", array $validators = []): void {
+    public function runValidation(bool|string $param, array $validators = []): void {
         if(!$param && is_bool($param)) {
             $this->_validates = false;
             return;
         }
 
-        if(is_object($param)) {
-            $param->fieldName($fieldName);
-            self::parseAttributes($param, $validators);
-            $results = $param->validate($param->$fieldName);
+        if(is_string($param)) {
+            $this->fieldName($param);
+            self::parseAttributes($this, $validators);
+            $results = $this->validate($this->$param);
             if(!$results) $this->_validates = false;
         }
     }
