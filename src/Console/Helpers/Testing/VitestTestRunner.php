@@ -94,7 +94,6 @@ final class VitestTestRunner extends TestRunner {
     /**
      * Parses Vitest related arguments and ignore Symfony arguments.
      *
-     * @param InputInterface $input Instance of InputInterface from command.
      * @return string A string containing the arguments to be provided to 
      * PHPUnit.
      */

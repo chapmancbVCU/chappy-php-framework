@@ -70,8 +70,8 @@ abstract class Notification {
 
     /**
      * The delivery channels (e.g. ['database', 'mail']).
-     *@param object $notifiable Any model/object that uses the Notifiable trait.
-     * @return list<'database'|'mail'|'log'>
+     * @param object $notifiable Any model/object that uses the Notifiable trait.
+     * @return array The array of delivery channels.
      */
     public function via(object $notifiable): array {
         return [Channel::DATABASE->value];
