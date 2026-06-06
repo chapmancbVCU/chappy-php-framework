@@ -31,8 +31,6 @@ abstract class Migration {
 
     /**
      * Creates instance of Migration class.
-     * 
-     * @param string $isCli Contains value for interface type.
      */
     public function __construct() {
         $this->_db = DB::getInstance();
