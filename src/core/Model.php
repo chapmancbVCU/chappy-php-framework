@@ -28,7 +28,7 @@ class Model {
     
     /**
      * The current id.
-     * @var number
+     * @var int
      */
     public $id;
     
