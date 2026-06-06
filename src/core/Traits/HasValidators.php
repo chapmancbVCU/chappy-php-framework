@@ -7,7 +7,6 @@ use Core\Exceptions\FrameworkRuntimeException;
 use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Config;
-use Core\Lib\Utilities\Str;
 use Core\Models\Queue;
 use Predis\Client as PredisClient;
 use libphonenumber\NumberParseException;

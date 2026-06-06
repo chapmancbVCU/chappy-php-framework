@@ -393,6 +393,8 @@ class Model {
      * Wrapper for database query function.
      * 
      * @param string $sql The database query we will submit to the database.
+     * @param string $fieldName The name of the field to be displayed in the 
+     * error message.
      * @param array $bind The values we want to bind in our database query.  
      * The default value is an empty array.
      * @return DB The results of the database query.
@@ -411,14 +413,14 @@ class Model {
      * affect validation behavior.
      * @return void
      */
-    public function runValidation(bool|string $param, array $validators = []): void {
+    public function runValidation(bool|string $param, string $fieldName = "", array $validators = []): void {
         if(!$param && is_bool($param)) {
             $this->_validates = false;
             return;
         }
 
         if(is_string($param)) {
-            $this->fieldName($param);
+            $this->fieldName($fieldName);
             self::parseAttributes($this, $validators);
             $results = $this->validate($this->$param);
             if(!$results) $this->_validates = false;
