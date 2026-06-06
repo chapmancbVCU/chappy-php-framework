@@ -393,8 +393,6 @@ class Model {
      * Wrapper for database query function.
      * 
      * @param string $sql The database query we will submit to the database.
-     * @param string $fieldName The name of the field to be displayed in the 
-     * error message.
      * @param array $bind The values we want to bind in our database query.  
      * The default value is an empty array.
      * @return DB The results of the database query.
@@ -405,22 +403,32 @@ class Model {
 
     /**
      * Checks if results of validation is true or false.  If false, the 
-     * $this->_validates boolean instance variable is set to false.
+     * $this->_validates boolean instance variable is set to false.  There are 
+     * two ways to provide parameters for validation.  You can pass the results 
+     * from chaining functions and use just one parameter.  Or you can provide 
+     * the value of the field's name attribute, an array of validators, and 
+     * a value for how you want the name of the field represented in error 
+     * messages.  If this value is not provided then the name attribute is 
+     * used in messaging.
      *
      * @param bool|object $param The results of the validation operation or 
      * the name of the field to be tested.
      * @param array $validators An array of validators and any attributes that 
      * affect validation behavior.
+     * @param string $fieldName The name of the field to be displayed in the 
+     * error message.
      * @return void
      */
-    public function runValidation(bool|string $param, string $fieldName = "", array $validators = []): void {
+    public function runValidation(bool|string $param, array $validators = [], ?string $fieldName = null): void {
         if(!$param && is_bool($param)) {
             $this->_validates = false;
             return;
         }
 
         if(is_string($param)) {
-            $this->fieldName($fieldName);
+            if(!$fieldName) $this->fieldName($param);
+            else $this->fieldName($fieldName);
+
             self::parseAttributes($this, $validators);
             $results = $this->validate($this->$param);
             if(!$results) $this->_validates = false;
