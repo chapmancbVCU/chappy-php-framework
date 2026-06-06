@@ -8,8 +8,6 @@ use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
 use Core\Traits\HasValidators;
 
-use function PHPUnit\Framework\isBool;
-
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
  * functionality further to make operations easier to use and improve 
