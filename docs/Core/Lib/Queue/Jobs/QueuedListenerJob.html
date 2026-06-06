@@ -201,7 +201,7 @@ and invokes the listener.</li>
                 <div class="col-md-8">
                     <a href="#method_handle">handle</a>()
         
-                                            <p><p>The logic that should be executed when the job is processed.</p></p>                </div>
+                                            <p><p>Execute the job: rehydrate the event and call the listener's handle().</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -211,7 +211,7 @@ and invokes the listener.</li>
                 <div class="col-md-8">
                     <a href="#method_delay">delay</a>()
         
-                                            <p><p>Sets delay for a job.</p></p>                </div>
+                                            <p><p>Get the initial delay (in seconds) before the job becomes available.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -221,7 +221,7 @@ and invokes the listener.</li>
                 <div class="col-md-8">
                     <a href="#method_backoff">backoff</a>()
         
-                                            <p><p>Sets backoff for a job</p></p>                </div>
+                                            <p><p>Get the retry backoff delay(s).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -231,7 +231,7 @@ and invokes the listener.</li>
                 <div class="col-md-8">
                     <a href="#method_maxAttempts">maxAttempts</a>()
         
-                                            <p><p>Undocumented function</p></p>                </div>
+                                            <p><p>Get the maximum number of attempts for this job.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -261,7 +261,7 @@ and invokes the listener.</li>
                 <div class="col-md-8">
                     <a href="#method_toPayload">toPayload</a>()
         
-                                            <p><p>Converts the job into a payload array for storage in the queue.</p></p>                </div>
+                                            <p><p>Convert this job to a driver-ready payload.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -382,7 +382,7 @@ serialize the event data; otherwise an empty array is stored.</p>
             
 
         <div class="method-description">
-                            <p><p>The logic that should be executed when the job is processed.</p></p>                        
+                            <p><p>Execute the job: rehydrate the event and call the listener's handle().</p></p>                        
         </div>
         <div class="tags">
             
@@ -414,7 +414,7 @@ serialize the event data; otherwise an empty array is stored.</p>
             
 
         <div class="method-description">
-                            <p><p>Sets delay for a job.</p></p>                        
+                            <p><p>Get the initial delay (in seconds) before the job becomes available.</p></p>                        
         </div>
         <div class="tags">
             
@@ -446,7 +446,7 @@ serialize the event data; otherwise an empty array is stored.</p>
             
 
         <div class="method-description">
-                            <p><p>Sets backoff for a job</p></p>                        
+                            <p><p>Get the retry backoff delay(s).</p></p>                        
         </div>
         <div class="tags">
             
@@ -478,7 +478,7 @@ serialize the event data; otherwise an empty array is stored.</p>
             
 
         <div class="method-description">
-                            <p><p>Undocumented function</p></p>                        
+                            <p><p>Get the maximum number of attempts for this job.</p></p>                <p><p>Falls back to the configured default (queue.max_attempts) when not set.</p></p>        
         </div>
         <div class="tags">
             
@@ -586,7 +586,13 @@ public properties are populated from payload keys.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Converts the job into a payload array for storage in the queue.</p></p>                <p><p>Must include the fully qualified class name and job data.</p></p>        
+                            <p><p>Convert this job to a driver-ready payload.</p></p>                <p><p>Format:</p>
+<ul>
+<li>job (string): job FQCN</li>
+<li>data (array): job-specific data to reconstruct the job instance</li>
+<li>available_at (int): UNIX timestamp when the job becomes available</li>
+<li>max_attempts (int): maximum number of processing attempts</li>
+</ul></p>        
         </div>
         <div class="tags">
             

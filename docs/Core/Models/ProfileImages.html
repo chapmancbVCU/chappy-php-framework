@@ -110,6 +110,11 @@
                 <div class="col-md-6"><p>Creates the $created_at and $updated_at fields and performs the operation
 that updates timestamps.</p></div>
             </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>    </div>
+                <div class="col-md-6"><p>Supports ability to validate console input.</p></div>
+            </div>
             </div>
     
             <h2>Constants</h2>    <table class="table table-condensed">
@@ -137,6 +142,46 @@ that updates timestamps.</p></div>
             <h2>Properties</h2>
 
             <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_errors">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$errors</td>
+                <td class="last"><p>An array of errors.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#property_errors">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_fieldName">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$fieldName</td>
+                <td class="last"><p>The name of the field to be validated.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#property_fieldName">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_reservedKeywords">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$reservedKeywords</td>
+                <td class="last"><p>An array of reserved keywords.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#property_reservedKeywords">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_validators">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$validators</td>
+                <td class="last"><p>Array of validator callbacks.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#property_validators">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
                     <tr>
                 <td class="type" id="property__db">
                     static                    protected                                        <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
@@ -192,16 +237,6 @@ that updates timestamps.</p></div>
                 <td>$_validates</td>
                 <td class="last"><p>Flag to indicate if validation is successful.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Model.html#property__validates">
-<abbr title="Core\Model">Model</abbr></a></small></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property__validationErrors">
-                                        protected                                        array
-                                                                                
-                                    </td>
-                <td>$_validationErrors</td>
-                <td class="last"><p>The array of validation errors.</p></td>
-                <td><small>from&nbsp;<a href="../../Core/Model.html#property__validationErrors">
 <abbr title="Core\Model">Model</abbr></a></small></td>
             </tr>
                     <tr>
@@ -304,6 +339,456 @@ that updates timestamps.</p></div>
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_addErrorMessage">addErrorMessage</a>(string $message)
+        
+                                            <p><p>Adds a new error message to the $errors array.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_addErrorMessage">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_alpha">alpha</a>()
+        
+                                            <p><p>Enforce rule where input must contain only alphabetic characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_alpha">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_alphaNumeric">alphaNumeric</a>()
+        
+                                            <p><p>Enforce rule where input must be alphanumeric characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_alphaNumeric">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_between">between</a>(array $range)
+        
+                                            <p><p>Ensures input is between within a certain range in length.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_between">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_classExists">classExists</a>(<abbr title="Core\Traits\string|array">string|array</abbr> $namespace)
+        
+                                            <p><p>Checks if class exists within the specified namespace.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_classExists">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_colonNotation">colonNotation</a>()
+        
+                                            <p><p>Ensures response is in colon notation format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_colonNotation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_compositeFieldValidation">compositeFieldValidation</a>(<abbr title="Core\Traits\array|string">array|string</abbr> $additionalFieldData, array $conditions, array $bind)
+        
+                                            <p><p>Tests form validation with multiple fields.  Used by the unique
+validator to test several fields for uniqueness.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_compositeFieldValidation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_different">different</a>(mixed $data)
+        
+                                            <p><p>Enforce rule where response and $match parameter needs to be different.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_different">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_displayErrorMessages">displayErrorMessages</a>()
+        
+                                            <p><p>Displays a list of all error messages.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_displayErrorMessages">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dotNotation">dotNotation</a>()
+        
+                                            <p><p>Ensures response is in dot notation format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_dotNotation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_email">email</a>()
+        
+                                            <p><p>Ensures input is a valid E-mail address.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_email">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_fieldName">fieldName</a>(<abbr title="Core\Traits\string|array">string|array</abbr> $fieldName)
+        
+                                            <p><p>Sets name of field to be validated.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_fieldName">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_includeDeleted">includeDeleted</a>(<abbr title="Core\Traits\bool|string">bool|string</abbr> $includeDeleted, array $queryParams)
+        
+                                            <p><p>Supports includeDeleted feature for database operations.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_includeDeleted">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_integer">integer</a>()
+        
+                                            <p><p>Enforce rule where input must be an integer.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_integer">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_ip">ip</a>()
+        
+                                            <p><p>Enforce rule where input must be a valid IP address.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_ip">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isPortUsed">isPortUsed</a>(array $attributes)
+        
+                                            <p><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_isPortUsed">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_list">list</a>(array $attributes)
+        
+                                            <p><p>Ensure user inputs valid comma separated list of values.  The user must
+provide the following in the $attributes parameter:
+1) Class containing full namespaced path
+2) Name of function that returns an array of strings or a comma
+separated array of strings.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_list">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_lower">lower</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_lower">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_match">match</a>(mixed $match)
+        
+                                            <p><p>Enforce rule where response and $match parameter needs to match.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_match">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_max">max</a>(<abbr title="Core\Traits\int|array">int|array</abbr> $maxRule)
+        
+                                            <p><p>Ensures input meets requirements for maximum allowable length.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_max">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_min">min</a>(<abbr title="Core\Traits\int|array">int|array</abbr> $minRule)
+        
+                                            <p><p>Ensures input meets requirements for minimum allowable length.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_min">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_negative">negative</a>()
+        
+                                            <p><p>Enforces rule when input must be a negative number.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_negative">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_noSpecialChars">noSpecialChars</a>()
+        
+                                            <p><p>Enforces rule when input must contain no special characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_noSpecialChars">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_notReservedKeyword">notReservedKeyword</a>()
+        
+                                            <p><p>Enforce rule when reserved keywords should be avoided.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_notReservedKeyword">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_number">number</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one numeric character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_number">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_numeric">numeric</a>()
+        
+                                            <p><p>Enforce rule where input must contain only numeric characters.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_numeric">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_parseAttributes">parseAttributes</a>(object $object, array $validators)
+        
+                                            <p><p>Parse array containing additional validators or attributes for FrameworkQuestion
+as strings along with any additional parameters that maybe expected.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_parseAttributes">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_required">required</a>()
+        
+                                            <p><p>Ensures required input is entered.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_required">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resetAfterValidation">resetAfterValidation</a>()
+        
+                                            <p><p>Resets fieldname and validators instance variables so duplicate
+messages are not displayed in forms.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_resetAfterValidation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_positive">positive</a>()
+        
+                                            <p><p>Enforces rule when input must a positive number.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_positive">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_queue">queue</a>()
+        
+                                            <p><p>Validates if queue exists in database or redis.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_queue">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setValidator">setValidator</a>(callable $validator)
+        
+                                            <p><p>Adds validator to array of validators to be used.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_setValidator">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_special">special</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one special character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_special">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_tel">tel</a>()
+        
+                                            <p><p>Enforces rule where input must be a valid phone number.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_tel">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testFilterNotation">testFilterNotation</a>()
+        
+                                            <p><p>Ensures response is in colon notation format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_testFilterNotation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_tokens">tokens</a>(string $data)
+        
+                                            <p><p>Split on commas (tolerate spaces), normalize to lowercase, drop empties.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_tokens">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_unique">unique</a>(array $attributes)
+        
+                                            <p><p>Checks if value already exists in a database.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_unique">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_upper">upper</a>()
+        
+                                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_upper">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_url">url</a>()
+        
+                                            <p><p>Enforce rule where input must be a valid URL.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_url">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_validate">validate</a>(mixed $response)
+        
+                                            <p><p>Calls validator callbacks.  This function also ensures validators
+don't bleed into next question if instance is reused.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#method_validate">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     
                 </div>
                 <div class="col-md-8">
@@ -311,17 +796,6 @@ that updates timestamps.</p></div>
         
                                             <p><p>Default constructor.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method___construct">
-<abbr title="Core\Model">Model</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    void
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_addErrorMessage">addErrorMessage</a>(string $field, string $message)
-        
-                                            <p><p>Generates error messages that occur during form validation.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_addErrorMessage">
 <abbr title="Core\Model">Model</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -595,10 +1069,16 @@ findTotal function in DB class.</p></p>                </div>
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_runValidation">runValidation</a>(object $validator)
+                    <a href="#method_runValidation">runValidation</a>(<abbr title="Core\bool|string">bool|string</abbr> $param, array $validators = [], string|null $fieldName = null)
         
-                                            <p><p>Runs a validator object and sets validates boolean and adds error
-message if validator fails.</p></p>                </div>
+                                            <p><p>Checks if results of validation is true or false.  If false, the
+$this-&gt;_validates boolean instance variable is set to false.  There are
+two ways to provide parameters for validation.  You can pass the results
+from chaining functions and use just one parameter.  Or you can provide
+the value of the field's name attribute, an array of validators, and
+a value for how you want the name of the field represented in error
+messages.  If this value is not provided then the name attribute is
+used in messaging.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_runValidation">
 <abbr title="Core\Model">Model</abbr></a></small></div>
             </div>
@@ -784,35 +1264,11 @@ users choose not to support profile images.</p></p>                </div>
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method___construct">
-        <div class="location">in <a href="../../Core/Model.html#method___construct">
-<abbr title="Core\Model">Model</abbr></a> at line 66</div>
-        <code>                    
-    <strong>__construct</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Default constructor.</p></p>                        
-        </div>
-        <div class="tags">
-            
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_addErrorMessage">
-        <div class="location">in <a href="../../Core/Model.html#method_addErrorMessage">
-<abbr title="Core\Model">Model</abbr></a> at line 80</div>
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_addErrorMessage">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 82</div>
         <code>                    void
-    <strong>addErrorMessage</strong>(string $field, string $message)
+    <strong>addErrorMessage</strong>(string $message)
         </code>
     </h3>
     <div class="details">    
@@ -820,7 +1276,7 @@ users choose not to support profile images.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Generates error messages that occur during form validation.</p></p>                        
+                            <p><p>Adds a new error message to the $errors array.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -828,15 +1284,9 @@ users choose not to support profile images.</p></p>                </div>
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
-                <td>$field</td>
-                <td><p>The form field associated with failed form
-validation</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
                 <td>$message</td>
-                <td><p>A message that describes to the user the cause
-for failed form validation.</p></td>
+                <td><p>The error message to be added to the $errors
+array.</p></td>
             </tr>
             </table>
 
@@ -858,9 +1308,1541 @@ for failed form validation.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_alpha">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_alpha">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 92</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>alpha</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must contain only alphabetic characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_alphaNumeric">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_alphaNumeric">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 106</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>alphaNumeric</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be alphanumeric characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_between">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_between">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 124</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>between</strong>(array $range)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input is between within a certain range in length.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$range</td>
+                <td><p>2 element array where position 0 is min and
+position 1 is max.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Exceptions/FrameworkRuntimeException.html"><abbr title="Core\Exceptions\FrameworkRuntimeException">FrameworkRuntimeException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_classExists">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_classExists">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 149</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>classExists</strong>(<abbr title="Core\Traits\string|array">string|array</abbr> $namespace)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if class exists within the specified namespace.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Traits\string|array">string|array</abbr></td>
+                <td>$namespace</td>
+                <td><p>A string or an array containing one
+element with string for the namespace.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_colonNotation">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_colonNotation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 164</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>colonNotation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures response is in colon notation format.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_compositeFieldValidation">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_compositeFieldValidation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 186</div>
+        <code>                    void
+    <strong>compositeFieldValidation</strong>(<abbr title="Core\Traits\array|string">array|string</abbr> $additionalFieldData, array $conditions, array $bind)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Tests form validation with multiple fields.  Used by the unique
+validator to test several fields for uniqueness.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Traits\array|string">array|string</abbr></td>
+                <td>$additionalFieldData</td>
+                <td><p>Additional fields and values to
+test.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$conditions</td>
+                <td><p>The conditions array passed by reference.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$bind</td>
+                <td><p>The binds array passed by reference.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_different">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_different">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 209</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>different</strong>(mixed $data)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where response and $match parameter needs to be different.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$data</td>
+                <td><p>The value we want to compare.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_displayErrorMessages">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_displayErrorMessages">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 224</div>
+        <code>                    void
+    <strong>displayErrorMessages</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Displays a list of all error messages.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dotNotation">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_dotNotation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 240</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>dotNotation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures response is in dot notation format.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_email">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_email">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 257</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>email</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input is a valid E-mail address.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_fieldName">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_fieldName">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 272</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>fieldName</strong>(<abbr title="Core\Traits\string|array">string|array</abbr> $fieldName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets name of field to be validated.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Traits\string|array">string|array</abbr></td>
+                <td>$fieldName</td>
+                <td><p>The name of the field to be validated.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_includeDeleted">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_includeDeleted">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 288</div>
+        <code>                    void
+    <strong>includeDeleted</strong>(<abbr title="Core\Traits\bool|string">bool|string</abbr> $includeDeleted, array $queryParams)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Supports includeDeleted feature for database operations.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Traits\bool|string">bool|string</abbr></td>
+                <td>$includeDeleted</td>
+                <td><p>The includedDeleted flag.  When true the
+'includeDeleted' element with a value of true is added to the
+$queryParams associative array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$queryParams</td>
+                <td><p>The parameters for the query that is passed
+by reference.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_integer">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_integer">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 299</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>integer</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be an integer.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ip">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_ip">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 313</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>ip</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be a valid IP address.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isPortUsed">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_isPortUsed">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 331</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>isPortUsed</strong>(array $attributes)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if a port on a particular host is in use.  Assists in verifying
+if a port is available for a serve command.  If the port is already in
+use an error message is presented to the user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>An array that assumes index 0 is the host and
+index 1 is timeout variable which is set to 3 if not provided.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_list">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_list">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 360</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>list</strong>(array $attributes)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensure user inputs valid comma separated list of values.  The user must
+provide the following in the $attributes parameter:
+1) Class containing full namespaced path
+2) Name of function that returns an array of strings or a comma
+separated array of strings.</p></p>                <p><p>3) A string value in this array as an alias (optional).</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>A : separate list in the following format:
+NamespaceToClass\Class:Method:Alias.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_lower">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_lower">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 398</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>lower</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_match">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_match">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 413</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>match</strong>(mixed $match)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where response and $match parameter needs to match.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$match</td>
+                <td><p>The value we want to compare.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_max">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_max">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 428</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>max</strong>(<abbr title="Core\Traits\int|array">int|array</abbr> $maxRule)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input meets requirements for maximum allowable length.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Traits\int|array">int|array</abbr></td>
+                <td>$maxRule</td>
+                <td><p>The maximum allowed size for input.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_min">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_min">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 444</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>min</strong>(<abbr title="Core\Traits\int|array">int|array</abbr> $minRule)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures input meets requirements for minimum allowable length.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Traits\int|array">int|array</abbr></td>
+                <td>$minRule</td>
+                <td><p>The minimum allowed size for input.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_negative">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_negative">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 459</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>negative</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must be a negative number.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_noSpecialChars">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_noSpecialChars">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 473</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>noSpecialChars</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain no special characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notReservedKeyword">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_notReservedKeyword">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 487</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>notReservedKeyword</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule when reserved keywords should be avoided.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_number">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_number">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 501</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>number</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one numeric character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_numeric">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_numeric">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 515</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>numeric</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must contain only numeric characters.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_parseAttributes">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_parseAttributes">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 537</div>
+        <code>        static    protected        void
+    <strong>parseAttributes</strong>(object $object, array $validators)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Parse array containing additional validators or attributes for FrameworkQuestion
+as strings along with any additional parameters that maybe expected.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$object</td>
+                <td><p>The instance of a class using the HasValidators
+trait.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$validators</td>
+                <td><p>An array of validators.  Any additional
+parameters must be separated with a &quot;:&quot;.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Exceptions/FrameworkException.html"><abbr title="Core\Exceptions\FrameworkException">FrameworkException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_required">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_required">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 558</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>required</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures required input is entered.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resetAfterValidation">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_resetAfterValidation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 572</div>
+        <code>            protected        void
+    <strong>resetAfterValidation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resets fieldname and validators instance variables so duplicate
+messages are not displayed in forms.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_positive">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_positive">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 582</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>positive</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must a positive number.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_queue">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_queue">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 596</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>queue</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Validates if queue exists in database or redis.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setValidator">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_setValidator">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 621</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>setValidator</strong>(callable $validator)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Adds validator to array of validators to be used.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$validator</td>
+                <td><p>The anonymous function for a validator.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_special">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_special">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 631</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>special</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one special character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tel">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_tel">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 645</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>tel</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule where input must be a valid phone number.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testFilterNotation">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_testFilterNotation">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 669</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>testFilterNotation</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Ensures response is in colon notation format.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tokens">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_tokens">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 690</div>
+        <code>        static    protected        array
+    <strong>tokens</strong>(string $data)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Split on commas (tolerate spaces), normalize to lowercase, drop empties.</p></p>                <p><p>Useful for cases where you have a comma separated string.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$data</td>
+                <td><p>Comma separated strings of values to be converted
+into an array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>An array containing values originally found in comma
+separated string.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_unique">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_unique">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 703</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>unique</strong>(array $attributes)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if value already exists in a database.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$attributes</td>
+                <td><p>The model, includeDeleted flag, and list of
+additional fields.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_upper">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_upper">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 747</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>upper</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforces rule when input must contain at least one lower case character.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_url">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_url">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 761</div>
+        <code>                    <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>url</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule where input must be a valid URL.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validate">
+        <div class="location">in <a href="../../Core/Traits/HasValidators.html#method_validate">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 777</div>
+        <code>            protected        bool
+    <strong>validate</strong>(mixed $response)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Calls validator callbacks.  This function also ensures validators
+don't bleed into next question if instance is reused.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$response</td>
+                <td><p>The user answer.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if validation passed.  Otherwise, we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../Core/Model.html#method___construct">
+<abbr title="Core\Model">Model</abbr></a> at line 65</div>
+        <code>                    
+    <strong>__construct</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Default constructor.</p></p>                        
+        </div>
+        <div class="tags">
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_afterDelete">
         <div class="location">in <a href="../../Core/Model.html#method_afterDelete">
-<abbr title="Core\Model">Model</abbr></a> at line 93</div>
+<abbr title="Core\Model">Model</abbr></a> at line 75</div>
         <code>                    void
     <strong>afterDelete</strong>()
         </code>
@@ -893,7 +2875,7 @@ for failed form validation.</p></td>
                     <div class="method-item">
                     <h3 id="method_afterSave">
         <div class="location">in <a href="../../Core/Model.html#method_afterSave">
-<abbr title="Core\Model">Model</abbr></a> at line 100</div>
+<abbr title="Core\Model">Model</abbr></a> at line 82</div>
         <code>                    void
     <strong>afterSave</strong>()
         </code>
@@ -926,7 +2908,7 @@ for failed form validation.</p></td>
                     <div class="method-item">
                     <h3 id="method_assign">
         <div class="location">in <a href="../../Core/Model.html#method_assign">
-<abbr title="Core\Model">Model</abbr></a> at line 112</div>
+<abbr title="Core\Model">Model</abbr></a> at line 94</div>
         <code>                    <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
     <strong>assign</strong>(array $params, array $list = [], string $assignmentFilter = self::BLACKLIST)
         </code>
@@ -981,7 +2963,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <div class="method-item">
                     <h3 id="method_beforeDelete">
         <div class="location">in <a href="../../Core/Model.html#method_beforeDelete">
-<abbr title="Core\Model">Model</abbr></a> at line 135</div>
+<abbr title="Core\Model">Model</abbr></a> at line 117</div>
         <code>                    void
     <strong>beforeDelete</strong>()
         </code>
@@ -1046,7 +3028,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <div class="method-item">
                     <h3 id="method_count">
         <div class="location">in <a href="../../Core/Model.html#method_count">
-<abbr title="Core\Model">Model</abbr></a> at line 150</div>
+<abbr title="Core\Model">Model</abbr></a> at line 132</div>
         <code>        static            int
     <strong>count</strong>()
         </code>
@@ -1080,7 +3062,7 @@ is a wrapper function for the DB::count function.</p></p>
                     <div class="method-item">
                     <h3 id="method_data">
         <div class="location">in <a href="../../Core/Model.html#method_data">
-<abbr title="Core\Model">Model</abbr></a> at line 159</div>
+<abbr title="Core\Model">Model</abbr></a> at line 141</div>
         <code>                    <a target="_blank" rel="noopener" href="https://www.php.net/stdClass">stdClass</a>
     <strong>data</strong>()
         </code>
@@ -1113,7 +3095,7 @@ is a wrapper function for the DB::count function.</p></p>
                     <div class="method-item">
                     <h3 id="method_delete">
         <div class="location">in <a href="../../Core/Model.html#method_delete">
-<abbr title="Core\Model">Model</abbr></a> at line 180</div>
+<abbr title="Core\Model">Model</abbr></a> at line 162</div>
         <code>                    bool
     <strong>delete</strong>()
         </code>
@@ -1147,7 +3129,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumns">
         <div class="location">in <a href="../../Core/Model.html#method_getColumns">
-<abbr title="Core\Model">Model</abbr></a> at line 202</div>
+<abbr title="Core\Model">Model</abbr></a> at line 184</div>
         <code>        static            array
     <strong>getColumns</strong>()
         </code>
@@ -1181,7 +3163,7 @@ from a database table.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumnsForSave">
         <div class="location">in <a href="../../Core/Model.html#method_getColumnsForSave">
-<abbr title="Core\Model">Model</abbr></a> at line 212</div>
+<abbr title="Core\Model">Model</abbr></a> at line 194</div>
         <code>                    array
     <strong>getColumnsForSave</strong>()
         </code>
@@ -1215,7 +3197,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getDb">
         <div class="location">in <a href="../../Core/Model.html#method_getDb">
-<abbr title="Core\Model">Model</abbr></a> at line 241</div>
+<abbr title="Core\Model">Model</abbr></a> at line 223</div>
         <code>        static            <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>getDb</strong>()
         </code>
@@ -1248,7 +3230,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getErrorMessages">
         <div class="location">in <a href="../../Core/Model.html#method_getErrorMessages">
-<abbr title="Core\Model">Model</abbr></a> at line 254</div>
+<abbr title="Core\Model">Model</abbr></a> at line 236</div>
         <code>                    array
     <strong>getErrorMessages</strong>()
         </code>
@@ -1282,7 +3264,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method__fetchStyleParams">
         <div class="location">in <a href="../../Core/Model.html#method__fetchStyleParams">
-<abbr title="Core\Model">Model</abbr></a> at line 264</div>
+<abbr title="Core\Model">Model</abbr></a> at line 246</div>
         <code>        static    protected        array
     <strong>_fetchStyleParams</strong>(array $params)
         </code>
@@ -1325,7 +3307,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method_find">
         <div class="location">in <a href="../../Core/Model.html#method_find">
-<abbr title="Core\Model">Model</abbr></a> at line 278</div>
+<abbr title="Core\Model">Model</abbr></a> at line 260</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>find</strong>(array $params = [])
         </code>
@@ -1369,7 +3351,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findById">
         <div class="location">in <a href="../../Core/Model.html#method_findById">
-<abbr title="Core\Model">Model</abbr></a> at line 292</div>
+<abbr title="Core\Model">Model</abbr></a> at line 274</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findById</strong>(int $id)
         </code>
@@ -1412,7 +3394,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findByTable">
         <div class="location">in <a href="../../Core/Model.html#method_findByTable">
-<abbr title="Core\Model">Model</abbr></a> at line 308</div>
+<abbr title="Core\Model">Model</abbr></a> at line 290</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>findByTable</strong>(string $table, array $params = [])
         </code>
@@ -1463,7 +3445,7 @@ selecting from related tables).</p></p>
                     <div class="method-item">
                     <h3 id="method_findAllByUserId">
         <div class="location">in <a href="../../Core/Model.html#method_findAllByUserId">
-<abbr title="Core\Model">Model</abbr></a> at line 324</div>
+<abbr title="Core\Model">Model</abbr></a> at line 306</div>
         <code>        static            array
     <strong>findAllByUserId</strong>(int $user_id, array $params = [])
         </code>
@@ -1512,7 +3494,7 @@ default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findFirst">
         <div class="location">in <a href="../../Core/Model.html#method_findFirst">
-<abbr title="Core\Model">Model</abbr></a> at line 342</div>
+<abbr title="Core\Model">Model</abbr></a> at line 324</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findFirst</strong>(array $params = [])
         </code>
@@ -1556,7 +3538,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findTotal">
         <div class="location">in <a href="../../Core/Model.html#method_findTotal">
-<abbr title="Core\Model">Model</abbr></a> at line 357</div>
+<abbr title="Core\Model">Model</abbr></a> at line 339</div>
         <code>        static            int
     <strong>findTotal</strong>(array $params = [])
         </code>
@@ -1601,7 +3583,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_insert">
         <div class="location">in <a href="../../Core/Model.html#method_insert">
-<abbr title="Core\Model">Model</abbr></a> at line 372</div>
+<abbr title="Core\Model">Model</abbr></a> at line 354</div>
         <code>                    bool
     <strong>insert</strong>(array $fields)
         </code>
@@ -1645,7 +3627,7 @@ use to populate a database record.  The default value is an empty array.</p></td
                     <div class="method-item">
                     <h3 id="method_isNew">
         <div class="location">in <a href="../../Core/Model.html#method_isNew">
-<abbr title="Core\Model">Model</abbr></a> at line 384</div>
+<abbr title="Core\Model">Model</abbr></a> at line 366</div>
         <code>                    bool
     <strong>isNew</strong>()
         </code>
@@ -1679,7 +3661,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
         <div class="location">in <a href="../../Core/Model.html#method_onConstruct">
-<abbr title="Core\Model">Model</abbr></a> at line 393</div>
+<abbr title="Core\Model">Model</abbr></a> at line 375</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -1712,7 +3694,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
         <div class="location">in <a href="../../Core/Model.html#method_populateObjData">
-<abbr title="Core\Model">Model</abbr></a> at line 401</div>
+<abbr title="Core\Model">Model</abbr></a> at line 383</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -1755,7 +3737,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_query">
         <div class="location">in <a href="../../Core/Model.html#method_query">
-<abbr title="Core\Model">Model</abbr></a> at line 416</div>
+<abbr title="Core\Model">Model</abbr></a> at line 398</div>
         <code>                    <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -1804,9 +3786,9 @@ The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_runValidation">
         <div class="location">in <a href="../../Core/Model.html#method_runValidation">
-<abbr title="Core\Model">Model</abbr></a> at line 427</div>
+<abbr title="Core\Model">Model</abbr></a> at line 420</div>
         <code>                    void
-    <strong>runValidation</strong>(object $validator)
+    <strong>runValidation</strong>(<abbr title="Core\bool|string">bool|string</abbr> $param, array $validators = [], string|null $fieldName = null)
         </code>
     </h3>
     <div class="details">    
@@ -1814,17 +3796,36 @@ The default value is an empty array.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Runs a validator object and sets validates boolean and adds error
-message if validator fails.</p></p>                        
+                            <p><p>Checks if results of validation is true or false.  If false, the
+$this-&gt;_validates boolean instance variable is set to false.  There are
+two ways to provide parameters for validation.  You can pass the results
+from chaining functions and use just one parameter.  Or you can provide
+the value of the field's name attribute, an array of validators, and
+a value for how you want the name of the field represented in error
+messages.  If this value is not provided then the name attribute is
+used in messaging.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>object</td>
-                <td>$validator</td>
-                <td><p>The validator object.</p></td>
+                <td><abbr title="Core\bool|string">bool|string</abbr></td>
+                <td>$param</td>
+                <td><p>The results of the validation operation or
+the name of the field to be tested.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$validators</td>
+                <td><p>An array of validators and any attributes that
+affect validation behavior.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$fieldName</td>
+                <td><p>The name of the field to be displayed in the
+error message.</p></td>
             </tr>
             </table>
 
@@ -1848,7 +3849,7 @@ message if validator fails.</p></p>
                     <div class="method-item">
                     <h3 id="method_save">
         <div class="location">in <a href="../../Core/Model.html#method_save">
-<abbr title="Core\Model">Model</abbr></a> at line 442</div>
+<abbr title="Core\Model">Model</abbr></a> at line 443</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -1883,7 +3884,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
         <div class="location">in <a href="../../Core/Model.html#method__softDeleteParams">
-<abbr title="Core\Model">Model</abbr></a> at line 483</div>
+<abbr title="Core\Model">Model</abbr></a> at line 484</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -1927,7 +3928,7 @@ delete.</p></td>
                     <div class="method-item">
                     <h3 id="method_update">
         <div class="location">in <a href="../../Core/Model.html#method_update">
-<abbr title="Core\Model">Model</abbr></a> at line 512</div>
+<abbr title="Core\Model">Model</abbr></a> at line 513</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -1972,7 +3973,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
         <div class="location">in <a href="../../Core/Model.html#method_updateWhere">
-<abbr title="Core\Model">Model</abbr></a> at line 542</div>
+<abbr title="Core\Model">Model</abbr></a> at line 543</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -2034,7 +4035,7 @@ Supports:</p>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
         <div class="location">in <a href="../../Core/Model.html#method_validationPassed">
-<abbr title="Core\Model">Model</abbr></a> at line 552</div>
+<abbr title="Core\Model">Model</abbr></a> at line 553</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -2068,7 +4069,7 @@ false if there is a failure.</p></td>
                     <div class="method-item">
                     <h3 id="method_validator">
         <div class="location">in <a href="../../Core/Model.html#method_validator">
-<abbr title="Core\Model">Model</abbr></a> at line 563</div>
+<abbr title="Core\Model">Model</abbr></a> at line 564</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
