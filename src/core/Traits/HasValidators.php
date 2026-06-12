@@ -413,6 +413,7 @@ trait HasValidators {
     public function match(mixed $match): static {
         return $this->setValidator(function($response) use ($match): void {
             if($response == null) return;
+            if(is_array($match)) $match = $match[0];
             if($response !== $match) {
                 $this->addErrorMessage("The these values do not match.");
             }
