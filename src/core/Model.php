@@ -266,6 +266,25 @@ class Model {
     }
 
     /**
+     * Retrieves list of all records within a table related to a user.
+     *
+     * @param int $user_id The user ID.
+     * @param array $params Used to build conditions for database query.  The 
+     * default value is an empty array.
+     * @return array The list of records that is returned from the database.
+     */
+    public static function findAllByUserId(int $user_id, array $params = []): array {
+        $conditions = [
+            'conditions' => 'user_id = ?',
+            'bind' => [(int)$user_id]
+        ];
+
+        // In case you want to add more conditions
+        $conditions = Arr::merge($conditions, $params);
+        return self::find($conditions);
+    }
+    
+    /**
      * Get result from database by primary key ID.
      *
      * @param int $id The ID of the row we want to retrieve from the database.
@@ -295,24 +314,6 @@ class Model {
         return $resultsQuery;
     }
 
-    /**
-     * Retrieves list of all records within a table related to a user.
-     *
-     * @param int $user_id The user ID.
-     * @param array $params Used to build conditions for database query.  The 
-     * default value is an empty array.
-     * @return array The list of records that is returned from the database.
-     */
-    public static function findAllByUserId(int $user_id, array $params = []): array {
-        $conditions = [
-            'conditions' => 'user_id = ?',
-            'bind' => [(int)$user_id]
-        ];
-
-        // In case you want to add more conditions
-        $conditions = Arr::merge($conditions, $params);
-        return self::find($conditions);
-    }
 
     /**
      * Wrapper for the findFirst function that is found in the DB class.
