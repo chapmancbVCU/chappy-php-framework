@@ -557,10 +557,10 @@ class FormHelper {
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
      * @param string $value The value we want to set as selected.
+     * @param array $options The list of options we will use to populate the 
+     * select option dropdown.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
-     * @param array $options The list of options we will use to populate the 
-     * select option dropdown.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
