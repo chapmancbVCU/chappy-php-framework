@@ -523,7 +523,8 @@ export const Select = ({
                     <SelectOptions 
                         key={String(option[fieldName] ?? index)} 
                         option={option} 
-                        fieldName={fieldName} 
+                        fieldName={fieldName}
+                        value={option.id}
                     />
                 ))}
             </select>
@@ -534,16 +535,18 @@ export const Select = ({
 
 /**
  * Generates options for select.
- * @property {object} option An instance of model used to populate a select 
- * option
+ * @property {object} option An instance of model used to populate a select
+ * element. 
+ * @property {number} value The value for the value attribute of the option 
+ * element.
  * @property {string} fieldName The name of the field in the model to use.
  * @param {Input} param0 
  * @returns {HTMLOptionElement} An HTML element for select with correct 
  * value displayed.
  */
-const SelectOptions = ({option, fieldName}) => {
+const SelectOptions = ({option, value, fieldName}) => {
     const val = String(option[fieldName]);
-    return <option value={val}>{String(option[fieldName])}</option>;
+    return <option value={value}>{String(option[fieldName])}</option>;
 }
 
 /**
