@@ -18,6 +18,11 @@ class MigrationBuilder extends Console {
      */
     public const MIGRATION_PROMPT = "Enter name for new migration.";
 
+    public const PROMPT_ATTRIBUTES = [
+        'max:50', 'required', 'noSpecialChars', 'alpha', 
+        'notReservedKeyword', 'notReservedSQLKeyword'
+    ];
+    
     /**
      * Generates new migration class if table-name argument is provided.  If rename or update 
      * flags are set then appropriate migration class is created.
@@ -134,9 +139,9 @@ class MigrationBuilder extends Console {
      * @return string The name of the table the new migration will target.
      */
     public static function migrationNamePrompt(FrameworkQuestion $question): string {      
-        return self::prompt(self::MIGRATION_PROMPT, $question, ['max:50', 'fieldName:table-name', 'notReservedSQLKeyword']);
+        return self::prompt(self::MIGRATION_PROMPT, $question, self::modifiedAttributes(['fieldName:table-name']), [], null, true);
     }
-    
+
     /**
      * Prompts user for input when no argument and no options are set.
      *
@@ -159,6 +164,16 @@ class MigrationBuilder extends Console {
     }
 
     /**
+     * Returns modified version of MigrationBuilder::PROMPT_ATTRIBUTES array.
+     *
+     * @param array $attributes The additional attributes you want to add.
+     * @return array The modified const array.
+     */
+    private static function modifiedAttributes(array $attributes): array {
+        return array_merge(self::PROMPT_ATTRIBUTES, $attributes);
+    }
+
+    /**
      * Prompts user to enter name for table to be renamed.  Used when 
      * user responds with the choice to rename.
      *
@@ -168,7 +183,15 @@ class MigrationBuilder extends Console {
      */
     private static function renameChoice(string $migrationName, FrameworkQuestion $question): int {
         $message = "Provide name for original table";
-        $response = self::prompt($message, $question, ['max:50', 'fieldName:original-table', "different:{$migrationName}"]);
+        $response = self::prompt(
+            $message, 
+            $question, 
+            self::modifiedAttributes(['fieldName:original-table', "different:{$migrationName}"]),
+            [],
+            null,
+            true
+        );
+
         return self::makeRenameMigration($response, $migrationName);
     }
 
@@ -182,7 +205,7 @@ class MigrationBuilder extends Console {
      */
     public static function renamePrompt(FrameworkQuestion $question, mixed $renameOption): int {
         $message = "Enter name for original table";
-        $response = self::prompt($message, $question, ['max:50', 'fieldName:original-table']);
+        $response = self::prompt($message, $question, self::modifiedAttributes(['fieldName:original-table']), [], null, true);
         $renameOption = self::validateRenameOption($renameOption, $response, $question);  
         return self::makeRenameMigration($response, $renameOption);
     }
@@ -227,7 +250,7 @@ class MigrationBuilder extends Console {
         $to = Str::lower($to);
         $from = Str::lower($from);
         $message = "Provide name for new table.";
-        $attributes = ['max:50', 'fieldName:original-name', "different:{$from}", 'notReservedSQLKeyword'];
+        $attributes = self::modifiedAttributes(['fieldName:original-name', "different:{$from}"]);
         self::argOptionValidate($to, $message, $question, $attributes);
         return $to;
     }

@@ -35,13 +35,12 @@ class GenerateMigrationCommand extends ConsoleCommand
     protected function handle(): int
     {
         $tableName = $this->getArgument('table-name');
-        $attributes = ['max:50', 'required', 'noSpecialChars', 'alpha', 'notReservedKeyword', 'notReservedSQLKeyword'];
         if($tableName) {
             MigrationBuilder::argOptionValidate(
                 $tableName,
                 MigrationBuilder::MIGRATION_PROMPT,
                 $this->question(),
-                $attributes,
+                MigrationBuilder::PROMPT_ATTRIBUTES,
                 true
             );
         }
