@@ -399,8 +399,8 @@ class Migrate extends Console {
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @return string The name of the table the new migration will target.
      */
-    public static function migrationNamePrompt(FrameworkQuestion $question): string {        
-        return self::prompt(self::MIGRATION_PROMPT, $question, ['max:50', 'fieldName:table-name']);
+    public static function migrationNamePrompt(FrameworkQuestion $question): string {      
+        return self::prompt(self::MIGRATION_PROMPT, $question, ['max:50', 'fieldName:table-name', 'notReservedSQLKeyword']);
     }
 
     /**
@@ -708,7 +708,8 @@ class Migrate extends Console {
         $to = Str::lower($to);
         $from = Str::lower($from);
         $message = "Provide name for new table.";
-        self::argOptionValidate($to, $message, $question, ['max:50', 'fieldName:original-name', "different:{$from}"]);
+        $attributes = ['max:50', 'fieldName:original-name', "different:{$from}", 'notReservedSQLKeyword'];
+        self::argOptionValidate($to, $message, $question, $attributes);
         return $to;
     }
 }
