@@ -16,7 +16,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
- * Helper class for migration related console commands.
+ * Helper class for commands related to performing migrations.
  */
 class Migrate extends Console {
     /**
