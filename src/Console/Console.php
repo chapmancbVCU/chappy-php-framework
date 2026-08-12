@@ -33,7 +33,7 @@ class Console {
      * @param string $field The reference to the value to be validated.
      * @param string $message The message to present to the user.
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
-     * @param array $attributes An array of additional validators.
+     * @param array $validators An array of additional validators.
      * @param bool $defaultNone When set to true user will have to specify 
      * all validators.
      * @return void
