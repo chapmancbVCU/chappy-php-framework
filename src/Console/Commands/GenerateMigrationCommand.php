@@ -2,7 +2,7 @@
 namespace Console\Commands;
 
 use Console\ConsoleCommand;
-use Console\Helpers\Migrate;
+use Console\Helpers\MigrationBuilder;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -37,31 +37,31 @@ class GenerateMigrationCommand extends ConsoleCommand
         $tableName = $this->getArgument('table-name');
         $attributes = ['max:50', 'required', 'noSpecialChars', 'alpha', 'notReservedKeyword', 'notReservedSQLKeyword'];
         if($tableName) {
-            Migrate::argOptionValidate(
+            MigrationBuilder::argOptionValidate(
                 $tableName,
-                Migrate::MIGRATION_PROMPT,
+                MigrationBuilder::MIGRATION_PROMPT,
                 $this->question(),
                 $attributes,
                 true
             );
         }
 
-        [$renameOption, $updateOption] = Migrate::setFlags($this->input);
-        $bothFlagsSet = Migrate::isBothFlagsSet($renameOption, $updateOption);
+        [$renameOption, $updateOption] = MigrationBuilder::setFlags($this->input);
+        $bothFlagsSet = MigrationBuilder::isBothFlagsSet($renameOption, $updateOption);
 
         if($bothFlagsSet) return self::FAILURE;
 
         // When tableName argument is provided.
-        if($tableName) return Migrate::contents($tableName, $renameOption, $updateOption, $this->question());
+        if($tableName) return MigrationBuilder::contents($tableName, $renameOption, $updateOption, $this->question());
 
         // tableName not provided with rename option set.
-        if(!$tableName && $renameOption) return Migrate::renamePrompt($this->question(), $renameOption);
+        if(!$tableName && $renameOption) return MigrationBuilder::renamePrompt($this->question(), $renameOption);
 
         // tableName not provided with update option set.
-        $tableName = Migrate::migrationNamePrompt($this->question());
-        if($updateOption) return Migrate::makeUpdateMigration($tableName);
+        $tableName = MigrationBuilder::migrationNamePrompt($this->question());
+        if($updateOption) return MigrationBuilder::makeUpdateMigration($tableName);
 
         // Ask questions when tableName is not provided and no options set.
-        return Migrate::migrationTypePrompt($this->question(), $tableName,);
+        return MigrationBuilder::migrationTypePrompt($this->question(), $tableName,);
     }
 }
