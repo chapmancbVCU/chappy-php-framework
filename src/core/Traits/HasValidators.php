@@ -622,17 +622,6 @@ trait HasValidators {
             }
         });
     }
-    
-    /**
-     * Resets fieldname and validators instance variables so duplicate 
-     * messages are not displayed in forms.
-     *
-     * @return void
-     */
-    protected function resetAfterValidation():void {
-        $this->fieldName = "";
-        $this->validators = [];
-    }
 
     /**
      * Enforces rule when input must a positive number.
