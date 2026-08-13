@@ -539,6 +539,11 @@ trait HasValidators {
         });
     }
 
+    /**
+     * Enforce rule when reserved SQL keywords should be avoided.
+     *
+     * @return static
+     */
     public function notReservedSQLKeyword(): static {
         return $this->setValidator(function($response) {
             if($response == null) return;
