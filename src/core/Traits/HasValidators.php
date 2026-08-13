@@ -835,17 +835,25 @@ trait HasValidators {
      * @return bool True if validation passed.  Otherwise, we return false.
      */
     protected function validate(mixed $response): bool {
+        $errorCountBefore = count($this->errors);
+
         foreach($this->validators as $callback) {
             $callback($response);
         }
 
-        if(Arr::isNotEmpty($this->errors)){
-            if(defined('STDOUT')) $this->displayErrorMessages();
-            $this->resetAfterValidation();
-            return false;
+        $thisFieldFailed = count($this->errors) > $errorCountBefore;
+
+        // CLI: print + clear as before (displayErrorMessages empties $this->errors).
+        if($thisFieldFailed && defined('STDOUT')) {
+            $this->displayErrorMessages();
         }
 
-        $this->resetAfterValidation();
-        return true;
+        // Always reset per-field state — no longer gated on the errors array.
+        if(!$thisFieldFailed || !defined('STDOUT')) {
+            $this->validators = [];
+            $this->fieldName  = "";
+        }
+
+        return !$thisFieldFailed;
     }
 }
