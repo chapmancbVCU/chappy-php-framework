@@ -832,7 +832,6 @@ trait HasValidators {
 
         $thisFieldFailed = count($this->errors) > $errorCountBefore;
 
-        // CLI: print + clear as before (displayErrorMessages empties $this->errors).
         if($thisFieldFailed && defined('STDOUT')) {
             $this->displayErrorMessages();
         }
