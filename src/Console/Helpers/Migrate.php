@@ -327,7 +327,7 @@ class Migrate extends Console {
             if($status->getStatus() == 'Ran') {
                 console_info("$name: ........................ [$batch] $state");
             } else {
-                console_notice("$name ......................... Pending");
+                console_notice("$name: ........................ Pending");
             }
         }
         return Command::SUCCESS;
