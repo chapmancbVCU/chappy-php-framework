@@ -378,6 +378,4 @@ class Migrate extends Console {
         }
         return count($stmt->results());
     }
-
-    
 }
