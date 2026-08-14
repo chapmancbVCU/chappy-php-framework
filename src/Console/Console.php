@@ -119,7 +119,7 @@ class Console {
      * 
      * @param string $message The message to present to the user.
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
-     * @param array $attributes An array of additional validators.
+     * @param array $attributes An array of additional validators and attributes.
      * @param array $suggestions An array of suggestions for when $anticipate 
      * is set to true.  An exception is thrown if this array is empty and 
      * $anticipate = true.
