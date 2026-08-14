@@ -35,7 +35,8 @@ class Console {
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
      * @param array $validators An array of additional validators.
      * @param bool $defaultNone When set to true user will have to specify 
-     * all validators.
+     * all validators.  Default value is false.  When false the validators you 
+     * supply are appended to list of default validators.
      * @return void
      */
     public static function argOptionValidate(
@@ -125,7 +126,8 @@ class Console {
      * @param string|bool|int|float|null $default The default value if the 
      * user does not provide an answer.
      * @param bool $defaultNone When set to true user will have to specify 
-     * all validators and attributes.
+     * all validators.  Default value is false.  When false the validators you 
+     * supply are appended to list of default validators.
      * @return mixed The user response.
      */
     public static function prompt(
