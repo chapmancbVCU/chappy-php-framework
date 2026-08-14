@@ -282,8 +282,6 @@ class Migrate extends Console {
         return self::refresh((int)$step);
     }
 
-    
-
     /**
      * Reports migration status.
      *
