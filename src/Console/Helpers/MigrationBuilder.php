@@ -18,6 +18,9 @@ class MigrationBuilder extends Console {
      */
     public const MIGRATION_PROMPT = "Enter name for new migration.";
 
+    /**
+     * Array of validators common for the make:migration command.
+     */
     public const PROMPT_ATTRIBUTES = [
         'max:50', 'required', 'noSpecialChars', 'alpha', 
         'notReservedKeyword', 'notReservedSQLKeyword'
