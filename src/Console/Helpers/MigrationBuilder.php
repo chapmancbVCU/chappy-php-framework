@@ -21,10 +21,7 @@ class MigrationBuilder extends Console {
     /**
      * Array of validators common for the make:migration command.
      */
-    public const PROMPT_ATTRIBUTES = [
-        'max:50', 'required', 'noSpecialChars', 'alpha', 
-        'notReservedKeyword', 'notReservedSQLKeyword'
-    ];
+    public const PROMPT_ATTRIBUTES = ['max:50', 'notReservedKeyword','notReservedSQLKeyword'];
     
     /**
      * Generates new migration class if table-name argument is provided.  If rename or update 
@@ -257,7 +254,7 @@ class MigrationBuilder extends Console {
      * @return string The name of the table the new migration will target.
      */
     public static function migrationNamePrompt(FrameworkQuestion $question): string {      
-        return self::prompt(self::MIGRATION_PROMPT, $question, self::modifiedAttributes(['fieldName:table-name']), [], null, true);
+        return self::prompt(self::MIGRATION_PROMPT, $question, self::modifiedAttributes(['fieldName:table-name']));
     }
 
     /**
@@ -304,10 +301,7 @@ class MigrationBuilder extends Console {
         $response = self::prompt(
             $message, 
             $question, 
-            self::modifiedAttributes(['fieldName:original-table', "different:{$migrationName}"]),
-            [],
-            null,
-            true
+            self::modifiedAttributes(['fieldName:original-table', "different:{$migrationName}"])
         );
 
         return self::makeRenameMigration($response, $migrationName);
@@ -323,7 +317,7 @@ class MigrationBuilder extends Console {
      */
     public static function renamePrompt(FrameworkQuestion $question, mixed $renameOption): int {
         $message = "Enter name for original table";
-        $response = self::prompt($message, $question, self::modifiedAttributes(['fieldName:original-table']), [], null, true);
+        $response = self::prompt($message, $question, self::modifiedAttributes(['fieldName:original-table']));
         $renameOption = self::validateRenameOption($renameOption, $response, $question);  
         return self::makeRenameMigration($response, $renameOption);
     }
