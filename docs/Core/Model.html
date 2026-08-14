@@ -169,6 +169,16 @@ extendability.</p></p>                    </div>
 <abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
             </tr>
                     <tr>
+                <td class="type" id="property_reservedSQLKeyWords">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$reservedSQLKeyWords</td>
+                <td class="last"></td>
+                <td><small>from&nbsp;<a href="../Core/Traits/HasValidators.html#property_reservedSQLKeyWords">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
                 <td class="type" id="property_validators">
                                         protected                                        array
                                                                                 
@@ -514,6 +524,17 @@ separated array of strings.</p></p>                </div>
                     <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_notReservedSQLKeyword">notReservedSQLKeyword</a>()
+        
+                                            <p><p>Enforce rule when reserved SQL keywords should be avoided.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Core/Traits/HasValidators.html#method_notReservedSQLKeyword">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+                </div>
+                <div class="col-md-8">
                     <a href="#method_number">number</a>()
         
                                             <p><p>Enforces rule when input must contain at least one numeric character.</p></p>                </div>
@@ -552,18 +573,6 @@ as strings along with any additional parameters that maybe expected.</p></p>    
         
                                             <p><p>Ensures required input is entered.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Core/Traits/HasValidators.html#method_required">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    void
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_resetAfterValidation">resetAfterValidation</a>()
-        
-                                            <p><p>Resets fieldname and validators instance variables so duplicate
-messages are not displayed in forms.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../Core/Traits/HasValidators.html#method_resetAfterValidation">
 <abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -841,6 +850,16 @@ is a wrapper function for the DB::count function.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findAllByUserId">findAllByUserId</a>(int $user_id, array $params = [])
+        
+                                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;<abbr title="Core\object|bool">object|bool</abbr>
                 </div>
                 <div class="col-md-8">
@@ -858,16 +877,6 @@ is a wrapper function for the DB::count function.</p></p>                </div>
         
                                             <p><p>Performs a database query against a specified table using the same
 query-building logic as the default find method.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;array
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_findAllByUserId">findAllByUserId</a>(int $user_id, array $params = [])
-        
-                                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -1032,7 +1041,7 @@ called from within this class.</p></p>                </div>
                     <div class="method-item">
                     <h3 id="method_addErrorMessage">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_addErrorMessage">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 82</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 127</div>
         <code>                    void
     <strong>addErrorMessage</strong>(string $message)
         </code>
@@ -1076,7 +1085,7 @@ array.</p></td>
                     <div class="method-item">
                     <h3 id="method_alpha">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_alpha">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 92</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 137</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>alpha</strong>()
         </code>
@@ -1109,7 +1118,7 @@ array.</p></td>
                     <div class="method-item">
                     <h3 id="method_alphaNumeric">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_alphaNumeric">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 106</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 151</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>alphaNumeric</strong>()
         </code>
@@ -1142,7 +1151,7 @@ array.</p></td>
                     <div class="method-item">
                     <h3 id="method_between">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_between">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 124</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 169</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>between</strong>(array $range)
         </code>
@@ -1195,7 +1204,7 @@ position 1 is max.</p></td>
                     <div class="method-item">
                     <h3 id="method_classExists">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_classExists">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 149</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 194</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>classExists</strong>(<abbr title="Core\Traits\string|array">string|array</abbr> $namespace)
         </code>
@@ -1239,7 +1248,7 @@ element with string for the namespace.</p></td>
                     <div class="method-item">
                     <h3 id="method_colonNotation">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_colonNotation">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 164</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 209</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>colonNotation</strong>()
         </code>
@@ -1272,7 +1281,7 @@ element with string for the namespace.</p></td>
                     <div class="method-item">
                     <h3 id="method_compositeFieldValidation">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_compositeFieldValidation">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 186</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 231</div>
         <code>                    void
     <strong>compositeFieldValidation</strong>(<abbr title="Core\Traits\array|string">array|string</abbr> $additionalFieldData, array $conditions, array $bind)
         </code>
@@ -1327,7 +1336,7 @@ test.</p></td>
                     <div class="method-item">
                     <h3 id="method_different">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_different">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 209</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 254</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>different</strong>(mixed $data)
         </code>
@@ -1370,7 +1379,7 @@ test.</p></td>
                     <div class="method-item">
                     <h3 id="method_displayErrorMessages">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_displayErrorMessages">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 224</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 269</div>
         <code>                    void
     <strong>displayErrorMessages</strong>()
         </code>
@@ -1403,7 +1412,7 @@ test.</p></td>
                     <div class="method-item">
                     <h3 id="method_dotNotation">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_dotNotation">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 240</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 285</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>dotNotation</strong>()
         </code>
@@ -1436,7 +1445,7 @@ test.</p></td>
                     <div class="method-item">
                     <h3 id="method_email">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_email">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 257</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 302</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>email</strong>()
         </code>
@@ -1469,7 +1478,7 @@ test.</p></td>
                     <div class="method-item">
                     <h3 id="method_fieldName">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_fieldName">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 272</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 317</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>fieldName</strong>(<abbr title="Core\Traits\string|array">string|array</abbr> $fieldName)
         </code>
@@ -1512,7 +1521,7 @@ test.</p></td>
                     <div class="method-item">
                     <h3 id="method_includeDeleted">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_includeDeleted">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 288</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 333</div>
         <code>                    void
     <strong>includeDeleted</strong>(<abbr title="Core\Traits\bool|string">bool|string</abbr> $includeDeleted, array $queryParams)
         </code>
@@ -1563,7 +1572,7 @@ by reference.</p></td>
                     <div class="method-item">
                     <h3 id="method_integer">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_integer">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 299</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 344</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>integer</strong>()
         </code>
@@ -1596,7 +1605,7 @@ by reference.</p></td>
                     <div class="method-item">
                     <h3 id="method_ip">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_ip">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 313</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 358</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>ip</strong>()
         </code>
@@ -1629,7 +1638,7 @@ by reference.</p></td>
                     <div class="method-item">
                     <h3 id="method_isPortUsed">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_isPortUsed">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 331</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 376</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>isPortUsed</strong>(array $attributes)
         </code>
@@ -1675,7 +1684,7 @@ index 1 is timeout variable which is set to 3 if not provided.</p></td>
                     <div class="method-item">
                     <h3 id="method_list">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_list">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 360</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 405</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>list</strong>(array $attributes)
         </code>
@@ -1723,7 +1732,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_lower">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_lower">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 398</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 443</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>lower</strong>()
         </code>
@@ -1756,7 +1765,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_match">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_match">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 413</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 458</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>match</strong>(mixed $match)
         </code>
@@ -1799,7 +1808,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_max">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_max">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 428</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 474</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>max</strong>(<abbr title="Core\Traits\int|array">int|array</abbr> $maxRule)
         </code>
@@ -1842,7 +1851,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_min">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_min">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 444</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 490</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>min</strong>(<abbr title="Core\Traits\int|array">int|array</abbr> $minRule)
         </code>
@@ -1885,7 +1894,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_negative">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_negative">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 459</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 505</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>negative</strong>()
         </code>
@@ -1918,7 +1927,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_noSpecialChars">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_noSpecialChars">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 473</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 519</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>noSpecialChars</strong>()
         </code>
@@ -1951,7 +1960,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_notReservedKeyword">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_notReservedKeyword">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 487</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 533</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>notReservedKeyword</strong>()
         </code>
@@ -1982,9 +1991,42 @@ NamespaceToClass\Class:Method:Alias.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_notReservedSQLKeyword">
+        <div class="location">in <a href="../Core/Traits/HasValidators.html#method_notReservedSQLKeyword">
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 547</div>
+        <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
+    <strong>notReservedSQLKeyword</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Enforce rule when reserved SQL keywords should be avoided.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_number">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_number">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 501</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 561</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>number</strong>()
         </code>
@@ -2017,7 +2059,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_numeric">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_numeric">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 515</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 575</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>numeric</strong>()
         </code>
@@ -2050,7 +2092,7 @@ NamespaceToClass\Class:Method:Alias.</p></td>
                     <div class="method-item">
                     <h3 id="method_parseAttributes">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_parseAttributes">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 537</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 597</div>
         <code>        static    protected        void
     <strong>parseAttributes</strong>(object $object, array $validators)
         </code>
@@ -2110,7 +2152,7 @@ parameters must be separated with a &quot;:&quot;.</p></td>
                     <div class="method-item">
                     <h3 id="method_required">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_required">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 558</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 618</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>required</strong>()
         </code>
@@ -2141,43 +2183,9 @@ parameters must be separated with a &quot;:&quot;.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_resetAfterValidation">
-        <div class="location">in <a href="../Core/Traits/HasValidators.html#method_resetAfterValidation">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 572</div>
-        <code>            protected        void
-    <strong>resetAfterValidation</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Resets fieldname and validators instance variables so duplicate
-messages are not displayed in forms.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>void</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_positive">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_positive">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 582</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 631</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>positive</strong>()
         </code>
@@ -2210,7 +2218,7 @@ messages are not displayed in forms.</p></p>
                     <div class="method-item">
                     <h3 id="method_queue">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_queue">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 596</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 645</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>queue</strong>()
         </code>
@@ -2243,7 +2251,7 @@ messages are not displayed in forms.</p></p>
                     <div class="method-item">
                     <h3 id="method_setValidator">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_setValidator">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 621</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 670</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>setValidator</strong>(callable $validator)
         </code>
@@ -2286,7 +2294,7 @@ messages are not displayed in forms.</p></p>
                     <div class="method-item">
                     <h3 id="method_special">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_special">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 631</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 680</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>special</strong>()
         </code>
@@ -2319,7 +2327,7 @@ messages are not displayed in forms.</p></p>
                     <div class="method-item">
                     <h3 id="method_tel">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_tel">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 645</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 694</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>tel</strong>()
         </code>
@@ -2352,7 +2360,7 @@ messages are not displayed in forms.</p></p>
                     <div class="method-item">
                     <h3 id="method_testFilterNotation">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_testFilterNotation">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 669</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 718</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>testFilterNotation</strong>()
         </code>
@@ -2385,7 +2393,7 @@ messages are not displayed in forms.</p></p>
                     <div class="method-item">
                     <h3 id="method_tokens">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_tokens">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 690</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 739</div>
         <code>        static    protected        array
     <strong>tokens</strong>(string $data)
         </code>
@@ -2430,7 +2438,7 @@ separated string.</p></td>
                     <div class="method-item">
                     <h3 id="method_unique">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_unique">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 703</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 752</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>unique</strong>(array $attributes)
         </code>
@@ -2474,7 +2482,7 @@ additional fields.</p></td>
                     <div class="method-item">
                     <h3 id="method_upper">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_upper">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 747</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 796</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>upper</strong>()
         </code>
@@ -2507,7 +2515,7 @@ additional fields.</p></td>
                     <div class="method-item">
                     <h3 id="method_url">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_url">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 761</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 810</div>
         <code>                    <a href="../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>
     <strong>url</strong>()
         </code>
@@ -2540,7 +2548,7 @@ additional fields.</p></td>
                     <div class="method-item">
                     <h3 id="method_validate">
         <div class="location">in <a href="../Core/Traits/HasValidators.html#method_validate">
-<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 777</div>
+<abbr title="Core\Traits\HasValidators">HasValidators</abbr></a> at line 826</div>
         <code>            protected        bool
     <strong>validate</strong>(mixed $response)
         </code>
@@ -3101,8 +3109,56 @@ the table in our database.  The default value is an empty array.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_findAllByUserId">
+        <div class="location">at line 276</div>
+        <code>        static            array
+    <strong>findAllByUserId</strong>(int $user_id, array $params = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The user ID.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td><p>Used to build conditions for database query.  The
+default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The list of records that is returned from the database.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_findById">
-        <div class="location">at line 274</div>
+        <div class="location">at line 293</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findById</strong>(int $id)
         </code>
@@ -3144,7 +3200,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findByTable">
-        <div class="location">at line 290</div>
+        <div class="location">at line 309</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>findByTable</strong>(string $table, array $params = [])
         </code>
@@ -3193,56 +3249,8 @@ selecting from related tables).</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_findAllByUserId">
-        <div class="location">at line 306</div>
-        <code>        static            array
-    <strong>findAllByUserId</strong>(int $user_id, array $params = [])
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>int</td>
-                <td>$user_id</td>
-                <td><p>The user ID.</p></td>
-            </tr>
-                    <tr>
-                <td>array</td>
-                <td>$params</td>
-                <td><p>Used to build conditions for database query.  The
-default value is an empty array.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>array</td>
-            <td><p>The list of records that is returned from the database.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_findFirst">
-        <div class="location">at line 324</div>
+        <div class="location">at line 325</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findFirst</strong>(array $params = [])
         </code>
@@ -3285,7 +3293,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findTotal">
-        <div class="location">at line 339</div>
+        <div class="location">at line 340</div>
         <code>        static            int
     <strong>findTotal</strong>(array $params = [])
         </code>
@@ -3329,7 +3337,7 @@ the table in our database.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_insert">
-        <div class="location">at line 354</div>
+        <div class="location">at line 355</div>
         <code>                    bool
     <strong>insert</strong>(array $fields)
         </code>
@@ -3372,7 +3380,7 @@ use to populate a database record.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_isNew">
-        <div class="location">at line 366</div>
+        <div class="location">at line 367</div>
         <code>                    bool
     <strong>isNew</strong>()
         </code>
@@ -3405,7 +3413,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
-        <div class="location">at line 375</div>
+        <div class="location">at line 376</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -3437,7 +3445,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
-        <div class="location">at line 383</div>
+        <div class="location">at line 384</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -3479,7 +3487,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_query">
-        <div class="location">at line 398</div>
+        <div class="location">at line 399</div>
         <code>                    <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -3527,7 +3535,7 @@ The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 420</div>
+        <div class="location">at line 421</div>
         <code>                    void
     <strong>runValidation</strong>(<abbr title="Core\bool|string">bool|string</abbr> $param, array $validators = [], string|null $fieldName = null)
         </code>
@@ -3589,7 +3597,7 @@ error message.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_save">
-        <div class="location">at line 443</div>
+        <div class="location">at line 444</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -3623,7 +3631,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
-        <div class="location">at line 484</div>
+        <div class="location">at line 485</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -3666,7 +3674,7 @@ delete.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 513</div>
+        <div class="location">at line 514</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -3710,7 +3718,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
-        <div class="location">at line 543</div>
+        <div class="location">at line 544</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -3771,7 +3779,7 @@ Supports:</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
-        <div class="location">at line 553</div>
+        <div class="location">at line 554</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -3804,7 +3812,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 564</div>
+        <div class="location">at line 565</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
