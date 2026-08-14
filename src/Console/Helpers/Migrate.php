@@ -13,7 +13,6 @@ use Core\Lib\Database\Migration;
 use Console\Helpers\MigrationStatus;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
 
 /**
  * Helper class for commands related to performing migrations.
@@ -93,123 +92,6 @@ class Migrate extends Console {
             console_error('Error dropping tables: ' . $e->getMessage());
             return Command::FAILURE;
         }
-    }
-
-    
-
-    /**
-     * Generates migration for acl table.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function generateACLTableMigration(): int {
-        $path = self::MIGRATIONS_PATH."MDT20240808232014CreateAclTable.php";
-        return Tools::writeFile(
-            $path,
-            MigrationStubs::aclTableTemplate(),
-            'ACL table migration'
-        );
-    }
-
-    /**
-     * Generates all migrations.
-     *
-     * @return int Command::SUCCESS
-     */
-    public static function generateAllMigrations(): int {
-        self::generateMigrationsTableMigration();
-        self::generateUsersTableMigration();
-        self::generateACLTableMigration();
-        self::generateProfileImagesTableMigration();
-        self::generateUserSessionsTableMigration();
-        self::generateEmailAttachmentsTableMigration();
-        return Command::SUCCESS;
-    }
-    
-    /**
-     * Generates migration for email_attachments table.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function generateEmailAttachmentsTableMigration(): int {
-        $path = self::MIGRATIONS_PATH."MDT20250621195401CreateEmailAttachmentsTable.php";
-        return Tools::writeFile(
-            $path,
-            MigrationStubs::emailAttachmentsTableTemplate(),
-            'Email Attachments table migration'
-        );
-    }
-
-    /**
-     * Generates migration by name.
-     *
-     * @param InputInterface $input The Symfony InputInterface object.
-     * @return int Command::SUCCESS
-     */
-    public static function generateMigrationByName(InputInterface $input): int {
-        if($input->getOption('migrations')) self::generateMigrationsTableMigration();
-        if($input->getOption('users')) self::generateUsersTableMigration();
-        if($input->getOption('acl')) self::generateACLTableMigration();
-        if($input->getOption('profile_images')) self::generateProfileImagesTableMigration();
-        if($input->getOption('user_sessions')) self::generateUserSessionsTableMigration();
-        if($input->getOption('email_attachments')) self::generateEmailAttachmentsTableMigration();
-        return Command::SUCCESS;
-    }
-
-    /**
-     * Generates migration for migration table.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function generateMigrationsTableMigration(): int {
-        $path = self::MIGRATIONS_PATH."MDT20240805010123CreateMigrationTable.php";
-        return Tools::writeFile(
-            $path,
-            MigrationStubs::migrationTableTemplate(),
-            'Migrations table migration'
-        );
-    }
-
-    /**
-     * Generates migration for profile_images table.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function generateProfileImagesTableMigration(): int {
-        $path = self::MIGRATIONS_PATH."MDT20240821210722CreateProfileImagesTable.php";
-        return Tools::writeFile(
-            $path,
-            MigrationStubs::profileImagesTableTemplate(),
-            'Profile Images table migration'
-        );
-    }
-
-    /**
-     * Generates migration for user_sessions table.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function generateUserSessionsTableMigration(): int {
-        $path = self::MIGRATIONS_PATH."MDT20241118175443CreateUserSessionsTable.php";
-        return Tools::writeFile(
-            $path,
-            MigrationStubs::userSessionsTableTemplate(),
-            'User Sessions table migration'
-        );
-    }
-
-    /**
-     * Generates migration for users table.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function generateUsersTableMigration(): int {
-        $path = self::MIGRATIONS_PATH."MDT20240805010157CreateUsersTable.php";
-        return Tools::writeFile(
-            $path,
-            MigrationStubs::usersTableTemplate(),
-            'Users table migration'
-        );
     }
 
     /**

@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\ConsoleCommand;
 use Console\Helpers\Migrate;
+use Console\Helpers\MigrationBuilder;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -68,10 +69,10 @@ class RestoreMigrationsCommand extends ConsoleCommand {
          
         foreach($tables as $table) {
             if($this->hasOption($table) && $this->getOption($table)) {
-                return Migrate::generateMigrationByName($this->input);
+                return MigrationBuilder::generateMigrationByName($this->input);
             }
         }
         
-        return Migrate::generateAllMigrations();
+        return MigrationBuilder::generateAllMigrations();
     }  
 }
