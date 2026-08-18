@@ -90,7 +90,7 @@ use Core\Helper;
     <ul class="navbar-nav me-auto">
       <?= Helper::buildMenuListItems(\$menu); ?>
     </ul>
-    <ul class="navbar-nav me-2 align-items-center"> <!-- Align items vertically -->
+    <ul class="navbar-nav me-2"> <!-- Align items vertically -->
       <?= Helper::buildMenuListItems(\$userMenu, "dropdown-menu-end"); ?>
       <li class="nav-item">
         <a class="nav-link p-0" href="<?=route('profile')?>">
