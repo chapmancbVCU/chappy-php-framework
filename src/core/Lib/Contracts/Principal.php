@@ -7,7 +7,7 @@ interface Principal {
     public function getAuthIdentifier();
     public function getAuthPasswordName(): ?string;
     public function getAuthPassword(): ?string;
-    public function getRememberMeToken(): ?string;
-    public function setRememberMeToken(string $value): void;
-    public function getRememberMeTokenName(): ?string;
+    public function getRememberToken(): ?string;
+    public function setRememberToken(string $value): void;
+    public function getRememberTokenName(): ?string;
 }
