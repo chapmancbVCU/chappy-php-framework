@@ -4,6 +4,6 @@ namespace Core\Lib\Contracts;
 
 interface Hasher {
     public function make(string $value): string;
-    public function verify(string $value, string $hashed): bool;
     public function needsRehash(string $hashed): bool;
+    public function verify(string $value, string $hashed): bool;
 }
