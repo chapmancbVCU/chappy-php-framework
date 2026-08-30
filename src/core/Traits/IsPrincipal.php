@@ -24,7 +24,7 @@ trait IsPrincipal {
     }
 
     public function getRememberToken(): ?string {
-        $name = $this->{$this->getAuthIdentifierName()};
+        $name = $this->getRememberTokenName();
         return !empty($name) ? ($this->{$name} ?? null) : null;
     }
 
