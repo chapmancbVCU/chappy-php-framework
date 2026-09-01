@@ -6,6 +6,7 @@ use Core\Input;
 use Core\Cookie;
 use Core\Session;
 use App\Models\Users;
+use Core\Lib\Auth\Auth;
 use Core\Models\Login;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Str;
@@ -35,10 +36,7 @@ class AuthService {
      * logged in user from users table.
      */
     public static function currentUser(): Users|false|null {
-        if(!isset(Users::$currentLoggedInUser) && Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
-            Users::$currentLoggedInUser = Users::findById((int)Session::get(Env::get('CURRENT_USER_SESSION_NAME')));
-        }
-        return Users::$currentLoggedInUser;
+        return Auth::user();
     }
 
     /**
