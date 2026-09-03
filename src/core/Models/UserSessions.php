@@ -61,9 +61,11 @@ final class UserSessions extends Model {
     public static function getFromCookie() {
         $userSession = null;
         if(Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
+            $token  = Cookie::get(Env::get('REMEMBER_ME_COOKIE_NAME'));
+            $hashed = \Core\Lib\Auth\RememberToken::hash((string)$token);
             $userSession = self::findFirst([
-              'conditions' => "user_agent = ? AND session = ?",
-              'bind' => [Session::uagent_no_version(), Cookie::get(Env::get('REMEMBER_ME_COOKIE_NAME'))]
+                'conditions' => "user_agent = ? AND session = ?",
+                'bind' => [Session::uagent_no_version(), $hashed]
             ]);
         }
         return $userSession;
