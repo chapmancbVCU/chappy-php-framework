@@ -149,15 +149,24 @@ class AuthService {
         info("User {$user->id} ({$user->username}) logged in successfully.");
         
         if($rememberMe) {
-            $hash = Str::md5(uniqid() . rand(0, 100));
+            $token      = bin2hex(random_bytes(32));   // 256-bit token — goes to the browser
+            $storedHash = hash('sha256', $token);       // only the hash is persisted
             $user_agent = Session::uagent_no_version();
-            Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, (int)Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000));
-            $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$loginUser->id];
-            DB::getInstance()->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$loginUser->id, $user_agent]);
+
+            Cookie::set(
+                Env::get('REMEMBER_ME_COOKIE_NAME'),
+                $token,
+                (int)Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000)
+            );
+
+            DB::getInstance()->query(
+                "DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?",
+                [$loginUser->id, $user_agent]
+            );
+
             $us = new UserSessions();
-            $us->assign($fields);
+            $us->assign(['session' => $storedHash, 'user_agent' => $user_agent, 'user_id' => $loginUser->id]);
             $us->save();
-            info("Remember Me token set for user {$user->id} ({$user->username}).");
         }
     }
 
