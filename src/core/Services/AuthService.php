@@ -213,11 +213,11 @@ class AuthService {
         if($userSession) {
             $userSession->delete();
         }
-        Session::delete(Env::get('CURRENT_USER_SESSION_NAME'));
+      
         if(Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
             Cookie::delete(Env::get('REMEMBER_ME_COOKIE_NAME'));
         }
-        $user::$currentLoggedInUser = null;
+        Auth::guard()->logout();
         info("User {$user->id} ({$user->username}) logged out.");
         return true;
     }
