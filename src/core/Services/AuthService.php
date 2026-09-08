@@ -145,29 +145,8 @@ class AuthService {
             warning("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).");
         }
 
-        Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $loginUser->id);
+        Auth::guard()->login($loginUser, $rememberMe);
         info("User {$user->id} ({$user->username}) logged in successfully.");
-        
-        if($rememberMe) {
-            $token      = bin2hex(random_bytes(32));   // 256-bit token — goes to the browser
-            $storedHash = hash('sha256', $token);       // only the hash is persisted
-            $user_agent = Session::uagent_no_version();
-
-            Cookie::set(
-                Env::get('REMEMBER_ME_COOKIE_NAME'),
-                $token,
-                (int)Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000)
-            );
-
-            DB::getInstance()->query(
-                "DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?",
-                [$loginUser->id, $user_agent]
-            );
-
-            $us = new UserSessions();
-            $us->assign(['session' => $storedHash, 'user_agent' => $user_agent, 'user_id' => $loginUser->id]);
-            $us->save();
-        }
     }
 
     /**
@@ -209,14 +188,6 @@ class AuthService {
      * @return bool Returns true if operation is successful.
      */
     public static function logoutUser(Users $user): bool {
-        $userSession = UserSessions::getFromCookie();
-        if($userSession) {
-            $userSession->delete();
-        }
-      
-        if(Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
-            Cookie::delete(Env::get('REMEMBER_ME_COOKIE_NAME'));
-        }
         Auth::guard()->logout();
         info("User {$user->id} ({$user->username}) logged out.");
         return true;

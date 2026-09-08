@@ -13,10 +13,16 @@ final class SessionGuard implements Guard {
     private string $sessionKey;
     private ?Principal $user = null;
     private bool $resolved = false;
+    private ?RememberMeStore $remember;
 
-    public function __construct(UserProvider $provider, ?string $sessionKey = null) {
+    public function __construct(
+        UserProvider $provider, 
+        ?string $sessionKey = null,
+        ?RememberMeStore $remember = null
+    ) {
         $this->provider = $provider;
         $this->sessionKey = $sessionKey ?? env('CURRENT_USER_SESSION_NAME');
+        $this->remember = $remember ?? new RememberMeStore();
     }
 
     public function check(): bool {
@@ -47,6 +53,7 @@ final class SessionGuard implements Guard {
         Session::set($this->sessionKey, $user->getAuthIdentifier());
         $this->user = $user;
         $this->resolved = true;
+        if($remember) $this->remember->persist($user);
     }
 
     public function loginUsingId($id): ?Principal{
@@ -56,6 +63,7 @@ final class SessionGuard implements Guard {
     }
 
     public function logout(): void {
+        $this->remember->forget();
         Session::delete($this->sessionKey);
         $this->user = null;
         $this->resolved = true;
