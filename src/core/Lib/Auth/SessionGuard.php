@@ -29,24 +29,9 @@ final class SessionGuard implements Guard {
         return $this->user() !== null;
     }
 
-    public function user(): ?Principal {
-        if($this->resolved) return $this->user;
-        $this->resolved = true;
-        
-        if(Session::exists($this->sessionKey)) {
-            $this->user = $this->provider->retrieveById(Session::get($this->sessionKey));
-        }
-        return $this->user;
-    }
-
     public function id() {
         $user = $this->user();
         return $user ? $user->getAuthIdentifier() : null;
-    }
-
-    public function validate(array $credentials): bool {
-        $user = $this->provider->retrieveByCredentials($credentials);
-        return $user !== null && $this->provider->validateCredentials($user, $credentials);
     }
 
     public function login(Principal $user, bool $remember = false): void {
@@ -67,5 +52,20 @@ final class SessionGuard implements Guard {
         Session::delete($this->sessionKey);
         $this->user = null;
         $this->resolved = true;
+    }
+
+    public function user(): ?Principal {
+        if($this->resolved) return $this->user;
+        $this->resolved = true;
+        
+        if(Session::exists($this->sessionKey)) {
+            $this->user = $this->provider->retrieveById(Session::get($this->sessionKey));
+        }
+        return $this->user;
+    }
+
+    public function validate(array $credentials): bool {
+        $user = $this->provider->retrieveByCredentials($credentials);
+        return $user !== null && $this->provider->validateCredentials($user, $credentials);
     }
 }
