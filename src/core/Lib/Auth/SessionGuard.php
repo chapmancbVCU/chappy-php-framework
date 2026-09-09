@@ -6,8 +6,11 @@ use Core\Lib\Contracts\Guard;
 use Core\Lib\Contracts\Principal;
 use Core\Lib\Contracts\UserProvider;
 use Core\Session;
-use Override;
 
+/**
+ * Session-backed guard. Owns "who is logged in right now" and delegates
+ * all storage to a UserProvider.
+ */
 final class SessionGuard implements Guard {
     private UserProvider $provider;
     private string $sessionKey;
@@ -54,6 +57,9 @@ final class SessionGuard implements Guard {
         $this->resolved = true;
     }
 
+    /**
+     * Resolves the current user from the session once, then caches it.
+     */
     public function user(): ?Principal {
         if($this->resolved) return $this->user;
         $this->resolved = true;
@@ -64,6 +70,9 @@ final class SessionGuard implements Guard {
         return $this->user;
     }
 
+    /**
+     * Checks credentials WITHOUT logging anyone in.
+     */
     public function validate(array $credentials): bool {
         $user = $this->provider->retrieveByCredentials($credentials);
         return $user !== null && $this->provider->validateCredentials($user, $credentials);

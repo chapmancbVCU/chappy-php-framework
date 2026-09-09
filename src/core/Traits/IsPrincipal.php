@@ -2,6 +2,13 @@
 declare(strict_types=1);
 namespace Core\Traits;
 
+/**
+ * Default implementation of the IsPrincipal contract, reading values
+ * off public model properties by their configured column names.
+ *
+ * To point a model at differently-named columns, OVERRIDE THE GETTER
+ * METHOD (not the property — see note below), e.g. getRememberTokenName().
+ */
 trait IsPrincipal {
     protected string $authIdentifierName = 'id';
     protected string $authPasswordName = 'password';

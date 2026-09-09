@@ -7,6 +7,9 @@ use Core\Lib\Contracts\Principal;
 use Core\Lib\Contracts\UserProvider;
 use App\Models\Users;
 
+/**
+ * Retrieves and validates Principals backed by the Users model.
+ */
 final class ModelUserProvider implements UserProvider {
     private Hasher $hasher;
 
