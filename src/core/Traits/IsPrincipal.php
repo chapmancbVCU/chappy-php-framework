@@ -15,13 +15,8 @@ trait IsPrincipal {
     protected ?string $rememberTokenName = 'remember_token';
 
     /**
-     * @return string The name of the primary identifier column.
-     */
-    public function getAuthIdentifierName(): string {
-        return $this->authIdentifierName;
-    }
-
-    /**
+     * Gets the value of the primary identifier.
+     * 
      * @return mixed The value of the primary identifier (e.g. id).
      */
     public function getAuthIdentifier() {
@@ -29,13 +24,17 @@ trait IsPrincipal {
     }
 
     /**
-     * @return string The name of the password column.
+     * Gets the name of the primary identifier column.
+     * 
+     * @return string The name of the primary identifier column.
      */
-    public function getAuthPasswordName(): string {
-        return $this->authPasswordName;
+    public function getAuthIdentifierName(): string {
+        return $this->authIdentifierName;
     }
 
     /**
+     * Gets the hashed password for this user.
+     * 
      * @return string|null The hashed password for this user.
      */
     public function getAuthPassword(): ?string {
@@ -43,6 +42,17 @@ trait IsPrincipal {
     }
 
     /**
+     * Gets the name of the password column.
+     * 
+     * @return string The name of the password column.
+     */
+    public function getAuthPasswordName(): string {
+        return $this->authPasswordName;
+    }
+
+    /**
+     * Gets the current remember-me token.
+     * 
      * @return string|null The current remember-me token, if any.
      */
     public function getRememberToken(): ?string {
@@ -51,19 +61,24 @@ trait IsPrincipal {
     }
 
     /**
+     * Gets the remember-me column name or null to disable the feature for 
+     * this model.
+     * 
+     * @return string|null The remember-me column name, or null to
+     * disable the feature for this model.
+     */
+    public function getRememberTokenName(): ?string {
+        return $this->rememberTokenName;
+    }
+
+    /**
+     * Sets token value to persist.
+     * 
      * @param string $value The token value to persist.
      * @return void
      */
     public function setRememberToken(string $value): void {
         $name = $this->getRememberTokenName();
         if(!empty($name)) $this->{$name} = $value;
-    }
-
-    /**
-     * @return string|null The remember-me column name, or null to
-     * disable the feature for this model.
-     */
-    public function getRememberTokenName(): ?string {
-        return $this->rememberTokenName;
     }
 }
