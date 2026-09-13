@@ -4,12 +4,29 @@ namespace Core\Traits;
 
 /**
  * Default implementation of the IsPrincipal contract, reading values
- * off public model properties by their configured column names.
+ * off public model properties by their configured column names.  A model
+ * satisfies the contract by using this trait and declaring properties
+ * matching the configured column names; the identifier, password, and
+ * remember-me token are then resolved dynamically from those properties.
  *
  * To point a model at differently-named columns, OVERRIDE THE GETTER
  * METHOD (not the property — see note below), e.g. getRememberTokenName().
+ *
+ * NOTE: The name properties below cannot be safely overridden by
+ * redeclaration in a using class — PHP requires a redeclared trait
+ * property to keep an identical default, so a differing value is a fatal
+ * error.  Override the corresponding getter instead.  Returning null from
+ * getRememberTokenName() disables remember-me for the model (the token
+ * methods become no-ops), which is how a model whose remember-me state
+ * lives outside the table opts out.
  */
 trait IsPrincipal {
+    /**
+     * The name of the column holding the principal's unique identifier.
+     * Override getAuthIdentifierName() to change this per model.
+     *
+     * @var string
+     */
     protected string $authIdentifierName = 'id';
     protected string $authPasswordName = 'password';
     protected ?string $rememberTokenName = 'remember_token';
