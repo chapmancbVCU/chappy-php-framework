@@ -28,7 +28,22 @@ trait IsPrincipal {
      * @var string
      */
     protected string $authIdentifierName = 'id';
+
+    /**
+     * The name of the column holding the principal's hashed password.
+     * Override getAuthPasswordName() to change this per model.
+     *
+     * @var string
+     */
     protected string $authPasswordName = 'password';
+
+    /**
+     * The name of the column holding the remember-me token, or null to
+     * disable remember-me for the model.  Override getRememberTokenName()
+     * to change this per model.
+     *
+     * @var string|null
+     */
     protected ?string $rememberTokenName = 'remember_token';
 
     /**
