@@ -4,6 +4,13 @@ namespace Core\Lib\Auth;
 
 use Core\Lib\Contracts\Principal;
 
+/**
+ * Immutable result of a login attempt.  Carries the outcome as a status
+ * constant plus, where relevant, the user the attempt concerned.  Lets the
+ * login policy (LoginService) decide the outcome while the caller
+ * (controller) owns the resulting HTTP behavior — redirects, flash
+ * messages — rather than those being fired from inside the service.
+ */
 final class LoginResult {
     /** Credentials were valid and the user was logged in. */
     public const SUCCESS = 'success';
