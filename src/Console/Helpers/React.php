@@ -43,6 +43,7 @@ class React extends Console {
 
         Tools::writeFile($path.'Login.jsx', ReactStubs::authLogin(), 'auth/Login.jsx');
         Tools::writeFile($path.'Register.jsx', ReactStubs::authRegister(), 'auth/Register.jsx');
+        Tools::writeFile($path.'ResetPassword.jsx', ReactStubs::authResetPassword(), 'auth/ResetPassword.jsx');
         return Command::SUCCESS;
     }
 
