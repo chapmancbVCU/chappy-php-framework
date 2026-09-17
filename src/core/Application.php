@@ -3,6 +3,10 @@ declare(strict_types=1);
 namespace Core;
 use Core\Lib\Utilities\Env;
 
+use Core\ErrorHandler;
+use Core\Lib\Logging\Logger;
+use Core\Router;
+use Core\SessionManager;
 /**
  * The Application class supports basic functional needs of the application.
  */
@@ -14,6 +18,25 @@ class Application {
         $this->_set_reporting();
     }
 
+    public function appStart() {
+        // Start PHP session
+        session_start();
+
+        // // Set up error & exception handling
+        ErrorHandler::initialize();
+
+        // // Start session & handle auto-login from Remember Me cookie
+        SessionManager::initialize();
+
+        // // Perform routing.
+        try {
+            Router::route();
+        } catch (\Exception $e) {
+            Logger::log("Unhandled Exception: " . $e->getMessage(), Logger::ERROR);
+            throw $e; // Let Whoops handle it
+        }
+    }
+    
     /**
      * Manages the displaying of error messages and other reporting for this 
      * application.

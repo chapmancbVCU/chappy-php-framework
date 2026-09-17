@@ -5,11 +5,6 @@ use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
 use Core\Lib\Events\EventManager;
 use Core\Lib\Notifications\NotificationManager;
-use Core\Application;
-use Core\ErrorHandler;
-use Core\Lib\Logging\Logger;
-use Core\Router;
-use Core\SessionManager;
 
 // Define CHAPPY_ROOT (framework root)
 if (!defined('CHAPPY_ROOT')) {
@@ -43,23 +38,3 @@ Config::load(CHAPPY_BASE_PATH . '/config');
 // Initialize Events/Listeners and notifications
 EventManager::boot();
 NotificationManager::boot();
-
-// define('DS', DIRECTORY_SEPARATOR);
-// define('ROOT', dirname(__FILE__));
-
-// Start PHP session
-session_start();
-
-// // Set up error & exception handling
-ErrorHandler::initialize();
-
-// // Start session & handle auto-login from Remember Me cookie
-SessionManager::initialize();
-
-// // Perform routing.
-try {
-    Router::route();
-} catch (Exception $e) {
-    Logger::log("Unhandled Exception: " . $e->getMessage(), Logger::ERROR);
-    throw $e; // Let Whoops handle it
-}
