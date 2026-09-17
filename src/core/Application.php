@@ -18,7 +18,7 @@ class Application {
         $this->_set_reporting();
     }
 
-    public function appStart() {
+    public static function appStart() {
         // Start PHP session
         session_start();
 
@@ -36,7 +36,7 @@ class Application {
             throw $e; // Let Whoops handle it
         }
     }
-    
+
     /**
      * Manages the displaying of error messages and other reporting for this 
      * application.
