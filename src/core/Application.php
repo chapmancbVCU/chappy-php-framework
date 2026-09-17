@@ -18,6 +18,11 @@ class Application {
         $this->_set_reporting();
     }
 
+    /**
+     * Initializes ErrorHandler and SessionManager and starts execution of the app.
+     *
+     * @return void
+     */
     public static function appStart() {
         // Start PHP session
         session_start();
