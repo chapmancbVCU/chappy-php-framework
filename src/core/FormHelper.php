@@ -253,11 +253,11 @@ class FormHelper {
         $errors->each(function($error) use (&$html, &$logError) {
             if (is_array($error)) {
                 foreach ($error as $e) {
-                    $html .= '<li class="text-danger">'.htmlspecialchars($e).'</li>';
+                    $html .= '<li class="text-danger">'.nl2br(htmlspecialchars($e)).'</li>';
                     $logError .= $e . ' ';
                 }
             } else {
-                $html .= '<li class="text-danger">'.htmlspecialchars($error).'</li>';
+                $html .= '<li class="text-danger">'.nl2br(htmlspecialchars($error)).'</li>';
                 $logError .= $error . ' ';
             }
         });

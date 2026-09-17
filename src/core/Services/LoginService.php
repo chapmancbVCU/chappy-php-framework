@@ -41,12 +41,13 @@ final class LoginService {
 
         // Invalid credentials — unknown user or wrong password.
         if(!$user || !password_verify($request->get('password'), $user->password)) {
+            warning('User failed to log in');
+            $message = "There is an error with your username or password";
+            $loginModel->addErrorMessage($message);
             if($user) {
                 return self::registerFailedAttempt($user, $loginModel, $mailer);
             }
-
-            $loginModel->addErrorMessage('There is an error with your username or password');
-            warning('User failed to log in');
+            
             return LoginResult::invalid();
         }
 
