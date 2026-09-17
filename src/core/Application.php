@@ -38,7 +38,15 @@ class Application {
         }
     }
 
+    /**
+     * The main function of your application.
+     *
+     * @return void
+     */
     public static function appStart() {
+        // Define path related constants.
+        define('DS', DIRECTORY_SEPARATOR);
+        define('ROOT', dirname(__FILE__));
         // Start PHP session
         session_start();
 
