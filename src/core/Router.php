@@ -59,7 +59,7 @@ class Router {
             if(Arr::isArray($value)) {
                 $subMenu = [];
                 foreach($value as $k => $v) {
-                    /* Check if item is a separator and continue.  Don't what 
+                    /* Check if item is a separator and continue.  Don't want 
                      * to add separator as a link. */
                     if($k == 'separator' && !empty($subMenu)) {
                         $subMenu[$k] = '';
