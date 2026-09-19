@@ -155,9 +155,7 @@ if(!function_exists('color')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type color 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type color.
      */
     function color(
         string $label,
@@ -194,9 +192,7 @@ if(!function_exists('confirm')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type password 
-     * confirm with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type password.
      */
     function confirm(
         string $label,
@@ -245,9 +241,7 @@ if(!function_exists('dateSelector')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type dateSelector 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type date.
      */
     function dateSelector(
         string $label,
@@ -285,9 +279,7 @@ if(!function_exists('dateTimeLocal')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type dateTimeLocal 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type datetime-local.
      */
     function dateTimeLocal(
         string $label,
@@ -339,9 +331,7 @@ if(!function_exists('email')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type email 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type email.
      */
     function email(
         string $label, 
@@ -392,9 +382,7 @@ if(!function_exists('interval')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type interval 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type range.
      */
     function interval(
         string $label,
@@ -475,9 +463,7 @@ if(!function_exists('month')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type month 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type month.
      */
     function month(
         string $label,
@@ -529,9 +515,7 @@ if(!function_exists('password')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type password 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type password.
      */
     function password(
         string $label,
@@ -609,9 +593,7 @@ if(!function_exists('search')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type search 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type search.
      */
     function search(
         string $label,
@@ -727,9 +709,7 @@ if(!function_exists('tel')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type tel 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type tel.
      */
     function tel(
         string $label,
@@ -767,7 +747,7 @@ if(!function_exists('text')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string A surrounding div and the text element.
+     * @return string A surrounding div and the input element of type text.
      */
     function text(
         string $label,
@@ -806,7 +786,7 @@ if(!function_exists('textarea')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string A surrounding div and the textarea element.
+     * @return string A surrounding div and the input element of type textarea.
      */
     function textarea(
         string $label, 
@@ -844,7 +824,7 @@ if(!function_exists('timeSelector')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string A surrounding div and the time element.
+     * @return string A surrounding div and the input element of type time.
      */
     function timeSelector(
         string $label,
@@ -883,7 +863,7 @@ if(!function_exists('url')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string A surrounding div and the url element.
+     * @return string A surrounding div and the input element of type url.
      */
     function url(
         string $label, 
@@ -921,9 +901,7 @@ if(!function_exists('week')) {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
-     * @return string The HTML div element surrounding an input of type week 
-     * with configuration and values set based on parameters entered during 
-     * function call.
+     * @return string A surrounding div and the input element of type week.
      */
     function week(
         string $label, 
