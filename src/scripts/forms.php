@@ -796,8 +796,7 @@ if(!function_exists('textarea')) {
         array $divAttrs=[], 
         array $errors=[]
     ): string {
-        return FormHelper::inputBlock(
-            'textarea',
+        return FormHelper::textareaBlock(
             $label, 
             $name, 
             $value, 
