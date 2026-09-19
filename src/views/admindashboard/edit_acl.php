@@ -7,7 +7,7 @@
         <form class="form" action="" method="post">
             <?= csrf() ?>
             <?= errorBag($this->displayErrors) ?>
-            <?= input('text', "ACL", 'acl', $this->acl->acl, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
+            <?= text("ACL", 'acl', $this->acl->acl, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <div class="col-md-12 text-end pt-3">
                 <a href="<?=route('admindashboard.manageACLs')?>" class="btn btn-default">Cancel</a>
                 <?= submit('Save',['class'=>'btn btn-primary']) ?>
