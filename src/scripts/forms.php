@@ -323,7 +323,7 @@ if(!function_exists('interval')) {
         array $errors = []
     ): string {
         return FormHelper::inputBlock(
-            'interval',
+            'range',
             $label,
             $name,
             $value,
