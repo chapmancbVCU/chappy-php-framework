@@ -419,7 +419,8 @@ if(!function_exists('tel')) {
         array $divAttrs = [],
         array $errors = []
     ): string {
-        return FormHelper::telBlock(
+        return FormHelper::inputBlock(
+            'tel',
             $label,
             $name,
             $value,

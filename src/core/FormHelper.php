@@ -293,7 +293,6 @@ class FormHelper {
      * @return string A surrounding div and the input element of type email.
      * 
      * @deprecated 4.0.0 Use email() instead. Removal planned for 5.0.0.
-     * @throws FrameworkException
      */
     #[\Deprecated(message: "use email() instead. Removal planned for 5.0.0", since: "4.0.0")]
     public static function emailBlock(
@@ -669,10 +668,13 @@ class FormHelper {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
+     * 
+     * @deprecated 4.0.0 Use tel() instead. Removal planned for 5.0.0.
      * @return string The HTML div element surrounding an input of type tel 
      * with configuration and values set based on parameters entered during 
      * function call.
      */
+    #[\Deprecated(message: "use email() instead. Removal planned for 5.0.0", since: "4.0.0")]
     public static function telBlock(
         string $label,
         string $name,
@@ -681,18 +683,16 @@ class FormHelper {
         array $divAttrs = [],
         array $errors = []
     ): string {
-        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
-        $inputString = self::stringifyAttrs($inputAttrs);
-        $divString = self::stringifyAttrs($divAttrs);
-
-        // Build field
-        $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="' . $name . '">' . $label . '</label>';
-        $html .= '<input type="tel" id="' . $name . '" name="' . $name . '" value="' . $value . '" ' . $inputString . ' />';
-        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
-        $html .= '</div>';
-
-        return $html;
+        
+        return self::inputBlock(
+            'tel',
+            $label,
+            $name,
+            $value,
+            $inputAttrs,
+            $divAttrs,
+            $errors
+        );
     }
 
     /**
