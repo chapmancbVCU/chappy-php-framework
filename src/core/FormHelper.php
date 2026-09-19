@@ -674,7 +674,7 @@ class FormHelper {
      * with configuration and values set based on parameters entered during 
      * function call.
      */
-    #[\Deprecated(message: "use email() instead. Removal planned for 5.0.0", since: "4.0.0")]
+    #[\Deprecated(message: "use tel() instead. Removal planned for 5.0.0", since: "4.0.0")]
     public static function telBlock(
         string $label,
         string $name,
@@ -720,8 +720,11 @@ class FormHelper {
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
+     * 
+     * @deprecated 4.0.0 Use textarea() instead. Removal planned for 5.0.0.
      * @return string A surrounding div and the textarea element.
      */
+    #[\Deprecated(message: "use textarea() instead. Removal planned for 5.0.0", since: "4.0.0")]
     public static function textareaBlock(
         string $label, 
         string $name, 
@@ -730,15 +733,14 @@ class FormHelper {
         array $divAttrs=[], 
         array $errors=[]
     ): string {
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
-        $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs($inputAttrs);
-        $id = Str::replace('[]','',$name);
-        $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$id.'" class="form-label">' . $label . '</label>';
-        $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
-        $html .= '</div>';
-        return $html;
+        return self::inputBlock(
+            'textarea',
+            $label, 
+            $name, 
+            $value, 
+            $inputAttrs, 
+            $divAttrs, 
+            $errors
+        );
     }
 }
