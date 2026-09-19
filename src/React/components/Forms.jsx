@@ -234,7 +234,7 @@ export const DisplayErrors = ({errors}) => {
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type email.
  */
-const Email = ({
+export const Email = ({
     label,
     name,
     value = '',
@@ -242,18 +242,19 @@ const Email = ({
     divAttrs={},
     errors=[],
 }) => {
-    const divString = normalizeAttrs(divAttrs);
-    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
-    const inputString = normalizeAttrs(inputAttrs);
-
     return (
-        <div {...divString}>
-            <label className="form-label" htmlFor={name}>{label}</label>
-            <input type='email' id={name} name={name} defaultValue={value} {...inputString}/>
-            <FieldErrors errors={errors} name={name} />
-        </div>
+        <Input 
+            type="email"
+            label={label}
+            name={name}
+            value={value}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
     )
 }
+
 /**
  * Renders an error message for a particular form field.
  * @property {object} errors The error object.
@@ -615,17 +616,17 @@ export const Tel = ({
     divAttrs={},
     errors=[]
 }) => {
-    const divString = normalizeAttrs(divAttrs);
-    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
-    const inputString = normalizeAttrs(inputAttrs);
-
     return (
-        <div {...divString}>
-            <label className="form-label" htmlFor={name}>{label}</label>
-            <input type="tel" id={name} name={name} defaultValue={value} {...inputString} />
-            <FieldErrors errors={errors} name={name} />
-        </div>
-    );
+        <Input 
+            type="tel"
+            label={label}
+            name={name}
+            value={value}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
 }
 
 /**
@@ -658,17 +659,16 @@ export const TextArea = ({
     divAttrs={},
     errors=[]
 }) => {
-    const id = formatId(name);
-    const divString = normalizeAttrs(divAttrs);
-    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
-    const inputString = normalizeAttrs(inputAttrs);
-
     return (
-        <div {...divString}>
-            <label className='control-label' htmlFor={id}>{label}</label>
-            <textarea id={id} name={name} {...inputString} defaultValue={value}></textarea>
-            <FieldErrors errors={errors} name={name} />
-        </div>
+        <Input 
+            type="textarea"
+            label={label}
+            name={name}
+            value={value}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
     )
 }
 
