@@ -606,7 +606,8 @@ export const SubmitTag = ({label, inputAttrs={}}) => {
  * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  * @param {InputProps} param0 
- * @returns {HTMLDivElement}
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * tel.
  */
 export const Tel = ({
     label,
@@ -633,7 +634,7 @@ export const Tel = ({
  * Assists in the development of input of type text in forms.  It accepts parameters 
  * for setting  attribute tags in the form section.
  *
- * @typedef {Object} TextAreaProps
+ * @typedef {Object} Text
  * @property {string} label Sets the label for this input.
  * @property {string}  name Sets the value for the name, for, and id attributes 
  * for this input.
@@ -648,8 +649,9 @@ export const Tel = ({
  * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  *
- * @param {TextAreaProps} props
- * @returns {HTMLTextAreaElement} A surrounding div and the textarea element.
+ * @param {Text} props
+ * @returns {HTMLTextAreaElement} A surrounding div and the input element of type 
+ * text.
  */
 export const Text = ({
     label,
@@ -661,7 +663,7 @@ export const Text = ({
 }) => {
     return (
         <Input 
-            type="textarea"
+            type="text"
             label={label}
             name={name}
             value={value}
@@ -733,6 +735,7 @@ const Forms = {
     SubmitBlock,
     SubmitTag, 
     Tel,
+    Text,
     TextArea 
 };
 export default Forms;
