@@ -291,8 +291,11 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type email.
+     * 
+     * @deprecated 4.0.0 Use email() instead. Removal planned for 5.0.0.
      * @throws FrameworkException
      */
+    #[\Deprecated(message: "use email() instead. Removal planned for 5.0.0", since: "4.0.0")]
     public static function emailBlock(
         string $label, 
         string $name, 
