@@ -191,7 +191,8 @@ if(!function_exists('email')) {
         array $divAttrs = [], 
         array $errors = []
     ): string {
-        return FormHelper::emailBlock(
+        return FormHelper::inputBlock(
+            'email',
             $label, 
             $name, 
             $value, 
