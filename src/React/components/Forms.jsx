@@ -174,6 +174,51 @@ export const CheckBoxRightLabel = ({
         </div>
     );
 };
+
+/**
+ * Assists in the development of input of type text in forms.  It accepts parameters 
+ * for setting  attribute tags in the form section.
+ *
+ * @typedef {Object} Confirm
+ * @property {string} label Sets the label for this input.
+ * @property {string}  name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {Confirm} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * confirm.
+ */
+export const Confirm = ({
+    label,
+    value='',
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <Input 
+            type="password"
+            label={label}
+            name="confirm"
+            value={value}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+
 /**
  * Generates hidden component for csrf token.
  * @param {string} name The name for the csrf token. 
@@ -408,6 +453,7 @@ export const Password = ({
         />
     )
 }
+
 /**
  * Creates an input element of type radio with an accompanying label 
  * element.  Compatible with radio button groups.
@@ -765,6 +811,7 @@ const Forms = {
     Button,
     CheckBoxLeftLabel,
     CheckBoxRightLabel,
+    Confirm,
     CSRFInput,
     CSRFToken, 
     DisplayErrors, 
