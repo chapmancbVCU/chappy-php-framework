@@ -196,7 +196,7 @@ export const CheckBoxRightLabel = ({
  *
  * @param {Confirm} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
- * confirm.
+ * password for confirmation.
  */
 export const Confirm = ({
     label,
@@ -217,7 +217,6 @@ export const Confirm = ({
         />
     )
 }
-
 
 /**
  * Generates hidden component for csrf token.
@@ -569,6 +568,50 @@ const RichText = ({
 };
 
 /**
+ * Assists in the development of input of type search in forms.  It accepts parameters 
+ * for setting  attribute tags in the form section.
+ *
+ * @typedef {Object} Search
+ * @property {string} label Sets the label for this input.
+ * @property {string}  name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {Search} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * search.
+ */
+export const Search = ({
+    label,
+    name,
+    value='',
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <Input 
+            type="search"
+            label={label}
+            name={name}
+            value={value}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
  * Renders a select element with a list of options.
  * @property {string} label Sets the label for this input.
  * @property {string}  name Sets the value for the name, for, and id attributes 
@@ -822,6 +865,7 @@ const Forms = {
     Password,
     Radio,
     RichText,
+    Search,
     Select,
     SubmitBlock,
     SubmitTag, 
