@@ -302,21 +302,15 @@ class FormHelper {
         array $errors = []
     ): string {
 
-        // Make sure placeholder is not an attribute.
-        if(arr::exists($inputAttrs, 'placeholder')) {
-            throw new FrameworkException('Can not accept placeholder attribute found in your $inputString array.');
-        }
-
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
-        $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs(($inputAttrs));
-        
-        $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$name.'">'.$label.'</label>';
-        $html .= '<input type="email" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' placeholder="joe@example.com" />';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
-        $html .= '</div>';
-        return $html;
+        return self::inputBlock(
+            'email', 
+            $label, 
+            $name, 
+            $value, 
+            $inputAttrs, 
+            $divAttrs,
+            $errors
+        );
     }
 
     /**
