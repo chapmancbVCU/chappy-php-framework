@@ -446,12 +446,12 @@ export const Input = ({
  * @property {string} label Sets the label for this input.
  * @property {string} name Sets the value for the name, for, and id attributes 
  * for this input.
+ * @property {number} min The minimum value for the interval.
+ * @property {number} max The maximum value for the interval.
  * @property {string} value The value we want to set.  We can use this to set 
  * the value of the value attribute during form validation.  Default value 
  * is the empty string.  It can be set with values during form validation 
  * and forms used for editing records.
- * @property {number} min The minimum value for the interval.
- * @property {number} max The maximum value for the interval.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
  * @property {object} divAttrs The values used to set the class and other 
@@ -466,9 +466,9 @@ export const Input = ({
 export const Interval = ({
     label,
     name,
-    value='',
     min,
     max,
+    value='',
     inputAttrs={},
     divAttrs={},
     errors=[]
