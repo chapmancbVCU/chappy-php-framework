@@ -397,6 +397,11 @@ if(!function_exists('fileSelector')) {
     /**
      * Renders an HTML div element that surrounds an input of type file.
      *
+     * Multiple File Uploads:
+     * Use the $multiple flag to enable multiple file uploads.  Name attribute 
+     * will be formatted correctly and the multiple attribute will be added to 
+     * the input element.
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
