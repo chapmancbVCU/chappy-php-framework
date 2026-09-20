@@ -502,6 +502,58 @@ const FieldErrors = ({ errors = {}, name }) => {
 };
 
 /**
+ * Renders an HTML div element that surrounds an input of type file.
+ * 
+ * Multiple File Uploads:
+ * Use the $multiple flag to enable multiple file uploads.  Name attribute 
+ * will be formatted correctly and the multiple attribute will be added to 
+ * the input element.
+ * 
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ * @property {boolean} multiple Flag for turning on or off multiple file uploads.
+ * @param {InputProps} param0 
+ * @returns {HTMLDivElement} A surrounding div and the input element of type week.
+ */
+export const FileSelector = ({
+    type='file',
+    label,
+    name,
+    inputAttrs={},
+    divAttrs={},
+    multiple=false,
+    errors=[]
+}) => {
+    // Test if $multiple is true and apply attributes.  Protect user if they 
+    // add [] to name when $multiple flag is true.
+    const baseName = formatId(name);
+    name = baseName;
+    if(multiple) {
+        inputAttrs.multiple = 'multiple';
+        name += '[]';
+    }
+
+    const divString = normalizeAttrs(divAttrs);
+    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
+    const inputString = normalizeAttrs(inputAttrs);
+
+    return (
+        <div {...divString}>
+            <label className='form-label' htmlFor={baseName}>{label}</label>
+            <input type={type} id={baseName} name={name} defaultValue={""} {...inputString} />
+            <FieldErrors errors={errors} name={baseName} />
+        </div>
+    )
+}
+
+/**
  * Generates a hidden input element.
  * @property {string} name The value for the name and id attributes.
  * @property {string|number} value The value for the value attribute.
@@ -1301,6 +1353,7 @@ const Forms = {
     DateTimeLocal,
     DisplayErrors, 
     Email,
+    FileSelector,
     Hidden,
     Input, 
     Interval,
