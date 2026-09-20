@@ -366,44 +366,6 @@ if(!function_exists('hidden')) {
     }
 }
 
-if(!function_exists('interval')) {
-    /**
-     * Renders an HTML div element that surrounds an input of type interval.
-     *
-     * @param string $label Sets the label for this input.
-     * @param string $name Sets the value for the name, for, and id attributes 
-     * for this input.
-     * @param mixed $value The value we want to set.  We can use this to set 
-     * the value of the value attribute during form validation.  Default value 
-     * is the empty string.  It can be set with values during form validation 
-     * and forms used for editing records.
-     * @param array $inputAttrs The values used to set the class and other 
-     * attributes of the input string.  The default value is an empty array.
-     * @param array $divAttrs The values used to set the class and other 
-     * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors The errors array.  Default value is an empty array.
-     * @return string A surrounding div and the input element of type range.
-     */
-    function interval(
-        string $label,
-        string $name,
-        mixed $value = '',
-        array $inputAttrs = [],
-        array $divAttrs = [],
-        array $errors = []
-    ): string {
-        return FormHelper::inputBlock(
-            'range',
-            $label,
-            $name,
-            $value,
-            $inputAttrs,
-            $divAttrs,
-            $errors
-        );
-    }
-}
-
 if(!function_exists('input')) {
     /**
      * Assists in the development of forms input blocks in forms.  It accepts 
@@ -441,6 +403,50 @@ if(!function_exists('input')) {
             $name, 
             $value, 
             $inputAttrs, 
+            $divAttrs,
+            $errors
+        );
+    }
+}
+
+if(!function_exists('interval')) {
+    /**
+     * Renders an HTML div element that surrounds an input of type interval.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param string $min The minimum value for the interval.
+     * @param string $max The maximum value for the interval.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and the input element of type range.
+     */
+    function interval(
+        string $label,
+        string $name,
+        string $min,
+        string $max,
+        mixed $value = '',
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        $inputAttrs['min'] = $min;
+        $inputAttrs['max'] = $max;
+        return FormHelper::inputBlock(
+            'range',
+            $label,
+            $name,
+            $value,
+            $inputAttrs,
             $divAttrs,
             $errors
         );
