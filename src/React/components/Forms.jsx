@@ -287,6 +287,7 @@ export const CSRFToken = (e) => {
  * @property {string} label Sets the label for this input.
  * @property {string} name Sets the value for the name, for, and id attributes 
  * for this input.
+ * @property {string} symbol The symbol for the currency.
  * @property {string|number} value The value we want to set.  We can use this to set 
  * the value of the value attribute during form validation.  Default value 
  * is the empty string.  It can be set with values during form validation 
