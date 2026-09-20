@@ -280,6 +280,38 @@ export const CSRFToken = (e) => {
     return e.target.csrf_token.value;
 }
 
+export const Currency = ({
+    type='text',
+    label,
+    name,
+    symbol='$',
+    value='',
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    // Set formatting.  If provided in function call they will be overridden.
+    inputAttrs.inputMode = 'decimal';
+    inputAttrs.placeholder = '0.00';
+    inputAttrs.pattern = '[0-9]*([\.,][0-9]{2})?';
+
+    const id = formatId(name);
+    const divString = normalizeAttrs(divAttrs);
+    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
+    const inputString = normalizeAttrs(inputAttrs);
+
+    return (
+        <div {...divString}>
+            <label className='form-label' htmlFor={id}>{label}</label>
+            <div className='d-flex align-items-center'>
+                <span className='me-2'>{symbol}</span>
+                <input type={type} id={id} name={name} defaultValue={value} {...inputString} />
+            </div>
+            <FieldErrors errors={errors} name={name} />
+        </div>
+    )
+}
+
 /**
  * Creates an error bag containing all existing errors.
  * @property {object} errors Object containing errors.
@@ -1242,6 +1274,7 @@ const Forms = {
     Confirm,
     CSRFInput,
     CSRFToken, 
+    Currency,
     DateSelector,
     DateTimeLocal,
     DisplayErrors, 
