@@ -232,6 +232,24 @@ class FormHelper {
         return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . self::generateToken() . '" />';
     }
 
+    /**
+     * Renders an HTML div element that surrounds an input of type currency.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param string $symbol The symbol for the currency.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and the input element of type currency.
+     */
     public static function currencyBlock(
         string $label, 
         string $name, 
