@@ -845,7 +845,7 @@ if(!function_exists('timeSelector')) {
     }
 }
 
-if(!function_exists('url')) {
+if(!function_exists('urlInput')) {
     /**
      * Assists in the development of url in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
@@ -864,7 +864,7 @@ if(!function_exists('url')) {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type url.
      */
-    function url(
+    function urlInput(
         string $label, 
         string $name, 
         string|null $value, 
