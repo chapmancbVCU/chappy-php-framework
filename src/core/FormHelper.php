@@ -376,8 +376,8 @@ class FormHelper {
             return implode('<br>', array_map('htmlspecialchars', $value));
         }
 
-            return htmlspecialchars((string)$value);
-        }
+        return htmlspecialchars((string)$value);
+    }
 
     /**
      * Creates a randomly generated csrf token.
