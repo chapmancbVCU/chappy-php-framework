@@ -681,8 +681,7 @@ if(!function_exists('radio')) {
      * @return string The HTML input element of type radio.
      */
     function radio(
-        string $label, 
-        string $id, 
+        string $label,  
         string $name, 
         string $value, 
         bool $checked = false, 
@@ -690,11 +689,33 @@ if(!function_exists('radio')) {
     ): string {
         return FormHelper::radioInput(
             $label, 
-            $id, 
             $name, 
             $value, 
             $checked, 
             $inputAttrs
+        );
+    }
+}
+
+if(!function_exists('radioGroup')) {
+
+    function radioGroup(
+        string $name, 
+        array $labels = [],
+        mixed $options = [],
+        string $value = '',
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors =[]
+    ): string {
+        return FormHelper::radioGroup(
+            $name,
+            $labels,
+            $options,
+            $value,
+            $inputAttrs,
+            $divAttrs,
+            $errors
         );
     }
 }

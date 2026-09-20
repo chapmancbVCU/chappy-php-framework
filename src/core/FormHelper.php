@@ -586,7 +586,6 @@ class FormHelper {
      * <label for="css">CSS</label>
      * 
      * @param string $label Sets the label for this input.
-     * @param string $id The id attribute for the radio input element.
      * @param string $name Sets the value for the name attribute 
      * for this input.
      * @param string $value The value we want to set.  We can use this to set 
@@ -600,8 +599,8 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @return string The HTML input element of type radio.
      */
-    public static function radioInput(string $label, 
-        string $id, 
+    public static function radioInput(
+        string $label, 
         string $name, 
         string $value, 
         bool $checked = false, 
@@ -610,9 +609,31 @@ class FormHelper {
 
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
-        return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label me-3" for="'.$id.'">'.$label.'</label> ';
+        return '<input type="radio" id="'.$value.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label me-3" for="'.$value.'">'.$label.'</label> ';
     }
     
+    public static function radioGroup(
+        string $name, 
+        array $labels = [],
+        array $options = [],
+        string $value = '',
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors =[]
+    ): string {
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,' is-invalid');
+        $divString = self::stringifyAttrs($divAttrs);
+
+
+        $html = '<div' . $divString . '>';
+        for($i = 0; $i < sizeof($options); $i++) {
+            $html .= self::radioInput($labels[$i], $name, $options[$i]->$value, false, $inputAttrs);
+        }
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
+        $html .= '</div>';
+        return $html;
+    }
+
     /**
      * Sanitizes potentially harmful string of characters.
      * 
