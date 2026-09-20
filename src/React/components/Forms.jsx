@@ -280,6 +280,27 @@ export const CSRFToken = (e) => {
     return e.target.csrf_token.value;
 }
 
+/**
+ * Renders an HTML div element that surrounds an input of type text 
+ * for currency.
+ * 
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string|number} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ * @param {InputProps} param0 
+ * @returns {HTMLDivElement} A surrounding div and the input element of type text 
+ * for currency.
+ */
 export const Currency = ({
     type='text',
     label,
