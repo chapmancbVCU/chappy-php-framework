@@ -439,6 +439,57 @@ export const Input = ({
 }
 
 /**
+ * Assists in the development of input of type range in forms.  It accepts parameters 
+ * for setting  attribute tags in the form section.
+ *
+ * @typedef {Object} Interval
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {number} min The minimum value for the interval.
+ * @property {number} max The maximum value for the interval.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {Interval} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * range.
+ */
+export const Interval = ({
+    label,
+    name,
+    value='',
+    min,
+    max,
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    inputAttrs.min = min;
+    inputAttrs.max = max;
+    
+    return (
+        <Input 
+            type="range"
+            label={label}
+            name={name}
+            value={value}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
  * Assists in the development of input of type month in forms.  It accepts parameters 
  * for setting  attribute tags in the form section.
  *
@@ -950,6 +1001,7 @@ const Forms = {
     Email,
     Hidden,
     Input, 
+    Interval,
     Month,
     Output,
     Password,
