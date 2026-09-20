@@ -400,10 +400,6 @@ if(!function_exists('fileSelector')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param mixed $value The value we want to set.  We can use this to set 
-     * the value of the value attribute during form validation.  Default value 
-     * is the empty string.  It can be set with values during form validation 
-     * and forms used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
@@ -414,7 +410,6 @@ if(!function_exists('fileSelector')) {
     function fileSelector(
         string $label, 
         string $name, 
-        mixed $value = '', 
         array $inputAttrs= [], 
         array $divAttrs = [], 
         bool $multiple = false,
@@ -423,7 +418,6 @@ if(!function_exists('fileSelector')) {
         return FormHelper::fileBlock(
             $label, 
             $name, 
-            $value, 
             $inputAttrs, 
             $divAttrs, 
             $multiple,

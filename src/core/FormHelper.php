@@ -390,10 +390,6 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param mixed $value The value we want to set.  We can use this to set 
-     * the value of the value attribute during form validation.  Default value 
-     * is the empty string.  It can be set with values during form validation 
-     * and forms used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
@@ -405,7 +401,6 @@ class FormHelper {
     public static function fileBlock(
         string $label, 
         string $name, 
-        mixed $value = '', 
         array $inputAttrs= [], 
         array $divAttrs = [], 
         bool $multiple = false,
@@ -426,7 +421,7 @@ class FormHelper {
 
         $html = '<div' . $divString . '>';
         $html .= '<label class="form-label" for="'.$baseName.'">'.$label.'</label>';
-        $html .= '<input type="file" id="'.$baseName.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '<input type="file" id="'.$baseName.'" name="'.$name.'" value=""'.$inputString.' />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $baseName).'</span>';
         $html .= '</div>';
         return $html;
