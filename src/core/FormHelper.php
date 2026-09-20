@@ -380,6 +380,59 @@ class FormHelper {
     }
 
     /**
+     * Renders an HTML div element that surrounds an input of type file.
+     * 
+     * Multiple File Uploads:
+     * Use the $multiple flag to enable multiple file uploads.  Name attribute 
+     * will be formatted correctly and the multiple attribute will be added to 
+     * the input element.
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @param bool $multiple Flag for turning on or off multiple file uploads.
+     * @return string A surrounding div and the input element of type file.
+     */
+    public static function fileBlock(
+        string $label, 
+        string $name, 
+        mixed $value = '', 
+        array $inputAttrs= [], 
+        array $divAttrs = [], 
+        bool $multiple = false,
+        array $errors = []
+    ): string {
+        // Test if $multiple is true and apply attributes.  Protect user if they 
+        // add [] to name when $multiple flag is true.
+        $baseName = Str::replace('[]','',$name);
+        $name = $baseName;
+        if($multiple) {
+            $name .= '[]';
+            $inputAttrs['multiple'] = 'multiple';
+        }
+
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs($inputAttrs);
+
+        $html = '<div' . $divString . '>';
+        $html .= '<label class="form-label" for="'.$baseName.'">'.$label.'</label>';
+        $html .= '<input type="file" id="'.$baseName.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $baseName).'</span>';
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
      * Creates a randomly generated csrf token.
      *
      * @return string The randomly generated token.
