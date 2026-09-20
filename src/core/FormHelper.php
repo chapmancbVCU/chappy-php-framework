@@ -232,6 +232,35 @@ class FormHelper {
         return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . self::generateToken() . '" />';
     }
 
+    public static function currencyBlock(
+        string $label, 
+        string $name, 
+        string $symbol = '$',
+        mixed $value = '', 
+        array $inputAttrs = [], 
+        array $divAttrs = [],
+        array $errors=[]
+    ): string {
+        // Set formatting.  If provided in function call they will be overridden.
+        $inputAttrs['inputMode'] = 'decimal';
+        $inputAttrs['placeholder'] = '0.00';
+        $inputAttrs['pattern'] = '[0-9]*([\.,][0-9]{2})?';
+
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $id = Str::replace('[]','',$name);
+
+        $html = '<div' . $divString . '>';
+        $html .= '<label class="form-label" for="'.$id.'">'.$label.'</label>';
+        $html .= '<div class="d-flex align-items-center">';
+        $html .= "<span class=\"me-2\">{$symbol}</span>";
+        $html .= '<input type="text" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '</div>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
+        $html .= '</div>';
+        return $html;
+    }
 
     /**
      * Returns list of errors.
