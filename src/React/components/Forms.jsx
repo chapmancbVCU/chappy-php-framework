@@ -401,17 +401,19 @@ export const DataListText = ({
     divAttrs={},
     errors=[]
 }) => {
-    <DataListBlock 
-        type="text"
-        label={label}
-        name={name}
-        listName={listName}
-        value={value}
-        options={options}
-        inputAttrs={inputAttrs}
-        divAttrs={divAttrs}
-        errors={errors}
-    />
+    return (
+        <DataListBlock 
+            type="text"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
 }
 
 /**
