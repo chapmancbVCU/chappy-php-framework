@@ -281,7 +281,7 @@ class FormHelper {
     }
 
     /**
-     * Assists in the development of forms input blocks with datalists in forms.  
+     * Assists in the development of forms input blocks with datalist element in forms.  
      * It accepts parameters for setting attribute tags in the form section.  Not 
      * to be used for inputs of type "Submit".  For submit inputs use the submitBlock 
      * or submitTag functions.

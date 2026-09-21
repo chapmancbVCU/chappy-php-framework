@@ -265,7 +265,7 @@ if(!function_exists('currency')) {
     }
 }
 
-if(!function_exists('datalistText')) {
+if(!function_exists('dataListText')) {
     /**
      * Renders an HTML div element that surrounds an input of type text with an 
      * accompanying datalist of suggestions.
@@ -286,7 +286,7 @@ if(!function_exists('datalistText')) {
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type text.
      */
-    function datalistText(
+    function dataListText(
         string $label, 
         string $name, 
         string $listName,
