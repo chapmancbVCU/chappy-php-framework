@@ -265,6 +265,31 @@ if(!function_exists('currency')) {
     }
 }
 
+if(!function_exists('datalistText')) {
+    function datalistText(
+        string $label, 
+        string $name, 
+        string $listName,
+        mixed $value = '', 
+        array $options = [],
+        array $inputAttrs = [], 
+        array $divAttrs = [],
+        array $errors=[]
+    ): string {
+        return FormHelper::dataListBlock(
+            'text',
+            $label, 
+            $name, 
+            $listName,
+            $value, 
+            $options,
+            $inputAttrs, 
+            $divAttrs,
+            $errors
+        );
+    }
+}
+
 if(!function_exists('dateSelector')) {
     /**
      * Renders an HTML div element that surrounds an input of type dateSelector.
