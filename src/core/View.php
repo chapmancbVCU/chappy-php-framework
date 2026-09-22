@@ -80,7 +80,7 @@ class View extends stdClass {
      * @return void
      * @throws ComponentNotFoundException
      */
-    public function component(string $component, bool $frameworkComponentPath = false): void {
+    public static function component(string $component, bool $frameworkComponentPath = false): void {
         $componentPath = !$frameworkComponentPath ? self::APP_COMPONENT_PATH . $component . '.php' :
             self::FRAMEWORK_COMPONENT_PATH.$component.'.php';
         
