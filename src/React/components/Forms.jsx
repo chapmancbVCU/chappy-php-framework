@@ -542,6 +542,56 @@ export const DataListTime = ({
 }
 
 /**
+ * Renders an HTML div element that surrounds an input of type week with an 
+ * accompanying datalist of suggestions.
+ *
+ * @typedef {Object} DataListWeek
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} listName The list name name and id for the datalist element.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {array} options A list of suggestions.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {DataListWeek} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * week.
+ */
+export const DataListWeek = ({
+    label,
+    name,
+    listName,
+    value='',
+    options={},
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <DataListBlock 
+            type="week"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
  * Renders an HTML div element that surrounds an input of type date.
  * 
  * @property {string} label Sets the label for this input.
@@ -1559,6 +1609,7 @@ const Forms = {
     DataListDate,
     DataListText,
     DataListTime,
+    DataListWeek,
     DateSelector,
     DateTimeLocal,
     DisplayErrors, 
