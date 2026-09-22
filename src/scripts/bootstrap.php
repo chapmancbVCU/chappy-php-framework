@@ -27,6 +27,7 @@ if (!file_exists($envPath)) {
 require_once CHAPPY_ROOT . '/scripts/helpers.php';
 require_once CHAPPY_ROOT . '/scripts/forms.php';
 require_once CHAPPY_ROOT . '/scripts/logging.php';
+require_once CHAPPY_ROOT . '/scripts/view.php';
 // Load environment variables
 $dotenv = Dotenv::createImmutable(CHAPPY_BASE_PATH);
 $dotenv->load();
