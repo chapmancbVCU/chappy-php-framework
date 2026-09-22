@@ -442,10 +442,10 @@ export const DataListBlock = ({
 }
 
 /**
- * Renders an HTML div element that surrounds an input of type week with an 
+ * Renders an HTML div element that surrounds an input of type month with an 
  * accompanying datalist of suggestions.
  *
- * @typedef {Object} DataListWeek
+ * @typedef {Object} DataListMonth
  * @property {string} label Sets the label for this input.
  * @property {string} name Sets the value for the name, for, and id attributes 
  * for this input.
@@ -462,11 +462,11 @@ export const DataListBlock = ({
  * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  *
- * @param {DataListWeek} props
+ * @param {DataListMonth} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
- * week.
+ * month.
  */
-export const DataListWeek = ({
+export const DataListMonth = ({
     label,
     name,
     listName,
@@ -478,7 +478,7 @@ export const DataListWeek = ({
 }) => {
     return (
         <DataListBlock 
-            type="week"
+            type="month"
             label={label}
             name={name}
             listName={listName}
