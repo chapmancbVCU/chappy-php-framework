@@ -1,11 +1,5 @@
 <?php
-use Core\View;
-use Core\Exceptions\View\ComponentNotFoundException;
-if(!function_exists('component')) {
-    function component(string $component, bool $frameworkComponentPath = false): void {
-        View::component($component, $frameworkComponentPath);
-    }
-}
+
 if(!function_exists('initTinyMCE')) {
     /**
      * Returns script for initializing tinyMCE.
