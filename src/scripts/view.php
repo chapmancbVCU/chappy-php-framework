@@ -25,3 +25,18 @@ if(!function_exists('loadTinyMCE')) {
         return $html;
     }
 }
+
+if(!function_exists('profileImageSort')) {
+    /**
+     * Loads scripts and styling for sorting of profile images.
+     *
+     * @return string The scripts needed to sort profile images.
+     */
+    function profileImageSort(): string {
+        $html = "<link rel=\"stylesheet\" href=\"".env('APP_DOMAIN', '/')."resources/css/profileImage.css?v=".config('config.version')."\" media=\"screen\" title=\"no title\" charset=\"utf-8\">";
+        $html .= "<script src='".env('APP_DOMAIN', '/')."node_modules/jquery/dist/jquery.min.js'></script>";
+        $html .= "<script type='text/javascript' src='".env('APP_DOMAIN', '/')."node_modules/jquery-ui/dist/jquery-ui.min.js'></script>";
+        $html .= "<script type='text/javascript' src='".env('APP_DOMAIN', '/')."node_modules/jquery-ui/ui/widgets/sortable.js'></script>";
+        return $html;
+    }
+}
