@@ -385,6 +385,56 @@ export const DataListDate = ({
 }
 
 /**
+ * Renders an HTML div element that surrounds an input of type datetime-local with an 
+ * accompanying datalist of suggestions.
+ *
+ * @typedef {Object} DataListTimeLocal
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} listName The list name name and id for the datalist element.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {array} options A list of suggestions.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {DataListTimeLocal} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * datetime-local.
+ */
+export const DataListTimeLocal = ({
+    label,
+    name,
+    listName,
+    value='',
+    options={},
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <DataListBlock 
+            type="datetime-local"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
  *  Assists in the development of forms input blocks with datalist element in forms.  
  * It accepts parameters for setting attribute tags in the form section.  Not 
  * to be used for inputs of type "Submit".  For submit inputs use the submitBlock 
@@ -1657,6 +1707,7 @@ const Forms = {
     CSRFToken, 
     Currency,
     DataListDate,
+    DataListTimeLocal,
     DataListText,
     DataListTime,
     DataListWeek,
