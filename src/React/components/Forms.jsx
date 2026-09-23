@@ -335,6 +335,56 @@ export const Currency = ({
 }
 
 /**
+ * Renders an HTML div element that surrounds an input of type color with an 
+ * accompanying datalist of suggestions.
+ *
+ * @typedef {Object} DataListColor
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} listName The list name name and id for the datalist element.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {array} options A list of suggestions.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {DataListColor} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * color.
+ */
+export const DataListColor = ({
+    label,
+    name,
+    listName,
+    value='',
+    options={},
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <DataListBlock 
+            type="color"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
  * Renders an HTML div element that surrounds an input of type date with an 
  * accompanying datalist of suggestions.
  *
@@ -482,9 +532,14 @@ export const DataListBlock = ({
             <label className='form-label' htmlFor={id}>{label}</label>
             <input type={type} list={listName} id={id} name={name} defaultValue={value} {...inputString} />
             <datalist id={listName}>
-                {options && options.map((option, index) => (
-                    <option key={index} value={option}/>
-                ))}
+                {type === 'range'
+                    ? Object.entries(options).map(([optValue, optLabel]) => (
+                          <option key={optValue} value={optValue} label={optLabel} />
+                      ))
+                    : Object.values(options).map((option, index) => (
+                          <option key={index} value={option} />
+                      ))
+                }
             </datalist>
             <FieldErrors errors={errors} name={name} />
         </div>
@@ -529,6 +584,56 @@ export const DataListMonth = ({
     return (
         <DataListBlock 
             type="month"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
+ * Renders an HTML div element that surrounds an input of type range with an 
+ * accompanying datalist of suggestions.
+ *
+ * @typedef {Object} DataListRange
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} listName The list name name and id for the datalist element.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {array} options A list of suggestions.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {DataListRange} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * range.
+ */
+export const DataListRange = ({
+    label,
+    name,
+    listName,
+    value='',
+    options={},
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <DataListBlock 
+            type="range"
             label={label}
             name={name}
             listName={listName}
@@ -1706,12 +1811,14 @@ const Forms = {
     CSRFInput,
     CSRFToken, 
     Currency,
+    DataListColor,
     DataListDate,
     DataListTimeLocal,
     DataListText,
     DataListTime,
     DataListWeek,
     DataListMonth,
+    DataListRange,
     DateSelector,
     DateTimeLocal,
     DisplayErrors, 
