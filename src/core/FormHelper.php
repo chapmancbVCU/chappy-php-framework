@@ -326,8 +326,14 @@ class FormHelper {
         $html .= '<input type="'.$type.'" list="'.$listName.'" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
         
         $html .= '<datalist id="'.$listName.'">';
-        foreach($options as $option) {
-            $html .= '<option value="'.$option.'">';
+        if($type === 'range') {
+            foreach($options as $k => $v) {
+                $html .= '<option value="'.$k.'" label="'.$v.'">';
+            }
+        } else {
+            foreach($options as $option) {
+                $html .= '<option value="'.$option.'">';
+            }
         }
         $html .= '</datalist>';
 
