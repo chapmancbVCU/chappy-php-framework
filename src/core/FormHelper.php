@@ -634,6 +634,43 @@ class FormHelper {
         return (new ArraySet($post))->map(fn($value) => self::sanitize($value))->all();
     }
 
+
+    /**
+     * Renders a radio button group based on options provided.
+     * 
+     * @param string $name Sets the value for the name attribute 
+     * for this input.
+     * @param array $options The list of options we will use to populate the 
+     * radio group.
+     * @param string|int|bool $selectedValue The selected value.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and option select element.
+     */
+    public static function radioGroup(
+        string $name,
+        array $options = [],              // [value => label], same shape as optionsForSelect
+        string|int|null $selectedValue = '',
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, ' is-invalid');
+        $divString  = self::stringifyAttrs($divAttrs);
+
+        $html = '<div' . $divString . '>';
+        foreach ($options as $optValue => $label) {
+            $checked = ($selectedValue == $optValue);
+            $html .= self::radioInput($label, $name, $optValue, $checked, $inputAttrs);
+        }
+        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
+        $html .= '</div>';
+        return $html;
+    }
+
     /**
      * Creates an input element of type radio with an accompanying label 
      * element.  Compatible with radio button groups.
@@ -673,28 +710,6 @@ class FormHelper {
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
         return '<input type="radio" id="'.$value.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label me-3" for="'.$value.'">'.$label.'</label> ';
-    }
-    
-    public static function radioGroup(
-        string $name, 
-        array $labels = [],
-        array $options = [],
-        string $value = '',
-        array $inputAttrs = [],
-        array $divAttrs = [],
-        array $errors =[]
-    ): string {
-        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,' is-invalid');
-        $divString = self::stringifyAttrs($divAttrs);
-
-
-        $html = '<div' . $divString . '>';
-        for($i = 0; $i < sizeof($options); $i++) {
-            $html .= self::radioInput($labels[$i], $name, $options[$i]->$value, false, $inputAttrs);
-        }
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
-        $html .= '</div>';
-        return $html;
     }
 
     /**
