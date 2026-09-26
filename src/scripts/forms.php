@@ -1061,19 +1061,17 @@ if(!function_exists('radio')) {
 if(!function_exists('radioGroup')) {
 
     function radioGroup(
-        string $name, 
-        array $labels = [],
-        mixed $options = [],
-        string $value = '',
+        string $name,
+        array $options = [],
+        string|int|null $selectedValue = '',
         array $inputAttrs = [],
         array $divAttrs = [],
-        array $errors =[]
+        array $errors = []
     ): string {
         return FormHelper::radioGroup(
             $name,
-            $labels,
             $options,
-            $value,
+            $selectedValue,
             $inputAttrs,
             $divAttrs,
             $errors
