@@ -547,6 +547,67 @@ export const DataListBlock = ({
 }
 
 /**
+ * Renders an HTML div element that surrounds an input of type range with an 
+ * accompanying datalist of suggestions.
+ *
+ * @typedef {Object} DataListInterval
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} listName The list name name and id for the datalist element.
+ * @property {number} min The minimum value for the interval.
+ * @property {number} min The maximum value for the interval.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {array} options A list of suggestions.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {DataListInterval} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * range.
+ */
+export const DataListInterval = ({
+    label,
+    name,
+    listName,
+    min,
+    max,
+    value='',
+    options={},
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    if(typeof min === 'number' && typeof max === 'number' && min > max) {
+         console.error("Forms.DataListInterval: min cannot be greater than max")
+    }
+
+    inputAttrs.min = min;
+    inputAttrs.max = max;
+
+    return (
+        <DataListBlock 
+            type="range"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
  * Renders an HTML div element that surrounds an input of type month with an 
  * accompanying datalist of suggestions.
  *
@@ -584,56 +645,6 @@ export const DataListMonth = ({
     return (
         <DataListBlock 
             type="month"
-            label={label}
-            name={name}
-            listName={listName}
-            value={value}
-            options={options}
-            inputAttrs={inputAttrs}
-            divAttrs={divAttrs}
-            errors={errors}
-        />
-    )
-}
-
-/**
- * Renders an HTML div element that surrounds an input of type range with an 
- * accompanying datalist of suggestions.
- *
- * @typedef {Object} DataListRange
- * @property {string} label Sets the label for this input.
- * @property {string} name Sets the value for the name, for, and id attributes 
- * for this input.
- * @property {string} listName The list name name and id for the datalist element.
- * @property {string} value The value we want to set.  We can use this to set 
- * the value of the value attribute during form validation.  Default value 
- * is the empty string.  It can be set with values during form validation 
- * and forms used for editing records.
- * @property {array} options A list of suggestions.
- * @property {object} inputAttrs The values used to set the class and other 
- * attributes of the input string.  The default value is an empty object.
- * @property {object} divAttrs The values used to set the class and other 
- * attributes of the surrounding div.  The default value is an empty object.
- * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
- * Default value is an empty object.
- *
- * @param {DataListRange} props
- * @returns {HTMLDivElement} A surrounding div and the input element of type 
- * range.
- */
-export const DataListRange = ({
-    label,
-    name,
-    listName,
-    value='',
-    options={},
-    inputAttrs={},
-    divAttrs={},
-    errors=[]
-}) => {
-    return (
-        <DataListBlock 
-            type="range"
             label={label}
             name={name}
             listName={listName}
@@ -1122,6 +1133,10 @@ export const Interval = ({
     divAttrs={},
     errors=[]
 }) => {
+    if(typeof min === 'number' && typeof max === 'number' && min > max) {
+         console.error("Forms.DataListInterval: min cannot be greater than max")
+    }
+    
     inputAttrs.min = min;
     inputAttrs.max = max;
     
@@ -1813,12 +1828,12 @@ const Forms = {
     Currency,
     DataListColor,
     DataListDate,
-    DataListTimeLocal,
+    DataListInterval,
+    DataListMonth,
     DataListText,
+    DataListTimeLocal,
     DataListTime,
     DataListWeek,
-    DataListMonth,
-    DataListRange,
     DateSelector,
     DateTimeLocal,
     DisplayErrors, 
