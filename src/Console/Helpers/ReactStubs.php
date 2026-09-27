@@ -31,16 +31,14 @@ function Login({errors, login, rememberMeChecked}) {
                 <form className="form" action={route('auth.login')} method="post">
                     <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
-                    <Forms.Input 
-                        type="text"
+                    <Forms.Text 
                         label="Username"
                         name="username"
                         value={login.username}
                         inputAttrs={{className: 'form-control'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Password 
                         label="Password"
                         name="password"
                         value={login.password}
@@ -96,26 +94,21 @@ function Register({user, errors}) {
                 <h3 className="text-center">Register Here!</h3>
                 <hr />
                 <form action="" className="form" method="post" encType="multipart/form-data">
-                    <Forms.CSRFInput />
-                    <Forms.DisplayErrors errors={errors}/>
-                    <Forms.Input 
-                        type="text"
+                    <Forms.Text 
                         label="User name"
                         name="username"
                         value={user.username}
                         inputAttrs={{className: 'form-control input-sm'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.Input 
-                        type="text"
+                    <Forms.Text 
                         label="First Name"
                         name="fname"
                         value={user.fname}
                         inputAttrs={{className: 'form-control input-sm'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.Input 
-                        type="text"
+                    <Forms.Text 
                         label="Last Name"
                         name="lname"
                         value={user.lname}
@@ -136,8 +129,7 @@ function Register({user, errors}) {
                         inputAttrs={{ placeholder: 'Describe yourself here...' }}
                         divAttrs={{ className: 'form-group mb-3' }}
                     />
-                    <Forms.Input 
-                        type="file"
+                    <Forms.FileSelector 
                         label="Upload Profile Image (Optional"
                         name="profileImage"
                         value=""
@@ -145,16 +137,14 @@ function Register({user, errors}) {
                         divAttrs={{className: 'form-group mb-3'}}
                     />
                     <PasswordComplexityRequirements />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Password 
                         label="Password"
                         name="password"
                         value={user.password}
                         inputAttrs={{className: 'form-control input-sm'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Confirm 
                         label="Confirm Password"
                         name="confirm"
                         value={user.confirm}
@@ -165,7 +155,7 @@ function Register({user, errors}) {
                         label="Register"
                         inputAttrs={{className: 'btn btn-large btn-primary'}}
                         divAttrs={{className: 'text-end'}}
-                    />
+                    />   
                 </form>
             </div>
         </div>
@@ -206,16 +196,14 @@ function ResetPassword({ user, errors }) {
                 <form className="form" action="" method="post">
                     <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors} />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Password 
                         label="Password"
                         name="password"
                         value={user.password}
                         inputAttrs={{className: "form-control input-sm"}}
                         divAttrs={{className: "form-group mb-3"}}
                     />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Confirm 
                         label="Confirm Password"
                         name="confirm"
                         value={user.confirm}
@@ -576,16 +564,14 @@ function Edit({user, errors, profileImages}) {
                 <form className="form" action="" method="post" encType="multipart/form-data">
                     <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
-                    <Forms.Input 
-                        type="text"
+                    <Forms.Text
                         label="First Name"
                         name="fname"
                         value={user.fname}
                         inputAttrs={{className: 'form-control input-sm'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.Input 
-                        type="text"
+                    <Forms.Text 
                         label="Last Name"
                         name="lname"
                         value={user.lname}
@@ -607,11 +593,10 @@ function Edit({user, errors, profileImages}) {
                         divAttrs={{ className: 'form-group mb-3' }}
                     />
 
-                    <Forms.Input 
+                    <Forms.FileSelector 
                         type="file"
                         label="Upload Profile Image (Optional)"
                         name="profileImage"
-                        value=""
                         inputAttrs={{className: 'form-control', accept: 'image/gif image/jpeg image/png'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
@@ -746,26 +731,22 @@ function UpdatePassword({user, errors}) {
                 <form className="form" action="" method="post">
                     <Forms.CSRFInput />
                     <Forms.DisplayErrors errors={errors}/>
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Password 
                         label="Current Password"
                         name="current_password"
                         value=""
                         inputAttrs={{className: "form-control input-sm"}}
                         divAttrs={{className: "form-group mb-3"}}
                     />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Password 
                         label="Password"
                         name="password"
                         value=""
                         inputAttrs={{className: "form-control input-sm"}}
                         divAttrs={{className: "form-group mb-3"}}
                     />
-                    <Forms.Input 
-                        type="password"
+                    <Forms.Confirm 
                         label="Confirm Password"
-                        name="confirm"
                         value=""
                         inputAttrs={{className: "form-control input-sm"}}
                         divAttrs={{className: "form-group mb-4"}}
