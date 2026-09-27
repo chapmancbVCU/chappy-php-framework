@@ -1103,7 +1103,6 @@ if(!function_exists('radio')) {
      * element.  Compatible with radio button groups.
      *
      * @param string $label Sets the label for this input.
-     * @param string $id The id attribute for the radio input element.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
      * @param string $value The value we want to set.  We can use this to set 
