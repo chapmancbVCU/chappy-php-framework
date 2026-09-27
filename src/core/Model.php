@@ -504,23 +504,39 @@ class Model {
     }
 
     /**
-     * Retrieves options for form based on fields specified to be value and label.
+     * Projects model rows into a [value => label] options map for form controls.
      *
-     * @param string $valueField The value for the option.  This is the key 
-     * for each element in the array.
-     * @param string $labelField The label for the option.  This is the value 
-     * for each element in the array.
-     * @param array $conditions Any other conditions for the query.
-     * @return array An associative array where label is mapped to a value that 
-     * serves as the key.
+     * This is the standard source for controls whose options are value/label pairs:
+     * select, radio groups, checkbox groups, and datalists in list (non-range) mode.
+     * Each row contributes one entry: $row->$valueField => $row->$labelField.
+     *
+     * NOT for range inputs. A range's min/max/step are numeric params, not a map,
+     * and its datalist tick pairs are almost always developer-set literals rather
+     * than model rows — so build those inline. Only use toOptions for a range if
+     * its tick values are genuinely data-driven, which is rare.
+     *
+     * The value field should be whatever gets stored/submitted (and matched against
+     * on populate); the label field is the display text. For ACLs, both are the
+     * name: toOptions('acl', 'acl'). For a typical lookup: toOptions('id', 'name').
+     *
+     * @param string $valueField Column whose value becomes each option's key (submitted value).
+     * @param string $labelField Column whose value becomes each option's label (display text).
+     * @param array  $conditions Optional find() conditions (e.g. ['order' => 'name']).
+     * @return array [value => label] map ready to hand to a map-fed control.
      */
-    public static function toOptions(string $valueField, string $labelField, array $conditions = []): array {
+    public static function toOptions(
+        string $valueField,
+        string $labelField,
+        array $conditions = []
+    ): array {
         $rows = static::find($conditions);
-        $out = [];
+        $options = [];
+
         foreach ($rows as $row) {
-            $out[$row->$valueField] = $row->$labelField;
+            $options[$row->$valueField] = $row->$labelField;
         }
-        return $out;
+
+        return $options;
     }
 
     /**
