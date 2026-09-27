@@ -504,6 +504,26 @@ class Model {
     }
 
     /**
+     * Retrieves options for form based on fields specified to be value and label.
+     *
+     * @param string $valueField The value for the option.  This is the key 
+     * for each element in the array.
+     * @param string $labelField The label for the option.  This is the value 
+     * for each element in the array.
+     * @param array $conditions Any other conditions for the query.
+     * @return array An associative array where label is mapped to a value that 
+     * serves as the key.
+     */
+    public static function toOptions(string $valueField, string $labelField, array $conditions = []): array {
+        $rows = static::find($conditions);
+        $out = [];
+        foreach ($rows as $row) {
+            $out[$row->$valueField] = $row->$labelField;
+        }
+        return $out;
+    }
+
+    /**
      * Wrapper for the update function found in the DB class.
      *
      * @param array $fields The value of the fields we want to set for the 
