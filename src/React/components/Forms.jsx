@@ -922,6 +922,7 @@ export const DateTimeLocal = ({
 
 /**
  * Creates an error bag containing all existing errors.
+ * 
  * @property {object} errors Object containing errors.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} The error bag.
@@ -1464,9 +1465,10 @@ export const Password = ({
 /**
  * Creates an input element of type radio with an accompanying label 
  * element.  Compatible with radio button groups.
+ * 
  * @property {string} label Sets the label for this input.
- * @property {string} id The id attribute for the radio input button.
- * @property {string} name Sets the value for the name attribute.
+ * @property {string} name Sets the value for the name attribute
+ * for this input.
  * @property {string} value The value we want to set.  We can use this to set 
  * the value of the value attribute during form validation.  It can be 
  * set with values during form validation and forms used for editing records.
@@ -1476,12 +1478,11 @@ export const Password = ({
  * used for editing records.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
- * @param {InputProps} param0 
+ * @param {RadioInput} param0 
  * @returns {JSX.Element} The radio input and its label.
  */
-const Radio = ({
+const RadioInput = ({
     label,
-    id,
     name,
     value,
     checked = false,
@@ -1490,7 +1491,7 @@ const Radio = ({
     const inputString = normalizeAttrs(inputAttrs);
     return (
         <>
-            <input type="radio" id={id} name={name} defaultValue={value} defaultChecked={checked} {...inputString}/>
+            <input type="radio" id={name + "_" + value} name={name} defaultValue={value} defaultChecked={checked} {...inputString}/>
             <label className="form-label me-3" htmlFor={id}>{label}</label>
         </>
     )
@@ -2028,7 +2029,7 @@ const Forms = {
     Number,
     Output,
     Password,
-    Radio,
+    RadioInput,
     RichText,
     Search,
     Select,

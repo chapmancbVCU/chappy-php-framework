@@ -754,7 +754,7 @@ class FormHelper {
 
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
-        return '<input type="radio" id="'.$value.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label me-3" for="'.$value.'">'.$label.'</label> ';
+        return '<input type="radio" id="'.$name.'_'.$value.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label me-3" for="'.$value.'">'.$label.'</label> ';
     }
 
     /**
