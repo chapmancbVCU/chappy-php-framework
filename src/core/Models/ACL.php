@@ -68,9 +68,9 @@ final class ACL extends Model {
     public static function getOptionsForForm(): array {
         $acls = self::find(['order' => 'acl']);
         $aclArray = [];
-        
-        foreach($acls as $acl) {
-            $aclArray[$acl->id] = $acl->acl;
+
+        foreach ($acls as $acl) {
+            $aclArray[$acl->acl] = $acl->acl;   // name => name
         }
         return $aclArray;
     }
