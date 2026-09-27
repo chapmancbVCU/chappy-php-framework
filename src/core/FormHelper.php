@@ -277,7 +277,7 @@ class FormHelper {
             . $checkString . $inputString . ' />';
 
         $text = htmlspecialchars($label);
-        $labelOpen = '<label class="form-check-label" for="' . htmlspecialchars($id) . '">';
+        $labelOpen = '<label class="form-check-label me-3" for="' . htmlspecialchars($id) . '">';
 
         // Default: box first, label text to its right.
         $inner = $labelRight
