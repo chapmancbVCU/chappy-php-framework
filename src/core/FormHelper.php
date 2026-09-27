@@ -209,6 +209,16 @@ class FormHelper {
      * Renders a group of checkboxes sharing one name (submitted as name[]),
      * one wrapping div, and ONE error span. Label-right per box.
      *
+     * Example:
+     * <?= checkboxGroup(
+     *     'acls',
+     *     $this->acls,              // [value => label] map of all ACLs
+     *     $this->user->getAcls(),   // the set of ACLs this user currently has
+     *     [],
+     *     ['class' => 'form-check'],
+     *     $this->displayErrors
+     * ); ?>
+     * 
      * @param string $name           Group name WITHOUT '[]' (added internally), e.g. 'acls'.
      * @param array  $options        [value => label] map of choices.
      * @param array  $selectedValues Values that should render checked (the current set).
@@ -761,7 +771,6 @@ class FormHelper {
     public static function posted_values(array $post): array {
         return (new ArraySet($post))->map(fn($value) => self::sanitize($value))->all();
     }
-
 
     /**
      * Renders a radio button group based on options provided.
