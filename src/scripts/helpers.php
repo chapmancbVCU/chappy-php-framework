@@ -184,7 +184,8 @@ if(!function_exists('route')) {
      * @return string $url The URL.
      */
     function route(string $path, array $params = []): string {
-        $parts = explode('.', $path, 2);
+        $safePath = htmlentities($path);
+        $parts = explode('.', $safePath, 2);
         $controller = $parts[0];
         $action = $parts[1] ?? 'index';
 
