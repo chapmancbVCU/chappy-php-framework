@@ -816,6 +816,68 @@ if(!function_exists('hidden')) {
     }
 }
 
+if(!function_exists('image')) {
+    /**
+     * Renders an HTML div element that surrounds an input of type image.
+     *
+     * @param string $id The id attribute for the image input.
+     * @param string $src The path to the image file.
+     * @param int $width The width of the image.
+     * @param int $height The hight of the image.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return string An input element of type image.
+     */
+    function image(
+        string $id, 
+        string $src, 
+        int $width, 
+        int $height, 
+        array $inputAttrs = []
+    ): string {
+        return FormHelper::image(
+            $id,
+            $src,
+            $width,
+            $height,
+            $inputAttrs
+        );
+    }
+}
+
+if(!function_exists('imageBlock')) {
+    /**
+     * Renders an HTML div element that surrounds an input of type image.
+     *
+     * @param string $id The id attribute for the image input.
+     * @param string $src The path to the image file.
+     * @param int $width The width of the image.
+     * @param int $height The hight of the image.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string An input element of type image.
+     */
+    function imageBlock(
+        string $id, 
+        string $src, 
+        int $width, 
+        int $height,
+        array $inputAttrs = [], 
+        array $divAttrs = []
+    ): string {
+        return FormHelper::imageBlock(
+            $id,
+            $src,
+            $width,
+            $height,
+            $inputAttrs,
+            $divAttrs
+        );
+    }
+}
+
 if(!function_exists('input')) {
     /**
      * Assists in the development of forms input blocks in forms.  It accepts 

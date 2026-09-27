@@ -520,6 +520,51 @@ class FormHelper {
     }
 
     /**
+     * Create a input element of type image.
+     * 
+     * @param string $id The id attribute for the image input.
+     * @param string $src The path to the image file.
+     * @param int $width The width of the image.
+     * @param int $height The hight of the image.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return string An input element of type image.
+     */
+    public static function image(string $id, string $src, int $width, int $height, array $inputAttrs = []): string {
+        $inputString = self::stringifyAttrs($inputAttrs);
+        return '<input type="image" id="'.$id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$inputString.' />';
+    }
+
+    /**
+     * Generates a div containing an input of type image.
+     * 
+     * @param string $id The id attribute for the image input.
+     * @param string $src The path to the image file.
+     * @param int $width The width of the image.
+     * @param int $height The hight of the image.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string A surrounding div and the input element of type image.
+     */
+    public static function imageBlock(
+        string $id, 
+        string $src, 
+        int $width, 
+        int $height,
+        array $inputAttrs = [], 
+        array $divAttrs = []
+    ): string {
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $html = '<div'.$divString.'>';
+        $html .= '<input type="image" id="'.$id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$inputString.' />';
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
      * Assists in the development of forms input blocks in forms.  It accepts 
      * parameters for setting attribute tags in the form section.  Not to be 
      * used for inputs of type "Submit".  For submit inputs use the submitBlock 
