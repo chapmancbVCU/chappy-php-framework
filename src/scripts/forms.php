@@ -1166,7 +1166,21 @@ if(!function_exists('radio')) {
 }
 
 if(!function_exists('radioGroup')) {
-
+    /**
+     * Renders a radio button group based on options provided.
+     * 
+     * @param string $name Sets the value for the name attribute 
+     * for this input.
+     * @param array $options The list of options we will use to populate the 
+     * radio group.
+     * @param string|int|bool $selectedValue The selected value.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and option select element.
+     */
     function radioGroup(
         string $name,
         array $options = [],
