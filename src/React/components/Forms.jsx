@@ -251,7 +251,7 @@ export const CheckboxInput = ({
     const safeVal = String(value).replace(/\W+/g, '_');
     const id = `${formatId(name)}_${safeVal}`;
 
-    const RenderCheckbox = (
+    const checkbox = (
         <input 
             type="checkbox"
             id={id}
@@ -262,15 +262,15 @@ export const CheckboxInput = ({
         />
     );
     
-    const RenderLabel = (
+    const label = (
         <label className='form-check-label me-3' for={id}>{label}</label>
     )
     
     return (
         <>
             {labelRight 
-                ? <>{RenderLabel}{RenderCheckbox}</> 
-                : <>{RenderCheckbox}{RenderLabel}</>
+                ? <>{label}{checkbox}</> 
+                : <>{checkbox}{label}</>
             }
         </>
     )
