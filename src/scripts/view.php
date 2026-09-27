@@ -26,6 +26,21 @@ if(!function_exists('loadTinyMCE')) {
     }
 }
 
+if(!function_exists('resources')) {
+    /**
+     * Retrieves all resources needed for views to operate.  This function is called in the head section of the view in the templates.
+     *
+     * @return string The stylesheets and scripts for the view.
+     */
+    function resources(): string {
+        $html = '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">';
+        $html .= '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'resources/css/alerts/alertMsg.min.css?v='.config('config.version').'" media="screen" title="no title" charset="utf-8">';
+        $html .= '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'node_modules/@fortawesome/fontawesome-free/css/all.min.css" media="screen" title="no title" charset="utf-8">';
+        $html .= '<script src="'.env('APP_DOMAIN', '/').'resources/js/alerts/alertMsg.min.js?v='.config('config.version').'"></script>';
+        return $html;
+    }
+}
+
 if(!function_exists('profileImageSort')) {
     /**
      * Loads scripts and styling for sorting of profile images.
