@@ -1156,6 +1156,39 @@ if(!function_exists('radioGroup')) {
     }
 }
 
+if(!function_exists('rememberMe')) {
+    /**
+     * Generates a div containing an input of type checkbox with the label to 
+     * the left that is not part of a group.
+     *
+     * @param string $label Sets the label for this input.
+     * @param bool $checked The value for the checked attribute.  If true 
+     * this attribute will be set as checked="checked".  The default value is 
+     * false.  It can be set with values during form validation and forms 
+     * used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string A surrounding div and the input element of type checkbox.
+     */
+    function rememberMe(
+            string $label, 
+            bool $checked = false, 
+            array $inputAttrs = [], 
+            array $divAttrs = [],
+    ): string {
+        return FormHelper::checkboxBlockLabelLeft(
+            $label, 
+            'remember_me', 
+            'on',
+            $checked, 
+            $inputAttrs,
+            $divAttrs
+        );
+    }
+}
+
 if(!function_exists('search')) {
     /**
      * Renders an HTML div element that surrounds an input of type search.
