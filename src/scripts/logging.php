@@ -12,7 +12,6 @@ if(!function_exists('alert')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function alert(string $message) {
@@ -150,7 +149,6 @@ if(!function_exists('critical')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function critical(string $message) {
@@ -165,7 +163,6 @@ if(!function_exists('debug')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function debug(string $message) {
@@ -180,7 +177,6 @@ if(!function_exists('emergency')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function emergency(string $message) {
@@ -195,7 +191,6 @@ if(!function_exists('error')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function error(string $message) {
@@ -210,7 +205,6 @@ if(!function_exists('info')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function info(string $message) {
@@ -225,7 +219,6 @@ if(!function_exists('notice')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function notice(string $message) {
@@ -240,7 +233,6 @@ if(!function_exists('warning')) {
      *
      * @param string $message The description of an event that is being 
      * written to a log file.
-     * @param string $level Describes the severity of the message.
      * @return void
      */
     function warning(string $message) {
