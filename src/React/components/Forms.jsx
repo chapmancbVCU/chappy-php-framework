@@ -1041,6 +1041,102 @@ const Hidden = ({
 }
 
 /**
+ * Create a input element of type image.
+ *
+ * @typedef {Object} ImageProps
+ * @property {string} id The id attribute for the image input.
+ * @property {string} src The path to the image file.
+ * @property {number} width width of the image.
+ * @property {number} height height of the image.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @param {ImageProps} props
+ * @returns {HTMLInputElement} An input element of type image.
+ * 
+ * @example
+ * import asset from "@chappy/utils/asset";
+ * 
+ * <Forms.Image 
+ *      id={"submit"} 
+ *      src={asset('public/logo.png', true)}
+ *      width={100}
+ *      height={50}
+ *      inputAttrs={{className: 'pt-4'}}
+ * />
+ */
+export const Image = ({
+        id,
+        src,
+        width,
+        height,
+        inputAttrs={}
+}) => {
+    const inputString = normalizeAttrs(inputAttrs);
+    return(
+        <input 
+            type="image" 
+            id={id} 
+            src={src} 
+            width={width} 
+            height={height} 
+            {...inputString}
+        />
+    )
+}
+
+/**
+ * Generates a div containing an input of type image.
+ * 
+ * @property {string} id The id attribute for the image input.
+ * @property {string} src The path to the image file.
+ * @property {number} width width of the image.
+ * @property {number} height height of the image.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @param {InputProps} param0 
+ * @returns A surrounding div and the input element of type image.
+ * 
+ * @example
+ * import asset from "@chappy/utils/asset";
+ * 
+ * <Forms.ImageBlock
+ *      id={"submit"} 
+ *      src={asset('public/logo.png', true)}
+ *      width={100}
+ *      height={50}
+ *      inputAttrs={{className: 'pt-4'}}
+ *      divAttrs={{className: 'pt-4 text-end'}}
+ * />
+ */
+export const ImageBlock = ({
+        id,
+        src,
+        width,
+        height,
+        inputAttrs={},
+        divAttrs={}
+}) => {
+    const divString = normalizeAttrs(divAttrs);
+    const inputString = normalizeAttrs(inputAttrs);
+
+    return (
+        <div {...divString}>
+            <input 
+                type="image" 
+                id={id} 
+                src={src} 
+                width={width} 
+                height={height} 
+                {...inputString}
+                {...divAttrs}
+             />
+        </div>
+    );
+}
+
+/**
  * Assists in the development of forms input blocks in forms.  It accepts 
  * parameters for setting attribute tags in the form section.  Not to be 
  * used for inputs of type "Submit"  For submit inputs use the submitBlock 
@@ -1136,7 +1232,7 @@ export const Interval = ({
     if(typeof min === 'number' && typeof max === 'number' && min > max) {
          console.error("Forms.DataListInterval: min cannot be greater than max")
     }
-    
+
     inputAttrs.min = min;
     inputAttrs.max = max;
     
@@ -1840,6 +1936,8 @@ const Forms = {
     Email,
     FileSelector,
     Hidden,
+    Image,
+    ImageBlock,
     Input, 
     Interval,
     Month,
