@@ -176,6 +176,107 @@ export const CheckBoxRightLabel = ({
 };
 
 /**
+ * Renders a checkbox group.
+ * 
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {object} options The list of options we will use to populate the 
+ * radio group.  The default value is an empty object.
+ * @property {array} selectedValues Values that should render checked (the current set).
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ * @param {CheckboxGroup} props 
+ * @returns {HTMLDivElement} A surrounding div and the accompanying nested 
+ * group of checkbox inputs.
+ */
+export const CheckboxGroup = ({
+    name,
+    options={},
+    selectedValues=[],
+    inputAttrs={},
+    divAttrs={},
+    errors={}
+}) => {
+    const divString = normalizeAttrs(divAttrs);
+    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
+    const groupName = `${name.replace(/\[\]/g, '')}[]`;
+
+    return (
+        <div {...divString}>
+            {Object.entries(options).map(([value, label]) => (
+                <CheckboxInput 
+                    key={value}
+                    label={label}
+                    name={groupName}
+                    value={value}
+                    checked={selectedValues.includes(value)}
+                    inputAttrs={inputAttrs}
+                />
+            ))}
+            <FieldErrors errors={errors} name={name} />
+        </div>
+    )
+}
+
+/**
+ * 
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name attribute
+ * for this input.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  It can be 
+ * set with values during form validation and forms used for editing records.
+ * @property {bool} checked Whether this box renders checked.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {boolean} labelRight Sets label on right side when true.  Otherwise, 
+ * the label is rendered on the left.  Default value is true.
+ * @param {CheckboxInput} props 
+ * @returns {JSX.Element} The checkbox input and its label.
+ */
+export const CheckboxInput = ({
+    label,
+    name,
+    value = '',
+    checked = false,
+    inputAttrs = {},
+    labelRight = true
+}) => {
+    const inputString = normalizeAttrs(inputAttrs);
+    // Ensure unique IDs when multiple boxes share the same name
+    const safeVal = String(value).replace(/\W+/g, '_');
+    const id = `${formatId(name)}_${safeVal}`;
+
+    const RenderCheckbox = (
+        <input 
+            type="checkbox"
+            id={id}
+            name={name}
+            value={value}
+            defaultChecked={checked}
+            {...inputString}
+        />
+    );
+    
+    const RenderLabel = (
+        <label className='form-check-label me-3' for={id}>{label}</label>
+    )
+    
+    return (
+        <>
+            {labelRight 
+                ? <>{RenderLabel}{RenderCheckbox}</> 
+                : <>{RenderCheckbox}{RenderLabel}</>
+            }
+        </>
+    )
+}
+
+/**
  * Assists in the development of input of type color in forms.  It accepts parameters 
  * for setting  attribute tags in the form section.
  *
@@ -1467,8 +1568,8 @@ export const Password = ({
  * 
  * @property {string} name Sets the value for the name, for, and id attributes 
  * for this input.
- * @property {array} options The list of options we will use to populate the 
- * radio group.  The default value is an empty array.
+ * @property {object} options The list of options we will use to populate the 
+ * radio group.  The default value is an empty object.
  * @property {object} inputAttrs The values used to set the class and other 
  * attributes of the input string.  The default value is an empty object.
  * @property {object} divAttrs The values used to set the class and other 
@@ -2041,6 +2142,8 @@ const Forms = {
     Button,
     CheckBoxLeftLabel,
     CheckBoxRightLabel,
+    CheckboxGroup,
+    CheckboxInput,
     Color,
     Confirm,
     CSRFInput,
