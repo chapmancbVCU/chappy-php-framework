@@ -301,6 +301,16 @@ export const CSRFToken = (e) => {
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type text 
  * for currency.
+ * 
+ * @example
+ * 
+ * <Forms.Currency
+ *      label="test"
+ *      name="test"
+ *      value=""
+ *      inputAttrs={{className: 'form-control input-sm'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * /> 
  */
 export const Currency = ({
     type='text',
@@ -570,8 +580,21 @@ export const DataListBlock = ({
  * Default value is an empty object.
  *
  * @param {DataListInterval} props
- * @returns {HTMLDivElement} A surrounding div and the input element of type 
- * range.
+ * @returns {HTMLDivElement} A surrounding div and the input element of type range
+ * 
+ * @example
+ * 
+ * <Forms.DataListInterval
+ *      label="Tip amount:"
+ *      name="tick"
+ *      listName="tickmarks"
+ *      min={0}
+ *      max={45}
+ *      value=""
+ *      options={options}
+ *      inputAttrs={{}}
+ *      divAttrs={{className: 'form-group mb-3 d-flex flex-column'}}
+ * />
  */
 export const DataListInterval = ({
     label,
