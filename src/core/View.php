@@ -238,7 +238,7 @@ class View extends stdClass {
      * @return void
      */
     public function setSiteTitle(string $title): void {
-        $this->_siteTitle = $title;
+        $this->_siteTitle = htmlentities($title);
     }
 
     /**
