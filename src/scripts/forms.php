@@ -1205,6 +1205,14 @@ if(!function_exists('rememberMe')) {
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
+     * Example:
+     * <?= rememberMe(
+     *      'Remember Me', 
+     *      $this->login->getRememberMeChecked(), 
+     *      [], 
+     *      ['class' => 'form-group mb-3']); 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param bool $checked The value for the checked attribute.  If true 
      * this attribute will be set as checked="checked".  The default value is 
