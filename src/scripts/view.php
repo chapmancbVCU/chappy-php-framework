@@ -13,6 +13,40 @@ if(!function_exists('initTinyMCE')) {
                </script>";
     }
 }
+
+if(!function_exists('initVite')) {
+    /**
+     * Initializes vite in head of layout.
+     *
+     * @param boolean $isDev True if in dev mode.  Otherwise we return false.
+     * @return string The scripts and other resources needed to initialize vite.
+     */
+    function initVite(bool $isDev) {
+        // dd("test");
+        $html = " ";
+        if ($isDev) {
+            $html .= "<!-- React Fast Refresh preamble -->";
+            $html .= "<script type=\"module\">
+                import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+                RefreshRuntime.injectIntoGlobalHook(window)
+                window.\$RefreshReg$ = () => {}
+                window.\$RefreshSig$ = () => (type) => type
+                window.__vite_plugin_react_preamble_installed__ = true
+            </script>";
+
+            $html .= "<!-- Vite HMR client + your React entry from DEV SERVER -->";
+            $html .= "<script type=\"module\" src=\"http://localhost:5173/@vite/client\"></script>";
+            $html .= "<script type=\"module\" src=\"http://localhost:5173/resources/js/app.jsx\"></script>";
+        } else {
+            $html .= "<!-- PRODUCTION: hashed assets from manifest -->";
+            $html .= "<link rel=\"stylesheet\" href=\"".vite('resources/css/app.css')."\">";
+            $html .= "<script type=\"module\" src=\"".vite('resources/js/app.jsx')."\"></script>";
+        }
+
+        return $html;
+    }
+}
+
 if(!function_exists('loadTinyMCE')) {
     /**
      * Returns scripts to load tinyMCE.
