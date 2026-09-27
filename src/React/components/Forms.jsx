@@ -241,6 +241,16 @@ export const Color = ({
  * @param {Confirm} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * password for confirmation.
+ * 
+ * @example
+ * 
+ * <Forms.Confirm 
+ *      label="Confirm Password"
+ *      name="confirm"
+ *      value={user.confirm}
+ *      inputAttrs={{className: 'form-control input-sm'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const Confirm = ({
     label,
@@ -952,6 +962,15 @@ export const DisplayErrors = ({errors}) => {
  * Default value is an empty object.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type email.
+ * 
+ * @example
+ * <Forms.Email 
+ *      label="Email"
+ *      name="email"
+ *      value={user.email}
+ *      inputAttrs={{className: 'form-control input-sm', placeholder: 'joe@example.com'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const Email = ({
     label,
@@ -1017,6 +1036,16 @@ const FieldErrors = ({ errors = {}, name }) => {
  * @property {boolean} multiple Flag for turning on or off multiple file uploads.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type week.
+ * 
+ * @example
+ * 
+ * <Forms.FileSelector 
+ *      type="file"
+ *      label="Upload Profile Image (Optional)"
+ *      name="profileImage"
+ *      inputAttrs={{className: 'form-control', accept: 'image/gif image/jpeg image/png'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const FileSelector = ({
     type='file',
@@ -1077,6 +1106,7 @@ const Hidden = ({
  * @returns {HTMLInputElement} An input element of type image.
  * 
  * @example
+ * 
  * import asset from "@chappy/utils/asset";
  * 
  * <Forms.Image 
@@ -1122,6 +1152,7 @@ export const Image = ({
  * @returns A surrounding div and the input element of type image.
  * 
  * @example
+ * 
  * import asset from "@chappy/utils/asset";
  * 
  * <Forms.ImageBlock
@@ -1185,13 +1216,14 @@ export const ImageBlock = ({
  * @returns {HTMLDListElement} A surrounding div and the input element.
  *
  * @example
- * <Input
- *   label="First Name"
- *   name="fname"
- *   value={user.fname}
- *   divAttrs={{ className: 'mb-3' }}
- *   inputAttrs={{ className: 'form-control', placeholder: 'Enter first name' }}
- *   errors={errors}
+ * <Forms.Input
+ *      type="input"
+ *      label="First Name"
+ *      name="fname"
+ *      value={user.fname}
+ *      divAttrs={{ className: 'mb-3' }}
+ *      inputAttrs={{ className: 'form-control', placeholder: 'Enter first name' }}
+ *      errors={errors}
  * />
  */
 export const Input = ({
@@ -1397,6 +1429,16 @@ const Output = ({
  * @param {Password} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * password.
+ * 
+ * @example
+ * 
+ * <Forms.Password 
+ *      label="Password"
+ *      name="password"
+ *      value={user.password}
+ *      inputAttrs={{className: 'form-control input-sm'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const Password = ({
     label,
@@ -1479,6 +1521,16 @@ const Radio = ({
  *
  * @param {RichTextProps} props
  * @returns {JSX.Element}
+ * 
+ * @example
+ * 
+ * <Forms.RichText
+ *      label="Description"
+ *      name="description"
+ *      value={user.description}
+ *      inputAttrs={{ placeholder: 'Describe yourself here...' }}
+ *      divAttrs={{ className: 'form-group mb-3' }}
+ * />
  */
 const RichText = ({
     label,
@@ -1750,6 +1802,15 @@ export const Tel = ({
  * @param {Text} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * text.
+ * 
+ * @example
+ * <Forms.Text
+ *       label="First Name"
+ *       name="fname"
+ *       value={user.fname}
+ *       inputAttrs={{className: 'form-control input-sm'}}
+ *       divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const Text = ({
     label,
