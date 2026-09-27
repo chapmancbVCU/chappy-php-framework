@@ -95,6 +95,6 @@ final class ACL extends Model {
      * @return void
      */
     public function validator(): void {
-        $this->runValidation($this->required()->unique(self::class)->fieldName('acl')->validate($this->acl));
+        $this->runValidation($this->required()->unique([self::class])->fieldName('acl')->validate($this->acl));
     }
 }
