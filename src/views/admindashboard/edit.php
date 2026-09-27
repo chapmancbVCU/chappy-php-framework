@@ -24,9 +24,14 @@
             <!-- ACL Management Section -->
             <div class="form-group mb-3">
                 <label>Manage ACLs:</label>
-                <?php foreach ($this->acls as $aclKey => $aclName): ?>
-                    <?= checkboxLabelRight($aclName, "acls[]", $aclName, $this->user->hasAcl($aclName), [], ['class' => 'form-check'], $this->displayErrors); ?>
-                <?php endforeach; ?>
+                <?= checkboxGroup(
+                    'acls',
+                    $this->acls,              // [value => label] map of all ACLs
+                    $this->user->getAcls(),   // the set of ACLs this user currently has
+                    [],
+                    ['class' => 'form-check'],
+                    $this->displayErrors
+                ); ?>
             </div>
             
             <!-- Manage profile images section -->
