@@ -1462,7 +1462,23 @@ export const Password = ({
     )
 }
 
-
+/**
+ * Renders a radio group.
+ * 
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {array} options The list of options we will use to populate the 
+ * radio group.  The default value is an empty array.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ * @param {RadioGroup} props
+ * @returns {HTMLDivElement} A surrounding div and the accompanying nested 
+ * group of radio inputs.
+ */
 const RadioGroup = ({
     name,
     options={},
