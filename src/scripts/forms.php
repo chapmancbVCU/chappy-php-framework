@@ -139,6 +139,25 @@ if(!function_exists('checkboxLabelRight')) {
     }
 }
 
+if(!function_exists('checkboxGroup')) {
+    function checkboxGroup(
+        string $name,
+        array $options = [],
+        array $selectedValues = [],
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        return FormHelper::checkboxGroup(
+            $name,
+            $options,
+            $selectedValues,
+            $inputAttrs,
+            $divAttrs,
+            $errors,
+        );
+    }
+}
 if(!function_exists('color')) {
     /**
      * Renders an HTML div element that surrounds an input of type color.

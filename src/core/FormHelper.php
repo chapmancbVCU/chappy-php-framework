@@ -133,7 +133,7 @@ class FormHelper {
         // Determine if it's a multiple checkbox group
         $isMultiple = Str::endsWith($name, '[]');
         $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
-        $id = Str::replace('[]', '', $name); // Ensure unique ID
+        $id = Str::replace('[]', '', $name) . '_' . $value; // Ensure unique ID
     
         $html = '<div' . $divString . '>';
         $html .= '<label class="form-label" for="' . htmlspecialchars($id) . '">';
@@ -194,7 +194,7 @@ class FormHelper {
         // Determine if it's a multiple checkbox group
         $isMultiple = Str::endsWith($name, '[]');
         $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
-        $id = Str::replace('[]', '', $name); // Ensure unique ID
+        $id = Str::replace('[]', '', $name) . '_' . $value; // Ensure unique ID
     
         $html = '<div' . $divString . '>';
         $html .= '<input class="form-label" type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
@@ -203,6 +203,88 @@ class FormHelper {
         $html .= '</div>';
         
         return $html;
+    }
+
+    /**
+     * Renders a group of checkboxes sharing one name (submitted as name[]),
+     * one wrapping div, and ONE error span. Label-right per box.
+     *
+     * @param string $name           Group name WITHOUT '[]' (added internally), e.g. 'acls'.
+     * @param array  $options        [value => label] map of choices.
+     * @param array  $selectedValues Values that should render checked (the current set).
+     * @param array  $inputAttrs     Passthrough attrs applied to every box (error-classed once here).
+     * @param array  $divAttrs       Attrs for the group's wrapping div.
+     * @param array  $errors         Errors array; one invalid-feedback span for the whole group.
+     */
+    public static function checkboxGroup(
+        string $name,
+        array $options = [],
+        array $selectedValues = [],
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        // Error class applied ONCE for the whole group, not per box.
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
+        $divString  = self::stringifyAttrs($divAttrs);
+
+        // Submit as an array; strip any stray '[]' the caller passed, then add one.
+        $groupName = Str::replace('[]', '', $name) . '[]';
+
+        $html = '<div' . $divString . '>';
+        foreach ($options as $value => $label) {
+            // Loose comparison bridges int/string, matching radio's ==.
+            $checked = in_array($value, $selectedValues);
+            $html .= self::checkboxInput($label, $groupName, (string)$value, $checked, $inputAttrs, true);
+        }
+        // ONE error span for the whole group.
+        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
+        $html .= '</div>';
+
+        return $html;
+    }
+    /**
+     * Renders a single checkbox input with its label — the bare item only,
+     * no wrapping div and no error span (the caller owns the envelope).
+     * Label sits to the RIGHT of the box by default; pass $labelRight = false
+     * to place it on the left.
+     *
+     * $inputAttrs is expected already error-classed by the caller (mirrors radioInput).
+     *
+     * @param string $label      Visible label text.
+     * @param string $name       Field name. Keep the '[]' suffix for group members
+     *                           (e.g. 'genres[]') so they submit as an array.
+     * @param string $value      Submitted value; also used to build a unique id.
+     * @param bool   $checked    Whether this box renders checked.
+     * @param array  $inputAttrs Passthrough HTML attributes (already error-classed).
+     * @param bool   $labelRight Label on the right of the box (default true).
+     */
+    public static function checkboxInput(
+        string $label,
+        string $name,
+        string $value = "",
+        bool $checked = false,
+        array $inputAttrs = [],
+        bool $labelRight = true
+    ): string {
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $checkString = $checked ? ' checked="checked"' : '';
+        $id = Str::replace('[]', '', $name) . '_' . $value;
+
+        $input = '<input type="checkbox" id="' . htmlspecialchars($id) . '"'
+            . ' name="' . htmlspecialchars($name) . '"'
+            . ' value="' . htmlspecialchars($value) . '"'
+            . $checkString . $inputString . ' />';
+
+        $text = htmlspecialchars($label);
+        $labelOpen = '<label class="form-check-label" for="' . htmlspecialchars($id) . '">';
+
+        // Default: box first, label text to its right.
+        $inner = $labelRight
+            ? $input . ' ' . $text
+            : $text . ' ' . $input;
+
+        return $labelOpen . $inner . '</label>';
     }
 
     /**
