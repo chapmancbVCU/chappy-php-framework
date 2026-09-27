@@ -16,10 +16,11 @@ if (!function_exists('asset')) {
      * @return string The full path.
      */
     function asset(string $path, bool $local = false): string {
+        $safePath = htmlentities($path);
         if($local) {
-            return rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . ltrim($path, '/');    
+            return rtrim(Env::get('APP_DOMAIN', '/'), '/') . '/' . ltrim($safePath, '/');    
         }
-        return rtrim(Env::get('S3_BUCKET', '/'), '/') . '/' . ltrim($path, '/');
+        return rtrim(Env::get('S3_BUCKET', '/'), '/') . '/' . ltrim($safePath, '/');
     }
 }
 
