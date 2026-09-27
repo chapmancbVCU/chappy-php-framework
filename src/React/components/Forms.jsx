@@ -1462,6 +1462,35 @@ export const Password = ({
     )
 }
 
+
+const RadioGroup = ({
+    name,
+    options={},
+    selectedValue='',
+    inputAttrs={},
+    divAttrs={},
+    errors={}
+}) => {
+    const divString = normalizeAttrs(divAttrs);
+    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
+    const inputString = normalizeAttrs(inputAttrs);
+
+    return (
+        <div {...divString}>
+            {Object.entries(options).map(([value, label]) => (
+                <RadioInput
+                    key={value}
+                    label={label}
+                    name={name}
+                    value={value}
+                    checked={String(selectedValue) === String(value)}
+                    inputAttrs={inputString}
+                />
+            ))}
+            <FieldErrors errors={errors} name={name} />
+        </div>
+    )
+}
 /**
  * Creates an input element of type radio with an accompanying label 
  * element.  Compatible with radio button groups.
