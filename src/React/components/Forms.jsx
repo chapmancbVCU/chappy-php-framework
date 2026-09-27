@@ -1668,7 +1668,6 @@ export const Search = ({
  * the value of the value attribute during form validation.  Default value 
  * is the empty string.  It can be set with values during form validation 
  * and forms used for editing records.
- * @property {string} fieldName The name of the field in the model to use.
  * @property {array} options The list of options we will use to populate the 
  * select option dropdown.  The default value is an empty array.
  * @property {object} inputAttrs The values used to set the class and other 
@@ -1685,34 +1684,29 @@ export const Select = ({
     label,
     name,
     value,
-    fieldName="",
-    options=[],
-    inputAttrs={},
-    divAttrs={},
-    errors=[]
+    options = {},
+    inputAttrs = {},
+    divAttrs = {},
+    errors = []
 }) => {
     const id = formatId(name);
     const divString = normalizeAttrs(divAttrs);
-    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
-    const inputString = normalizeAttrs(inputAttrs);
+    const inputString = normalizeAttrs(
+        appendErrorClass(inputAttrs, errors, name, 'is-invalid')
+    );
 
     return (
         <div {...divString}>
-            <label className='form-label' htmlFor={id}>{label}</label>
-            <select id={id} name={name} defaultValue={value} {...inputString}>
-                {options && options.map((option, index) => (
-                    <SelectOptions 
-                        key={String(option[fieldName] ?? index)} 
-                        option={option} 
-                        fieldName={fieldName}
-                        value={option.id}
-                    />
+            <label className="form-label" htmlFor={id}>{label}</label>
+            <select id={id} name={name} defaultValue={String(value ?? '')} {...inputString}>
+                {Object.entries(options).map(([optValue, display]) => (
+                    <option key={optValue} value={optValue}>{display}</option>
                 ))}
             </select>
             <FieldErrors errors={errors} name={name} />
         </div>
     );
-}
+};
 
 /**
  * Generates options for select.
