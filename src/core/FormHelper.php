@@ -215,6 +215,7 @@ class FormHelper {
      * @param array  $inputAttrs     Passthrough attrs applied to every box (error-classed once here).
      * @param array  $divAttrs       Attrs for the group's wrapping div.
      * @param array  $errors         Errors array; one invalid-feedback span for the whole group.
+     * @return string The checkbox group.
      */
     public static function checkboxGroup(
         string $name,

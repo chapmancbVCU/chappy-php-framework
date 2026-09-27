@@ -140,6 +140,18 @@ if(!function_exists('checkboxLabelRight')) {
 }
 
 if(!function_exists('checkboxGroup')) {
+    /**
+     * Renders a group of checkboxes sharing one name (submitted as name[]),
+     * one wrapping div, and ONE error span. Label-right per box.
+     *
+     * @param string $name           Group name WITHOUT '[]' (added internally), e.g. 'acls'.
+     * @param array  $options        [value => label] map of choices.
+     * @param array  $selectedValues Values that should render checked (the current set).
+     * @param array  $inputAttrs     Passthrough attrs applied to every box (error-classed once here).
+     * @param array  $divAttrs       Attrs for the group's wrapping div.
+     * @param array  $errors         Errors array; one invalid-feedback span for the whole group.
+     * @return string The checkbox group.
+     */
     function checkboxGroup(
         string $name,
         array $options = [],
