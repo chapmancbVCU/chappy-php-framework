@@ -24,11 +24,9 @@
             ) ?>
 
             <?php if($this->attachment->isNew()): ?>
-                <?= input(
-                    'file', 
+                <?= fileSelector(
                     $this->uploadMessage, 
                     'attachment_name', 
-                    '', 
                     ['class' => 'form-control', 'accept' => 'image/gif image/jpeg image/png'], 
                     ['class' => 'form-group mb-3']
                 ) ?>
