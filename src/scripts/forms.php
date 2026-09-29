@@ -213,6 +213,15 @@ if(!function_exists('confirm')) {
      * Renders an HTML div element that surrounds an input of type password confirm.
      * The built-in contract assumes that "confirm" is the name of the field.
      * 
+     * Example:
+     * 
+     * <?= confirm(
+     *      "Confirm Password", 
+     *      $this->user->confirm, 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
@@ -762,6 +771,16 @@ if(!function_exists('email')) {
     /**
      * Renders an HTML div element that surrounds an input of type email.
      *
+     * Example:
+     * 
+     * <?= email(
+     *      "Email", 
+     *      'email', 
+     *      $this->user->email, 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1094,6 +1113,14 @@ if(!function_exists('password')) {
     /**
      * Renders an HTML div element that surrounds an input of type password.
      *
+     * <?= password(
+     *      'Password', 
+     *      'password', 
+     *      $this->login->password,
+     *      ['class' => 'form-control'],
+     *      ['class' => 'form-group mb-3']); 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1346,6 +1373,10 @@ if(!function_exists('submit')) {
     /**
      * Create a input element of type submit.
      *
+     * Example:
+     * 
+     * <?= submit('Login',['class'=>'btn btn-primary']) ?>
+     * 
      * @param string $buttonText Sets the value of the text describing the 
      * button.
      * @param array $inputAttrs The values used to set the class and other 
@@ -1399,6 +1430,16 @@ if(!function_exists('text')) {
     /**
      * Renders an HTML div element that surrounds an input of type text.
      *
+     * Example:
+     * 
+     * <?= text(
+     *      "First Name", 
+     *      'fname', 
+     *      $this->user->fname, 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1552,6 +1593,15 @@ if(!function_exists('week')) {
     /**
      * Renders an HTML div element that surrounds an input of type week.
      *
+     * Example:
+     * 
+     * <?= textarea("Description", 
+     *      'description', 
+     *      $this->user->description, 
+     *      ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...'], 
+     *      ['class' => 'form-group mb-3']); 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
