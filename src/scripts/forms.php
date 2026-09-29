@@ -866,10 +866,10 @@ if(!function_exists('hidden')) {
     }
 }
 
-if(!function_exists('image')) {
+if(!function_exists('imageButton')) {
     /**
      * Renders an HTML div element that surrounds an input of type image.
-     *
+     * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
      * @param int $width The width of the image.
@@ -878,7 +878,7 @@ if(!function_exists('image')) {
      * attributes of the input string.  The default value is an empty array.
      * @return string An input element of type image.
      */
-    function image(
+    function imageButton(
         string $id, 
         string $src, 
         int $width, 
@@ -899,6 +899,15 @@ if(!function_exists('imageBlock')) {
     /**
      * Renders an HTML div element that surrounds an input of type image.
      *
+     * <?= image(
+     *      'submit', 
+     *      asset('public/logo.png', true), 
+     *      100, 
+     *      50, 
+     *      ['class' => 'mt-5 pt-4'], 
+     *      ['class' => 'text-end'])
+     * ?>
+     * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
      * @param int $width The width of the image.
