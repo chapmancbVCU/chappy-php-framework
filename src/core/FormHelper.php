@@ -254,6 +254,7 @@ class FormHelper {
 
         return $html;
     }
+
     /**
      * Renders a single checkbox input with its label — the bare item only,
      * no wrapping div and no error span (the caller owns the envelope).
@@ -630,6 +631,17 @@ class FormHelper {
 
     /**
      * Generates a div containing an input of type image.
+     * 
+     * Example:
+     * 
+     * <?= FormHelper::image(
+     *      'submit', 
+     *      asset('public/logo.png', true), 
+     *      100, 
+     *      50, 
+     *      ['class' => 'mt-5 pt-4'], 
+     *      ['class' => 'text-end'])
+     * ?>
      * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
