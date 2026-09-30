@@ -460,12 +460,11 @@ class FormHelper {
     }
 
     /**
-     * Returns list of errors.
+     * Returns list of errors in the form of an error bag.
      * 
      * @param array|ArraySet $errors A list of errors and their description that is 
      * generated during server side form validation.
-     * @return string A string representation of a div element containing an 
-     * input of type checkbox.
+     * @return string The error bag.
      */
     public static function displayErrors(array|ArraySet $errors): string {
         // Ensure $errors is an Arr instance
