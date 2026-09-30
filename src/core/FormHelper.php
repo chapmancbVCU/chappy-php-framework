@@ -7,7 +7,8 @@ use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
 /**
- * Contains functions for building form elements of various types.
+ * Contains functions for building form elements of various types, the sanitation, 
+ * and other setup responsibilities.
  */
 class FormHelper {
     /**
@@ -43,7 +44,10 @@ class FormHelper {
      * Supports ability to create a styled button.
      * 
      * An example function call is shown below:
-     * FormHelper::button("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']);
+     * FormHelper::button(
+     *      "Click Me!", 
+     *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']
+     * );
      * 
      * Example HTML output is shown below:
      * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
@@ -66,7 +70,11 @@ class FormHelper {
      * block.
      * 
      * An example function call is shown below:
-     * FormHelper::buttonBlock("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], ['class' => 'form-group']);
+     * FormHelper::buttonBlock(
+     *      "Click Me!", 
+     *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], 
+     *      ['class' => 'form-group']
+     * );
      * 
      * Example HTML output is shown below:
      * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
