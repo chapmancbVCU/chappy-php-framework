@@ -236,7 +236,7 @@ class FormHelper {
      * one wrapping div, and ONE error span. Label-right per box.
      *
      * Example:
-     * <?= checkboxGroup(
+     * <?= FormHelper::checkboxGroup(
      *     'acls',
      *     $this->acls,              // [value => label] map of all ACLs
      *     $this->user->getAcls(),   // the set of ACLs this user currently has
@@ -341,9 +341,6 @@ class FormHelper {
 
     /**
      * A hidden input to represent the csrf token in a web form.
-     *
-     * Example HTML output is shown below:
-     * <input type="hidden" name="csrf_token" id="csrf_token" value="RANDOM_STRING_OF_VALUES" />
      * 
      * @return string The hidden input of type hidden with the generated token 
      * set as the value.
