@@ -1169,6 +1169,16 @@ if(!function_exists('radio')) {
      * Creates an input element of type radio with an accompanying label 
      * element.  Compatible with radio button groups.
      *
+     * Example: 
+     * 
+     * <?= radio(
+     *      "Phone", 
+     *      'contact', 
+     *      'phone', 
+     *      false, 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.

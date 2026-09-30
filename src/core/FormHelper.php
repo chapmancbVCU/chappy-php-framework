@@ -19,7 +19,7 @@ class FormHelper {
      * @param string $name The name of the field associated with this error.
      * @param string $class Name of the class used to identify errors for a 
      * form field.
-     * @return array $attrs Div attributes with error classes added.
+     * @return array Div attributes with error classes added.
      */
     public static function appendErrorClass(array $attrs, array $errors, string $name, string $class): array {
         $attrsArr = new ArraySet($attrs);
@@ -49,8 +49,10 @@ class FormHelper {
      * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
      * 
      * @param string $buttonText The contents of the button's label.
-     * @param array $inputAttrs The values used to set the class and other 
-     * attributes of the input string.  The default value is an empty array.
+     * @param array $inputAttrs This parameter is used to set values for attributes 
+     * such as classes for styling, front-side validation, and event handlers. 
+     * Make sure when performing an event handler function call that contains strings 
+     * as arguments to escape any quotes. The default value is an empty array.
      * @return string An HTML button element with its label set and any other 
      * optional attributes set.
      */
@@ -824,15 +826,15 @@ class FormHelper {
      * Creates an input element of type radio with an accompanying label 
      * element.  Compatible with radio button groups.
      *
-     * An example function call is shown below:
-     * FormHelper::radioInput('HTML', 'html', 'fav_language', "HTML", $check1, ['class' => 'form-group mr-1']);
-     * FormHelper::radioInput('CSS', 'css', 'fav_language', "CSS", $check2, ['class' => 'form-group mr-1']);
+     * Example: 
      * 
-     * Example HTML output is shown below:
-     * <input type="radio" id="html" name="fav_language" value="HTML" class="form-group mr-1">
-     * <label for="html">HTML</label>  <br>
-     * <input type="radio" id="css" name="fav_language" value="CSS" class="form-group mr-1">
-     * <label for="css">CSS</label>
+     * <?= FormHelper::radioInput(
+     *      "Phone", 
+     *      'contact', 
+     *      'phone', 
+     *      false, 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name attribute 
