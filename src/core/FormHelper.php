@@ -102,12 +102,19 @@ class FormHelper {
      * the left.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'], $this->displayErrors);
+     * FormHelper::checkboxBlockLabelLeft(
+     *      'Remember Me', 
+     *      'remember_me', 
+     *      'on', 
+     *      $this->login->getRememberMeChecked(), 
+     *      [], 
+     *      ['class' => 'form-group'], $this->displayErrors
+     * );
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
-     *     <input type="checkbox" id="remember_me" name="remember_me" value="on" />
      *     <label for="remember_me">Remember Me</label> 
+     *     <input type="checkbox" id="remember_me" name="remember_me" value="on" />
      * </div>
      * 
      * @param string $label Sets the label for this input.
@@ -163,7 +170,14 @@ class FormHelper {
      * the right.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1'], $this->displayErrors);
+     * FormHelper::checkboxBlockLabelRight(
+     *      'Remember Me', 
+     *      'remember_me', 
+     *      'on', 
+     *      $this->login->getRememberMeChecked(), 
+     *      [],
+     *      ['class' => 'form-group mr-1'], $this->displayErrors
+     * );
      * 
      * Example HTML output is shown below:
      * <div>
