@@ -7,7 +7,11 @@ use Core\Lib\Utilities\ArraySet;
  * Supports ability to create a styled button.
  * 
  * An example function call is shown below:
- * FormHelper::button("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']);
+ * 
+ * <?= button(
+ *      "Click Me!", 
+ *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']
+ * ); ?>
  * 
  * Example HTML output is shown below:
  * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
@@ -29,7 +33,11 @@ if(!function_exists('button')) {
  * block.
  * 
  * An example function call is shown below:
- * FormHelper::buttonBlock("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], ['class' => 'form-group']);
+ * <?= buttonBlock(
+ *      "Click Me!", 
+ *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], 
+ *      ['class' => 'form-group']
+ * ); ?>
  * 
  * Example HTML output is shown below:
  * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
@@ -101,7 +109,6 @@ if(!function_exists('checkboxLabelRight')) {
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
      *
-     * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
