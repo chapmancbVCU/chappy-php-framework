@@ -72,8 +72,10 @@ class FormHelper {
      * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
      * 
      * @param string $buttonText The contents of the button's label.
-     * @param array $inputAttrs The values used to set the class and other 
-     * attributes of the input string.  The default value is an empty array.
+     * @param array $inputAttrs This parameter is used to set values for attributes 
+     * such as classes for styling, front-side validation, and event handlers. 
+     * Make sure when performing an event handler function call that contains strings 
+     * as arguments to escape any quotes. The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string An HTML div surrounding a button element with its label 
