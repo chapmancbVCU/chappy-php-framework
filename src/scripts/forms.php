@@ -842,6 +842,14 @@ if(!function_exists('fileSelector')) {
      * will be formatted correctly and the multiple attribute will be added to 
      * the input element.
      * 
+     * Example:
+     * <?= fileSelector(
+     *      "Upload Profile Image (Optional)", 
+     *      'profileImage', 
+     *      ['class' => 'form-control', 'accept' => 'image/gif image/jpeg image/png'], 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
