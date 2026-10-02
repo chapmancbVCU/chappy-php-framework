@@ -695,6 +695,16 @@ class FormHelper {
     /**
      * Create a input element of type image.
      * 
+     * Example:
+     * 
+     * <?= FormHelper::image(
+     *      'submit', 
+     *      asset('public/logo.png', true), 
+     *      100, 
+     *      50, 
+     *      ['class' => 'mt-5 pt-4']
+     * ?>
+     * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
      * @param int $width The width of the image.
@@ -713,7 +723,7 @@ class FormHelper {
      * 
      * Example:
      * 
-     * <?= FormHelper::image(
+     * <?= FormHelper::imageBlock(
      *      'submit', 
      *      asset('public/logo.png', true), 
      *      100, 
