@@ -647,7 +647,7 @@ class FormHelper {
         $name = $baseName;
         if($multiple) {
             $name .= '[]';
-            // $inputAttrs['multiple'] = 'multiple';
+            $inputAttrs['multiple'] = 'multiple';
         }
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
