@@ -370,7 +370,8 @@ class FormHelper {
     public static function currencyBlock(
         string $label, 
         string $name, 
-        string $symbol = '$',
+        string $intlNumberFormat = 'en-US',
+        string $currency = "USD",
         mixed $value = '', 
         array $inputAttrs = [], 
         array $divAttrs = [],
@@ -378,7 +379,7 @@ class FormHelper {
     ): string {
         // Set formatting.  If provided in function call they will be overridden.
         $inputAttrs['inputMode'] = 'decimal';
-        $inputAttrs['placeholder'] = '0.00';
+        $inputAttrs['placeholder'] = '$0.00';
         $inputAttrs['pattern'] = '[0-9]*([\.,][0-9]{2})?';
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
@@ -388,12 +389,51 @@ class FormHelper {
 
         $html = '<div' . $divString . '>';
         $html .= '<label class="form-label" for="'.$id.'">'.$label.'</label>';
-        $html .= '<div class="d-flex align-items-center">';
-        $html .= "<span class=\"me-2\">{$symbol}</span>";
         $html .= '<input type="text" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
-        $html .= '</div>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
+        $html .= self::currencyHelper($currency, $intlNumberFormat, $name);
         $html .= '</div>';
+        return $html;
+    }
+
+    /**
+     * Ensures value is in currency format.
+     *
+     * @param string $currency The 3 digit currency name.
+     * @param string $intlNumberFormat The international number format.
+     * @param string $id The id of the element we are targeting.
+     * @return string The script that ensures values is in currency format.
+     */
+    private static function currencyHelper(string $currency, string $intlNumberFormat, string $id): string {
+        $html = "<script>";
+        $html .= <<<JS
+            const inputEl = document.getElementById('{$id}');
+
+            // 1. Initialize the currency formatter
+            const formatter = new Intl.NumberFormat('{$intlNumberFormat}', {
+                style: 'currency',
+                currency: '{$currency}',
+            });
+
+            // 2. Format when user leaves the input field
+            inputEl.addEventListener('blur', (e) => {
+            let value = e.target.value.replace(/[^0-9.]/g, ''); // Clear existing symbols/commas
+            
+            if (value) {
+                const numberValue = parseFloat(value);
+                // Ensure it's a valid number before formatting
+                e.target.value = isNaN(numberValue) ? '' : formatter.format(numberValue);
+            }
+            });
+
+            // 3. Strip formatting when user clicks back in (to make editing easy)
+            inputEl.addEventListener('focus', (e) => {
+            let value = e.target.value.replace(/[^0-9.]/g, '');
+            e.target.value = value ? parseFloat(value) : '';
+            });
+        JS;
+        $html .= "</script>";
+
         return $html;
     }
 
@@ -590,7 +630,7 @@ class FormHelper {
         $name = $baseName;
         if($multiple) {
             $name .= '[]';
-            $inputAttrs['multiple'] = 'multiple';
+            // $inputAttrs['multiple'] = 'multiple';
         }
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');

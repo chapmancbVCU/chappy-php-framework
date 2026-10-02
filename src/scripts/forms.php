@@ -294,7 +294,8 @@ if(!function_exists('currency')) {
     function currency(
         string $label,
         string $name,
-        string $symbol = '$',
+        string $intlNumberFormat = 'en-US',
+        string $currency = "USD",
         mixed $value = '',
         array $inputAttrs = [],
         array $divAttrs = [],
@@ -303,7 +304,8 @@ if(!function_exists('currency')) {
         return FormHelper::currencyBlock(
             $label,
             $name,
-            $symbol,
+            $intlNumberFormat,
+            $currency,
             $value,
             $inputAttrs,
             $divAttrs,
