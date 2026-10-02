@@ -276,6 +276,14 @@ if(!function_exists('currency')) {
     /**
      * Renders an HTML div element that surrounds an input of type currency.
      *
+     * Example:
+     *     <?= currency(
+     *     label: 'Amount',
+     *     name: "amount",
+     *     inputAttrs: ['class' => 'form-control input-sm'],
+     *     divAttrs: ['class' => 'form-group mb-3']
+     *  ) ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
