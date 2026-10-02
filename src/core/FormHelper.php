@@ -355,7 +355,8 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $symbol The symbol for the currency.
+     * @param string $currency The 3 digit currency name.
+     * @param string $intlNumberFormat The international number format.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
