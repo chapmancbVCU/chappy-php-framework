@@ -398,7 +398,8 @@ export const CSRFToken = (e) => {
  * @property {string} label Sets the label for this input.
  * @property {string} name Sets the value for the name, for, and id attributes 
  * for this input.
- * @property {string} symbol The symbol for the currency.
+ * @property {string} currency The 3 digit currency name.
+ * @property {string} intlNumberFormat The international number format.
  * @property {string|number} value The value we want to set.  We can use this to set 
  * the value of the value attribute during form validation.  Default value 
  * is the empty string.  It can be set with values during form validation 
@@ -424,10 +425,10 @@ export const CSRFToken = (e) => {
  * /> 
  */
 export const Currency = ({
-    type='text',
     label,
     name,
-    symbol='$',
+    intlNumberFormat='en-US',
+    currencyType='USD',
     value='',
     inputAttrs={},
     divAttrs={},
@@ -443,17 +444,66 @@ export const Currency = ({
     inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
     const inputString = normalizeAttrs(inputAttrs);
 
+    // Store only the clean numeric string in state
+    const [val, setValue] = useState('');
+    // Track focus state to determine whether to display raw or formatted text
+    const [isFocused, setIsFocused] = useState(false);
+
+    // Initialize the currency formatter
+    const formatter = new Intl.NumberFormat(intlNumberFormat, {
+        style: 'currency',
+        currency: currencyType,
+    });
+
+    // Strip everything except digits and decimals
+    const cleanValue = (val) => val.replace(/[^0-9.]/g, '');
+
+    const handleChange = (e) => {
+        // Keep state updated with the raw input as the user types
+        setValue(cleanValue(e.target.value));
+    };
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    }
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    };
+
+    // Determine what the user actually sees in the field
+    const getDisplayValue = () => {
+        if (!val) return '';
+        
+        const numberValue = parseFloat(val);
+        if (isNaN(numberValue)) return '';
+
+        // If focused, show the raw clean number. If blurred, show the currency style.
+        return isFocused ? val : formatter.format(numberValue);
+    };
+
     return (
         <div {...divString}>
             <label className='form-label' htmlFor={id}>{label}</label>
             <div className='d-flex align-items-center'>
-                <span className='me-2'>{symbol}</span>
-                <input type={type} id={id} name={name} defaultValue={value} {...inputString} />
+                <input 
+                    type="text" 
+                    id={id} 
+                    name={name} 
+                    value={getDisplayValue()}
+                    defaultValue={value} 
+                    {...inputString} 
+                    onChange={handleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    placeholder={formatter.format(0)}
+                />
             </div>
             <FieldErrors errors={errors} name={name} />
         </div>
     )
 }
+
 
 /**
  * Renders an HTML div element that surrounds an input of type color with an 
