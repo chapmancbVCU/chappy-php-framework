@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { getCsrf } from '@chappy/utils/csrf';
 import { Editor } from '@tinymce/tinymce-react';
 import { appendErrorClass, htmlspecialchars, formatId, normalizeAttrs } from '@chappy/utils/form';
@@ -434,29 +434,24 @@ export const Currency = ({
     divAttrs={},
     errors=[]
 }) => {
-    // Set formatting.  If provided in function call they will be overridden.
-    inputAttrs.inputMode = 'decimal';
-    inputAttrs.placeholder = '0.00';
-    inputAttrs.pattern = '[0-9]*([\.,][0-9]{2})?';
+    // Initialize the currency formatter
+    const formatter = useMemo(
+        () => new Intl.NumberFormat(intlNumberFormat, { style: 'currency',currency: currencyType }),
+        [intlNumberFormat, currencyType]
+    );
 
     const id = formatId(name);
     const divString = normalizeAttrs(divAttrs);
-    inputAttrs = appendErrorClass(inputAttrs, errors, name, 'is-invalid');
-    const inputString = normalizeAttrs(inputAttrs);
-
-    // Store only the clean numeric string in state
-    const [val, setValue] = useState('');
-    // Track focus state to determine whether to display raw or formatted text
-    const [isFocused, setIsFocused] = useState(false);
-
-    // Initialize the currency formatter
-    const formatter = new Intl.NumberFormat(intlNumberFormat, {
-        style: 'currency',
-        currency: currencyType,
-    });
+    const attrs = { inputMode: 'decimal', placeholder: formatter.format(0), ...inputAttrs };
+    const inputString = normalizeAttrs(appendErrorClass(attrs, errors, name, 'is-invalid'));
 
     // Strip everything except digits and decimals
     const cleanValue = (val) => val.replace(/[^0-9.]/g, '');
+    // Store only the clean numeric string in state
+    const [val, setValue] = useState(() => cleanValue(String(value ?? '')));
+
+    // Track focus state to determine whether to display raw or formatted text
+    const [isFocused, setIsFocused] = useState(false);
 
     const handleChange = (e) => {
         // Keep state updated with the raw input as the user types
@@ -491,12 +486,10 @@ export const Currency = ({
                     id={id} 
                     name={name} 
                     value={getDisplayValue()}
-                    defaultValue={value} 
-                    {...inputString} 
-                    onChange={handleChange}
+                    onChange={(e) => setValue(cleanValue(e.target.value))}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    placeholder={formatter.format(0)}
+                    {...inputString} 
                 />
             </div>
             <FieldErrors errors={errors} name={name} />
