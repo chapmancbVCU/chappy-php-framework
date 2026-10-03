@@ -1459,6 +1459,13 @@ if(!function_exists('tel')) {
         array $divAttrs = [],
         array $errors = []
     ): string {
+        $inputAttrs += [
+            'autocomplete' => 'tel',
+            'inputmode'    => 'tel',
+            'placeholder'  => '(555) 123-4567',
+            'pattern' => "[0-9]{3}-[0-9]{3}-[0-9]{4}",
+        ];
+
         return FormHelper::inputBlock(
             'tel',
             $label,

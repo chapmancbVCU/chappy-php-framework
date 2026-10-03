@@ -448,9 +448,7 @@ class FormHelper {
 
     /**
      * Assists in the development of forms input blocks with datalist element in forms.  
-     * It accepts parameters for setting attribute tags in the form section.  Not 
-     * to be used for inputs of type "Submit".  For submit inputs use the submitBlock 
-     * or submitTag functions.
+     * It accepts parameters for setting attribute tags in the form section.  
      * 
      * 
      * @param string $type The input type we want to generate.
@@ -1087,6 +1085,16 @@ class FormHelper {
     /**
      * Renders an HTML div element that surrounds an input of type tel.
      * 
+     * Example:
+     * 
+     * <?= FormHelper::telBlock(
+     *      'Home phone', 
+     *      'phone', 
+     *      $this->user->phone, 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1115,6 +1123,12 @@ class FormHelper {
         array $errors = []
     ): string {
         
+        $inputAttrs += [
+            'autocomplete' => 'tel',
+            'inputmode'    => 'tel',
+            'placeholder'  => '(555) 123-4567',
+            'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}'
+        ];
         return self::inputBlock(
             'tel',
             $label,
