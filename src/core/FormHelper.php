@@ -965,18 +965,15 @@ class FormHelper {
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
-     * FormHelper::selectBlock("Test", "test", $_POST["test"],['A' => 'a','B' => 'b', 'C' => 'c'], ['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors);
-     *
-     * Example HTML output is shown below:
-     * <div class="form-group">
-     *     <label for="test">Test</label>
-     *     <select id="test" name="test" value=""  class="form-control">
-     *         <option>---Please select an item--</option>
-     *         <option value="a">A</option>
-     *         <option value="b">B</option>
-     *         <option value="c">C</option>
-     *     </select>
-     * </div>
+     * <?= FormHelper::selectBlock(
+     *      'Account Status',                 // label
+     *      'inactive',                       // name — matches the schema column
+     *      $this->user->inactive,            // current value: 0 or 1
+     *      [0 => 'Active', 1 => 'Inactive'], // [value => label] map
+     *      ['class' => 'form-select'],       // inputAttrs
+     *      ['class' => 'form-group mb-3'],   // divAttrs
+     *      $this->displayErrors              // errors
+     * ); ?>
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
