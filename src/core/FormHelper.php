@@ -875,7 +875,14 @@ class FormHelper {
      * Renders a radio button group based on options provided.
      * 
      * Example:
-     * 
+     * <?= FormHelper::radioGroup(
+     *      'inactive',                       // name
+     *      [0 => 'Active', 1 => 'Inactive'], // [value => label] map
+     *      $this->user->inactive,            // selected value: 0 or 1
+     *      ['class' => 'form-check-input'],  // inputAttrs (applied to every radio)
+     *      ['class' => 'form-group mb-3'],   // divAttrs
+     *      $this->displayErrors              // errors
+     * ); ?>
      * 
      * @param string $name Sets the value for the name attribute 
      * for this input.
