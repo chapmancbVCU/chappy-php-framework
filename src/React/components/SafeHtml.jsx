@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import DOMPurify from 'dompurify';
 
 function decodeEntities(str = '') {
-  // Quick exit if it doesn't look encoded
   if (!/&(?:lt|gt|amp|quot|#39);/i.test(str)) return str;
   const doc = new DOMParser().parseFromString(String(str), 'text/html');
   return doc.documentElement.textContent || '';
@@ -17,26 +16,20 @@ export default function SafeHtml({
   stripStyle = false,
   allowedTags,
   allowedAttrs,
-  decode = true,           // 👈 NEW: enable entity decoding by default
+  decode = true,
   ...rest
 }) {
   const sanitized = useMemo(() => {
     if (!html) return '';
 
-    // ---- Hooks (scoped to this call) ----
-    const hooks = [];
+    // Create an ISOLATED DOMPurify instance for this call instead of mutating
+    // the global singleton. Hooks added here cannot leak into — or be removed
+    // by — another SafeHtml rendering in the same tick.
+    const purify = DOMPurify();  // factory call returns a fresh instance
 
-    const stripEventAttrs = (node) => {
-      if (!node?.attributes) return;
-      [...node.attributes].forEach((attr) => {
-        if (/^on/i.test(attr.name)) node.removeAttribute(attr.name);
-      });
-    };
-    DOMPurify.addHook('afterSanitizeAttributes', stripEventAttrs);
-    hooks.push(['afterSanitizeAttributes', stripEventAttrs]);
-
+    // Link hardening (open in new tab, neutralize dangerous hrefs).
     if (addTargetBlank) {
-      const hardenLinks = (node) => {
+      purify.addHook('afterSanitizeAttributes', (node) => {
         if (node.nodeName === 'A') {
           const href = node.getAttribute('href') || '';
           if (/^\s*(javascript:|data:)/i.test(href)) node.setAttribute('href', '#');
@@ -46,13 +39,12 @@ export default function SafeHtml({
           if (!rel.includes('noreferrer')) rel.push('noreferrer');
           node.setAttribute('rel', rel.join(' '));
         }
-      };
-      DOMPurify.addHook('afterSanitizeAttributes', hardenLinks);
-      hooks.push(['afterSanitizeAttributes', hardenLinks]);
+      });
     }
 
+    // Iframe host allow-listing + sandboxing.
     if (allowIframes && allowedIframeHosts.length > 0) {
-      const gateIframes = (node) => {
+      purify.addHook('uponSanitizeElement', (node) => {
         if (node.nodeName !== 'IFRAME') return;
         const src = node.getAttribute('src') || '';
         try {
@@ -65,12 +57,9 @@ export default function SafeHtml({
         } catch {
           node.parentNode?.removeChild(node);
         }
-      };
-      DOMPurify.addHook('uponSanitizeElement', gateIframes);
-      hooks.push(['uponSanitizeElement', gateIframes]);
+      });
     }
 
-    // 👇 Decode entities (turn &lt;p&gt; into <p>) *before* sanitizing
     let src = String(html);
     if (decode) src = decodeEntities(src);
 
@@ -82,12 +71,8 @@ export default function SafeHtml({
     if (allowedTags)  config.ALLOWED_TAGS = allowedTags;
     if (allowedAttrs) config.ALLOWED_ATTR = allowedAttrs;
 
-    const out = DOMPurify.sanitize(src, config);
-
-    // Cleanup hooks
-    hooks.forEach(([name, fn]) => { try { DOMPurify.removeHook(name, fn); } catch {} });
-
-    return out;
+    // No manual hook cleanup needed — the instance is discarded after this call.
+    return purify.sanitize(src, config);
   }, [
     html, decode, allowIframes, addTargetBlank, stripStyle,
     JSON.stringify(allowedIframeHosts),
