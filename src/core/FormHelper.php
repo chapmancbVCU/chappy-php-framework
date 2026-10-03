@@ -386,63 +386,37 @@ class FormHelper {
         array $divAttrs = [],
         array $errors=[]
     ): string {
-        // Set formatting.  If provided in function call they will be overridden.
-        $inputAttrs['inputMode'] = 'decimal';
-        $inputAttrs['placeholder'] = '$0.00';
-        $inputAttrs['pattern'] = '[0-9]*([\.,][0-9]{2})?';
+        // Incoming $value is the RAW stored decimal (e.g. 1234.5).
+        // Format it for first paint so the field shows "$1,234.50" on load.
+        $display = ($value === '' || $value === null)
+            ? ''
+            : self::formatCurrency($value, $currency, $intlNumberFormat);
+
+        // Hints — only if caller didn't override.
+        $inputAttrs += [
+            'inputmode'   => 'decimal',
+            'placeholder' => '$0.00',
+            'pattern' => '[0-9]*([\.,][0-9]{2})?'
+        ];
+
+        // Config travels as data-attributes (HTML-attribute context, not JS).
+        $inputAttrs['data-currency']        = $currency;
+        $inputAttrs['data-currency-locale'] = $intlNumberFormat;
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]','',$name);
 
-        $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$id.'">'.$label.'</label>';
-        $html .= '<input type="text" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html  = '<div' . $divString . '>';
+        $html .= '<label class="form-label" for="' . htmlspecialchars($id) . '">'
+            . htmlspecialchars($label) . '</label>';
+        $html .= '<input type="text" id="' . htmlspecialchars($id) . '"'
+            . ' name="' . htmlspecialchars($name) . '"'
+            . ' value="' . htmlspecialchars($display) . '"'
+            . $inputString . ' />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
-        $html .= self::currencyHelper($currency, $intlNumberFormat, $name);
         $html .= '</div>';
-        return $html;
-    }
-
-    /**
-     * Ensures value is in currency format.
-     *
-     * @param string $currency The 3 digit currency name.
-     * @param string $intlNumberFormat The international number format.
-     * @param string $id The id of the element we are targeting.
-     * @return string The script that ensures values is in currency format.
-     */
-    private static function currencyHelper(string $currency, string $intlNumberFormat, string $id): string {
-        $html = "<script>";
-        $html .= <<<JS
-            const inputEl = document.getElementById('{$id}');
-
-            // 1. Initialize the currency formatter
-            const formatter = new Intl.NumberFormat('{$intlNumberFormat}', {
-                style: 'currency',
-                currency: '{$currency}',
-            });
-
-            // 2. Format when user leaves the input field
-            inputEl.addEventListener('blur', (e) => {
-            let value = e.target.value.replace(/[^0-9.]/g, ''); // Clear existing symbols/commas
-            
-            if (value) {
-                const numberValue = parseFloat(value);
-                // Ensure it's a valid number before formatting
-                e.target.value = isNaN(numberValue) ? '' : formatter.format(numberValue);
-            }
-            });
-
-            // 3. Strip formatting when user clicks back in (to make editing easy)
-            inputEl.addEventListener('focus', (e) => {
-            let value = e.target.value.replace(/[^0-9.]/g, '');
-            e.target.value = value ? parseFloat(value) : '';
-            });
-        JS;
-        $html .= "</script>";
-
         return $html;
     }
 
@@ -661,6 +635,23 @@ class FormHelper {
     }
 
     /**
+     * Formats a raw decimal for display (initial render / after save).
+     * Requires ext-intl.
+     * 
+     * @param $value - The value to format
+     * @param string $currency The 3 digit currency name.
+     * @param string $locale The international number format.
+     * 
+     * @return string The correct currency.
+     */
+    public static function formatCurrency(mixed $value, string $currency = 'USD', string $locale = 'en-US'): string {
+        if ($value === '' || $value === null) return '';
+        $number = (float) self::normalizeCurrency($value);
+        $fmt = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
+        return $fmt->formatCurrency($number, $currency);
+    }
+
+    /**
      * Creates a randomly generated csrf token.
      *
      * @return string The randomly generated token.
@@ -824,6 +815,21 @@ class FormHelper {
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
+    }
+
+    /**
+     * Strips display formatting to a raw decimal string for storage.
+     * Run this in the save handler BEFORE persisting a currency field.
+     * 
+     * @param mixed $value the value to normalize.
+     * 
+     * @return string The normalized value.
+     */
+    public static function normalizeCurrency(mixed $value): string {
+        if ($value === null || $value === '') return '';
+        // Keep digits, one decimal point, optional leading minus.
+        $clean = preg_replace('/[^0-9.\-]/', '', (string)$value);
+        return $clean === '' ? '' : $clean;
     }
 
     /**
