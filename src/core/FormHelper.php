@@ -874,6 +874,9 @@ class FormHelper {
     /**
      * Renders a radio button group based on options provided.
      * 
+     * Example:
+     * 
+     * 
      * @param string $name Sets the value for the name attribute 
      * for this input.
      * @param array $options The list of options we will use to populate the 
@@ -895,10 +898,12 @@ class FormHelper {
         array $errors = []
     ): string {
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, ' is-invalid');
+        $inputAttrs['class'] .= ' me-2';
         $divString  = self::stringifyAttrs($divAttrs);
 
         $html = '<div' . $divString . '>';
         foreach ($options as $optValue => $label) {
+            $optValue = (string)$optValue;
             $checked = ($selectedValue == $optValue);
             $html .= self::radioInput($label, $name, $optValue, $checked, $inputAttrs);
         }
@@ -945,7 +950,10 @@ class FormHelper {
 
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
-        return '<input type="radio" id="'.$name.'_'.$value.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label class="form-label me-3" for="'.$value.'">'.$label.'</label> ';
+        $id = $name . '_' . $value;   // derive once, use for both
+
+        return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'>'
+         . '<label class="form-label me-3" for="'.$id.'">'.$label.'</label> ';
     }
 
     /**
