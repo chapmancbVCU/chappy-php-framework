@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { getCsrf } from '@chappy/utils/csrf';
+import { getCsrf } from '@chappy/utils';
 import { appendErrorClass, htmlspecialchars, formatId, normalizeAttrs } from '@chappy/utils/form';
 export { default as RichText } from './RichText.jsx';
 
