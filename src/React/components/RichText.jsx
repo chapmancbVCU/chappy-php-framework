@@ -41,7 +41,7 @@ import { FieldErrors } from '@chappy/utils';
  *      divAttrs={{ className: 'form-group mb-3' }}
  * />
  */
- const RichText = ({
+const RichText = ({
     label,
     name,
     value = '',
