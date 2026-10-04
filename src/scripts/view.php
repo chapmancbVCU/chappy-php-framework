@@ -22,7 +22,6 @@ if(!function_exists('initVite')) {
      * @return string The scripts and other resources needed to initialize vite.
      */
     function initVite(bool $isDev) {
-        // dd("test");
         $html = " ";
         if ($isDev) {
             $html .= "<!-- React Fast Refresh preamble -->";
