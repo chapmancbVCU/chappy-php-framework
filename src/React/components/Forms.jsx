@@ -1145,7 +1145,7 @@ export const Email = ({
  * @param {InputProps} param0 
  * @returns {HTMLSpanElement} The error message for a particular field.
  */
-const FieldErrors = ({ errors = {}, name }) => {
+export const FieldErrors = ({ errors = {}, name }) => {
     const list = Array.isArray(errors?.[name])
         ? errors[name]
         : (errors?.[name] != null ? [errors[name]] : []);
@@ -1230,7 +1230,7 @@ export const FileSelector = ({
  * @param {InputProps} param0 
  * @returns {HTMLInputElement} The html input element with type hidden
  */
-const Hidden = ({
+export const Hidden = ({
     name,
     value
 }) => {
@@ -1545,7 +1545,7 @@ export const Number = ({
  * @param {*} param0 
  * @returns {HTMLOutputElement} The HTML output element.
  */
-const Output = ({
+export const Output = ({
     name,
     forAttr
 }) => {
@@ -1623,7 +1623,7 @@ export const Password = ({
  * @returns {HTMLDivElement} A surrounding div and the accompanying nested 
  * group of radio inputs.
  */
-const RadioGroup = ({
+export const RadioGroup = ({
     name,
     options={},
     selectedValue='',
@@ -1670,7 +1670,7 @@ const RadioGroup = ({
  * @param {RadioInput} param0 
  * @returns {JSX.Element} The radio input and its label.
  */
-const RadioInput = ({
+export const RadioInput = ({
     label,
     name,
     value,
@@ -1710,7 +1710,7 @@ const RadioInput = ({
  *     divAttrs={{className: 'form-group mb-3'}}
  * />
  */
-const RememberMe = ({
+export const RememberMe = ({
     label,
     checked=false,
     inputAttrs={},
@@ -1764,7 +1764,7 @@ const RememberMe = ({
  *      divAttrs={{ className: 'form-group mb-3' }}
  * />
  */
-const RichText = ({
+export const RichText = ({
     label,
     name,
     value = '',
