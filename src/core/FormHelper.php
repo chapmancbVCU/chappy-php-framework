@@ -44,10 +44,13 @@ class FormHelper {
      * Supports ability to create a styled button.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::button(
      *      "Click Me!", 
      *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']
      * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
