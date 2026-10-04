@@ -396,7 +396,7 @@ import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.css';
 import { getCsrf } from '@chappy/utils/csrf';
 import '@css/profileImage.css';
-import { asset } from '@chappy/utils';
+import { asset, getCsrf } from '@chappy/utils';
 
 /**
  * A single profile image row used by the sorter.
