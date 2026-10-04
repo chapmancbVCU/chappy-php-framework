@@ -14,6 +14,7 @@ class ReactStubs {
     public static function authLogin(): string {
         return <<<'JSX'
 import React from "react";
+import { Forms, route } from "@chappy/utils";
 
 /**
  * @property {object} errors The errors object.
@@ -43,11 +44,8 @@ function Login({errors, login, rememberMeChecked}) {
                         inputAttrs={{className: 'form-control'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-
-                    <CheckBoxLeftLabel
+                    <Forms.RememberMe
                         label="Remember Me"
-                        name="remember_me"
-                        value="on"
                         checked={rememberMeChecked}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
@@ -75,6 +73,7 @@ JSX;
     public static function authRegister(): string {
         return <<<'JSX'
 import React from "react";
+import { Forms } from '@chappy/utils';
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
 
 /**
@@ -172,6 +171,7 @@ JSX;
         return <<<'JSX'
 import React from "react";
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
+import { documentTitle, Forms } from "@chappy/utils";
 
 /**
  * Render component for password reset view.
@@ -264,6 +264,7 @@ JSX;
     public static function homeIndex(): string {
         return <<<'JSX'
 import React from "react";
+import { asset } from '@chappy/utils';
 
 /**
  * The home page.
@@ -383,6 +384,7 @@ import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.css';
 import { getCsrf } from '@chappy/utils/csrf';
 import '@css/profileImage.css';
+import { asset } from '@chappy/utils';
 
 /**
  * A single profile image row used by the sorter.
@@ -533,6 +535,7 @@ JSX;
     public static function profileEdit(): string {
         return <<<'JSX'
 import React from "react";
+import { asset, documentTitle, Forms, route } from '@chappy/utils';
 import ProfileImageSorter from '@/components/ProfileImageSorter';
 
 /**
@@ -616,6 +619,7 @@ JSX;
         return <<<'JSX'
 import React from "react";
 import SafeHtml from '@chappy/components/SafeHtml.jsx';
+import { asset, documentTitle, route } from '@chappy/utils';
 
 /**
  * Renders index view for profile controller.
@@ -694,6 +698,7 @@ JSX;
     public static function profileUpdatePassword(): string {
         return <<<'JSX'
 import React from "react";
+import { documentTitle, Forms, route } from '@chappy/utils';
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
 
 /**
