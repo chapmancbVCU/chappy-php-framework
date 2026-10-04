@@ -179,7 +179,11 @@ JSX;
         return <<<'JSX'
 import React from "react";
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
-import { documentTitle, Forms } from "@chappy/utils";
+import { documentTitle } from "@chappy/utils";
+
+import { CSRFInput, Password, Confirm } from "@chappy/components/Forms";
+import { DisplayErrors as Errors } from "@chappy/components/Forms";
+import { SubmitTag as Submit } from "@chappy/utils";
 
 /**
  * Render component for password reset view.
@@ -197,23 +201,23 @@ function ResetPassword({ user, errors }) {
                 <h3 className="text-center">Reset Password</h3>
                 <PasswordComplexityRequirements />
                 <form className="form" action="" method="post">
-                    <Forms.CSRFInput />
-                    <Forms.DisplayErrors errors={errors} />
-                    <Forms.Password 
+                    <CSRFInput />
+                    <Errors errors={errors} />
+                    <Password 
                         label="Password"
                         name="password"
                         value={user.password}
                         inputAttrs={{className: "form-control input-sm"}}
                         divAttrs={{className: "form-group mb-3"}}
                     />
-                    <Forms.Confirm 
+                    <Confirm 
                         label="Confirm Password"
                         name="confirm"
                         value={user.confirm}
                         inputAttrs={{className: "form-control input-sm"}}
                         divAttrs={{className: "form-group mb-3"}}
                     />
-                    <Forms.SubmitTag label="Set Password" inputAttrs={{className: "btn btn-primary"}} />
+                    <Submit label="Set Password" inputAttrs={{className: "btn btn-primary"}} />
                 </form>
             </div>
         </div>
