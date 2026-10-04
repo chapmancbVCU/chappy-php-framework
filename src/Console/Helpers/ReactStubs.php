@@ -81,7 +81,7 @@ JSX;
     public static function authRegister(): string {
         return <<<'JSX'
 import React from "react";
-import { Forms } from '@chappy/utils';
+import { Forms, RichText } from '@chappy/utils';
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
 
 /**
@@ -126,7 +126,7 @@ function Register({user, errors}) {
                         inputAttrs={{className: 'form-control input-sm', placeholder: 'joe@example.com'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.RichText
+                    <RichText
                         label="Description"
                         name="description"
                         value={user.description || ""}
