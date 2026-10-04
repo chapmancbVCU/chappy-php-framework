@@ -1130,6 +1130,27 @@ if(!function_exists('number')) {
     }
 }
 
+if(!function_exists('numericInput')) {
+    function numericInput(
+        string $label,
+        string $name,
+        mixed $value = '',
+        array $config = [],
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        return FormHelper::numericInput(
+            $label,
+            $name,
+            $value,
+            $config,
+            $inputAttrs,
+            $divAttrs,
+            $errors
+        );
+    }
+}
 if(!function_exists('output')) {
     /** 
      * Generates an HTML output element.

@@ -11,6 +11,8 @@ use Core\Lib\Utilities\ArraySet;
  * and other setup responsibilities.
  */
 class FormHelper {
+    public const DECIMAL = 'decimal';
+    public const NUMERIC = 'numeric';
     /**
      * Adds name of error classes to div associated with a form field.
      *
@@ -818,6 +820,105 @@ class FormHelper {
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
+    }
+
+    /**
+     * Numeric input (integer or decimal) with optional thousands grouping
+     * and fixed precision.
+     *
+     * Config keys (all optional):
+     *   decimals    int   Decimal places. 0 = integer. Default 0.
+     *   useGrouping bool  Thousands separators on display. Default false.
+     *   min         int|float|null  HTML min. Default null (omitted).
+     *   max         int|float|null  HTML max. Default null (omitted).
+     *   step        int|float|string|null  HTML step. Default derived from decimals.
+     *   locale      string  Intl locale for formatting. Default 'en-US'.
+     *
+     * Stores normalized (raw number, no separators); displays formatted.
+     */
+    public static function numericInput(
+        string $label,
+        string $name,
+        mixed $value = '',
+        array $config = [],
+        array $inputAttrs = [],
+        array $divAttrs = [],
+        array $errors = []
+    ): string {
+        $decimals    = (int)($config['decimals'] ?? 0);
+        $useGrouping = (bool)($config['useGrouping'] ?? false);
+        $min         = $config['min'] ?? null;
+        $max         = $config['max'] ?? null;
+        $locale      = (string)($config['locale'] ?? 'en-US');
+        // step defaults to match precision: 1 for integers, 0.01 for 2 dp, etc.
+        $step = $config['step'] ?? ($decimals > 0 ? '0.' . str_repeat('0', $decimals - 1) . '1' : '1');
+
+        // Coherence guard (fail loud, like interval's min>max).
+        if (is_numeric($min) && is_numeric($max) && $min > $max) {
+            throw new \InvalidArgumentException(
+                "number() for field '{$name}': min ({$min}) must not exceed max ({$max})"
+            );
+        }
+
+        // Display: format the stored raw value for first paint.
+        $display = ($value === '' || $value === null)
+            ? ''
+            : self::formatNumber($value, $decimals, $useGrouping, $locale);
+ 
+        // Numeric constraints into attrs (named-config wins over passthrough).
+        $inputAttrs['inputmode'] = $decimals > 0 ? 'decimal' : 'numeric';
+        $inputAttrs['step']      = (string)$step;
+        if ($min !== null) $inputAttrs['min'] = (string)$min;
+        if ($max !== null) $inputAttrs['max'] = (string)$max;
+        // Mark grouped fields so a JS enhancer (optional) can live-format.
+        if ($useGrouping) {
+            $inputAttrs['data-number-group']    = '1';
+            $inputAttrs['data-number-decimals'] = (string)$decimals;
+            $inputAttrs['data-number-locale']   = $locale;
+        }
+
+        $inputAttrs  = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
+        $divString   = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $id = Str::replace('[]', '', $name);
+
+        // type=text when grouping (commas aren't valid in type=number);
+        // type=number otherwise for native spinners/validation.
+        $type = $useGrouping ? 'text' : 'number';
+
+        $html  = '<div' . $divString . '>';
+        $html .= '<label class="form-label" for="' . htmlspecialchars($id) . '">'
+            . htmlspecialchars($label) . '</label>';
+        $html .= '<input type="' . $type . '" id="' . htmlspecialchars($id) . '"'
+            . ' name="' . htmlspecialchars($name) . '"'
+            . ' value="' . htmlspecialchars($display) . '"'
+            . $inputString . ' />';
+        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
+     * Raw stored value -> display string (grouping + fixed precision).
+     */
+    public static function formatNumber(mixed $value, int $decimals = 0, bool $useGrouping = false, string $locale = 'en-US'): string {
+        if ($value === '' || $value === null) return '';
+        $n = (float) self::normalizeNumber($value);
+        $fmt = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $fmt->setAttribute(\NumberFormatter::FRACTION_DIGITS, $decimals);
+        $fmt->setAttribute(\NumberFormatter::GROUPING_USED, $useGrouping ? 1 : 0);
+        return $fmt->format($n);
+    }
+
+    /**
+     * Display string -> raw numeric string for storage.
+     * Strips grouping separators and any non-numeric chrome; keeps one
+     * decimal point and a leading minus.
+     */
+    public static function normalizeNumber(mixed $value): string {
+        if ($value === null || $value === '') return '';
+        $clean = preg_replace('/[^0-9.\-]/', '', (string)$value);
+        return $clean === '' ? '' : $clean;
     }
 
     /**
