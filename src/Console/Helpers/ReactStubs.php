@@ -14,7 +14,15 @@ class ReactStubs {
     public static function authLogin(): string {
         return <<<'JSX'
 import React from "react";
-import { Forms, route } from "@chappy/utils";
+import {
+    CSRFInput,
+    DisplayErrors,
+    Password,
+    RememberMe,
+    route,
+    SubmitTag,
+    Text,
+} from '@chappy/utils';
 
 /**
  * @property {object} errors The errors object.
@@ -535,7 +543,8 @@ JSX;
     public static function profileEdit(): string {
         return <<<'JSX'
 import React from "react";
-import { asset, documentTitle, Forms, route } from '@chappy/utils';
+import { documentTitle, route } from '@chappy/utils';
+import * as Forms from '@chappy/components/Forms'
 import ProfileImageSorter from '@/components/ProfileImageSorter';
 
 /**
