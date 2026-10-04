@@ -11,8 +11,6 @@ use Core\Lib\Utilities\ArraySet;
  * and other setup responsibilities.
  */
 class FormHelper {
-    public const DECIMAL = 'decimal';
-    public const NUMERIC = 'numeric';
     /**
      * Adds name of error classes to div associated with a form field.
      *
@@ -836,7 +834,7 @@ class FormHelper {
      *
      * Stores normalized (raw number, no separators); displays formatted.
      */
-    public static function numericInput(
+    public static function number(
         string $label,
         string $name,
         mixed $value = '',

@@ -1092,46 +1092,9 @@ if(!function_exists('month')) {
     }
 }
 
-if(!function_exists('number')) {
-    /**
-     * Renders an HTML div element that surrounds an input of type number.
-     *
-     * @param string $label Sets the label for this input.
-     * @param string $name Sets the value for the name, for, and id attributes 
-     * for this input.
-     * @param mixed $value The value we want to set.  We can use this to set 
-     * the value of the value attribute during form validation.  Default value 
-     * is the empty string.  It can be set with values during form validation 
-     * and forms used for editing records.
-     * @param array $inputAttrs The values used to set the class and other 
-     * attributes of the input string.  The default value is an empty array.
-     * @param array $divAttrs The values used to set the class and other 
-     * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors The errors array.  Default value is an empty array.
-     * @return string A surrounding div and the input element of type number.
-     */
-    function number(
-        string $label,
-        string $name,
-        mixed $value = '',
-        array $inputAttrs = [],
-        array $divAttrs = [],
-        array $errors = []
-    ): string {
-        return FormHelper::inputBlock(
-            'number',
-            $label,
-            $name,
-            $value,
-            $inputAttrs,
-            $divAttrs,
-            $errors
-        );
-    }
-}
 
-if(!function_exists('numericInput')) {
-    function numericInput(
+if(!function_exists('number')) {
+    function number(
         string $label,
         string $name,
         mixed $value = '',
@@ -1140,7 +1103,7 @@ if(!function_exists('numericInput')) {
         array $divAttrs = [],
         array $errors = []
     ): string {
-        return FormHelper::numericInput(
+        return FormHelper::number(
             $label,
             $name,
             $value,
@@ -1151,6 +1114,7 @@ if(!function_exists('numericInput')) {
         );
     }
 }
+
 if(!function_exists('output')) {
     /** 
      * Generates an HTML output element.
