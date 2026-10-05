@@ -873,21 +873,21 @@ class FormHelper {
      * Examples:
      * 
      * ```php
-     * <?= number('Integer', 'int_demo', 42, ['decimals' => 0]); ?>
+     * <?= FormHelper::number('Integer', 'int_demo', 42, ['decimals' => 0]); ?>
      *
-     * <?= number('2-decimal, grouped', 'price_demo', 1234.5,
+     * <?= FormHelper::number('2-decimal, grouped', 'price_demo', 1234.5,
      *       ['decimals' => 2, 'useGrouping' => true]); ?>
      *
-     * <?= number('2-decimal, no grouping', 'plain_demo', 1234.5,
+     * <?= FormHelper::number('2-decimal, no grouping', 'plain_demo', 1234.5,
      *       ['decimals' => 2, 'useGrouping' => false]); ?>
      *
-     * <?= number('3-decimal precision', 'precise_demo', 3.14159,
+     * <?= FormHelper::number('3-decimal precision', 'precise_demo', 3.14159,
      *       ['decimals' => 3, 'useGrouping' => true]); ?>
      *
-     * <?= number('With min/max', 'bounded_demo', 50,
+     * <?= FormHelper::number('With min/max', 'bounded_demo', 50,
      *       ['decimals' => 0, 'min' => 0, 'max' => 100]); ?>
      *
-     * <?= number('Empty (create mode)', 'empty_demo', '',
+     * <?= FormHelper::number('Empty (create mode)', 'empty_demo', '',
      *     ['decimals' => 2, 'useGrouping' => true]); ?>
      * ```
      * 
