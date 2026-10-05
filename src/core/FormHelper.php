@@ -655,6 +655,18 @@ class FormHelper {
     }
 
     /**
+     * Raw stored value -> display string (grouping + fixed precision).
+     */
+    public static function formatNumber(mixed $value, int $decimals = 0, bool $useGrouping = false, string $locale = 'en-US'): string {
+        if ($value === '' || $value === null) return '';
+        $n = (float) self::normalizeNumber($value);
+        $fmt = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $fmt->setAttribute(\NumberFormatter::FRACTION_DIGITS, $decimals);
+        $fmt->setAttribute(\NumberFormatter::GROUPING_USED, $useGrouping ? 1 : 0);
+        return $fmt->format($n);
+    }
+    
+    /**
      * Creates a randomly generated csrf token.
      *
      * @return string The randomly generated token.
@@ -897,29 +909,6 @@ class FormHelper {
     }
 
     /**
-     * Raw stored value -> display string (grouping + fixed precision).
-     */
-    public static function formatNumber(mixed $value, int $decimals = 0, bool $useGrouping = false, string $locale = 'en-US'): string {
-        if ($value === '' || $value === null) return '';
-        $n = (float) self::normalizeNumber($value);
-        $fmt = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
-        $fmt->setAttribute(\NumberFormatter::FRACTION_DIGITS, $decimals);
-        $fmt->setAttribute(\NumberFormatter::GROUPING_USED, $useGrouping ? 1 : 0);
-        return $fmt->format($n);
-    }
-
-    /**
-     * Display string -> raw numeric string for storage.
-     * Strips grouping separators and any non-numeric chrome; keeps one
-     * decimal point and a leading minus.
-     */
-    public static function normalizeNumber(mixed $value): string {
-        if ($value === null || $value === '') return '';
-        $clean = preg_replace('/[^0-9.\-]/', '', (string)$value);
-        return $clean === '' ? '' : $clean;
-    }
-
-    /**
      * Strips display formatting to a raw decimal string for storage.
      * Run this in the save handler BEFORE persisting a currency field.
      * 
@@ -930,6 +919,17 @@ class FormHelper {
     public static function normalizeCurrency(mixed $value): string {
         if ($value === null || $value === '') return '';
         // Keep digits, one decimal point, optional leading minus.
+        $clean = preg_replace('/[^0-9.\-]/', '', (string)$value);
+        return $clean === '' ? '' : $clean;
+    }
+
+    /**
+     * Display string -> raw numeric string for storage.
+     * Strips grouping separators and any non-numeric chrome; keeps one
+     * decimal point and a leading minus.
+     */
+    public static function normalizeNumber(mixed $value): string {
+        if ($value === null || $value === '') return '';
         $clean = preg_replace('/[^0-9.\-]/', '', (string)$value);
         return $clean === '' ? '' : $clean;
     }
