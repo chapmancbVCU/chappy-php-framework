@@ -545,6 +545,7 @@ class FormHelper {
      *      ['class' => 'form-group col-md-6'], 
      *      $this->displayErrors
      * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <label for="email">Email</label><input type="email" id="email" name="email" value="" class="form-control" placeholder="joe_@_example.com" />
