@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { getCsrf } from '@chappy/utils';
-import { appendErrorClass, htmlspecialchars, formatId, normalizeAttrs } from '@chappy/utils/form';
+import { appendErrorClass, htmlspecialchars, formatId, normalizeAttrs } from '@chappy/utils';
 export { default as RichText } from './RichText.jsx';
 export { default as Number } from './Number.jsx';
 

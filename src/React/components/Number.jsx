@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
-import { formatId, normalizeAttrs, appendErrorClass } from '@chappy/utils/form';
+import { formatId, normalizeAttrs, appendErrorClass } from '@chappy/utils';
 import { FieldErrors } from '@chappy/utils';
+
 
 const Number = ({
     label,
