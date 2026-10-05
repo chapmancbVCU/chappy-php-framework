@@ -614,12 +614,15 @@ class FormHelper {
      * the input element.
      * 
      * Example: 
+     * 
+     * ```php
      * <?= FormHelper::fileBlock(
      *      "Upload Profile Image (Optional)", 
      *      'profileImage', 
      *      ['class' => 'form-control', 'accept' => 'image/gif image/jpeg image/png'], 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -665,7 +668,7 @@ class FormHelper {
      * Formats a raw decimal for display (initial render / after save).
      * Requires ext-intl.
      * 
-     * @param $value - The value to format
+     * @param mixed $value The value to format
      * @param string $currency The 3 digit currency name.
      * @param string $locale The international number format.
      * 
@@ -707,7 +710,10 @@ class FormHelper {
      * Generates a hidden input element.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::hidden("example_name", "example_value");
+     * ```
      * 
      * Example HTML output is shown below:
      * <input type="hidden" name="example_name" id="example_name" value="example_value" />
@@ -725,6 +731,7 @@ class FormHelper {
      * 
      * Example:
      * 
+     * ```php
      * <?= FormHelper::image(
      *      'submit', 
      *      asset('public/logo.png', true), 
@@ -732,6 +739,7 @@ class FormHelper {
      *      50, 
      *      ['class' => 'mt-5 pt-4']
      * ?>
+     * ```
      * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
@@ -751,6 +759,7 @@ class FormHelper {
      * 
      * Example:
      * 
+     * ```php
      * <?= FormHelper::imageBlock(
      *      'submit', 
      *      asset('public/logo.png', true), 
@@ -759,6 +768,7 @@ class FormHelper {
      *      ['class' => 'mt-5 pt-4'], 
      *      ['class' => 'text-end'])
      * ?>
+     * ```
      * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
@@ -787,10 +797,10 @@ class FormHelper {
     }
 
     /**
-     * Assists in the development of forms input blocks in forms.  It accepts 
-     * parameters for setting attribute tags in the form section.  Not to be 
-     * used for inputs of type "Submit".  For submit inputs use the submitBlock 
-     * or submitTag functions.
+     * Use form globals instead of this function.  Assists in the development 
+     * of forms input blocks in forms.  It accepts parameters for setting 
+     * attribute tags in the form section.  Not to be used for inputs of type 
+     * "Submit".  For submit inputs use the submitBlock or submitTag functions.
      * 
      * Types of inputs supported:
      * 1. color
@@ -810,7 +820,18 @@ class FormHelper {
      * 15. week
      * 
      * An example function call is shown below:
-     * FormHelper::inputBlock('text', 'Example', 'example_name', example_value, ['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors);
+     * 
+     * ```php
+     * FormHelper::inputBlock(
+     *      'text', 
+     *      'Example', 
+     *      'example_name', 
+     *      example_value, 
+     *      ['class' => 'form-control'], 
+     *      ['class' => 'form-group'], 
+     *      $this->displayErrors
+     * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
@@ -1014,7 +1035,10 @@ class FormHelper {
      * Generates an HTML output element.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::output("my_name", "for_value")
+     * ```
      * 
      * Example HTML output is shown below:
      * <output name="my_name" for="for_value"></output>
@@ -1043,6 +1067,8 @@ class FormHelper {
      * Renders a radio button group based on options provided.
      * 
      * Example:
+     * 
+     * ```php
      * <?= FormHelper::radioGroup(
      *      'inactive',                       // name
      *      [0 => 'Active', 1 => 'Inactive'], // [value => label] map
@@ -1051,6 +1077,7 @@ class FormHelper {
      *      ['class' => 'form-group mb-3'],   // divAttrs
      *      $this->displayErrors              // errors
      * ); ?>
+     * ```
      * 
      * @param string $name Sets the value for the name attribute 
      * for this input.
@@ -1093,6 +1120,7 @@ class FormHelper {
      *
      * Example: 
      * 
+     * ```php
      * <?= FormHelper::radioInput(
      *      "Phone", 
      *      'contact', 
@@ -1100,6 +1128,7 @@ class FormHelper {
      *      false, 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name attribute 
@@ -1148,6 +1177,8 @@ class FormHelper {
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * <?= FormHelper::selectBlock(
      *      'Account Status',                 // label
      *      'inactive',                       // name — matches the schema column
@@ -1157,6 +1188,7 @@ class FormHelper {
      *      ['class' => 'form-group mb-3'],   // divAttrs
      *      $this->displayErrors              // errors
      * ); ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -1210,7 +1242,10 @@ class FormHelper {
      * Generates a div containing an input of type submit.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::submitBlock("Save", ['class'=>'btn btn-primary'], ['class'=>'text-end']);
+     * ```
      * 
      * Example HTML output is shown below:
      * <div class="text-end">
@@ -1242,11 +1277,16 @@ class FormHelper {
      * Create a input element of type submit.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::submitTag("Save", ['class'=>'btn btn-primary']);
+     * ```
      * 
      * or 
      * 
+     * ```php
      * self::submitTag("Save", ['class'=>'btn btn-primary']);
+     * ```
      * 
      * Example HTML output is shown below:
      * <input type="submit" value="Save" class="btn btn-primary" />
@@ -1267,6 +1307,7 @@ class FormHelper {
      * 
      * Example:
      * 
+     * ```php
      * <?= FormHelper::telBlock(
      *      'Home phone', 
      *      'phone', 
@@ -1274,6 +1315,7 @@ class FormHelper {
      *      ['class' => 'form-control input-sm'], 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -1325,7 +1367,17 @@ class FormHelper {
      * for setting  attribute tags in the form section.
      * 
      * An example function call is shown below:
-     * FormHelper::textAreaBlock("Example", 'example_name', example_value, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group'], $this->displayErrors);
+     * 
+     * ```php
+     * FormHelper::textAreaBlock(
+     *      "Example", 
+     *      'example_name', 
+     *      example_value, 
+     *      ['class' => 'form-control input-sm', 'placeholder' => 'foo'], 
+     *      ['class' => 'form-group'], 
+     *      $this->displayErrors
+     * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
