@@ -73,11 +73,14 @@ class FormHelper {
      * block.
      * 
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::buttonBlock(
      *      "Click Me!", 
      *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], 
      *      ['class' => 'form-group']
      * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
@@ -105,6 +108,8 @@ class FormHelper {
      * the left.
      *
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::checkboxBlockLabelLeft(
      *      'Remember Me', 
      *      'remember_me', 
@@ -113,6 +118,7 @@ class FormHelper {
      *      [], 
      *      ['class' => 'form-group'], $this->displayErrors
      * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
@@ -173,6 +179,8 @@ class FormHelper {
      * the right.
      *
      * An example function call is shown below:
+     * 
+     * ```php
      * FormHelper::checkboxBlockLabelRight(
      *      'Remember Me', 
      *      'remember_me', 
@@ -181,6 +189,7 @@ class FormHelper {
      *      [],
      *      ['class' => 'form-group mr-1'], $this->displayErrors
      * );
+     * ```
      * 
      * Example HTML output is shown below:
      * <div>
@@ -239,6 +248,7 @@ class FormHelper {
      * one wrapping div, and ONE error span. Label-right per box.
      *
      * Example:
+     * ```php
      * <?= FormHelper::checkboxGroup(
      *     'acls',
      *     $this->acls,              // [value => label] map of all ACLs
@@ -247,6 +257,7 @@ class FormHelper {
      *     ['class' => 'form-check'],
      *     $this->displayErrors
      * ); ?>
+     * ```
      * 
      * @param string $name           Group name WITHOUT '[]' (added internally), e.g. 'acls'.
      * @param array  $options        [value => label] map of choices.
@@ -356,12 +367,15 @@ class FormHelper {
      * Renders an HTML div element that surrounds an input of type currency.
      *
      * Example:
+     * 
+     * ```php
      *  <?= FormHelper::currencyBlock(
      *     label: 'Amount',
      *     name: "amount",
      *     inputAttrs: ['class' => 'form-control input-sm'],
      *     divAttrs: ['class' => 'form-group mb-3']
      *  ) ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -521,7 +535,16 @@ class FormHelper {
      * Renders an HTML div element that surrounds an input of type email.
      *
      * An example function call is shown below:
-     * FormHelper::emailBlock('Email', 'email', $this->contact->email, ['class' => 'form-control'], ['class' => 'form-group col-md-6'], $this->displayErrors);
+     * 
+     * ```php
+     * FormHelper::emailBlock(
+     *      'Email', 
+     *      'email', 
+     *      $this->contact->email, 
+     *      ['class' => 'form-control'], 
+     *      ['class' => 'form-group col-md-6'], 
+     *      $this->displayErrors
+     * );
      * 
      * Example HTML output is shown below:
      * <label for="email">Email</label><input type="email" id="email" name="email" value="" class="form-control" placeholder="joe_@_example.com" />
