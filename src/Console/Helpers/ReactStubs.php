@@ -394,7 +394,6 @@ JSX;
 import React, { useEffect, useRef, useState } from 'react';
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.css';
-import { getCsrf } from '@chappy/utils/csrf';
 import '@css/profileImage.css';
 import { asset, getCsrf } from '@chappy/utils';
 
