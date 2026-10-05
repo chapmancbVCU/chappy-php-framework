@@ -1369,14 +1369,23 @@ class FormHelper {
      * An example function call is shown below:
      * 
      * ```php
+     * <!-- Add this to the head section -->
+     * <?php $this->start('head') ?>
+     * <?= loadTinyMCE() ?>
+     * <?php $this->end() ?>
+     * 
+     * <!-- The function call -->
      * FormHelper::textAreaBlock(
-     *      "Example", 
-     *      'example_name', 
-     *      example_value, 
+     *      "Description", 
+     *      'description', 
+     *      $this->user->description, 
      *      ['class' => 'form-control input-sm', 'placeholder' => 'foo'], 
      *      ['class' => 'form-group'], 
      *      $this->displayErrors
      * );
+     * 
+     * <!-- Wait until content is loaded before we initialize script -->
+     * <?= initTinyMCE('description') ?>
      * ```
      * 
      * Example HTML output is shown below:
