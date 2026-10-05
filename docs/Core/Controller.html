@@ -155,9 +155,19 @@ available to all classes that extends this Controller class.</p></p>            
                 <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(string $controller, string $action)
         
-                                            <p><p>Constructor for the parent Controller class.  This constructor gets
-called when an instance of the child class is instantiated.</p></p>                </div>
+                                            <p><p>Calls functions for reporting and unregister of globals.</p></p>                </div>
                 <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_appStart">appStart</a>()
+        
+                                            <p><p>Initializes ErrorHandler and SessionManager and starts execution of the app.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../Core/Application.html#method_appStart">
+<abbr title="Core\Application">Application</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -211,8 +221,7 @@ instantiated.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Constructor for the parent Controller class.  This constructor gets
-called when an instance of the child class is instantiated.</p></p>                        
+                            <p><p>Calls functions for reporting and unregister of globals.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -241,9 +250,42 @@ the URL.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_appStart">
+        <div class="location">in <a href="../Core/Application.html#method_appStart">
+<abbr title="Core\Application">Application</abbr></a> at line 26</div>
+        <code>        static            void
+    <strong>appStart</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Initializes ErrorHandler and SessionManager and starts execution of the app.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method__set_reporting">
         <div class="location">in <a href="../Core/Application.html#method__set_reporting">
-<abbr title="Core\Application">Application</abbr></a> at line 23</div>
+<abbr title="Core\Application">Application</abbr></a> at line 51</div>
         <code>                private    void
     <strong>_set_reporting</strong>()
         </code>

@@ -98,7 +98,8 @@
         
 
             <div class="description">
-            <p><p>Contains functions for building form elements of various types.</p></p>                    </div>
+            <p><p>Contains functions for building form elements of various types, the sanitation,
+and other setup responsibilities.</p></p>                    </div>
             
         
     
@@ -161,6 +162,28 @@ the right.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_checkboxGroup">checkboxGroup</a>(string $name, array $options = [], array $selectedValues = [], array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        
+                                            <p><p>Renders a group of checkboxes sharing one name (submitted as name[]),
+one wrapping div, and ONE error span. Label-right per box.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_checkboxInput">checkboxInput</a>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], bool $labelRight = true)
+        
+                                            <p><p>Renders a single checkbox input with its label — the bare item only,
+no wrapping div and no error span (the caller owns the envelope).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;bool
                 </div>
                 <div class="col-md-8">
@@ -185,9 +208,29 @@ been no tampering of a form's csrf token.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_currencyBlock">currencyBlock</a>(string $label, string $name, string $intlNumberFormat = &#039;en-US&#039;, string $currency = &quot;USD&quot;, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        
+                                            <p><p>Renders an HTML div element that surrounds an input of type currency.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_dataListBlock">dataListBlock</a>(string $type, string $label, string $name, string $listName, mixed $value = &#039;&#039;, array $options = [], array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        
+                                            <p><p>Assists in the development of forms input blocks with datalist element in forms.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_displayErrors">displayErrors</a>(<abbr title="array|Core\Lib\Utilities\ArraySet">ArraySet</abbr> $errors)
         
-                                            <p><p>Returns list of errors.</p></p>                </div>
+                                            <p><p>Returns list of errors in the form of an error bag.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -196,7 +239,7 @@ been no tampering of a form's csrf token.</p></p>                </div>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_emailBlock">emailBlock</a>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
-        
+        <small><span class="label label-danger">deprecated</span></small>
                                             <p><p>Renders an HTML div element that surrounds an input of type email.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -208,6 +251,36 @@ been no tampering of a form's csrf token.</p></p>                </div>
                     <a href="#method_errorMsg">errorMsg</a>(array $errors, string $name)
         
                                             <p><p>Renders an error message for a particular form field.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_fileBlock">fileBlock</a>(string $label, string $name, array $inputAttrs = [], array $divAttrs = [], bool $multiple = false, array $errors = [])
+        
+                                            <p><p>Renders an HTML div element that surrounds an input of type file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_formatCurrency">formatCurrency</a>(mixed $value, string $currency = &#039;USD&#039;, string $locale = &#039;en-US&#039;)
+        
+                                            <p><p>Formats a raw decimal for display (initial render / after save).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_formatNumber">formatNumber</a>(mixed $value, int $decimals = 0, bool $useGrouping = false, string $locale = &#039;en-US&#039;)
+        
+                                            <p><p>Raw stored value -&gt; display string (grouping + fixed precision).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -235,12 +308,63 @@ been no tampering of a form's csrf token.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_image">image</a>(string $id, string $src, int $width, int $height, array $inputAttrs = [])
+        
+                                            <p><p>Create a input element of type image.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_imageBlock">imageBlock</a>(string $id, string $src, int $width, int $height, array $inputAttrs = [], array $divAttrs = [])
+        
+                                            <p><p>Generates a div containing an input of type image.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_inputBlock">inputBlock</a>(string $type, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         
                                             <p><p>Assists in the development of forms input blocks in forms.  It accepts
 parameters for setting attribute tags in the form section.  Not to be
-used for inputs of type &quot;Submit&quot;  For submit inputs use the submitBlock
+used for inputs of type &quot;Submit&quot;.  For submit inputs use the submitBlock
 or submitTag functions.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_number">number</a>(string $label, string $name, mixed $value = &#039;&#039;, array $config = [], array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        
+                                            <p><p>Numeric input (integer or decimal) with optional thousands grouping
+and fixed precision.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_normalizeCurrency">normalizeCurrency</a>(mixed $value)
+        
+                                            <p><p>Strips display formatting to a raw decimal string for storage.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_normalizeNumber">normalizeNumber</a>(mixed $value)
+        
+                                            <p><p>Display string -&gt; raw numeric string for storage.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -278,7 +402,17 @@ or submitTag functions.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_radioInput">radioInput</a>(string $label, string $id, string $name, string $value, bool $checked = false, array $inputAttrs = [])
+                    <a href="#method_radioGroup">radioGroup</a>(string $name, array $options = [], <abbr title="Core\string|int|null">string|int|null</abbr> $selectedValue = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        
+                                            <p><p>Renders a radio button group based on options provided.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_radioInput">radioInput</a>(string $label, string $name, string $value, bool $checked = false, array $inputAttrs = [])
         
                                             <p><p>Creates an input element of type radio with an accompanying label
 element.  Compatible with radio button groups.</p></p>                </div>
@@ -340,7 +474,7 @@ element.  Compatible with radio button groups.</p></p>                </div>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_telBlock">telBlock</a>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
-        
+        <small><span class="label label-danger">deprecated</span></small>
                                             <p><p>Renders an HTML div element that surrounds an input of type tel.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -409,7 +543,7 @@ form field.</p></td>
                     <table class="table table-condensed">
         <tr>
             <td>array</td>
-            <td><p>$attrs Div attributes with error classes added.</p></td>
+            <td><p>Div attributes with error classes added.</p></td>
         </tr>
     </table>
 
@@ -422,7 +556,7 @@ form field.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_button">
-        <div class="location">at line 58</div>
+        <div class="location">at line 66</div>
         <code>        static            string
     <strong>button</strong>(string $buttonText, array $inputAttrs = [])
         </code>
@@ -432,8 +566,11 @@ form field.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Supports ability to create a styled button.</p></p>                <p><p>An example function call is shown below:
-FormHelper::button(&quot;Click Me!&quot;, ['class' =&gt; 'btn btn-large btn-primary', 'onClick' =&gt; 'alert(\'Hello World!\')']);</p>
+                            <p><p>Supports ability to create a styled button.</p></p>                <p><p>An example function call is shown below:</p>
+<pre><code class="language-php">FormHelper::button(
+     "Click Me!",
+     ['class' =&gt; 'btn btn-large btn-primary', 'onClick' =&gt; 'alert(\'Hello World!\')']
+);</code></pre>
 <p>Example HTML output is shown below:</p>
 <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></p>        
         </div>
@@ -449,8 +586,10 @@ FormHelper::button(&quot;Click Me!&quot;, ['class' =&gt; 'btn btn-large btn-prim
                     <tr>
                 <td>array</td>
                 <td>$inputAttrs</td>
-                <td><p>The values used to set the class and other
-attributes of the input string.  The default value is an empty array.</p></td>
+                <td><p>This parameter is used to set values for attributes
+such as classes for styling, front-side validation, and event handlers.
+Make sure when performing an event handler function call that contains strings
+as arguments to escape any quotes. The default value is an empty array.</p></td>
             </tr>
             </table>
 
@@ -474,7 +613,7 @@ optional attributes set.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_buttonBlock">
-        <div class="location">at line 81</div>
+        <div class="location">at line 95</div>
         <code>        static            string
     <strong>buttonBlock</strong>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
         </code>
@@ -486,7 +625,11 @@ optional attributes set.</p></td>
         <div class="method-description">
                             <p><p>Supports ability to create a styled button and styled surrounding div
 block.</p></p>                <p><p>An example function call is shown below:
-FormHelper::buttonBlock(&quot;Click Me!&quot;, ['class' =&gt; 'btn btn-large btn-primary', 'onClick' =&gt; 'alert(\'Hello World!\')'], ['class' =&gt; 'form-group']);</p>
+FormHelper::buttonBlock(
+&quot;Click Me!&quot;,
+['class' =&gt; 'btn btn-large btn-primary', 'onClick' =&gt; 'alert(\'Hello World!\')'],
+['class' =&gt; 'form-group']
+);</p>
 <p>Example HTML output is shown below:</p>
 <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div></p>        
         </div>
@@ -502,8 +645,10 @@ FormHelper::buttonBlock(&quot;Click Me!&quot;, ['class' =&gt; 'btn btn-large btn
                     <tr>
                 <td>array</td>
                 <td>$inputAttrs</td>
-                <td><p>The values used to set the class and other
-attributes of the input string.  The default value is an empty array.</p></td>
+                <td><p>This parameter is used to set values for attributes
+such as classes for styling, front-side validation, and event handlers.
+Make sure when performing an event handler function call that contains strings
+as arguments to escape any quotes. The default value is an empty array.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -533,7 +678,7 @@ set and any other optional attributes set.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_checkboxBlockLabelLeft">
-        <div class="location">at line 120</div>
+        <div class="location">at line 141</div>
         <code>        static            string
     <strong>checkboxBlockLabelLeft</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -545,11 +690,18 @@ set and any other optional attributes set.</p></td>
         <div class="method-description">
                             <p><p>Generates a div containing an input of type checkbox with the label to
 the left.</p></p>                <p><p>An example function call is shown below:
-FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this-&gt;login-&gt;getRememberMeChecked(), [], ['class' =&gt; 'form-group'], $this-&gt;displayErrors);</p>
+FormHelper::checkboxBlockLabelLeft(
+'Remember Me',
+'remember_me',
+'on',
+$this-&gt;login-&gt;getRememberMeChecked(),
+[],
+['class' =&gt; 'form-group'], $this-&gt;displayErrors
+);</p>
 <p>Example HTML output is shown below:</p>
 <div class="form-group">
-    <input type="checkbox" id="remember_me" name="remember_me" value="on" />
     <label for="remember_me">Remember Me</label>
+    <input type="checkbox" id="remember_me" name="remember_me" value="on" />
 </div></p>        
         </div>
         <div class="tags">
@@ -621,7 +773,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_checkboxBlockLabelRight">
-        <div class="location">at line 181</div>
+        <div class="location">at line 209</div>
         <code>        static            string
     <strong>checkboxBlockLabelRight</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -633,7 +785,14 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
         <div class="method-description">
                             <p><p>Generates a div containing an input of type checkbox with the label to
 the right.</p></p>                <p><p>An example function call is shown below:
-FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this-&gt;login-&gt;getRememberMeChecked(), [], ['class' =&gt; 'form-group mr-1'], $this-&gt;displayErrors);</p>
+FormHelper::checkboxBlockLabelRight(
+'Remember Me',
+'remember_me',
+'on',
+$this-&gt;login-&gt;getRememberMeChecked(),
+[],
+['class' =&gt; 'form-group mr-1'], $this-&gt;displayErrors
+);</p>
 <p>Example HTML output is shown below:</p>
 <div>
     <input type="checkbox" id="remember_me" name="remember_me" value="on" class="form-group mr-1">
@@ -708,8 +867,155 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_checkboxGroup">
+        <div class="location">at line 259</div>
+        <code>        static            string
+    <strong>checkboxGroup</strong>(string $name, array $options = [], array $selectedValues = [], array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders a group of checkboxes sharing one name (submitted as name[]),
+one wrapping div, and ONE error span. Label-right per box.</p></p>                <p><p>Example:
+&lt;?= FormHelper::checkboxGroup(
+'acls',
+$this-&gt;acls,              // [value =&gt; label] map of all ACLs
+$this-&gt;user-&gt;getAcls(),   // the set of ACLs this user currently has
+[],
+['class' =&gt; 'form-check'],
+$this-&gt;displayErrors
+); ?&gt;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Group name WITHOUT '[]' (added internally), e.g. 'acls'.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td><p>[value =&gt; label] map of choices.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$selectedValues</td>
+                <td><p>Values that should render checked (the current set).</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>Passthrough attrs applied to every box (error-classed once here).</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>Attrs for the group's wrapping div.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>Errors array; one invalid-feedback span for the whole group.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The checkbox group.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_checkboxInput">
+        <div class="location">at line 303</div>
+        <code>        static            string
+    <strong>checkboxInput</strong>(string $label, string $name, string $value = &quot;&quot;, bool $checked = false, array $inputAttrs = [], bool $labelRight = true)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders a single checkbox input with its label — the bare item only,
+no wrapping div and no error span (the caller owns the envelope).</p></p>                <p><p>Label sits to the RIGHT of the box by default; pass $labelRight = false
+to place it on the left.</p>
+<p>$inputAttrs is expected already error-classed by the caller (mirrors radioInput).</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$label</td>
+                <td><p>Visible label text.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Field name. Keep the '[]' suffix for group members
+(e.g. 'genres[]') so they submit as an array.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$value</td>
+                <td><p>Submitted value; also used to build a unique id.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$checked</td>
+                <td><p>Whether this box renders checked.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>Passthrough HTML attributes (already error-classed).</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$labelRight</td>
+                <td><p>Label on the right of the box (default true).</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_checkToken">
-        <div class="location">at line 219</div>
+        <div class="location">at line 341</div>
         <code>        static            bool
     <strong>checkToken</strong>(string $token)
         </code>
@@ -755,7 +1061,7 @@ of the $token parameter.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_csrfInput">
-        <div class="location">at line 232</div>
+        <div class="location">at line 351</div>
         <code>        static            string
     <strong>csrfInput</strong>()
         </code>
@@ -765,8 +1071,7 @@ of the $token parameter.</p></td>
             
 
         <div class="method-description">
-                            <p><p>A hidden input to represent the csrf token in a web form.</p></p>                <p><p>Example HTML output is shown below:</p>
-<input type="hidden" name="csrf_token" id="csrf_token" value="RANDOM_STRING_OF_VALUES" /></p>        
+                            <p><p>A hidden input to represent the csrf token in a web form.</p></p>                        
         </div>
         <div class="tags">
             
@@ -788,8 +1093,185 @@ set as the value.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_currencyBlock">
+        <div class="location">at line 382</div>
+        <code>        static            string
+    <strong>currencyBlock</strong>(string $label, string $name, string $intlNumberFormat = &#039;en-US&#039;, string $currency = &quot;USD&quot;, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders an HTML div element that surrounds an input of type currency.</p></p>                <p><p>Example:
+&lt;?= FormHelper::currencyBlock(
+label: 'Amount',
+name: &quot;amount&quot;,
+inputAttrs: ['class' =&gt; 'form-control input-sm'],
+divAttrs: ['class' =&gt; 'form-group mb-3']
+) ?&gt;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$label</td>
+                <td><p>Sets the label for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Sets the value for the name, for, and id attributes
+for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$intlNumberFormat</td>
+                <td><p>The international number format.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$currency</td>
+                <td><p>The 3 digit currency name.</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td><p>The value we want to set.  We can use this to set
+the value of the value attribute during form validation.  Default value
+is the empty string.  It can be set with values during form validation
+and forms used for editing records.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the surrounding div.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The errors array.  Default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A surrounding div and the input element of type currency.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_dataListBlock">
+        <div class="location">at line 448</div>
+        <code>        static            string
+    <strong>dataListBlock</strong>(string $type, string $label, string $name, string $listName, mixed $value = &#039;&#039;, array $options = [], array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assists in the development of forms input blocks with datalist element in forms.</p></p>                <p><p>It accepts parameters for setting attribute tags in the form section.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$type</td>
+                <td><p>The input type we want to generate.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$label</td>
+                <td><p>Sets the label for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Sets the value for the name, for, and id attributes
+for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$listName</td>
+                <td><p>The list name name and id for the datalist element.</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td><p>The value we want to set.  We can use this to set
+the value of the value attribute during form validation.  Default value
+is the empty string.  It can be set with values during form validation
+and forms used for editing records.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td><p>A list of suggestions.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the surrounding div.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The errors array.  Default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A surrounding div and the input element.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_displayErrors">
-        <div class="location">at line 245</div>
+        <div class="location">at line 493</div>
         <code>        static            string
     <strong>displayErrors</strong>(<abbr title="array|Core\Lib\Utilities\ArraySet">ArraySet</abbr> $errors)
         </code>
@@ -799,7 +1281,7 @@ set as the value.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Returns list of errors.</p></p>                        
+                            <p><p>Returns list of errors in the form of an error bag.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -819,8 +1301,7 @@ generated during server side form validation.</p></td>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>A string representation of a div element containing an
-input of type checkbox.</p></td>
+            <td><p>The error bag.</p></td>
         </tr>
     </table>
 
@@ -833,12 +1314,19 @@ input of type checkbox.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_emailBlock">
-        <div class="location">at line 296</div>
+        <div class="location">at line 545</div>
         <code>        static            string
     <strong>emailBlock</strong>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
-        </code>
+        <small><span class="label label-danger">deprecated</span></small></code>
     </h3>
     <div class="details">    
+            <p>
+                <small><span class="label label-danger">deprecated</span></small>
+                            <tr>
+                    <td>4.0.0</td>
+                    <td>Use email() instead. Removal planned for 5.0.0.</td>
+                </tr>
+                    </p>
     
             
 
@@ -901,15 +1389,6 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
     </table>
 
             
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../Core/Exceptions/FrameworkException.html"><abbr title="Core\Exceptions\FrameworkException">FrameworkException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
             
             
                     </div>
@@ -918,7 +1397,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_errorMsg">
-        <div class="location">at line 329</div>
+        <div class="location">at line 573</div>
         <code>        static            string
     <strong>errorMsg</strong>(array $errors, string $name)
         </code>
@@ -964,8 +1443,199 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_fileBlock">
+        <div class="location">at line 611</div>
+        <code>        static            string
+    <strong>fileBlock</strong>(string $label, string $name, array $inputAttrs = [], array $divAttrs = [], bool $multiple = false, array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders an HTML div element that surrounds an input of type file.</p></p>                <p><p>Multiple File Uploads:
+Use the $multiple flag to enable multiple file uploads.  Name attribute
+will be formatted correctly and the multiple attribute will be added to
+the input element.</p>
+<p>Example:
+&lt;?= FormHelper::fileBlock(
+&quot;Upload Profile Image (Optional)&quot;,
+'profileImage',
+['class' =&gt; 'form-control', 'accept' =&gt; 'image/gif image/jpeg image/png'],
+['class' =&gt; 'form-group mb-3'])
+?&gt;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$label</td>
+                <td><p>Sets the label for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Sets the value for the name, for, and id attributes
+for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the surrounding div.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$multiple</td>
+                <td><p>Flag for turning on or off multiple file uploads.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The errors array.  Default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A surrounding div and the input element of type file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_formatCurrency">
+        <div class="location">at line 650</div>
+        <code>        static            string
+    <strong>formatCurrency</strong>(mixed $value, string $currency = &#039;USD&#039;, string $locale = &#039;en-US&#039;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Formats a raw decimal for display (initial render / after save).</p></p>                <p><p>Requires ext-intl.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td><ul>
+<li>The value to format</li>
+</ul></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$currency</td>
+                <td><p>The 3 digit currency name.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$locale</td>
+                <td><p>The international number format.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The correct currency.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_formatNumber">
+        <div class="location">at line 660</div>
+        <code>        static            string
+    <strong>formatNumber</strong>(mixed $value, int $decimals = 0, bool $useGrouping = false, string $locale = &#039;en-US&#039;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Raw stored value -&gt; display string (grouping + fixed precision).</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$decimals</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$useGrouping</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$locale</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_generateToken">
-        <div class="location">at line 345</div>
+        <div class="location">at line 674</div>
         <code>        static            string
     <strong>generateToken</strong>()
         </code>
@@ -997,7 +1667,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_hidden">
-        <div class="location">at line 366</div>
+        <div class="location">at line 695</div>
         <code>        static            string
     <strong>hidden</strong>(string $name, mixed $value)
         </code>
@@ -1046,8 +1716,155 @@ FormHelper::hidden(&quot;example_name&quot;, &quot;example_value&quot;);</p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_image">
+        <div class="location">at line 720</div>
+        <code>        static            string
+    <strong>image</strong>(string $id, string $src, int $width, int $height, array $inputAttrs = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Create a input element of type image.</p></p>                <p><p>Example:</p>
+<p>&lt;?= FormHelper::image(
+'submit',
+asset('public/logo.png', true),
+100,
+50,
+['class' =&gt; 'mt-5 pt-4']
+?&gt;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$id</td>
+                <td><p>The id attribute for the image input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$src</td>
+                <td><p>The path to the image file.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$width</td>
+                <td><p>The width of the image.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$height</td>
+                <td><p>The hight of the image.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>An input element of type image.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_imageBlock">
+        <div class="location">at line 749</div>
+        <code>        static            string
+    <strong>imageBlock</strong>(string $id, string $src, int $width, int $height, array $inputAttrs = [], array $divAttrs = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates a div containing an input of type image.</p></p>                <p><p>Example:</p>
+<p>&lt;?= FormHelper::imageBlock(
+'submit',
+asset('public/logo.png', true),
+100,
+50,
+['class' =&gt; 'mt-5 pt-4'],
+['class' =&gt; 'text-end'])
+?&gt;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$id</td>
+                <td><p>The id attribute for the image input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$src</td>
+                <td><p>The path to the image file.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$width</td>
+                <td><p>The width of the image.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$height</td>
+                <td><p>The hight of the image.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the surrounding div.  The default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A surrounding div and the input element of type image.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_inputBlock">
-        <div class="location">at line 417</div>
+        <div class="location">at line 812</div>
         <code>        static            string
     <strong>inputBlock</strong>(string $type, string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -1059,7 +1876,7 @@ FormHelper::hidden(&quot;example_name&quot;, &quot;example_value&quot;);</p>
         <div class="method-description">
                             <p><p>Assists in the development of forms input blocks in forms.  It accepts
 parameters for setting attribute tags in the form section.  Not to be
-used for inputs of type &quot;Submit&quot;  For submit inputs use the submitBlock
+used for inputs of type &quot;Submit&quot;.  For submit inputs use the submitBlock
 or submitTag functions.</p></p>                <p><p>Types of inputs supported:</p>
 <ol>
 <li>color</li>
@@ -1151,8 +1968,196 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_number">
+        <div class="location">at line 885</div>
+        <code>        static            string
+    <strong>number</strong>(string $label, string $name, mixed $value = &#039;&#039;, array $config = [], array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Numeric input (integer or decimal) with optional thousands grouping
+and fixed precision.</p></p>                <p><p>Config keys (all optional):
+decimals    int   Decimal places. 0 = integer. Default 0.
+useGrouping bool  Thousands separators on display. Default false.
+min         int|float|null  HTML min. Default null (omitted).
+max         int|float|null  HTML max. Default null (omitted).
+step        int|float|string|null  HTML step. Default derived from decimals.
+locale      string  Intl locale for formatting. Default 'en-US'.</p>
+<p>Stores normalized (raw number, no separators); displays formatted.</p>
+<p>Examples:</p>
+<pre><code class="language-php">&lt;?= number('Integer', 'int_demo', 42, ['decimals' =&gt; 0]); ?&gt;
+
+&lt;?= number('2-decimal, grouped', 'price_demo', 1234.5,
+      ['decimals' =&gt; 2, 'useGrouping' =&gt; true]); ?&gt;
+
+&lt;?= number('2-decimal, no grouping', 'plain_demo', 1234.5,
+      ['decimals' =&gt; 2, 'useGrouping' =&gt; false]); ?&gt;
+
+&lt;?= number('3-decimal precision', 'precise_demo', 3.14159,
+      ['decimals' =&gt; 3, 'useGrouping' =&gt; true]); ?&gt;
+
+&lt;?= number('With min/max', 'bounded_demo', 50,
+      ['decimals' =&gt; 0, 'min' =&gt; 0, 'max' =&gt; 100]); ?&gt;
+
+&lt;?= number('Empty (create mode)', 'empty_demo', '',
+    ['decimals' =&gt; 2, 'useGrouping' =&gt; true]); ?&gt;</code></pre></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$label</td>
+                <td><p>Sets the label for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Sets the value for the name, for, and id attributes
+for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td><p>The value we want to set.  We can use this to set
+the value of the value attribute during form validation.  Default value
+is the empty string.  It can be set with values during form validation
+and forms used for editing records.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$config</td>
+                <td><p>Array of optional keys.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the surrounding div.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The errors array.  Default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A surrounding div and a formatted number input field.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_normalizeCurrency">
+        <div class="location">at line 955</div>
+        <code>        static            string
+    <strong>normalizeCurrency</strong>(mixed $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Strips display formatting to a raw decimal string for storage.</p></p>                <p><p>Run this in the save handler BEFORE persisting a currency field.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td><p>the value to normalize.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The normalized value.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_normalizeNumber">
+        <div class="location">at line 967</div>
+        <code>        static            string
+    <strong>normalizeNumber</strong>(mixed $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Display string -&gt; raw numeric string for storage.</p></p>                <p><p>Strips grouping separators and any non-numeric chrome; keeps one
+decimal point and a leading minus.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_optionsForSelect">
-        <div class="location">at line 446</div>
+        <div class="location">at line 980</div>
         <code>        static            string
     <strong>optionsForSelect</strong>(array $options, <abbr title="Core\string|int|null">string|int|null</abbr> $selectedValue)
         </code>
@@ -1199,7 +2204,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_output">
-        <div class="location">at line 469</div>
+        <div class="location">at line 1003</div>
         <code>        static            string
     <strong>output</strong>(string $name, string $for)
         </code>
@@ -1250,7 +2255,7 @@ input.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_posted_values">
-        <div class="location">at line 480</div>
+        <div class="location">at line 1014</div>
         <code>        static            array
     <strong>posted_values</strong>(array $post)
         </code>
@@ -1292,10 +2297,89 @@ user submits a form.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_radioInput">
-        <div class="location">at line 513</div>
+                    <h3 id="method_radioGroup">
+        <div class="location">at line 1043</div>
         <code>        static            string
-    <strong>radioInput</strong>(string $label, string $id, string $name, string $value, bool $checked = false, array $inputAttrs = [])
+    <strong>radioGroup</strong>(string $name, array $options = [], <abbr title="Core\string|int|null">string|int|null</abbr> $selectedValue = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders a radio button group based on options provided.</p></p>                <p><p>Example:
+&lt;?= FormHelper::radioGroup(
+'inactive',                       // name
+[0 =&gt; 'Active', 1 =&gt; 'Inactive'], // [value =&gt; label] map
+$this-&gt;user-&gt;inactive,            // selected value: 0 or 1
+['class' =&gt; 'form-check-input'],  // inputAttrs (applied to every radio)
+['class' =&gt; 'form-group mb-3'],   // divAttrs
+$this-&gt;displayErrors              // errors
+); ?&gt;</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>Sets the value for the name attribute
+for this input.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td><p>The list of options we will use to populate the
+radio group.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\string|int|null">string|int|null</abbr></td>
+                <td>$selectedValue</td>
+                <td><p>The selected value.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$inputAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the input string.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$divAttrs</td>
+                <td><p>The values used to set the class and other
+attributes of the surrounding div.  The default value is an empty array.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The errors array.  Default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>A surrounding div and option select element.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_radioInput">
+        <div class="location">at line 1094</div>
+        <code>        static            string
+    <strong>radioInput</strong>(string $label, string $name, string $value, bool $checked = false, array $inputAttrs = [])
         </code>
     </h3>
     <div class="details">    
@@ -1304,14 +2388,14 @@ user submits a form.</p></td>
 
         <div class="method-description">
                             <p><p>Creates an input element of type radio with an accompanying label
-element.  Compatible with radio button groups.</p></p>                <p><p>An example function call is shown below:
-FormHelper::radioInput('HTML', 'html', 'fav_language', &quot;HTML&quot;, $check1, ['class' =&gt; 'form-group mr-1']);
-FormHelper::radioInput('CSS', 'css', 'fav_language', &quot;CSS&quot;, $check2, ['class' =&gt; 'form-group mr-1']);</p>
-<p>Example HTML output is shown below:</p>
-<input type="radio" id="html" name="fav_language" value="HTML" class="form-group mr-1">
-<label for="html">HTML</label>  <br>
-<input type="radio" id="css" name="fav_language" value="CSS" class="form-group mr-1">
-<label for="css">CSS</label></p>        
+element.  Compatible with radio button groups.</p></p>                <p><p>Example:</p>
+<p>&lt;?= FormHelper::radioInput(
+&quot;Phone&quot;,
+'contact',
+'phone',
+false,
+['class' =&gt; 'form-group mb-3'])
+?&gt;</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1321,11 +2405,6 @@ FormHelper::radioInput('CSS', 'css', 'fav_language', &quot;CSS&quot;, $check2, [
                 <td>string</td>
                 <td>$label</td>
                 <td><p>Sets the label for this input.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$id</td>
-                <td><p>The id attribute for the radio input element.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -1375,7 +2454,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sanitize">
-        <div class="location">at line 532</div>
+        <div class="location">at line 1116</div>
         <code>        static            <abbr title="Core\string|array">string|array</abbr>
     <strong>sanitize</strong>(<abbr title="Core\string|array">string|array</abbr> $dirty)
         </code>
@@ -1417,7 +2496,7 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectBlock">
-        <div class="location">at line 569</div>
+        <div class="location">at line 1150</div>
         <code>        static            string
     <strong>selectBlock</strong>(string $label, string $name, <abbr title="Core\string|int|null">string|int|null</abbr> $value, array $options, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>
@@ -1428,17 +2507,15 @@ attributes of the input string.  The default value is an empty array.</p></td>
 
         <div class="method-description">
                             <p><p>Renders a select element with a list of options.</p></p>                <p><p>An example function call is shown below:
-FormHelper::selectBlock(&quot;Test&quot;, &quot;test&quot;, $_POST[&quot;test&quot;],['A' =&gt; 'a','B' =&gt; 'b', 'C' =&gt; 'c'], ['class' =&gt; 'form-control'], ['class' =&gt; 'form-group'], $this-&gt;displayErrors);</p>
-<p>Example HTML output is shown below:</p>
-<div class="form-group">
-    <label for="test">Test</label>
-    <select id="test" name="test" value=""  class="form-control">
-        <option>---Please select an item--</option>
-        <option value="a">A</option>
-        <option value="b">B</option>
-        <option value="c">C</option>
-    </select>
-</div></p>        
+&lt;?= FormHelper::selectBlock(
+'Account Status',                 // label
+'inactive',                       // name — matches the schema column
+$this-&gt;user-&gt;inactive,            // current value: 0 or 1
+[0 =&gt; 'Active', 1 =&gt; 'Inactive'], // [value =&gt; label] map
+['class' =&gt; 'form-select'],       // inputAttrs
+['class' =&gt; 'form-group mb-3'],   // divAttrs
+$this-&gt;displayErrors              // errors
+); ?&gt;</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1504,7 +2581,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_stringifyAttrs">
-        <div class="location">at line 596</div>
+        <div class="location">at line 1177</div>
         <code>        static            string
     <strong>stringifyAttrs</strong>(array $attrs)
         </code>
@@ -1546,7 +2623,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_submitBlock">
-        <div class="location">at line 623</div>
+        <div class="location">at line 1204</div>
         <code>        static            string
     <strong>submitBlock</strong>(string $buttonText, array $inputAttrs = [], array $divAttrs = [])
         </code>
@@ -1606,7 +2683,7 @@ attributes of the surrounding div.  The default value is an empty array.</p></td
             </div>
                     <div class="method-item">
                     <h3 id="method_submitTag">
-        <div class="location">at line 655</div>
+        <div class="location">at line 1236</div>
         <code>        static            string
     <strong>submitTag</strong>(string $buttonText, array $inputAttrs = [])
         </code>
@@ -1660,17 +2737,31 @@ attributes of the input string.  The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_telBlock">
-        <div class="location">at line 679</div>
+        <div class="location">at line 1272</div>
         <code>        static            string
     <strong>telBlock</strong>(string $label, string $name, mixed $value = &#039;&#039;, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
-        </code>
+        <small><span class="label label-danger">deprecated</span></small></code>
     </h3>
     <div class="details">    
+            <p>
+                <small><span class="label label-danger">deprecated</span></small>
+                            <tr>
+                    <td>4.0.0</td>
+                    <td>Use tel() instead. Removal planned for 5.0.0.</td>
+                </tr>
+                    </p>
     
             
 
         <div class="method-description">
-                            <p><p>Renders an HTML div element that surrounds an input of type tel.</p></p>                        
+                            <p><p>Renders an HTML div element that surrounds an input of type tel.</p></p>                <p><p>Example:</p>
+<p>&lt;?= FormHelper::telBlock(
+'Home phone',
+'phone',
+$this-&gt;user-&gt;phone,
+['class' =&gt; 'form-control input-sm'],
+['class' =&gt; 'form-group mb-3'])
+?&gt;</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1735,7 +2826,7 @@ function call.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_textareaBlock">
-        <div class="location">at line 728</div>
+        <div class="location">at line 1326</div>
         <code>        static            string
     <strong>textareaBlock</strong>(string $label, string $name, <abbr title="Core\string|null">string|null</abbr> $value, array $inputAttrs = [], array $divAttrs = [], array $errors = [])
         </code>

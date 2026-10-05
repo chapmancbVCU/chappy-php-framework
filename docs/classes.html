@@ -720,7 +720,8 @@ class.</p></div>
                     <div class="row">
                 <div class="col-md-6">
                     <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a>    </div>
-                <div class="col-md-6"><p>Contains functions for building form elements of various types.</p></div>
+                <div class="col-md-6"><p>Contains functions for building form elements of various types, the sanitation,
+and other setup responsibilities.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
@@ -731,6 +732,94 @@ class.</p></div>
                 <div class="col-md-6">
                     <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a>    </div>
                 <div class="col-md-6"><p>Input class handles requests to the server.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Auth/Auth.html"><abbr title="Core\Lib\Auth\Auth">Auth</abbr></a>    </div>
+                <div class="col-md-6"><p>Static entry point to the application's auth guard.  Lazily constructs
+a single SessionGuard so every caller shares one resolved user per
+request, and forwards the common guard operations (check, user, id) to
+it.  A guard may also be injected via setGuard() to support testing.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>    </div>
+                <div class="col-md-6"><p>Immutable result of a login attempt.  Carries the outcome as a status
+constant plus, where relevant, the user the attempt concerned.  Lets the
+login policy (LoginService) decide the outcome while the caller
+(controller) owns the resulting HTTP behavior — redirects, flash
+messages — rather than those being fired from inside the service.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Auth/ModelUserProvider.html"><abbr title="Core\Lib\Auth\ModelUserProvider">ModelUserProvider</abbr></a>    </div>
+                <div class="col-md-6"><p>Retrieves and validates Principals backed by the Users model.  Isolates
+all knowledge of how users are stored and looked up, so the guard can
+authenticate against the Users model through the UserProvider contract
+without depending on it directly.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Auth/RememberMeStore.html"><abbr title="Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr></a>    </div>
+                <div class="col-md-6"><p>Owns remember-me persistence: minting the cookie token and its hashed
+user_sessions row, and tearing both down on logout.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Auth/RememberToken.html"><abbr title="Core\Lib\Auth\RememberToken">RememberToken</abbr></a>    </div>
+                <div class="col-md-6"><p>Generates and hashes remember-me tokens.  The raw token lives only in
+the user's cookie; only its hash is ever stored in user_sessions.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a>    </div>
+                <div class="col-md-6"><p>Session-backed guard. Owns &quot;who is logged in right now&quot; and delegates
+all storage to a UserProvider.  Resolves the current user from the
+session once per request and caches the result, writes the session on
+login, and clears it on logout.  Remember-me persistence is delegated to
+a RememberMeStore.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Defines the contract for an authentication guard.  A guard owns the
+notion of &quot;who is authenticated right now&quot; for a single request,
+resolving the current user from the underlying session and delegating
+user retrieval and credential checks to a UserProvider.  Implementations
+are responsible for reading and writing authentication state (session,
+and optionally remember-me persistence) so that callers interact with a
+Principal rather than with storage details directly.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/Hasher.html"><abbr title="Core\Lib\Contracts\Hasher">Hasher</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Defines the contract for hashing and verifying values, typically user
+passwords.  Implementations wrap a specific hashing algorithm (e.g.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Contract the auth guard/provider relies on to authenticate a model
+without knowing its underlying schema.  A Principal exposes its
+identifier, its stored password, and its remember-me token through a
+fixed set of accessors, along with the column names backing each, so
+the authentication system can operate against any model that maps
+these concepts to storage however it chooses.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Defines the contract for retrieving and validating principals from an
+underlying data store.  A UserProvider isolates all knowledge of how
+users are stored and looked up, so a guard can authenticate against any
+backing store (a model, an external service, etc.) through a single
+interface.  Retrieval and credential validation are kept separate: a
+provider can locate a principal by its credentials without verifying
+them, and verify a principal's credentials without re-fetching it.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
@@ -820,6 +909,11 @@ E-mail event.</p></div>
                 <div class="col-md-6">
                     <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>    </div>
                 <div class="col-md-6"><p>Provides support for file uploads.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Lib/Hashing/BcryptHasher.html"><abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr></a>    </div>
+                <div class="col-md-6"><p>Bcrypt implementation of the Hasher contract.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
@@ -1111,6 +1205,14 @@ extendability.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
+                    <a href="Core/Services/LoginService.html"><abbr title="Core\Services\LoginService">LoginService</abbr></a>    </div>
+                <div class="col-md-6"><p>Login policy: verifies credentials and applies the account rules
+(password-reset, inactive, failed-attempt lockout) as a returned
+LoginResult, leaving all HTTP behavior to the caller.  Replaces the
+redirect-driven AuthService::login()/loginAttempts() flow.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
                     <a href="Core/Services/NotificationService.html"><abbr title="Core\Services\NotificationService">NotificationService</abbr></a>    </div>
                 <div class="col-md-6"><p>Supports tasks related to notifications.</p></div>
             </div>
@@ -1139,6 +1241,15 @@ that updates timestamps.</p></div>
                 <div class="col-md-6">
                     <a href="Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>    </div>
                 <div class="col-md-6"><p>Supports ability to validate console input.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Traits/IsPrincipal.html"><abbr title="Core\Traits\IsPrincipal">IsPrincipal</abbr></a>    </div>
+                <div class="col-md-6"><p>Default implementation of the IsPrincipal contract, reading values
+off public model properties by their configured column names.  A model
+satisfies the contract by using this trait and declaring properties
+matching the configured column names; the identifier, password, and
+remember-me token are then resolved dynamically from those properties.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">

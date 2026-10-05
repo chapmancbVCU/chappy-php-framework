@@ -90,6 +90,48 @@
             </div>
                     <div class="row">
                 <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Defines the contract for an authentication guard.  A guard owns the
+notion of &quot;who is authenticated right now&quot; for a single request,
+resolving the current user from the underlying session and delegating
+user retrieval and credential checks to a UserProvider.  Implementations
+are responsible for reading and writing authentication state (session,
+and optionally remember-me persistence) so that callers interact with a
+Principal rather than with storage details directly.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/Hasher.html"><abbr title="Core\Lib\Contracts\Hasher">Hasher</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Defines the contract for hashing and verifying values, typically user
+passwords.  Implementations wrap a specific hashing algorithm (e.g.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Contract the auth guard/provider relies on to authenticate a model
+without knowing its underlying schema.  A Principal exposes its
+identifier, its stored password, and its remember-me token through a
+fixed set of accessors, along with the column names backing each, so
+the authentication system can operate against any model that maps
+these concepts to storage however it chooses.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <em><a href="Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a></em>
+                        </div>
+                <div class="col-md-6"><p>Defines the contract for retrieving and validating principals from an
+underlying data store.  A UserProvider isolates all knowledge of how
+users are stored and looked up, so a guard can authenticate against any
+backing store (a model, an external service, etc.) through a single
+interface.  Retrieval and credential validation are kept separate: a
+provider can locate a principal by its credentials without verifying
+them, and verify a principal's credentials without re-fetching it.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
                                             <em><a href="Core/Lib/Events/Contracts/QueuePreferences.html"><abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr></a></em>
                         </div>
                 <div class="col-md-6"><p>Defines the contract for event listeners or jobs that can be queued.</p></div>

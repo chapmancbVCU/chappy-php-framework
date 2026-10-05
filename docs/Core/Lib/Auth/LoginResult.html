@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Lib\Auth\LoginResult | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
+        <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
+        <script async defer src="../../../js/bootstrap.min.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Lib_Auth_LoginResult" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                    <li><a href="../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib/Auth.html">Auth</a></li><li class="backslash">\</li><li>LoginResult</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>LoginResult    
+            </h1>
+    </div>
+
+    
+    <p>final         class
+    <strong>LoginResult</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Immutable result of a login attempt.  Carries the outcome as a status
+constant plus, where relevant, the user the attempt concerned.  Lets the
+login policy (LoginService) decide the outcome while the caller
+(controller) owns the resulting HTTP behavior — redirects, flash
+messages — rather than those being fired from inside the service.</p></p>                    </div>
+            
+        
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        SUCCESS
+                                    </td>
+                <td class="last">
+                    <p><em><p>Credentials were valid and the user was logged in.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        NEEDS_RESET
+                                    </td>
+                <td class="last">
+                    <p><em><p>Credentials were valid but the account is flagged for password reset.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        INACTIVE
+                                    </td>
+                <td class="last">
+                    <p><em><p>Credentials were valid but the account is inactive.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        LOCKED
+                                    </td>
+                <td class="last">
+                    <p><em><p>Credentials were invalid and the account is now locked.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                                                                                                                        INVALID
+                                    </td>
+                <td class="last">
+                    <p><em><p>Credentials were invalid (wrong password or unknown user).</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(string $status, <abbr title="Core\Lib\Auth\Core\Lib\Contracts\Principal">Principal</abbr>|null $user = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_inactive">inactive</a>()
+        
+                                            <p><p>Returns new instance with status set to self::INACTIVE.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_invalid">invalid</a>()
+        
+                                            <p><p>Returns new instance with status set to self::INVALID.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_locked">locked</a>()
+        
+                                            <p><p>Returns new instance with status set to self::LOCKED.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_needsReset">needsReset</a>(<a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a> $user)
+        
+                                            <p><p>Returns new instance with status set to self::NEEDS_RESET.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_succeeded">succeeded</a>()
+        
+                                            <p><p>Determines if attempt is successful.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_success">success</a>(<a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a> $user)
+        
+                                            <p><p>Returns new instance with status set to self::SUCCESS.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line 30</div>
+        <code>                private    
+    <strong>__construct</strong>(string $status, <abbr title="Core\Lib\Auth\Core\Lib\Contracts\Principal">Principal</abbr>|null $user = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$status</td>
+                <td><p>One of the status constants above.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Auth\Core\Lib\Contracts\Principal">Principal</abbr>|null</td>
+                <td>$user</td>
+                <td><p>The user the attempt concerned, when known.</p></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_inactive">
+        <div class="location">at line 40</div>
+        <code>        static            <a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+    <strong>inactive</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns new instance with status set to self::INACTIVE.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_invalid">
+        <div class="location">at line 49</div>
+        <code>        static            <a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+    <strong>invalid</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns new instance with status set to self::INVALID.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_locked">
+        <div class="location">at line 58</div>
+        <code>        static            <a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+    <strong>locked</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns new instance with status set to self::LOCKED.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_needsReset">
+        <div class="location">at line 68</div>
+        <code>        static            <a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+    <strong>needsReset</strong>(<a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a> $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns new instance with status set to self::NEEDS_RESET.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a></td>
+                <td>$user</td>
+                <td><p>The user whose account requires a password reset.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_succeeded">
+        <div class="location">at line 77</div>
+        <code>                    bool
+    <strong>succeeded</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determines if attempt is successful.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the attempt succeeded.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_success">
+        <div class="location">at line 87</div>
+        <code>        static            <a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a>
+    <strong>success</strong>(<a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a> $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns new instance with status set to self::SUCCESS.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a></td>
+                <td>$user</td>
+                <td><p>The successfully authenticated user.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

@@ -990,6 +990,16 @@ cause this function to return false.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toOptions">toOptions</a>(string $valueField, string $labelField, array $conditions = [])
+        
+                                            <p><p>Projects model rows into a [value =&gt; label] options map for form controls.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     bool
                 </div>
                 <div class="col-md-8">
@@ -3673,8 +3683,69 @@ delete.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_toOptions">
+        <div class="location">at line 527</div>
+        <code>        static            array
+    <strong>toOptions</strong>(string $valueField, string $labelField, array $conditions = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Projects model rows into a [value =&gt; label] options map for form controls.</p></p>                <p><p>This is the standard source for controls whose options are value/label pairs:
+select, radio groups, checkbox groups, and datalists in list (non-range) mode.
+Each row contributes one entry: $row-&gt;$valueField =&gt; $row-&gt;$labelField.</p>
+<p>NOT for range inputs. A range's min/max/step are numeric params, not a map,
+and its datalist tick pairs are almost always developer-set literals rather
+than model rows — so build those inline. Only use toOptions for a range if
+its tick values are genuinely data-driven, which is rare.</p>
+<p>The value field should be whatever gets stored/submitted (and matched against
+on populate); the label field is the display text. For ACLs, both are the
+name: toOptions('acl', 'acl'). For a typical lookup: toOptions('id', 'name').</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$valueField</td>
+                <td><p>Column whose value becomes each option's key (submitted value).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$labelField</td>
+                <td><p>Column whose value becomes each option's label (display text).</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$conditions</td>
+                <td><p>Optional find() conditions (e.g. ['order' =&gt; 'name']).</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>[value =&gt; label] map ready to hand to a map-fed control.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 514</div>
+        <div class="location">at line 550</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -3718,7 +3789,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
-        <div class="location">at line 544</div>
+        <div class="location">at line 580</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -3779,7 +3850,7 @@ Supports:</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
-        <div class="location">at line 554</div>
+        <div class="location">at line 590</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -3812,7 +3883,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 565</div>
+        <div class="location">at line 601</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
