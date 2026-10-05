@@ -845,6 +845,42 @@ class FormHelper {
      *   locale      string  Intl locale for formatting. Default 'en-US'.
      *
      * Stores normalized (raw number, no separators); displays formatted.
+     * 
+     * Examples:
+     * 
+     * ```php
+     * <?= number('Integer', 'int_demo', 42, ['decimals' => 0]); ?>
+     *
+     * <?= number('2-decimal, grouped', 'price_demo', 1234.5,
+     *       ['decimals' => 2, 'useGrouping' => true]); ?>
+     *
+     * <?= number('2-decimal, no grouping', 'plain_demo', 1234.5,
+     *       ['decimals' => 2, 'useGrouping' => false]); ?>
+     *
+     * <?= number('3-decimal precision', 'precise_demo', 3.14159,
+     *       ['decimals' => 3, 'useGrouping' => true]); ?>
+     *
+     * <?= number('With min/max', 'bounded_demo', 50,
+     *       ['decimals' => 0, 'min' => 0, 'max' => 100]); ?>
+     *
+     * <?= number('Empty (create mode)', 'empty_demo', '',
+     *     ['decimals' => 2, 'useGrouping' => true]); ?>
+     * ```
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $config Array of optional keys.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and a formatted number input field.
      */
     public static function number(
         string $label,
