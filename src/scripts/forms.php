@@ -8,10 +8,12 @@ use Core\Lib\Utilities\ArraySet;
  * 
  * An example function call is shown below:
  * 
+ * ```php
  * <?= button(
  *      "Click Me!", 
  *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']
  * ); ?>
+ * ```
  * 
  * Example HTML output is shown below:
  * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
@@ -33,11 +35,14 @@ if(!function_exists('button')) {
  * block.
  * 
  * An example function call is shown below:
+ * 
+ * ```php
  * <?= buttonBlock(
  *      "Click Me!", 
  *      ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], 
  *      ['class' => 'form-group']
  * ); ?>
+ * ```php
  * 
  * Example HTML output is shown below:
  * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
@@ -65,6 +70,19 @@ if(!function_exists('checkboxLabelLeft')) {
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
+     * An example function call is shown below:
+     * 
+     * ```php
+     * checkboxLabelLeft(
+     *      'Remember Me', 
+     *      'remember_me', 
+     *      'on', 
+     *      $this->login->getRememberMeChecked(), 
+     *      [],
+     *      ['class' => 'form-group'], $this->displayErrors
+     * );
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -109,6 +127,18 @@ if(!function_exists('checkboxLabelRight')) {
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
      *
+     * An example function call is shown below:
+     * 
+     * ```php
+     * checkboxBlockLabelRight(
+     *      'Remember Me', 
+     *      'remember_me', 
+     *      'on', 
+     *      $this->login->getRememberMeChecked(), 
+     *      [],
+     *      ['class' => 'form-group mr-1'], $this->displayErrors
+     * );
+     * ```
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -151,6 +181,18 @@ if(!function_exists('checkboxGroup')) {
      * Renders a group of checkboxes sharing one name (submitted as name[]),
      * one wrapping div, and ONE error span. Label-right per box.
      *
+     * Example:
+     * ```php
+     * <?= checkboxGroup(
+     *     'acls',
+     *     $this->acls,              // [value => label] map of all ACLs
+     *     $this->user->getAcls(),   // the set of ACLs this user currently has
+     *     [],
+     *     ['class' => 'form-check'],
+     *     $this->displayErrors
+     * ); ?>
+     * ```
+     * 
      * @param string $name           Group name WITHOUT '[]' (added internally), e.g. 'acls'.
      * @param array  $options        [value => label] map of choices.
      * @param array  $selectedValues Values that should render checked (the current set).
@@ -177,6 +219,7 @@ if(!function_exists('checkboxGroup')) {
         );
     }
 }
+
 if(!function_exists('color')) {
     /**
      * Renders an HTML div element that surrounds an input of type color.
@@ -1092,7 +1135,56 @@ if(!function_exists('month')) {
     }
 }
 
-
+/**
+     * Numeric input (integer or decimal) with optional thousands grouping
+     * and fixed precision.
+     *
+     * Config keys (all optional):
+     *   decimals    int   Decimal places. 0 = integer. Default 0.
+     *   useGrouping bool  Thousands separators on display. Default false.
+     *   min         int|float|null  HTML min. Default null (omitted).
+     *   max         int|float|null  HTML max. Default null (omitted).
+     *   step        int|float|string|null  HTML step. Default derived from decimals.
+     *   locale      string  Intl locale for formatting. Default 'en-US'.
+     *
+     * Stores normalized (raw number, no separators); displays formatted.
+     * 
+     * Examples:
+     * 
+     * ```php
+     * <?= number('Integer', 'int_demo', 42, ['decimals' => 0]); ?>
+     *
+     * <?= number('2-decimal, grouped', 'price_demo', 1234.5,
+     *       ['decimals' => 2, 'useGrouping' => true]); ?>
+     *
+     * <?= number('2-decimal, no grouping', 'plain_demo', 1234.5,
+     *       ['decimals' => 2, 'useGrouping' => false]); ?>
+     *
+     * <?= number('3-decimal precision', 'precise_demo', 3.14159,
+     *       ['decimals' => 3, 'useGrouping' => true]); ?>
+     *
+     * <?= number('With min/max', 'bounded_demo', 50,
+     *       ['decimals' => 0, 'min' => 0, 'max' => 100]); ?>
+     *
+     * <?= number('Empty (create mode)', 'empty_demo', '',
+     *     ['decimals' => 2, 'useGrouping' => true]); ?>
+     * ```
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $config Array of optional keys.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors The errors array.  Default value is an empty array.
+     * @return string A surrounding div and a formatted number input field.
+     */
 if(!function_exists('number')) {
     function number(
         string $label,
