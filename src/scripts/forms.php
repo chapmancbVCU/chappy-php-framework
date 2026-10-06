@@ -900,6 +900,7 @@ if(!function_exists('fileSelector')) {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
+     * @param bool $multiple Flag for turning on or off multiple file uploads.
      * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type file.
      */
@@ -937,7 +938,19 @@ if(!function_exists('hidden')) {
 
 if(!function_exists('imageButton')) {
     /**
-     * Renders an HTML div element that surrounds an input of type image.
+     * Create a input element of type image.
+     * 
+     * Example:
+     * 
+     * ```php
+     * <?= imageButton(
+     *      'submit', 
+     *      asset('public/logo.png', true), 
+     *      100, 
+     *      50, 
+     *      ['class' => 'mt-5 pt-4']
+     * ?>
+     * ```
      * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
