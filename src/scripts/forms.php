@@ -778,7 +778,7 @@ if(!function_exists('dateSelector')) {
 
 if(!function_exists('dateTimeLocal')) {
     /**
-     * Renders an HTML div element that surrounds an input of type dateTimeLocal.
+     * Renders an HTML div element that surrounds an input of type datetime-Local.
      *
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
