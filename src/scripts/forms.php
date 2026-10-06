@@ -374,7 +374,7 @@ if(!function_exists('dataListColor')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -419,7 +419,7 @@ if(!function_exists('dataListDate')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -464,7 +464,7 @@ if(!function_exists('dataListDateTimeLocal')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -509,7 +509,7 @@ if(!function_exists('dataListInterval')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param int|float $min The minimum value for the interval.
      * @param int|float $max The maximum value for the interval.
      * @param mixed $value The value we want to set.  We can use this to set 
@@ -566,7 +566,7 @@ if(!function_exists('dataListMonth')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -611,7 +611,7 @@ if(!function_exists('dataListText')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -656,7 +656,7 @@ if(!function_exists('dataListTime')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -701,7 +701,7 @@ if(!function_exists('dataListWeek')) {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 

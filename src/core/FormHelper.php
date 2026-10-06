@@ -446,7 +446,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $listName The list name name and id for the datalist element.
+     * @param string $listName The list name and id for the datalist element.
      * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
