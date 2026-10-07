@@ -510,6 +510,21 @@ if(!function_exists('dataListInterval')) {
      * Renders an HTML div element that surrounds an input of type range with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListInterval(
+     *      'Tip amount:', 
+     *      'tick', 
+     *      'tickmarks', 
+     *      0,
+     *      45,
+     *      '', 
+     *      ['0' => '0%', '10' => 'minimum', '20' => 'standard', '30' => 'generous', '50' => 'very generous'], 
+     *      [], 
+     *      ['class' => 'form-group mb-3 d-flex flex-column']) 
+     * ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1076,6 +1091,19 @@ if(!function_exists('interval')) {
     /**
      * Renders an HTML div element that surrounds an input of type interval.
      *
+     * Example:
+     * ```php
+     * <?= interval(
+     *      'Tip amount:', 
+     *      'tick', 
+     *      0,
+     *      45,
+     *      '', 
+     *      [], 
+     *      ['class' => 'form-group mb-3 d-flex flex-column']) 
+     * ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1568,6 +1596,7 @@ if(!function_exists('tel')) {
      *      ['class' => 'form-group mb-3']
      * );
      * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
