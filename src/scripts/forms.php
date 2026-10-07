@@ -1559,6 +1559,15 @@ if(!function_exists('tel')) {
     /**
      * Renders an HTML div element that surrounds an input of type tel.
      *
+     * Example:
+     * ```php
+     * tel(
+     *      'Home phone', 
+     *      'phone', $this->contact->phone,
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * );
+     * ```
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
