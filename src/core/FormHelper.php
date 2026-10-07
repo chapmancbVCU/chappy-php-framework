@@ -911,7 +911,7 @@ class FormHelper {
      * <?= FormHelper::number('Empty (create mode)', 'empty_demo', '',
      *     ['decimals' => 2, 'useGrouping' => true]); ?>
      * 
-     * <?= number(
+     * <?= FormHelper::number(
      *      'Amount',
      *      "amount",
      *      '',
