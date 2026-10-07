@@ -265,12 +265,14 @@ if(!function_exists('confirm')) {
      * 
      * Example:
      * 
+     * ```php
      * <?= confirm(
      *      "Confirm Password", 
      *      $this->user->confirm, 
      *      ['class' => 'form-control input-sm'], 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param mixed $value The value we want to set.  We can use this to set 
@@ -320,12 +322,14 @@ if(!function_exists('currency')) {
      * Renders an HTML div element that surrounds an input of type currency.
      *
      * Example:
+     * ```php
      * <?= currency(
      *     label: 'Amount',
      *     name: "amount",
      *     inputAttrs: ['class' => 'form-control input-sm'],
      *     divAttrs: ['class' => 'form-group mb-3']
      * ) ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -833,7 +837,7 @@ if(!function_exists('email')) {
      * Renders an HTML div element that surrounds an input of type email.
      *
      * Example:
-     * 
+     * ```php
      * <?= email(
      *      "Email", 
      *      'email', 
@@ -841,6 +845,7 @@ if(!function_exists('email')) {
      *      ['class' => 'form-control input-sm'], 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -886,12 +891,14 @@ if(!function_exists('fileSelector')) {
      * the input element.
      * 
      * Example:
+     * ```php
      * <?= fileSelector(
      *      "Upload Profile Image (Optional)", 
      *      'profileImage', 
      *      ['class' => 'form-control', 'accept' => 'image/gif image/jpeg image/png'], 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -981,6 +988,8 @@ if(!function_exists('imageBlock')) {
     /**
      * Renders an HTML div element that surrounds an input of type image.
      *
+     * Example:
+     * ```php
      * <?= image(
      *      'submit', 
      *      asset('public/logo.png', true), 
@@ -989,6 +998,7 @@ if(!function_exists('imageBlock')) {
      *      ['class' => 'mt-5 pt-4'], 
      *      ['class' => 'text-end'])
      * ?>
+     * ```
      * 
      * @param string $id The id attribute for the image input.
      * @param string $src The path to the image file.
@@ -1238,6 +1248,8 @@ if(!function_exists('password')) {
     /**
      * Renders an HTML div element that surrounds an input of type password.
      *
+     * Example:
+     * ```php
      * <?= password(
      *      'Password', 
      *      'password', 
@@ -1245,6 +1257,7 @@ if(!function_exists('password')) {
      *      ['class' => 'form-control'],
      *      ['class' => 'form-group mb-3']); 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -1286,7 +1299,7 @@ if(!function_exists('radio')) {
      * element.  Compatible with radio button groups.
      *
      * Example: 
-     * 
+     * ```php
      * <?= radio(
      *      "Phone", 
      *      'contact', 
@@ -1294,6 +1307,7 @@ if(!function_exists('radio')) {
      *      false, 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -1368,12 +1382,14 @@ if(!function_exists('rememberMe')) {
      * the left that is not part of a group.
      *
      * Example:
+     * ```php
      * <?= rememberMe(
      *      'Remember Me', 
      *      $this->login->getRememberMeChecked(), 
      *      [], 
      *      ['class' => 'form-group mb-3']); 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param bool $checked The value for the checked attribute.  If true 
@@ -1509,8 +1525,9 @@ if(!function_exists('submit')) {
      * Create a input element of type submit.
      *
      * Example:
-     * 
+     * ```php
      * <?= submit('Login',['class'=>'btn btn-primary']) ?>
+     * ```
      * 
      * @param string $buttonText Sets the value of the text describing the 
      * button.
@@ -1574,6 +1591,7 @@ if(!function_exists('text')) {
      *
      * Example:
      * 
+     * ```php
      * <?= text(
      *      "First Name", 
      *      'fname', 
@@ -1581,6 +1599,7 @@ if(!function_exists('text')) {
      *      ['class' => 'form-control input-sm'], 
      *      ['class' => 'form-group mb-3']) 
      * ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
@@ -1621,6 +1640,27 @@ if(!function_exists('textarea')) {
      * Assists in the development of textarea in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
      *
+     * Example:
+     * ```php
+     * <!-- Add this to the head section -->
+     * <?php $this->start('head') ?>
+     * <?= loadTinyMCE() ?>
+     * <?php $this->end() ?>
+     * 
+     * <!-- The function call -->
+     * textarea(
+     *      "Description", 
+     *      'description', 
+     *      $this->user->description, 
+     *      ['class' => 'form-control input-sm', 'placeholder' => 'foo'], 
+     *      ['class' => 'form-group'], 
+     *      $this->displayErrors
+     * );
+     * 
+     * <!-- Wait until content is loaded before we initialize script -->
+     * <?= initTinyMCE('description') ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1734,15 +1774,6 @@ if(!function_exists('urlInput')) {
 if(!function_exists('week')) {
     /**
      * Renders an HTML div element that surrounds an input of type week.
-     *
-     * Example:
-     * 
-     * <?= textarea("Description", 
-     *      'description', 
-     *      $this->user->description, 
-     *      ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...'], 
-     *      ['class' => 'form-group mb-3']); 
-     * ?>
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
