@@ -375,6 +375,19 @@ if(!function_exists('dataListColor')) {
      * Renders an HTML div element that surrounds an input of type color with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     *      <?= dataListColor(
+     *      'Pick a color:', 
+     *      'color', 
+     *      'colors', 
+     *      '', 
+     *      ['#800000', '#8B0000', '#A52A2A', '#DC143C'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -420,6 +433,19 @@ if(!function_exists('dataListDate')) {
      * Renders an HTML div element that surrounds an input of type date with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListDate(
+     *      'Start date:', 
+     *      'date', 
+     *      'dates', 
+     *      '', 
+     *      ['2026-10-07', '2026-10-08', '2026-10-09', '2026-10-10'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -465,6 +491,18 @@ if(!function_exists('dataListDateTimeLocal')) {
      * Renders an HTML div element that surrounds an input of type datetime-local with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListDateTimeLocal(
+     *      'Start date:', 
+     *      'date', 
+     *      'dates', 
+     *      '', 
+     *      ['2026-10-07T14:05', '2026-10-08T06:44', '2026-10-09T20:20', '2026-10-1009:56'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -582,6 +620,19 @@ if(!function_exists('dataListMonth')) {
      * Renders an HTML div element that surrounds an input of type month with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListMonth(
+     *      'Select a month:', 
+     *      'month', 
+     *      'months', 
+     *      '', 
+     *      ['2026-09', '2026-10', '2026-11', '2026-12'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -627,6 +678,19 @@ if(!function_exists('dataListText')) {
      * Renders an HTML div element that surrounds an input of type text with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListText(
+     *      'Select an animal:', 
+     *      'animal', 
+     *      'animals', 
+     *      '', 
+     *      ['Cat', 'Dog', 'Cow', 'Fish'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -672,6 +736,18 @@ if(!function_exists('dataListTime')) {
      * Renders an HTML div element that surrounds an input of type time with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListTime(
+     *      'Select an time:', 
+     *      'time', 
+     *      'times', 
+     *      '', 
+     *      ['12:00', '13:00', '14:00', '15:00'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -717,6 +793,19 @@ if(!function_exists('dataListWeek')) {
      * Renders an HTML div element that surrounds an input of type week with an 
      * accompanying datalist of suggestions.
      *
+     * Example:
+     * ```php
+     * <?= dataListWeek(
+     *      'Select an week:', 
+     *      'week', 
+     *      'weeks', 
+     *      '', 
+     *      ['min' => '2026-32', 'max' => '2026-36'], 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -725,7 +814,8 @@ if(!function_exists('dataListWeek')) {
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
-     * @param array $options A list of suggestions.
+     * @param array $options A list of suggestions using the keys min and max
+     * to set the range.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
@@ -743,6 +833,18 @@ if(!function_exists('dataListWeek')) {
         array $divAttrs = [],
         array $errors=[]
     ): string {
+        $min = $options['min'] ?? null;
+        $max = $options['max'] ?? null;
+
+        if(!$min || !$max) {
+            throw new \InvalidArgumentException(
+                "dataListWeek() for field '{$name}': min ({$min}) and ({$max}) must be provided"
+            );
+        }
+
+        $inputAttrs['min'] = $min;
+        $inputAttrs['max'] = $max;
+
         return FormHelper::dataListBlock(
             'week',
             $label, 
