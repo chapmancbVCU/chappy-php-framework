@@ -1023,6 +1023,10 @@ class FormHelper {
      * Display string -> raw numeric string for storage.
      * Strips grouping separators and any non-numeric chrome; keeps one
      * decimal point and a leading minus.
+     * 
+     * @param mixed $value the value to normalize.
+     * 
+     * @return string The normalized value.
      */
     public static function normalizeNumber(mixed $value): string {
         if ($value === null || $value === '') return '';
