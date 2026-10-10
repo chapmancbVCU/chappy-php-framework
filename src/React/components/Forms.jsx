@@ -505,6 +505,7 @@ export const Currency = ({
  * @typedef {Object} InputProps
  * @property {'color'|'date'|'date-local'|'email'|'file'|'month'|'number'|'password'|'range'|'search'|'tel'|'text'|'time'|'url'|'week'} [type='text']
  * The input type we want to generate.
+ * @property {string} type The input type.
  * @property {string} label Sets the label for this input.
  * @property {string} name Sets the value for the name, for, and id attributes 
  * for this input.
