@@ -36,23 +36,23 @@ function Login({errors, login, rememberMeChecked}) {
             <div className="col-md-6 bg-light p-3">
                 <h1 className="text-center">Login</h1>
                 <form className="form" action={route('auth.login')} method="post">
-                    <Forms.CSRFInput />
-                    <Forms.DisplayErrors errors={errors}/>
-                    <Forms.Text 
+                    <CSRFInput />
+                    <DisplayErrors errors={errors}/>
+                    <Text 
                         label="Username"
                         name="username"
                         value={login.username}
                         inputAttrs={{className: 'form-control'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.Password 
+                    <Password 
                         label="Password"
                         name="password"
                         value={login.password}
                         inputAttrs={{className: 'form-control'}}
                         divAttrs={{className: 'form-group mb-3'}}
                     />
-                    <Forms.RememberMe
+                    <RememberMe
                         label="Remember Me"
                         checked={rememberMeChecked}
                         divAttrs={{className: 'form-group mb-3'}}
@@ -61,7 +61,7 @@ function Login({errors, login, rememberMeChecked}) {
                         <div className="flex-grow-1 text-body">
                             Don't have an account? <a href={route('auth.register')}>Sign Up</a>
                         </div>
-                        <Forms.SubmitTag label={"login"} inputAttrs={{className: 'btn btn-primary'}}/>
+                        <SubmitTag label={"login"} inputAttrs={{className: 'btn btn-primary'}}/>
                     </div>
                 </form>
             </div>
@@ -81,8 +81,8 @@ JSX;
     public static function authRegister(): string {
         return <<<'JSX'
 import React from "react";
-import { Forms, RichText } from '@chappy/utils';
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
+import { Forms, RichText } from '@chappy/utils';
 
 /**
  * Generates the register view component
@@ -98,6 +98,8 @@ function Register({user, errors}) {
                 <h3 className="text-center">Register Here!</h3>
                 <hr />
                 <form action="" className="form" method="post" encType="multipart/form-data">
+                    <Forms.CSRFInput />
+                    <Forms.DisplayErrors errors={errors}/>
                     <Forms.Text 
                         label="User name"
                         name="username"
@@ -134,7 +136,7 @@ function Register({user, errors}) {
                         divAttrs={{ className: 'form-group mb-3' }}
                     />
                     <Forms.FileSelector 
-                        label="Upload Profile Image (Optional"
+                        label="Upload Profile Image (Optional)"
                         name="profileImage"
                         value=""
                         inputAttrs={{className: 'form-control', accept: 'image/gif image/jpeg image/png'}}
@@ -159,7 +161,7 @@ function Register({user, errors}) {
                         label="Register"
                         inputAttrs={{className: 'btn btn-large btn-primary'}}
                         divAttrs={{className: 'text-end'}}
-                    />   
+                    />           
                 </form>
             </div>
         </div>
@@ -546,9 +548,9 @@ JSX;
     public static function profileEdit(): string {
         return <<<'JSX'
 import React from "react";
+import ProfileImageSorter from '@/components/ProfileImageSorter';
 import { documentTitle, route } from '@chappy/utils';
 import * as Forms from '@chappy/components/Forms'
-import ProfileImageSorter from '@/components/ProfileImageSorter';
 
 /**
  * Generates the edit profile component
@@ -600,7 +602,6 @@ function Edit({user, errors, profileImages}) {
                     />
 
                     <Forms.FileSelector 
-                        type="file"
                         label="Upload Profile Image (Optional)"
                         name="profileImage"
                         inputAttrs={{className: 'form-control', accept: 'image/gif image/jpeg image/png'}}
@@ -632,7 +633,6 @@ JSX;
 import React from "react";
 import SafeHtml from '@chappy/components/SafeHtml.jsx';
 import { asset, documentTitle, route } from '@chappy/utils';
-
 /**
  * Renders index view for profile controller.
  * @param {string} param0 Props for user and current profile image URL.
@@ -710,8 +710,8 @@ JSX;
     public static function profileUpdatePassword(): string {
         return <<<'JSX'
 import React from "react";
-import { documentTitle, Forms, route } from '@chappy/utils';
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
+import { documentTitle, Forms, route } from '@chappy/utils';
 
 /**
  * Render component for password update view.
