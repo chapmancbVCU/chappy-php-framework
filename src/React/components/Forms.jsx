@@ -1758,8 +1758,7 @@ export const RadioInput = ({
 }
 
 /**
- * Generates a div containing an input of type checkbox with the label to 
- * the left that is not part of a group.
+ * Renders remember me checkbox.
  *
  * @property {string} label Sets the label for this input.
  * @property {bool} checked The value for the checked attribute.  If true 

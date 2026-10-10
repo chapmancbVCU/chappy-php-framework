@@ -1584,8 +1584,7 @@ if(!function_exists('radioGroup')) {
 
 if(!function_exists('rememberMe')) {
     /**
-     * Generates a div containing an input of type checkbox with the label to 
-     * the left that is not part of a group.
+     * Renders remember me checkbox.
      *
      * Example:
      * ```php
