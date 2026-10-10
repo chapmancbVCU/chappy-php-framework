@@ -1748,9 +1748,10 @@ export const RadioInput = ({
     inputAttrs={}
 }) => {
     const inputString = normalizeAttrs(inputAttrs);
+    const id = name + "_" + value;
     return (
         <>
-            <input type="radio" id={name + "_" + value} name={name} defaultValue={value} defaultChecked={checked} {...inputString}/>
+            <input type="radio" id={id} name={name} defaultValue={value} defaultChecked={checked} {...inputString}/>
             <label className="form-label me-3" htmlFor={id}>{label}</label>
         </>
     )
