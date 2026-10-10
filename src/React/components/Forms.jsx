@@ -975,6 +975,18 @@ export const DataListText = ({
  * @param {DataListTime} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * time.
+ * 
+ * @example
+ * 
+ * <Forms.DataListTime
+ *     label="Select a time:"
+ *     name="time"
+ *     listName="times"
+ *     value=""
+ *     options={['12:00', '13:00', '14:00', '15:00']}
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DataListTime = ({
     label,
@@ -1025,6 +1037,23 @@ export const DataListTime = ({
  * @param {DataListWeek} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * week.
+ * 
+ * @example
+ * 
+ * const options = {
+ *      min: '2026-32',
+ *      max: '2026-36'
+ * };
+ * 
+ * <Forms.DataListWeek
+ *     label="Select a week:"
+ *     name="week"
+ *     listName="weeks"
+ *     value=""
+ *     options={options}
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DataListWeek = ({
     label,
