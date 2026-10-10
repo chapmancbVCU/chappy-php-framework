@@ -1454,7 +1454,7 @@ export const ImageBlock = ({
  * @property {Record<string, string[]>|string[]} [errors=[]] The errors object.  
  * Default value is an empty object.
  * @param {InputProps} props
- * @returns {HTMLDListElement} A surrounding div and the input element.
+ * @returns {HTMLDivElement} A surrounding div and the input element.
  *
  * @example
  * <Forms.Input
