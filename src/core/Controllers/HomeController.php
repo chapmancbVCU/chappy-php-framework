@@ -3,6 +3,8 @@ namespace Core\Controllers;
 use Core\Controller;
 use Core\Services\AuthService;
 use Core\Lib\Http\JsonResponse;
+use Override;
+
 /**
  * Implements support for our Home controller.  Functions found in this class 
  * will support tasks related to the home page.
@@ -16,7 +18,11 @@ class HomeController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        $this->view->render('home.index', true);
+        $this->view->render('home.index', true, true);
+    }
+
+    public function onConstruct(): void {
+        $this->view->setLayout('internal');
     }
 
     /**
