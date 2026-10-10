@@ -1,0 +1,96 @@
+<?php
+declare(strict_types=1);
+namespace Chappy\Console\Helpers\Stubs\Home;
+
+/**
+ * Collection of controller stubs.
+ */
+class Controllers {
+    /**
+     * The React.js supported version.
+     *
+     * @return string The contents of the controller class.
+     */
+    public static function jsController(): string {
+        return <<<PHP
+<?php
+namespace App\Controllers;
+use Core\Controller;
+use Core\Services\AuthService;
+use Core\Lib\Http\JsonResponse;
+/**
+ * Implements support for our Home controller.  Functions found in this class 
+ * will support tasks related to the home page.
+ */
+class HomeController extends Controller {
+    use JsonResponse;
+    /** 
+     * The default action for this controller.  It performs rendering of this 
+     * site's home page.
+     * 
+     * @return void
+     */
+    public function indexAction(): void {
+        \$user = AuthService::currentUser();
+        \$props = [
+            'user' => \$user ?? 'Guest',
+            'version' => config('config.version')
+        ];
+        \$this->view->renderJSX('home.Index', \$props);
+
+    }
+
+    /**
+     * Demonstration for an Ajax request.
+     *
+     * @return void
+     */
+    public function testAjaxAction(): void {
+        \$resp = ['success'=>true,'data'=>['id'=>23,'name'=>'Hello World','favorite_food'=>'bread']];
+        \$this->jsonResponse(\$resp);
+    }
+}
+PHP;
+    }
+
+    /**
+     * The PHP supported version.
+     *
+     * @return string The contents of the controller class.
+     */
+    public static function phpController(): string {
+        return <<<PHP
+<?php
+namespace App\Controllers;
+use Core\Controller;
+use Core\Services\AuthService;
+use Core\Lib\Http\JsonResponse;
+/**
+ * Implements support for our Home controller.  Functions found in this class 
+ * will support tasks related to the home page.
+ */
+class HomeController extends Controller {
+    use JsonResponse;
+    /** 
+     * The default action for this controller.  It performs rendering of this 
+     * site's home page.
+     * 
+     * @return void
+     */
+    public function indexAction(): void {
+        \$this->view->render('home.index');
+    }
+
+    /**
+     * Demonstration for an Ajax request.
+     *
+     * @return void
+     */
+    public function testAjaxAction(): void {
+        \$resp = ['success'=>true,'data'=>['id'=>23,'name'=>'Hello World','favorite_food'=>'bread']];
+        \$this->jsonResponse(\$resp);
+    }
+}
+PHP;
+    }
+}
