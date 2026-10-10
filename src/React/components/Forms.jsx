@@ -1098,6 +1098,16 @@ export const DataListWeek = ({
  * Default value is an empty object.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type date.
+ * 
+ * @example
+ * 
+ * <Forms.DateSelector
+ *     label="Choose a date"
+ *     name="date"
+ *     value=""
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DateSelector = ({
     label,
@@ -1138,6 +1148,16 @@ export const DateSelector = ({
  * Default value is an empty object.
  * @param {InputProps} param0 
  * @returns {HTMLDivElement} A surrounding div and the input element of type datetime-local.
+ * 
+ * @example
+ * 
+ * <Forms.DateTimeLocal
+ *     label="Start date:"
+ *     name="date"
+ *     value=""
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DateTimeLocal = ({
     label,
@@ -1276,12 +1296,11 @@ export const FieldErrors = ({ errors = {}, name }) => {
  * Default value is an empty object.
  * @property {boolean} multiple Flag for turning on or off multiple file uploads.
  * @param {InputProps} param0 
- * @returns {HTMLDivElement} A surrounding div and the input element of type week.
+ * @returns {HTMLDivElement} A surrounding div and the input element of type file.
  * 
  * @example
  * 
  * <Forms.FileSelector 
- *      type="file"
  *      label="Upload Profile Image (Optional)"
  *      name="profileImage"
  *      inputAttrs={{className: 'form-control', accept: 'image/gif image/jpeg image/png'}}
@@ -1289,7 +1308,6 @@ export const FieldErrors = ({ errors = {}, name }) => {
  * />
  */
 export const FileSelector = ({
-    type='file',
     label,
     name,
     inputAttrs={},
@@ -1313,7 +1331,7 @@ export const FileSelector = ({
     return (
         <div {...divString}>
             <label className='form-label' htmlFor={baseName}>{label}</label>
-            <input type={type} id={baseName} name={name} defaultValue={""} {...inputString} />
+            <input type="file" id={baseName} name={name} defaultValue={""} {...inputString} />
             <FieldErrors errors={errors} name={baseName} />
         </div>
     )
