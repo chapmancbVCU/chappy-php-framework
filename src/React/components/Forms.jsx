@@ -583,6 +583,17 @@ export const DataListBlock = ({
  * @param {DataListColor} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * color.
+ * 
+ * @example
+ * <Forms.DataListColor
+ *      label="Choose a color"
+ *      name="color"
+ *      listName="colors"
+ *      value=""
+ *      options={['#800000', '#8B0000', '#A52A2A', '#DC143C']}
+ *      inputAttrs={{className: 'form-control input-sm'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DataListColor = ({
     label,
@@ -633,6 +644,18 @@ export const DataListColor = ({
  * @param {DataListDate} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * date.
+ * 
+ * @example
+ * 
+ * <Forms.DataListDate
+ *     label="Choose a date"
+ *     name="date"
+ *     listName="dates"
+ *     value=""
+ *     options={['2026-10-07', '2026-10-08', '2026-10-09', '2026-10-10']}
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DataListDate = ({
     label,
@@ -647,6 +670,68 @@ export const DataListDate = ({
     return (
         <DataListBlock 
             type="date"
+            label={label}
+            name={name}
+            listName={listName}
+            value={value}
+            options={options}
+            inputAttrs={inputAttrs}
+            divAttrs={divAttrs}
+            errors={errors}
+        />
+    )
+}
+
+/**
+ * Renders an HTML div element that surrounds an input of type datetime-local with an 
+ * accompanying datalist of suggestions.
+ *
+ * @typedef {Object} DataListDateTimeLocal
+ * @property {string} label Sets the label for this input.
+ * @property {string} name Sets the value for the name, for, and id attributes 
+ * for this input.
+ * @property {string} listName The list name name and id for the datalist element.
+ * @property {string} value The value we want to set.  We can use this to set 
+ * the value of the value attribute during form validation.  Default value 
+ * is the empty string.  It can be set with values during form validation 
+ * and forms used for editing records.
+ * @property {array} options A list of suggestions.
+ * @property {object} inputAttrs The values used to set the class and other 
+ * attributes of the input string.  The default value is an empty object.
+ * @property {object} divAttrs The values used to set the class and other 
+ * attributes of the surrounding div.  The default value is an empty object.
+ * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
+ * Default value is an empty object.
+ *
+ * @param {DataListDateTimeLocal} props
+ * @returns {HTMLDivElement} A surrounding div and the input element of type 
+ * datetime-local.
+ * 
+ * @example
+ * 
+ * <Forms.DataListDateTimeLocal
+ *      label="Start date:"
+ *      name="date"
+ *      listName="dates"
+ *      value=""
+ *      options={['2026-10-07T14:05', '2026-10-08T06:44', '2026-10-09T20:20', '2026-10-1009:56']}
+ *      inputAttrs={{className: 'form-control input-sm'}}
+ *      divAttrs={{className: 'form-group mb-3'}}
+ * />
+ */
+export const DataListDateTimeLocal = ({
+    label,
+    name,
+    listName,
+    value='',
+    options={},
+    inputAttrs={},
+    divAttrs={},
+    errors=[]
+}) => {
+    return (
+        <DataListBlock 
+            type="datetime-local"
             label={label}
             name={name}
             listName={listName}
@@ -687,6 +772,14 @@ export const DataListDate = ({
  * 
  * @example
  * 
+ * const options = {
+ *     0: 'Low',
+ *     10: 'Fair',
+ *     20: 'Medium',
+ *     25: 'Good',
+ *     45: 'High'
+ * };
+ * 
  * <Forms.DataListInterval
  *      label="Tip amount:"
  *      name="tick"
@@ -698,6 +791,7 @@ export const DataListDate = ({
  *      inputAttrs={{}}
  *      divAttrs={{className: 'form-group mb-3 d-flex flex-column'}}
  * />
+ * 
  */
 export const DataListInterval = ({
     label,
@@ -757,6 +851,18 @@ export const DataListInterval = ({
  * @param {DataListMonth} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * month.
+ * 
+ * @example
+ * 
+ * <Forms.DataListMonth
+ *     label="Select a month:"
+ *     name="month"
+ *     listName="months"
+ *     value=""
+ *     options={['2026-09', '2026-10', '2026-11', '2026-12']}
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DataListMonth = ({
     label,
@@ -807,6 +913,18 @@ export const DataListMonth = ({
  * @param {DataListText} props
  * @returns {HTMLDivElement} A surrounding div and the input element of type 
  * text.
+ * 
+ * @example
+ * 
+ * <Forms.DataListText
+ *     label="Select an animal:"
+ *     name="animal"
+ *     listName="animals"
+ *     value=""
+ *     options={['Cat', 'Dog', 'Cow', 'Fish']}
+ *     inputAttrs={{className: 'form-control input-sm'}}
+ *     divAttrs={{className: 'form-group mb-3'}}
+ * />
  */
 export const DataListText = ({
     label,
@@ -871,56 +989,6 @@ export const DataListTime = ({
     return (
         <DataListBlock 
             type="time"
-            label={label}
-            name={name}
-            listName={listName}
-            value={value}
-            options={options}
-            inputAttrs={inputAttrs}
-            divAttrs={divAttrs}
-            errors={errors}
-        />
-    )
-}
-
-/**
- * Renders an HTML div element that surrounds an input of type datetime-local with an 
- * accompanying datalist of suggestions.
- *
- * @typedef {Object} DataListTimeLocal
- * @property {string} label Sets the label for this input.
- * @property {string} name Sets the value for the name, for, and id attributes 
- * for this input.
- * @property {string} listName The list name name and id for the datalist element.
- * @property {string} value The value we want to set.  We can use this to set 
- * the value of the value attribute during form validation.  Default value 
- * is the empty string.  It can be set with values during form validation 
- * and forms used for editing records.
- * @property {array} options A list of suggestions.
- * @property {object} inputAttrs The values used to set the class and other 
- * attributes of the input string.  The default value is an empty object.
- * @property {object} divAttrs The values used to set the class and other 
- * attributes of the surrounding div.  The default value is an empty object.
- * @property {Record<string,string[]>|string[]} [errors=[]] The errors object.  
- * Default value is an empty object.
- *
- * @param {DataListTimeLocal} props
- * @returns {HTMLDivElement} A surrounding div and the input element of type 
- * datetime-local.
- */
-export const DataListTimeLocal = ({
-    label,
-    name,
-    listName,
-    value='',
-    options={},
-    inputAttrs={},
-    divAttrs={},
-    errors=[]
-}) => {
-    return (
-        <DataListBlock 
-            type="datetime-local"
             label={label}
             name={name}
             listName={listName}
