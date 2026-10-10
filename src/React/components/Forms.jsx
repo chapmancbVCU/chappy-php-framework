@@ -175,10 +175,10 @@ export const CheckBoxRightLabel = ({
 };
 
 /**
- * Renders a checkbox group.
+ * Renders a group of checkboxes sharing one name (submitted as name[]), one 
+ * wrapping div, and ONE error span. Label-right per box.
  * 
- * @property {string} name Sets the value for the name, for, and id attributes 
- * for this input.
+ * @property {string} name Group name WITHOUT '[]' (added internally), e.g. 'acls'.
  * @property {object} options The list of options we will use to populate the 
  * radio group.  The default value is an empty object.
  * @property {array} selectedValues Values that should render checked (the current set).
@@ -384,7 +384,7 @@ export const CSRFInput = ({ name = 'csrf_token' } = {}) => {
 /**
  * Returns CSRF token that is used when a form is submitted.
  * @param {Event} e The event associated with a form submission. 
- * @returns The CSRF token string.
+ * @returns {string} The CSRF token string.
  */
 export const CSRFToken = (e) => {
     return e.target.csrf_token.value;
