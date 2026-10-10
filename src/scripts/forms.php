@@ -1288,6 +1288,16 @@ if(!function_exists('month')) {
     /**
      * Renders an HTML div element that surrounds an input of type month.
      *
+     * Example:
+     * ```php
+     * <?= month(
+     *      'Select a month:', 
+     *      'month', 
+     *      '', 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']
+     * ) ?>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1413,6 +1423,11 @@ if(!function_exists('output')) {
     /** 
      * Generates an HTML output element.
      * 
+     * Example:
+     * ```php
+     * output("my_name", "for_value")
+     * ```
+     * 
      * @param string $name Sets the value for the name attributes for this 
      * input.
      * @param string $for Sets the value for the for attribute.
@@ -1524,6 +1539,18 @@ if(!function_exists('radioGroup')) {
     /**
      * Renders a radio button group based on options provided.
      * 
+     * Example:
+     * ```php
+     * <?= radioGroup(
+     *      'inactive',                       // name
+     *      [0 => 'Active', 1 => 'Inactive'], // [value => label] map
+     *      $this->user->inactive,            // selected value: 0 or 1
+     *      ['class' => 'form-check-input'],  // inputAttrs (applied to every radio)
+     *      ['class' => 'form-group mb-3'],   // divAttrs
+     *      $this->displayErrors              // errors
+     * ); ?>
+     * ```
+     * 
      * @param string $name Sets the value for the name attribute 
      * for this input.
      * @param array $options The list of options we will use to populate the 
@@ -1602,6 +1629,17 @@ if(!function_exists('search')) {
     /**
      * Renders an HTML div element that surrounds an input of type search.
      *
+     * Example:
+     * ```php
+     * <?= search(
+     *      "Search", 
+     *      'search', 
+     *      '', 
+     *      ['class' => 'form-control input-sm'], 
+     *      ['class' => 'form-group mb-3']) 
+     * ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1640,6 +1678,19 @@ if(!function_exists('select')) {
     /**
      * Renders a select element with a list of options.
      *
+     * Example:
+     * ```php
+     * <?= select(
+     *     'Account Status',                 // label
+     *     'inactive',                       // name — matches the schema column
+     *     $this->user->inactive,            // current value: 0 or 1
+     *     [0 => 'Active', 1 => 'Inactive'], // [value => label] map
+     *     ['class' => 'form-select'],       // inputAttrs
+     *     ['class' => 'form-group mb-3'],   // divAttrs
+     *     $this->displayErrors              // errors
+     * ); ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1678,6 +1729,14 @@ if(!function_exists('submitBlock')) {
     /**
      * Generates a div containing an input of type submit.
      *
+     * Example:
+     * ```php
+     * submitBlock(
+     *     "Save", 
+     *     ['class'=>'btn btn-primary'], ['class'=>'text-end']
+     * );
+     * ```
+     * 
      * @param string $buttonText Sets the value of the text describing the 
      * button.
      * @param array $inputAttrs The values used to set the class and other 
@@ -1887,6 +1946,17 @@ if(!function_exists('timeSelector')) {
     /**
      * Renders an HTML div element that surrounds an input of type timeSelector.
      *
+     * Example:
+     * ```php
+     * <?= timeSelector(
+     *     'Select an time:', 
+     *     'time', 
+     *     '', 
+     *     ['class' => 'form-control input-sm'], 
+     *     ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1926,6 +1996,17 @@ if(!function_exists('urlInput')) {
      * Assists in the development of url in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
      *
+     * Example:
+     * ```php
+     * <?= urlInput(
+     *     "URL", 
+     *     'url', 
+     *     '', 
+     *     ['class' => 'form-control input-sm'], 
+     *     ['class' => 'form-group mb-3']) 
+     * ?>
+     * ```
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
@@ -1963,6 +2044,17 @@ if(!function_exists('urlInput')) {
 if(!function_exists('week')) {
     /**
      * Renders an HTML div element that surrounds an input of type week.
+     * 
+     * Example:
+     * ```php
+     * <?= week(
+     *     'Select an week:', 
+     *     'week', 
+     *     '', 
+     *     ['class' => 'form-control input-sm'], 
+     *     ['class' => 'form-group mb-3']
+     * ) ?>
+     * ```
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
