@@ -45,12 +45,31 @@ class SearchFilter {
     }
 
     /**
-     * Build from the request object. Assumes $request->get() with no key
-     * returns all GET params; adjust if your Request differs.
+     * Build from the request object.
+     *
+     * Request::get() HTML-encodes every value (FormHelper::sanitize), which
+     * would turn '["Admin"]' into '[&quot;Admin&quot;]' and "O'Brien" into
+     * "O&#039;Brien". That encoding is for output, not queries: everything
+     * here goes through bind, and views escape on output. So decode back to
+     * the raw values before whitelist matching and searching.
      */
     public static function fromRequest(object $request): static {
         $input = $request->get();
-        return new static(is_array($input) ? $input : []);
+        return new static(is_array($input) ? static::decode($input) : []);
+    }
+
+    /**
+     * Reverses htmlentities() applied by Request::get(), recursively.
+     */
+    protected static function decode(array $input): array {
+        foreach ($input as $key => $value) {
+            if (is_array($value)) {
+                $input[$key] = static::decode($value);
+            } elseif (is_string($value)) {
+                $input[$key] = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            }
+        }
+        return $input;
     }
 
     /* ---------------------------------------------------------------------
