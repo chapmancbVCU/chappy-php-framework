@@ -36,7 +36,7 @@ class AuthController extends Controller {
 
         $this->view->login = $loginModel;
         $this->view->displayErrors = $loginModel->getErrorMessages();
-        $this->view->render('auth.login', false, true);
+        $this->view->render('auth.login', true, true);
     }
 
     /**
@@ -121,7 +121,7 @@ class AuthController extends Controller {
 
         $this->view->user = $user;
         $this->view->displayErrors = $user->getErrorMessages();
-        $this->view->render('auth.register', false, true);
+        $this->view->render('auth.register', true, true);
     }
 
     /**
@@ -145,6 +145,6 @@ class AuthController extends Controller {
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
         $this->view->postAction = route('auth.resetPassword', [$user->id]);
-        $this->view->render('auth.reset_password', false, true);
+        $this->view->render('auth.reset_password', true, true);
     }
 }
