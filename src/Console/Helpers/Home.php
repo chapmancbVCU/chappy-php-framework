@@ -6,6 +6,9 @@ use Console\Helpers\Stubs\Home\Controllers;
 use Console\Helpers\Stubs\Home\Views;
 use Console\Helpers\Tools;
 
+/**
+ * Provides ability to generate home controllers and index files.
+ */
 class Home extends Console {
     public const CONTROLLER_PATH = CHAPPY_BASE_PATH.DS.'app'.DS.'Controllers'.DS;
     public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
