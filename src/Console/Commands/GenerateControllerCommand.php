@@ -70,6 +70,7 @@ class GenerateControllerCommand extends ConsoleCommand
             $contents = Controller::resourcePrompt($controllerName, $this->question(), $layout, $resourceOption);
         }
         
+        Tools::pathExists(Controller::CONTROLLER_PATH);
         return Tools::writeFile(
             Controller::CONTROLLER_PATH.$controllerName.'Controller.php',
             $contents,
