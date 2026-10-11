@@ -14,7 +14,7 @@ class Controllers {
     public static function phpController(): string {
         return <<<PHP
 <?php
-namespace Core\Controllers;
+namespace App\Controllers;
 use Core\Controller;
 use Core\Models\ACL;
 use App\Models\Users;
