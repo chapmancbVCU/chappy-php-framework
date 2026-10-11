@@ -4,11 +4,10 @@ namespace Console\Commands;
 use Console\ConsoleCommand;
 use Console\Helpers\Home;
 use Console\Helpers\React;
-use Console\Helpers\Stubs\Home\Views;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Generates home controller.
+ * Generates home index view.
  */
 class HomeViewCommand extends ConsoleCommand {
     /**
