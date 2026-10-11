@@ -369,8 +369,8 @@ PHP;
         <label for="acl" class="form-label">Access Level</label>
         <select id="acl" name="acl" class="form-select">
             <option value="">All</option>
-            <?php foreach (\$this->aclOptions as \$label => \$value): ?>
-                <option value="<?= \$e(\$value) ?>" <?= (\$filters['acl'] ?? null) === \$value ? 'selected' : '' ?>>
+            <?php foreach (\$this->aclOptions as \$value => \$label): ?>
+                <option value="<?= \$e(\$value) ?>" <?= (\$filters['acl'] ?? null) === (string)\$value ? 'selected' : '' ?>>
                     <?= \$e(\$label) ?>
                 </option>
             <?php endforeach; ?>
@@ -380,8 +380,8 @@ PHP;
         <label for="inactive" class="form-label">Status</label>
         <select id="inactive" name="inactive" class="form-select">
             <option value="">All</option>
-            <?php foreach (\$this->statusOptions as \$label => \$value): ?>
-                <option value="<?= \$e(\$value) ?>" <?= (\$filters['inactive'] ?? null) === \$value ? 'selected' : '' ?>>
+            <?php foreach (\$this->statusOptions as \$value => \$label): ?>
+                <option value="<?= \$e(\$value) ?>" <?= (\$filters['inactive'] ?? null) === (string)\$value ? 'selected' : '' ?>>
                     <?= \$e(\$label) ?>
                 </option>
             <?php endforeach; ?>
