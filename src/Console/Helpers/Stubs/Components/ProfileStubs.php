@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Console\Helpers\Stubs\Stubs\Components;
+namespace Console\Helpers\Stubs\Components;
 
 /**
  * Collection of component stubs for profiles.

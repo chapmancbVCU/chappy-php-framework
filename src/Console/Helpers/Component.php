@@ -4,7 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
-use Console\Helpers\Stubs\Stubs\Components\ProfileStubs;
+use Console\Helpers\Stubs\Components\ProfileStubs;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
