@@ -28,7 +28,7 @@ class Home extends Console {
     }
 
     /**
-     * Generates js version of the controller.
+     * Generates PHP version of the controller.
      *
      * @return int A value that indicates success, invalid, or failure.
      */
