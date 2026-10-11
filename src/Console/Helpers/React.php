@@ -5,7 +5,7 @@ namespace Console\Helpers;
 use Console\Console;
 use Console\FrameworkQuestion;
 use Console\Helpers\ReactStubs;
-use Console\Helpers\Stubs\Home\Views;
+use Console\Helpers\Stubs\Home\Views as HomeViews;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 
@@ -69,7 +69,7 @@ class React extends Console {
         $path = self::PAGE_PATH.'home'.DS;
         Tools::pathExists($path);
 
-        return Tools::writeFile($path.'Index.jsx', Views::makeIndexJS(), 'home/index.jsx');
+        return Tools::writeFile($path.'Index.jsx', HomeViews::makeIndexJS(), 'home/index.jsx');
     }
 
     /**
