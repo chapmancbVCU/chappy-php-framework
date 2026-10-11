@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\Helpers\Stubs\Profile\Controllers;
+use Console\Helpers\Stubs\Profile\Views;
 
 /**
  * Provides ability to generate profile controllers and view files.
@@ -39,6 +40,21 @@ class Profile extends Console {
             $path.'ProfileController.php',
             Controllers::phpController(),
             'Profile controller class'
+        );
+    }
+
+    /**
+     * Generates PHP version of index.php.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeIndexPHP(): int {
+        $path = self::VIEW_PATH.'profile'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'index.php',
+            Views::makeIndexPHP(),
+            'Profile index view'
         );
     }
 }
