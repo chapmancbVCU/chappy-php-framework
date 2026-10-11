@@ -53,7 +53,7 @@ class Home extends Console {
         return Tools::writeFile(
             $path.'index.php',
             Views::makeIndexPHP(),
-            'Home controller class'
+            'Home index view'
         );
     }
 }
