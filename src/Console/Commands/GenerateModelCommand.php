@@ -58,7 +58,8 @@ class GenerateModelCommand extends ConsoleCommand
             $modelName = Model::modelNamePrompt($this->question());
             $contents = Model::uploadPrompt($modelName, $this->question(), $this->output, $uploadOption);
         }
-
+        
+        Tools::pathExists(Model::MODEL_PATH);
         return Tools::writeFile(Model::MODEL_PATH.$modelName.'.php', $contents, "Model");
     }
 }
