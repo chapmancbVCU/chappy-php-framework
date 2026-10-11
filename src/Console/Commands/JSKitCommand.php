@@ -40,6 +40,7 @@ class JSKitCommand extends ConsoleCommand {
         React::authComponents();
         React::homeComponent();
         React::profileComponents();
+        React::errorNotFoundComponent();
         return self::SUCCESS;
     }
 }
