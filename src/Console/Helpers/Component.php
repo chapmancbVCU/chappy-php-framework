@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Console\Helpers\Stubs\Stubs\Components\ProfileStubs;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -147,6 +148,21 @@ class Component extends Console {
             self::COMPONENTS_PATH.Str::lower($componentName).".php",
             ComponentStubs::formComponent($method, $encType),
             "Form component"
+        );
+    }
+
+    /**
+     * Generates edit profile details component.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeProfileDetailsComponent(): int {
+        $path = self::COMPONENTS_PATH;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'edit_profile_details.php',
+            ProfileStubs::profileDetails(),
+            'The edit_profile_details component'
         );
     }
 
