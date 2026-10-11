@@ -52,7 +52,7 @@ class ProfileController extends Controller {
         $this->view->profileImages = $profileImages;
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->render('profile.edit', false, true);
+        $this->view->render('profile.edit', true, true);
     }
 
     /**
@@ -102,6 +102,6 @@ class ProfileController extends Controller {
         $user->setChangePassword(false);
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->render('profile.update_password', false, true);
+        $this->view->render('profile.update_password', true, true);
     }
 }
