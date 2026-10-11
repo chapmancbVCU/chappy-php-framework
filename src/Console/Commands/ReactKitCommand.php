@@ -14,7 +14,7 @@ use Console\Helpers\{
 /**
  * Generates React.js based experience.
  */
-class JSKitCommand extends ConsoleCommand {
+class ReactKitCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
