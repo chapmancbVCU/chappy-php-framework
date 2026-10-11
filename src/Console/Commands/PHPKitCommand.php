@@ -2,7 +2,6 @@
 namespace Console\Commands;
 
 use Console\ConsoleCommand;
-use Symfony\Component\Console\Input\InputOption;
 
 use Console\Helpers\{
     AdminDashboard,
