@@ -227,13 +227,15 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        // Determine current page
-        \$page = Pagination::currentPage(\$this->request);
-        \$pagination = new Pagination(\$page, 10, DashboardService::totalUserCountExceptCurrent());
-        \$users = DashboardService::paginateUsers(\$pagination);
+        \$filter = DashboardService::userFilter(\$this->request);
+        \$pagination = Pagination::fromRequest(\$this->request, 10, DashboardService::totalUsers(\$filter))
+            ->withFilter(\$filter);
 
-        \$this->view->pagination = Pagination::pagination(\$page, \$pagination->totalPages());
-        \$this->view->users = \$users;
+        \$this->view->users = DashboardService::paginateUsers(\$pagination, \$filter);
+        \$this->view->filter = \$filter;
+        \$this->view->pagination = \$pagination;
+        \$this->view->aclOptions = DashboardService::ACL_OPTIONS;
+        \$this->view->statusOptions = DashboardService::STATUS_OPTIONS;
         \$this->view->render('admindashboard.index', true, true);
     }
 
