@@ -8,7 +8,11 @@ namespace Console\Helpers\Stubs\Profile;
  * @return string The contents of the controller class.
  */
 class Controllers {
-
+    /**
+     * The React.js supported version.
+     *
+     * @return string The contents of the controller class.
+     */
     public function jsController(): string {
         return <<<JSX
 <?php
@@ -126,6 +130,11 @@ class ProfileController extends Controller {
 JSX;
     }
 
+    /**
+     * The PHP supported version.
+     *
+     * @return string The contents of the controller class.
+     */
     public function phpController(): string {
         return <<<PHP
 <?php
