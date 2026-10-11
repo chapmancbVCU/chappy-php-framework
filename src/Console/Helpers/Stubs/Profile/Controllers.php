@@ -13,7 +13,7 @@ class Controllers {
      *
      * @return string The contents of the controller class.
      */
-    public function jsController(): string {
+    public static function jsController(): string {
         return <<<JSX
 <?php
 namespace App\Controllers;
@@ -135,7 +135,7 @@ JSX;
      *
      * @return string The contents of the controller class.
      */
-    public function phpController(): string {
+    public static function phpController(): string {
         return <<<PHP
 <?php
 namespace App\Controllers;
