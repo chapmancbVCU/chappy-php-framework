@@ -7,6 +7,7 @@ use Console\FrameworkQuestion;
 use Console\Helpers\ReactStubs;
 use Console\Helpers\Stubs\Home\Views as HomeViews;
 use Console\Helpers\Stubs\Profile\Views as ProfileViews;
+use Console\Helpers\Stubs\Auth\Views as AuthViews;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 
@@ -43,9 +44,9 @@ class React extends Console {
         $path = self::PAGE_PATH.'auth'.DS;
         Tools::pathExists($path);
 
-        Tools::writeFile($path.'Login.jsx', ReactStubs::authLogin(), 'auth/Login.jsx');
-        Tools::writeFile($path.'Register.jsx', ReactStubs::authRegister(), 'auth/Register.jsx');
-        Tools::writeFile($path.'ResetPassword.jsx', ReactStubs::authResetPassword(), 'auth/ResetPassword.jsx');
+        Tools::writeFile($path.'Login.jsx', AuthViews::makeLoginJS(), 'auth/Login.jsx');
+        Tools::writeFile($path.'Register.jsx', AuthViews::makeRegisterJS(), 'auth/Register.jsx');
+        Tools::writeFile($path.'ResetPassword.jsx', AuthViews::makeResetPasswordJS(), 'auth/ResetPassword.jsx');
         return Command::SUCCESS;
     }
 
