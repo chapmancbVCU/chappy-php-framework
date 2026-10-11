@@ -215,11 +215,11 @@ class AdmindashboardController extends Controller {
         $filter = DashboardService::userFilter($this->request);
         $pagination = Pagination::fromRequest($this->request, 10, DashboardService::totalUsers($filter))
             ->withFilter($filter);
-
+    
         $this->view->users = DashboardService::paginateUsers($pagination, $filter);
         $this->view->filter = $filter;
         $this->view->pagination = $pagination;
-        $this->view->aclOptions = DashboardService::ACL_OPTIONS;
+        $this->view->aclOptions = ACL::getOptionsForForm();
         $this->view->statusOptions = DashboardService::STATUS_OPTIONS;
         $this->view->render('admindashboard.index', true, true);
     }

@@ -28,6 +28,12 @@ class SearchFilter {
     /** @var array<string, array|null> column => allowed values (null = any). */
     protected array $filterable = [];
 
+    /**
+     * @var array<string, array{allowed: array|null, build: \Closure}>
+     * param => custom condition builder. build(string $value): [string $sql, array $bind]
+     */
+    protected array $customFilters = [];
+
     /** @var string[] Columns the user may sort by. */
     protected array $sortable = [];
     protected string $defaultSort = '';
@@ -103,6 +109,36 @@ class SearchFilter {
         return $this;
     }
 
+    /**
+     * Filter with a custom condition. The builder receives the validated value
+     * and returns [sql, bind]. Use for anything other than "column = value".
+     *
+     * @param string $param Query param name.
+     * @param array|null $allowed Allowed values (null = any).
+     * @param \Closure $build fn(string $value): array{0: string, 1: array}
+     */
+    public function filterUsing(string $param, ?array $allowed, \Closure $build): static {
+        $this->customFilters[$param] = ['allowed' => $allowed, 'build' => $build];
+        return $this;
+    }
+
+    /**
+     * Filter rows whose JSON array column contains the selected value, e.g.
+     * users.acl = '["Admin","test"]' matches ?acl=Admin. Portable across
+     * MySQL and SQLite: matches the JSON-encoded element, quotes included,
+     * so "Admin" will not match "SuperAdmin".
+     *
+     * @param string $column JSON array column (also used as the param name).
+     * @param array|null $allowed Allowed values (null = any).
+     */
+    public function filterJsonContains(string $column, ?array $allowed = null): static {
+        if (!$this->isSafeColumn($column)) return $this;
+        return $this->filterUsing($column, $allowed, fn(string $value): array => [
+            "{$column} LIKE ? ESCAPE '!'",
+            ['%' . $this->escapeLike(json_encode($value)) . '%'],
+        ]);
+    }
+
     /** @param string[] $columns */
     public function sortable(array $columns, string $default = '', string $defaultDir = 'asc'): static {
         $this->sortable = array_values(array_filter($columns, [$this, 'isSafeColumn']));
@@ -138,6 +174,13 @@ class SearchFilter {
             $value = (string)$value;
             if ($allowed !== null && !in_array($value, array_map('strval', $allowed), true)) continue;
             $active[$column] = $value;
+        }
+        foreach ($this->customFilters as $param => $filter) {
+            $value = $this->input[$param] ?? null;
+            if (!is_scalar($value) || (string)$value === '') continue;
+            $value = (string)$value;
+            if ($filter['allowed'] !== null && !in_array($value, array_map('strval', $filter['allowed']), true)) continue;
+            $active[$param] = $value;
         }
         return $active;
     }
@@ -177,7 +220,7 @@ class SearchFilter {
         $term = $this->term();
         if ($term !== '' && $this->searchable !== []) {
             // '!' as escape char: works in MySQL, PostgreSQL and SQLite alike.
-            $like = '%' . str_replace(['!', '%', '_'], ['!!', '!%', '!_'], $term) . '%';
+            $like = '%' . $this->escapeLike($term) . '%';
             $parts = [];
             foreach ($this->searchable as $column) {
                 $parts[] = "{$column} LIKE ? ESCAPE '!'";
@@ -186,9 +229,15 @@ class SearchFilter {
             $conditions[] = '(' . implode(' OR ', $parts) . ')';
         }
 
-        foreach ($this->activeFilters() as $column => $value) {
-            $conditions[] = "{$column} = ?";
-            $bind[] = $value;
+        foreach ($this->activeFilters() as $param => $value) {
+            if (isset($this->customFilters[$param])) {
+                [$sql, $values] = ($this->customFilters[$param]['build'])($value);
+                $conditions[] = $sql;
+                array_push($bind, ...$values);
+            } else {
+                $conditions[] = "{$param} = ?";
+                $bind[] = $value;
+            }
         }
 
         $params = [];
@@ -223,6 +272,11 @@ class SearchFilter {
         $dir = ($this->sortColumn() === $column && $this->sortDirection() === 'asc') ? 'desc' : 'asc';
         $query = array_merge($this->query(), [$this->sortParam => $column, $this->dirParam => $dir]);
         return $path . '?' . http_build_query($query);
+    }
+
+    /** Escapes LIKE wildcards using '!' (pair with ESCAPE '!'). */
+    protected function escapeLike(string $value): string {
+        return str_replace(['!', '%', '_'], ['!!', '!%', '!_'], $value);
     }
 
     /** Allows plain or table-qualified identifiers only: name, users.name. */

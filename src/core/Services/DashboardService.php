@@ -7,6 +7,7 @@ use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
 use Core\Session;
 use Core\Lib\Pagination\SearchFilter;
+use Core\Models\ACL;
 
 /**
  * Supports admin dashboard operations.
@@ -27,22 +28,14 @@ final class DashboardService {
     }
 
     /**
-     * Access level filter options: label => value as stored in users.acl.
-     * Adjust to match how your acl column is stored.
-     */
-    public const ACL_OPTIONS = [
-        'Standard' => '[""]',
-        'Admin'    => '["Admin"]',
-    ];
-
-    /**
-     * Status filter options: label => value as stored in users.inactive.
+     * Status filter options: value as stored in users.inactive => label.
+     * Same value => label shape as ACL::getOptionsForForm().
      */
     public const STATUS_OPTIONS = [
-        'Active'   => '0',
-        'Inactive' => '1',
+        '0' => 'Active',
+        '1' => 'Inactive',
     ];
-
+    
     /**
      * Builds the search/filter definition for the admin user list. Always
      * excludes the current user.
@@ -54,13 +47,13 @@ final class DashboardService {
         return SearchFilter::fromRequest($request)
             ->where('id != ?', [AuthService::currentUser()->id])
             ->searchable(['username', 'email', 'fname', 'lname'])
-            ->filterable([
-                'acl'      => array_values(self::ACL_OPTIONS),
-                'inactive' => array_values(self::STATUS_OPTIONS),
-            ])
+            ->filterable(['inactive' => array_keys(self::STATUS_OPTIONS)])
+            // users.acl holds a JSON array like ["Admin","test"]; match any user
+            // whose array contains the selected access level.
+            ->filterJsonContains('acl', array_keys(ACL::getOptionsForForm()))
             ->sortable(['username', 'acl', 'inactive', 'created_at', 'updated_at'], 'created_at', 'desc');
     }
-
+    
     /**
      * Returns list of paginated users matching the filter.
      *
@@ -71,7 +64,7 @@ final class DashboardService {
     public static function paginateUsers(Pagination $pagination, SearchFilter $filter): array {
         return Users::find($pagination->queryParams($filter));
     }
-
+    
     /**
      * Returns the number of users matching the filter.
      *
