@@ -19,7 +19,7 @@
             <?= errorBag($this->displayErrors) ?>
             
             <!-- Primary profile details -->
-            <?= $this->component('edit_profile_details'); ?>
+            <?= $this->component('edit_profile_details', true); ?>
 
             <!-- ACL Management Section -->
             <div class="form-group mb-3">
@@ -35,7 +35,7 @@
             </div>
             
             <!-- Manage profile images section -->
-            <?= $this->component('manage_profile_images'); ?>
+            <?= $this->component('manage_profile_images', true); ?>
 
             <div class="col-md-12 text-end">
                 <a href="<?=route('admindashboard.details', [$this->user->id])?>" class="btn btn-default">Cancel</a>
