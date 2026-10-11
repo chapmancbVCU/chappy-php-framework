@@ -6,6 +6,7 @@ use Console\Console;
 use Console\FrameworkQuestion;
 use Console\Helpers\ReactStubs;
 use Console\Helpers\Stubs\Home\Views as HomeViews;
+use Console\Helpers\Stubs\Profile\Views as ProfileViews;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 
@@ -164,9 +165,9 @@ class React extends Console {
         $path = self::PAGE_PATH.'profile'.DS;
         Tools::pathExists($path);
 
-        Tools::writeFile($path.'Edit.jsx', ReactStubs::profileEdit(), 'profile/Edit.jsx');
-        Tools::writeFile($path.'Index.jsx', ReactStubs::profileIndex(), 'profile/Index.jsx');
-        Tools::writeFile($path.'UpdatePassword.jsx', ReactStubs::profileUpdatePassword(), 'profile/UpdatePassword.jsx');
+        Tools::writeFile($path.'Edit.jsx', ProfileViews::makeEditJS(), 'profile/Edit.jsx');
+        Tools::writeFile($path.'Index.jsx', ProfileViews::makeIndexJS(), 'profile/Index.jsx');
+        Tools::writeFile($path.'UpdatePassword.jsx', ProfileViews::makeUpdatePasswordJS(), 'profile/UpdatePassword.jsx');
         return Command::SUCCESS;
     }
 }
