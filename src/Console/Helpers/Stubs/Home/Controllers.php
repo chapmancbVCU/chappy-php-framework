@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Chappy\Console\Helpers\Stubs\Home;
+namespace Console\Helpers\Stubs\Home;
 
 /**
  * Collection of controller stubs.
@@ -63,7 +63,6 @@ PHP;
 <?php
 namespace App\Controllers;
 use Core\Controller;
-use Core\Services\AuthService;
 use Core\Lib\Http\JsonResponse;
 /**
  * Implements support for our Home controller.  Functions found in this class 
