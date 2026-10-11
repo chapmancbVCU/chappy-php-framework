@@ -44,6 +44,21 @@ class Profile extends Console {
     }
 
     /**
+     * Generates PHP version of edit.php.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeEditPHP(): int {
+        $path = self::VIEW_PATH.'profile'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'index.php',
+            Views::makeEditPHP(),
+            'Profile edit view'
+        );
+    }
+
+    /**
      * Generates PHP version of index.php.
      *
      * @return int A value that indicates success, invalid, or failure.
