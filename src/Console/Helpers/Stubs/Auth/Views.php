@@ -78,7 +78,7 @@ JSX;
      *
      * @return string The view's contents.
      */
-    public function makeLoginPHP(): string {
+    public static function makeLoginPHP(): string {
         return <<<PHP
 <?php \$this->start('head'); ?>
 <?php \$this->end(); ?>
