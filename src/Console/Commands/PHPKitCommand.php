@@ -13,7 +13,7 @@ use Console\Helpers\{
 };
 
 /**
- * Generates auth controller.
+ * Generates PHP based experience.
  */
 class PHPKitCommand extends ConsoleCommand {
     /**
@@ -25,8 +25,7 @@ class PHPKitCommand extends ConsoleCommand {
     {
         $this->setName('kit:php')
             ->setDescription('Generates PHP based experience.')
-            ->setHelp('php console kit:php')
-            ->addOption('react', null, InputOption::VALUE_NONE, 'React version');
+            ->setHelp('php console kit:php');
     }
 
     /**
@@ -61,7 +60,7 @@ class PHPKitCommand extends ConsoleCommand {
         Profile::makeIndexPHP();
         Profile::makeEditPHP();
         Profile::makeUpdatePasswordPHP();
-        
+
         Component::makeProfileDetailsComponent();
         return self::SUCCESS;
     }
