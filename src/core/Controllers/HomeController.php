@@ -1,9 +1,7 @@
 <?php
 namespace Core\Controllers;
 use Core\Controller;
-use Core\Services\AuthService;
 use Core\Lib\Http\JsonResponse;
-use Override;
 
 /**
  * Implements support for our Home controller.  Functions found in this class 
