@@ -109,7 +109,7 @@ PHP;
      *
      * @return string The view's contents.
      */
-    public function makeRegisterJS(): string {
+    public static function makeRegisterJS(): string {
         return <<<'JSX'
 import React from "react";
 import {PasswordComplexityRequirements} from '@chappy/components/PasswordComplexityRequirements';
