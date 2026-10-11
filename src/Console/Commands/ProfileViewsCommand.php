@@ -2,6 +2,7 @@
 namespace Console\Commands;
 
 use Console\ConsoleCommand;
+use Console\Helpers\Component;
 use Console\Helpers\Profile;
 use Console\Helpers\React;
 use Symfony\Component\Console\Input\InputOption;
@@ -36,6 +37,7 @@ class ProfileViewsCommand extends ConsoleCommand {
         Profile::makeIndexPHP();
         Profile::makeEditPHP();
         Profile::makeUpdatePasswordPHP();
+        Component::makeProfileDetailsComponent();
         
         return self::SUCCESS;
     }
