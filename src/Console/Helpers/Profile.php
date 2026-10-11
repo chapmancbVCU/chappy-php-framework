@@ -52,7 +52,7 @@ class Profile extends Console {
         $path = self::VIEW_PATH.'profile'.DS;
         Tools::pathExists($path);
         return Tools::writeFile(
-            $path.'index.php',
+            $path.'edit.php',
             Views::makeEditPHP(),
             'Profile edit view'
         );
@@ -70,6 +70,21 @@ class Profile extends Console {
             $path.'index.php',
             Views::makeIndexPHP(),
             'Profile index view'
+        );
+    }
+
+    /**
+     * Generates PHP version of index.php.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeUpdatePasswordPHP(): int {
+        $path = self::VIEW_PATH.'profile'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'update_password.php',
+            Views::makeUpdatePasswordPHP(),
+            'Profile update_password view'
         );
     }
 }
