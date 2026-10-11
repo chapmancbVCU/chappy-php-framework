@@ -468,7 +468,7 @@ JSX;
     public static function profileEdit(): string {
         return <<<'JSX'
 import React from "react";
-import ProfileImageSorter from '@/components/ProfileImageSorter';
+import ProfileImageSorter from '@chappy/components/ProfileImageSorter';
 import { documentTitle, route } from '@chappy/utils';
 import * as Forms from '@chappy/components/Forms'
 
