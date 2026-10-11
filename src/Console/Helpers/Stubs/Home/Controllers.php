@@ -12,7 +12,7 @@ class Controllers {
      * @return string The contents of the controller class.
      */
     public static function jsController(): string {
-        return <<<PHP
+        return <<<JSX
 <?php
 namespace App\Controllers;
 use Core\Controller;
@@ -50,7 +50,7 @@ class HomeController extends Controller {
         \$this->jsonResponse(\$resp);
     }
 }
-PHP;
+JSX;
     }
 
     /**
