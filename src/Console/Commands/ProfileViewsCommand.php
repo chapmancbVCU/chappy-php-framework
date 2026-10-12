@@ -19,7 +19,7 @@ class ProfileViewsCommand extends ConsoleCommand {
     protected function configure(): void
     {
         $this->setName('generate:profile:views')
-            ->setDescription('Generates profile index views.')
+            ->setDescription('Generates profile views.')
             ->setHelp('php console generate:profile:views')
             ->addOption('react', null, InputOption::VALUE_NONE, 'React version');
     }

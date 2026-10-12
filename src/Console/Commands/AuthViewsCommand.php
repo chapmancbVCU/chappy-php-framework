@@ -19,7 +19,7 @@ class AuthViewsCommand extends ConsoleCommand {
     protected function configure(): void
     {
         $this->setName('generate:auth:views')
-            ->setDescription('Generates auth index views.')
+            ->setDescription('Generates auth views.')
             ->setHelp('php console generate:auth:views')
             ->addOption('react', null, InputOption::VALUE_NONE, 'React version');
     }
