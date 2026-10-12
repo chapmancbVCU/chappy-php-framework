@@ -6,6 +6,57 @@ namespace Console\Helpers\Stubs\AdminDashboard;
  * Contains stubs for admin dashboard.
  */
 class Views {
+    public static function makeAttachmentDetailsJS(): string {
+        return <<<JSX
+import React from "react";
+import SafeHtml from '@chappy/components/SafeHtml';
+import { route } from '@chappy/utils';
+
+/**
+ * Renders attachment details view.
+ * 
+ * @property {object} attachment The attachment object
+ * @property {string} createdAt When the record was created.
+ * @property {string} size The size of the file.
+ * @property {string} updatedAt When the record was last updated.
+ * @property {object} uploader The upload of the attachment.
+ * @param {*} param0 
+ * @returns 
+ */
+function AttachmentDetails({ attachment, createdAt, size, updatedAt, uploader }) {
+
+    return (
+        <div className="row align-items-center justify-content-center">
+            <div className="col-md-6 bg-light p-3">
+                <a href={route('admindashboard.Attachments')}  className="btn btn-sm btn-secondary">Back</a>
+                <h2 className="text-center">{attachment.attachment_name}</h2>
+                <div className="row">
+                    <div className="col-md-6">
+                        <p><strong>Created at: </strong>{createdAt}</p>
+                        <p><strong>Updated at: </strong>{updatedAt}</p>
+                        <p><strong>Size: </strong>{size}</p>
+                        <p><strong>MIME Type: </strong>{attachment.mime_type}</p>
+                        <p><strong>Uploader: </strong>{uploader.username}</p>
+                        <div>
+                            <strong>Description: </strong>
+                            <SafeHtml html={attachment.description} decode className="prose"/>
+                        </div>
+                        <p>
+                            <strong>Preview: </strong>
+                            <a href={route('admindashboard.preview', [attachment.id])} target="_blank">
+                                {attachment.attachment_name}    
+                            </a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}        
+export default AttachmentDetails;
+JSX;
+    }
+
     public static function makeAttachmentDetailsPHP(): string {
         return <<<PHP
 <?php use Core\Models\EmailAttachments; ?>
