@@ -6,5 +6,6 @@ export * from '@chappy/components/Forms.jsx';          // enables import { Week 
 export * as Forms from '@chappy/components/Forms.jsx'; // enables import { Forms } then Forms.Week
 export { default as route } from "@chappy/utils/route";
 export * from '@chappy/utils/api.js';
+export * from '@chappy/components/Error.jsx';
 export { default as SafeHtml } from '../components/SafeHtml'
 export { default as redirect } from '@chappy/utils/redirect'
