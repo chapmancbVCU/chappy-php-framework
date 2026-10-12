@@ -93,7 +93,7 @@ JSX;
 import React, { useEffect, useRef, useState } from 'react';
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.css';
-import '@css/profileImage.css';
+import '@core-css/profileImage.css';
 import { asset, getCsrf } from '@chappy/utils';
 
 /**
