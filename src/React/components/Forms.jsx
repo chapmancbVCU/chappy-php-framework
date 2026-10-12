@@ -262,7 +262,7 @@ export const CheckboxInput = ({
     );
     
     const cbLabel = (
-        <label className='form-check-label me-3' for={id}>{label}</label>
+        <label className='form-check-label me-3' htmlFor={id}>{label}</label>
     )
     
     return (
