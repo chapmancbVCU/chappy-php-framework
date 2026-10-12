@@ -19,7 +19,7 @@
                 "Description",
                 "description",
                 $this->attachment->description,
-                ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...'], 
+                ['class' => 'form-control input-sm'], 
                 ['class' => 'form-group mb-3']
             ) ?>
 
