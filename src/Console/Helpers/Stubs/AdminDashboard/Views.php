@@ -10,7 +10,7 @@ class Views {
         return <<<JSX
 import React from "react";
 import SafeHtml from '@chappy/components/SafeHtml';
-import { route } from '@chappy/utils';
+import { route, documentTitle } from '@chappy/utils';
 
 /**
  * Renders attachment details view.
@@ -24,7 +24,7 @@ import { route } from '@chappy/utils';
  * @returns 
  */
 function AttachmentDetails({ attachment, createdAt, size, updatedAt, uploader }) {
-
+    documentTitle("Details for " + attachment.attachment_name);
     return (
         <div className="row align-items-center justify-content-center">
             <div className="col-md-6 bg-light p-3">
