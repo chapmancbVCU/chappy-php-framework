@@ -11,7 +11,7 @@
             
             <div class="col-md-12 text-end">
                 <a href="<?=route('admindashboard.details', [$this->user->id])?>" class="btn btn-default">Cancel</a>
-                <?= submit('Reset Password',['class'=>'btn btn-primary']) ?>
+                <?= submit('Submit',['class'=>'btn btn-primary']) ?>
             </div>
         </form>
     </div>
