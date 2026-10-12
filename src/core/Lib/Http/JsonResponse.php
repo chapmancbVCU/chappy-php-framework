@@ -102,6 +102,19 @@ trait JsonResponse {
     }
 
     /**
+     * Returns json response success = true and sets path for redirect.
+     *
+     * @param string $url The url for redirection.
+     * @return void
+     */
+    public function jsonRedirect(string $url): void {
+        $this->jsonResponse([
+            'success'  => true,
+            'redirect' => route($url),
+        ]);
+    }
+
+    /**
      * Sends a JSON response with headers and status code.
      *
      * @param mixed $data The JSON response.
