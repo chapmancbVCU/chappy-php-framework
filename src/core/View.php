@@ -127,6 +127,7 @@ class View extends stdClass {
      * @param string $viewName The name of the view we want to render.
      * @param bool $frameworkViewPath When true we use built in controllers under Core, 
      * otherwise controllers defined by users are utilized.
+     * @param bool $frameworkLayoutPath When set to true use internal layout.
      * @return void
      * @throws LayoutNotFoundException
      * @throws ViewNotFoundException
@@ -158,11 +159,16 @@ class View extends stdClass {
      *
      * @param string $viewComponent The name of the component.
      * @param array $props The prop to be pass to the component.
+     * @param bool $frameworkLayoutPath When set to true use internal layout.
      * @param string $entry The entry point for JavaScript.
      * @return void
      */
-    public function renderJsx(string $viewComponent, array $props = [], string $entry = 'resources/js/app.jsx'): void
-    {
+    public function renderJsx(
+        string $viewComponent, 
+        array $props = [], 
+        bool $frameworkLayoutPath = false, 
+        string $entry = 'resources/js/app.jsx'
+    ): void {
         // allow existing controller style ($this->view->props) to keep working
         if (empty($props) && isset($this->props) && is_array($this->props)) {
             $props = $this->props;
@@ -173,7 +179,7 @@ class View extends stdClass {
         $this->entry     = $entry;     // allow swapping bundles if you add more
 
         // Reuse your normal renderer with a single host template
-        $this->render('react.host', true);   // maps to resources/view/react/host.php
+        $this->render('react.host', true, $frameworkLayoutPath);   // maps to resources/view/react/host.php
     }
 
     /**

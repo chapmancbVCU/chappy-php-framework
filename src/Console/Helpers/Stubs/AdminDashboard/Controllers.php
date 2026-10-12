@@ -217,7 +217,7 @@ class AdmindashboardController extends Controller {
         \$this->view->errors = \$attachment->getErrorMessages();
         \$this->view->uploadMessage = \$attachment->isNew() ? "Upload file" : "Update Attachment";
         \$this->view->header = \$attachment->isNew() ? "Added Attachment" : "Edit Attachment";
-        \$this->view->render('admindashboard/attachments_form', true, true);
+        \$this->view->render('admindashboard.attachments_form', true, true);
     }
 
     /** 
