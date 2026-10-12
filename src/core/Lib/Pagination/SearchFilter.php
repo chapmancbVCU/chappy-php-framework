@@ -251,6 +251,26 @@ class SearchFilter {
         return $params;
     }
 
+    /**
+     * Serializable state for React views or JSON APIs. Objects (not arrays)
+     * for filters/query so empty values encode as {} instead of [].
+     */
+    public function toArray(): array {
+        return [
+            'term'    => $this->term(),
+            'filters' => (object)$this->activeFilters(),
+            'sort'    => $this->sortColumn(),
+            'dir'     => $this->sortDirection(),
+            'active'  => $this->isActive(),
+            'query'   => (object)$this->query(),
+            'params'  => [
+                'search' => $this->searchParam,
+                'sort'   => $this->sortParam,
+                'dir'    => $this->dirParam,
+            ],
+        ];
+    }
+
     /** Only params the user actually set, for carrying through page links. */
     public function query(): array {
         $query = [];

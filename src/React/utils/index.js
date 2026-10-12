@@ -7,5 +7,6 @@ export * as Forms from '@chappy/components/Forms.jsx'; // enables import { Forms
 export { default as route } from "@chappy/utils/route";
 export * from '@chappy/utils/api.js';
 export * from '@chappy/components/Error.jsx';
-export { default as SafeHtml } from '../components/SafeHtml'
-export { default as redirect } from '@chappy/utils/redirect'
+export { default as SafeHtml } from '../components/SafeHtml';
+export { default as redirect } from '@chappy/utils/redirect';
+export { default as usePaginatedQuery } from '@chappy/utils/usePaginatedQuery';

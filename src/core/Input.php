@@ -67,6 +67,15 @@ class Input {
     }
 
     /**
+     * Checks if the request was made by fetch/XHR via the framework's api helpers.
+     *
+     * @return bool True if the X-Requested-With header is XMLHttpRequest.
+     */
+    public function isAjax(): bool {
+        return strtolower($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'xmlhttprequest';
+    }
+
+    /**
      * Checks if the REQUEST_METHOD is GET.
      *
      * @return bool True if the request method is GET.
