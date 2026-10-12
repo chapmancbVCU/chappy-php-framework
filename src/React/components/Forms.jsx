@@ -268,8 +268,8 @@ export const CheckboxInput = ({
     return (
         <>
             {labelRight 
-                ? <>{cbLabel}{checkbox}</> 
-                : <>{checkbox}{cbLabel}</>
+                ? <>{checkbox}{cbLabel}</> 
+                : <>{cbLabel}{checkbox}</>
             }
         </>
     )
