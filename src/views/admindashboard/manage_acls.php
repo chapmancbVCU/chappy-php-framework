@@ -6,7 +6,7 @@
         <i class="fa fa-plus"></i> Add ACL
     </a>
 </h1>
-<table class="table table-striped  table-bordered table-hover mb-5">
+<table class="table table-striped table-bordered table-hover mb-5">
     <thead>
         <th class="text-center">ACL</th>
         <th class="text-center">Created</th>
@@ -42,7 +42,7 @@
 </table>
 
 <h2 class="text-center">ACLs In Use</h2>
-<table class="table table-striped  table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover">
     <thead>
         <th class="text-center">ACL</th>
         <th class="text-center">Created</th>
