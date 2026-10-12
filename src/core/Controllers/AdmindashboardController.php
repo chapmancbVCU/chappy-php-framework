@@ -133,7 +133,7 @@ class AdmindashboardController extends Controller {
     
         $this->view->displayErrors = $acl->getErrorMessages();
         $this->view->acl = $acl;
-        $this->view->header = $acl->isNew() ? "Added ACL" : "Edit ACL";
+        $this->view->header = $acl->isNew() ? "Add ACL" : "Edit ACL";
         $this->view->render('admindashboard.edit_acl', true, true);
     }
     
@@ -201,7 +201,7 @@ class AdmindashboardController extends Controller {
         $this->view->attachment = $attachment;
         $this->view->errors = $attachment->getErrorMessages();
         $this->view->uploadMessage = $attachment->isNew() ? "Upload file" : "Update Attachment";
-        $this->view->header = $attachment->isNew() ? "Added Attachment" : "Edit Attachment";
+        $this->view->header = $attachment->isNew() ? "Add Attachment" : "Edit Attachment";
         $this->view->render('admindashboard/attachments_form', true, true);
     }
 
