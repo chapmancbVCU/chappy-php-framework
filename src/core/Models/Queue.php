@@ -19,7 +19,7 @@ class Queue extends Model {
      * Name of the table.
      * @var string
      */
-    protected static $_table = 'queue';
+    protected static string $_table = 'queue';
 
     /**
      * Number of attempts.
@@ -40,7 +40,7 @@ class Queue extends Model {
      *
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * Name of queue.

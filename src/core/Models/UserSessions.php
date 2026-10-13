@@ -14,7 +14,7 @@ final class UserSessions extends Model {
      * The id for the session.
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * The session.
@@ -26,7 +26,7 @@ final class UserSessions extends Model {
      * The name of the table.
      * @var string
      */
-    protected static $_table = 'user_sessions';
+    protected static string $_table = 'user_sessions';
 
     /**
      * The user agent.

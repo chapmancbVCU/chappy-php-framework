@@ -32,19 +32,19 @@ final class ACL extends Model {
      * @var number
      */
 
-    public $id;
+    public int $id;
 
     /** 
      * $_softDelete value. 
      * @var bool
      */
-    protected static $_softDelete = true;
+    protected static bool $_softDelete = true;
 
     /**
      * The name of the table.
      * @var string
      */
-    protected static $_table = 'acl';
+    protected static string $_table = 'acl';
 
     /**
      * Implements beforeSave function described in Model parent class.  

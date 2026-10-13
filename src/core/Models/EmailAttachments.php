@@ -18,13 +18,13 @@ final class EmailAttachments extends Model {
      * Set to name of database table.
      * @var string
      */
-    protected static $_table = 'email_attachments';
+    protected static string $_table = 'email_attachments';
 
     /**
      * Soft delete
      * @var bool
      */
-    protected static $_softDelete = true;
+    protected static bool $_softDelete = true;
     
     /**
      * The array of allowed types.
@@ -66,7 +66,7 @@ final class EmailAttachments extends Model {
      * The primary key id
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * The mime type.

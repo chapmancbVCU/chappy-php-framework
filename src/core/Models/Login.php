@@ -23,7 +23,7 @@ final class Login extends Model {
      * Placeholder table name.
      * @var string
      */
-    protected static $_table = 'tmp_fake';
+    protected static string $_table = 'tmp_fake';
 
     /**
      * Username of authenticating user.

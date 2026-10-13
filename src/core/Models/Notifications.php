@@ -13,7 +13,7 @@ class Notifications extends Model {
      * The name of the notifications table.
      * @var string
      */
-    protected static $_table = 'notifications';
+    protected static string $_table = 'notifications';
     
     // Fields from your database
 
@@ -24,7 +24,7 @@ class Notifications extends Model {
      * The id for this notification.
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * Notification type.

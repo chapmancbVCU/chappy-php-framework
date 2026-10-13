@@ -30,31 +30,31 @@ class Model {
      * The current id.
      * @var int
      */
-    public $id;
+    public int $id;
     
     /**
      * The name of the model.
      * @var string
      */
-    protected $_modelName;
+    protected string $_modelName;
     
     /**
      * $_softDelete value.
      * @var bool
      */
-    protected static $_softDelete = false;
+    protected static bool $_softDelete = false;
     
     /**
      * The name of the table.
      * @var string
      */
-    protected static $_table;
+    protected static string $_table;
     
     /**
      * Flag to indicate if validation is successful.
      * @var bool
      */
-    protected $_validates = true;
+    protected bool $_validates = true;
 
     /** Constant for whitelist. */
     const WHITELIST = 'whitelist';

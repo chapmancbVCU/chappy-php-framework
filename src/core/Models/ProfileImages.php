@@ -28,7 +28,7 @@ final class ProfileImages extends Model {
      * ID for this image.
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * Max allowed size.
@@ -46,7 +46,7 @@ final class ProfileImages extends Model {
      * Soft delete mode set to true.
      * @var bool
      */
-    protected static $_softDelete = true;
+    protected static bool $_softDelete = true;
 
     /**
      * Sorted position.
@@ -58,7 +58,7 @@ final class ProfileImages extends Model {
      * Name of the table.
      * @var string
      */
-    protected static $_table = 'profile_images';
+    protected static string $_table = 'profile_images';
 
     /**
      * Upload path.
