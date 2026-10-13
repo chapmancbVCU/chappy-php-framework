@@ -12,13 +12,13 @@ trait HasTimestamps {
      * Time record was created.
      * @var string
      */
-    public $created_at;
+    public string $created_at;
 
     /**
      * Time record was updated.
      * @var string
      */
-    public $updated_at;
+    public string $updated_at;
 
     /**
      * Sets values for timestamp fields.
