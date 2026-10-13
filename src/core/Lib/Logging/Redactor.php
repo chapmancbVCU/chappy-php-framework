@@ -27,7 +27,7 @@ final class Redactor {
     /**
      * Array of values to always redact.
      */
-    private const ALWAYS_REDACT_KEYS = [
+    private const array ALWAYS_REDACT_KEYS = [
         'password', 'password_confirmation', 'current_password', 'new_password',
         'pwd', 'pass', 'passphrase',
         'token', 'access_token', 'refresh_token', 'authorization',
