@@ -30,9 +30,9 @@ class AdminDashboardViewCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
-        // if($this->getOption('react')) {
-        //     return React::homeComponent();
-        // }
+        if($this->getOption('react')) {
+            return React::adminDashboardComponents();
+        }
         AdminDashboard::makeAttachmentDetailsViewPHP();
         AdminDashboard::makeAttachmentsFormViewPHP();
         AdminDashboard::makeAttachmentsViewPHP();

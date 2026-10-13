@@ -8,6 +8,7 @@ use Console\Helpers\ReactStubs;
 use Console\Helpers\Stubs\Home\Views as HomeViews;
 use Console\Helpers\Stubs\Profile\Views as ProfileViews;
 use Console\Helpers\Stubs\Auth\Views as AuthViews;
+use Console\Helpers\Stubs\AdminDashboard\Views as AdminViews;
 use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 
@@ -35,6 +36,28 @@ class React extends Console {
      */
     public const UTILS_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'js'.DS.'utils'.DS;
     
+    /**
+     * Generates the admindashboard jsx components.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function adminDashboardComponents(): int {
+        $path = self::PAGE_PATH.'admindashboard'.DS;
+        Tools::pathExists($path);
+
+        Tools::writeFile($path.'AttachmentDetails.jsx', AdminViews::makeAttachmentDetailsJS(), 'View');
+        Tools::writeFile($path.'Attachments.jsx', AdminViews::makeAttachmentsJS(), 'View');
+        Tools::writeFile($path.'AttachmentsForm.jsx', AdminViews::makeAttachmentsFormJS(), 'View');
+        Tools::writeFile($path.'Details.jsx', AdminViews::makeDetailsJS(), 'View');
+        Tools::writeFile($path.'Edit.jsx', AdminViews::makeEditJS(), 'View');
+        Tools::writeFile($path.'EditACL.jsx', AdminViews::makeEditAclJS(), 'View');
+        Tools::writeFile($path.'Index.jsx', AdminViews::makeIndexJS(), 'View');
+        Tools::writeFile($path.'ManageAcls.jsx', AdminViews::makeManageAclsJS(), 'View');
+        Tools::writeFile($path.'SetAccountStatus.jsx', AdminViews::makeSetAccountStatusJS(), 'View');
+        Tools::writeFile($path.'SetResetPassword.jsx', AdminViews::makeSetResetPasswordJS(), 'View');
+        return Command::SUCCESS;
+    }
+
     /**
      * Generates the auth jsx components.
      *

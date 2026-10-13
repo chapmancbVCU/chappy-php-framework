@@ -39,6 +39,7 @@ class ReactKitCommand extends ConsoleCommand {
         React::authComponents();
         React::homeComponent();
         React::profileComponents();
+        React::adminDashboardComponents();
         return self::SUCCESS;
     }
 }
