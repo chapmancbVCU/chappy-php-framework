@@ -53,7 +53,6 @@ class Console {
         if(!$defaultNone) {
             $object->required()
                     ->noSpecialChars()
-                    ->alpha()
                     ->notReservedKeyword();
         }
 
@@ -143,7 +142,6 @@ class Console {
         if(!$defaultNone) {
             $response = $question->required()
                 ->noSpecialChars()
-                ->alpha()
                 ->notReservedKeyword();
         }
 
