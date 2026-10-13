@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * Generates auth  controllers and views.
  */
-class AuthViewsCommand extends ConsoleCommand {
+class AuthCommand extends ConsoleCommand {
     /**
      * Configures the command.
      *
