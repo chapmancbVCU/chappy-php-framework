@@ -97,6 +97,72 @@ JSX;
 PHP;
     }
 
+    public static function makeAttachmentsFormJS(): string {
+        return <<<JSX
+import React from "react";
+import { 
+    CSRFInput, 
+    documentTitle, 
+    DisplayErrors,
+    FileSelector,
+    RichText,
+    route,
+    SubmitTag
+} from "@chappy/utils";
+
+/**
+ * The attachments form component.
+ * 
+ * @property {object} attachment The attachment object.
+ * @property {object} errors The errors object.
+ * @property {number|string} id The id of an existing record or the string "new" 
+ * to tell the view we are uploading a file.
+ * @param {*} param0 
+ * @returns 
+ */
+function AttachmentsForm({ attachment, errors, id }) {
+    const isNew = (id === 'new') ? true : false;
+    const header = isNew ? "Add Attachment" : "Edit Attachment";
+    attachment.description = (isNew) ? '' : attachment.description;
+    documentTitle(header);
+
+    return (
+        <>
+            <h1 className="text-center mb-4">{header}</h1>
+            <div className="row align-items-center justify-content-center">
+                <div className="col-md-6 bg-light p-3">
+                    <form className="form" action="" method="POST" encType="multipart/form-data">
+                        <DisplayErrors errors={errors}/>
+                        <CSRFInput />
+                        <RichText 
+                            label="Description"
+                            name="description"
+                            value={attachment.description}
+                            inputAttrs={{className: 'form-control input-sm'}}
+                            divAttrs={{className: 'form-group mb-3'}}
+                        />
+                        {isNew && (
+                            <FileSelector 
+                                label="Upload"
+                                name="attachment_name"
+                                inputAttrs={{className: 'form-control', accept: 'image/giv image/jpeg image/png'}}
+                                outputAttrs={{className: 'form-group'}}
+                            />
+                        )}
+                        <div className="col-md-12 text-end mt-3">
+                            <a href={route('admindashboard.Attachments')} className="btn btn-default">Cancel</a>
+                            <SubmitTag label="Save" inputAttrs={{className: 'btn btn-primary'}} />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>
+    );
+}        
+export default AttachmentsForm;
+JSX;
+    }
+
     public static function makeAttachmentsFormPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle(\$this->header); ?>
@@ -146,6 +212,90 @@ PHP;
 </script>
 <?php \$this->end(); ?>
 PHP;
+    }
+
+    public static function makeAttachmentsJS(): string {
+        return <<<JSX
+import React, { useState } from "react";
+import { documentTitle, route, CSRFInput, CSRFToken, apiError, apiDelete } from "@chappy/utils";
+
+/**
+ * Renders list of all attachments that have been uploaded.
+ * 
+ * @property {array} attachments An array of attachments available
+ * @param {*} param0 
+ * @returns 
+ */
+function Attachments({ attachments }) {
+    documentTitle("Attachments");
+
+    const [error, setError] = useState(null);
+
+    const onDeleteClick = (attachment) => async (event) => {
+        event.preventDefault();
+        if(window.confirm(`Are you sure you want to delete the attachment: \${attachment.attachment_name}`)) {
+            try {
+                const payload = {
+                    csrf_token: CSRFToken(event)
+                }
+                const json = await apiDelete(`/admindashboard/deleteAttachment/\${attachment.id}`, payload);
+                window.location.reload();
+            } catch(err) {
+                setError(apiError(err));
+            }
+        }
+    }
+
+    return (
+        <>
+            <h1 className="text-center mb-4">Attachments
+                <a href={route('admindashboard.editAttachments', ['new'])} className="btn btn-primary btn-sm me-5">
+                    <i className="fa fa-plus"></i> Add Attachment
+                </a>
+            </h1>
+            <div className="d-flex justify-content-center">
+                <table className="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Original Name</th>
+                            <th>Uploader</th>
+                            <th>size</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {attachments.map((attachment) => (
+                            <tr key={attachment.id}>
+                                <td>
+                                    <a href={route('admindashboard.attachmentDetails', [attachment.id])}>
+                                        {attachment.attachment_name}
+                                    </a>
+                                </td>
+                                <td>{attachment.uploadUsername}</td>
+                                <td>{attachment.formattedBytes}</td>
+                                <td className="text-end">
+                                    <a href={route('admindashboard.editAttachments', [attachment.id])}
+                                        className="btn btn-secondary btn-sm"><i className="fas fa-edit"></i> Edit
+                                    </a>
+                                    {error ? (<p className="text-danger">{error}</p>) : 
+                                        <form method="POST" onSubmit={onDeleteClick(attachment)} className="d-inline-block">
+                                            <CSRFInput />
+                                            <button type="submit" className="btn btn-danger btn-sm">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
+    );
+}        
+export default Attachments;
+JSX;
     }
 
     public static function makeAttachmentsPHP(): string {
@@ -204,6 +354,149 @@ PHP;
 </div>
 <?php \$this->end(); ?>
 PHP;
+    }
+
+    public static function makeDetailsJS(): string {
+        return <<<JSX
+import React, { useState } from "react";
+import { 
+    apiDelete, 
+    apiError, 
+    asset, 
+    CSRFInput, 
+    CSRFToken, 
+    documentTitle, 
+    redirect, 
+    route, 
+    SafeHtml 
+} from "@chappy/utils";
+
+/**
+ * Returns user details component.
+ * 
+ * @property {string} createdAt When the record was created.
+ * @property {object} profileImage The profileImage object.
+ * @property {string} updatedAt When the record was last updated.
+ * @property {object} user The user whose details wer are viewing.
+ * @param {*} param0 
+ * @returns 
+ */
+function Details({ createdAt, profileImage, updatedAt, user }) {
+    documentTitle(`\${user.username} Details`);
+    const [error, setError] = useState(null);
+ 
+    async function onDeleteClick(e) {
+        e.preventDefault();
+        if(window.confirm(`Are you sure you want to delete the following user? \${user.username}`)) {
+            try {
+                const payload = {
+                    csrf_token: CSRFToken(e)
+                }
+                const json = await apiDelete(`/admindashboard/delete/\${user.id}`, payload);
+
+                // Use route stored in json to redirect.
+                redirect(json.redirect);
+            } catch (err) {
+                setError(apiError(err));
+            }
+        }
+    }
+
+    return (
+        <>
+            <h1 className="text-center">Details for {user.username}</h1>
+            <div className="align-items-center justify-content-center mx-auto my-3 w-50">
+                <a href={route('admindashboard.index')} className="btn btn-sm btn-secondary mb-3">Back</a>
+                {profileImage &&
+                    <img src={asset(profileImage.url)}
+                        className="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
+                    </img>
+                }
+            </div>
+
+            <div className="row align-items-center justify-content-center mx-auto my-3 w-50">
+                <div className="col">
+                    <table className="table table-striped table-bordered table-hover bg-light my-5 col-md-12">
+                        <tbody>
+                            <tr>
+                                <th className="text-center">First Name</th>
+                                <td className="text-center">{user.fname}</td>
+                            </tr>
+                            <tr>
+                                <th className="text-center">Last Name</th>
+                                <td className="text-center">{user.lname}</td>
+                            </tr>
+                            <tr>
+                                <th className="text-center">E-mail</th>
+                                <td className="text-center">{user.email}</td>
+                            </tr>
+                            <tr>
+                                <th className="text-center">Status</th>
+                                {user.inactive == 0 ? (
+                                    <td className="text-center">Active</td>
+                                ) : (
+                                    <td className="text-center">Inactive</td>
+                                )}
+                            </tr>
+                            <tr>
+                                <th className="text-center">ACL</th>
+                                <td className="text-center">{user.acl}</td>
+                            </tr>
+                            <tr>
+                                <th className="text-center">Login Attempts</th>
+                                <td className="text-center">{user.login_attempts}</td>
+                            </tr>
+                            <tr>
+                                <th className="text-center">Password Reset</th>
+                                {user.reset_password == 0 ? (
+                                    <td className="text-center">Off</td>
+                                ) : (
+                                    <td className="text-center">On</td>
+                                )}
+                            </tr>
+                            <tr>
+                                <th className="text-center">Created</th>
+                                <td className="text-center">{createdAt}</td>
+                            </tr>
+                            <tr>
+                                <th className="text-center">Last Update</th>
+                                <td className="text-center">{updatedAt}</td>
+                            </tr>
+                            {user.description && (
+                                <tr>
+                                    <td id="description" className="p-4" colSpan={2}>
+                                        <SafeHtml html={user.description} decode className="prose"/>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="col col-md-4 mb-5">
+                    <a href={route('admindashboard.edit', [user.id])} className="btn btn-info btn-sm mb-2 w-100 text-left">
+                        <i className="fa fa-edit"></i> Edit User Profile
+                    </a>
+                    <a href={route('admindashboard.setResetPassword', [user.id])} className="btn btn-warning btn-sm my-2 w-100 text-left">
+                        <i className="fa fa-key"></i> Reset Password
+                    </a>
+                    <a href={route('admindashboard.setStatus', [user.id])} className="btn btn-primary btn-sm mb-5 mt-2 w-100 text-left">
+                        <i className="fa fa-unlock"></i> Set Account Status
+                    </a>
+                    {error ? (<p className="text-danger">{error}</p>) : 
+                        <form method="POST" onSubmit={onDeleteClick}>
+                            <CSRFInput />
+                            <button type="submit" className="btn btn-danger btn-sm mt-5 w-100 text-left">
+                                <i className="fa fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </>
+    );
+}        
+export default Details;
+JSX;
     }
 
     public static function makeDetailsPHP(): string {
@@ -307,6 +600,55 @@ use Core\Lib\Utilities\DateTime; ?>
 PHP;
     }
 
+    public static function makeEditAclJS(): string {
+        return <<<JSX
+import { CSRFInput, documentTitle, route, SubmitTag, Text } from "@chappy/utils";
+import React from "react";
+
+/**
+ * Renders form for adding/editing an ACL.
+ * 
+ * @property {object} acl The acl object.
+ * @property {object} errors The errors object
+ * @property {number|string} id The id of an existing record or the string "new" 
+ * to tell the view we are creating a new record.
+ * @param {} param0 
+ * @returns 
+ */
+function EditACL({ acl, errors, id }) {
+    const isNew = (id === 'new') ? true : false;
+    const header = isNew ? "Add ACL" : "Edit ACL";
+    documentTitle(header);
+
+    return (
+        <>
+            <h1 className="text-center">{header}</h1>
+            <div className="row align-items-center justify-content-center">
+                <div className="col-md-6 bg-light p-3">
+                    <form className="form" action="" method="POST">
+                        <CSRFInput />
+                        <Text 
+                            label="ACL"
+                            name="acl"
+                            value={acl.acl}
+                            inputAttrs={{className: 'form-control input-sm'}}
+                            divAttrs={{className: 'form-group'}}
+                            errors={errors}
+                        />
+                        <div className="col-md-12 text-end pt-3">
+                            <a href={route('admindashboard.manageAcls')} className="btn btn-default">Cancel</a>
+                            <SubmitTag label="Save" inputAttrs={{className: 'btn btn-primary'}} />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>
+    );
+}        
+export default EditACL;
+JSX;
+    }
+
     public static function makeEditAclPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle(\$this->header); ?>
@@ -329,6 +671,87 @@ PHP;
 
 <?php \$this->end(); ?>
 PHP;
+    }
+
+    public static function makeEditJS(): string {
+        return <<<JSX
+import React from "react";
+import ProfileImageSorter from '@/components/ProfileImageSorter';
+import { documentTitle, route } from '@chappy/utils';
+import * as Forms from '@chappy/components/Forms'
+
+/**
+ * Renders edit view for administrators.
+ * 
+ * @property {object} acls The acls for the form.
+ * @property {object} errors The errors.
+ * @property {object} profileImages The user's profile images.
+ * @property {object} user The user to be modified.
+ * @property {array} userAcls An array of user assigned acls.
+ * @param {*} param0 
+ * @returns 
+ */
+function Edit({ acls, errors, profileImages, user, userAcls }) {
+    documentTitle(`Edit Details for \${user.username}`);
+
+    return (
+        <div className="row align-items-center justify-content-center">
+            <div className="col-md-6 bg-light p-3">
+                <h1 className="text-center">Edit Details for {user.username}</h1>
+                <hr />
+                <form className="form" action="" method="post">
+                    <Forms.CSRFInput />
+                    <Forms.DisplayErrors errors={errors}/>
+
+                    <Forms.Text
+                        label="First Name"
+                        name="fname"
+                        value={user.fname}
+                        inputAttrs={{className: 'form-control input-sm'}}
+                        divAttrs={{className: 'form-group mb-3'}}
+                    />
+                    <Forms.Text 
+                        label="Last Name"
+                        name="lname"
+                        value={user.lname}
+                        inputAttrs={{className: 'form-control input-sm'}}
+                        divAttrs={{className: 'form-group mb-3'}}
+                    />
+                    <Forms.Email 
+                        label="Email"
+                        name="email"
+                        value={user.email}
+                        inputAttrs={{className: 'form-control input-sm', placeholder: 'joe@example.com'}}
+                        divAttrs={{className: 'form-group mb-3'}}
+                    />
+                    <Forms.RichText
+                        label="Description"
+                        name="description"
+                        value={user.description}
+                        inputAttrs={{ placeholder: 'Describe yourself here...' }}
+                        divAttrs={{ className: 'form-group mb-3' }}
+                    />
+                    <div className="form-group mb-3">
+                        <label>Manage ACLs:</label>
+                        <Forms.CheckboxGroup 
+                            name='acls'
+                            options={acls}
+                            selectedValues={userAcls}
+                            divAttrs={{className: 'form-check'}}
+                        />
+                    </div>
+                    <ProfileImageSorter initialImages={profileImages} deleteEndpoint="/profile/deleteImage" />
+                    <div className="col-md-12 text-end">
+                        <a href={route('admindashboard.details', [user.id])} className="btn btn-default">Cancel</a>
+                        <Forms.SubmitTag label={"Submit"} inputAttrs={{className: 'btn btn-primary'}}/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+}        
+export default Edit;
+JSX;
     }
 
     public static function makeEditPHP(): string {
@@ -383,6 +806,174 @@ PHP;
 
 <?php \$this->end(); ?>
 PHP;
+    }
+
+    public static function makeIndexJS(): string {
+        return <<<JSX
+import React, { useEffect, useState } from 'react';
+import { documentTitle, route } from '@chappy/utils';
+import usePaginatedQuery from '@chappy/utils/usePaginatedQuery';
+import Pagination, { PaginationSummary, SortableTh } from '@chappy/components/Pagination';
+import SafeHtml from '@chappy/components/SafeHtml';
+
+/**
+ * Admin dashboard: searchable, filterable, sortable, paginated user list.
+ *
+ * @param {object} props
+ * @param {object[]} props.users Current page of users (DashboardService::userToArray()).
+ * @param {object} props.pagination Pagination::toArray().
+ * @param {object} props.filter SearchFilter::toArray().
+ * @param {{value: string, label: string}[]} props.aclOptions Access level options.
+ * @param {{value: string, label: string}[]} props.statusOptions Status options.
+ * @param {string} [props.widgetsHtml] Server-rendered dashboard widgets.
+ * @returns {JSX.Element}
+ */
+export default function Index({
+    users = [],
+    pagination,
+    filter,
+    aclOptions = [],
+    statusOptions = [],
+    widgetsHtml = '',
+}) {
+    documentTitle('Administration');
+
+    const { data, params, loading, error, update, goToPage, reset } =
+        usePaginatedQuery({ users, pagination, filter });
+
+    const searchParam = data.filter?.params?.search ?? 'q';
+    const filters = data.filter?.filters ?? {};
+
+    // Search box is local until submitted; resync on back/forward or Clear.
+    const [term, setTerm] = useState(params[searchParam] ?? '');
+    useEffect(() => setTerm(params[searchParam] ?? ''), [params[searchParam]]);
+
+    function onSearch(e) {
+        e.preventDefault();
+        update({ [searchParam]: term.trim() });
+    }
+
+    function onSort(column, dir) {
+        const { sort, dir: dirParam } = data.filter?.params ?? { sort: 'sort', dir: 'dir' };
+        update({ [sort]: column, [dirParam]: dir });
+    }
+
+    const showClear = data.filter?.active || Object.keys(params).length > 0;
+
+    return (
+        <>
+            <h1 className="text-center">Administration Dashboard</h1>
+
+            <form className="row g-2 mb-3 align-items-end" onSubmit={onSearch} role="search">
+                <div className="col-md-5">
+                    <label htmlFor="q" className="form-label">Search</label>
+                    <input
+                        type="search"
+                        id="q"
+                        className="form-control"
+                        placeholder="Username, email, or name"
+                        value={term}
+                        onChange={(e) => setTerm(e.target.value)}
+                    />
+                </div>
+                <div className="col-md-2">
+                    <label htmlFor="acl" className="form-label">Access Level</label>
+                    <select
+                        id="acl"
+                        className="form-select"
+                        value={filters.acl ?? ''}
+                        onChange={(e) => update({ acl: e.target.value })}
+                    >
+                        <option value="">All</option>
+                        {aclOptions.map((o) => (
+                            <option key={o.value} value={o.value}>{o.label}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="col-md-2">
+                    <label htmlFor="inactive" className="form-label">Status</label>
+                    <select
+                        id="inactive"
+                        className="form-select"
+                        value={filters.inactive ?? ''}
+                        onChange={(e) => update({ inactive: e.target.value })}
+                    >
+                        <option value="">All</option>
+                        {statusOptions.map((o) => (
+                            <option key={o.value} value={o.value}>{o.label}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="col-md-3 d-flex gap-2">
+                    <button type="submit" className="btn btn-primary flex-fill">
+                        <i className="fa fa-search"></i> Search
+                    </button>
+                    {showClear && (
+                        <button type="button" className="btn btn-outline-secondary flex-fill" onClick={reset}>
+                            Clear
+                        </button>
+                    )}
+                </div>
+            </form>
+
+            {error && <div className="alert alert-danger" role="alert">{error}</div>}
+
+            <PaginationSummary pagination={data.pagination} noun="users" />
+
+            <div aria-busy={loading} style={{ opacity: loading ? 0.5 : 1, transition: 'opacity .15s' }}>
+                <table className="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <SortableTh column="username" filter={data.filter} onSort={onSort}>Username</SortableTh>
+                            <SortableTh column="acl" filter={data.filter} onSort={onSort}>Access Level</SortableTh>
+                            <SortableTh column="inactive" filter={data.filter} onSort={onSort}>Status</SortableTh>
+                            <SortableTh column="created_at" filter={data.filter} onSort={onSort}>Created</SortableTh>
+                            <SortableTh column="updated_at" filter={data.filter} onSort={onSort}>Last Update</SortableTh>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.users.map((user) => (
+                            <tr key={user.id}>
+                                <td>{user.username}</td>
+                                <td>
+                                    {user.acl.length === 0
+                                        ? <span className="text-muted">—</span>
+                                        : user.acl.map((acl) => (
+                                            <span key={acl} className="badge text-bg-secondary me-1">{acl}</span>
+                                        ))}
+                                </td>
+                                <td>{user.inactive ? 'Inactive' : 'Active'}</td>
+                                <td title={user.created_at}>{user.created_ago}</td>
+                                <td title={user.updated_at}>{user.updated_ago}</td>
+                                <td className="text-center">
+                                    <a href={route('admindashboard.details', [user.id])} className="btn btn-info btn-sm w-100">
+                                        <i className="fa fa-user"></i> Details
+                                    </a>
+                                </td>
+                            </tr>
+                        ))}
+                        {data.users.length === 0 && (
+                            <tr>
+                                <td colSpan={6} className="text-center text-muted py-4">
+                                    {data.filter?.active ? 'No users match your search.' : 'No other users yet.'}
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
+            <Pagination pagination={data.pagination} onPageChange={goToPage} />
+
+            {widgetsHtml && (
+                <SafeHtml html={widgetsHtml} className="widget-container" decode={false} addTargetBlank={false} />
+            )}
+        </>
+    );
+}
+
+JSX;
     }
 
     public static function makeIndexPHP(): string {
@@ -500,6 +1091,102 @@ PHP;
 PHP;
     }
 
+    public static function makeManageAclsJS(): string {
+        return <<<JSX
+import React, { useState } from "react";
+import { apiError, apiDelete, CSRFInput, documentTitle, route, CSRFToken } from "@chappy/utils";
+
+function ManageAcls({ usedAcls, unUsedAcls }) {
+    documentTitle("Manage ACLs");
+    const [error, setError] = useState(null);
+    const onDeleteClick = (acl) => async (event) => {
+        event.preventDefault();
+        if(window.confirm(`Are you sure you want to delete the ACL: \${acl.acl}`)) {
+            try {
+                const payload = {
+                    csrf_token: CSRFToken(event)
+                }
+                const json = await apiDelete(`/admindashboard/deleteAcl/\${acl.id}`, payload);
+                window.location.reload();
+            } catch(err) {
+                setError(apiError(err));
+            }
+        }
+    }
+
+    return (
+        <>
+            <h1 className="text-center">Manage ACLs
+                <a href={route('admindashboard.editAcl', ['new'])} className="btn btn-primary btn-sm me-5">
+                    <i className="fa fa-plus"></i> Add ACL
+                </a>
+            </h1>
+
+            <table className="table table-striped table-bordered table-hover mb-5">
+                <thead>
+                    <tr>
+                        <th className="text-center">ACL</th>
+                        <th className="text-center">Created</th>
+                        <th className="text-center">Updated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {unUsedAcls.map((acl) => (
+                        <tr key={acl.id}>
+                            {acl.acl !== 'Admin' && (
+                                <>
+                                    <td className="text-center w-50">{acl.acl}</td>
+                                    <td className="text-center">{acl.created_at}</td>
+                                    <td className="text-center">{acl.updated_at}</td>
+                                    <td className="text-center">
+                                        <a href={route('admindashboard.editAcl', [acl.id])} className="btn btn-info btn-sm">
+                                            <i className="fa fa-edit"></i> Edit ACL
+                                        </a>
+                                        {error ? (<p className="text-danger">{error}</p>) : 
+                                            <form method="POST" onSubmit={onDeleteClick(acl)} className="d-inline-block">
+                                                <CSRFInput />
+                                                <button type="submit" className="btn btn-danger btn-sm">
+                                                    <i className="fa fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        }
+                                    </td>
+                                </>
+                            )}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
+            <h2 className="text-center">ACLs In Use</h2>
+            <table className="table table-striped table-bordered table-hover mb-5">
+                <thead>
+                    <tr>
+                        <th className="text-center">ACL</th>
+                        <th className="text-center">Created</th>
+                        <th className="text-center">Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {usedAcls.map((acl) => (
+                        <tr key={acl.id}>
+                            <>
+                                <td className="text-center w-50">{acl.acl}</td>
+                                <td className="text-center">{acl.created_at}</td>
+                                <td className="text-center">{acl.updated_at}</td>
+                            </>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
+    );
+}        
+export default ManageAcls;
+JSX;
+    }
+
     public static function makeManageAclsPHP(): string {
         return <<<PHP
 <?php use Core\Lib\Utilities\DateTime; ?>
@@ -572,6 +1259,53 @@ PHP;
 PHP;
     }
 
+    public static function makeSetAccountStatusJS(): string { 
+        return <<<JSX
+import React from "react";
+import { CheckBoxLeftLabel, CSRFInput, documentTitle, route, SubmitTag } from "@chappy/utils";
+
+/**
+ * Renders set account status view.
+ * 
+ * @property {boolean} checked The checked status for the checkbox.
+ * @property {object} errors The errors object.
+ * @property {object} users The users object.
+ * @param {*} param0 
+ * @returns 
+ */
+function SetAccountStatus({ checked, errors, user }) {
+    const title = `Set status for \${user.username}`;
+    documentTitle(title);
+    return (
+        <>
+            <h1 className="text-center">{title}</h1>
+
+            <div className="row align-items-center justify-content-center">
+                <div className="col-md-3 bg-light p-3">
+                    <form className="form" method="POST" action="">
+                        <CSRFInput />
+                        <CheckBoxLeftLabel 
+                            label="Select to activate/deactivate account"
+                            name="inactive"
+                            value="on"
+                            checked={checked}
+                            divAttrs={{className: 'form-group mb-3'}}
+                            errors={errors}
+                        />
+                        <div className="col-md-12 text-end pt-3">
+                            <a href={route('admindashboard.details', [user.id])} className="btn btn-default">Cancel</a>
+                            <SubmitTag label="Submit" inputAttrs={{className: 'btn btn-primary'}} />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>
+    );
+}        
+export default SetAccountStatus;
+JSX;
+    }
+
     public static function makeSetAccountStatusPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle("Set Status for ".\$this->user->username); ?>
@@ -593,6 +1327,54 @@ PHP;
 </div>
 <?php \$this->end(); ?>
 PHP;
+    }
+
+    public static function makeSetResetPasswordJS(): string {
+        return <<<JSX
+import React from "react";
+import { CheckBoxLeftLabel, CSRFInput, documentTitle, route, SubmitTag } from "@chappy/utils";
+
+/**
+ * Renders set reset password view.
+ * 
+ * @property {boolean} checked The checked status for the checkbox.
+ * @property {object} errors The errors object.
+ * @property {object} users The users object.
+ * @param {*} param0 
+ * @returns 
+ */
+function SetResetPassword({ checked, errors, user }) {
+    const title = `Reset password for \${user.username}`;
+    documentTitle(title);
+
+    return (
+        <>
+            <h1 className="text-center">{title}</h1>
+
+            <div className="row align-items-center justify-content-center">
+                <div className="col-md-3 bg-light p-3">
+                    <form className="form" method="POST" action="">
+                        <CSRFInput />
+                        <CheckBoxLeftLabel 
+                            label="Select to confirm reset password"
+                            name="reset_password"
+                            value="on"
+                            checked={checked}
+                            divAttrs={{className: 'form-group mb-3'}}
+                            errors={errors}
+                        />
+                        <div className="col-md-12 text-end pt-3">
+                            <a href={route('admindashboard.details', [user.id])} className="btn btn-default">Cancel</a>
+                            <SubmitTag label="Submit" inputAttrs={{className: 'btn btn-primary'}} />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>
+    );
+}        
+export default SetResetPassword;
+JSX;
     }
 
     public static function makeSetResetPasswordPHP(): string {
