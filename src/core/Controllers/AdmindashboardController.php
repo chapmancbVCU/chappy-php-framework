@@ -3,7 +3,6 @@ namespace Core\Controllers;
 use Core\Controller;
 use Core\Models\ACL;
 use App\Models\Users;
-use Core\Lib\Utilities\Arr;
 use Core\Services\ACLService;
 use Core\Models\ProfileImages;
 use Core\Services\UserService;
