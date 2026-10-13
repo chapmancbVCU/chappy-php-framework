@@ -11,21 +11,21 @@ use ReflectionClass;
  */
 class Logger {
     /** Constant for alert level emergency. */
-    public const EMERGENCY = 'emergency';
+    public const string EMERGENCY = 'emergency';
     /** Constant for alert level alert. */
-    public const ALERT = 'alert';
+    public const string ALERT = 'alert';
     /** Constant for alert level critical. */
-    public const CRITICAL = 'critical';
+    public const string CRITICAL = 'critical';
     /** Constant for alert level error. */
-    public const ERROR = 'error';
+    public const string ERROR = 'error';
     /** Constant for alert level warning. */
-    public const WARNING = 'warning';
+    public const string WARNING = 'warning';
     /** Constant for alert level notice. */
-    public const NOTICE = 'notice';
+    public const string NOTICE = 'notice';
     /** Constant for alert level info. */
-    public const INFO = 'info';
+    public const string INFO = 'info';
     /** Constant for alert level debug. */
-    public const DEBUG = 'debug';
+    public const string DEBUG = 'debug';
 
     /**
      * Associative array of levels mapped to integers based on severity.
