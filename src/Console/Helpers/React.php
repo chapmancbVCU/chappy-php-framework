@@ -49,7 +49,7 @@ class React extends Console {
             ReactStubs::profileImageSorter(),
             'components/ProfileImageSorter.jsx'
         );
-        
+
         $path = self::PAGE_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
 
@@ -72,6 +72,16 @@ class React extends Console {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function authComponents(): int {
+        $componentPath = self::COMPONENT_PATH;
+        Tools::pathExists($componentPath);
+        Tools::writeFile(
+            $componentPath.'ProfileImageSorter.jsx',
+            ReactStubs::profileImageSorter(),
+            'components/ProfileImageSorter.jsx'
+        );
+        
+        $path = self::PAGE_PATH.'admindashboard'.DS;
+        
         $path = self::PAGE_PATH.'auth'.DS;
         Tools::pathExists($path);
 
