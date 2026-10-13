@@ -14,7 +14,7 @@ final class ACL extends Model {
      * The acl value.
      * @var string
      */
-    public $acl;
+    public ?string $acl = null;
 
     /** 
      * The blacklist array. 
@@ -26,10 +26,11 @@ final class ACL extends Model {
      * Deleted 
      * @var int
      */
-    public $deleted = 0;
+    public int $deleted = 0;
+
     /**
      * The current id.
-     * @var number
+     * @var int
      */
 
     public int $id;
@@ -95,6 +96,9 @@ final class ACL extends Model {
      * @return void
      */
     public function validator(): void {
-        $this->runValidation($this->required()->unique([self::class])->fieldName('acl')->validate($this->acl));
+        $this->runValidation('acl', ['required']);
+        if($this->isNew()) {
+            $this->runValidation('acl', ['unique:'.self::class]);
+        }
     }
 }

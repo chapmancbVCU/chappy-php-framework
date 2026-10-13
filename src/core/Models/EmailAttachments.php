@@ -30,37 +30,37 @@ final class EmailAttachments extends Model {
      * The array of allowed types.
      * @var array
      */
-    protected static $allowedFileTypes;
+    protected static array $allowedFileTypes;
 
     /**
      * Set your max file size.
      * @var int
      */
-    protected static $maxAllowedFileSize = 17825792;
+    protected static int $maxAllowedFileSize = 17825792;
 
     /**
      * Set your file path.  Include your bucket if necessary.
      * @var string
      */
-    public static $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'email_attachments';
+    public static string $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'email_attachments';
     
     /**
      * The attachment's name.
      * @var string
      */
-    public $attachment_name;
+    public string $attachment_name;
     
     /**
      * Deleted
      * @var int
      */
-    public $deleted = 0;
+    public int $deleted = 0;
     
     /**
      * Description
      * @var string
      */
-    public $description;
+    public ?string $description = null;
 
     /**
      * The primary key id
@@ -72,31 +72,31 @@ final class EmailAttachments extends Model {
      * The mime type.
      * @var string
      */
-    public $mime_type;
+    public string $mime_type;
 
     /**
      * Name of the attachment.
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * Path to the attachment.
      * @var string
      */
-    public $path;
+    public string $path;
 
     /**
      * Size of the attachment.
      * @var int
      */
-    public $size;
+    public int $size;
 
     /**
      * ID of the recipient.
      * @var int
      */
-    public $user_id;
+    public int $user_id;
 
     /**
      * Implementation of beforeSave function where timestamps are updated.
