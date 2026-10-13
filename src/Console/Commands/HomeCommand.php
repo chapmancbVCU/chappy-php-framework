@@ -7,7 +7,7 @@ use Console\Helpers\React;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Generates home index view.
+ * Generates home controllers and views.
  */
 class HomeCommand extends ConsoleCommand {
     /**
@@ -17,9 +17,9 @@ class HomeCommand extends ConsoleCommand {
      */
     protected function configure(): void
     {
-        $this->setName('generate:home:view')
-            ->setDescription('Generates home index view.')
-            ->setHelp('php console generate:home:view')
+        $this->setName('generate:home')
+            ->setDescription('Generates home controllers and views.')
+            ->setHelp('php console generate:home')
             ->addOption('react', null, InputOption::VALUE_NONE, 'React version');
     }
 
