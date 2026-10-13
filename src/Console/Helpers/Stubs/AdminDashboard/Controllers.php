@@ -155,11 +155,6 @@ class AdmindashboardController extends Controller {
     public function detailsAction(\$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
-        \$profileImage = ProfileImages::findCurrentProfileImage(\$user->id);
-        // dd(\$profileImage);/
-        \$this->view->profileImage = \$profileImage;
-        \$this->view->user = \$user;
-        // \$this->view->render('admindashboard.details', true, true);
 
         \$props = [
             'createdAt' => DateTime::timeAgo(\$user->created_at),
@@ -207,11 +202,8 @@ class AdmindashboardController extends Controller {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
     
-        \$this->view->user = \$user;
-    
         // Fetch all available ACLs
         \$acls = ACL::getOptionsForForm();
-        \$this->view->acls = \$acls;
     
         // Decode stored ACL JSON string into an array
         \$userAcls = ACLService::aclToArray(json_decode(\$user->acl, true));
@@ -237,7 +229,6 @@ class AdmindashboardController extends Controller {
             'user' => \$user,
             'userAcls' => \$user->getAcls()
         ];
-
 
         \$this->view->renderJsx('admindashboard.Edit', \$props, true);
     }
