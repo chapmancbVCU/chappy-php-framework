@@ -13,7 +13,7 @@ class Auth extends Console {
     public const VIEW_PATH = ROOT.DS.'resources'.DS.'views'.DS;
 
     /**
-     * Generates js version of the controller.
+     * Generates JS version of the controller.
      *
      * @return int A value that indicates success, invalid, or failure.
      */
@@ -28,7 +28,7 @@ class Auth extends Console {
     }
 
     /**
-     * Generates js version of the controller.
+     * Generates PHP version of the controller.
      *
      * @return int A value that indicates success, invalid, or failure.
      */
