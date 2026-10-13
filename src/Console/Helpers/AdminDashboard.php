@@ -26,6 +26,21 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of the controller.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeControllerJS(): int {
+        $path = self::CONTROLLER_PATH;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'AdmindashboardController.php',
+            Controllers::jsController(),
+            'AdmindashboardController class'
+        );
+    }
+
     public static function makeAttachmentDetailsViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);

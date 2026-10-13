@@ -29,9 +29,9 @@ class AdminDashboardControllerCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
-        // if($this->getOption('react')) {
-        //     return Home::makeControllerJS();
-        // }
+        if($this->getOption('react')) {
+            return AdminDashboard::makeControllerJS();
+        }
         return AdminDashboard::makeControllerPHP();
     }
 }

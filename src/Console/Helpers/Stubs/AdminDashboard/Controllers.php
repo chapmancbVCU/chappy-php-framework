@@ -7,6 +7,398 @@ namespace Console\Helpers\Stubs\AdminDashboard;
  */
 class Controllers {
     /**
+     * The JS supported version.
+     *
+     * @return string The contents of the controller class.
+     */
+    public static function jsController(): string {
+        return <<<PHP
+<?php
+namespace App\Controllers;
+use Core\Controller;
+use Core\Models\ACL;
+use App\Models\Users;
+use Core\Services\ACLService;
+use Core\Models\ProfileImages;
+use Core\Services\UserService;
+use Core\Models\EmailAttachments;
+use Core\Services\DashboardService;
+use Core\Services\AttachmentService;
+use Core\Lib\Http\JsonResponse;
+use Core\Session;
+use Core\Lib\Utilities\DateTime;
+use Throwable;
+
+/**
+ * Implements support for our Admindashboard controller.
+ */
+class AdmindashboardController extends Controller {
+    use JsonResponse;
+
+    /**
+     * Displays list of attachments.
+     *
+     * @return void
+     */
+    public function attachmentsAction(): void {
+        \$attachments = EmailAttachments::find();
+
+        foreach(\$attachments as \$attachment) {
+            \$attachment->uploadUsername = EmailAttachments::uploadUsername(\$attachment->user_id);
+            \$attachment->formattedBytes = EmailAttachments::formatBytes(\$attachment->size);
+        }
+
+        \$props = ['attachments' => \$attachments];
+        \$this->view->renderJsx(
+            viewComponent:'admindashboard.Attachments', 
+            props: \$props,
+            frameworkLayoutPath: true
+        );
+    }
+
+    /**
+     * Displays details for a particular E-mail attachment.
+     *
+     * @param int \$id Primary key for attachment record.
+     * @return void
+     */
+    public function attachmentDetailsAction(int \$id): void {
+        \$attachment = EmailAttachments::findById((int)\$id);
+
+        \$props = [
+            'attachment' => \$attachment,
+            'createdAt' => DateTime::timeAgo(\$attachment->created_at),
+            'size' => EmailAttachments::formatBytes(\$attachment->size),
+            'updatedAt' => DateTime::timeAgo(\$attachment->updated_at),
+            'uploader' => AttachmentService::attachmentUploader(\$attachment->user_id),
+        ];
+
+        \$this->view->renderJsx('admindashboard.AttachmentDetails', \$props, true);
+    }
+
+    /**
+     * Deletes ACL from acl table.
+     *
+     * @param int \$id The id for the ACL we want to delete.
+     * @return void
+     */
+    public function deleteAclAction(int \$id) {
+        try {
+            if(!\$this->apiCsrfCheck()) {
+                return \$this->jsonError('Corrupted token');
+            }
+            ACLService::deleteIfAllowed(\$id);
+        } catch (Throwable \$e) {
+            return \$this->jsonError('Server error: ' .  \$e, 500);
+        }
+    }
+
+    /**
+     * Performs delete action on a user.
+     *
+     * @param integer \$id The id for the user we want to delete.
+     * @return void
+     */
+    public function deleteAction(int \$id) {
+        try {
+            if(!\$this->apiCsrfCheck()) {
+                return \$this->jsonError('Corrupted token');
+            }
+          
+            UserService::deleteIfAllowed(\$id, false);
+
+            // Respond success and send redirect message.
+            return \$this->jsonRedirect('admindashboard.index');
+        } catch (Throwable \$e) {
+            return \$this->jsonError('Server error: ' .  \$e, 500);
+        } 
+    }
+
+    /**
+     * Deletes an attachment and sets deleted field in table to 1.
+     *
+     * @param int \$id The primary key for the attachment's database 
+     * record.
+     * @return void
+     */
+    public function deleteAttachmentAction(int \$id) {
+        try {
+            if(!\$this->apiCsrfCheck()) {
+                return \$this->jsonError('Corrupted token');
+            }
+            \$attachment = EmailAttachments::findById(\$id);
+            AttachmentService::deleteAttachment(\$attachment);
+        } catch (Throwable \$e) {
+            return \$this->jsonError('Server error: ' .  \$e, 500);
+        }
+    }
+
+    /**
+     * Deletes an image associated with a user's profile.
+     *
+     * @return void
+     */
+    public function deleteImageAction(): void {
+        \$resp = ['success' => false];
+        if(\$this->request->isPost()) {
+            \$resp = UserService::deleteProfileImage(\$this->request);
+        }
+        \$this->jsonResponse(\$resp);
+    }
+
+    /**
+     * Presents information about a particular user's profile.
+     *
+     * @param int \$id The id of the user whose details we want to view.
+     * @return void
+     */
+    public function detailsAction(\$id): void {
+        \$user = Users::findById((int)\$id);
+        DashboardService::checkIfCurrentUser(\$user);
+        \$profileImage = ProfileImages::findCurrentProfileImage(\$user->id);
+        // dd(\$profileImage);/
+        \$this->view->profileImage = \$profileImage;
+        \$this->view->user = \$user;
+        // \$this->view->render('admindashboard.details', true, true);
+
+        \$props = [
+            'createdAt' => DateTime::timeAgo(\$user->created_at),
+            'profileImage' => ProfileImages::findCurrentProfileImage(\$user->id),
+            'updatedAt' => DateTime::timeAgo(\$user->updated_at),
+            'user' => \$user
+        ];
+
+        \$this->view->renderJsx('admindashboard.Details', \$props, true);
+    }
+
+    /**
+     * Supports ability to edit ACLs not assigned to a user through a web form.
+     *
+     * @param int|string \$id The id of the ACL we want to modify.
+     * @return void
+     */
+    public function editAclAction(int|string \$id): void {
+        \$acl = (\$id == 'new') ? new ACL() : ACL::findById((int)\$id);
+        ACLService::checkACL(\$acl);
+    
+        if (\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            if(ACLService::saveACL(\$acl, \$this->request)) {
+                flashMessage(Session::INFO, "ACL record updated.");
+                redirect('admindashboard.manageAcls');
+            }
+        }
+
+        \$props = [
+            'acl' => \$acl,
+            'errors' => \$acl->getErrorMessages(),
+            'id' => \$id
+        ];
+        \$this->view->renderJsx('admindashboard.EditACL', \$props, true);
+    }
+    
+    /**
+     * Supports ability for administrators to edit user profiles.
+     *
+     * @param int \$id The id of the user whose profile we want to modify.
+     * @return void
+     */
+    public function editAction(\$id): void {
+        \$user = Users::findById((int)\$id);
+        DashboardService::checkIfCurrentUser(\$user);
+    
+        \$this->view->user = \$user;
+    
+        // Fetch all available ACLs
+        \$acls = ACL::getOptionsForForm();
+        \$this->view->acls = \$acls;
+    
+        // Decode stored ACL JSON string into an array
+        \$userAcls = ACLService::aclToArray(json_decode(\$user->acl, true));
+        \$profileImages = ProfileImages::findByUserId(\$user->id);
+    
+        if (\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            \$user->assign(\$this->request->get(), Users::blackListedFormKeys);
+    
+            // Handle ACL updates from checkboxes
+            ACLService::updateUserACLs(\$user, \$userAcls, \$acls, \$_POST['acls']);
+            
+            if (\$user->save()) {
+                ProfileImages::updateSortByUserId(\$user->id, json_decode(\$_POST['images_sorted']));
+                redirect('admindashboard.details', [\$user->id]);
+            }
+        }
+
+        \$props = [
+            'acls' => \$acls,
+            'errors' => \$user->getErrorMessages(),
+            'profileImages' => \$profileImages,
+            'user' => \$user,
+            'userAcls' => \$user->getAcls()
+        ];
+
+
+        \$this->view->renderJsx('admindashboard.Edit', \$props, true);
+    }
+
+    /**
+     * Creates or edits the details of an existing E-mail attachment.
+     *
+     * @param int|string \$id The primary key for the record associated with an 
+     * E-mail attachment.
+     * @return void
+     */
+    public function editAttachmentsAction(int|string \$id): void {
+        \$attachment = (\$id == 'new') ? new EmailAttachments() : 
+            EmailAttachments::findById((int)\$id);
+
+        if(\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            AttachmentService::processAttachment(\$attachment, \$this->request);
+            if(\$attachment->validationPassed()) {
+                redirect('admindashboard.attachments');
+            }
+        }
+
+        \$props = [
+            'attachment' => \$attachment,
+            'errors' => \$attachment->getErrorMessages(),
+            'id' => \$id
+        ];
+
+        \$this->view->renderJsx('admindashboard.AttachmentsForm', \$props, true);
+    }
+
+    /** 
+     * The default action for this controller.  It performs rendering of this 
+     * site's admin dashboard page.
+     * 
+     * @return void
+     */
+    public function indexAction(): void {
+        \$list = DashboardService::userList(\$this->request);
+
+        if (\$this->request->isAjax()) {
+            // Vary: the same URL also serves HTML, so caches must keep them apart.
+            \$this->jsonResponse(['success' => true] + \$list, 200, ['Vary' => 'X-Requested-With']);
+            return;
+        }
+
+        \$this->view->setSiteTitle('Administration');
+        \$this->view->renderJsx('admindashboard.Index', \$list + [
+            'aclOptions'    => DashboardService::optionList(ACL::getOptionsForForm()),
+            'statusOptions' => DashboardService::optionList(DashboardService::STATUS_OPTIONS),
+            'widgetsHtml'   => \$this->view->renderWidgets('dashboard.index', \$this->view->widgets ?? []),
+        ], true);
+    }
+
+    /**
+     * Renders view for managing ACLs.
+     *
+     * @return void
+     */
+    public function manageACLsAction(): void {
+        \$props = [
+            'usedAcls' => self::setReadableAclTimestamps(ACLService::usedACLs()),
+            'unUsedAcls' => self::setReadableAclTimestamps(ACLService::unUsedACLs())
+        ];
+        \$this->view->renderJsx('admindashboard.ManageAcls', \$props, true);
+    }
+
+    /**
+     * Runs when the object is constructed.
+     *
+     * @return void
+     */
+    public function onConstruct(): void {
+        \$this->view->setLayout('admin');
+    }
+
+    /**
+     * Previews an attachment
+     *
+     * @param int \$id The primary key for the record of the attachment.
+     * @return void
+     */
+    public function previewAction(int \$id): void {
+        AttachmentService::previewAttachment(\$id);
+    }
+
+    /**
+     * Make ACL timestamps readable for views.
+     *
+     * @param array \$acls The ACLs whose timestamps will be made human readable.
+     * @return array The modified array of ACLS.
+     */
+    private static function setReadableAclTimestamps(array \$acls): array {
+        foreach(\$acls as \$acl) {
+            \$acl->created_at = DateTime::timeAgo(\$acl->created_at);
+            \$acl->updated_at = DateTime::timeAgo(\$acl->updated_at);
+        }
+
+        return \$acls;
+    }
+
+    /**
+     * Support ability to toggle on or off the reset password flag for a 
+     * particular user.
+     *
+     * @param int \$id The id of the user whose reset password flag we want to 
+     * modify.
+     * @return void
+     */
+    public function setResetPasswordAction(\$id): void {
+        \$user = Users::findById((int)\$id);
+        DashboardService::checkIfCurrentUser(\$user);
+
+        if(\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            \$user->reset_password = (\$this->request->get('reset_password') == 'on') ? 1 : 0;
+            if(\$user->save()) {
+                redirect('admindashboard.details', [\$user->id]);
+            }
+        }
+
+        \$props = [
+            'checked' => \$user->isResetPWChecked(),
+            'errors' => \$user->getErrorMessages(),
+            'user' => \$user
+        ];
+        \$this->view->renderJSX('admindashboard.SetResetPassword', \$props, true);
+    }
+
+    /**
+     * Sets active status for a particular user.  The administrator can 
+     * toggle the setting on or off using a web form.
+     *
+     * @param int \$id The id of the user we want to activate or inactivate.
+     * @return void
+     */
+    public function setStatusAction(\$id): void {
+        \$user = Users::findById((int)\$id);
+        DashboardService::checkIfCurrentUser(\$user);
+
+        if(\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            \$user->inactive = (\$this->request->get('inactive') == 'on') ? 1 : 0;
+            if(\$user->save()) {
+                redirect('admindashboard.details', [\$user->id]);
+            }
+        }
+
+        \$props = [
+            'checked' => \$user->isInactiveChecked(),
+            'errors' => \$user->getErrorMessages(),
+            'user' => \$user
+        ];
+        \$this->view->renderJSX('admindashboard.SetAccountStatus', \$props, true);
+    }
+}
+PHP;
+    }
+
+    /**
      * The PHP supported version.
      *
      * @return string The contents of the controller class.
