@@ -30,10 +30,10 @@ class {$modelName} extends Model {
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static \$_table = '{$table}';
+    protected static string \$_table = '{$table}';
 
     // Soft delete
-    // protected static \$_softDelete = true;
+    // protected static bool \$_softDelete = true;
     
     // Fields from your database
 
@@ -88,19 +88,19 @@ class {$modelName} extends Model {
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static \$_table = '{$table}';
+    protected static string \$_table = '{$table}';
 
     // Soft delete
-    // protected static \$_softDelete = true;
+    // protected static bool \$_softDelete = true;
     
     // List your allowed file types.
-    protected static \$allowedFileTypes = [];
+    protected static array \$allowedFileTypes = [];
     
     // Set your max file size.
-    protected static \$maxAllowedFileSize = 5242880;
+    protected static int \$maxAllowedFileSize = 5242880;
 
     // Set your file path.  Include your bucket if necessary.
-    protected static \$_uploadPath = "";
+    protected static string \$_uploadPath = "";
     
     // Fields from your database
 
