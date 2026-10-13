@@ -27,7 +27,7 @@ class AdminDashboard extends Console {
     }
 
     /**
-     * Generates PHP version of the controller.
+     * Generates JS version of the controller.
      *
      * @return int A value that indicates success, invalid, or failure.
      */
@@ -41,6 +41,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of attachment details.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeAttachmentDetailsViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -51,6 +56,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of attachments form.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeAttachmentsFormViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -61,6 +71,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of attachments.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeAttachmentsViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -71,6 +86,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of details.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeDetailsViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -81,6 +101,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of edit acl.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeEditAclViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -91,6 +116,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of edit.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeEditViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -101,6 +131,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of index.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeIndexViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -111,6 +146,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of manage acls.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeManageAclsViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -121,6 +161,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of set account status.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeSetAccountStatusViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
@@ -131,6 +176,11 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of set reset password.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeSetResetPasswordViewPHP(): int {
         $path = self::VIEW_PATH.'admindashboard'.DS;
         Tools::pathExists($path);
