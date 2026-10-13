@@ -11,7 +11,18 @@ use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
  * Factory for generating new profile images.
  */
 class ProfileImageFactory extends Factory {
+    /**
+     * The name of the model
+     *
+     * @var string
+     */
     protected string $modelName = ProfileImages::class;
+
+    /**
+     * The user's id (primary key)
+     *
+     * @var int
+     */
     private int $userId;
 
     /**

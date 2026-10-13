@@ -9,6 +9,11 @@ use Core\Lib\Database\Factory;
  * Factory for creating new user table records.
  */
 class UserFactory extends Factory {
+    /**
+     * The name of the model
+     *
+     * @var string
+     */
     protected string $modelName = Users::class;
 
     /**
