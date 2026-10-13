@@ -131,7 +131,7 @@ class AuthController extends Controller {
      * @param int $id The id of the user whose password we want to reset.
      * @return void
      */
-    public function resetPasswordAction($id): void {
+    public function resetPasswordAction(int $id): void {
         $user = Users::findById((int)$id);
         $user->password = "";
         
