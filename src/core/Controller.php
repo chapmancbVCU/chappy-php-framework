@@ -14,26 +14,26 @@ class Controller extends Application {
      * The name of the current action.
      * @var string
      */
-    protected $_action;
+    protected string $_action;
 
     /**
      * The name of the current controller.
      * @var string
      */
-    protected $_controller;
+    protected string $_controller;
 
     /**
      * Instance of Input class that performs much of our request tasks.
      * @var Input
      */
-    public $request;
+    public Input $request;
 
     /**
      * Instance of view class.
      *
      * @var View
      */
-    public $view;
+    public View $view;
 
     /**
      * Constructor for the parent Controller class.  This constructor gets 
