@@ -10,21 +10,21 @@ use ReflectionClass;
  */
 class Session {
     /** info alert */
-    public const INFO = "info";
+    public const string INFO = "info";
     /** success alert */
-    public const SUCCESS = "success";
+    public const string SUCCESS = "success";
     /** warning alert */
-    public const WARNING = "warning";
+    public const string WARNING = "warning";
     /** danger alert */
-    public const DANGER = "danger";
+    public const string DANGER = "danger";
     /** primary alert */
-    public const PRIMARY = "primary";
+    public const string PRIMARY = "primary";
     /** secondary alert */
-    public const SECONDARY = "secondary";
+    public const string SECONDARY = "secondary";
     /** dark alert */
-    public const DARK = "dark";
+    public const string DARK = "dark";
     /** light alert */
-    public const LIGHT = "light";
+    public const string LIGHT = "light";
 
     /**
      * Adds a session alert message.
