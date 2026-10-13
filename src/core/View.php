@@ -25,7 +25,7 @@ class View extends stdClass {
     /** The body */
     protected $_body;
     /** The content */
-    protected $_content = [];
+    protected array $_content = [];
     /** The content buffer */
     protected $_currentBuffer;
 
@@ -39,11 +39,11 @@ class View extends stdClass {
     /** The head */
     protected $_head;
     /** The layout */
-    protected $_layout;
+    protected string $_layout;
     /** The output buffer */
     protected $_outputBuffer;
     /** The site title */
-    protected $_siteTitle;
+    protected string $_siteTitle;
 
     /**
      * An array of widgets.
