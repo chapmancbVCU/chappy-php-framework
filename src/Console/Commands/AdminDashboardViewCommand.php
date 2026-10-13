@@ -3,6 +3,7 @@ namespace Console\Commands;
 
 use Console\ConsoleCommand;
 use Console\Helpers\AdminDashboard;
+use Console\Helpers\PHPHelper;
 use Console\Helpers\React;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -33,17 +34,6 @@ class AdminDashboardViewCommand extends ConsoleCommand {
         if($this->getOption('react')) {
             return React::adminDashboardComponents();
         }
-        AdminDashboard::makeAttachmentDetailsViewPHP();
-        AdminDashboard::makeAttachmentsFormViewPHP();
-        AdminDashboard::makeAttachmentsViewPHP();
-        AdminDashboard::makeDetailsViewPHP();
-        AdminDashboard::makeEditAclViewPHP();
-        AdminDashboard::makeEditViewPHP();
-        AdminDashboard::makeIndexViewPHP();
-        AdminDashboard::makeManageAclsViewPHP();
-        AdminDashboard::makeSetAccountStatusViewPHP();
-        AdminDashboard::makeSetResetPasswordViewPHP();
-        
-        return self::SUCCESS;
+        return PHPHelper::adminDashboardViews();
     }
 }

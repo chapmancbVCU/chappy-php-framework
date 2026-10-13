@@ -4,6 +4,7 @@ namespace Console\Commands;
 use Console\ConsoleCommand;
 use Console\Helpers\Component;
 use Console\Helpers\Auth;
+use Console\Helpers\PHPHelper;
 use Console\Helpers\React;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -34,12 +35,6 @@ class AuthViewsCommand extends ConsoleCommand {
         if($this->getOption('react')) {
             return React::authComponents();
         }
-        
-        Auth::makeLoginViewPHP();
-        Auth::makeRegisterViewPHP();
-        Auth::makeResetPasswordViewPHP();
-        Component::makeProfileDetailsComponent();
-        
-        return self::SUCCESS;
+        return PHPHelper::authViews();
     }
 }

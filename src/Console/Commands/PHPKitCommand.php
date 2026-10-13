@@ -8,6 +8,7 @@ use Console\Helpers\{
     Auth,
     Component,
     Home,
+    PHPHelper,
     Profile
 };
 
@@ -38,28 +39,10 @@ class PHPKitCommand extends ConsoleCommand {
         Auth::makeControllerPHP();
         Home::makeControllerPHP();
         Profile::makeControllerPHP();
-
-        AdminDashboard::makeAttachmentDetailsViewPHP();
-        AdminDashboard::makeAttachmentsFormViewPHP();
-        AdminDashboard::makeAttachmentsViewPHP();
-        AdminDashboard::makeDetailsViewPHP();
-        AdminDashboard::makeEditAclViewPHP();
-        AdminDashboard::makeEditViewPHP();
-        AdminDashboard::makeIndexViewPHP();
-        AdminDashboard::makeManageAclsViewPHP();
-        AdminDashboard::makeSetAccountStatusViewPHP();
-        AdminDashboard::makeSetResetPasswordViewPHP();
-
-        Auth::makeLoginViewPHP();
-        Auth::makeRegisterViewPHP();
-        Auth::makeResetPasswordViewPHP();
-
+        PHPHelper::adminDashboardViews();
+        PHPHelper::authViews();
         Home::makeHomeViewPHP();
-
-        Profile::makeIndexPHP();
-        Profile::makeEditPHP();
-        Profile::makeUpdatePasswordPHP();
-
+        PHPHelper::profileViews();
         Component::makeProfileDetailsComponent();
         return self::SUCCESS;
     }
