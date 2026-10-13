@@ -2,8 +2,7 @@
 
 <!-- Head content between these two function calls.  Remove if not needed. -->
 <?php $this->start('head'); ?>
-<script src="<?=env('APP_DOMAIN', '/')?>vendor/tinymce/tinymce/tinymce.min.js?v=<?=config('config.version')?>"></script>
-<script src='<?=env('APP_DOMAIN', '/')?>vendor/chappy-php/chappy-php-framework/src/React/utils/phpTinyMCE.js'></script>
+<?= loadTinyMCE() ?>
 <?php $this->end(); ?>
 
 

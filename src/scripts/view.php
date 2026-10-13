@@ -67,9 +67,9 @@ if(!function_exists('resources')) {
      */
     function resources(): string {
         $html = '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">';
-        $html .= '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'vendor/chappy-php/chappy-php-framework/css/alerts/alertMsg.min.css?v='.config('config.version').'" media="screen" title="no title" charset="utf-8">';
+        $html .= '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'vendor/chappy-php/chappy-php-framework/src/css/alerts/alertMsg.min.css?v='.config('config.version').'" media="screen" title="no title" charset="utf-8">';
         $html .= '<link rel="stylesheet" href="'.env('APP_DOMAIN', '/').'node_modules/@fortawesome/fontawesome-free/css/all.min.css" media="screen" title="no title" charset="utf-8">';
-        $html .= '<script src="'.env('APP_DOMAIN', '/').'vendor/chappy-php/chappy-php-framework/js/alerts/alertMsg.min.js?v='.config('config.version').'"></script>';
+        $html .= '<script src="'.env('APP_DOMAIN', '/').'vendor/chappy-php/chappy-php-framework/src/js/alerts/alertMsg.min.js?v='.config('config.version').'"></script>';
         return $html;
     }
 }
@@ -81,7 +81,7 @@ if(!function_exists('profileImageSort')) {
      * @return string The scripts needed to sort profile images.
      */
     function profileImageSort(): string {
-        $html = "<link rel=\"stylesheet\" href=\"".env('APP_DOMAIN', '/')."vendor/chappy-php/chappy-php-framework/css/profileImage.css?v=".config('config.version')."\" media=\"screen\" title=\"no title\" charset=\"utf-8\">";
+        $html = "<link rel=\"stylesheet\" href=\"".env('APP_DOMAIN', '/')."vendor/chappy-php/chappy-php-framework/src/css/profileImage.css?v=".config('config.version')."\" media=\"screen\" title=\"no title\" charset=\"utf-8\">";
         $html .= "<script src='".env('APP_DOMAIN', '/')."node_modules/jquery/dist/jquery.min.js'></script>";
         $html .= "<script type='text/javascript' src='".env('APP_DOMAIN', '/')."node_modules/jquery-ui/dist/jquery-ui.min.js'></script>";
         $html .= "<script type='text/javascript' src='".env('APP_DOMAIN', '/')."node_modules/jquery-ui/ui/widgets/sortable.js'></script>";
