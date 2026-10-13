@@ -6,6 +6,11 @@ namespace Console\Helpers\Stubs\AdminDashboard;
  * Contains stubs for admin dashboard.
  */
 class Views {
+    /**
+     * Generates the React.js version of the attachment details view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeAttachmentDetailsJS(): string {
         return <<<JSX
 import React from "react";
@@ -57,6 +62,11 @@ export default AttachmentDetails;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the attachment details view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeAttachmentDetailsPHP(): string {
         return <<<PHP
 <?php use Core\Models\EmailAttachments; ?>
@@ -97,6 +107,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the attachments form view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeAttachmentsFormJS(): string {
         return <<<JSX
 import React from "react";
@@ -163,6 +178,11 @@ export default AttachmentsForm;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the attachments form view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeAttachmentsFormPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle(\$this->header); ?>
@@ -214,6 +234,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the attachments view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeAttachmentsJS(): string {
         return <<<JSX
 import React, { useState } from "react";
@@ -298,6 +323,11 @@ export default Attachments;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the attachments view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeAttachmentsPHP(): string {
         return <<<PHP
 <?php use Core\Models\EmailAttachments; ?>
@@ -356,6 +386,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the details view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeDetailsJS(): string {
         return <<<JSX
 import React, { useState } from "react";
@@ -499,6 +534,11 @@ export default Details;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the details view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeDetailsPHP(): string {
         return <<<PHP
 <?php
@@ -600,6 +640,11 @@ use Core\Lib\Utilities\DateTime; ?>
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the edit acl view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeEditAclJS(): string {
         return <<<JSX
 import { CSRFInput, documentTitle, route, SubmitTag, Text } from "@chappy/utils";
@@ -649,6 +694,11 @@ export default EditACL;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the edit acl view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeEditAclPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle(\$this->header); ?>
@@ -673,6 +723,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the edit view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeEditJS(): string {
         return <<<JSX
 import React from "react";
@@ -754,6 +809,11 @@ export default Edit;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the edit view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeEditPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle("Edit Details for ".\$this->user->username); ?>
@@ -808,6 +868,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the index view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeIndexJS(): string {
         return <<<JSX
 import React, { useEffect, useState } from 'react';
@@ -976,6 +1041,11 @@ export default function Index({
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the index view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeIndexPHP(): string {
         return <<<PHP
 <?php use Core\Lib\Utilities\DateTime; ?>
@@ -1091,6 +1161,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the manage acls view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeManageAclsJS(): string {
         return <<<JSX
 import React, { useState } from "react";
@@ -1187,6 +1262,11 @@ export default ManageAcls;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the manage acls view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeManageAclsPHP(): string {
         return <<<PHP
 <?php use Core\Lib\Utilities\DateTime; ?>
@@ -1259,6 +1339,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the set account status view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeSetAccountStatusJS(): string { 
         return <<<JSX
 import React from "react";
@@ -1306,6 +1391,11 @@ export default SetAccountStatus;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the set account status view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeSetAccountStatusPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle("Set Status for ".\$this->user->username); ?>
@@ -1329,6 +1419,11 @@ JSX;
 PHP;
     }
 
+    /**
+     * Generates the React.js version of the set reset password view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeSetResetPasswordJS(): string {
         return <<<JSX
 import React from "react";
@@ -1377,6 +1472,11 @@ export default SetResetPassword;
 JSX;
     }
 
+    /**
+     * Generates the PHP version of the set reset password view.
+     *
+     * @return string The view's contents.
+     */
     public static function makeSetResetPasswordPHP(): string {
         return <<<PHP
 <?php \$this->setSiteTitle("Reset Password for ".\$this->user->username); ?>
