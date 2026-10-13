@@ -4,6 +4,7 @@ namespace Console\Commands;
 use Console\ConsoleCommand;
 
 use Console\Helpers\{
+    AdminDashboard,
     Auth,
     React,
     Home,
@@ -33,13 +34,14 @@ class ReactKitCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        AdminDashboard::makeControllerJS();
         Auth::makeControllerJS();
         Home::makeControllerJS();
         Profile::makeControllerJS();
+        React::adminDashboardComponents();
         React::authComponents();
         React::homeComponent();
         React::profileComponents();
-        React::adminDashboardComponents();
         return self::SUCCESS;
     }
 }
