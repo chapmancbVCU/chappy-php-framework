@@ -1544,7 +1544,7 @@ export const Interval = ({
     errors=[]
 }) => {
     if(typeof min === 'number' && typeof max === 'number' && min > max) {
-         console.error("Forms.DataListInterval: min cannot be greater than max")
+         console.error("Forms.Interval: min cannot be greater than max")
     }
 
     inputAttrs.min = min;
