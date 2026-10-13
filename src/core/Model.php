@@ -24,7 +24,7 @@ class Model {
      * The instance of the DB class.
      * @var DB
      */
-    protected static $_db;
+    protected static ?DB $_db = null;
     
     /**
      * The current id.
