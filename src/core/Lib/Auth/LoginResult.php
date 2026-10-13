@@ -13,15 +13,15 @@ use Core\Lib\Contracts\Principal;
  */
 final class LoginResult {
     /** Credentials were valid and the user was logged in. */
-    public const SUCCESS = 'success';
+    public const string SUCCESS = 'success';
     /** Credentials were valid but the account is flagged for password reset. */
-    public const NEEDS_RESET = 'needs_reset';
+    public const string NEEDS_RESET = 'needs_reset';
     /** Credentials were valid but the account is inactive. */
-    public const INACTIVE = 'inactive';
+    public const string INACTIVE = 'inactive';
     /** Credentials were invalid and the account is now locked. */
-    public const LOCKED = 'locked';
+    public const string LOCKED = 'locked';
     /** Credentials were invalid (wrong password or unknown user). */
-    public const INVALID = 'invalid';
+    public const string INVALID = 'invalid';
 
     /**
      * @param string $status One of the status constants above.
