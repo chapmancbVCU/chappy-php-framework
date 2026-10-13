@@ -11,13 +11,13 @@ final class Login extends Model {
      *
      * @var string
      */
-    public string $password;
+    public ?string $password = null;
 
     /**
      * Indicates if remember_me was selected. 
      * @var string
      */
-    public string $remember_me;
+    public ?string $remember_me = null;
 
     /**
      * Placeholder table name.
@@ -29,7 +29,7 @@ final class Login extends Model {
      * Username of authenticating user.
      * @var string
      */
-    public string $username;
+    public ?string $username = null;
 
     /**
      * Returns result for remember me checkbox so user stays logged in if it's

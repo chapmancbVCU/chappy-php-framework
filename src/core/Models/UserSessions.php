@@ -20,7 +20,7 @@ final class UserSessions extends Model {
      * The session.
      * @var string
      */
-    public $session;
+    public string $session;
 
     /**
      * The name of the table.
@@ -33,14 +33,14 @@ final class UserSessions extends Model {
      *
      * @var string
      */
-    public $user_agent;
+    public string $user_agent;
 
     /**
      * ID of user associated with this session.
      *
      * @var int
      */
-    public $user_id;
+    public int $user_id;
 
     /**
      * Called before save.
