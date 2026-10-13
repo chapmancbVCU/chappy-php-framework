@@ -96,7 +96,7 @@ class AdmindashboardController extends Controller {
     /**
      * Performs delete action on a user.
      *
-     * @param integer \$id The id for the user we want to delete.
+     * @param int \$id The id for the user we want to delete.
      * @return void
      */
     public function deleteAction(int \$id) {
