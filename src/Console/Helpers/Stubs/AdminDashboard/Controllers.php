@@ -152,7 +152,7 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the user whose details we want to view.
      * @return void
      */
-    public function detailsAction(\$id): void {
+    public function detailsAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
@@ -198,7 +198,7 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the user whose profile we want to modify.
      * @return void
      */
-    public function editAction(\$id): void {
+    public function editAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
     
@@ -339,7 +339,7 @@ class AdmindashboardController extends Controller {
      * modify.
      * @return void
      */
-    public function setResetPasswordAction(\$id): void {
+    public function setResetPasswordAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
@@ -366,7 +366,7 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the user we want to activate or inactivate.
      * @return void
      */
-    public function setStatusAction(\$id): void {
+    public function setStatusAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
@@ -500,7 +500,7 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the user whose details we want to view.
      * @return void
      */
-    public function detailsAction(\$id): void {
+    public function detailsAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
         \$profileImage = ProfileImages::findCurrentProfileImage(\$user->id);
@@ -540,7 +540,7 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the user whose profile we want to modify.
      * @return void
      */
-    public function editAction(\$id): void {
+    public function editAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
     
@@ -658,7 +658,7 @@ class AdmindashboardController extends Controller {
      * modify.
      * @return void
      */
-    public function setResetPasswordAction(\$id): void {
+    public function setResetPasswordAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
@@ -683,7 +683,7 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the user we want to activate or inactivate.
      * @return void
      */
-    public function setStatusAction(\$id): void {
+    public function setStatusAction(int \$id): void {
         \$user = Users::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
