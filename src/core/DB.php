@@ -18,55 +18,55 @@ class DB {
      * Number of items returned.
      * @var int
      */
-    private $_count = 0;
+    private int $_count = 0;
 
     /**
      * The database driver.
      * @var string
      */
-    private $_dbDriver;
+    private string $_dbDriver;
 
     /**
      * Error status.
      * @var bool
      */
-    private $_error = false;
+    private bool $_error = false;
 
     /**
      * The fetch style.
      * @var int
      */
-    private $_fetchStyle = PDO::FETCH_OBJ;
+    private int $_fetchStyle = PDO::FETCH_OBJ;
 
     /**
      * Instance of this class.
      * @var DB
      */
-    private static $_instance = null;
+    private static ?DB $_instance = null;
 
     /**
      * Id of last item inserted into database.
-     * @var int
+     * @var string
      */
-    private $_lastInsertID = null;
+    private ?string $_lastInsertID = null;
 
     /**
      * The PDO object.
      * @var PDO
      */
-    private $_pdo;
+    private PDO $_pdo;
 
     /**
      * The query.
      * @var mixed
      */
-    private $_query;
+    private mixed $_query;
 
     /**
      * The result.
      * @var mixed
      */
-    private $_result;
+    private mixed $_result;
     
     /**
      * This constructor creates a new PDO object as an instance variable.  If 
