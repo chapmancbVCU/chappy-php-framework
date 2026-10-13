@@ -2,9 +2,7 @@
 namespace Console\Commands;
 
 use Console\ConsoleCommand;
-use Console\Helpers\Component;
 use Console\Helpers\PHPHelper;
-use Console\Helpers\Profile;
 use Console\Helpers\React;
 use Symfony\Component\Console\Input\InputOption;
 
