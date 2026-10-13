@@ -54,7 +54,7 @@ if(!function_exists('loadTinyMCE')) {
      */
     function loadTinyMCE(): string {
         $html = "<script src=\"".env('APP_DOMAIN', '/')."vendor/tinymce/tinymce/tinymce.min.js?v=".config('config.version')."\"></script>";
-        $html .= "<script src='".env('APP_DOMAIN', '/')."vendor/chappy-php/chappy-php-framework/src/React/utils/phpTinyMCE.js'></script>";
+        $html .= "<script src='".env('APP_DOMAIN', '/')."vendor/chappy-php/chappy-php-framework/src/js/phpTinyMCE.js'></script>";
         return $html;
     }
 }
