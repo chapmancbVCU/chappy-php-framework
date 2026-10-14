@@ -76,7 +76,7 @@ final class DatabaseChannel implements Channel {
 
         try {
             $record = new Notifications();
-            $record->id = Uuid::uuid4()->toString();
+            $record->id = (int)Uuid::uuid4()->toString();
             $record->type = get_class($notification);
             $record->notifiable_type = get_class($notifiable);
             $record->notifiable_id = $notifiable->id;
