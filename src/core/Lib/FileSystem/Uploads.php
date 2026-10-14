@@ -135,7 +135,7 @@ class Uploads {
      * @param string $originalFilename The original filename (used to extract the extension).
      * @return string A unique, safely generated filename with the original extension.
      */
-    public function generateUploadFilename($originalFilename): string {
+    public function generateUploadFilename(string $originalFilename): string {
         // Generate extension and fallback if no extension
         $extension = pathinfo($originalFilename, PATHINFO_EXTENSION) ?: 'bin';
 
@@ -200,7 +200,7 @@ class Uploads {
 
         // Run validation and report if any errors.
         $uploadInstance->runValidation();
-        $uploadInstance->errorReporting($uploadInstance->validates(), $model, $name);
+        $uploadInstance->errorReporting($uploadInstance->validates(), $model);
 
         return $uploadInstance;
     }
@@ -280,7 +280,7 @@ class Uploads {
      * @param string $fileName The temporary file name.
      * @return void
      */
-    public function upload($path, $uploadName, $fileName): void {
+    public function upload(string $path, string $uploadName, string $fileName): void {
         info("Attempting to upload file: $uploadName | Path: $path");
         if (!file_exists($path)) {
             mkdir($path);
