@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 namespace Console\Commands;
 
 use Console\ConsoleCommand;
-use Console\Helpers\Migrate;
 use Console\Helpers\MigrationBuilder;
 use Symfony\Component\Console\Input\InputOption;
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Console\Commands;
 
 use Console\Console;
