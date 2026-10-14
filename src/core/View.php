@@ -22,12 +22,10 @@ class View extends stdClass {
     /** The app widget path */
     private const APP_WIDGET_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'widgets'.DS;
 
-    /** The body */
-    protected $_body;
     /** The content */
     protected array $_content = [];
     /** The content buffer */
-    protected $_currentBuffer;
+    protected ?string $_currentBuffer = null;
 
     /** The framework component path */
     private const FRAMEWORK_COMPONENT_PATH = CHAPPY_ROOT.DS.'views'.DS.'components'.DS;
@@ -36,12 +34,9 @@ class View extends stdClass {
     /** The framework view path */
     private const FRAMEWORK_VIEW_PATH = CHAPPY_ROOT.DS.'views'.DS;
 
-    /** The head */
-    protected $_head;
     /** The layout */
     protected string $_layout;
-    /** The output buffer */
-    protected $_outputBuffer;
+
     /** The site title */
     protected string $_siteTitle;
 
