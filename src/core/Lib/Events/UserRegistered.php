@@ -13,18 +13,18 @@ class UserRegistered {
      * User associated with event.
      * @var Users
      */
-    public $user;
+    public Users $user;
 
     /**
      * Flag to control if an email should be sent.
      * @var bool
      */
-    public $shouldSendEmail;
+    public bool $shouldSendEmail;
     
     /**
      * Constructor
      *
-     * @param User $user User associated with event.
+     * @param Users $user User associated with event.
      * @param bool $shouldSendEmail Flag to determine if E-mail should be 
      * sent.  Set default value to false.
      */

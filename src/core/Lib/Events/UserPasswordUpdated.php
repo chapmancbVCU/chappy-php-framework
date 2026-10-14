@@ -17,7 +17,7 @@ class UserPasswordUpdated {
     /**
      * Constructor
      *
-     * @param User $user User associated with event.
+     * @param Users $user User associated with event.
      */
     public function __construct(Users $user) {
         $this->user = $user;
