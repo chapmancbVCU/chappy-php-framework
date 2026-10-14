@@ -306,7 +306,7 @@ class Model {
      * @param array $params The query parameters such as columns, joins, conditions, bind, order, limit, etc.
      * @return array|bool An array of result objects if found, or false/empty array if no results.
      */
-    public static function findByTable($table, array $params = []): array|bool {
+    public static function findByTable(string $table, array $params = []): array|bool {
         $params = static::_fetchStyleParams($params);
         $params = static::_softDeleteParams($params);
         $resultsQuery = static::getDb()->find($table, $params, static::class);

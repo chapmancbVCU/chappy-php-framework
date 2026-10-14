@@ -311,7 +311,7 @@ class DB {
      * @return array An array of objects where each one represents a column 
      * from a database table.
      */
-    public function getColumns($table): array {
+    public function getColumns(string $table): array {
         $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         if ($dbDriver === 'sqlite') {
@@ -352,7 +352,7 @@ class DB {
      * @return string|null The properly formatted column if DB driver 
      * is properly set or detected.  Otherwise, we return null.
      */
-    public static function groupByColumn($column): string|null {
+    public static function groupByColumn(string $column): string|null {
         $dbDriver = DB::getInstance()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
         if($dbDriver) {
             return ($dbDriver === 'mysql' || $dbDriver === 'mariadb') ? 
