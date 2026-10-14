@@ -322,10 +322,10 @@ use Core\Lib\Notifications\Notification;
  * {$notificationName} notification.
  */
 class {$notificationName} extends Notification {
-    protected \$user;
+    protected Users \$user;
 
     /**
-     * Undocumented function
+     * Constructor
      *
      * @param Users \$user
      */
