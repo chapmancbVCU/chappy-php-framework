@@ -45,9 +45,9 @@ class Uploads {
     protected int $_maxAllowedSize;
 
     /** Constant for specifying multiple file upload. */
-    const MULTIPLE = 'multiple';
+    const string MULTIPLE = 'multiple';
     /** Constant for specifying single file upload. */
-    const SINGLE = 'single';
+    const string SINGLE = 'single';
 
     /**
      * Message describing maximum allowable size.
