@@ -4,8 +4,9 @@ namespace Console\Commands;
 
 use Console\ConsoleCommand;
 use Console\Helpers\DevTools;
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Input\InputOption;
-
+use Symfony\Component\Console\Command\Command;
 /**
  * Generates composer toggle scripts.
  */
@@ -30,6 +31,10 @@ class ComposerToggle extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        if(Tools::isProduction()) {
+            console_alert("Cannot deploy this tool in a production environment");
+            return Command::SUCCESS;
+        }
         return DevTools::deployComposerToggle();
     }
 }
