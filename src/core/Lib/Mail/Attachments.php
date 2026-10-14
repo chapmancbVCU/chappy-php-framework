@@ -14,7 +14,7 @@ class Attachments {
     /**
      * Array of supported mime types as uploads.
      */
-    public const MIME_TYPES = [
+    public const array MIME_TYPES = [
         '7z'   => 'application/x-7z-compressed',
         'ai'   => 'application/postscript',
         'psd'  => 'image/vnd.adobe.photoshop',
