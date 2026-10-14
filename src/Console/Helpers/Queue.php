@@ -82,7 +82,7 @@ class Queue extends Console {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function queueMigration(): int {
-        $fileName = "MDT".Migrate::fileNameTime()."CreateQueueTable";
+        $fileName = "MDT".MigrationBuilder::fileNameTime()."CreateQueueTable";
         return Tools::writeFile(
             Migrate::MIGRATIONS_PATH.$fileName.'.php',
             QueueStubs::queueTemplate($fileName),

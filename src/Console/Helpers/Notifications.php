@@ -291,7 +291,7 @@ PHP;
      * @return int A Tools::writeFile status code.
      */
     public static function notificationsMigration(): int {
-        $fileName = "MDT".Migrate::fileNameTime()."CreateNotificationTable";
+        $fileName = "MDT".MigrationBuilder::fileNameTime()."CreateNotificationTable";
         return Tools::writeFile(
             Migrate::MIGRATIONS_PATH.$fileName.'.php',
             self::migrationTemplate($fileName),
