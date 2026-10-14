@@ -14,6 +14,7 @@ class Controllers {
     public static function jsController(): string {
         return <<<PHP
 <?php
+declare(strict_types=1);
 namespace App\Controllers;
 use Core\Controller;
 use Core\Models\ACL;
@@ -397,6 +398,7 @@ PHP;
     public static function phpController(): string {
         return <<<PHP
 <?php
+declare(strict_types=1);
 namespace App\Controllers;
 use Core\Controller;
 use Core\Models\ACL;
