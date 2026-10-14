@@ -17,19 +17,25 @@ use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
  */
 class MailerService {
     /** Path to framework's layouts. */
-    public const FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    public const string FRAMEWORK_LAYOUT_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'layouts'.DS;
     /** Path to framework's templates. */
-    public const FRAMEWORK_TEMPLATE_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
+    public const string FRAMEWORK_TEMPLATE_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS;
     /** Path to framework styles. */
-    public const FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
+    public const string FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
     /** Path to user defined layouts. */
-    public const LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
-    /** Mailer object. */
+    public const string LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
+    
+    /**
+     * The mailer object
+     *
+     * @var Mailer
+     */
     protected Mailer $mailer;
+    
     /** Path to user defined styles. */
-    public const STYLES_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
+    public const string STYLES_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
     /** Path to user defined templates. */
-    public const TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
+    public const string TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
     
     /**
      * Creates a new mailer.
