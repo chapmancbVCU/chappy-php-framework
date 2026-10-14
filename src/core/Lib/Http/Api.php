@@ -58,7 +58,7 @@ class Api {
     /**
      * Root cache directory for the application.
      */
-    private const CACHE_DIRECTORY = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'cache';
+    private const string CACHE_DIRECTORY = CHAPPY_BASE_PATH . DS . 'storage' . DS . 'cache';
 
     /**
      * Constructor for Api object.
