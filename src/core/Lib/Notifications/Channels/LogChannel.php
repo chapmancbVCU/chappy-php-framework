@@ -149,13 +149,14 @@ final class LogChannel implements Channel {
      *
      * @return string|null A normalized message string or null if no message key exists.
      */
-    private static function payloadMessage(array $payloadArr): string {
+    private static function payloadMessage(array $payloadArr): string|null {
         if(array_key_exists('message', $payloadArr)) {
-            $payloadMessage = is_string($payloadArr['message'])
-            ? $payloadArr['message']
-            : json_encode($payloadArr['message'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            return is_string($payloadArr['message'])
+                ? $payloadArr['message']
+                : json_encode($payloadArr['message'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
         }
-        return $payloadMessage;
+        return null;
     }
 
     /**
