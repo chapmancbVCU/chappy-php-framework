@@ -30,7 +30,7 @@ class Logger {
     /**
      * Associative array of levels mapped to integers based on severity.
      */
-    private const LEVELS = [
+    private const array LEVELS = [
         self::EMERGENCY => 600,
         self::ALERT     => 550,
         self::CRITICAL  => 500,
