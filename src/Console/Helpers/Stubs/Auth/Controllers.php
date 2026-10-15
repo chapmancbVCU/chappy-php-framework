@@ -105,15 +105,6 @@ class AuthController extends Controller {
     }
 
     /**
-     * Runs when the object is constructed.
-     *
-     * @return void
-     */
-    public function onConstruct(): void {
-        \$this->view->setLayout('default');
-    }
-
-    /**
      * Manages actions related to user registration.
      *
      * @return void
@@ -266,15 +257,6 @@ class AuthController extends Controller {
         \$this->request->csrfCheck();
         AuthService::logout();
         redirect('auth.login');
-    }
-
-    /**
-     * Runs when the object is constructed.
-     *
-     * @return void
-     */
-    public function onConstruct(): void {
-        \$this->view->setLayout('default');
     }
 
     /**

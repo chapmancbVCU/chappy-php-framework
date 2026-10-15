@@ -90,15 +90,6 @@ class ProfileController extends Controller {
         ];
         \$this->view->renderJSX('profile.Index');
     }
-
-    /**
-     * Runs when the object is constructed.
-     *
-     * @return void
-     */
-    public function onConstruct(): void {
-        \$this->view->setLayout('default');
-    }
     
     /**
      * Renders change password page for current logged in user.
@@ -208,15 +199,6 @@ class ProfileController extends Controller {
         \$this->view->profileImages = \$profileImages;
         \$this->view->user = \$user;
         \$this->view->render('profile.index');
-    }
-
-    /**
-     * Runs when the object is constructed.
-     *
-     * @return void
-     */
-    public function onConstruct(): void {
-        \$this->view->setLayout('default');
     }
     
     /**
