@@ -487,9 +487,9 @@ class AdmindashboardController extends Controller {
      *
      * @return void
      */
-    public function deleteImageAction(): void {
+    function deleteImageAction(): void {
         \$resp = ['success' => false];
-        if(\$this->request->isPost()) {
+        if(\$this->request->isPost() && \$this->request->csrfCheck()) {
             \$resp = UserService::deleteProfileImage(\$this->request);
         }
         \$this->jsonResponse(\$resp);

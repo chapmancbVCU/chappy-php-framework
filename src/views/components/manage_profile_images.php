@@ -18,20 +18,23 @@
     var APP_DOMAIN = "<?= rtrim(env('APP_DOMAIN', '/'), '/') ?>";
     
     function deleteImage(image_id) {
-        if(confirm("Are you sure? This cannot be undone!")) {
-            jQuery.ajax({
-                url : APP_DOMAIN + "/profile/deleteImage",
-                method: "POST",
-                data : {image_id : image_id},
-                success: function(resp) {
-                    if(resp.success) {
-                        jQuery('#image_'+resp.model_id).remove();
-                        updateSort();
-                        alertMsg('Image Deleted.');
-                    }
-                } 
-            });
-        }
+        if (!confirm("Are you sure? This cannot be undone!")) return;
+
+        jQuery.ajax({
+            url: APP_DOMAIN + "/profile/deleteImage",
+            method: "POST",
+            data: {
+                image_id: image_id,
+                csrf_token: jQuery('input[name="csrf_token"]').val()
+            },
+            success: function(resp) {
+                if (resp.success) {
+                    jQuery('#image_' + resp.model_id).remove();
+                    updateSort();
+                    alertMsg('Image Deleted.');
+                }
+            }
+        });
     }
 
     jQuery('document').ready(function(){
