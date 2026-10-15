@@ -14,8 +14,7 @@ class Views {
     public static function makeEditJS(): string {
         return <<<'JSX'
 import React from "react";
-import ProfileImageSorter from '@/components/ProfileImageSorter';
-import { documentTitle, route } from '@chappy/utils';
+import { documentTitle, ProfileImageSorter, route } from '@chappy/utils';
 import * as Forms from '@chappy/components/Forms'
 
 /**
