@@ -19,9 +19,9 @@ class Notifications extends Model {
 
     /** 
      * Notification data. 
-     * @var string
+     * @var string|false
      */
-    public string $data;
+    public string|false $data;
 
     /**
      * The id for this notification.
@@ -33,13 +33,13 @@ class Notifications extends Model {
      * Notification type.
      * @var string
      */
-    public string $notifiable_type;
+    public ?string $notifiable_type = null;
 
     /**
      * Id of user to be notified.
      * @var int
      */
-    public $notifiable_id;
+    public int $notifiable_id;
 
     /**
      * Read at flag.
@@ -52,7 +52,7 @@ class Notifications extends Model {
      *
      * @var string
      */
-    public string $type;
+    public ?string $type = null;
 
     /**
      * Implementation of beforeSave from base class.
