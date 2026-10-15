@@ -37,7 +37,8 @@ class ServeDocsCommand extends ConsoleCommand {
         $port = $this->getOption('port');
         $message = "Enter value for an unused port";
         if($port) {
-            Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required', "isPortUsed:$host"], true);
+            $portAsString = (string)$port;
+            Console::argOptionValidate($portAsString, $message, $this->question(), ['integer', 'required', "isPortUsed:$host"], true);
         }
 
         // Define the Doctum documentation directory
