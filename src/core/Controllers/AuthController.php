@@ -87,7 +87,7 @@ class AuthController extends Controller {
     }
 
     /**
-     * Runs when the object is constructed.
+     * Internal version of this controller uses internal layout.
      *
      * @return void
      */

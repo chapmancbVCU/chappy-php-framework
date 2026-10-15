@@ -20,6 +20,11 @@ class HomeController extends Controller {
         $this->view->render('home.index', true, true);
     }
 
+    /**
+     * Internal version of this controller uses internal layout.
+     *
+     * @return void
+     */
     public function onConstruct(): void {
         $this->view->setLayout('internal');
     }

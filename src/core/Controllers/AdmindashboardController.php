@@ -53,7 +53,7 @@ class AdmindashboardController extends Controller {
     public function deleteAclAction(): void {
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            ACLService::deleteIfAllowed($this->request->get('id'));
+            ACLService::deleteIfAllowed((int)$this->request->get('id'));
         }
         redirect('admindashboard.manageAcls');
     }
