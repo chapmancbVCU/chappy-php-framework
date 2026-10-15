@@ -6,6 +6,7 @@ use Console\ConsoleCommand;
 use Console\Helpers\AdminDashboard;
 use Console\Helpers\PHPHelper;
 use Console\Helpers\React;
+use Console\Helpers\View;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -32,6 +33,8 @@ class AdminDashboardCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        View::makeMenu('admin');
+        View::makeLayout('admin', 'admin');
         if($this->getOption('react')) {
             AdminDashboard::makeControllerJS();
             return React::adminDashboardComponents();

@@ -9,7 +9,8 @@ use Console\Helpers\{
     Auth,
     React,
     Home,
-    Profile
+    Profile,
+    View
 };
 
 /**
@@ -35,6 +36,8 @@ class ReactKitCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        View::makeMenu('admin');
+        View::makeLayout('admin', 'admin');
         AdminDashboard::makeControllerJS();
         Auth::makeControllerJS();
         Home::makeControllerJS();

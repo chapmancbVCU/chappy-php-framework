@@ -10,7 +10,8 @@ use Console\Helpers\{
     Component,
     Home,
     PHPHelper,
-    Profile
+    Profile,
+    View
 };
 
 /**
@@ -36,6 +37,8 @@ class PHPKitCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        View::makeMenu('admin');
+        View::makeLayout('admin', 'admin');
         AdminDashboard::makeControllerPHP();
         Auth::makeControllerPHP();
         Home::makeControllerPHP();
