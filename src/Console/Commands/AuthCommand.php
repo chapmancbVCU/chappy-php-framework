@@ -6,6 +6,7 @@ use Console\ConsoleCommand;
 use Console\Helpers\Auth;
 use Console\Helpers\PHPHelper;
 use Console\Helpers\React;
+use Console\Helpers\View;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -32,6 +33,8 @@ class AuthCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        View::makeMenu('main');
+        View::makeLayout('default');
         if($this->getOption('react')) {
             Auth::makeControllerJS();
             return React::authComponents();

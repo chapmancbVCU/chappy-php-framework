@@ -6,6 +6,7 @@ use Console\ConsoleCommand;
 use Console\Helpers\PHPHelper;
 use Console\Helpers\Profile;
 use Console\Helpers\React;
+use Console\Helpers\View;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -32,6 +33,8 @@ class ProfileCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        View::makeMenu('main');
+        View::makeLayout('default');
         if($this->getOption('react')) {
             Profile::makeControllerJS();
             return React::profileComponents();

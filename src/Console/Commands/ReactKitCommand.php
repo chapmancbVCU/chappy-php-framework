@@ -36,6 +36,8 @@ class ReactKitCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
+        View::makeMenu('main');
+        View::makeLayout('default');
         View::makeMenu('admin');
         View::makeLayout('admin', 'admin');
         AdminDashboard::makeControllerJS();
