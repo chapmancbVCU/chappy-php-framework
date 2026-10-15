@@ -34,7 +34,7 @@ class ServeDocsCommand extends ConsoleCommand {
             Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
         }
 
-        $port = (string)$this->getOption('port');
+        $port = (string)$this->getOption('port') ?: 8001;
         if($port) {
             $message = "Enter value for an unused port";
             Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required', "isPortUsed:$host"], true);
