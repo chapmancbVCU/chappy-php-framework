@@ -30,16 +30,15 @@ class ServeUserGuideCommand extends ConsoleCommand {
     protected function handle(): int
     {
         $host = $this->getOption('host') ?: '127.0.0.1';
-        $message = "Enter name/IP Address for host";
         if($host) {
+            $message = "Enter name/IP Address for host";
             Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
         }
 
-        $port = $this->getOption('port') ?: 4000;
-        $message = "Enter value for an unused port";
+        $port = (string)$this->getOption('port') ?: 4000;
         if($port) {
-            $portAsString = (string)$port;
-            Console::argOptionValidate($portAsString, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
+            $message = "Enter value for an unused port";
+            Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
         }
 
         // Change to the `docs` directory and serve the Jekyll site with specified host and port
