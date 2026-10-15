@@ -53,7 +53,7 @@ class ServeDocsCommand extends ConsoleCommand {
         $this->output->writeln("<info>Press Ctrl+C to stop the server.</info>");
 
         // Run PHP built-in server
-        $command = sprintf('php -S %s:%s -t %s', escapeshellarg($host), escapeshellarg($port), escapeshellarg($docsDir));
+        $command = sprintf('php -S %s:%s -t %s', escapeshellarg($host), escapeshellarg((string)$port), escapeshellarg($docsDir));
         passthru($command);
 
         return self::SUCCESS;
