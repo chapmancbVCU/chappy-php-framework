@@ -30,11 +30,15 @@ class ServeDocsCommand extends ConsoleCommand {
     {
         $host = $this->getOption('host');
         $message = "Enter name/IP Address for host";
-        Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
+        if($host) {
+            Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
+        }
 
         $port = $this->getOption('port');
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required', "isPortUsed:$host"], true);
+        if($port) {
+            Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required', "isPortUsed:$host"], true);
+        }
 
         // Define the Doctum documentation directory
         $docsDir = ROOT.DS.'vendor'.DS.'chappy-php'.DS.'chappy-php-framework'.DS.'docs';

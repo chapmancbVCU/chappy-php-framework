@@ -31,11 +31,15 @@ class ServeUserGuideCommand extends ConsoleCommand {
     {
         $host = $this->getOption('host') ?: '127.0.0.1';
         $message = "Enter name/IP Address for host";
-        Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
+        if($host) {
+            Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
+        }
 
-        $port = (int) $this->getOption('port') ?: 4000;
+        $port = $this->getOption('port') ?: 4000;
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
+        if($port) {
+            Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
+        }
 
         // Change to the `docs` directory and serve the Jekyll site with specified host and port
         $command = sprintf('cd docs && bundle exec jekyll serve --host=%s --port=%d', escapeshellarg($host), $port);

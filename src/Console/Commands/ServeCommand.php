@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 namespace Console\Commands;
 
 use Console\Console;
@@ -34,11 +33,15 @@ class ServeCommand extends ConsoleCommand {
     {
         $host = $this->getOption('host');
         $message = "Enter name/IP Address for host";
-        Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
+        if($host) {
+            Console::argOptionValidate($host, $message, $this->question(), ['required'], true);
+        }
 
         $port = $this->getOption('port');
         $message = "Enter value for an unused port";
-        Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
+        if($port) {
+            Console::argOptionValidate($port, $message, $this->question(), ['integer', 'required',  "isPortUsed:$host"], true);
+        }
 
         $this->output->writeln("<info>Starting PHP development server at http://{$host}:{$port}</info>");
         $this->output->writeln("<info>Press Ctrl+C to stop the server.</info>");
