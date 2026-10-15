@@ -43,9 +43,9 @@ class Notifications extends Model {
 
     /**
      * Read at flag.
-     * @var int
+     * @var string
      */
-    public $read_at;
+    public ?string $read_at = null;
 
     /**
      * The type of notification.
