@@ -17,8 +17,11 @@ class Notifications extends Model {
     
     // Fields from your database
 
-    /** Notification data. */
-    public $data;
+    /** 
+     * Notification data. 
+     * @var string
+     */
+    public string $data;
 
     /**
      * The id for this notification.
@@ -30,7 +33,7 @@ class Notifications extends Model {
      * Notification type.
      * @var string
      */
-    public $notifiable_type;
+    public string $notifiable_type;
 
     /**
      * Id of user to be notified.
@@ -49,7 +52,7 @@ class Notifications extends Model {
      *
      * @var string
      */
-    public $type;
+    public string $type;
 
     /**
      * Implementation of beforeSave from base class.
