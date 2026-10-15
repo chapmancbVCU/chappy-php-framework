@@ -59,6 +59,7 @@ class View extends Console {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeLayout(string $layoutName, string $menuName = 'main'): int {
+        Tools::pathExists(self::LAYOUT_PATH);
         $layoutPath = self::LAYOUT_PATH.Str::lcfirst($layoutName).".php";
         return Tools::writeFile(
             $layoutPath, 
@@ -70,10 +71,11 @@ class View extends Console {
     /**
      * Generates a new menu file.
      *
-     * @param string $input The name of the menu.
+     * @param string $menuName The name of the menu.
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMenu(string $menuName): int {
+        Tools::pathExists(Component::COMPONENTS_PATH);
         return Tools::writeFile(
             Component::COMPONENTS_PATH.Str::lower($menuName)."_menu.php",
             ViewStubs::menu($menuName),
