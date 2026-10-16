@@ -8,9 +8,33 @@ import { useEffect } from 'react';
  */
 export function asset(path, local = false) {
     if(local == true) {
-        return import.meta.env.VITE_APP_DOMAIN + path;    
+        return env('VITE_APP_DOMAIN') + path;    
     }
-    return import.meta.env.VITE_S3_BUCKET + path;
+    return env('VITE_S3_BUCKET') + path;
+}
+
+const vars = {
+    VITE_APP_DOMAIN: import.meta.env.VITE_APP_DOMAIN,
+    VITE_S3_BUCKET: import.meta.env.VITE_S3_BUCKET,
+    VITE_PW_LOWER_CHAR: import.meta.env.VITE_PW_LOWER_CHAR,
+    VITE_PW_UPPER_CHAR: import.meta.env.VITE_PW_UPPER_CHAR,
+    VITE_PW_NUM_CHAR: import.meta.env.VITE_PW_NUM_CHAR,
+    VITE_PW_SPECIAL_CHAR: import.meta.env.VITE_PW_SPECIAL_CHAR,
+    VITE_PW_MIN_LENGTH: import.meta.env.VITE_PW_MIN_LENGTH,
+    VITE_PW_MAX_LENGTH: import.meta.env.VITE_PW_MAX_LENGTH,
+    VITE_SET_PW_MIN_LENGTH: import.meta.env.VITE_SET_PW_MIN_LENGTH,
+    VITE_SET_PW_MAX_LENGTH: import.meta.env.VITE_SET_PW_MAX_LENGTH,
+    VITE_STORAGE_PREFIX: import.meta.env.VITE_STORAGE_PREFIX,
+}
+
+/**
+ * 
+ * @param {string} key Environment variable key.
+ * @param {string} fallback The default value to return if the key is not found.
+ * @returns {string} The value of the environment variable or the default value.
+ */
+export function env(key, fallback = '') {
+    return vars[key] ?? fallback;
 }
 
 /**
