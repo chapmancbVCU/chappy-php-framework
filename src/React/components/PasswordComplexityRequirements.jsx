@@ -1,5 +1,5 @@
 import React from "react";
-
+import { env } from "../utils/helpers";
 /**
  * Generates component listing password complexity requirements.
  * @returns {HTMLDivElement} Component containing list of password 
