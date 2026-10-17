@@ -88,6 +88,7 @@ class AdmindashboardController extends Controller {
                 return \$this->jsonError('Corrupted token');
             }
             ACLService::deleteIfAllowed(\$id);
+            return \$this->jsonResponse(['success' => true]);
         } catch (Throwable \$e) {
             return \$this->jsonError('Server error: ' .  \$e, 500);
         }
@@ -128,6 +129,7 @@ class AdmindashboardController extends Controller {
             }
             \$attachment = EmailAttachments::findById(\$id);
             AttachmentService::deleteAttachment(\$attachment);
+            return \$this->jsonResponse(['success' => true]);
         } catch (Throwable \$e) {
             return \$this->jsonError('Server error: ' .  \$e, 500);
         }
