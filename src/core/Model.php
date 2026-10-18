@@ -83,26 +83,42 @@ class Model {
 
     /**
      * Update the object with an associative array.
-     * 
-     * @param array $params Take values from post array and assign values.
-     * @param array $list A list of values to blacklist or whitelist.
-     * @param string $assignmentFilter When set to ModelName::BLACKLIST the 
-     * values in the $list array is blacklisted.  When set to 
-     * ModelName::WHITELIST they are whitelisted.
-     * @return bool Report for whether or not the operation was successful.
+     *
+     * Field filtering, in priority order:
+     *   1. An explicit $list passed by the caller (with $assignmentFilter) always wins.
+     *   2. Otherwise, if the model declares a whiteList constant, only those fields
+     *      are assignable (fail-closed — new columns are rejected by default).
+     *   3. Otherwise, if the model declares a blackList constant, those fields are
+     *      rejected and everything else is assignable (fail-open).
+     *   4. Otherwise, no field filtering (only property_exists still applies).
+     *
+     * @param array $params Values (e.g. from the request) to assign.
+     * @param array $list Explicit fields to white/blacklist; overrides the model's constants.
+     * @param string $assignmentFilter self::BLACKLIST or self::WHITELIST for $list.
+     * @return self
      */
     public function assign(array $params, array $list = [], string $assignmentFilter = self::BLACKLIST): self {
-        foreach($params as $key => $val) {
-            // check if there is permission to update the object
-            $whiteListed = true;
-            if(sizeof($list) > 0){
-              if($assignmentFilter === self::BLACKLIST){
-                    $whiteListed = !Arr::contains($list, $key);
-              } else {
-                    $whiteListed = Arr::contains($list, $key);
-              }
+        // When the caller gives no explicit list, fall back to the model's own
+        // declared protections so they are always enforced — not only when a
+        // caller remembers to pass them. Prefer an allowlist (fail-closed).
+        if (sizeof($list) === 0) {
+            if (defined(static::class . '::whiteList')) {
+                $list = static::whiteList;
+                $assignmentFilter = self::WHITELIST;
+            } elseif (defined(static::class . '::blackList')) {
+                $list = static::blackList;
+                $assignmentFilter = self::BLACKLIST;
             }
-            if(property_exists($this,$key) && $whiteListed){
+        }
+
+        foreach ($params as $key => $val) {
+            $allowed = true;
+            if (sizeof($list) > 0) {
+                $allowed = ($assignmentFilter === self::BLACKLIST)
+                    ? !Arr::contains($list, $key)
+                    : Arr::contains($list, $key);
+            }
+            if (property_exists($this, $key) && $allowed) {
                 $this->$key = $val;
             }
         }
