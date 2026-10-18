@@ -48,6 +48,11 @@ final class ACL extends Model {
     protected static string $_table = 'acl';
 
     /**
+     * The whitelist for the class.
+     */
+    public const whiteList = ['acl'];
+
+    /**
      * Implements beforeSave function described in Model parent class.  
      * Ensures timestamps are created and updated.
      *

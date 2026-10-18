@@ -160,7 +160,7 @@ class ACLService {
      */
     public static function saveACL(ACL $acl, Input $request): bool {
         if ($acl->isNew()) {
-            $acl->assign($request->get());
+            $acl->assign($request->get(), ACL::whiteList, ACL::WHITELIST);
         } else {
             $acl->assign($request->get(), ACL::blackList);
         }
