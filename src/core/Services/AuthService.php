@@ -202,7 +202,7 @@ class AuthService {
      * @return void
      */
     public static function passwordReset(Input $request, Users $user): void {
-        $user->assign($request->get(), Users::blackListedFormKeys);
+        $user->assign($request->get(), Users::blackList);
             
         // PW mode on for correct validation.
         $user->setChangePassword(true);

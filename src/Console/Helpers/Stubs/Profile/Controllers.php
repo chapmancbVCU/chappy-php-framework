@@ -58,7 +58,7 @@ class ProfileController extends Controller {
         if(\$this->request->isPost()) {
             \$this->request->csrfCheck();
             \$uploads = AuthService::profileImageUpload(\$user);
-            \$user->assign(\$this->request->get(), Users::blackListedFormKeys);
+            \$user->assign(\$this->request->get(), Users::blackList);
             \$user->save();
             if(\$user->validationPassed()){
                 UserService::handleProfileImages(\$user, \$uploads, \$_POST['images_sorted']);
@@ -172,7 +172,7 @@ class ProfileController extends Controller {
         if(\$this->request->isPost()) {
             \$this->request->csrfCheck();
             \$uploads = AuthService::profileImageUpload(\$user);
-            \$user->assign(\$this->request->get(), Users::blackListedFormKeys);
+            \$user->assign(\$this->request->get(), Users::blackList);
             \$user->save();
             if(\$user->validationPassed()){
                 UserService::handleProfileImages(\$user, \$uploads, \$_POST['images_sorted']);

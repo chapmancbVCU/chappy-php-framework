@@ -162,7 +162,7 @@ class AdmindashboardController extends Controller {
     
         if ($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get(), Users::blackListedFormKeys);
+            $user->assign($this->request->get(), Users::blackList);
     
             // Handle ACL updates from checkboxes
             ACLService::updateUserACLs($user, $userAcls, $acls, $_POST['acls']);

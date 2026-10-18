@@ -156,7 +156,7 @@ final class UserService {
             $user->addErrorMessage('[current password] You entered your current password incorrectly.');
         }
 
-        $user->assign($request->get(), Users::blackListedFormKeys);
+        $user->assign($request->get(), Users::blackList);
         $user->setChangePassword(true);
         $user->confirm = AuthService::confirm($request);
 
