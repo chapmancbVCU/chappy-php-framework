@@ -114,6 +114,15 @@ final class Controller extends Console {
         }
     }
 
+    /**
+     * Returns contents for resource or react version of the class.
+     *
+     * @param string $className The name of the new class.
+     * @param string $layout The layout of the class.
+     * @param mixed $reactOption The value of the reactOption flag.
+     * @param mixed $resourceOption The value of the resourceOption flag.
+     * @return string|false The contents or false if neither flag is set.
+     */
     private static function resourceContents(
         string $className,
         string $layout,
@@ -129,7 +138,7 @@ final class Controller extends Console {
             return false;
         } 
     }
-    
+
     /**
      * Prompts user if they want a resource controller if controller name 
      * argument is not provided and resource flag is not set.  Once the input 
@@ -152,13 +161,23 @@ final class Controller extends Console {
         $message = "Do you want to use a resource controller? (y/n)";
         if(self::confirm($message, $question)) {
             $contents = self::resourceContents($className, $layout, $reactOption, $resourceOption);
-            if ($contents) return $contents;
-            return self::resourceTypePrompt($className, $layout, $question);
+            return ($contents) ? 
+                $contents : 
+                self::resourceTypePrompt($className, $layout, $question);
         }
 
         return ControllerStubs::defaultTemplate($className, $layout);
     }
 
+    /**
+     * Asks user which type of controller they want generated and returns 
+     * requested version's contents.
+     *
+     * @param string $className The name for the class.
+     * @param string $layout The name for the layout.
+     * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
+     * @return string The contents for the controller class.
+     */
     private static function resourceTypePrompt(
         string $className,
         string $layout,
@@ -166,10 +185,10 @@ final class Controller extends Console {
     ): string {
         $message = "Do you want a PHP or React.js controller?";
         $choices = ['PHP', 'React.js'];
-        if(self::choice($message, $choices, $question, $choices[0]) === 'PHP') {
-            return ControllerStubs::resourceTemplate($className, $layout);
-        }
-
-        return ControllerStubs::reactTemplate($className, $layout);
+        
+        $results = self::choice($message, $choices, $question, $choices[0]);
+        return ($results === 'PHP') ?
+            ControllerStubs::resourceTemplate($className, $layout) :
+            ControllerStubs::reactTemplate($className, $layout);
     }
 }
