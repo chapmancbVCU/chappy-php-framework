@@ -59,6 +59,11 @@ trait IsUser {
      */
     public int $login_attempts = 0;
 
+    /**
+     * The password field.
+     *
+     * @var string|null
+     */
     public ?string $password = null;
 
     /**
@@ -126,7 +131,7 @@ trait IsUser {
     }
 
     /**
-     * Setter function for $changePassword.
+     * Setter function for `$changePassword`.
      *
      * @param bool $value The value we will assign to $changePassword.
      * @return void
@@ -135,6 +140,11 @@ trait IsUser {
         $this->changePassword = $value;
     }
 
+    /**
+     * To be called within `beforeSave()`.
+     *
+     * @return void
+     */
     private function userBeforeSave(): void {
         if($this->isNew()) {
             $this->password = AuthService::hashPassword($this->password);
