@@ -29,6 +29,9 @@ class {$modelName} extends Model {
     // Fields you don't want saved on form submit
     // public const blackList = [];
 
+    // Fields you want saved.
+    // public const whiteList = [];
+
     // Set to name of database table.
     protected static string \$_table = '{$table}';
 
@@ -87,6 +90,9 @@ class {$modelName} extends Model {
     // Fields you don't want saved on form submit
     // public const blackList = [];
 
+    // Fields you want saved.
+    // public const whiteList = [];
+    
     // Set to name of database table.
     protected static string \$_table = '{$table}';
 
