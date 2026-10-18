@@ -27,10 +27,10 @@ use Core\Model;
 class {$modelName} extends Model {
 
     // Fields you don't want saved on form submit
-    // public const blackList = [];
+    // public const blackList = ['id', 'deleted'];
 
-    // Fields you want saved.
-    // public const whiteList = [];
+    // Fields you want fillable by a form.
+    // public const whiteList = ['field_one', 'field_two'];
 
     // Set to name of database table.
     protected static string \$_table = '{$table}';
@@ -88,10 +88,10 @@ use Core\Model;
 class {$modelName} extends Model {
 
     // Fields you don't want saved on form submit
-    // public const blackList = [];
+    // public const blackList = ['id', 'deleted'];
 
-    // Fields you want saved.
-    // public const whiteList = [];
+    // Fields you want fillable by a form
+    // public const whiteList = ['field_one', 'field_two'];
     
     // Set to name of database table.
     protected static string \$_table = '{$table}';
