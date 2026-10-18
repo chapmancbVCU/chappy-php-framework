@@ -108,7 +108,7 @@ class AuthController extends Controller {
             // Handle file upload
             $uploads = AuthService::profileImageUpload($user);
 
-            $user->assign($this->request->get());
+            $user->assign($this->request->get(), Users::whiteList, Users::WHITELIST);
             $user->confirm = AuthService::confirm($this->request);
             $user->acl = ACLService::setAclAtRegistration();
             $user->save();
