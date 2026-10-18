@@ -38,6 +38,12 @@ class GenerateControllerCommand extends ConsoleCommand
                 null,
                 InputOption::VALUE_NONE,
                 'Add CRUD functions'
+            )
+            ->addOption(
+                'react',
+                null,
+                InputOption::VALUE_NONE,
+                'CRUD for React.js'
             );
     }
  
@@ -49,6 +55,14 @@ class GenerateControllerCommand extends ConsoleCommand
     protected function handle(): int
     {
         $controllerName = $this->getArgument('controller-name');
+        $reactOption = $this->input->getOption('react');
+        $resourceOption = $this->input->getOption('resource');
+
+        if($reactOption && $resourceOption) {
+            console_alert("--resource and --react flags cannot be set at the same time.");
+            return Command::FAILURE;
+        }
+
         if($controllerName) {
             Controller::argOptionValidate(
                 $controllerName, 
@@ -59,16 +73,16 @@ class GenerateControllerCommand extends ConsoleCommand
         }
 
         $layout = Controller::layout($this->input, $this->question());
-        $resourceOption = $this->input->getOption('resource');
+        
         if(Tools::isFailure($layout)) return Command::FAILURE;
         
         if($controllerName) {
             $controllerName = Str::ucfirst($controllerName);
-            $contents = Controller::contents($controllerName, $resourceOption, $layout);
+            $contents = Controller::contents($controllerName, $layout, $reactOption, $resourceOption);
         } else {
             $controllerName = Controller::controllerNamePrompt($this->question());
             $layout = Controller::layoutPrompt($this->input, $this->question(), $layout);
-            $contents = Controller::resourcePrompt($controllerName, $this->question(), $layout, $resourceOption);
+            $contents = Controller::resourcePrompt($controllerName, $this->question(), $layout, $reactOption, $resourceOption);
         }
         
         Tools::pathExists(Controller::CONTROLLER_PATH);

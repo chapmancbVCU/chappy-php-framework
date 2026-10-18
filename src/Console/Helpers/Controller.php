@@ -31,21 +31,24 @@ final class Controller extends Console {
      * set then a resource controller is generated.
      *
      * @param string $className The name for the new controller class.
-     * @param mixed $resourceOption Value/state of resource flag.
      * @param string $layout The name of the layout to be used.
+     * @param mixed $resourceOption Value/state of resource flag.
      * @return string The contents for the controller class.
      */
     public static function contents(
         string $className, 
-        mixed $resourceOption, 
-        string $layout
+        string $layout,
+        mixed $reactOption,
+        mixed $resourceOption
     ): string {
 
         if($resourceOption) {
             return ControllerStubs::resourceTemplate($className, $layout);
-        } 
-
-        return ControllerStubs::defaultTemplate($className, $layout);
+        } else if($reactOption) {
+            return ControllerStubs::reactTemplate($className, $layout);
+        } else {
+            return ControllerStubs::defaultTemplate($className, $layout);
+        }
     }
 
     /**
@@ -111,6 +114,22 @@ final class Controller extends Console {
         }
     }
 
+    private static function resourceContents(
+        string $className,
+        string $layout,
+        mixed $reactOption,
+        mixed $resourceOption
+    ): string|false {
+        if($reactOption) {
+            return ControllerStubs::reactTemplate($className, $layout);
+        }
+        else if($resourceOption) {
+            return ControllerStubs::resourceTemplate($className, $layout);
+        } else {
+            return false;
+        } 
+    }
+    
     /**
      * Prompts user if they want a resource controller if controller name 
      * argument is not provided and resource flag is not set.  Once the input 
@@ -126,14 +145,31 @@ final class Controller extends Console {
         string $className, 
         FrameworkQuestion $question,
         string $layout, 
+        mixed $reactOption,
         mixed $resourceOption
     ): string {
-        if($resourceOption) return self::contents($className, $resourceOption, $layout);
+        if($resourceOption) return self::contents($className, $layout, $reactOption, $resourceOption);
         $message = "Do you want to use a resource controller? (y/n)";
         if(self::confirm($message, $question)) {
-            return ControllerStubs::resourceTemplate($className, $layout);
+            $contents = self::resourceContents($className, $layout, $reactOption, $resourceOption);
+            if ($contents) return $contents;
+            return self::resourceTypePrompt($className, $layout, $question);
         }
 
         return ControllerStubs::defaultTemplate($className, $layout);
+    }
+
+    private static function resourceTypePrompt(
+        string $className,
+        string $layout,
+        FrameworkQuestion $question
+    ): string {
+        $message = "Do you want a PHP or React.js controller?";
+        $choices = ['PHP', 'React.js'];
+        if(self::choice($message, $choices, $question, $choices[0]) === 'PHP') {
+            return ControllerStubs::resourceTemplate($className, $layout);
+        }
+
+        return ControllerStubs::reactTemplate($className, $layout);
     }
 }
