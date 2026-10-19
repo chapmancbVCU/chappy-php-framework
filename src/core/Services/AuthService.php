@@ -172,7 +172,13 @@ class AuthService {
      *
      * @return void
      */
-    public static function logout(): void {
+    public static function logout(Input $request): void {
+        if(!$request->isPost()) {
+            flashMessage(Session::DANGER, 'You must logout through menu');
+            redirect('home');
+        }
+
+        $request->csrfCheck();
         $user = self::currentUser();
         if($user) {
             self::logoutUser($user);
