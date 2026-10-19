@@ -64,7 +64,7 @@ class AuthController extends Controller {
      * @param LoginResult \$result The resulting status of a login attempt.
      * @return void
      */
-    private function loginRedirects(LoginResult \$result) {
+    private function loginRedirects(LoginResult \$result): void {
         switch(\$result->status) {
                 case LoginResult::SUCCESS:
                     redirect(env('DEFAULT_CONTROLLER'));
@@ -211,7 +211,7 @@ class AuthController extends Controller {
      * @param LoginResult \$result The resulting status of a login attempt.
      * @return void
      */
-    private function loginRedirects(LoginResult \$result) {
+    private function loginRedirects(LoginResult \$result): void {
         switch(\$result->status) {
                 case LoginResult::SUCCESS:
                     redirect(env('DEFAULT_CONTROLLER'));
