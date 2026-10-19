@@ -87,9 +87,7 @@ class AuthController extends Controller {
     }
 
     /**
-     * Manages logout action for a user.  It checks if a user is currently 
-     * logged.  No matter of the result, the user gets redirected to the 
-     * login screen.
+     * Logs user out and redirect to login screen.
      *
      * @return void
      */
@@ -236,9 +234,7 @@ class AuthController extends Controller {
     }
 
     /**
-     * Manages logout action for a user.  It checks if a user is currently 
-     * logged.  No matter of the result, the user gets redirected to the 
-     * login screen.
+     * Logs user out and redirect to login screen.
      *
      * @return void
      */
