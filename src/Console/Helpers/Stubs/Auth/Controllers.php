@@ -94,13 +94,7 @@ class AuthController extends Controller {
      * @return void
      */
     public function logoutAction(): void {
-        if(!\$this->request->isPost()) {
-            flashMessage(Session::DANGER, 'You must logout through menu');
-            redirect('home');
-        }
-
-        \$this->request->csrfCheck();
-        AuthService::logout();
+        AuthService::logout(\$this->request);
         redirect('auth.login');
     }
 
@@ -249,13 +243,7 @@ class AuthController extends Controller {
      * @return void
      */
     public function logoutAction(): void {
-        if(!\$this->request->isPost()) {
-            flashMessage(Session::DANGER, 'You must logout through menu');
-            redirect('home');
-        }
-
-        \$this->request->csrfCheck();
-        AuthService::logout();
+        AuthService::logout(\$this->request);
         redirect('auth.login');
     }
 
