@@ -169,7 +169,8 @@ class AuthService {
     /**
      * Logs out the currently logged-in user by clearing the session and 
      * deleting any active cookies.
-     *
+     * 
+     * @param Input $request The current request.
      * @return void
      */
     public static function logout(Input $request): void {
