@@ -5,6 +5,7 @@ use Core\Session;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
+use Core\Lib\Utilities\DateTime;
 use Symfony\Component\VarDumper\VarDumper;
 
 if (!function_exists('asset')) {
@@ -148,16 +149,7 @@ if (!function_exists('now')) {
      * @see DateTime::formatTime() for formatting logic.
      */
     function now(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
-        $tz = $timezone ?? env('TIME_ZONE', 'UTC');
-        $fmt = $format ?? \Core\Lib\Utilities\DateTime::FORMAT_12_HOUR;
-        $loc = $locale ?? env('LOCALE', 'en');
-
-        return \Core\Lib\Utilities\DateTime::formatTime(
-            Carbon\Carbon::now($tz)->toDateTimeString(),
-            $fmt,
-            $loc,
-            $tz
-        );
+        return DateTime::now($timezone, $format, $locale);
     }
 }
 

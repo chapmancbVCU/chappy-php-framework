@@ -50,6 +50,37 @@ class DateTime {
     }
 
     /**
+     * Get the current time as a formatted string using Carbon.
+     *
+     * This function supports optional user-specific overrides for timezone,
+     * format, and locale. If not provided, it defaults to the application's
+     * configured environment values.
+     *
+     * @param string|null $timezone The timezone to use (e.g., 'Europe/Berlin').
+     *                              Falls back to env('TIME_ZONE') if null.
+     * @param string|null $format   The format string (e.g., 'H:i' or 'g:i A').
+     *                              Falls back to DateTime::FORMAT_12_HOUR if null.
+     * @param string|null $locale   The locale code (e.g., 'en', 'fr').
+     *                              Falls back to env('LOCALE') if null.
+     *
+     * @return string The current time formatted based on the provided or default settings.
+     *
+     * @see DateTime::formatTime() for formatting logic.
+     */
+    static function now(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
+        $tz = $timezone ?? env('TIME_ZONE', 'UTC');
+        $fmt = $format ?? self::FORMAT_12_HOUR;
+        $loc = $locale ?? env('LOCALE', 'en');
+
+        return self::formatTime(
+            Carbon::now($tz)->toDateTimeString(),
+            $fmt,
+            $loc,
+            $tz
+        );
+    }
+
+    /**
      * Adds second passed as parameter to current time.
      *
      * @param int $seconds The number of seconds to add.
@@ -112,6 +143,36 @@ class DateTime {
         return $dt->format('Y-m-d H:i:s');
     }
 
+    /**
+     * Get the current day as a formatted string using Carbon.
+     *
+     * This function supports optional user-specific overrides for timezone,
+     * format, and locale. If not provided, it defaults to the application's
+     * configured environment values.
+     *
+     * @param string|null $timezone The timezone to use (e.g., 'Europe/Berlin').
+     *                              Falls back to env('TIME_ZONE') if null.
+     * @param string|null $format   The format string (e.g., 'H:i' or 'g:i A').
+     *                              Falls back to DateTime::FORMAT_12_HOUR if null.
+     * @param string|null $locale   The locale code (e.g., 'en', 'fr').
+     *                              Falls back to env('LOCALE') if null.
+     *
+     * @return string The current day formatted based on the provided or default settings.
+     *
+     * @see DateTime::formatTime() for formatting logic.
+     */
+    static function today(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
+        $tz = $timezone ?? env('TIME_ZONE', 'UTC');
+        $fmt = $format ?? self::FORMAT_12_HOUR;
+        $loc = $locale ?? env('LOCALE', 'en');
+
+        return self::formatTime(
+            Carbon::today($tz)->toDateTimeString(),
+            $fmt,
+            $loc,
+            $tz
+        );
+    }
     /**
      * Converts to ISO 8610 format.
      *
