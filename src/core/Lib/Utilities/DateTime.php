@@ -43,7 +43,7 @@ class DateTime {
      * @return string The formatted time.
      */
     public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
-        $carbon = Carbon::parse($time, $timezone)->setTimezone(Env::get('TIME_ZONE'));
+        $carbon = Carbon::parse($time, $timezone)->setTimezone($timezone);
     
         // Temporarily set the locale for this instance only
         return $carbon->locale($locale)->translatedFormat($format);
@@ -109,7 +109,7 @@ class DateTime {
      */
     public static function timeAgo(string $time, string $locale = 'en', string $timezone = 'UTC', bool $short = false): string {
         $carbon = Carbon::parse($time, $timezone)
-            ->setTimezone(Env::get('TIME_ZONE'))
+            ->setTimezone(env('TIME_ZONE'))
             ->locale($locale); // Set locale per instance
     
         return $short 
@@ -174,11 +174,11 @@ class DateTime {
         );
     }
     /**
-     * Converts to ISO 8610 format.
+     * Converts to ISO 8601 format.
      *
      * @param string $time String in format Y-m-d H:i:s using UTC.
      * @param string $timezone Override default timezone with 'UTC' as default value.
-     * @return string The time in ISO 8610 format.  Example output: 2025-03-09T15:30:45-05:00
+     * @return string The time in ISO 8601 format.  Example output: 2025-03-09T15:30:45-05:00
      */
     public static function toISO8601(string $time, string $timezone = 'UTC'): string {
         return Carbon::parse($time, $timezone)->toIso8601String();
