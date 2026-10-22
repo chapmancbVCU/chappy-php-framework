@@ -5,8 +5,11 @@ namespace Core\Lib\Utilities;
 use Carbon\Carbon;
 
 /**
- * Supports ability to manipulate how time is displayed.  Most functions are 
+ * Supports ability to manipulate how time is displayed.  Most functions are
  * wrappers for those found in the Carbon class.
+ *
+ * All date objects are created through DateFactory so timezone, locale,
+ * and Carbon::setTestNow() behave consistently.
  */
 class DateTime {
     /** 12 hour format. */
@@ -33,20 +36,19 @@ class DateTime {
     public const FORMAT_SQL_DATETIME = 'Y-m-d H:i:s';
 
     /**
-     * Returns string that describes time.  The results can be set using 
+     * Returns string that describes time.  The results can be set using
      * constants, locale, and timezone.
      *
      * @param string $time String in format Y-m-d H:i:s A using UTC.
      * @param string $format Set format with a default of FORMAT_12_HOUR.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $timezone Override default timezone with 'UTC' as default value.
-     * @return string The formatted time.
+     * @param string $timezone Timezone $time is stored in, with 'UTC' as default value.
+     * @return string The formatted time in the application timezone.
      */
     public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
-        $carbon = Carbon::parse($time, $timezone)->setTimezone($timezone);
-    
-        // Temporarily set the locale for this instance only
-        return $carbon->locale($locale)->translatedFormat($format);
+        return DateFactory::parse($time, $timezone)
+            ->locale($locale)
+            ->translatedFormat($format);
     }
 
     /**
@@ -57,90 +59,76 @@ class DateTime {
      * configured environment values.
      *
      * @param string|null $timezone The timezone to use (e.g., 'Europe/Berlin').
-     *                              Falls back to env('TIME_ZONE') if null.
+     *                              Falls back to TIME_ZONE if null.
      * @param string|null $format   The format string (e.g., 'H:i' or 'g:i A').
      *                              Falls back to DateTime::FORMAT_12_HOUR if null.
      * @param string|null $locale   The locale code (e.g., 'en', 'fr').
-     *                              Falls back to env('LOCALE') if null.
+     *                              Falls back to LOCALE if null.
      *
      * @return string The current time formatted based on the provided or default settings.
-     *
-     * @see DateTime::formatTime() for formatting logic.
      */
-    static function now(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
-        $tz = $timezone ?? env('TIME_ZONE', 'UTC');
-        $fmt = $format ?? self::FORMAT_12_HOUR;
-        $loc = $locale ?? env('LOCALE', 'en');
-
-        return self::formatTime(
-            Carbon::now($tz)->toDateTimeString(),
-            $fmt,
-            $loc,
-            $tz
-        );
+    public static function now(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
+        return self::present(DateFactory::now($timezone), $format, $locale);
     }
 
     /**
      * Adds second passed as parameter to current time.
      *
      * @param int $seconds The number of seconds to add.
-     * @return string The time plus seconds passed as parameter.
+     * @return string The time plus seconds passed as parameter in UTC.
      */
     public static function nowPlusSeconds(int $seconds): string {
-        $dt = new \DateTime("now", new \DateTimeZone("UTC"));
-        $dt->modify("+{$seconds} seconds");
-        return $dt->format('Y-m-d H:i:s');
+        return DateFactory::now('UTC')
+            ->addSeconds($seconds)
+            ->format(self::FORMAT_SQL_DATETIME);
     }
-    
+
     /**
-     * Accepts UTC time in format Y-m-d H:i:s and returns a string describing  
+     * Accepts UTC time in format Y-m-d H:i:s and returns a string describing
      * how much time has elapsed.
-     * 
+     *
      * This function supports a short form with the following example:
      * DateTime::timeAgo($user->updated_at, 'en', 'UTC', true);
-     * 
+     *
      * This will show something like 21m.
      *
      * @param string $time String in format Y-m-d H:i:s using UTC.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $timezone Override default timezone with 'UTC' as default value.
+     * @param string $timezone Timezone $time is stored in, with 'UTC' as default value.
      * @param bool $short Set to true to show short form time.
      * @return string The time represented using language describing time since last change.
      */
     public static function timeAgo(string $time, string $locale = 'en', string $timezone = 'UTC', bool $short = false): string {
-        $carbon = Carbon::parse($time, $timezone)
-            ->setTimezone(env('TIME_ZONE'))
-            ->locale($locale); // Set locale per instance
-    
-        return $short 
+        $carbon = DateFactory::parse($time, $timezone)->locale($locale);
+
+        return $short
             ? $carbon->diffForHumans(null, false, true) // Short format
             : $carbon->diffForHumans(); // Default long format
     }
-    
+
     /**
      * Shows the difference between two times.  An example is shown below:
-     * DateTimeHelper::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
+     * DateTime::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
      * Output: "7 hours before"
      *
      * @param string $startTime String in format Y-m-d H:i:s using UTC.
      * @param string $endTime String in format Y-m-d H:i:s using UTC.
-     * @param string $timezone Override default timezone with 'UTC' as default value.
+     * @param string $timezone Timezone both times are stored in, with 'UTC' as default value.
      * @return string Show exact difference between two times.
      */
     public static function timeDifference(string $startTime, string $endTime, string $timezone = 'UTC'): string {
-        $start = Carbon::parse($startTime, $timezone);
-        $end = Carbon::parse($endTime, $timezone);
+        $start = DateFactory::parse($startTime, $timezone);
+        $end = DateFactory::parse($endTime, $timezone);
         return $start->diffForHumans($end);
     }
-    
+
     /**
      * Generates a timestamp.
      *
      * @return string A timestamp in the format Y-m-d H:i:s UTC time.
      */
     public static function timeStamps(): string {
-        $dt = new \DateTime("now", new \DateTimeZone("UTC"));
-        return $dt->format('Y-m-d H:i:s');
+        return DateFactory::now('UTC')->format(self::FORMAT_SQL_DATETIME);
     }
 
     /**
@@ -151,37 +139,40 @@ class DateTime {
      * configured environment values.
      *
      * @param string|null $timezone The timezone to use (e.g., 'Europe/Berlin').
-     *                              Falls back to env('TIME_ZONE') if null.
+     *                              Falls back to TIME_ZONE if null.
      * @param string|null $format   The format string (e.g., 'H:i' or 'g:i A').
      *                              Falls back to DateTime::FORMAT_12_HOUR if null.
      * @param string|null $locale   The locale code (e.g., 'en', 'fr').
-     *                              Falls back to env('LOCALE') if null.
+     *                              Falls back to LOCALE if null.
      *
      * @return string The current day formatted based on the provided or default settings.
-     *
-     * @see DateTime::formatTime() for formatting logic.
      */
-    static function today(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
-        $tz = $timezone ?? env('TIME_ZONE', 'UTC');
-        $fmt = $format ?? self::FORMAT_12_HOUR;
-        $loc = $locale ?? env('LOCALE', 'en');
-
-        return self::formatTime(
-            Carbon::today($tz)->toDateTimeString(),
-            $fmt,
-            $loc,
-            $tz
-        );
+    public static function today(?string $timezone = null, ?string $format = null, ?string $locale = null): string {
+        return self::present(DateFactory::today($timezone), $format, $locale);
     }
-    
+
     /**
      * Converts to ISO 8601 format.
      *
      * @param string $time String in format Y-m-d H:i:s using UTC.
-     * @param string $timezone Override default timezone with 'UTC' as default value.
+     * @param string $timezone Timezone $time is stored in, with 'UTC' as default value.
      * @return string The time in ISO 8601 format.  Example output: 2025-03-09T15:30:45-05:00
      */
     public static function toISO8601(string $time, string $timezone = 'UTC'): string {
         return Carbon::parse($time, $timezone)->toIso8601String();
+    }
+
+    /**
+     * Formats an instance that is already in the timezone the caller wants.
+     *
+     * @param \Carbon\CarbonInterface $date
+     * @param string|null $format Falls back to FORMAT_12_HOUR.
+     * @param string|null $locale Falls back to LOCALE.
+     * @return string
+     */
+    protected static function present(\Carbon\CarbonInterface $date, ?string $format, ?string $locale): string {
+        return $date
+            ->locale($locale ?? (string)Env::get('LOCALE', 'en'))
+            ->translatedFormat($format ?? self::FORMAT_12_HOUR);
     }
 }
