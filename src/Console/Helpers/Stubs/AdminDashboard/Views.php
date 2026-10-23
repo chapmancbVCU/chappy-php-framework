@@ -1210,8 +1210,8 @@ function ManageAcls({ usedAcls, unUsedAcls }) {
                             {acl.acl !== 'Admin' && (
                                 <>
                                     <td className="text-center w-50">{acl.acl}</td>
-                                    <td className="text-center">{acl.created_at}</td>
-                                    <td className="text-center">{acl.updated_at}</td>
+                                    <td className="text-center">{acl.created_at_readable}</td>
+                                    <td className="text-center">{acl.updated_at_readable}</td>
                                     <td className="text-center">
                                         <a href={route('admindashboard.editAcl', [acl.id])} className="btn btn-info btn-sm">
                                             <i className="fa fa-edit"></i> Edit ACL
@@ -1246,8 +1246,8 @@ function ManageAcls({ usedAcls, unUsedAcls }) {
                         <tr key={acl.id}>
                             <>
                                 <td className="text-center w-50">{acl.acl}</td>
-                                <td className="text-center">{acl.created_at}</td>
-                                <td className="text-center">{acl.updated_at}</td>
+                                <td className="text-center">{acl.created_at_readable}</td>
+                                <td className="text-center">{acl.updated_at_readable}</td>
                             </>
                         </tr>
                     ))}
