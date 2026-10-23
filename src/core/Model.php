@@ -7,6 +7,7 @@ use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Utilities\ArraySet;
 use Core\Traits\HasValidators;
+use Core\Traits\HasCasts;
 
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
@@ -14,8 +15,8 @@ use Core\Traits\HasValidators;
  * extendability.
  */
 #[\AllowDynamicProperties]
-class Model {
-    use HasValidators;
+class Model implements \JsonSerializable {
+    use HasValidators, HasCasts;
 
     /** Constant for blacklist. */
     const BLACKLIST = 'blacklist';
