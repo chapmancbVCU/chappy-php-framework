@@ -70,7 +70,6 @@ JSX;
     public static function makeAttachmentDetailsPHP(): string {
         return <<<PHP
 <?php use Core\Models\EmailAttachments; ?>
-<?php use Core\Lib\Utilities\DateTime; ?>
 <?php \$this->setSiteTitle("Details for " . \$this->attachment->attachment_name); ?>
 
 <!-- Head content between these two function calls.  Remove if not needed. -->
@@ -87,8 +86,8 @@ JSX;
         <h2 class="text-center"><?=\$this->attachment->attachment_name?></h2>
         <div class="row">
             <div class="col-md-6">
-                <p><strong>Created at: </strong><?= DateTime::timeAgo(\$this->attachment->created_at) ?></p>
-                <p><strong>Updated at: </strong><?= DateTime::timeAgo(\$this->attachment->updated_at) ?></p>
+                <p><strong>Created at: </strong><?= \$this->attachment->date('created_at')->diffForHumans() ?></p>
+                <p><strong>Updated at: </strong><?= \$this->attachment->date('updated_at')->diffForHumans() ?></p>
                 <p><strong>Size: </strong><?= EmailAttachments::formatBytes(\$this->attachment->size) ?></p>
                 <p><strong>MIME Type: </strong><?= \$this->attachment->mime_type ?></p>
                 <p><strong>Uploader: </strong><?= \$this->uploader->username ?></p>
@@ -540,9 +539,6 @@ JSX;
      */
     public static function makeDetailsPHP(): string {
         return <<<PHP
-<?php
-
-use Core\Lib\Utilities\DateTime; ?>
 <?php \$this->setSiteTitle(\$this->user->username . " Details"); ?>
 <?php \$this->start('body'); ?>
 <h1 class="text-center">Details for <?=\$this->user->username?></h1>
@@ -589,11 +585,11 @@ use Core\Lib\Utilities\DateTime; ?>
                 </tr>
                 <tr>
                     <th class="text-center">Created</th>
-                    <td class="text-center"><?= DateTime::timeAgo(\$this->user->created_at) ?></td>
+                    <td class="text-center"><?= \$this->user->date('created_at')->diffForHumans() ?></td>
                 </tr>
                 <tr>
                     <th class="text-center">Last Update</th>
-                    <td class="text-center"><?= DateTime::timeAgo(\$this->user->updated_at) ?></td>
+                    <td class="text-center"><?= \$this->user->date('updated_at')->diffForHumans() ?></td>
                 </tr>
                 <?php if(\$this->user->description): ?>
                     <tr>
@@ -1046,7 +1042,6 @@ JSX;
      */
     public static function makeIndexPHP(): string {
         return <<<PHP
-<?php use Core\Lib\Utilities\DateTime; ?>
 <?php
 \$e = fn(\$value): string => htmlspecialchars((string)\$value, ENT_QUOTES, 'UTF-8');
 \$filters = \$this->filter->activeFilters();
@@ -1267,7 +1262,6 @@ JSX;
      */
     public static function makeManageAclsPHP(): string {
         return <<<PHP
-<?php use Core\Lib\Utilities\DateTime; ?>
 <?php use Core\FormHelper; ?>
 <?php \$this->setSiteTitle("Manage ACLs"); ?>
 <?php \$this->start('body'); ?>
