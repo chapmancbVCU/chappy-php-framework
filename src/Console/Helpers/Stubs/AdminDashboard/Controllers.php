@@ -27,7 +27,6 @@ use Core\Services\DashboardService;
 use Core\Services\AttachmentService;
 use Core\Lib\Http\JsonResponse;
 use Core\Session;
-use Core\Lib\Utilities\DateTime;
 use Throwable;
 
 /**
@@ -67,9 +66,9 @@ class AdmindashboardController extends Controller {
 
         \$props = [
             'attachment' => \$attachment,
-            'createdAt' => DateTime::timeAgo(\$attachment->created_at),
+            'createdAt' => \$attachment->date('created_at')->diffForHumans(),
             'size' => EmailAttachments::formatBytes(\$attachment->size),
-            'updatedAt' => DateTime::timeAgo(\$attachment->updated_at),
+            'updatedAt' => \$attachment->date('updated_at')->diffForHumans(),
             'uploader' => AttachmentService::attachmentUploader(\$attachment->user_id),
         ];
 
@@ -159,9 +158,9 @@ class AdmindashboardController extends Controller {
         DashboardService::checkIfCurrentUser(\$user);
 
         \$props = [
-            'createdAt' => DateTime::timeAgo(\$user->created_at),
+            'createdAt' => \$user->date('created_at')->diffForHumans(),
             'profileImage' => ProfileImages::findCurrentProfileImage(\$user->id),
-            'updatedAt' => DateTime::timeAgo(\$user->updated_at),
+            'updatedAt' => \$user->date('updated_at')->diffForHumans(),
             'user' => \$user
         ];
 
