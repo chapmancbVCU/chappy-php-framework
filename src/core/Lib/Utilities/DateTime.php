@@ -39,15 +39,13 @@ class DateTime {
      * Returns string that describes time.  The results can be set using
      * constants, locale, and timezone.
      *
-     * @param string|\DateTimeInterface $time String in format Y-m-d H:i:s A using UTC,
-     *                                    or a date object (its own timezone is used).
+     * @param string $time String in format Y-m-d H:i:s A using UTC.
      * @param string $format Set format with a default of FORMAT_12_HOUR.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $timezone Timezone a string $time is stored in, with 'UTC' as default value.
-     *                         Ignored for date objects.
+     * @param string $timezone Timezone $time is stored in, with 'UTC' as default value.
      * @return string The formatted time in the application timezone.
      */
-    public static function formatTime(string|\DateTimeInterface $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
+    public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
         return DateFactory::parse($time, $timezone)
             ->locale($locale)
             ->translatedFormat($format);
@@ -94,15 +92,13 @@ class DateTime {
      *
      * This will show something like 21m.
      *
-     * @param string|\DateTimeInterface $time String in format Y-m-d H:i:s using UTC,
-     *                                    or a date object (its own timezone is used).
+     * @param string $time String in format Y-m-d H:i:s using UTC.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $timezone Timezone a string $time is stored in, with 'UTC' as default value.
-     *                         Ignored for date objects.
+     * @param string $timezone Timezone $time is stored in, with 'UTC' as default value.
      * @param bool $short Set to true to show short form time.
      * @return string The time represented using language describing time since last change.
      */
-    public static function timeAgo(string|\DateTimeInterface $time, string $locale = 'en', string $timezone = 'UTC', bool $short = false): string {
+    public static function timeAgo(string $time, string $locale = 'en', string $timezone = 'UTC', bool $short = false): string {
         $carbon = DateFactory::parse($time, $timezone)->locale($locale);
 
         return $short
@@ -115,12 +111,12 @@ class DateTime {
      * DateTime::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
      * Output: "7 hours before"
      *
-     * @param string|\DateTimeInterface $startTime String in format Y-m-d H:i:s using UTC, or a date object.
-     * @param string|\DateTimeInterface $endTime String in format Y-m-d H:i:s using UTC, or a date object.
+     * @param string $startTime String in format Y-m-d H:i:s using UTC.
+     * @param string $endTime String in format Y-m-d H:i:s using UTC.
      * @param string $timezone Timezone both times are stored in, with 'UTC' as default value.
      * @return string Show exact difference between two times.
      */
-    public static function timeDifference(string|\DateTimeInterface $startTime, string|\DateTimeInterface $endTime, string $timezone = 'UTC'): string {
+    public static function timeDifference(string $startTime, string $endTime, string $timezone = 'UTC'): string {
         $start = DateFactory::parse($startTime, $timezone);
         $end = DateFactory::parse($endTime, $timezone);
         return $start->diffForHumans($end);
@@ -158,15 +154,12 @@ class DateTime {
     /**
      * Converts to ISO 8601 format.
      *
-     * @param string|\DateTimeInterface $time String in format Y-m-d H:i:s using UTC,
-     *                                    or a date object (its own timezone is used).
-     * @param string $timezone Timezone a string $time is stored in, with 'UTC' as default value.
-     *                         Ignored for date objects.
+     * @param string $time String in format Y-m-d H:i:s using UTC.
+     * @param string $timezone Timezone $time is stored in, with 'UTC' as default value.
      * @return string The time in ISO 8601 format.  Example output: 2025-03-09T15:30:45-05:00
      */
-    public static function toISO8601(string|\DateTimeInterface $time, string $timezone = 'UTC'): string {
-        $carbon = $time instanceof \DateTimeInterface ? Carbon::instance($time) : Carbon::parse($time, $timezone);
-        return $carbon->toIso8601String();
+    public static function toISO8601(string $time, string $timezone = 'UTC'): string {
+        return Carbon::parse($time, $timezone)->toIso8601String();
     }
 
     /**

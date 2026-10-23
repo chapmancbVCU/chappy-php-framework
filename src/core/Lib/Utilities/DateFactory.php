@@ -118,7 +118,7 @@ class DateFactory {
      *
      * @return string
      */
-    public static function timezone(): string {
+    protected static function timezone(): string {
         return (string)Env::get('TIME_ZONE', 'UTC');
     }
 }

@@ -16,7 +16,7 @@ use Core\Lib\Utilities\DateFactory;
  * Without a callback the new time stays in effect and the new instance is
  * returned.  With a callback, time is moved only while the callback runs
  * and the callback's return value is returned.
- */   
+ */
 class Wormhole {
     /**
      * @param int $value The amount of time to travel.
