@@ -293,8 +293,8 @@ class AdmindashboardController extends Controller {
      */
     public function manageACLsAction(): void {
         \$props = [
-            'usedAcls' => self::setReadableAclTimestamps(ACLService::usedACLs()),
-            'unUsedAcls' => self::setReadableAclTimestamps(ACLService::unUsedACLs())
+            'usedAcls' => self::setReadableTimestamps(ACLService::usedACLs()),
+            'unUsedAcls' => self::setReadableTimestamps(ACLService::unUsedACLs())
         ];
         \$this->view->renderJsx('admindashboard.ManageAcls', \$props);
     }
@@ -324,13 +324,13 @@ class AdmindashboardController extends Controller {
      * @param array \$acls The ACLs whose timestamps will be made human readable.
      * @return array The modified array of ACLS.
      */
-    private static function setReadableAclTimestamps(array \$acls): array {
-        foreach(\$acls as \$acl) {
-            \$acl->created_at = DateTime::timeAgo(\$acl->created_at);
-            \$acl->updated_at = DateTime::timeAgo(\$acl->updated_at);
+    private static function setReadableTimestamps(array \$objectArray): array {
+        foreach(\$objectArray as \$obj) {
+            \$obj->created_at_readable = \$obj->date('created_at')->diffForHumans();
+            \$obj->updated_at_readable = \$obj->date('updated_at')->diffForHumans();
         }
 
-        return \$acls;
+        return \$objectArray;
     }
 
     /**
