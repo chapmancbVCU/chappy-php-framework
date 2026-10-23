@@ -1132,8 +1132,8 @@ JSX;
                 <td><?= \$e(\$user->username) ?></td>
                 <td><?= \$e(\$user->acl) ?></td>
                 <td><?= (\$user->inactive == 0) ? 'Active' : 'Inactive' ?></td>
-                <td><?= DateTime::timeAgo(\$user->created_at) ?></td>
-                <td><?= DateTime::timeAgo(\$user->updated_at) ?></td>
+                <td><?= \$user->date('created_at')->diffForHumans() ?></td>
+                <td><?= \$user->date('updated_at')->diffForHumans() ?></td>
                 <td class="text-center">
                     <a href="<?= route('admindashboard.details', [\$user->id]) ?>" class="btn btn-info btn-sm w-100">
                         <i class="fa fa-user"></i> Details
@@ -1288,8 +1288,8 @@ JSX;
             <tr>
                 <?php if(\$acl->acl !== "Admin"): ?>
                     <td class="text-center w-50"><?= \$acl->acl ?></td>
-                    <td class="text-center"><?= DateTime::timeAgo(\$acl->created_at) ?></td>
-                    <td class="text-center"><?= DateTime::timeAgo(\$acl->updated_at) ?></td>
+                    <td class="text-center"><?= \$acl->date('created_at')->diffForHumans() ?></td>
+                    <td class="text-center"><?= \$acl->date('updated_at')->diffForHumans() ?></td>
                     <td class="text-center">
                         <a href="<?=route('admindashboard.editAcl', [\$acl->id])?>" class="btn btn-info btn-sm">
                             <i class="fa fa-edit"></i> Edit ACL
@@ -1322,8 +1322,8 @@ JSX;
         <?php foreach(\$this->usedAcls as \$acl): ?>
             <tr>
                 <td class="text-center w-50"><?= \$acl->acl ?></td>
-                <td class="text-center"><?= DateTime::timeAgo(\$acl->created_at) ?></td>
-                <td class="text-center"><?= DateTime::timeAgo(\$acl->updated_at) ?></td>
+                <td class="text-center"><?= \$acl->date('created_at')->diffForHumans() ?></td>
+                <td class="text-center"><?= \$acl->date('updated_at')->diffForHumans() ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
