@@ -51,7 +51,7 @@ class AdminDashboard extends Console {
         Tools::pathExists($path);
         return Tools::writeFile(
             $path.'attachment_details.php',
-            Views::makeIndexPHP(),
+            Views::makeAttachmentDetailsPHP(),
             'Attachment details view'
         );
     }
