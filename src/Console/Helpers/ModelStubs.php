@@ -37,6 +37,12 @@ class {$modelName} extends Model {
 
     // Soft delete
     // protected static bool \$_softDelete = true;
+
+    // Date casting for toArray() and JSON output
+    // protected array \$casts = [
+    //     'created_at' => 'datetime',
+    //     'updated_at' => 'datetime',
+    // ];
     
     // Fields from your database
 
@@ -98,6 +104,12 @@ class {$modelName} extends Model {
 
     // Soft delete
     // protected static bool \$_softDelete = true;
+    
+    // Date casting for toArray() and JSON output
+    // protected array \$casts = [
+    //     'created_at' => 'datetime',
+    //     'updated_at' => 'datetime',
+    // ];
     
     // List your allowed file types.
     protected static array \$allowedFileTypes = [];
