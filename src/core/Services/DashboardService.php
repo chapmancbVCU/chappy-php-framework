@@ -8,7 +8,6 @@ use Core\Lib\Pagination\Pagination;
 use Core\Session;
 use Core\Lib\Pagination\SearchFilter;
 use Core\Models\ACL;
-use Core\Lib\Utilities\DateTime;
 
 /**
  * Supports admin dashboard operations.
@@ -112,8 +111,8 @@ final class DashboardService {
             'inactive'    => (int)$user->inactive === 1,
             'created_at'  => $user->created_at,
             'updated_at'  => $user->updated_at,
-            'created_ago' => DateTime::timeAgo($user->created_at),
-            'updated_ago' => DateTime::timeAgo($user->updated_at),
+            'created_ago' => $user->date('created_at')->diffForHumans(),
+            'updated_ago' => $user->date('updated_at')->diffForHumans(),
         ];
     }
 
