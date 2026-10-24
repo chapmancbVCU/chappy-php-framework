@@ -288,8 +288,8 @@ class AdmindashboardController extends Controller {
      */
     public function manageACLsAction(): void {
         \$props = [
-            'usedAcls' => self::setReadableTimestamps(ACLService::usedACLs()),
-            'unUsedAcls' => self::setReadableTimestamps(ACLService::unUsedACLs())
+            'usedAcls' => ACLService::usedACLs(),
+            'unUsedAcls' => ACLService::unUsedACLs()
         ];
         \$this->view->renderJsx('admindashboard.ManageAcls', \$props);
     }
