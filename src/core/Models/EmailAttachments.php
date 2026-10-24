@@ -33,6 +33,15 @@ final class EmailAttachments extends Model {
     protected static array $allowedFileTypes;
 
     /**
+     * Columns converted when the model is serialized with toArray() or json_encode().
+     * @var array<string, string>
+     */
+    protected array $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+    
+    /**
      * Set your max file size.
      * @var int
      */

@@ -35,8 +35,14 @@ function AttachmentDetails({ attachment, size, uploader }) {
                 <h2 className="text-center">{attachment.attachment_name}</h2>
                 <div className="row">
                     <div className="col-md-6">
-                        <p title={attachment.created_at}><strong>Created at: </strong>{DateTime.timeAgo(attachment.created_at)}</p>
-                        <p title={attachment.updated_at}><strong>Updated at: </strong>{DateTime.timeAgo(attachment.updated_at)}</p>
+                        <p title={DateTime.formatTime(attachment.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                            <strong>Created at: </strong>
+                            {DateTime.timeAgo(attachment.created_at)}
+                        </p>
+                        <p title={DateTime.formatTime(attachment.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                            <strong>Updated at: </strong>
+                            {DateTime.timeAgo(attachment.updated_at)}
+                        </p>
                         <p><strong>Size: </strong>{size}</p>
                         <p><strong>MIME Type: </strong>{attachment.mime_type}</p>
                         <p><strong>Uploader: </strong>{uploader.username}</p>
@@ -486,11 +492,15 @@ function Details({ profileImage, user }) {
                             </tr>
                             <tr>
                                 <th className="text-center">Created</th>
-                                <td title={user.created_at} className="text-center">{DateTime.timeAgo(user.created_at)}</td>
+                                <td title={DateTime.formatTime(user.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">
+                                    {DateTime.timeAgo(user.created_at)}
+                                </td>
                             </tr>
                             <tr>
                                 <th className="text-center">Last Update</th>
-                                <td title={user.updated_at} className="text-center">{DateTime.timeAgo(user.updated_at)}</td>
+                                <td title={DateTime.formatTime(user.updated_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">
+                                    {DateTime.timeAgo(user.updated_at)}
+                                </td>
                             </tr>
                             {user.description && (
                                 <tr>
@@ -1000,8 +1010,12 @@ export default function Index({
                                         ))}
                                 </td>
                                 <td>{user.inactive ? 'Inactive' : 'Active'}</td>
-                                <td title={user.created_at}>{DateTime.timeAgo(user.created_at)}</td>
-                                <td title={user.updated_at}>{DateTime.timeAgo(user.updated_at)}</td>
+                                <td title={DateTime.formatTime(user.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                    {DateTime.timeAgo(user.created_at)}
+                                </td>
+                                <td title={DateTime.formatTime(user.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                    {DateTime.timeAgo(user.updated_at)}
+                                </td>
                                 <td className="text-center">
                                     <a href={route('admindashboard.details', [user.id])} className="btn btn-info btn-sm w-100">
                                         <i className="fa fa-user"></i> Details
@@ -1202,8 +1216,12 @@ function ManageAcls({ usedAcls, unUsedAcls }) {
                             {acl.acl !== 'Admin' && (
                                 <>
                                     <td className="text-center w-50">{acl.acl}</td>
-                                    <td title={DateTime.formatTime(acl.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">{DateTime.timeAgo(acl.created_at)}</td>
-                                    <td title={DateTime.formatTime(acl.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">{DateTime.timeAgo(acl.updated_at)}</td>
+                                    <td title={DateTime.formatTime(acl.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">
+                                        {DateTime.timeAgo(acl.created_at)}
+                                    </td>
+                                    <td title={DateTime.formatTime(acl.updated_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">
+                                        {DateTime.timeAgo(acl.updated_at)}
+                                    </td>
                                     <td className="text-center">
                                         <a href={route('admindashboard.editAcl', [acl.id])} className="btn btn-info btn-sm">
                                             <i className="fa fa-edit"></i> Edit ACL
@@ -1238,8 +1256,12 @@ function ManageAcls({ usedAcls, unUsedAcls }) {
                         <tr key={acl.id}>
                             <>
                                 <td className="text-center w-50">{acl.acl}</td>
-                                <td title={acl.created_at} className="text-center">{DateTime.timeAgo(acl.created_at)}</td>
-                                <td title={acl.updated_at} className="text-center">{DateTime.timeAgo(acl.updated_at)}</td>
+                                <td title={DateTime.formatTime(acl.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">
+                                    {DateTime.timeAgo(acl.created_at)}
+                                </td>
+                                <td title={DateTime.formatTime(acl.updated_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">
+                                    {DateTime.timeAgo(acl.updated_at)}
+                                </td>
                             </>
                         </tr>
                     ))}
