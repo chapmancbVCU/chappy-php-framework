@@ -16,6 +16,7 @@ class Views {
 import React from "react";
 import SafeHtml from '@chappy/components/SafeHtml';
 import { route, documentTitle } from '@chappy/utils';
+import { DateTime } from "@chappy/utils/datetime";
 
 /**
  * Renders attachment details view.
@@ -28,7 +29,7 @@ import { route, documentTitle } from '@chappy/utils';
  * @param {*} param0 
  * @returns 
  */
-function AttachmentDetails({ attachment, createdAt, size, updatedAt, uploader }) {
+function AttachmentDetails({ attachment, size, uploader }) {
     documentTitle("Details for " + attachment.attachment_name);
     return (
         <div className="row align-items-center justify-content-center">
@@ -37,8 +38,8 @@ function AttachmentDetails({ attachment, createdAt, size, updatedAt, uploader })
                 <h2 className="text-center">{attachment.attachment_name}</h2>
                 <div className="row">
                     <div className="col-md-6">
-                        <p><strong>Created at: </strong>{createdAt}</p>
-                        <p><strong>Updated at: </strong>{updatedAt}</p>
+                        <p><strong>Created at: </strong>{DateTime.timeAgo(attachment.created_at)}</p>
+                        <p><strong>Updated at: </strong>{DateTime.timeAgo(attachment.updated_at)}</p>
                         <p><strong>Size: </strong>{size}</p>
                         <p><strong>MIME Type: </strong>{attachment.mime_type}</p>
                         <p><strong>Uploader: </strong>{uploader.username}</p>

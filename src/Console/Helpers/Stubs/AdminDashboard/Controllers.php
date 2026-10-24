@@ -66,9 +66,7 @@ class AdmindashboardController extends Controller {
 
         \$props = [
             'attachment' => \$attachment,
-            'createdAt' => \$attachment->date('created_at')->diffForHumans(),
             'size' => EmailAttachments::formatBytes(\$attachment->size),
-            'updatedAt' => \$attachment->date('updated_at')->diffForHumans(),
             'uploader' => AttachmentService::attachmentUploader(\$attachment->user_id),
         ];
 
