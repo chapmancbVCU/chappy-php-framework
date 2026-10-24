@@ -111,8 +111,6 @@ final class DashboardService {
             'inactive'    => (int)$user->inactive === 1,
             'created_at'  => $user->created_at,
             'updated_at'  => $user->updated_at,
-            'created_ago' => $user->date('created_at')->diffForHumans(),
-            'updated_ago' => $user->date('updated_at')->diffForHumans(),
         ];
     }
 

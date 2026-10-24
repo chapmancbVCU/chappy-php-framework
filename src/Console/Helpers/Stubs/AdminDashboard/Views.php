@@ -867,7 +867,7 @@ PHP;
     public static function makeIndexJS(): string {
         return <<<JSX
 import React, { useEffect, useState } from 'react';
-import { documentTitle, route } from '@chappy/utils';
+import { DateTime, documentTitle, route } from '@chappy/utils';
 import usePaginatedQuery from '@chappy/utils/usePaginatedQuery';
 import Pagination, { PaginationSummary, SortableTh } from '@chappy/components/Pagination';
 import SafeHtml from '@chappy/components/SafeHtml';
@@ -1000,8 +1000,8 @@ export default function Index({
                                         ))}
                                 </td>
                                 <td>{user.inactive ? 'Inactive' : 'Active'}</td>
-                                <td title={user.created_at}>{user.created_ago}</td>
-                                <td title={user.updated_at}>{user.updated_ago}</td>
+                                <td title={user.created_at}>{DateTime.timeAgo(user.created_at)}</td>
+                                <td title={user.updated_at}>{DateTime.timeAgo(user.updated_at)}</td>
                                 <td className="text-center">
                                     <a href={route('admindashboard.details', [user.id])} className="btn btn-info btn-sm w-100">
                                         <i className="fa fa-user"></i> Details
