@@ -51,11 +51,10 @@ class MakeViewCommand extends ConsoleCommand {
         View::argOptionValidate($view, $message, $this->question(), ['max:50']);
 
         // Check if directory exists and create it.
-        $directory = View::VIEW_PATH.Str::ucfirst($directory);
+        $directory = View::VIEW_PATH.$directory;
         $isDirMade = Tools::createDirWithPrompt($directory, $this->question());
         if($isDirMade == self::FAILURE) return self::FAILURE;
 
-        $view = Str::ucfirst($view);
         return View::makeView($directory . DS . $view.'.php');
     }
 }
