@@ -308,7 +308,7 @@ function Attachments({ attachments }) {
                                         <form method="POST" onSubmit={onDeleteClick(attachment)} className="d-inline-block">
                                             <CSRFInput />
                                             <button type="submit" className="btn btn-danger btn-sm">
-                                                <i className="fa fa-trash"></i>
+                                                <i className="fa fa-trash"></i> Delete
                                             </button>
                                         </form>
                                     }
