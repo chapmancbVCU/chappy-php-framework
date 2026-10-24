@@ -156,9 +156,7 @@ class AdmindashboardController extends Controller {
         DashboardService::checkIfCurrentUser(\$user);
 
         \$props = [
-            'createdAt' => \$user->date('created_at')->diffForHumans(),
             'profileImage' => ProfileImages::findCurrentProfileImage(\$user->id),
-            'updatedAt' => \$user->date('updated_at')->diffForHumans(),
             'user' => \$user
         ];
 

@@ -15,16 +15,13 @@ class Views {
         return <<<JSX
 import React from "react";
 import SafeHtml from '@chappy/components/SafeHtml';
-import { route, documentTitle } from '@chappy/utils';
-import { DateTime } from "@chappy/utils/datetime";
+import { DateTime, route, documentTitle } from '@chappy/utils';
 
 /**
  * Renders attachment details view.
  * 
  * @property {object} attachment The attachment object
- * @property {string} createdAt When the record was created.
  * @property {string} size The size of the file.
- * @property {string} updatedAt When the record was last updated.
  * @property {object} uploader The upload of the attachment.
  * @param {*} param0 
  * @returns 
@@ -398,7 +395,8 @@ import {
     apiError, 
     asset, 
     CSRFInput, 
-    CSRFToken, 
+    CSRFToken,
+    DateTime, 
     documentTitle, 
     redirect, 
     route, 
@@ -408,14 +406,12 @@ import {
 /**
  * Returns user details component.
  * 
- * @property {string} createdAt When the record was created.
  * @property {object} profileImage The profileImage object.
- * @property {string} updatedAt When the record was last updated.
  * @property {object} user The user whose details wer are viewing.
  * @param {*} param0 
  * @returns 
  */
-function Details({ createdAt, profileImage, updatedAt, user }) {
+function Details({ profileImage, user }) {
     documentTitle(`\${user.username} Details`);
     const [error, setError] = useState(null);
  
@@ -490,11 +486,11 @@ function Details({ createdAt, profileImage, updatedAt, user }) {
                             </tr>
                             <tr>
                                 <th className="text-center">Created</th>
-                                <td className="text-center">{createdAt}</td>
+                                <td className="text-center">{DateTime.timeAgo(user.created_at)}</td>
                             </tr>
                             <tr>
                                 <th className="text-center">Last Update</th>
-                                <td className="text-center">{updatedAt}</td>
+                                <td className="text-center">{DateTime.timeAgo(user.updated_at)}</td>
                             </tr>
                             {user.description && (
                                 <tr>
