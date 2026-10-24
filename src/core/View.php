@@ -152,8 +152,8 @@ class View extends stdClass {
     /**
      * Renders a React.js file.
      *
-     * @param string $viewComponent The name of the component.
-     * @param array $props The prop to be pass to the component.
+     * @param string $viewComponent The name of the component in <dir_name>.<view_name> format.
+     * @param array $props The props to be pass to the component.
      * @param bool $frameworkLayoutPath When set to true use internal layout.
      * @param string $entry The entry point for JavaScript.
      * @return void
