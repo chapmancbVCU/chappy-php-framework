@@ -25,15 +25,25 @@ class Queue extends Model {
      * Number of attempts.
      * @var int
      */
-    public $attempts;
+    public int $attempts;
 
-    /** Available at. */
-    public $available_at;
+    /** 
+     * Available at. 
+     * @var string
+     */
+    public string $available_at;
 
-    /** Exceptions */
-    public $exception;
-    /** Failed at. */
-    public $failed_at;
+    /** 
+     * Exceptions 
+     * @var string
+     */
+    public ?string $exception = null;
+
+    /** 
+     * Failed at. 
+     * @var string
+     */
+    public ?string $failed_at = null;
 
     /**
      * ID for item in queue.
@@ -49,10 +59,17 @@ class Queue extends Model {
      */
     public $queue;
 
-    /** Reserved at. */
-    public $reserved_at;
-    /** Payload */
-    public $payload;
+    /** 
+     * Reserved at. 
+     * @var string
+     */
+    public ?string $reserved_at = null;
+
+    /** 
+     * Payload 
+     * @var string
+     */
+    public string $payload;
 
     /**
      * Calculate delay when performing retry for a job.

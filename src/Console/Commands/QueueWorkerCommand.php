@@ -54,7 +54,7 @@ class QueueWorkerCommand extends ConsoleCommand
             return Command::FAILURE;
         } 
         
-        $iterations = Queue::iterations($max, $once);
+        $iterations = Queue::iterations((int)$max, $once);
 
         if($queueName) {
             return Queue::worker($iterations, $queueName);
