@@ -8,3 +8,4 @@ export { default as SafeHtml } from '../components/SafeHtml';
 export { default as usePaginatedQuery } from '@chappy/utils/usePaginatedQuery';
 export { default as ProfileImageSorter} from '@chappy/components/ProfileImageSorter';
 export * from '@chappy/utils/helpers';
+export * from '@chappy/utils/datetime';
