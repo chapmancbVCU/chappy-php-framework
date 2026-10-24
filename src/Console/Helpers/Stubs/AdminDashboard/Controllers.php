@@ -314,21 +314,6 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Make ACL timestamps readable for views.
-     *
-     * @param array \$acls The ACLs whose timestamps will be made human readable.
-     * @return array The modified array of ACLS.
-     */
-    private static function setReadableTimestamps(array \$objectArray): array {
-        foreach(\$objectArray as \$obj) {
-            \$obj->created_at_readable = \$obj->date('created_at')->diffForHumans();
-            \$obj->updated_at_readable = \$obj->date('updated_at')->diffForHumans();
-        }
-
-        return \$objectArray;
-    }
-
-    /**
      * Support ability to toggle on or off the reset password flag for a 
      * particular user.
      *
