@@ -121,6 +121,17 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_reactTemplate">reactTemplate</a>(string $controllerName, string $layout)
+        
+                                            <p><p>Template for a React-backed (JSON API) controller.  Uses the JsonResponse
+trait and returns JSON instead of rendering a view.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
                     <a href="#method_resourceTemplate">resourceTemplate</a>(string $controllerName, string $layout)
         
                                             <p><p>The template that contains additional useful functions for a controller.</p></p>                </div>
@@ -180,8 +191,57 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_reactTemplate">
+        <div class="location">at line 47</div>
+        <code>        static            string
+    <strong>reactTemplate</strong>(string $controllerName, string $layout)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Template for a React-backed (JSON API) controller.  Uses the JsonResponse
+trait and returns JSON instead of rendering a view.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controllerName</td>
+                <td><p>The name of the controller.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$layout</td>
+                <td><p>Unused for API controllers; kept for signature parity
+with the other templates.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents for a new React/API controller.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_resourceTemplate">
-        <div class="location">at line 45</div>
+        <div class="location">at line 129</div>
         <code>        static            string
     <strong>resourceTemplate</strong>(string $controllerName, string $layout)
         </code>

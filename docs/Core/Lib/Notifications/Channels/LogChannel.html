@@ -174,7 +174,7 @@ JSON structure and writes it to the configured Logger.</p></p>        </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
+                    static&nbsp;<abbr title="Core\Lib\Notifications\Channels\string|null">string|null</abbr>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_payloadMessage">payloadMessage</a>(array $payloadArr)
@@ -461,7 +461,7 @@ when the notification's <code>via()</code> method includes &quot;log&quot;.</p><
                     <div class="method-item">
                     <h3 id="method_payloadMessage">
         <div class="location">at line 152</div>
-        <code>        static        private    string
+        <code>        static        private    <abbr title="Core\Lib\Notifications\Channels\string|null">string|null</abbr>
     <strong>payloadMessage</strong>(array $payloadArr)
         </code>
     </h3>
@@ -489,7 +489,7 @@ key. Non‑string values are JSON‑encoded with unicode and slashes preserved.<
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
+            <td><abbr title="Core\Lib\Notifications\Channels\string|null">string|null</abbr></td>
             <td><p>A normalized message string or null if no message key exists.</p></td>
         </tr>
     </table>
@@ -503,7 +503,7 @@ key. Non‑string values are JSON‑encoded with unicode and slashes preserved.<
             </div>
                     <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 180</div>
+        <div class="location">at line 181</div>
         <code>                    void
     <strong>send</strong>(object $notifiable, <a href="../../../../Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a> $notification, mixed $payload)
         </code>

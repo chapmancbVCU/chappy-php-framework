@@ -731,6 +731,16 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_adminDashboardComponents">adminDashboardComponents</a>()
+        
+                                            <p><p>Generates the admindashboard jsx components.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
                     <a href="#method_authComponents">authComponents</a>()
         
                                             <p><p>Generates the auth jsx components.</p></p>                </div>
@@ -2483,7 +2493,7 @@ supply are appended to list of default validators.</p></td>
                     <div class="method-item">
                     <h3 id="method_choice">
         <div class="location">in <a href="../../Console/Console.html#method_choice">
-<abbr title="Console\Console">Console</abbr></a> at line 75</div>
+<abbr title="Console\Console">Console</abbr></a> at line 74</div>
         <code>        static            mixed
     <strong>choice</strong>(string $message, array $choices, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
         </code>
@@ -2542,7 +2552,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_confirm">
         <div class="location">in <a href="../../Console/Console.html#method_confirm">
-<abbr title="Console\Console">Console</abbr></a> at line 93</div>
+<abbr title="Console\Console">Console</abbr></a> at line 92</div>
         <code>        static            mixed
     <strong>confirm</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
         </code>
@@ -2596,7 +2606,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_getInstance">
         <div class="location">in <a href="../../Console/Console.html#method_getInstance">
-<abbr title="Console\Console">Console</abbr></a> at line 107</div>
+<abbr title="Console\Console">Console</abbr></a> at line 106</div>
         <code>        static            <a href="../../Console/Console.html"><abbr title="Console\Console">Console</abbr></a>
     <strong>getInstance</strong>(string $fieldName = &quot;&quot;)
         </code>
@@ -2639,7 +2649,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_prompt">
         <div class="location">in <a href="../../Console/Console.html#method_prompt">
-<abbr title="Console\Console">Console</abbr></a> at line 133</div>
+<abbr title="Console\Console">Console</abbr></a> at line 132</div>
         <code>        static            string
     <strong>prompt</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
         </code>
@@ -2714,8 +2724,40 @@ supply are appended to list of default validators.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_adminDashboardComponents">
+        <div class="location">at line 44</div>
+        <code>        static            int
+    <strong>adminDashboardComponents</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates the admindashboard jsx components.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_authComponents">
-        <div class="location">at line 40</div>
+        <div class="location">at line 66</div>
         <code>        static            int
     <strong>authComponents</strong>()
         </code>
@@ -2747,7 +2789,7 @@ supply are appended to list of default validators.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_errorNotFoundComponent">
-        <div class="location">at line 55</div>
+        <div class="location">at line 83</div>
         <code>        static            int
     <strong>errorNotFoundComponent</strong>()
         </code>
@@ -2779,7 +2821,7 @@ supply are appended to list of default validators.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_homeComponent">
-        <div class="location">at line 67</div>
+        <div class="location">at line 95</div>
         <code>        static            int
     <strong>homeComponent</strong>()
         </code>
@@ -2811,7 +2853,7 @@ supply are appended to list of default validators.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeComponent">
-        <div class="location">at line 82</div>
+        <div class="location">at line 110</div>
         <code>        static            int
     <strong>makeComponent</strong>(string $componentName, bool $named = false)
         </code>
@@ -2859,7 +2901,7 @@ component is generated.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeHook">
-        <div class="location">at line 98</div>
+        <div class="location">at line 126</div>
         <code>        static            int
     <strong>makeHook</strong>(string $hookName)
         </code>
@@ -2902,7 +2944,7 @@ use as hook file with React.js front-end.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_makePage">
-        <div class="location">at line 114</div>
+        <div class="location">at line 142</div>
         <code>        static            int
     <strong>makePage</strong>(string $filePath, string $pageName, bool $named = false)
         </code>
@@ -2955,7 +2997,7 @@ component is generated.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeUtility">
-        <div class="location">at line 129</div>
+        <div class="location">at line 157</div>
         <code>        static            int
     <strong>makeUtility</strong>(string $utilityName)
         </code>
@@ -2998,7 +3040,7 @@ use as support file with React.js front-end.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_namedComponentPrompt">
-        <div class="location">at line 143</div>
+        <div class="location">at line 171</div>
         <code>        static            mixed
     <strong>namedComponentPrompt</strong>(mixed $named, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         </code>
@@ -3046,7 +3088,7 @@ argument is not provided.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileComponents">
-        <div class="location">at line 154</div>
+        <div class="location">at line 182</div>
         <code>        static            int
     <strong>profileComponents</strong>()
         </code>

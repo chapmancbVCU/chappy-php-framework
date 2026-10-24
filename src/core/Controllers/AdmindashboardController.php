@@ -47,7 +47,6 @@ class AdmindashboardController extends Controller {
     /**
      * Deletes ACL from acl table.
      *
-     * @param int $id The id for the ACL we want to delete.
      * @return void
      */
     public function deleteAclAction(): void {

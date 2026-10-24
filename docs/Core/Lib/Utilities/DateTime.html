@@ -99,7 +99,8 @@
 
             <div class="description">
             <p><p>Supports ability to manipulate how time is displayed.  Most functions are
-wrappers for those found in the Carbon class.</p></p>                    </div>
+wrappers for those found in the Carbon class.</p></p>            <p><p>All date objects are created through DateFactory so timezone, locale,
+and Carbon::setTestNow() behave consistently.</p></p>        </div>
             
         
             <h2>Constants</h2>    <table class="table table-condensed">
@@ -214,10 +215,20 @@ wrappers for those found in the Carbon class.</p></p>                    </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_formatTime">formatTime</a>(string $time, string $format = self::FORMAT_12_HOUR, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;)
+                    <a href="#method_formatTime">formatTime</a>(string|DateTimeInterface $time, string $format = self::FORMAT_12_HOUR, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;)
         
                                             <p><p>Returns string that describes time.  The results can be set using
 constants, locale, and timezone.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_now">now</a>(string|null $timezone = null, string|null $format = null, string|null $locale = null)
+        
+                                            <p><p>Get the current time as a formatted string using Carbon.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -235,7 +246,7 @@ constants, locale, and timezone.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_timeAgo">timeAgo</a>(string $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
+                    <a href="#method_timeAgo">timeAgo</a>(string|DateTimeInterface $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
         
                                             <p><p>Accepts UTC time in format Y-m-d H:i:s and returns a string describing
 how much time has elapsed.</p></p>                </div>
@@ -246,10 +257,10 @@ how much time has elapsed.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_timeDifference">timeDifference</a>(string $startTime, string $endTime, string $timezone = &#039;UTC&#039;)
+                    <a href="#method_timeDifference">timeDifference</a>(string|DateTimeInterface $startTime, string|DateTimeInterface $endTime, string $timezone = &#039;UTC&#039;)
         
                                             <p><p>Shows the difference between two times.  An example is shown below:
-DateTimeHelper::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
+DateTime::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
 Output: &quot;7 hours before&quot;</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -268,9 +279,29 @@ Output: &quot;7 hours before&quot;</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_toISO8601">toISO8601</a>(string $time, string $timezone = &#039;UTC&#039;)
+                    <a href="#method_today">today</a>(string|null $timezone = null, string|null $format = null, string|null $locale = null)
         
-                                            <p><p>Converts to ISO 8610 format.</p></p>                </div>
+                                            <p><p>Get the current day as a formatted string using Carbon.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toISO8601">toISO8601</a>(string|DateTimeInterface $time, string $timezone = &#039;UTC&#039;)
+        
+                                            <p><p>Converts to ISO 8601 format.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_present">present</a>(<abbr title="Carbon\CarbonInterface">CarbonInterface</abbr> $date, string|null $format, string|null $locale)
+        
+                                            <p><p>Formats an instance that is already in the timezone the caller wants.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -281,9 +312,9 @@ Output: &quot;7 hours before&quot;</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_formatTime">
-        <div class="location">at line 45</div>
+        <div class="location">at line 50</div>
         <code>        static            string
-    <strong>formatTime</strong>(string $time, string $format = self::FORMAT_12_HOUR, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;)
+    <strong>formatTime</strong>(string|DateTimeInterface $time, string $format = self::FORMAT_12_HOUR, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -299,9 +330,10 @@ constants, locale, and timezone.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>string</td>
+                <td>string|DateTimeInterface</td>
                 <td>$time</td>
-                <td><p>String in format Y-m-d H:i:s A using UTC.</p></td>
+                <td><p>String in format Y-m-d H:i:s A using UTC,
+or a date object (its own timezone is used).</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -316,7 +348,8 @@ constants, locale, and timezone.</p></p>
                     <tr>
                 <td>string</td>
                 <td>$timezone</td>
-                <td><p>Override default timezone with 'UTC' as default value.</p></td>
+                <td><p>Timezone a string $time is stored in, with 'UTC' as default value.
+Ignored for date objects.</p></td>
             </tr>
             </table>
 
@@ -326,7 +359,64 @@ constants, locale, and timezone.</p></p>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>The formatted time.</p></td>
+            <td><p>The formatted time in the application timezone.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_now">
+        <div class="location">at line 72</div>
+        <code>        static            string
+    <strong>now</strong>(string|null $timezone = null, string|null $format = null, string|null $locale = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Get the current time as a formatted string using Carbon.</p></p>                <p><p>This function supports optional user-specific overrides for timezone,
+format, and locale. If not provided, it defaults to the application's
+configured environment values.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|null</td>
+                <td>$timezone</td>
+                <td><p>The timezone to use (e.g., 'Europe/Berlin').
+Falls back to TIME_ZONE if null.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$format</td>
+                <td><p>The format string (e.g., 'H:i' or 'g:i A').
+Falls back to DateTime::FORMAT_12_HOUR if null.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$locale</td>
+                <td><p>The locale code (e.g., 'en', 'fr').
+Falls back to LOCALE if null.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The current time formatted based on the provided or default settings.</p></td>
         </tr>
     </table>
 
@@ -339,7 +429,7 @@ constants, locale, and timezone.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_nowPlusSeconds">
-        <div class="location">at line 58</div>
+        <div class="location">at line 82</div>
         <code>        static            string
     <strong>nowPlusSeconds</strong>(int $seconds)
         </code>
@@ -368,7 +458,7 @@ constants, locale, and timezone.</p></p>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>The time plus seconds passed as parameter.</p></td>
+            <td><p>The time plus seconds passed as parameter in UTC.</p></td>
         </tr>
     </table>
 
@@ -381,9 +471,9 @@ constants, locale, and timezone.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeAgo">
-        <div class="location">at line 79</div>
+        <div class="location">at line 105</div>
         <code>        static            string
-    <strong>timeAgo</strong>(string $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
+    <strong>timeAgo</strong>(string|DateTimeInterface $time, string $locale = &#039;en&#039;, string $timezone = &#039;UTC&#039;, bool $short = false)
         </code>
     </h3>
     <div class="details">    
@@ -401,9 +491,10 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>string</td>
+                <td>string|DateTimeInterface</td>
                 <td>$time</td>
-                <td><p>String in format Y-m-d H:i:s using UTC.</p></td>
+                <td><p>String in format Y-m-d H:i:s using UTC,
+or a date object (its own timezone is used).</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -413,7 +504,8 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
                     <tr>
                 <td>string</td>
                 <td>$timezone</td>
-                <td><p>Override default timezone with 'UTC' as default value.</p></td>
+                <td><p>Timezone a string $time is stored in, with 'UTC' as default value.
+Ignored for date objects.</p></td>
             </tr>
                     <tr>
                 <td>bool</td>
@@ -441,9 +533,9 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeDifference">
-        <div class="location">at line 99</div>
+        <div class="location">at line 123</div>
         <code>        static            string
-    <strong>timeDifference</strong>(string $startTime, string $endTime, string $timezone = &#039;UTC&#039;)
+    <strong>timeDifference</strong>(string|DateTimeInterface $startTime, string|DateTimeInterface $endTime, string $timezone = &#039;UTC&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -452,7 +544,7 @@ DateTime::timeAgo($user-&gt;updated_at, 'en', 'UTC', true);</p>
 
         <div class="method-description">
                             <p><p>Shows the difference between two times.  An example is shown below:
-DateTimeHelper::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
+DateTime::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
 Output: &quot;7 hours before&quot;</p></p>                        
         </div>
         <div class="tags">
@@ -460,19 +552,19 @@ Output: &quot;7 hours before&quot;</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>string</td>
+                <td>string|DateTimeInterface</td>
                 <td>$startTime</td>
-                <td><p>String in format Y-m-d H:i:s using UTC.</p></td>
+                <td><p>String in format Y-m-d H:i:s using UTC, or a date object.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>string|DateTimeInterface</td>
                 <td>$endTime</td>
-                <td><p>String in format Y-m-d H:i:s using UTC.</p></td>
+                <td><p>String in format Y-m-d H:i:s using UTC, or a date object.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$timezone</td>
-                <td><p>Override default timezone with 'UTC' as default value.</p></td>
+                <td><p>Timezone both times are stored in, with 'UTC' as default value.</p></td>
             </tr>
             </table>
 
@@ -495,7 +587,7 @@ Output: &quot;7 hours before&quot;</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeStamps">
-        <div class="location">at line 110</div>
+        <div class="location">at line 134</div>
         <code>        static            string
     <strong>timeStamps</strong>()
         </code>
@@ -526,10 +618,10 @@ Output: &quot;7 hours before&quot;</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_toISO8601">
-        <div class="location">at line 122</div>
+                    <h3 id="method_today">
+        <div class="location">at line 154</div>
         <code>        static            string
-    <strong>toISO8601</strong>(string $time, string $timezone = &#039;UTC&#039;)
+    <strong>today</strong>(string|null $timezone = null, string|null $format = null, string|null $locale = null)
         </code>
     </h3>
     <div class="details">    
@@ -537,21 +629,31 @@ Output: &quot;7 hours before&quot;</p></p>
             
 
         <div class="method-description">
-                            <p><p>Converts to ISO 8610 format.</p></p>                        
+                            <p><p>Get the current day as a formatted string using Carbon.</p></p>                <p><p>This function supports optional user-specific overrides for timezone,
+format, and locale. If not provided, it defaults to the application's
+configured environment values.</p></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>string</td>
-                <td>$time</td>
-                <td><p>String in format Y-m-d H:i:s using UTC.</p></td>
+                <td>string|null</td>
+                <td>$timezone</td>
+                <td><p>The timezone to use (e.g., 'Europe/Berlin').
+Falls back to TIME_ZONE if null.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
-                <td>$timezone</td>
-                <td><p>Override default timezone with 'UTC' as default value.</p></td>
+                <td>string|null</td>
+                <td>$format</td>
+                <td><p>The format string (e.g., 'H:i' or 'g:i A').
+Falls back to DateTime::FORMAT_12_HOUR if null.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$locale</td>
+                <td><p>The locale code (e.g., 'en', 'fr').
+Falls back to LOCALE if null.</p></td>
             </tr>
             </table>
 
@@ -561,7 +663,108 @@ Output: &quot;7 hours before&quot;</p></p>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>The time in ISO 8610 format.  Example output: 2025-03-09T15:30:45-05:00</p></td>
+            <td><p>The current day formatted based on the provided or default settings.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toISO8601">
+        <div class="location">at line 167</div>
+        <code>        static            string
+    <strong>toISO8601</strong>(string|DateTimeInterface $time, string $timezone = &#039;UTC&#039;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Converts to ISO 8601 format.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|DateTimeInterface</td>
+                <td>$time</td>
+                <td><p>String in format Y-m-d H:i:s using UTC,
+or a date object (its own timezone is used).</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$timezone</td>
+                <td><p>Timezone a string $time is stored in, with 'UTC' as default value.
+Ignored for date objects.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The time in ISO 8601 format.  Example output: 2025-03-09T15:30:45-05:00</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_present">
+        <div class="location">at line 180</div>
+        <code>        static    protected        string
+    <strong>present</strong>(<abbr title="Carbon\CarbonInterface">CarbonInterface</abbr> $date, string|null $format, string|null $locale)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Formats an instance that is already in the timezone the caller wants.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Carbon\CarbonInterface">CarbonInterface</abbr></td>
+                <td>$date</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$format</td>
+                <td><p>Falls back to FORMAT_12_HOUR.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$locale</td>
+                <td><p>Falls back to LOCALE.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
         </tr>
     </table>
 

@@ -101,6 +101,18 @@
             <p><p>Supports admin dashboard operations.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        STATUS_OPTIONS
+                                    </td>
+                <td class="last">
+                    <p><em><p>Status filter options: value as stored in users.inactive =&gt; label.</p></em></p>
+                    <p><p>Same value =&gt; label shape as ACL::getOptionsForForm().</p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -118,12 +130,23 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;<a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_userFilter">userFilter</a>(object $request)
+        
+                                            <p><p>Builds the search/filter definition for the admin user list. Always
+excludes the current user.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_paginateUsers">paginateUsers</a>(<a href="../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a> $pagination)
+                    <a href="#method_paginateUsers">paginateUsers</a>(<a href="../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a> $pagination, <a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
         
-                                            <p><p>Returns list of paginated users.</p></p>                </div>
+                                            <p><p>Returns list of paginated users matching the filter.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -131,9 +154,42 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_totalUserCountExceptCurrent">totalUserCountExceptCurrent</a>()
+                    <a href="#method_totalUsers">totalUsers</a>(<a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
         
-                                            <p><p>Returns query number of users excluding current.</p></p>                </div>
+                                            <p><p>Returns the number of users matching the filter.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_userList">userList</a>(object $request, int $perPage = 10)
+        
+                                            <p><p>Builds the paginated, filtered user list as plain arrays. Shared by the
+initial React render and the JSON responses for page/sort/filter changes.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_userToArray">userToArray</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+        
+                                            <p><p>Serializes a user for the dashboard. Only the fields the table needs;
+never pass whole models to the client (password hashes, tokens, etc.).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_optionList">optionList</a>(array $options)
+        
+                                            <p><p>Converts value =&gt; label options to a list for React. A list keeps order
+and avoids PHP turning '0'/'1' keys into a JSON array.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -144,7 +200,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_checkIfCurrentUser">
-        <div class="location">at line 21</div>
+        <div class="location">at line 23</div>
         <code>        static            void
     <strong>checkIfCurrentUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user, string $redirect = &#039;&#039;)
         </code>
@@ -190,10 +246,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_paginateUsers">
-        <div class="location">at line 34</div>
-        <code>        static            array
-    <strong>paginateUsers</strong>(<a href="../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a> $pagination)
+                    <h3 id="method_userFilter">
+        <div class="location">at line 46</div>
+        <code>        static            <a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
+    <strong>userFilter</strong>(object $request)
         </code>
     </h3>
     <div class="details">    
@@ -201,7 +257,50 @@
             
 
         <div class="method-description">
-                            <p><p>Returns list of paginated users.</p></p>                        
+                            <p><p>Builds the search/filter definition for the admin user list. Always
+excludes the current user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$request</td>
+                <td><p>The request object.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_paginateUsers">
+        <div class="location">at line 64</div>
+        <code>        static            array
+    <strong>paginateUsers</strong>(<a href="../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a> $pagination, <a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns list of paginated users matching the filter.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -211,6 +310,11 @@
                 <td><a href="../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
                 <td>$pagination</td>
                 <td><p>Instance of Pagination class.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></td>
+                <td>$filter</td>
+                <td><p>The active search/filter.</p></td>
             </tr>
             </table>
 
@@ -232,10 +336,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_totalUserCountExceptCurrent">
-        <div class="location">at line 47</div>
+                    <h3 id="method_totalUsers">
+        <div class="location">at line 74</div>
         <code>        static            int
-    <strong>totalUserCountExceptCurrent</strong>()
+    <strong>totalUsers</strong>(<a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
         </code>
     </h3>
     <div class="details">    
@@ -243,16 +347,160 @@
             
 
         <div class="method-description">
-                            <p><p>Returns query number of users excluding current.</p></p>                        
+                            <p><p>Returns the number of users matching the filter.</p></p>                        
         </div>
         <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></td>
+                <td>$filter</td>
+                <td><p>The active search/filter.</p></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
             <td>int</td>
-            <td><p>The number of users except current.</p></td>
+            <td><p>The number of matching users.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_userList">
+        <div class="location">at line 86</div>
+        <code>        static            array
+    <strong>userList</strong>(object $request, int $perPage = 10)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Builds the paginated, filtered user list as plain arrays. Shared by the
+initial React render and the JSON responses for page/sort/filter changes.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$request</td>
+                <td><p>The request object.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$perPage</td>
+                <td><p>Users per page.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_userToArray">
+        <div class="location">at line 105</div>
+        <code>        static            array
+    <strong>userToArray</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Serializes a user for the dashboard. Only the fields the table needs;
+never pass whole models to the client (password hashes, tokens, etc.).</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td>$user</td>
+                <td><p>The user.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_optionList">
+        <div class="location">at line 125</div>
+        <code>        static            array
+    <strong>optionList</strong>(array $options)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Converts value =&gt; label options to a list for React. A list keeps order
+and avoids PHP turning '0'/'1' keys into a JSON array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td><p>value =&gt; label.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
         </tr>
     </table>
 

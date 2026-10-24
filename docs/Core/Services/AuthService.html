@@ -186,7 +186,7 @@ selected.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_logout">logout</a>()
+                    <a href="#method_logout">logout</a>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         
                                             <p><p>Logs out the currently logged-in user by clearing the session and
 deleting any active cookies.</p></p>                </div>
@@ -549,9 +549,9 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_logout">
-        <div class="location">at line 175</div>
+        <div class="location">at line 176</div>
         <code>        static            void
-    <strong>logout</strong>()
+    <strong>logout</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
     </h3>
     <div class="details">    
@@ -563,6 +563,16 @@ found in login form.  Default value is false.</p></td>
 deleting any active cookies.</p></p>                        
         </div>
         <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a></td>
+                <td>$request</td>
+                <td><p>The current request.</p></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 
@@ -582,7 +592,7 @@ deleting any active cookies.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_logoutUser">
-        <div class="location">at line 190</div>
+        <div class="location">at line 197</div>
         <code>        static            bool
     <strong>logoutUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -626,7 +636,7 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_passwordReset">
-        <div class="location">at line 204</div>
+        <div class="location">at line 211</div>
         <code>        static            void
     <strong>passwordReset</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <abbr title="App\Models\Users">Users</abbr> $user)
         </code>
@@ -674,7 +684,7 @@ setting the confirmation field and updating the record.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_profileImageUpload">
-        <div class="location">at line 228</div>
+        <div class="location">at line 235</div>
         <code>        static            <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null
     <strong>profileImageUpload</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
         </code>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Lib\Testing\InteractsWithTime | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
+        <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
+        <script async defer src="../../../js/bootstrap.min.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Lib_Testing_InteractsWithTime" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                    <li><a href="../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">trait</span></li>
+                        <li><a href="../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib/Testing.html">Testing</a></li><li class="backslash">\</li><li>InteractsWithTime</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>InteractsWithTime    
+            </h1>
+    </div>
+
+    
+    <p>        trait
+    <strong>InteractsWithTime</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Time travel helpers for tests.</p></p>            <p><p>Works in both unit tests (plain PHPUnit TestCase) and feature tests
+(ApplicationTestCase).  Every helper sets Carbon's test &quot;now&quot;, so it
+affects anything that creates dates through DateFactory or Carbon.</p>
+<p>The real clock is restored automatically after each test.</p>
+<p>Examples:
+$this-&gt;freezeTime();
+$this-&gt;travelTo('2026-03-15 14:30:00');
+$this-&gt;travel(5)-&gt;minutes();
+$this-&gt;travel(-2)-&gt;days();
+$this-&gt;travelBack();</p></p>        </div>
+            
+        
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_freezeTime">freezeTime</a>(callable|null $callback = null)
+        
+                                            <p><p>Freezes time at the current moment.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_freezeSecond">freezeSecond</a>(callable|null $callback = null)
+        
+                                            <p><p>Freezes time at the start of the current second, dropping microseconds.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_travelTo">travelTo</a>(<abbr title="Core\Lib\Testing\DateTimeInterface|string|int">DateTimeInterface|string|int</abbr> $date, callable|null $callback = null)
+        
+                                            <p><p>Moves time to a specific moment.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Testing/Wormhole.html"><abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_travel">travel</a>(int $value)
+        
+                                            <p><p>Moves time relative to the current (possibly already frozen) time.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Carbon\CarbonInterface">CarbonInterface</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_travelBack">travelBack</a>()
+        
+                                            <p><p>Restores the real clock.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_restoreRealTime">restoreRealTime</a>()
+        
+                                            <p><p>Restores the real clock after every test so frozen time never leaks
+into the next test.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_freezeTime">
+        <div class="location">at line 38</div>
+        <code>            protected        mixed
+    <strong>freezeTime</strong>(callable|null $callback = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Freezes time at the current moment.</p></p>                <p><p>Without a callback, time stays frozen until travelBack() or the end
+of the test, and the frozen instance is returned.  With a callback,
+time is frozen only while the callback runs, and the callback's
+return value is returned.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable|null</td>
+                <td>$callback</td>
+                <td><p>Receives the frozen instance.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_freezeSecond">
+        <div class="location">at line 54</div>
+        <code>            protected        mixed
+    <strong>freezeSecond</strong>(callable|null $callback = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Freezes time at the start of the current second, dropping microseconds.</p></p>                <p><p>Useful when comparing against values stored in the database, which
+usually have no microsecond precision.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable|null</td>
+                <td>$callback</td>
+                <td><p>Receives the frozen instance.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_travelTo">
+        <div class="location">at line 75</div>
+        <code>            protected        mixed
+    <strong>travelTo</strong>(<abbr title="Core\Lib\Testing\DateTimeInterface|string|int">DateTimeInterface|string|int</abbr> $date, callable|null $callback = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Moves time to a specific moment.</p></p>                <p><p>Strings are interpreted as UTC, matching how Chappy stores dates.
+Integers are treated as Unix timestamps.</p>
+<p>Without a callback, time stays at $date until travelBack() or the end
+of the test.  With a callback, the clock returns to its previous state
+after the callback runs, even if it throws.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Testing\DateTimeInterface|string|int">DateTimeInterface|string|int</abbr></td>
+                <td>$date</td>
+                <td><p>The moment to travel to.</p></td>
+            </tr>
+                    <tr>
+                <td>callable|null</td>
+                <td>$callback</td>
+                <td><p>Optional code to run at that moment.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td><p>The callback's return value, or null without a callback.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_travel">
+        <div class="location">at line 99</div>
+        <code>            protected        <a href="../../../Core/Lib/Testing/Wormhole.html"><abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr></a>
+    <strong>travel</strong>(int $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Moves time relative to the current (possibly already frozen) time.</p></p>                <p><p>Use negative values to move backward:
+$this-&gt;travel(-3)-&gt;hours();</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$value</td>
+                <td><p>The amount of time to travel.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Testing/Wormhole.html"><abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_travelBack">
+        <div class="location">at line 108</div>
+        <code>            protected        <abbr title="Carbon\CarbonInterface">CarbonInterface</abbr>
+    <strong>travelBack</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Restores the real clock.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Carbon\CarbonInterface">CarbonInterface</abbr></td>
+            <td><p>The current real time.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_restoreRealTime">
+        <div class="location">at line 119</div>
+        <code>            protected        void
+    <strong>restoreRealTime</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Restores the real clock after every test so frozen time never leaks
+into the next test.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

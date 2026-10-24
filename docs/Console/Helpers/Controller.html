@@ -722,7 +722,7 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_contents">contents</a>(string $className, mixed $resourceOption, string $layout)
+                    <a href="#method_contents">contents</a>(string $className, string $layout, mixed $reactOption, mixed $resourceOption)
         
                                             <p><p>Returns contents for the controller class.  If the resource flag is
 set then a resource controller is generated.</p></p>                </div>
@@ -761,14 +761,35 @@ argument.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;<abbr title="Console\Helpers\string|false">string|false</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resourceContents">resourceContents</a>(string $className, string $layout, mixed $reactOption, mixed $resourceOption)
+        
+                                            <p><p>Returns contents for resource or react version of the class.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_resourcePrompt">resourcePrompt</a>(string $className, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, string $layout, mixed $resourceOption)
+                    <a href="#method_resourcePrompt">resourcePrompt</a>(string $className, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, string $layout, mixed $reactOption, mixed $resourceOption)
         
                                             <p><p>Prompts user if they want a resource controller if controller name
 argument is not provided and resource flag is not set.  Once the input
 has been processed the contents for the controller class is returned.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_resourceTypePrompt">resourceTypePrompt</a>(string $className, string $layout, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
+        
+                                            <p><p>Asks user which type of controller they want generated and returns
+requested version's contents.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -2435,7 +2456,7 @@ supply are appended to list of default validators.</p></td>
                     <div class="method-item">
                     <h3 id="method_choice">
         <div class="location">in <a href="../../Console/Console.html#method_choice">
-<abbr title="Console\Console">Console</abbr></a> at line 75</div>
+<abbr title="Console\Console">Console</abbr></a> at line 74</div>
         <code>        static            mixed
     <strong>choice</strong>(string $message, array $choices, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null)
         </code>
@@ -2494,7 +2515,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_confirm">
         <div class="location">in <a href="../../Console/Console.html#method_confirm">
-<abbr title="Console\Console">Console</abbr></a> at line 93</div>
+<abbr title="Console\Console">Console</abbr></a> at line 92</div>
         <code>        static            mixed
     <strong>confirm</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = true)
         </code>
@@ -2548,7 +2569,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_getInstance">
         <div class="location">in <a href="../../Console/Console.html#method_getInstance">
-<abbr title="Console\Console">Console</abbr></a> at line 107</div>
+<abbr title="Console\Console">Console</abbr></a> at line 106</div>
         <code>        static            <a href="../../Console/Console.html"><abbr title="Console\Console">Console</abbr></a>
     <strong>getInstance</strong>(string $fieldName = &quot;&quot;)
         </code>
@@ -2591,7 +2612,7 @@ user does not provide an answer.</p></td>
                     <div class="method-item">
                     <h3 id="method_prompt">
         <div class="location">in <a href="../../Console/Console.html#method_prompt">
-<abbr title="Console\Console">Console</abbr></a> at line 133</div>
+<abbr title="Console\Console">Console</abbr></a> at line 132</div>
         <code>        static            string
     <strong>prompt</strong>(string $message, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, array $attributes = [], array $suggestions = [], <abbr title="Console\string|bool|int|float|null">string|bool|int|float|null</abbr> $default = null, bool $defaultNone = false)
         </code>
@@ -2669,7 +2690,7 @@ supply are appended to list of default validators.</p></td>
                     <h3 id="method_contents">
         <div class="location">at line 38</div>
         <code>        static            string
-    <strong>contents</strong>(string $className, mixed $resourceOption, string $layout)
+    <strong>contents</strong>(string $className, string $layout, mixed $reactOption, mixed $resourceOption)
         </code>
     </h3>
     <div class="details">    
@@ -2690,14 +2711,19 @@ set then a resource controller is generated.</p></p>
                 <td><p>The name for the new controller class.</p></td>
             </tr>
                     <tr>
-                <td>mixed</td>
-                <td>$resourceOption</td>
-                <td><p>Value/state of resource flag.</p></td>
-            </tr>
-                    <tr>
                 <td>string</td>
                 <td>$layout</td>
                 <td><p>The name of the layout to be used.</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$reactOption</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$resourceOption</td>
+                <td><p>Value/state of resource flag.</p></td>
             </tr>
             </table>
 
@@ -2720,7 +2746,7 @@ set then a resource controller is generated.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_controllerNamePrompt">
-        <div class="location">at line 58</div>
+        <div class="location">at line 61</div>
         <code>        static            string
     <strong>controllerNamePrompt</strong>(<a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         </code>
@@ -2763,7 +2789,7 @@ argument.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_layout">
-        <div class="location">at line 71</div>
+        <div class="location">at line 74</div>
         <code>        static            string
     <strong>layout</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
         </code>
@@ -2810,7 +2836,7 @@ argument.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_layoutPrompt">
-        <div class="location">at line 97</div>
+        <div class="location">at line 100</div>
         <code>        static            string
     <strong>layoutPrompt</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, string $layout)
         </code>
@@ -2863,10 +2889,67 @@ object.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_resourceContents">
+        <div class="location">at line 126</div>
+        <code>        static        private    <abbr title="Console\Helpers\string|false">string|false</abbr>
+    <strong>resourceContents</strong>(string $className, string $layout, mixed $reactOption, mixed $resourceOption)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns contents for resource or react version of the class.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$className</td>
+                <td><p>The name of the new class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$layout</td>
+                <td><p>The layout of the class.</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$reactOption</td>
+                <td><p>The value of the reactOption flag.</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$resourceOption</td>
+                <td><p>The value of the resourceOption flag.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Console\Helpers\string|false">string|false</abbr></td>
+            <td><p>The contents or false if neither flag is set.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_resourcePrompt">
-        <div class="location">at line 125</div>
+        <div class="location">at line 153</div>
         <code>        static            string
-    <strong>resourcePrompt</strong>(string $className, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, string $layout, mixed $resourceOption)
+    <strong>resourcePrompt</strong>(string $className, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question, string $layout, mixed $reactOption, mixed $resourceOption)
         </code>
     </h3>
     <div class="details">    
@@ -2899,8 +2982,66 @@ has been processed the contents for the controller class is returned.</p></p>
             </tr>
                     <tr>
                 <td>mixed</td>
+                <td>$reactOption</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
                 <td>$resourceOption</td>
                 <td><p>Value/state of resource flag.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The contents for the controller class.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resourceTypePrompt">
+        <div class="location">at line 181</div>
+        <code>        static        private    string
+    <strong>resourceTypePrompt</strong>(string $className, string $layout, <a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a> $question)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Asks user which type of controller they want generated and returns
+requested version's contents.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$className</td>
+                <td><p>The name for the class.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$layout</td>
+                <td><p>The name for the layout.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></td>
+                <td>$question</td>
+                <td><p>Instance of FrameworkQuestion class.</p></td>
             </tr>
             </table>
 

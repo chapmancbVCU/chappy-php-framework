@@ -115,6 +115,11 @@ that updates timestamps.</p></div>
                     <a href="../../Core/Traits/HasValidators.html"><abbr title="Core\Traits\HasValidators">HasValidators</abbr></a>    </div>
                 <div class="col-md-6"><p>Supports ability to validate console input.</p></div>
             </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../../Core/Traits/HasCasts.html"><abbr title="Core\Traits\HasCasts">HasCasts</abbr></a>    </div>
+                <div class="col-md-6"><p>Read-time date casting and JSON serialization for models.</p></div>
+            </div>
             </div>
     
             <h2>Constants</h2>    <table class="table table-condensed">
@@ -191,6 +196,26 @@ that updates timestamps.</p></div>
                 <td class="last"><p>Array of validator callbacks.</p></td>
                 <td><small>from&nbsp;<a href="../../Core/Traits/HasValidators.html#property_validators">
 <abbr title="Core\Traits\HasValidators">HasValidators</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_emptyDates">
+                    static                                        private                    array
+                                                                                
+                                    </td>
+                <td>$emptyDates</td>
+                <td class="last"><p>Values treated as &quot;no date&quot;.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#property_emptyDates">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_dateCastTypes">
+                    static                                        private                    array
+                                                                                
+                                    </td>
+                <td>$dateCastTypes</td>
+                <td class="last"><p>Cast types this trait understands.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#property_dateCastTypes">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property__db">
@@ -272,7 +297,7 @@ that updates timestamps.</p></div>
             </tr>
                     <tr>
                 <td class="type" id="property_data">
-                                                                                
+                                                                                string|false
                                                                                 
                                     </td>
                 <td>$data</td>
@@ -299,7 +324,7 @@ that updates timestamps.</p></div>
             </tr>
                     <tr>
                 <td class="type" id="property_read_at">
-                                                                                int
+                                                                                string
                                                                                 
                                     </td>
                 <td>$read_at</td>
@@ -772,6 +797,109 @@ don't bleed into next question if instance is reused.</p></p>                </d
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_casts">casts</a>()
+        
+                                            <p><p>Returns the casts for this model.  Override to declare casts with a
+method instead of the $casts property.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_casts">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getCasts">getCasts</a>()
+        
+                                            <p><p>Returns all casts from the $casts property and the casts() method.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_getCasts">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Core\Traits\Carbon\CarbonInterface">CarbonInterface</abbr>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_date">date</a>(string $attribute)
+        
+                                            <p><p>Returns an attribute as a Carbon instance in the application timezone.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_date">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Core\Traits\Carbon\CarbonInterface">CarbonInterface</abbr>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_asDateTime">asDateTime</a>(mixed $value, string $type = &#039;datetime&#039;)
+        
+                                            <p><p>Converts a raw value into a Carbon instance according to a cast type.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_asDateTime">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_serializeDate">serializeDate</a>(<abbr title="Carbon\CarbonInterface">CarbonInterface</abbr> $date)
+        
+                                            <p><p>Formats a datetime for JSON.  Override to change the wire format for
+every datetime cast on a model that has no explicit :format.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_serializeDate">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toArray">toArray</a>()
+        
+                                            <p><p>Returns the model's public properties with casts applied.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_toArray">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_jsonSerialize">jsonSerialize</a>()
+        
+                                            <p><p>Used by json_encode().</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_jsonSerialize">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_parseCast">parseCast</a>(string $cast)
+        
+                                            <p><p>Splits &quot;type:format&quot; and validates the type.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_parseCast">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_publicAttributes">publicAttributes</a>()
+        
+                                            <p><p>Returns only public properties, exactly what json_encode() exposed
+before this trait existed.  Called from outside class scope so
+protected and private properties are excluded.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Traits/HasCasts.html#method_publicAttributes">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     
                 </div>
                 <div class="col-md-8">
@@ -832,7 +960,7 @@ don't bleed into next question if instance is reused.</p></p>                </d
                 <div class="col-md-8">
                     <a href="#method_beforeSave">beforeSave</a>()
         
-                                            <p><p>Called after save.</p></p>                </div>
+                                            <p><p>Implementation of beforeSave from base class.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -2746,9 +2874,376 @@ don't bleed into next question if instance is reused.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_casts">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_casts">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 53</div>
+        <code>            protected        array
+    <strong>casts</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the casts for this model.  Override to declare casts with a
+method instead of the $casts property.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCasts">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_getCasts">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 62</div>
+        <code>                    array
+    <strong>getCasts</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns all casts from the $casts property and the casts() method.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_date">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_date">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 77</div>
+        <code>                    <abbr title="Core\Traits\Carbon\CarbonInterface">CarbonInterface</abbr>|null
+    <strong>date</strong>(string $attribute)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns an attribute as a Carbon instance in the application timezone.</p></p>                <p><p>Works for any attribute holding a date, whether or not it is declared
+in $casts.  Undeclared attributes are treated as datetime.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$attribute</td>
+                <td><p>The property name, e.g. 'created_at'.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Traits\Carbon\CarbonInterface">CarbonInterface</abbr>|null</td>
+            <td><p>Null when the attribute is unset or empty.</p></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_asDateTime">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_asDateTime">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 97</div>
+        <code>            protected        <abbr title="Core\Traits\Carbon\CarbonInterface">CarbonInterface</abbr>|null
+    <strong>asDateTime</strong>(mixed $value, string $type = &#039;datetime&#039;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Converts a raw value into a Carbon instance according to a cast type.</p></p>                <p><p>Datetime strings without a timezone are read as UTC.  Plain Y-m-d
+strings are calendar dates and are never shifted between timezones.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td><p>Raw value: string, Unix timestamp, or DateTimeInterface.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$type</td>
+                <td><p>One of the supported cast types.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Traits\Carbon\CarbonInterface">CarbonInterface</abbr>|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_serializeDate">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_serializeDate">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 126</div>
+        <code>            protected        string
+    <strong>serializeDate</strong>(<abbr title="Carbon\CarbonInterface">CarbonInterface</abbr> $date)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Formats a datetime for JSON.  Override to change the wire format for
+every datetime cast on a model that has no explicit :format.</p></p>                <p><p>The default, ISO 8601 in UTC with a Z suffix, is parsed the same way
+by every browser and by Chappy's JavaScript datetime utilities.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Carbon\CarbonInterface">CarbonInterface</abbr></td>
+                <td>$date</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toArray">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_toArray">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 135</div>
+        <code>                    array
+    <strong>toArray</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the model's public properties with casts applied.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonSerialize">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_jsonSerialize">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 163</div>
+        <code>                    mixed
+    <strong>jsonSerialize</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Used by json_encode().</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_parseCast">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_parseCast">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 174</div>
+        <code>                private    array
+    <strong>parseCast</strong>(string $cast)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Splits &quot;type:format&quot; and validates the type.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$cast</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_publicAttributes">
+        <div class="location">in <a href="../../Core/Traits/HasCasts.html#method_publicAttributes">
+<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 194</div>
+        <code>                private    array
+    <strong>publicAttributes</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns only public properties, exactly what json_encode() exposed
+before this trait existed.  Called from outside class scope so
+protected and private properties are excluded.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../Core/Model.html#method___construct">
-<abbr title="Core\Model">Model</abbr></a> at line 65</div>
+<abbr title="Core\Model">Model</abbr></a> at line 66</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -2772,7 +3267,7 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method_afterDelete">
         <div class="location">in <a href="../../Core/Model.html#method_afterDelete">
-<abbr title="Core\Model">Model</abbr></a> at line 75</div>
+<abbr title="Core\Model">Model</abbr></a> at line 76</div>
         <code>                    void
     <strong>afterDelete</strong>()
         </code>
@@ -2805,7 +3300,7 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method_afterSave">
         <div class="location">in <a href="../../Core/Model.html#method_afterSave">
-<abbr title="Core\Model">Model</abbr></a> at line 82</div>
+<abbr title="Core\Model">Model</abbr></a> at line 83</div>
         <code>                    void
     <strong>afterSave</strong>()
         </code>
@@ -2838,7 +3333,7 @@ don't bleed into next question if instance is reused.</p></p>
                     <div class="method-item">
                     <h3 id="method_assign">
         <div class="location">in <a href="../../Core/Model.html#method_assign">
-<abbr title="Core\Model">Model</abbr></a> at line 94</div>
+<abbr title="Core\Model">Model</abbr></a> at line 101</div>
         <code>                    <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
     <strong>assign</strong>(array $params, array $list = [], string $assignmentFilter = self::BLACKLIST)
         </code>
@@ -2848,7 +3343,15 @@ don't bleed into next question if instance is reused.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Update the object with an associative array.</p></p>                        
+                            <p><p>Update the object with an associative array.</p></p>                <p><p>Field filtering, in priority order:</p>
+<ol>
+<li>An explicit $list passed by the caller (with $assignmentFilter) always wins.</li>
+<li>Otherwise, if the model declares a whiteList constant, only those fields
+are assignable (fail-closed — new columns are rejected by default).</li>
+<li>Otherwise, if the model declares a blackList constant, those fields are
+rejected and everything else is assignable (fail-open).</li>
+<li>Otherwise, no field filtering (only property_exists still applies).</li>
+</ol></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -2857,19 +3360,17 @@ don't bleed into next question if instance is reused.</p></p>
                     <tr>
                 <td>array</td>
                 <td>$params</td>
-                <td><p>Take values from post array and assign values.</p></td>
+                <td><p>Values (e.g. from the request) to assign.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$list</td>
-                <td><p>A list of values to blacklist or whitelist.</p></td>
+                <td><p>Explicit fields to white/blacklist; overrides the model's constants.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$assignmentFilter</td>
-                <td><p>When set to ModelName::BLACKLIST the
-values in the $list array is blacklisted.  When set to
-ModelName::WHITELIST they are whitelisted.</p></td>
+                <td><p>self::BLACKLIST or self::WHITELIST for $list.</p></td>
             </tr>
             </table>
 
@@ -2879,7 +3380,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <table class="table table-condensed">
         <tr>
             <td><a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a></td>
-            <td><p>Report for whether or not the operation was successful.</p></td>
+            <td></td>
         </tr>
     </table>
 
@@ -2893,7 +3394,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <div class="method-item">
                     <h3 id="method_beforeDelete">
         <div class="location">in <a href="../../Core/Model.html#method_beforeDelete">
-<abbr title="Core\Model">Model</abbr></a> at line 117</div>
+<abbr title="Core\Model">Model</abbr></a> at line 134</div>
         <code>                    void
     <strong>beforeDelete</strong>()
         </code>
@@ -2925,7 +3426,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 59</div>
+        <div class="location">at line 62</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -2935,7 +3436,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Called after save.</p></p>                        
+                            <p><p>Implementation of beforeSave from base class.</p></p>                        
         </div>
         <div class="tags">
             
@@ -2958,7 +3459,7 @@ ModelName::WHITELIST they are whitelisted.</p></td>
                     <div class="method-item">
                     <h3 id="method_count">
         <div class="location">in <a href="../../Core/Model.html#method_count">
-<abbr title="Core\Model">Model</abbr></a> at line 132</div>
+<abbr title="Core\Model">Model</abbr></a> at line 149</div>
         <code>        static            int
     <strong>count</strong>()
         </code>
@@ -2992,7 +3493,7 @@ is a wrapper function for the DB::count function.</p></p>
                     <div class="method-item">
                     <h3 id="method_data">
         <div class="location">in <a href="../../Core/Model.html#method_data">
-<abbr title="Core\Model">Model</abbr></a> at line 141</div>
+<abbr title="Core\Model">Model</abbr></a> at line 158</div>
         <code>                    <a target="_blank" rel="noopener" href="https://www.php.net/stdClass">stdClass</a>
     <strong>data</strong>()
         </code>
@@ -3025,7 +3526,7 @@ is a wrapper function for the DB::count function.</p></p>
                     <div class="method-item">
                     <h3 id="method_delete">
         <div class="location">in <a href="../../Core/Model.html#method_delete">
-<abbr title="Core\Model">Model</abbr></a> at line 162</div>
+<abbr title="Core\Model">Model</abbr></a> at line 179</div>
         <code>                    bool
     <strong>delete</strong>()
         </code>
@@ -3059,7 +3560,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumns">
         <div class="location">in <a href="../../Core/Model.html#method_getColumns">
-<abbr title="Core\Model">Model</abbr></a> at line 184</div>
+<abbr title="Core\Model">Model</abbr></a> at line 201</div>
         <code>        static            array
     <strong>getColumns</strong>()
         </code>
@@ -3093,7 +3594,7 @@ from a database table.</p></td>
                     <div class="method-item">
                     <h3 id="method_getColumnsForSave">
         <div class="location">in <a href="../../Core/Model.html#method_getColumnsForSave">
-<abbr title="Core\Model">Model</abbr></a> at line 194</div>
+<abbr title="Core\Model">Model</abbr></a> at line 211</div>
         <code>                    array
     <strong>getColumnsForSave</strong>()
         </code>
@@ -3127,7 +3628,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getDb">
         <div class="location">in <a href="../../Core/Model.html#method_getDb">
-<abbr title="Core\Model">Model</abbr></a> at line 223</div>
+<abbr title="Core\Model">Model</abbr></a> at line 240</div>
         <code>        static            <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>getDb</strong>()
         </code>
@@ -3160,7 +3661,7 @@ from model object.</p></td>
                     <div class="method-item">
                     <h3 id="method_getErrorMessages">
         <div class="location">in <a href="../../Core/Model.html#method_getErrorMessages">
-<abbr title="Core\Model">Model</abbr></a> at line 236</div>
+<abbr title="Core\Model">Model</abbr></a> at line 253</div>
         <code>                    array
     <strong>getErrorMessages</strong>()
         </code>
@@ -3194,7 +3695,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method__fetchStyleParams">
         <div class="location">in <a href="../../Core/Model.html#method__fetchStyleParams">
-<abbr title="Core\Model">Model</abbr></a> at line 246</div>
+<abbr title="Core\Model">Model</abbr></a> at line 263</div>
         <code>        static    protected        array
     <strong>_fetchStyleParams</strong>(array $params)
         </code>
@@ -3237,7 +3738,7 @@ validation.</p></td>
                     <div class="method-item">
                     <h3 id="method_find">
         <div class="location">in <a href="../../Core/Model.html#method_find">
-<abbr title="Core\Model">Model</abbr></a> at line 260</div>
+<abbr title="Core\Model">Model</abbr></a> at line 277</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>find</strong>(array $params = [])
         </code>
@@ -3281,7 +3782,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findAllByUserId">
         <div class="location">in <a href="../../Core/Model.html#method_findAllByUserId">
-<abbr title="Core\Model">Model</abbr></a> at line 276</div>
+<abbr title="Core\Model">Model</abbr></a> at line 293</div>
         <code>        static            array
     <strong>findAllByUserId</strong>(int $user_id, array $params = [])
         </code>
@@ -3330,7 +3831,7 @@ default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findById">
         <div class="location">in <a href="../../Core/Model.html#method_findById">
-<abbr title="Core\Model">Model</abbr></a> at line 293</div>
+<abbr title="Core\Model">Model</abbr></a> at line 310</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findById</strong>(int $id)
         </code>
@@ -3373,7 +3874,7 @@ default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findByTable">
         <div class="location">in <a href="../../Core/Model.html#method_findByTable">
-<abbr title="Core\Model">Model</abbr></a> at line 309</div>
+<abbr title="Core\Model">Model</abbr></a> at line 326</div>
         <code>        static            <abbr title="Core\array|bool">array|bool</abbr>
     <strong>findByTable</strong>(string $table, array $params = [])
         </code>
@@ -3424,7 +3925,7 @@ selecting from related tables).</p></p>
                     <div class="method-item">
                     <h3 id="method_findFirst">
         <div class="location">in <a href="../../Core/Model.html#method_findFirst">
-<abbr title="Core\Model">Model</abbr></a> at line 325</div>
+<abbr title="Core\Model">Model</abbr></a> at line 342</div>
         <code>        static            <abbr title="Core\object|bool">object|bool</abbr>
     <strong>findFirst</strong>(array $params = [])
         </code>
@@ -3468,7 +3969,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_findTotal">
         <div class="location">in <a href="../../Core/Model.html#method_findTotal">
-<abbr title="Core\Model">Model</abbr></a> at line 340</div>
+<abbr title="Core\Model">Model</abbr></a> at line 357</div>
         <code>        static            int
     <strong>findTotal</strong>(array $params = [])
         </code>
@@ -3513,7 +4014,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_insert">
         <div class="location">in <a href="../../Core/Model.html#method_insert">
-<abbr title="Core\Model">Model</abbr></a> at line 355</div>
+<abbr title="Core\Model">Model</abbr></a> at line 372</div>
         <code>                    bool
     <strong>insert</strong>(array $fields)
         </code>
@@ -3557,7 +4058,7 @@ use to populate a database record.  The default value is an empty array.</p></td
                     <div class="method-item">
                     <h3 id="method_isNew">
         <div class="location">in <a href="../../Core/Model.html#method_isNew">
-<abbr title="Core\Model">Model</abbr></a> at line 367</div>
+<abbr title="Core\Model">Model</abbr></a> at line 384</div>
         <code>                    bool
     <strong>isNew</strong>()
         </code>
@@ -3591,7 +4092,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
         <div class="location">in <a href="../../Core/Model.html#method_onConstruct">
-<abbr title="Core\Model">Model</abbr></a> at line 376</div>
+<abbr title="Core\Model">Model</abbr></a> at line 393</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -3624,7 +4125,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
         <div class="location">in <a href="../../Core/Model.html#method_populateObjData">
-<abbr title="Core\Model">Model</abbr></a> at line 384</div>
+<abbr title="Core\Model">Model</abbr></a> at line 401</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -3667,7 +4168,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_query">
         <div class="location">in <a href="../../Core/Model.html#method_query">
-<abbr title="Core\Model">Model</abbr></a> at line 399</div>
+<abbr title="Core\Model">Model</abbr></a> at line 416</div>
         <code>                    <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -3716,7 +4217,7 @@ The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_runValidation">
         <div class="location">in <a href="../../Core/Model.html#method_runValidation">
-<abbr title="Core\Model">Model</abbr></a> at line 421</div>
+<abbr title="Core\Model">Model</abbr></a> at line 438</div>
         <code>                    void
     <strong>runValidation</strong>(<abbr title="Core\bool|string">bool|string</abbr> $param, array $validators = [], string|null $fieldName = null)
         </code>
@@ -3779,7 +4280,7 @@ error message.</p></td>
                     <div class="method-item">
                     <h3 id="method_save">
         <div class="location">in <a href="../../Core/Model.html#method_save">
-<abbr title="Core\Model">Model</abbr></a> at line 444</div>
+<abbr title="Core\Model">Model</abbr></a> at line 461</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -3814,7 +4315,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
         <div class="location">in <a href="../../Core/Model.html#method__softDeleteParams">
-<abbr title="Core\Model">Model</abbr></a> at line 485</div>
+<abbr title="Core\Model">Model</abbr></a> at line 502</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -3858,7 +4359,7 @@ delete.</p></td>
                     <div class="method-item">
                     <h3 id="method_toOptions">
         <div class="location">in <a href="../../Core/Model.html#method_toOptions">
-<abbr title="Core\Model">Model</abbr></a> at line 527</div>
+<abbr title="Core\Model">Model</abbr></a> at line 544</div>
         <code>        static            array
     <strong>toOptions</strong>(string $valueField, string $labelField, array $conditions = [])
         </code>
@@ -3920,7 +4421,7 @@ name: toOptions('acl', 'acl'). For a typical lookup: toOptions('id', 'name').</p
                     <div class="method-item">
                     <h3 id="method_update">
         <div class="location">in <a href="../../Core/Model.html#method_update">
-<abbr title="Core\Model">Model</abbr></a> at line 550</div>
+<abbr title="Core\Model">Model</abbr></a> at line 567</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -3965,7 +4466,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
         <div class="location">in <a href="../../Core/Model.html#method_updateWhere">
-<abbr title="Core\Model">Model</abbr></a> at line 580</div>
+<abbr title="Core\Model">Model</abbr></a> at line 597</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -4027,7 +4528,7 @@ Supports:</p>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
         <div class="location">in <a href="../../Core/Model.html#method_validationPassed">
-<abbr title="Core\Model">Model</abbr></a> at line 590</div>
+<abbr title="Core\Model">Model</abbr></a> at line 607</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -4061,7 +4562,7 @@ false if there is a failure.</p></td>
                     <div class="method-item">
                     <h3 id="method_validator">
         <div class="location">in <a href="../../Core/Model.html#method_validator">
-<abbr title="Core\Model">Model</abbr></a> at line 601</div>
+<abbr title="Core\Model">Model</abbr></a> at line 618</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -4129,7 +4630,7 @@ called from within this class.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_markAsRead">
-        <div class="location">at line 68</div>
+        <div class="location">at line 71</div>
         <code>                    void
     <strong>markAsRead</strong>()
         </code>
@@ -4161,7 +4662,7 @@ called from within this class.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_markAsReadById">
-        <div class="location">at line 79</div>
+        <div class="location">at line 82</div>
         <code>        static            bool
     <strong>markAsReadById</strong>(<abbr title="Core\Models\string|int">string|int</abbr> $id)
         </code>
@@ -4203,7 +4704,7 @@ called from within this class.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_notificationsToPrune">
-        <div class="location">at line 108</div>
+        <div class="location">at line 111</div>
         <code>        static            int
     <strong>notificationsToPrune</strong>(int $days, bool $onlyRead = false)
         </code>

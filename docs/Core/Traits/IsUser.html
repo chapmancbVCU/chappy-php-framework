@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Traits\IsUser | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
+        <script src="../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../doctum.js"></script>
+        <script async defer src="../../js/bootstrap.min.js"></script>
+        <script async defer src="../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Traits_IsUser" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                    <li><a href="../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">trait</span></li>
+                        <li><a href="../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../Core/Traits.html">Traits</a></li><li class="backslash">\</li><li>IsUser</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>IsUser    
+            </h1>
+    </div>
+
+    
+    <p>        trait
+    <strong>IsUser</strong>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Specifies things users must include in order for the model to work.</p></p>                    </div>
+            
+        
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        blackList
+                                    </td>
+                <td class="last">
+                    <p><em><p>User classes must use this blackList</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_acl">
+                                                                                string
+                                                                                
+                                    </td>
+                <td>$acl</td>
+                <td class="last"><p>The users currently assigned acls.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_changePassword">
+                                                            private                    bool
+                                                                                
+                                    </td>
+                <td>$changePassword</td>
+                <td class="last"><p>Flag to set mode for being able to change a password.  When
+true then the password can be changed or reset.  Default
+value is false.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_confirm">
+                                                                                string|null
+                                                                                
+                                    </td>
+                <td>$confirm</td>
+                <td class="last"><p>Users must support the $confirm variable name contract for the
+confirm field.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_deleted">
+                                                                                int
+                                                                                
+                                    </td>
+                <td>$deleted</td>
+                <td class="last"><p>Set default value for db field.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_inactive">
+                                                                                int
+                                                                                
+                                    </td>
+                <td>$inactive</td>
+                <td class="last"><p>Inactive status flag.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_login_attempts">
+                                                                                int
+                                                                                
+                                    </td>
+                <td>$login_attempts</td>
+                <td class="last"><p>Login attempts counter.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_password">
+                                                                                string|null
+                                                                                
+                                    </td>
+                <td>$password</td>
+                <td class="last"><p>The password field.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_reset_password">
+                                                                                int
+                                                                                
+                                    </td>
+                <td>$reset_password</td>
+                <td class="last"><p>The reset_password flag.  When set to 1 the user is asked to set a new
+password.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__softDelete">
+                    static                    protected                                        bool
+                                                                                
+                                    </td>
+                <td>$_softDelete</td>
+                <td class="last"><p>Users models must implement soft delete.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getAcls">getAcls</a>()
+        
+                                            <p><p>Returns the user's assigned ACLs as an array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isInactiveChecked">isInactiveChecked</a>()
+        
+                                            <p><p>Assists in setting value of inactive field based on POST.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isResetPWChecked">isResetPWChecked</a>()
+        
+                                            <p><p>Assists in setting value of reset_password field based on
+POST.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_hasAcl">hasAcl</a>(string $acl)
+        
+                                            <p><p>Checks if the user has a specific ACL assigned.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setChangePassword">setChangePassword</a>(bool $value)
+        
+                                            <p><p>Setter function for <code>$changePassword</code>.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_userBeforeSave">userBeforeSave</a>()
+        
+                                            <p><p>To be called within <code>beforeSave()</code>.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getAcls">
+        <div class="location">at line 92</div>
+        <code>                    array
+    <strong>getAcls</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the user's assigned ACLs as an array.</p></p>                <p><p>Decodes the JSON-encoded acl field. Returns an empty array if the field
+is null, empty, or not valid JSON — so callers always get an array.</p></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The user's ACLs, or an empty array if none/invalid.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isInactiveChecked">
+        <div class="location">at line 103</div>
+        <code>                    bool
+    <strong>isInactiveChecked</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assists in setting value of inactive field based on POST.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>The value for inactive based on value received from
+POST.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isResetPWChecked">
+        <div class="location">at line 114</div>
+        <code>                    bool
+    <strong>isResetPWChecked</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assists in setting value of reset_password field based on
+POST.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>The value for reset_password based on value
+received from POST.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasAcl">
+        <div class="location">at line 124</div>
+        <code>                    bool
+    <strong>hasAcl</strong>(string $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if the user has a specific ACL assigned.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The ACL to check.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the user has the ACL, otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setChangePassword">
+        <div class="location">at line 139</div>
+        <code>                    void
+    <strong>setChangePassword</strong>(bool $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Setter function for <code>$changePassword</code>.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$value</td>
+                <td><p>The value we will assign to $changePassword.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_userBeforeSave">
+        <div class="location">at line 148</div>
+        <code>                private    void
+    <strong>userBeforeSave</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>To be called within <code>beforeSave()</code>.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

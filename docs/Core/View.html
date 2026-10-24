@@ -179,17 +179,8 @@
 
             <table class="table table-condensed">
                     <tr>
-                <td class="type" id="property__body">
-                                        protected                                        
-                                                                                
-                                    </td>
-                <td>$_body</td>
-                <td class="last"><p>The body</p></td>
-                <td></td>
-            </tr>
-                    <tr>
                 <td class="type" id="property__content">
-                                        protected                                        
+                                        protected                                        array
                                                                                 
                                     </td>
                 <td>$_content</td>
@@ -198,7 +189,7 @@
             </tr>
                     <tr>
                 <td class="type" id="property__currentBuffer">
-                                        protected                                        
+                                        protected                                        string|null
                                                                                 
                                     </td>
                 <td>$_currentBuffer</td>
@@ -206,17 +197,8 @@
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property__head">
-                                        protected                                        
-                                                                                
-                                    </td>
-                <td>$_head</td>
-                <td class="last"><p>The head</p></td>
-                <td></td>
-            </tr>
-                    <tr>
                 <td class="type" id="property__layout">
-                                        protected                                        
+                                        protected                                        string
                                                                                 
                                     </td>
                 <td>$_layout</td>
@@ -224,17 +206,8 @@
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property__outputBuffer">
-                                        protected                                        
-                                                                                
-                                    </td>
-                <td>$_outputBuffer</td>
-                <td class="last"><p>The output buffer</p></td>
-                <td></td>
-            </tr>
-                    <tr>
                 <td class="type" id="property__siteTitle">
-                                        protected                                        
+                                        protected                                        string
                                                                                 
                                     </td>
                 <td>$_siteTitle</td>
@@ -325,7 +298,7 @@ you to call start() is displayed.</p></p>                </div>
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_renderJsx">renderJsx</a>(string $viewComponent, array $props = [], string $entry = &#039;resources/js/app.jsx&#039;)
+                    <a href="#method_renderJsx">renderJsx</a>(string $viewComponent, array $props = [], bool $frameworkLayoutPath = false, string $entry = &#039;resources/js/app.jsx&#039;)
         
                                             <p><p>Renders a React.js file.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -400,7 +373,7 @@ included in our view.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 57</div>
+        <div class="location">at line 52</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -423,7 +396,7 @@ included in our view.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_addWidget">
-        <div class="location">at line 70</div>
+        <div class="location">at line 65</div>
         <code>                    void
     <strong>addWidget</strong>(string $section, string $viewPath, array $data = [])
         </code>
@@ -475,7 +448,7 @@ included in our view.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_component">
-        <div class="location">at line 83</div>
+        <div class="location">at line 78</div>
         <code>                    void
     <strong>component</strong>(string $component, bool $frameworkComponentPath = false)
         </code>
@@ -532,7 +505,7 @@ framework when true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_content">
-        <div class="location">at line 102</div>
+        <div class="location">at line 97</div>
         <code>                    mixed
     <strong>content</strong>(string $type)
         </code>
@@ -576,7 +549,7 @@ a known type of content we return false;</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_end">
-        <div class="location">at line 114</div>
+        <div class="location">at line 109</div>
         <code>                    void
     <strong>end</strong>()
         </code>
@@ -611,7 +584,7 @@ you to call start() is displayed.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_render">
-        <div class="location">at line 134</div>
+        <div class="location">at line 130</div>
         <code>                    void
     <strong>render</strong>(string $viewName, bool $frameworkViewPath = false, bool $frameworkLayoutPath = false)
         </code>
@@ -641,7 +614,7 @@ otherwise controllers defined by users are utilized.</p></td>
                     <tr>
                 <td>bool</td>
                 <td>$frameworkLayoutPath</td>
-                <td></td>
+                <td><p>When set to true use internal layout.</p></td>
             </tr>
             </table>
 
@@ -677,9 +650,9 @@ otherwise controllers defined by users are utilized.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderJsx">
-        <div class="location">at line 164</div>
+        <div class="location">at line 161</div>
         <code>                    void
-    <strong>renderJsx</strong>(string $viewComponent, array $props = [], string $entry = &#039;resources/js/app.jsx&#039;)
+    <strong>renderJsx</strong>(string $viewComponent, array $props = [], bool $frameworkLayoutPath = false, string $entry = &#039;resources/js/app.jsx&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -696,12 +669,17 @@ otherwise controllers defined by users are utilized.</p></td>
                     <tr>
                 <td>string</td>
                 <td>$viewComponent</td>
-                <td><p>The name of the component.</p></td>
+                <td><p>The name of the component in <dir_name>.<view_name> format.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$props</td>
-                <td><p>The prop to be pass to the component.</p></td>
+                <td><p>The props to be pass to the component.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$frameworkLayoutPath</td>
+                <td><p>When set to true use internal layout.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -729,7 +707,7 @@ otherwise controllers defined by users are utilized.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderWidget">
-        <div class="location">at line 187</div>
+        <div class="location">at line 188</div>
         <code>                    string
     <strong>renderWidget</strong>(string $viewPath, array $data = [])
         </code>
@@ -777,7 +755,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderWidgets">
-        <div class="location">at line 208</div>
+        <div class="location">at line 209</div>
         <code>                    string
     <strong>renderWidgets</strong>(string $slot, array $widgets = [])
         </code>
@@ -824,7 +802,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setLayout">
-        <div class="location">at line 230</div>
+        <div class="location">at line 231</div>
         <code>                    void
     <strong>setLayout</strong>(string $path)
         </code>
@@ -866,7 +844,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setSiteTitle">
-        <div class="location">at line 240</div>
+        <div class="location">at line 241</div>
         <code>                    void
     <strong>setSiteTitle</strong>(string $title)
         </code>
@@ -908,7 +886,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_siteTitle">
-        <div class="location">at line 249</div>
+        <div class="location">at line 250</div>
         <code>                    string
     <strong>siteTitle</strong>()
         </code>
@@ -940,7 +918,7 @@ e.g., 'widgets/dashboard/revenueCard'</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_start">
-        <div class="location">at line 262</div>
+        <div class="location">at line 263</div>
         <code>                    void
     <strong>start</strong>(string $type)
         </code>

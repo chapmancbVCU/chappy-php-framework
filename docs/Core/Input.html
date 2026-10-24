@@ -142,6 +142,16 @@ fails the user is routed to a view stating access is restricted.</p></p>        
                     bool
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_isAjax">isAjax</a>()
+        
+                                            <p><p>Checks if the request was made by fetch/XHR via the framework's api helpers.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
                     <a href="#method_isGet">isGet</a>()
         
                                             <p><p>Checks if the REQUEST_METHOD is GET.</p></p>                </div>
@@ -282,8 +292,40 @@ within the $_SERVER superglobal array.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_isGet">
+                    <h3 id="method_isAjax">
         <div class="location">at line 74</div>
+        <code>                    bool
+    <strong>isAjax</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if the request was made by fetch/XHR via the framework's api helpers.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the X-Requested-With header is XMLHttpRequest.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isGet">
+        <div class="location">at line 83</div>
         <code>                    bool
     <strong>isGet</strong>()
         </code>
@@ -315,7 +357,7 @@ within the $_SERVER superglobal array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isPost">
-        <div class="location">at line 83</div>
+        <div class="location">at line 92</div>
         <code>                    bool
     <strong>isPost</strong>()
         </code>
@@ -347,7 +389,7 @@ within the $_SERVER superglobal array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isPut">
-        <div class="location">at line 92</div>
+        <div class="location">at line 101</div>
         <code>                    bool
     <strong>isPut</strong>()
         </code>

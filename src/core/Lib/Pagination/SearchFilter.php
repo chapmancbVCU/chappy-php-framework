@@ -29,7 +29,7 @@ class SearchFilter {
     protected array $filterable = [];
 
     /**
-     * @var array<string, array{allowed: array|null, build: \Closure}>
+     * @var array
      * param => custom condition builder. build(string $value): [string $sql, array $bind]
      */
     protected array $customFilters = [];

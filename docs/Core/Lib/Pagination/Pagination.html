@@ -98,7 +98,9 @@
         
 
             <div class="description">
-            <p><p>Class that supports pagination for views.</p></p>                    </div>
+            <p><p>Holds pagination state and builds page URLs. Rendering is delegated to a
+PaginationRenderer so the same object can drive Bootstrap, Tailwind, a
+custom layout, or a React view (via toArray()).</p></p>                    </div>
             
         
     
@@ -132,6 +134,51 @@
                 <td class="last"></td>
                 <td></td>
             </tr>
+                    <tr>
+                <td class="type" id="property_query">
+                                        protected                                        array
+                                                                                
+                                    </td>
+                <td>$query</td>
+                <td class="last"><p>Query params preserved in every page link (search, filters, sort).</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_path">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$path</td>
+                <td class="last"><p>Base path for links. Empty string = relative to the current URL.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_pageName">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$pageName</td>
+                <td class="last"><p>Name of the page query parameter.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_window">
+                                        protected                                        int
+                                                                                
+                                    </td>
+                <td>$window</td>
+                <td class="last"><p>Number of page links shown on each side of the current page.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_defaultRenderer">
+                    static                    protected                                        <abbr title="Core\Lib\Pagination\Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr>|null
+                                                                                
+                                    </td>
+                <td>$defaultRenderer</td>
+                <td class="last"><p>Renderer used by render() when none is passed.</p></td>
+                <td></td>
+            </tr>
             </table>
 
     
@@ -150,12 +197,127 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<abbr title="Core\Lib\Pagination\int|string">int|string</abbr>
+                    static&nbsp;<a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_currentPage">currentPage</a>(object $request)
+                    <a href="#method_fromRequest">fromRequest</a>(object $request, int $limit, int $totalItems)
         
-                                            <p><p>Retrieves current page from GET request.</p></p>                </div>
+                                            <p><p>Convenience factory that reads the page number from the request.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_currentPage">currentPage</a>(object $request, string $pageName = &#039;page&#039;)
+        
+                                            <p><p>Retrieves and validates the current page from the GET request.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_withFilter">withFilter</a>(<a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
+        
+                                            <p><p>Preserve the filter's active query params (search term, filters, sort)
+in every generated page link.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_withQuery">withQuery</a>(array $query)
+        
+                                            <p><p>Preserve arbitrary query params in every generated page link.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_withPath">withPath</a>(string $path)
+        
+                                            <p><p>Set a base path for links (e.g. '/admindashboard').</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_withPageName">withPageName</a>(string $pageName)
+        
+                                            <p><p>Change the page query parameter name (useful for two lists on one page).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_withWindow">withWindow</a>(int $window)
+        
+                                            <p><p>Number of page links on each side of the current page.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setDefaultRenderer">setDefaultRenderer</a>(<a href="../../../Core/Lib/Pagination/Renderers/PaginationRenderer.html"><abbr title="Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr></a> $renderer)
+        
+                                            <p><p>Set the renderer used when render() is called without one.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_currentPageNumber">currentPageNumber</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_limit">limit</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_totalItems">totalItems</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_pageName">pageName</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -170,22 +332,44 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
+                    int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_pagination">pagination</a>(int $current_page, int $total_pages, string $base_url = &#039;?page=&#039;)
+                    <a href="#method_totalPages">totalPages</a>()
         
-                                            <p><p>Renders Bootstrap 5 pagination controls.</p></p>                </div>
+                                            <p><p>Returns total number of pages we need to handle.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_paginationParams">paginationParams</a>(mixed $conditions, array $bind = [], string $order)
+                    <a href="#method_hasPages">hasPages</a>()
         
-                                            <p><p>Builds parameters for pagination query.</p></p>                </div>
+                                            <p><p>True when there is more than one page (renderers output nothing otherwise).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_onFirstPage">onFirstPage</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_onLastPage">onLastPage</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -193,9 +377,112 @@
                     int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_totalPages">totalPages</a>()
+                    <a href="#method_firstItem">firstItem</a>()
         
-                                            <p><p>Returns total number of pages we need to handle.</p></p>                </div>
+                                            <p><p>1-based index of the first item on this page (0 when empty).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_lastItem">lastItem</a>()
+        
+                                            <p><p>1-based index of the last item on this page (0 when empty).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_url">url</a>(int $page)
+        
+                                            <p><p>Builds the URL for a page, keeping search/filter/sort params intact.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_previousPageUrl">previousPageUrl</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_nextPageUrl">nextPageUrl</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_pageRange">pageRange</a>()
+        
+                                            <p><p>Sliding window of page numbers. null marks a gap (render as an ellipsis).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_queryParams">queryParams</a>(<a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
+        
+                                            <p><p>Builds find() params from a SearchFilter plus limit/offset.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_paginationParams">paginationParams</a>(mixed $conditions = &#039;&#039;, array $bind = [], string $order = &#039;&#039;)
+        
+                                            <p><p>Builds parameters for pagination query (original API, kept for
+existing callers).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_render">render</a>(<abbr title="Core\Lib\Pagination\Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr>|null $renderer = null)
+        
+                                            <p><p>Renders the controls with the given renderer, or the default one.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toArray">toArray</a>()
+        
+                                            <p><p>Serializable state for React views or JSON APIs.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_pagination">pagination</a>(int $current_page, int $total_pages, string $base_url = &#039;?page=&#039;)
+        <small><span class="label label-danger">deprecated</span></small>
+                                            <p><p>Renders Bootstrap 5 pagination controls (original static API).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -206,7 +493,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 20</div>
+        <div class="location">at line 40</div>
         <code>                    
     <strong>__construct</strong>(int $currentPage = 1, int $limit = 10, int $totalItems = 0)
         </code>
@@ -235,7 +522,7 @@
                     <tr>
                 <td>int</td>
                 <td>$totalItems</td>
-                <td><p>The total number of items for a list</p></td>
+                <td><p>The total number of items for a list.</p></td>
             </tr>
             </table>
 
@@ -248,10 +535,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_currentPage">
-        <div class="location">at line 32</div>
-        <code>        static            <abbr title="Core\Lib\Pagination\int|string">int|string</abbr>
-    <strong>currentPage</strong>(object $request)
+                    <h3 id="method_fromRequest">
+        <div class="location">at line 55</div>
+        <code>        static            <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+    <strong>fromRequest</strong>(object $request, int $limit, int $totalItems)
         </code>
     </h3>
     <div class="details">    
@@ -259,7 +546,7 @@
             
 
         <div class="method-description">
-                            <p><p>Retrieves current page from GET request.</p></p>                        
+                            <p><p>Convenience factory that reads the page number from the request.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -270,6 +557,16 @@
                 <td>$request</td>
                 <td><p>The request object.</p></td>
             </tr>
+                    <tr>
+                <td>int</td>
+                <td>$limit</td>
+                <td><p>The maximum number of items for a page.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$totalItems</td>
+                <td><p>The total number of items for a list.</p></td>
+            </tr>
             </table>
 
             
@@ -277,8 +574,440 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td><abbr title="Core\Lib\Pagination\int|string">int|string</abbr></td>
-            <td><p>The current page number.</p></td>
+            <td><a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_currentPage">
+        <div class="location">at line 66</div>
+        <code>        static            int
+    <strong>currentPage</strong>(object $request, string $pageName = &#039;page&#039;)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves and validates the current page from the GET request.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>object</td>
+                <td>$request</td>
+                <td><p>The request object.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$pageName</td>
+                <td><p>Name of the page query parameter.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>The current page number (1 if missing or invalid).</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_withFilter">
+        <div class="location">at line 83</div>
+        <code>                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+    <strong>withFilter</strong>(<a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Preserve the filter's active query params (search term, filters, sort)
+in every generated page link.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></td>
+                <td>$filter</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_withQuery">
+        <div class="location">at line 88</div>
+        <code>                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+    <strong>withQuery</strong>(array $query)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Preserve arbitrary query params in every generated page link.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_withPath">
+        <div class="location">at line 95</div>
+        <code>                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+    <strong>withPath</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Set a base path for links (e.g. '/admindashboard').</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_withPageName">
+        <div class="location">at line 101</div>
+        <code>                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+    <strong>withPageName</strong>(string $pageName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Change the page query parameter name (useful for two lists on one page).</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$pageName</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_withWindow">
+        <div class="location">at line 107</div>
+        <code>                    <a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a>
+    <strong>withWindow</strong>(int $window)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Number of page links on each side of the current page.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$window</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setDefaultRenderer">
+        <div class="location">at line 113</div>
+        <code>        static            void
+    <strong>setDefaultRenderer</strong>(<a href="../../../Core/Lib/Pagination/Renderers/PaginationRenderer.html"><abbr title="Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr></a> $renderer)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Set the renderer used when render() is called without one.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Pagination/Renderers/PaginationRenderer.html"><abbr title="Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr></a></td>
+                <td>$renderer</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_currentPageNumber">
+        <div class="location">at line 121</div>
+        <code>                    int
+    <strong>currentPageNumber</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_limit">
+        <div class="location">at line 122</div>
+        <code>                    int
+    <strong>limit</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_totalItems">
+        <div class="location">at line 123</div>
+        <code>                    int
+    <strong>totalItems</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pageName">
+        <div class="location">at line 124</div>
+        <code>                    string
+    <strong>pageName</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
         </tr>
     </table>
 
@@ -291,7 +1020,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_offset">
-        <div class="location">at line 42</div>
+        <div class="location">at line 131</div>
         <code>                    int
     <strong>offset</strong>()
         </code>
@@ -322,10 +1051,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_pagination">
-        <div class="location">at line 55</div>
-        <code>        static            string
-    <strong>pagination</strong>(int $current_page, int $total_pages, string $base_url = &#039;?page=&#039;)
+                    <h3 id="method_totalPages">
+        <div class="location">at line 140</div>
+        <code>                    int
+    <strong>totalPages</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -333,7 +1062,201 @@
             
 
         <div class="method-description">
-                            <p><p>Renders Bootstrap 5 pagination controls.</p></p>                        
+                            <p><p>Returns total number of pages we need to handle.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>The total number of pages to be managed by pagination.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasPages">
+        <div class="location">at line 145</div>
+        <code>                    bool
+    <strong>hasPages</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>True when there is more than one page (renderers output nothing otherwise).</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_onFirstPage">
+        <div class="location">at line 149</div>
+        <code>                    bool
+    <strong>onFirstPage</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_onLastPage">
+        <div class="location">at line 150</div>
+        <code>                    bool
+    <strong>onLastPage</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_firstItem">
+        <div class="location">at line 153</div>
+        <code>                    int
+    <strong>firstItem</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>1-based index of the first item on this page (0 when empty).</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_lastItem">
+        <div class="location">at line 158</div>
+        <code>                    int
+    <strong>lastItem</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>1-based index of the last item on this page (0 when empty).</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_url">
+        <div class="location">at line 172</div>
+        <code>                    string
+    <strong>url</strong>(int $page)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Builds the URL for a page, keeping search/filter/sort params intact.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -341,18 +1264,8 @@
                     <table class="table table-condensed">
                     <tr>
                 <td>int</td>
-                <td>$current_page</td>
-                <td><p>The current page number.</p></td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$total_pages</td>
-                <td><p>The total number of pages.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$base_url</td>
-                <td><p>The base URL for pagination links. Default is '?page='.</p></td>
+                <td>$page</td>
+                <td><p>The page number.</p></td>
             </tr>
             </table>
 
@@ -362,7 +1275,147 @@
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td><p>The HTML markup for the pagination controls.</p></td>
+            <td><p>The URL (not HTML-escaped; renderers escape it).</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_previousPageUrl">
+        <div class="location">at line 177</div>
+        <code>                    string|null
+    <strong>previousPageUrl</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_nextPageUrl">
+        <div class="location">at line 181</div>
+        <code>                    string|null
+    <strong>nextPageUrl</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pageRange">
+        <div class="location">at line 191</div>
+        <code>                    array
+    <strong>pageRange</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sliding window of page numbers. null marks a gap (render as an ellipsis).</p></p>                <p><p>Example for page 10 of 20, window 2: [1, null, 8, 9, 10, 11, 12, null, 20]</p></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_queryParams">
+        <div class="location">at line 219</div>
+        <code>                    array
+    <strong>queryParams</strong>(<a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Builds find() params from a SearchFilter plus limit/offset.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></td>
+                <td>$filter</td>
+                <td><p>The filter built from the request.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>Params ready for Model::find().</p></td>
         </tr>
     </table>
 
@@ -375,9 +1428,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_paginationParams">
-        <div class="location">at line 114</div>
+        <div class="location">at line 235</div>
         <code>                    array
-    <strong>paginationParams</strong>(mixed $conditions, array $bind = [], string $order)
+    <strong>paginationParams</strong>(mixed $conditions = &#039;&#039;, array $bind = [], string $order = &#039;&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -385,7 +1438,8 @@
             
 
         <div class="method-description">
-                            <p><p>Builds parameters for pagination query.</p></p>                        
+                            <p><p>Builds parameters for pagination query (original API, kept for
+existing callers).</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -426,10 +1480,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_totalPages">
-        <div class="location">at line 129</div>
-        <code>                    int
-    <strong>totalPages</strong>()
+                    <h3 id="method_render">
+        <div class="location">at line 253</div>
+        <code>                    string
+    <strong>render</strong>(<abbr title="Core\Lib\Pagination\Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr>|null $renderer = null)
         </code>
     </h3>
     <div class="details">    
@@ -437,7 +1491,49 @@
             
 
         <div class="method-description">
-                            <p><p>Returns total number of pages we need to handle.</p></p>                        
+                            <p><p>Renders the controls with the given renderer, or the default one.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Pagination\Core\Lib\Pagination\Renderers\PaginationRenderer">PaginationRenderer</abbr>|null</td>
+                <td>$renderer</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toArray">
+        <div class="location">at line 261</div>
+        <code>                    array
+    <strong>toArray</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Serializable state for React views or JSON APIs.</p></p>                        
         </div>
         <div class="tags">
             
@@ -445,8 +1541,68 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>int</td>
-            <td><p>The total number of pages to be manged by pagination.</p></td>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pagination">
+        <div class="location">at line 285</div>
+        <code>        static            string
+    <strong>pagination</strong>(int $current_page, int $total_pages, string $base_url = &#039;?page=&#039;)
+        <small><span class="label label-danger">deprecated</span></small></code>
+    </h3>
+    <div class="details">    
+            <p>
+                <small><span class="label label-danger">deprecated</span></small>
+                            <tr>
+                    <td>Use</td>
+                    <td>$pagination->render() instead. A custom $base_url is
+no longer honored; use withPath()/withQuery().</td>
+                </tr>
+                    </p>
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders Bootstrap 5 pagination controls (original static API).</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$current_page</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$total_pages</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$base_url</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
         </tr>
     </table>
 

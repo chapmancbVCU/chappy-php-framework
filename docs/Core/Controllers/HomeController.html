@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Controllers\HomeController | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
+        <script src="../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../doctum.js"></script>
+        <script async defer src="../../js/bootstrap.min.js"></script>
+        <script async defer src="../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Controllers_HomeController" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                    <li><a href="../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../Core/Controllers.html">Controllers</a></li><li class="backslash">\</li><li>HomeController</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>HomeController    
+            </h1>
+    </div>
+
+    
+    <p>        class
+    <strong>HomeController</strong>        extends <a href="../../Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Implements support for our Home controller.  Functions found in this class
+will support tasks related to the home page.</p></p>                    </div>
+            
+                <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="../../Core/Lib/Http/JsonResponse.html"><abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a>    </div>
+                <div class="col-md-6"><p>A trait that support operations related to APIs and their associated
+JSON responses.</p></div>
+            </div>
+            </div>
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property__action">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$_action</td>
+                <td class="last"><p>The name of the current action.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Controller.html#property__action">
+<abbr title="Core\Controller">Controller</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property__controller">
+                                        protected                                        string
+                                                                                
+                                    </td>
+                <td>$_controller</td>
+                <td class="last"><p>The name of the current controller.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Controller.html#property__controller">
+<abbr title="Core\Controller">Controller</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_request">
+                                                                                <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a>
+                                                                                
+                                    </td>
+                <td>$request</td>
+                <td class="last"><p>Instance of Input class that performs much of our request tasks.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Controller.html#property_request">
+<abbr title="Core\Controller">Controller</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_view">
+                                                                                <a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a>
+                                                                                
+                                    </td>
+                <td>$view</td>
+                <td class="last"><p>Instance of view class.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Controller.html#property_view">
+<abbr title="Core\Controller">Controller</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_rawInputOverride">
+                    static                                                            string|null
+                                                                                
+                                    </td>
+                <td>$rawInputOverride</td>
+                <td class="last"><p>Raw JSON override for tests</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#property_rawInputOverride">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_testing">
+                    static                                                            bool
+                                                                                
+                                    </td>
+                <td>$testing</td>
+                <td class="last"><p>When true, do not send headers or exit; just echo JSON and return.</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#property_testing">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lastStatus">
+                    static                                                            int
+                                                                                
+                                    </td>
+                <td>$lastStatus</td>
+                <td class="last"><p>Captured status for tests (optional convenience).</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#property_lastStatus">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lastHeaders">
+                    static                                                            array
+                                                                                
+                                    </td>
+                <td>$lastHeaders</td>
+                <td class="last"><p>Captured headers for tests (optional convenience).</p></td>
+                <td><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#property_lastHeaders">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(string $controller, string $action)
+        
+                                            <p><p>Constructor for the parent Controller class.  This constructor gets
+called when an instance of the child class is instantiated.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Controller.html#method___construct">
+<abbr title="Core\Controller">Controller</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_appStart">appStart</a>()
+        
+                                            <p><p>Initializes ErrorHandler and SessionManager and starts execution of the app.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Application.html#method_appStart">
+<abbr title="Core\Application">Application</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method__set_reporting">_set_reporting</a>()
+        
+                                            <p><p>Manages the displaying of error messages and other reporting for this
+application.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Application.html#method__set_reporting">
+<abbr title="Core\Application">Application</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logViewForTesting">logViewForTesting</a>(<a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a> $view)
+        
+                                            <p><p>Captures the current View instance during testing so that test assertions
+(e.g., assertViewContains) can access view-bound variables.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Controller.html#method_logViewForTesting">
+<abbr title="Core\Controller">Controller</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_onConstruct">onConstruct</a>()
+        
+                                            <p><p>Internal version of this controller uses internal layout.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_apiCsrfCheck">apiCsrfCheck</a>()
+        
+                                            <p><p>Checks if CSRF token has been tampered with.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_apiCsrfCheck">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Core\Lib\Http\array|string">array|string</abbr>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_get">get</a>(<abbr title="Core\Lib\Http\string|null">string|null</abbr> $input = null)
+        
+                                            <p><p>Supports operations related to handling POST and GET requests.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_get">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_jsonError">jsonError</a>(string $message, int $status = 400, array $errors = [])
+        
+                                            <p><p>Makes JSON Response for error payloads.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_jsonError">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_jsonRedirect">jsonRedirect</a>(string $url)
+        
+                                            <p><p>Returns json response success = true and sets path for redirect.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_jsonRedirect">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_jsonResponse">jsonResponse</a>(mixed $data, int $status = 200, array $extraHeaders = [])
+        
+                                            <p><p>Sends a JSON response with headers and status code.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_jsonResponse">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_preflight">preflight</a>()
+        
+                                            <p><p>Respond to CORS preflight.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_preflight">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setRawInputOverride">setRawInputOverride</a>(mixed $payload = null)
+        
+                                            <p><p>Inject JSON body by providing payload parameter.  Also performs cleanup
+to avoid leaking into other tests.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Lib/Http/JsonResponse.html#method_setRawInputOverride">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_indexAction">indexAction</a>()
+        
+                                            <p><p>The default action for this controller.  It performs rendering of this
+site's home page.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_testAjaxAction">testAjaxAction</a>()
+        
+                                            <p><p>Demonstration for an Ajax request.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../Core/Controller.html#method___construct">
+<abbr title="Core\Controller">Controller</abbr></a> at line 47</div>
+        <code>                    
+    <strong>__construct</strong>(string $controller, string $action)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Constructor for the parent Controller class.  This constructor gets
+called when an instance of the child class is instantiated.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$controller</td>
+                <td><p>The name of the controller obtained while
+parsing the URL.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$action</td>
+                <td><p>The name of the action specified in the path of
+the URL.</p></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_appStart">
+        <div class="location">in <a href="../../Core/Application.html#method_appStart">
+<abbr title="Core\Application">Application</abbr></a> at line 26</div>
+        <code>        static            void
+    <strong>appStart</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Initializes ErrorHandler and SessionManager and starts execution of the app.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__set_reporting">
+        <div class="location">in <a href="../../Core/Application.html#method__set_reporting">
+<abbr title="Core\Application">Application</abbr></a> at line 51</div>
+        <code>                private    void
+    <strong>_set_reporting</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Manages the displaying of error messages and other reporting for this
+application.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logViewForTesting">
+        <div class="location">in <a href="../../Core/Controller.html#method_logViewForTesting">
+<abbr title="Core\Controller">Controller</abbr></a> at line 67</div>
+        <code>            protected        void
+    <strong>logViewForTesting</strong>(<a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a> $view)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Captures the current View instance during testing so that test assertions
+(e.g., assertViewContains) can access view-bound variables.</p></p>                <p><p>This method should be called in controller actions before rendering a view.
+It stores the View object in ApplicationTestCase::$controllerOutput['view']
+when the application is running in the 'testing' environment.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/View.html"><abbr title="Core\View">View</abbr></a></td>
+                <td>$view</td>
+                <td><p>The View instance to capture.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_onConstruct">
+        <div class="location">at line 28</div>
+        <code>                    void
+    <strong>onConstruct</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Internal version of this controller uses internal layout.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_apiCsrfCheck">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_apiCsrfCheck">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 47</div>
+        <code>                    bool
+    <strong>apiCsrfCheck</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if CSRF token has been tampered with.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if token is valid, otherwise we return false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_get">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_get">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 62</div>
+        <code>                    <abbr title="Core\Lib\Http\array|string">array|string</abbr>
+    <strong>get</strong>(<abbr title="Core\Lib\Http\string|null">string|null</abbr> $input = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Supports operations related to handling POST and GET requests.</p></p>                <p><p>Similar in behavior to the get function from the Input class but for
+JSON related operations.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Core\Lib\Http\string|null">string|null</abbr></td>
+                <td>$input</td>
+                <td><p>Field name from POST/GET request, or null to get all.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Lib\Http\array|string">array|string</abbr></td>
+            <td><p>Sanitized input as array or string.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonError">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_jsonError">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 97</div>
+        <code>                    void
+    <strong>jsonError</strong>(string $message, int $status = 400, array $errors = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Makes JSON Response for error payloads.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td><p>The error message.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$status</td>
+                <td><p>The status code.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errors</td>
+                <td><p>The array of errors.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonRedirect">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_jsonRedirect">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 110</div>
+        <code>                    void
+    <strong>jsonRedirect</strong>(string $url)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns json response success = true and sets path for redirect.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td><p>The url for redirection.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonResponse">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_jsonResponse">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 125</div>
+        <code>                    void
+    <strong>jsonResponse</strong>(mixed $data, int $status = 200, array $extraHeaders = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sends a JSON response with headers and status code.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$data</td>
+                <td><p>The JSON response.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$status</td>
+                <td><p>The status code.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$extraHeaders</td>
+                <td><p>Any extra headers.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_preflight">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_preflight">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 174</div>
+        <code>                    void
+    <strong>preflight</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Respond to CORS preflight.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRawInputOverride">
+        <div class="location">in <a href="../../Core/Lib/Http/JsonResponse.html#method_setRawInputOverride">
+<abbr title="Core\Lib\Http\JsonResponse">JsonResponse</abbr></a> at line 190</div>
+        <code>        static            void
+    <strong>setRawInputOverride</strong>(mixed $payload = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Inject JSON body by providing payload parameter.  Also performs cleanup
+to avoid leaking into other tests.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$payload</td>
+                <td><p>The JSON payload or null.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_indexAction">
+        <div class="location">at line 19</div>
+        <code>                    void
+    <strong>indexAction</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>The default action for this controller.  It performs rendering of this
+site's home page.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_testAjaxAction">
+        <div class="location">at line 37</div>
+        <code>                    void
+    <strong>testAjaxAction</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Demonstration for an Ajax request.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>
