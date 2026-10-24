@@ -1202,8 +1202,8 @@ function ManageAcls({ usedAcls, unUsedAcls }) {
                             {acl.acl !== 'Admin' && (
                                 <>
                                     <td className="text-center w-50">{acl.acl}</td>
-                                    <td title={acl.created_at} className="text-center">{DateTime.timeAgo(acl.created_at)}</td>
-                                    <td title={acl.updated_at} className="text-center">{DateTime.timeAgo(acl.updated_at)}</td>
+                                    <td title={DateTime.formatTime(acl.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">{DateTime.timeAgo(acl.created_at)}</td>
+                                    <td title={DateTime.formatTime(acl.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center">{DateTime.timeAgo(acl.updated_at)}</td>
                                     <td className="text-center">
                                         <a href={route('admindashboard.editAcl', [acl.id])} className="btn btn-info btn-sm">
                                             <i className="fa fa-edit"></i> Edit ACL
