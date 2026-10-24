@@ -18,8 +18,8 @@
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
                     <td class="text-center w-50"><?= $acl->acl ?></td>
-                    <td class="text-center"><?= DateTime::timeAgo($acl->created_at) ?></td>
-                    <td class="text-center"><?= DateTime::timeAgo($acl->updated_at) ?></td>
+                    <td class="text-center"><?= $acl->date('created_at')->diffForHumans() ?></td>
+                    <td class="text-center"><?= $acl->date('updated_at')->diffForHumans() ?></td>
                     <td class="text-center">
                         <a href="<?=route('admindashboard.editAcl', [$acl->id])?>" class="btn btn-info btn-sm">
                             <i class="fa fa-edit"></i> Edit ACL
@@ -52,8 +52,8 @@
         <?php foreach($this->usedAcls as $acl): ?>
             <tr>
                 <td class="text-center w-50"><?= $acl->acl ?></td>
-                <td class="text-center"><?= DateTime::timeAgo($acl->created_at) ?></td>
-                <td class="text-center"><?= DateTime::timeAgo($acl->updated_at) ?></td>
+                <td class="text-center"><?= $acl->date('created_at')->diffForHumans() ?></td>
+                <td class="text-center"><?= $acl->date('updated_at')->diffForHumans() ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

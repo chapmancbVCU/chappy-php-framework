@@ -1,6 +1,3 @@
-<?php
-
-use Core\Lib\Utilities\DateTime; ?>
 <?php $this->setSiteTitle($this->user->username . " Details"); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Details for <?=$this->user->username?></h1>
@@ -47,11 +44,11 @@ use Core\Lib\Utilities\DateTime; ?>
                 </tr>
                 <tr>
                     <th class="text-center">Created</th>
-                    <td class="text-center"><?= DateTime::timeAgo($this->user->created_at) ?></td>
+                    <td class="text-center"><?= $this->user->date('created_at')->diffForHumans() ?></td>
                 </tr>
                 <tr>
                     <th class="text-center">Last Update</th>
-                    <td class="text-center"><?= DateTime::timeAgo($this->user->updated_at) ?></td>
+                    <td class="text-center"><?= $this->user->date('updated_at')->diffForHumans() ?></td>
                 </tr>
                 <?php if($this->user->description): ?>
                     <tr>

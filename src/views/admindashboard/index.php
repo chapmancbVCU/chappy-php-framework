@@ -1,4 +1,3 @@
-<?php use Core\Lib\Utilities\DateTime; ?>
 <?php
 $e = fn($value): string => htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
 $filters = $this->filter->activeFilters();
@@ -84,8 +83,8 @@ $sortHeader = function (string $column, string $label) use ($e): string {
                 <td><?= $e($user->username) ?></td>
                 <td><?= $e($user->acl) ?></td>
                 <td><?= ($user->inactive == 0) ? 'Active' : 'Inactive' ?></td>
-                <td><?= DateTime::timeAgo($user->created_at) ?></td>
-                <td><?= DateTime::timeAgo($user->updated_at) ?></td>
+                <td><?= $user->date('created_at')->diffForHumans() ?></td>
+                <td><?= $user->date('updated_at')->diffForHumans() ?></td>
                 <td class="text-center">
                     <a href="<?= route('admindashboard.details', [$user->id]) ?>" class="btn btn-info btn-sm w-100">
                         <i class="fa fa-user"></i> Details
