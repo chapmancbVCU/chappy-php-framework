@@ -104,13 +104,14 @@ final class DashboardService {
      */
     public static function userToArray(Users $user): array {
         $acl = json_decode((string)$user->acl, true);
+        $dates = $user->toArray();
         return [
             'id'          => (int)$user->id,
             'username'    => $user->username,
             'acl'         => is_array($acl) ? array_values(array_filter($acl, fn($a) => $a !== '' && $a !== null)) : [],
             'inactive'    => (int)$user->inactive === 1,
-            'created_at'  => $user->created_at,
-            'updated_at'  => $user->updated_at,
+            'created_at'  => $dates['created_at'],
+            'updated_at'  => $dates['updated_at'],
         ];
     }
 
