@@ -1262,7 +1262,6 @@ JSX;
      */
     public static function makeManageAclsPHP(): string {
         return <<<PHP
-<?php use Core\FormHelper; ?>
 <?php \$this->setSiteTitle("Manage ACLs"); ?>
 <?php \$this->start('body'); ?>
 <h1 class="text-center">Manage ACLs
