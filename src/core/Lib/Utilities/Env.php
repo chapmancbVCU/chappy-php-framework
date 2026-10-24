@@ -88,7 +88,7 @@ class Env {
     public static function get(string $key, mixed $default = null): mixed
     {
         // Priority: actual $_ENV > loaded config > default
-        return $_ENV[$key] ?? static::$config[$key] ?? $default;
+        return $_ENV[$key] ?? static::$variables[$key] ?? $default;
     }
 
 }
