@@ -22,6 +22,15 @@ final class ACL extends Model {
      */
     public const blackList = ['id', 'deleted'];
 
+    /**
+     * Columns converted when the model is serialized with toArray() or json_encode().
+     * @var array<string, string>
+     */
+    protected array $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+    
     /** 
      * Deleted 
      * @var int
