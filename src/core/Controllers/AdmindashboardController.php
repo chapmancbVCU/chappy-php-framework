@@ -205,19 +205,6 @@ class AdmindashboardController extends Controller {
         $this->view->render('admindashboard/attachments_form', true, true);
     }
 
-    /**
-     * Renders view with information related to a job within the queue table.
-     *
-     * @param int $id the id of job in the queue table.
-     * @return void
-     */
-    public function jobDetailsAction(int $id): void {
-        $job = Queue::findById($id);
-        $this->view->payload = json_decode($job->payload);
-        $this->view->job = $job;
-        $this->view->render('admindashboard.job_details');
-    }
-    
     /** 
      * The default action for this controller.  It performs rendering of this 
      * site's admin dashboard page.
@@ -237,6 +224,19 @@ class AdmindashboardController extends Controller {
         $this->view->render('admindashboard.index', true, true);
     }
 
+    /**
+     * Renders view with information related to a job within the queue table.
+     *
+     * @param int $id the id of job in the queue table.
+     * @return void
+     */
+    public function jobDetailsAction(int $id): void {
+        $job = Queue::findById($id);
+        $this->view->payload = json_decode($job->payload);
+        $this->view->job = $job;
+        $this->view->render('admindashboard.job_details');
+    }
+    
     /**
      * Renders view for managing ACLs.
      *
