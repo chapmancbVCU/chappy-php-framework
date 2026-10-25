@@ -559,7 +559,7 @@ JSX;
 </div>
 <div class="row align-items-center justify-content-center mx-auto my-3 w-50">
     <div class="col">
-        <table class="table table-striped  table-bordered table-hover bg-light my-5 col-md-12">
+        <table class="table table-striped table-bordered table-hover bg-light my-5 col-md-12">
             <tbody>
                 <tr>
                     <th class="text-center">First Name</th>
