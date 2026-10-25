@@ -304,7 +304,7 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Previews an attachment
+     * Previews an attachment.
      *
      * @param int \$id The primary key for the record of the attachment.
      * @return void
@@ -647,7 +647,7 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Previews an attachment
+     * Previews an attachment.
      *
      * @param int \$id The primary key for the record of the attachment.
      * @return void
