@@ -381,16 +381,11 @@ PHP;
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
+
 use Core\Controller;
-use Core\Models\ACL;
-use App\Models\Users;
-use Core\Services\ACLService;
-use Core\Models\ProfileImages;
-use Core\Services\UserService;
-use Core\Models\EmailAttachments;
+use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue, Users};
+use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
 use Core\Lib\Pagination\Pagination;
-use Core\Services\DashboardService;
-use Core\Services\AttachmentService;
 use Core\Lib\Http\JsonResponse;
 use Core\Session;
 
@@ -475,6 +470,21 @@ class AdmindashboardController extends Controller {
             \$resp = UserService::deleteProfileImage(\$this->request);
         }
         \$this->jsonResponse(\$resp);
+    }
+
+    /**
+     * Delete a job and redirects back to queueManager.
+     *
+     * @param int \$id The id of the job to remove from the queue table.
+     * @return void
+     */
+    public function deleteJobAction(int \$id): void {
+        \$job = Queue::findById(\$id);
+        if(\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            \$job->delete();
+        }
+        redirect('admindashboard.queueManager');
     }
 
     /**
@@ -604,6 +614,19 @@ class AdmindashboardController extends Controller {
     }
 
     /**
+     * Renders view with information related to a job within the queue table.
+     *
+     * @param int \$id the id of job in the queue table.
+     * @return void
+     */
+    public function jobDetailsAction(int \$id): void {
+        \$job = Queue::findById(\$id);
+        \$this->view->payload = json_decode(\$job->payload);
+        \$this->view->job = \$job;
+        \$this->view->render('admindashboard.job_details');
+    }
+        
+    /**
      * Renders view for managing ACLs.
      *
      * @return void
@@ -631,6 +654,19 @@ class AdmindashboardController extends Controller {
      */
     public function previewAction(int \$id): void {
         AttachmentService::previewAttachment(\$id);
+    }
+
+    /**
+     * Retrieves list of jobs in queue and renders queue_manager view.
+     *
+     * @return void
+     */
+    public function queueManagerAction(): void {
+        \$pagination = Pagination::fromRequest(\$this->request, 10, Queue::findTotal());
+        \$queue = Queue::find(\$pagination->paginationParams());
+        \$this->view->queue = \$queue;
+        \$this->view->pagination = \$pagination;
+        \$this->view->render('admindashboard.queue_manager');
     }
 
     /**
