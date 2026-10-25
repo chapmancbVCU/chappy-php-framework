@@ -35,7 +35,7 @@ class MakeViewCommand extends ConsoleCommand {
     {
         $viewName = $this->getArgument('view-name');
         $message = "Enter name for new directory and page in following format: <directory_name>.<view_name>";
-        $attributes = ['max:100', 'dotNotation'];
+        $attributes = ['max:100', 'dotNotation', 'required', 'notReservedKeyword'];
 
         if($viewName) {
             View::argOptionValidate($viewName, $message, $this->question(), $attributes, true);
@@ -46,9 +46,9 @@ class MakeViewCommand extends ConsoleCommand {
         // Validate directory and view.
         [$directory, $view] = explode('.', $viewName);
         $message = "Enter name for directory";
-        View::argOptionValidate($directory, $message, $this->question(), ['max:50']);
+        View::argOptionValidate($directory, $message, $this->question(), ['max:50', 'required', 'notReservedKeyword'], true);
         $message = "Enter name for the new view";
-        View::argOptionValidate($view, $message, $this->question(), ['max:50']);
+        View::argOptionValidate($view, $message, $this->question(), ['max:50', 'required', 'notReservedKeyword'], true);
 
         // Check if directory exists and create it.
         $directory = View::VIEW_PATH.$directory;
