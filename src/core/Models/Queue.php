@@ -33,6 +33,17 @@ class Queue extends Model {
      */
     public string $available_at;
 
+    /**
+     * Columns converted when the model is serialized with toArray() or json_encode().
+     * @var array<string, string>
+     */
+    protected array $casts = [
+        'available_at' => 'datetime',
+        'created_at' => 'datetime',
+        'reserved_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     /** 
      * Exceptions 
      * @var string
