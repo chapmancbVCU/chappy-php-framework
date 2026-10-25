@@ -234,9 +234,9 @@ class AdmindashboardController extends Controller {
         $job = Queue::findById($id);
         $this->view->payload = json_decode($job->payload);
         $this->view->job = $job;
-        $this->view->render('admindashboard.job_details');
+        $this->view->render('admindashboard.job_details', true, true);
     }
-    
+
     /**
      * Renders view for managing ACLs.
      *
@@ -277,7 +277,7 @@ class AdmindashboardController extends Controller {
         $queue = Queue::find($pagination->paginationParams());
         $this->view->queue = $queue;
         $this->view->pagination = $pagination;
-        $this->view->render('admindashboard.queue_manager');
+        $this->view->render('admindashboard.queue_manager', true, true);
     }
 
     /**
