@@ -372,7 +372,6 @@ JSX;
                             action="<?=route('admindashboard.deleteAttachment', [\$attachment->id])?>"
                             class="d-inline-block"
                             onsubmit="return confirm('Are you sure you want to delete this attachment?');">
-                            <?=hidden('id', \$attachment->id)?>
                             <?=csrf()?>
                             <button type="submit" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i> Delete
