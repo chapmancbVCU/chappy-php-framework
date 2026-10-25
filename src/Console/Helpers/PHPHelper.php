@@ -22,7 +22,9 @@ class PHPHelper extends Console {
         AdminDashboard::makeEditAclViewPHP();
         AdminDashboard::makeEditViewPHP();
         AdminDashboard::makeIndexViewPHP();
+        AdminDashboard::makeJobDetailsViewPHP();
         AdminDashboard::makeManageAclsViewPHP();
+        AdminDashboard::makeQueueManagerViewPHP();
         AdminDashboard::makeSetAccountStatusViewPHP();
         AdminDashboard::makeSetResetPasswordViewPHP();
 

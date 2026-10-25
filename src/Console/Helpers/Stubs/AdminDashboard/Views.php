@@ -1165,6 +1165,94 @@ PHP;
     }
 
     /**
+     * Generates PHP version of job details view.
+     *
+     * @return string The contents of the view.
+     */
+    public static function makeJobDetailsPHP(): string {
+        return <<<PHP
+<?php use Core\Lib\Utilities\DateTime; ?>
+<?php \$this->setSiteTitle("Queued Job Details"); ?>
+<?php \$this->start('body'); ?>
+<a href="<?= route('admindashboard.queueManager') ?>" class="ms-5 btn btn-sm btn-secondary">Back</a>
+<h1 class="text-center">Queued Job Details</h1>
+
+<div class="d-flex justify-content-center w-75 mx-auto">
+    <table class="table table-striped table-bordered table-hover bg-light my-5 col-md-12">
+        <tbody>
+            <tr>
+                <th class="text-center w-25">ID</th>
+                <td class="text-center" colspan="2"><?= \$this->job->id ?></td>
+            </tr>
+            <tr>
+                <th class="text-center w-25">Queue</th>
+                <td class="text-center" colspan="2"><?= \$this->job->queue ?></td>
+            </tr>
+            <tr>
+                <th class="text-center align-middle w-25" rowspan="5">Payload</th>
+                <tr>
+                    <td class="text-end">"job":</td>
+                    <td class="text-start"><?= \$this->payload->job ?></td>
+                </tr>
+                <tr>
+                    <td class="text-end">"data":</td>
+                    <td class="text-start">
+                        <?php foreach(\$this->payload->data as \$k => \$v): ?>
+                            <?= "\"{\$k}\": {\$v}" ?>
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-end">"available_at":</td>
+                    <td class="text-start">
+                        <?= DateTime::formatTime(\$this->payload->available_at, DateTime::FORMAT_HUMAN_READABLE) ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-end">"max_attempts":</td>
+                    <td class="text-start"><?= \$this->payload->max_attempts ?></td>
+                </tr>
+            </tr>
+            <tr>
+                <th class="text-center w-25">Attempts</th>
+                <td class="text-center" colspan="2"><?= \$this->job->attempts ?></td>
+            </tr>
+            <?php if(\$this->job->reserved_at): ?>
+                <tr>
+                    <th class="text-center w-25">Reserved At</th>
+                    <td class="text-center" colspan="2"><?= \$this->job->reserved_at ?></td>
+                </tr>
+            <?php endif; ?>
+            <?php if(\$this->job->failed_at): ?>
+                <tr>
+                    <th class="text-center w-25">Failed At</th>
+                    <td class="text-center" colspan="2"><?= \$this->job->reserved_at ?></td>
+                </tr>
+            <?php endif; ?>
+            <tr>
+                <th class="text-center w-25">Available At</th>
+                <td class="text-center" colspan="2"><?= \$this->job->date('available_at')->format(DateTime::FORMAT_FRIENDLY_DATE) ?></td>
+            </tr>
+            <tr>
+                <th class="text-center w-25">Created At</th>
+                <td class="text-center" colspan="2"><?= \$this->job->date('created_at')->format(DateTime::FORMAT_HUMAN_READABLE) ?></td>
+            </tr>
+            <tr>
+                <th class="text-center w-25">Updated At</th>
+                <td class="text-center" colspan="2"><?= \$this->job->date('updated_at')->format(DateTime::FORMAT_HUMAN_READABLE) ?></td>
+            </tr>
+            <tr>
+                <th class="text-center w-25">Exception</th>
+                <td class="text-center" colspan="2"><?= \$this->job->exception ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<?php \$this->end(); ?>
+PHP;
+    }
+
+    /**
      * Generates the React.js version of the manage acls view.
      *
      * @return string The view's contents.
@@ -1344,6 +1432,65 @@ JSX;
     <?= \$this->renderWidgets('dashboard.acls', \$this->widgets) ?>
 </div>
 
+<?php \$this->end(); ?>
+PHP;
+    }
+
+    /**
+     * Generates the PHP version of the queue manager view.
+     *
+     * @return string The contents of the view.
+     */
+    public static function makeQueueManagerPHP(): string {
+        return <<<PHP
+<?php \$this->setSiteTitle("Queue Manager"); ?>
+<?php \$this->start('body'); ?>
+<h1 class="text-center mb-5">Queue Manager</h1>
+
+<?php if(\$this->queue): ?>
+    <div class="d-flex justify-content-center">
+        <table class="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Queue</th>
+                    <th>Attempts</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach(\$this->queue as \$job): ?>
+                    <tr>
+                        <td><?= \$job->id ?></td>
+                        <td><?= \$job->queue ?></td>
+                        <td><?= \$job->attempts ?></td>
+                        <td><?= \$job->date('created_at')->diffForHumans() ?></td>
+                        <td><?= \$job->date('updated_at')->diffForHumans() ?></td>
+                        <td class="text-end">
+                            <a href="<?= route('admindashboard.jobDetails', [\$job->id]) ?>"
+                                class="btn btn-primary btn-sm"><i class="fa fa-info"></i> Details
+                            </a>
+                            <form method="POST"
+                                action="<?= route('admindashboard.deleteJob', [\$job->id]) ?>"
+                                class="d-inline-block"
+                                onsubmit="return confirm('Are you sure you want to delete this job')">
+                                <?= csrf() ?>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?= \$this->pagination->render(); ?>
+<?php else: ?>
+    <h3 class="text-center">There are no pending jobs in the queue table.</h3>
+<?php endif; ?>
 <?php \$this->end(); ?>
 PHP;
     }

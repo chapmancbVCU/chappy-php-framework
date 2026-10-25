@@ -147,6 +147,21 @@ class AdminDashboard extends Console {
     }
 
     /**
+     * Generates PHP version of the job details view.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeJobDetailsViewPHP(): int {
+        $path = self::VIEW_PATH.'admindashboard'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'job_details.php',
+            Views::makeJobDetailsPHP(),
+            'Queue job details view'
+        );
+    }
+
+    /**
      * Generates PHP version of manage acls.
      *
      * @return int A value that indicates success, invalid, or failure.
@@ -161,6 +176,21 @@ class AdminDashboard extends Console {
         );
     }
 
+    /**
+     * Generates PHP version of the queue manager view.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeQueueManagerViewPHP(): int {
+        $path = self::VIEW_PATH.'admindashboard'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'queue_manager.php',
+            Views::makeQueueManagerPHP(),
+            'Queue manager view'
+        );
+    }
+    
     /**
      * Generates PHP version of set account status.
      *
