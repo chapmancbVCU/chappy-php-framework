@@ -111,7 +111,7 @@ JSON;
      */
     public static function viewContent(): string {
         return <<<PHP
-'<?php \$this->setSiteTitle("My title here"); ?>
+<?php \$this->setSiteTitle("My title here"); ?>
 
 <!-- Head content between these two function calls.  Remove if not needed. -->
 <?php \$this->start('head'); ?>
