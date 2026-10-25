@@ -30,7 +30,7 @@
                             <form method="POST"
                                 action="<?= route('admindashboard.deleteJob', [$job->id]) ?>"
                                 class="d-inline-block"
-                                onsubmit="return confirm('Are you sure you want to delete this job')">
+                                onsubmit="return confirm('Are you sure you want to delete this job?')">
                                 <?= csrf() ?>
                                 <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash"></i> Delete
