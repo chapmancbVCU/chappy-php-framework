@@ -99,6 +99,21 @@ class AdmindashboardController extends Controller {
     }
 
     /**
+     * Delete a job and redirects back to queueManager.
+     *
+     * @param int $id The id of the job to remove from the queue table.
+     * @return void
+     */
+    public function deleteJobAction(int $id): void {
+        $job = Queue::findById($id);
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $job->delete();
+        }
+        redirect('admindashboard.queueManager');
+    }
+    
+    /**
      * Presents information about a particular user's profile.
      *
      * @param int $id The id of the user whose details we want to view.
