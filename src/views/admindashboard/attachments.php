@@ -15,7 +15,7 @@
     </a>
 </h1>
 <div class="d-flex justify-content-center">
-    <table class="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+    <table class="w-75 table table-striped table-bordered table-hover table-sm">
         <thead>
             <th>Original Name</th>
             <th>Uploader</th>

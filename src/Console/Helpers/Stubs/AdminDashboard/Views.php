@@ -281,7 +281,7 @@ function Attachments({ attachments }) {
                 </a>
             </h1>
             <div className="d-flex justify-content-center">
-                <table className="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+                <table className="w-75 table table-striped table-bordered table-hover table-sm">
                     <thead>
                         <tr>
                             <th>Original Name</th>
@@ -349,7 +349,7 @@ JSX;
     </a>
 </h1>
 <div class="d-flex justify-content-center">
-    <table class="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+    <table class="w-75 table table-striped table-bordered table-hover table-sm">
         <thead>
             <th>Original Name</th>
             <th>Uploader</th>
