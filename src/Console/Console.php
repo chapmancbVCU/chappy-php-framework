@@ -27,8 +27,7 @@ class Console {
      * Validates the following conditions:
      * 1) required
      * 2) noSpecialChars
-     * 3) alpha
-     * 4) notReservedKeyword
+     * 3) notReservedKeyword
      * 
      * @param string $field The reference to the value to be validated.
      * @param string $message The message to present to the user.
@@ -113,8 +112,7 @@ class Console {
      * Validates the following conditions:
      * 1) required
      * 2) noSpecialChars
-     * 3) alpha
-     * 4) notReservedKeyword
+     * 3) notReservedKeyword
      * 
      * @param string $message The message to present to the user.
      * @param FrameworkQuestion $question Instance of FrameworkQuestion class.
