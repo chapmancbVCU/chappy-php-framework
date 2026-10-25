@@ -12,6 +12,7 @@ use Core\Lib\Pagination\Pagination;
 use Core\Services\DashboardService;
 use Core\Services\AttachmentService;
 use Core\Lib\Http\JsonResponse;
+use Core\Models\Queue;
 use Core\Session;
 
 /**
@@ -251,6 +252,19 @@ class AdmindashboardController extends Controller {
      */
     public function previewAction(int $id): void {
         AttachmentService::previewAttachment($id);
+    }
+
+    /**
+     * Retrieves list of jobs in queue and renders queue_manager view.
+     *
+     * @return void
+     */
+    public function queueManagerAction(): void {
+        $pagination = Pagination::fromRequest($this->request, 10, Queue::findTotal());
+        $queue = Queue::find($pagination->paginationParams());
+        $this->view->queue = $queue;
+        $this->view->pagination = $pagination;
+        $this->view->render('admindashboard.queue_manager');
     }
 
     /**
