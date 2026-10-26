@@ -251,16 +251,33 @@ import { documentTitle, route, CSRFInput, CSRFToken, apiError, apiDelete } from 
  * 
  * @property {array} attachments An array of attachments available
  * @param {*} param0 
- * @returns 
+ * @returns {HTMLDivElement} View for listing and managing Email Attachments.
  */
 function Attachments({ attachments }) {
     documentTitle("Attachments");
 
+    /**
+     * Manages state for error.  Errors are generated when there is a failure 
+     * deleting an Attachments record.
+     */
     const [error, setError] = useState(null);
 
+    /**
+     * Creates a click handler that deletes an Attachment after the user confirms.
+     *
+     * On confirmation, sends a DELETE request with the CSRF token to
+     * `/admindashboard/deleteAttachment/{id}` and reloads the page so the list and any
+     * flash message reflect the change. Errors are displayed with `setError`.
+     *
+     * @example
+     * <button onClick={onDeleteClick(acl)}>Delete</button>
+     *
+     * @param {{ id: number, attachment: string }} attachment The Attachment to delete.
+     * @returns {(event: React.MouseEvent) => Promise<void>} Click handler for the delete button.
+     */
     const onDeleteClick = (attachment) => async (event) => {
         event.preventDefault();
-        if(window.confirm(`Are you sure you want to delete the attachment: \${attachment.attachment_name}`)) {
+        if(window.confirm(`Are you sure you want to delete the attachment: \${attachment.name}`)) {
             try {
                 const payload = {
                     csrf_token: CSRFToken(event)
@@ -1272,7 +1289,26 @@ import { apiError, apiDelete, CSRFInput, DateTime, documentTitle, route, CSRFTok
  */
 function ManageAcls({ usedAcls, unUsedAcls }) {
     documentTitle("Manage ACLs");
+    
+    /**
+     * Manages state for error.  Errors are generated when there is a failure 
+     * deleting an ACL record.
+     */
     const [error, setError] = useState(null);
+
+    /**
+     * Creates a click handler that deletes an ACL after the user confirms.
+     *
+     * On confirmation, sends a DELETE request with the CSRF token to
+     * `/admindashboard/deleteAcl/{id}` and reloads the page so the list and any
+     * flash message reflect the change. Errors are displayed with `setError`.
+     *
+     * @example
+     * <button onClick={onDeleteClick(acl)}>Delete</button>
+     *
+     * @param {{ id: number, acl: string }} acl The ACL to delete.
+     * @returns {(event: React.MouseEvent) => Promise<void>} Click handler for the delete button.
+     */
     const onDeleteClick = (acl) => async (event) => {
         event.preventDefault();
         if(window.confirm(`Are you sure you want to delete the ACL: \${acl.acl}`)) {
