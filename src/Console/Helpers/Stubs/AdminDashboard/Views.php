@@ -1262,6 +1262,14 @@ PHP;
 import React, { useState } from "react";
 import { apiError, apiDelete, CSRFInput, DateTime, documentTitle, route, CSRFToken } from "@chappy/utils";
 
+/**
+ * Renders manage ACLs view.
+ * 
+ * @property {array} usedAcls The array of used ACLs.
+ * @property {array} unUsedAcls The array of unUsedAcls ACLs.
+ * @param {*} param0 
+ * @returns {HTMLDivElement} View containing features for managing ACLs.
+ */
 function ManageAcls({ usedAcls, unUsedAcls }) {
     documentTitle("Manage ACLs");
     const [error, setError] = useState(null);
