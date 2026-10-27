@@ -16,15 +16,11 @@ class Controllers {
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
+
 use Core\Controller;
-use Core\Models\ACL;
-use App\Models\Users;
-use Core\Services\ACLService;
-use Core\Models\ProfileImages;
-use Core\Services\UserService;
-use Core\Models\EmailAttachments;
-use Core\Services\DashboardService;
-use Core\Services\AttachmentService;
+use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue, Users};
+use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
+use Core\Lib\Pagination\Pagination;
 use Core\Lib\Http\JsonResponse;
 use Core\Session;
 use Throwable;
