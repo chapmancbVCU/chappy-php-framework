@@ -17,8 +17,9 @@ class Controllers {
 declare(strict_types=1);
 namespace App\Controllers;
 
+use App\Models\Users;
 use Core\Controller;
-use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue, Users};
+use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue};
 use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
 use Core\Lib\Pagination\Pagination;
 use Core\Lib\Http\JsonResponse;
@@ -432,8 +433,9 @@ PHP;
 declare(strict_types=1);
 namespace App\Controllers;
 
+use App\Models\Users;
 use Core\Controller;
-use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue, Users};
+use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue};
 use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
 use Core\Lib\Pagination\Pagination;
 use Core\Lib\Http\JsonResponse;
