@@ -347,7 +347,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function queueManagerAction(): void {
-        \$pagination = Pagination::fromRequest(\$this->request, 1, Queue::findTotal());
+        \$pagination = Pagination::fromRequest(\$this->request, 10, Queue::findTotal());
         \$queue = Queue::find(\$pagination->paginationParams());
         
         \$props = [
