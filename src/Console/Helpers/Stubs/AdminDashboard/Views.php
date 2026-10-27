@@ -1682,7 +1682,7 @@ function QueueManager({ pagination, queue }) {
                                             {DateTime.timeAgo(job.updated_at)}
                                         </td>
                                         <td className="d-flex gap-3 justify-content-center">
-                                            <a href={route('admindashboard.jobDetails', [job.id])} className="btn btn-info btn-sm">
+                                            <a href={route('admindashboard.jobDetails', [job.id])} className="btn btn-primary btn-sm">
                                                 <i className="fa fa-info"></i> Details
                                             </a>
                                             {formError ? (<p className="text-danger">{formError}</p>) : 
