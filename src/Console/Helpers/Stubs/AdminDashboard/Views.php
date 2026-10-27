@@ -1182,6 +1182,114 @@ PHP;
     }
 
     /**
+     * Generates JS version of job details view.
+     *
+     * @return string The contents of the view.
+     */
+    public static function makeJobDetailsJS(): string {
+        return <<<JSX
+import { documentTitle, route } from "@chappy/utils";
+import { DateTime } from "@chappy/utils/datetime";
+import React from "react";
+
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+function JobDetails({ job }) {
+    const payload = JSON.parse(job.payload);
+    documentTitle(`Job ID: \${job.id} Details`)
+    return (
+        <>
+            <a href={route('admindashboard.queueManager') }class="ms-5 btn btn-sm btn-secondary">Back</a>
+            <h1 className="text-center">Queued Job Details</h1>
+            <div className="d-flex justify-content-center w-75 mx-auto">
+                <table className="table table-striped table-bordered table-hover bg-light my-5 col-md-12">
+                    <tbody>
+                        <tr>
+                            <th className="text-center w-25">ID</th>
+                            <td>{job.id}</td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">Queue</th>
+                            <td>{job.queue}</td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">"payload.job":</th>
+                            <td>{payload.job}</td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">"payload.data":</th>
+                            <td>
+                                {Object.entries(payload.data).map(([k, v]) => (
+                                    <p key={k}>"{k}": {v}</p>
+                                ))}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">"payload.available_at":</th>
+                            <td title={DateTime.formatTime(payload.available_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-start">
+                                {DateTime.formatTime(payload.available_at, DateTime.FORMAT_HUMAN_READABLE)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">"payload.max_attempts":</th>
+                            <td>{payload.max_attempts}</td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">Attempts</th>
+                            <td>{job.attempts}</td>
+                        </tr>
+                        {job.reserved_at && (
+                            <tr>
+                                <th className="text-center w-25">Reserved At</th>
+                                <td title={DateTime.formatTime(job.reserved_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-start">
+                                    {DateTime.formatTime(job.reserved_at, DateTime.FORMAT_HUMAN_READABLE)}
+                                </td>
+                            </tr>
+                        )}
+                        {job.failed_at && (
+                            <tr>
+                                <th className="text-center w-25">Failed At</th>
+                                <td title={DateTime.formatTime(job.failed_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-start">
+                                    {DateTime.formatTime(job.failed_at, DateTime.FORMAT_HUMAN_READABLE)}
+                                </td>
+                            </tr>
+                        )}
+                        <tr>
+                            <th className="text-center w-25">Available At</th>
+                            <td title={DateTime.formatTime(job.available_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-start">
+                                {DateTime.formatTime(job.available_at, DateTime.FORMAT_HUMAN_READABLE)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">Created At</th>
+                            <td title={DateTime.formatTime(job.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-start">
+                                {DateTime.formatTime(job.created_at, DateTime.FORMAT_HUMAN_READABLE)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">Updated At</th>
+                            <td title={DateTime.formatTime(job.updated_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-start">
+                                {DateTime.formatTime(job.updated_at, DateTime.FORMAT_HUMAN_READABLE)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="text-center w-25">Exception</th>
+                            <td>{job.exception}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </>
+    );
+}        
+export default JobDetails;
+JSX;
+    }
+
+    /**
      * Generates PHP version of job details view.
      *
      * @return string The contents of the view.
@@ -1478,6 +1586,129 @@ JSX;
 
 <?php \$this->end(); ?>
 PHP;
+    }
+
+    /**
+     * Generates the JS version of the queue manager view.
+     *
+     * @return string The contents of the view.
+     */
+    public static function makeQueueManagerJS(): string {
+        return <<<JSX
+import React, { useState } from "react";
+import { apiDelete, apiError, CSRFInput, CSRFToken, DateTime, documentTitle, route } from "@chappy/utils";
+import usePaginatedQuery from '@chappy/utils/usePaginatedQuery';
+import Pagination, { PaginationSummary } from '@chappy/components/Pagination';
+
+/**
+ * Renders Queue Manager view.
+ * 
+ * @property {object} pagination The serialized state of paginated data for React.vs views.
+ * @property {array} queue The list of queued jobs.
+ * @param {*} param0 
+ * @returns {HTMLDivElement} View containing features for managing queues. 
+ */
+function QueueManager({ pagination, queue }) {
+    documentTitle("Queue Manager");
+
+    // Paginated query for supporting traversal of pages without reload.
+    const { data, loading, error, goToPage } = usePaginatedQuery({ queue, pagination });
+
+    /**
+     * Manages state for error.  Errors are generated when there is a failure 
+     * deleting an ACL record.
+     */
+    const [formError, setFormError] = useState(null);
+
+    /**
+         * Creates a click handler that deletes a job after the user confirms.
+         *
+         * On confirmation, sends a DELETE request with the CSRF token to
+         * `/admindashboard/deleteJob/{id}` and reloads the page so the list and any
+         * flash message reflect the change. Errors are displayed with `setError`.
+         *
+         * @example
+         * <button onClick={onDeleteClick(job)}>Delete</button>
+         *
+         * @param {{ id: number, job: string }} job The job to delete.
+         * @returns {(event: React.MouseEvent) => Promise<void>} Click handler for the delete button.
+         */
+    const onDeleteClick = (job) => async (event) => {
+        event.preventDefault();
+        if(window.confirm('Are you sure you want to delete this job?')) {
+            try {
+                const payload = {
+                    csrf_token: CSRFToken(event)
+                }
+                const json = await apiDelete(`/admindashboard/deleteJob/\${job.id}`, payload);
+                window.location.reload();
+            } catch(err) {
+                setFormError(apiError(err));
+            }
+        }
+    }
+
+    return (
+        <>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <h1 className="text-center mb-5">Queue Manager</h1>
+            {queue ? (
+                <div>
+                    <div className="d-flex flex-column justify-content-center" style={{ opacity: loading ? 0.5 : 1 }}>
+                        <div className="w-75 mx-auto mb-3">
+                            <PaginationSummary pagination={data.pagination} noun="queue" />
+                        </div>
+                        <table className="w-75 mx-auto table table-striped table-bordered table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <th>Queue</th>
+                                    <th>Attempts</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.queue.map((job) => (
+                                    <tr key={job.id}>
+                                        <td>{job.id}</td>
+                                        <td>{job.queue}</td>
+                                        <td>{job.attempts}</td>
+                                        <td title={DateTime.formatTime(job.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                            {DateTime.timeAgo(job.created_at)}
+                                        </td>
+                                        <td title={DateTime.formatTime(job.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                            {DateTime.timeAgo(job.updated_at)}
+                                        </td>
+                                        <td className="d-flex gap-3 justify-content-center">
+                                            <a href={route('admindashboard.jobDetails', [job.id])} className="btn btn-info btn-sm">
+                                                <i className="fa fa-info"></i> Details
+                                            </a>
+                                            {formError ? (<p className="text-danger">{formError}</p>) : 
+                                                <form method="POST" onSubmit={onDeleteClick(job)} className="d-inline-block">
+                                                    <CSRFInput />
+                                                    <button type="submit" className="btn btn-danger btn-sm">
+                                                        <i className="fa fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
+                                            }
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <Pagination pagination={data.pagination} onPageChange={goToPage} />
+                    </div>
+                </div>
+            ) : (
+                <h3 className="text-center">There are no pending jobs in the queue table.</h3>
+            )}
+        </>
+    );
+}        
+export default QueueManager;
+JSX;
     }
 
     /**

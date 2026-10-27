@@ -146,6 +146,21 @@ class AdmindashboardController extends Controller {
     }
 
     /**
+     * Delete a job and redirects back to queueManager.
+     *
+     * @param int \$id The id of the job to remove from the queue table.
+     * @return void
+     */
+    public function deleteJobAction(int \$id): void {
+        \$job = Queue::findById(\$id);
+        if(\$this->request->isPost()) {
+            \$this->request->csrfCheck();
+            \$job->delete();
+        }
+        redirect('admindashboard.queueManager');
+    }
+
+    /**
      * Presents information about a particular user's profile.
      *
      * @param int \$id The id of the user whose details we want to view.
@@ -282,6 +297,22 @@ class AdmindashboardController extends Controller {
     }
 
     /**
+     * Renders view with information related to a job within the queue table.
+     *
+     * @param int \$id the id of job in the queue table.
+     * @return void
+     */
+    public function jobDetailsAction(int \$id): void {
+        \$job = Queue::findById(\$id);
+
+        \$props = [
+            'job' => \$job,
+        ];
+
+        \$this->view->renderJsx('admindashboard.JobDetails', \$props);
+    }
+
+    /**
      * Renders view for managing ACLs.
      *
      * @return void
@@ -311,6 +342,29 @@ class AdmindashboardController extends Controller {
      */
     public function previewAction(int \$id): void {
         AttachmentService::previewAttachment(\$id);
+    }
+
+    /**
+     * Retrieves list of jobs in queue and renders queue_manager view.
+     *
+     * @return void
+     */
+    public function queueManagerAction(): void {
+        \$pagination = Pagination::fromRequest(\$this->request, 1, Queue::findTotal());
+        \$queue = Queue::find(\$pagination->paginationParams());
+        
+        \$props = [
+            'pagination' => \$pagination->toArray(),
+            'queue' => \$queue
+        ];
+
+        // Support pagination without reload.
+        if (\$this->request->isAjax()) {
+            \$this->jsonResponse(['success' => true] + \$props, 200, ['Vary' => 'X-Requested-With']);
+            return;
+        }
+
+        \$this->view->renderJsx('admindashboard.QueueManager', \$props);
     }
 
     /**
