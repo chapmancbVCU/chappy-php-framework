@@ -5,7 +5,6 @@ namespace Core\Lib\Notifications\Channels;
 use Core\Lib\Notifications\Contracts\Channel;
 use Core\Lib\Notifications\Notification;
 use Core\Models\Notifications;
-use Ramsey\Uuid\Uuid;
 use Core\Lib\Notifications\Notification as BaseNotification;
 use Core\Exceptions\Notifications\{
     InvalidPayloadException,
