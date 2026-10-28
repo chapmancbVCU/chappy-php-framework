@@ -76,14 +76,16 @@ final class DatabaseChannel implements Channel {
 
         try {
             $record = new Notifications();
-            $record->id = (int)Uuid::uuid4()->toString();
             $record->type = get_class($notification);
             $record->notifiable_type = get_class($notifiable);
             $record->notifiable_id = $notifiable->id;
             $record->data = json_encode($payload);
             $record->read_at = null;
-            $record->save();
-        } catch(\Throwable $e) {
+
+            if (!$record->save()) {
+                throw new \RuntimeException('Notifications::save() returned false');
+            }
+        } catch (\Throwable $e) {
             throw new ChannelSendFailedException(
                 channel: self::name(),
                 notificationClass: get_class($notification),
