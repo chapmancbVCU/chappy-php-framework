@@ -15,7 +15,14 @@ class Notifications extends Model {
      */
     protected static string $_table = 'notifications';
     
-    // Fields from your database
+    /**
+     * Columns converted when the model is serialized with toArray() or json_encode().
+     * @var array<string, string>
+     */
+    protected array $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
 
     /** 
      * Notification data. 
