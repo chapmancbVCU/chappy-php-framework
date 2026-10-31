@@ -1777,7 +1777,7 @@ function Notifications({ notifications, pagination }) {
         <>
             <h1 className="text-center mb-5">Notifications</h1>
 
-            {notifications ? (
+            {notifications.length > 0 ? (
                 <div>
                     <div className="d-flex flex-column justify-content-center">
                         <div className="w-75 mx-auto mb-3">
@@ -1955,7 +1955,7 @@ function QueueManager({ pagination, queue }) {
         <>
             {error && <div className="alert alert-danger">{error}</div>}
             <h1 className="text-center mb-5">Queue Manager</h1>
-            {queue ? (
+            {queue.length > 0 ? (
                 <div>
                     <div className="d-flex flex-column justify-content-center" style={{ opacity: loading ? 0.5 : 1 }}>
                         <div className="w-75 mx-auto mb-3">
