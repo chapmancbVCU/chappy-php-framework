@@ -12,6 +12,7 @@ use Core\Lib\Pagination\Pagination;
 use Core\Services\DashboardService;
 use Core\Services\AttachmentService;
 use Core\Lib\Http\JsonResponse;
+use Core\Models\Notifications;
 use Core\Models\Queue;
 use Core\Session;
 
@@ -58,6 +59,21 @@ class AdmindashboardController extends Controller {
         redirect('admindashboard.manageAcls');
     }
 
+    /**
+     * Delete a notification and redirects back to main notifications page.
+     *
+     * @param int $id The id of the notification to remove from the queue table.
+     * @return void
+     */
+    public function deleteNotificationAction(int $id): void {
+        $notification = Notifications::findById($id);
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $notification->delete();
+        }
+        redirect('admindashboard.notifications');
+    }
+    
     /**
      * Performs delete action on a user.
      *
@@ -261,6 +277,33 @@ class AdmindashboardController extends Controller {
         $this->view->usedAcls = ACLService::usedACLs();
         $this->view->unUsedAcls = ACLService::unUsedACLs();
         $this->view->render('admindashboard.manage_acls', true, true);
+    }
+
+    /**
+     * Get list of notifications that are found in the database channel.
+     *
+     * @return void
+     */
+    public function notificationsAction(): void {
+        $pagination = Pagination::fromRequest($this->request, 10, Notifications::findTotal());
+        $notifications = Notifications::find($pagination->paginationParams());
+        $this->view->notifications = $notifications;
+        $this->view->pagination = $pagination;
+        $this->view->render('admindashboard.notifications', true, true);
+    }
+
+    /**
+     * Displays information for a particular notification within the 
+     * database channel
+     *
+     * @param int $id The id of the notification.
+     * @return void
+     */
+    public function notificationDetailsAction(int $id): void {
+        $notification = Notifications::findById($id);
+        $this->view->data = json_decode($notification->data);
+        $this->view->notification = $notification;
+        $this->view->render('admindashboard.notification_details', true, true);
     }
 
     /**
