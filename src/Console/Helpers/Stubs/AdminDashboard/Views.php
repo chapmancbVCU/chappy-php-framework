@@ -1740,6 +1740,14 @@ import { apiDelete, apiError, CSRFInput, CSRFToken, DateTime, documentTitle, rou
 import React, { useState } from "react";
 import Pagination, { PaginationSummary } from "@chappy/components/Pagination";
 
+/**
+ * Renders notifications view.
+ * 
+ * @property {object} pagination The serialized state of paginated data for React.vs views.
+ * @property {array} notifications The list of notifications within the database channel..
+ * @param {*} param0 
+ * @returns {HTMLDivElement} View containing features for notifications. 
+ */
 function Notifications({ notifications, pagination }) {
     documentTitle("Notifications");
 
