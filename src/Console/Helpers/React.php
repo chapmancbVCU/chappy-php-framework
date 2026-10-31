@@ -55,7 +55,7 @@ class React extends Console {
         Tools::writeFile($path.'JobDetails.jsx', AdminViews::makeJobDetailsJS(), 'View');
         Tools::writeFile($path.'ManageAcls.jsx', AdminViews::makeManageAclsJS(), 'View');
         Tools::writeFile($path.'NotificationDetails.jsx', AdminViews::makeNotificationDetailsJS(), 'View');
-        Tools::writeFile($path.'Notifications.jsx', AdminViews::makeNotificationDetailsJS(), 'View');
+        Tools::writeFile($path.'Notifications.jsx', AdminViews::makeNotificationsJS(), 'View');
         Tools::writeFile($path.'QueueManager.jsx', AdminViews::makeQueueManagerJS(), 'View');
         Tools::writeFile($path.'SetAccountStatus.jsx', AdminViews::makeSetAccountStatusJS(), 'View');
         Tools::writeFile($path.'SetResetPassword.jsx', AdminViews::makeSetResetPasswordJS(), 'View');
