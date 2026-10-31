@@ -1624,10 +1624,10 @@ PHP;
                             <form method="POST"
                                 action="<?= route('admindashboard.deleteNotification', [\$notification->id]) ?>"
                                 class="d-inline-block"
-                                onsubmit="return confirm('Are you sure you want to delete this notification')">
+                                onsubmit="return confirm('Are you sure you want to delete this notification?')">
                                 <?= csrf() ?>
                                 <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>Delete
+                                    <i class="fa fa-trash"></i> Delete
                                 </button>
                             </form>
                         </td>
