@@ -346,6 +346,41 @@ class AdmindashboardController extends Controller {
     }
 
     /**
+     * Displays information for a particular notification within the 
+     * database channel
+     *
+     * @param int \$id The id of the notification.
+     * @return void
+     */
+    public function notificationDetailsAction(int \$id): void {
+        \$this->view->renderJsx('admindashboard.NotificationDetails', [
+            'notification' => Notifications::findById(\$id)
+        ]);
+    }
+
+    /**
+     * Get list of notifications that are found in the database channel.
+     *
+     * @return void
+     */
+    public function notificationsAction(): void {
+        \$pagination = Pagination::fromRequest(\$this->request, 10, Notifications::findTotal());
+        \$notifications = Notifications::find(\$pagination->paginationParams());
+
+        \$props = [
+            'pagination' => \$pagination->toArray(),
+            'notifications' => \$notifications
+        ];
+
+        if(\$this->request->isAjax()) {
+            \$this->jsonResponse(['success' => true] + \$props, 200, ['Vary' => 'X-Requested-With']);
+            return;
+        }
+
+        \$this->view->renderJsx('admindashboard.Notifications', \$props);
+    }
+
+    /**
      * Runs when the object is constructed.
      *
      * @return void
