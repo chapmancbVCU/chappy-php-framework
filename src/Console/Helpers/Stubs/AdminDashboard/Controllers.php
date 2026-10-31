@@ -705,19 +705,6 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Get list of notifications that are found in the database channel.
-     *
-     * @return void
-     */
-    public function notificationsAction(): void {
-        \$pagination = Pagination::fromRequest(\$this->request, 10, Notifications::findTotal());
-        \$notifications = Notifications::find(\$pagination->paginationParams());
-        \$this->view->notifications = \$notifications;
-        \$this->view->pagination = \$pagination;
-        \$this->view->render('admindashboard.notifications');
-    }
-
-    /**
      * Displays information for a particular notification within the 
      * database channel
      *
@@ -729,6 +716,19 @@ class AdmindashboardController extends Controller {
         \$this->view->data = json_decode(\$notification->data);
         \$this->view->notification = \$notification;
         \$this->view->render('admindashboard.notification_details');
+    }
+        
+    /**
+     * Get list of notifications that are found in the database channel.
+     *
+     * @return void
+     */
+    public function notificationsAction(): void {
+        \$pagination = Pagination::fromRequest(\$this->request, 10, Notifications::findTotal());
+        \$notifications = Notifications::find(\$pagination->paginationParams());
+        \$this->view->notifications = \$notifications;
+        \$this->view->pagination = \$pagination;
+        \$this->view->render('admindashboard.notifications');
     }
 
     /**
