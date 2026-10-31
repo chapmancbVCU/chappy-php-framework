@@ -542,7 +542,7 @@ class AdmindashboardController extends Controller {
     /**
      * Delete a notification and redirects back to main notifications page.
      *
-     * @param int \$id The id of the notification to remove from the queue table.
+     * @param int \$id The id of the notification to remove from the notifications table.
      * @return void
      */
     public function deleteNotificationAction(int \$id): void {
@@ -717,7 +717,7 @@ class AdmindashboardController extends Controller {
         \$this->view->notification = \$notification;
         \$this->view->render('admindashboard.notification_details');
     }
-        
+
     /**
      * Get list of notifications that are found in the database channel.
      *
