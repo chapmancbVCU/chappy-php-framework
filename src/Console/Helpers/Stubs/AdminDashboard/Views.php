@@ -1193,9 +1193,11 @@ import { DateTime } from "@chappy/utils/datetime";
 import React from "react";
 
 /**
+ * Renders Job Details view.
  * 
+ * @property {object} job The job whose details we are viewing.
  * @param {*} param0 
- * @returns 
+ * @returns {HTMLDivElement} Contents of Job Details view.
  */
 function JobDetails({ job }) {
     const payload = JSON.parse(job.payload);
@@ -1588,59 +1590,80 @@ PHP;
     }
 
     /**
-     * Generates the PHP version of the notifications view.
+     * Generates the JS version of the notification details view.
      *
      * @return string The contents of the view.
      */
-    public static function makeNotificationsPHP(): string {
+    public static function makeNotificationDetailsJS(): string {
         return <<<PHP
-<?php \$this->setSiteTitle("Notifications"); ?>
-<?php \$this->start('body'); ?>
-<h1 class="text-center">Notifications</h1>
+import { DateTime, documentTitle, htmlspecialchars, route } from "@chappy/utils";
+import React from "react";
 
-<?php if(\$this->notifications): ?>
-    <div class="d-flex justify-content-center">
-        <table class="w-75 table table-striped table-bordered table-hover table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Type</th>
-                    <th>Created</th>
-                    <th>Updated</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach(\$this->notifications as \$notification): ?>
-                    <tr>
-                        <td><?= \$notification->id ?></td>
-                        <td><?= \$notification->notification_type ?></td>
-                        <td><?= \$notification->date('created_at')->diffForHumans() ?></td>
-                        <td><?= \$notification->date('updated_at')->diffForHumans() ?></td>
-                        <td class="text-end">
-                            <a href="<?= route('admindashboard.notificationDetails', [\$notification->id]) ?>"
-                                class="btn btn-primary btn-sm"><i class="fa fa-info"></i> Details
-                            </a>
-                            <form method="POST"
-                                action="<?= route('admindashboard.deleteNotification', [\$notification->id]) ?>"
-                                class="d-inline-block"
-                                onsubmit="return confirm('Are you sure you want to delete this notification?')">
-                                <?= csrf() ?>
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-    </div>
-    <?= \$this->pagination->render(); ?>
-<?php else: ?>
-    <h3 class="text-center">There are no pending notifications in the database channel.</h3>
-<?php endif; ?>
-<?php \$this->end(); ?>
+/**
+ * Renders Notification Details view.
+ * 
+ * @property {object} notification The notification whose details we are viewing.
+ * @param {*} param0 
+ * @returns {HTMLDivElement} Contents of Notification Details view.
+ */
+function NotificationDetails({ notification }) {
+    const data = JSON.parse(notification.data);
+    documentTitle(`Notification ID: \${notification.id} Details`);
+
+    return (
+        <>
+            <a href={route('admindashboard.notifications')} className="me-5 btn btn-sm btn-secondary">Back</a>
+            <h1 className="text-center">Notification Details</h1>
+            <div className="d-flex justify-content-center w-75 mx-auto">
+                <table className="table table-striped table-bordered table-hover bg-light my-5 col-md-12">
+                    <tbody>
+                        <tr>
+                            <th scope="row" className="text-center w-25">ID</th>
+                            <td className="text-center" colSpan={2}>{notification.id}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" className="text-center w-25">Type</th>
+                            <td className="text-center" colSpan={2}>{ htmlspecialchars(notification.type)}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" className="text-center w-25">Notifiable Type</th>
+                            <td className="text-center" colSpan={2}>{htmlspecialchars(notification.notifiable_type)}</td>
+                        </tr>
+                        <tr>
+                            <th className="text-center align-middle">Data</th>
+                            <td className="text-start">
+                                {Object.entries(data).map(([k,v]) => (
+                                    <div key={k}>"{k}": {v}</div>
+                                ))}
+                            </td>
+                        </tr>
+                        {notification.read_at && (
+                            <tr>
+                                <th scope="row" className="text-center w-25">Read At</th>
+                                <td title={DateTime.formatTime(notification.read_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center" colSpan={2}>
+                                    {DateTime.formatTime(notification.read_at, DateTime.FORMAT_HUMAN_READABLE)}
+                                </td>
+                            </tr>
+                        )}
+                        <tr>
+                            <th scope="row"className="text-center w-25">Created At</th>
+                            <td title={DateTime.formatTime(notification.created_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center" colSpan={2}>
+                                {DateTime.formatTime(notification.created_at, DateTime.FORMAT_HUMAN_READABLE)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" className="text-center w-25">Updated At</th>
+                            <td title={DateTime.formatTime(notification.updated_at, DateTime.FORMAT_HUMAN_READABLE)} className="text-center" colSpan={2}>
+                                {DateTime.formatTime(notification.updated_at, DateTime.FORMAT_HUMAN_READABLE)}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </>
+    );
+}        
+export default NotificationDetails;
 PHP;
     }
 
@@ -1702,6 +1725,160 @@ PHP;
         </tbody>
     </table>
 </div>
+<?php \$this->end(); ?>
+PHP;
+    }
+
+    /**
+     * Generates the JS version of the notifications view.
+     *
+     * @return string The contents of the view.
+     */
+    public static function makeNotificationsJS(): string {
+            return <<<PHP
+import { apiDelete, apiError, CSRFInput, CSRFToken, DateTime, documentTitle, route } from "@chappy/utils";
+import React, { useState } from "react";
+import Pagination, { PaginationSummary } from "@chappy/components/Pagination";
+
+function Notifications({ notifications, pagination}) {
+    documentTitle("Notifications");
+
+    /**
+     * Manages state for error.  Errors are generated when there is a failure 
+     * deleting a notification record.
+     */
+    const [error, setError] = useState(null);
+
+    const onDeleteClick = (notification) => async (event) => {
+        event.preventDefault();
+        console.log(notification.id)
+        if(window.confirm('Are you sure you want to delete this notification?')) {
+            try {
+                const payload = {
+                    csrf_token: CSRFToken(event)
+                }
+                const json = await apiDelete(`/admindashboard/deleteNotification/\${notification.id}`, payload);
+                window.location.reload();
+            } catch (err) {
+                setError(apiError(err));
+            }
+        }
+    }
+
+    return (
+        <>
+            <h1 className="text-center mb-5">Notifications</h1>
+
+            {notifications ? (
+                <div>
+                    <div className="d-flex flex-column justify-content-center">
+                        <div className="w-75 mx-auto mb-3">
+                            <PaginationSummary pagination={pagination} noun="notifications" />
+                        </div>
+                        <table className="w-75 mx-auto table table-striped table-bordered table-hover table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {notifications.map((notification) => (
+                                    <tr key={notification.id}>
+                                        <td>{notification.id}</td>
+                                        <td>{notification.type}</td>
+                                        <td title={DateTime.formatTime(notification.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                            {DateTime.timeAgo(notification.created_at)}
+                                        </td>
+                                        <td title={DateTime.formatTime(notification.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                            {DateTime.timeAgo(notification.updated_at)}
+                                        </td>
+                                        <td className="d-flex gap-3 justify-content-center">
+                                            <a href={route('admindashboard.NotificationDetails', [notification.id])} className="btn btn-primary btn-sm">
+                                                <i className="fa fa-info"></i> Details
+                                            </a>
+                                            {error ? (<p className="text-danger">{error}</p>) :
+                                                <form method="POST" onSubmit={onDeleteClick(notification)} className="d-inline-block">
+                                                    <CSRFInput />
+                                                    <button type="submit" className="btn btn-danger btn-sm">
+                                                        <i className="fa fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
+                                            }
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <Pagination pagination={pagination} />
+                    </div>
+                </div>
+            ) : (
+                <h3 className="text-center">There are no pending notifications within the database channel.</h3>
+            )}
+        </>
+    );
+}        
+export default Notifications;
+PHP;
+    }
+
+    /**
+     * Generates the PHP version of the notifications view.
+     *
+     * @return string The contents of the view.
+     */
+    public static function makeNotificationsPHP(): string {
+        return <<<PHP
+<?php \$this->setSiteTitle("Notifications"); ?>
+<?php \$this->start('body'); ?>
+<h1 class="text-center">Notifications</h1>
+
+<?php if(\$this->notifications): ?>
+    <div class="d-flex justify-content-center">
+        <table class="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach(\$this->notifications as \$notification): ?>
+                    <tr>
+                        <td><?= \$notification->id ?></td>
+                        <td><?= \$notification->notification_type ?></td>
+                        <td><?= \$notification->date('created_at')->diffForHumans() ?></td>
+                        <td><?= \$notification->date('updated_at')->diffForHumans() ?></td>
+                        <td class="text-end">
+                            <a href="<?= route('admindashboard.notificationDetails', [\$notification->id]) ?>"
+                                class="btn btn-primary btn-sm"><i class="fa fa-info"></i> Details
+                            </a>
+                            <form method="POST"
+                                action="<?= route('admindashboard.deleteNotification', [\$notification->id]) ?>"
+                                class="d-inline-block"
+                                onsubmit="return confirm('Are you sure you want to delete this notification?')">
+                                <?= csrf() ?>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+    <?= \$this->pagination->render(); ?>
+<?php else: ?>
+    <h3 class="text-center">There are no pending notifications in the database channel.</h3>
+<?php endif; ?>
 <?php \$this->end(); ?>
 PHP;
     }
