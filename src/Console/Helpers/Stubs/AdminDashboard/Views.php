@@ -1740,7 +1740,7 @@ import { apiDelete, apiError, CSRFInput, CSRFToken, DateTime, documentTitle, rou
 import React, { useState } from "react";
 import Pagination, { PaginationSummary } from "@chappy/components/Pagination";
 
-function Notifications({ notifications, pagination}) {
+function Notifications({ notifications, pagination }) {
     documentTitle("Notifications");
 
     /**
