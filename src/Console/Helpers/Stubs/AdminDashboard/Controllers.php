@@ -148,13 +148,36 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the job to remove from the queue table.
      * @return void
      */
-    public function deleteJobAction(int \$id): void {
-        \$job = Queue::findById(\$id);
-        if(\$this->request->isPost()) {
-            \$this->request->csrfCheck();
+    public function deleteJobAction(int \$id) {
+        try {
+            if(!\$this->apiCsrfCheck()) {
+                return \$this->jsonError('Corrupted token');
+            }
+            \$job = Queue::findById(\$id);
             \$job->delete();
+            return \$this->jsonResponse(['success' => true]);
+        } catch (Throwable \$e) {
+            return \$this->jsonError('Server error: ' .  \$e, 500);
         }
-        redirect('admindashboard.queueManager');
+    }
+
+    /**
+     * Delete a notification and redirects back to main notifications page.
+     *
+     * @param int \$id The id of the notification to remove from the notification table.
+     * @return void
+     */
+    public function deleteNotificationAction(int \$id) {
+        try {
+            if(!\$this->apiCsrfCheck()) {
+                return \$this->jsonError('Corrupted token');
+            }
+            \$notification = Notifications::findById(\$id);
+            \$notification->delete();
+            return \$this->jsonResponse(['success' => true]);
+        } catch (Throwable \$e) {
+            return \$this->jsonError('Server error: ' .  \$e, 500);
+        }
     }
 
     /**
