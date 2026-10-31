@@ -435,7 +435,7 @@ namespace App\Controllers;
 
 use App\Models\Users;
 use Core\Controller;
-use Core\Models\{ACL, EmailAttachments, ProfileImages, Queue};
+use Core\Models\{ACL, EmailAttachments, Notifications, ProfileImages, Queue};
 use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
 use Core\Lib\Pagination\Pagination;
 use Core\Lib\Http\JsonResponse;
