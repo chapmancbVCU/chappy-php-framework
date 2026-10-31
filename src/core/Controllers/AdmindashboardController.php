@@ -117,7 +117,7 @@ class AdmindashboardController extends Controller {
     /**
      * Delete a notification and redirects back to main notifications page.
      *
-     * @param int $id The id of the notification to remove from the queue table.
+     * @param int $id The id of the notification to remove from the notification table.
      * @return void
      */
     public function deleteNotificationAction(int $id): void {
@@ -128,7 +128,7 @@ class AdmindashboardController extends Controller {
         }
         redirect('admindashboard.notifications');
     }
-    
+
     /**
      * Presents information about a particular user's profile.
      *
