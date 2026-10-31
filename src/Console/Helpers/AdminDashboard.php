@@ -177,6 +177,36 @@ class AdminDashboard extends Console {
     }
 
     /**
+     * Generates PHP version of the notification details view.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeNotificationDetailsViewPHP(): int {
+        $path = self::VIEW_PATH.'admindashboard'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'notification_details.php',
+            Views::makeNotificationDetailsPHP(),
+            'Notification details view'
+        );
+    }
+
+    /**
+     * Generates PHP version of the notifications view.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeNotificationsViewPHP(): int {
+        $path = self::VIEW_PATH.'admindashboard'.DS;
+        Tools::pathExists($path);
+        return Tools::writeFile(
+            $path.'notifications.php',
+            Views::makeNotificationsPHP(),
+            'Notifications view'
+        );
+    }
+
+    /**
      * Generates PHP version of the queue manager view.
      *
      * @return int A value that indicates success, invalid, or failure.
