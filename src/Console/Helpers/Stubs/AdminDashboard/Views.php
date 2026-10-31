@@ -1199,10 +1199,10 @@ import React from "react";
  */
 function JobDetails({ job }) {
     const payload = JSON.parse(job.payload);
-    documentTitle(`Job ID: \${job.id} Details`)
+    documentTitle(`Job ID: \${job.id} Details`);
     return (
         <>
-            <a href={route('admindashboard.queueManager') }className="ms-5 btn btn-sm btn-secondary">Back</a>
+            <a href={route('admindashboard.queueManager')} className="ms-5 btn btn-sm btn-secondary">Back</a>
             <h1 className="text-center">Queued Job Details</h1>
             <div className="d-flex justify-content-center w-75 mx-auto">
                 <table className="table table-striped table-bordered table-hover bg-light my-5 col-md-12">
