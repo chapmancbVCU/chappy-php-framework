@@ -58,21 +58,6 @@ class AdmindashboardController extends Controller {
         }
         redirect('admindashboard.manageAcls');
     }
-
-    /**
-     * Delete a notification and redirects back to main notifications page.
-     *
-     * @param int $id The id of the notification to remove from the queue table.
-     * @return void
-     */
-    public function deleteNotificationAction(int $id): void {
-        $notification = Notifications::findById($id);
-        if($this->request->isPost()) {
-            $this->request->csrfCheck();
-            $notification->delete();
-        }
-        redirect('admindashboard.notifications');
-    }
     
     /**
      * Performs delete action on a user.
@@ -127,6 +112,21 @@ class AdmindashboardController extends Controller {
             $job->delete();
         }
         redirect('admindashboard.queueManager');
+    }
+    
+    /**
+     * Delete a notification and redirects back to main notifications page.
+     *
+     * @param int $id The id of the notification to remove from the queue table.
+     * @return void
+     */
+    public function deleteNotificationAction(int $id): void {
+        $notification = Notifications::findById($id);
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $notification->delete();
+        }
+        redirect('admindashboard.notifications');
     }
     
     /**
