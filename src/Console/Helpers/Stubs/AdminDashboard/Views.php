@@ -1734,7 +1734,7 @@ function QueueManager({ pagination, queue }) {
 
     /**
      * Manages state for error.  Errors are generated when there is a failure 
-     * deleting an ACL record.
+     * deleting a Queue record.
      */
     const [formError, setFormError] = useState(null);
 
