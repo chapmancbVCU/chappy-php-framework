@@ -348,10 +348,32 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function manageACLsAction(): void {
+        \$acls = ACL::find(['order' => 'acl']);
+
+        // Admin is never deletable, so leave it out of the list and the count.
+        \$unusedAcls = array_values(array_filter(
+            ACLService::unUsedACLs(\$acls),
+            fn(\$acl) => \$acl->acl !== 'Admin'
+        ));
+
+        \$unusedPagination = Pagination::fromRequest(\$this->request, 10, count(\$unusedAcls));
+
+        \$usedAcls = ACLService::usedACLs(\$acls);
+
+        \$usedPagination = Pagination::fromRequest(\$this->request, 10, count(\$usedAcls));
+
         \$props = [
-            'usedAcls' => ACLService::usedACLs(),
-            'unUsedAcls' => ACLService::unUsedACLs()
+            'usedAcls'         => array_slice(\$usedAcls, \$usedPagination->offset(), \$usedPagination->limit()),
+            'unUsedAcls'       => array_slice(\$unusedAcls, \$unusedPagination->offset(), \$unusedPagination->limit()),
+            'unusedPagination' => \$unusedPagination->toArray(),
+            'usedPagination'   => \$usedPagination->toArray()
         ];
+
+        if (\$this->request->isAjax()) {
+            \$this->jsonResponse(['success' => true] + \$props, 200, ['Vary' => 'X-Requested-With']);
+            return;
+        }
+
         \$this->view->renderJsx('admindashboard.ManageAcls', \$props);
     }
 
