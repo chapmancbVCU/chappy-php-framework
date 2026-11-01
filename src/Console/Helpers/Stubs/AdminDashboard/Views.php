@@ -1778,49 +1778,47 @@ function Notifications({ notifications, pagination }) {
             <h1 className="text-center mb-5">Notifications</h1>
 
             {notifications.length > 0 ? (
-                <div>
-                    <div className="w-75 mx-auto  d-flex flex-column justify-content-center">
-                        <PaginationSummary pagination={pagination} noun="notifications" />
-                        <table className="table table-striped table-bordered table-hover table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Type</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th></th>
+                <div className="w-75 mx-auto d-flex flex-column justify-content-center">
+                    <PaginationSummary pagination={pagination} noun="notifications" />
+                    <table className="table table-striped table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {notifications.map((notification) => (
+                                <tr key={notification.id}>
+                                    <td>{notification.id}</td>
+                                    <td>{notification.type}</td>
+                                    <td title={DateTime.formatTime(notification.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                        {DateTime.timeAgo(notification.created_at)}
+                                    </td>
+                                    <td title={DateTime.formatTime(notification.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                        {DateTime.timeAgo(notification.updated_at)}
+                                    </td>
+                                    <td className="d-flex gap-3 justify-content-center">
+                                        <a href={route('admindashboard.NotificationDetails', [notification.id])} className="btn btn-primary btn-sm">
+                                            <i className="fa fa-info"></i> Details
+                                        </a>
+                                        {error ? (<p className="text-danger">{error}</p>) :
+                                            <form method="POST" onSubmit={onDeleteClick(notification)} className="d-inline-block">
+                                                <CSRFInput />
+                                                <button type="submit" className="btn btn-danger btn-sm">
+                                                    <i className="fa fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        }
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {notifications.map((notification) => (
-                                    <tr key={notification.id}>
-                                        <td>{notification.id}</td>
-                                        <td>{notification.type}</td>
-                                        <td title={DateTime.formatTime(notification.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
-                                            {DateTime.timeAgo(notification.created_at)}
-                                        </td>
-                                        <td title={DateTime.formatTime(notification.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
-                                            {DateTime.timeAgo(notification.updated_at)}
-                                        </td>
-                                        <td className="d-flex gap-3 justify-content-center">
-                                            <a href={route('admindashboard.NotificationDetails', [notification.id])} className="btn btn-primary btn-sm">
-                                                <i className="fa fa-info"></i> Details
-                                            </a>
-                                            {error ? (<p className="text-danger">{error}</p>) :
-                                                <form method="POST" onSubmit={onDeleteClick(notification)} className="d-inline-block">
-                                                    <CSRFInput />
-                                                    <button type="submit" className="btn btn-danger btn-sm">
-                                                        <i className="fa fa-trash"></i> Delete
-                                                    </button>
-                                                </form>
-                                            }
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <Pagination pagination={pagination} />
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination pagination={pagination} />
                 </div>
             ) : (
                 <h3 className="text-center">There are no pending notifications within the database channel.</h3>
@@ -1954,51 +1952,49 @@ function QueueManager({ pagination, queue }) {
             {error && <div className="alert alert-danger">{error}</div>}
             <h1 className="text-center mb-5">Queue Manager</h1>
             {queue.length > 0 ? (
-                <div>
-                    <div className="w-75 mx-auto d-flex flex-column justify-content-center" style={{ opacity: loading ? 0.5 : 1 }}>
-                        <PaginationSummary pagination={data.pagination} noun="queue" />
-                        <table className="table table-striped table-bordered table-hover table-sm">
-                            <thead>
-                                <tr>
-                                    <td>ID</td>
-                                    <th>Queue</th>
-                                    <th>Attempts</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th></th>
+                <div className="w-75 mx-auto d-flex flex-column justify-content-center" style={{ opacity: loading ? 0.5 : 1 }}>
+                    <PaginationSummary pagination={data.pagination} noun="queue" />
+                    <table className="table table-striped table-bordered table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <th>Queue</th>
+                                <th>Attempts</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.queue.map((job) => (
+                                <tr key={job.id}>
+                                    <td>{job.id}</td>
+                                    <td>{job.queue}</td>
+                                    <td>{job.attempts}</td>
+                                    <td title={DateTime.formatTime(job.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                        {DateTime.timeAgo(job.created_at)}
+                                    </td>
+                                    <td title={DateTime.formatTime(job.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
+                                        {DateTime.timeAgo(job.updated_at)}
+                                    </td>
+                                    <td className="d-flex gap-3 justify-content-center">
+                                        <a href={route('admindashboard.jobDetails', [job.id])} className="btn btn-primary btn-sm">
+                                            <i className="fa fa-info"></i> Details
+                                        </a>
+                                        {formError ? (<p className="text-danger">{formError}</p>) : 
+                                            <form method="POST" onSubmit={onDeleteClick(job)} className="d-inline-block">
+                                                <CSRFInput />
+                                                <button type="submit" className="btn btn-danger btn-sm">
+                                                    <i className="fa fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        }
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {data.queue.map((job) => (
-                                    <tr key={job.id}>
-                                        <td>{job.id}</td>
-                                        <td>{job.queue}</td>
-                                        <td>{job.attempts}</td>
-                                        <td title={DateTime.formatTime(job.created_at, DateTime.FORMAT_HUMAN_READABLE)}>
-                                            {DateTime.timeAgo(job.created_at)}
-                                        </td>
-                                        <td title={DateTime.formatTime(job.updated_at, DateTime.FORMAT_HUMAN_READABLE)}>
-                                            {DateTime.timeAgo(job.updated_at)}
-                                        </td>
-                                        <td className="d-flex gap-3 justify-content-center">
-                                            <a href={route('admindashboard.jobDetails', [job.id])} className="btn btn-primary btn-sm">
-                                                <i className="fa fa-info"></i> Details
-                                            </a>
-                                            {formError ? (<p className="text-danger">{formError}</p>) : 
-                                                <form method="POST" onSubmit={onDeleteClick(job)} className="d-inline-block">
-                                                    <CSRFInput />
-                                                    <button type="submit" className="btn btn-danger btn-sm">
-                                                        <i className="fa fa-trash"></i> Delete
-                                                    </button>
-                                                </form>
-                                            }
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <Pagination pagination={data.pagination} onPageChange={goToPage} />
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination pagination={data.pagination} onPageChange={goToPage} />
                 </div>
             ) : (
                 <h3 className="text-center">There are no pending jobs in the queue table.</h3>
