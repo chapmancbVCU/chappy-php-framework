@@ -3,8 +3,9 @@
 <h1 class="text-center">Notifications</h1>
 
 <?php if($this->notifications): ?>
-    <div class="d-flex justify-content-center">
-        <table class="w-75 table table-striped table-bordered table-hover table-striped table-sm">
+    <div class="d-flex w-75 mx-auto flex-column justify-content-center">
+        <?= $this->pagination->paginationSummary('notifications') ?>
+        <table class="table table-striped table-bordered table-hover table-striped table-sm">
             <thead>
                 <tr>
                     <th>ID</th>

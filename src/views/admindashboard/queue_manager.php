@@ -3,8 +3,9 @@
 <h1 class="text-center mb-5">Queue Manager</h1>
 
 <?php if($this->queue): ?>
-    <div class="d-flex justify-content-center">
-        <table class="w-75 table table-striped table-bordered table-hover table-sm">
+    <div class="d-flex w-75 mx-auto flex-column justify-content-center">
+        <?= $this->pagination->paginationSummary('queue') ?>
+        <table class="table table-striped table-bordered table-hover table-sm">
             <thead>
                 <tr>
                     <th>ID</th>

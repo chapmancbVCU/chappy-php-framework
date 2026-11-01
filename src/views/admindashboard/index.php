@@ -59,12 +59,7 @@ $sortHeader = function (string $column, string $label) use ($e): string {
     </div>
 </form>
 
-<?php if ($this->pagination->totalItems() > 0): ?>
-    <p class="text-muted small mb-2">
-        Showing <?= $this->pagination->firstItem() ?>–<?= $this->pagination->lastItem() ?>
-        of <?= $this->pagination->totalItems() ?> users
-    </p>
-<?php endif; ?>
+<?= $this->pagination->paginationSummary('users') ?>
 
 <table class="table table-striped table-bordered table-hover">
     <thead>

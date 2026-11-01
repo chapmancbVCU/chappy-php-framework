@@ -285,4 +285,20 @@ class Pagination {
     public static function pagination(int $current_page, int $total_pages, string $base_url = '?page='): string {
         return (new static($current_page, 1, $total_pages))->render(new BootstrapRenderer());
     }
+
+    /**
+     * Renders pagination summary.
+     *
+     * @param string $noun The phrase that describes the dataset.
+     * @return string Contents of the pagination summary.
+     */
+    public function paginationSummary(string $noun): string {
+        $html = "";
+        if($this->totalItems() > 0) {
+            $html .= '<p class="text-muted small mb-2">';
+            $html .= "Showing {$this->firstItem()}–{$this->lastItem()} of {$this->totalItems} {$noun}";
+            $html .= '</p>';
+        }
+        return $html;
+    }
 }
