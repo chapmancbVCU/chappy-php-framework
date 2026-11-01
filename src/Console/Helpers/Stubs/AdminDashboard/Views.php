@@ -245,6 +245,7 @@ PHP;
         return <<<JSX
 import React, { useState } from "react";
 import { documentTitle, route, CSRFInput, CSRFToken, apiError, apiDelete } from "@chappy/utils";
+import Pagination, { PaginationSummary } from "@chappy/components/Pagination";
 
 /**
  * Renders list of all attachments that have been uploaded.
@@ -253,7 +254,7 @@ import { documentTitle, route, CSRFInput, CSRFToken, apiError, apiDelete } from 
  * @param {*} param0 
  * @returns {HTMLDivElement} View for listing and managing Email Attachments.
  */
-function Attachments({ attachments }) {
+function Attachments({ attachments, pagination }) {
     documentTitle("Attachments");
 
     /**
@@ -293,12 +294,13 @@ function Attachments({ attachments }) {
     return (
         <>
             <h1 className="text-center mb-4">Attachments
-                <a href={route('admindashboard.editAttachments', ['new'])} className="btn btn-primary btn-sm me-5">
+                <a href={route('admindashboard.editAttachments', ['new'])} className="btn btn-primary btn-sm ms-3">
                     <i className="fa fa-plus"></i> Add Attachment
                 </a>
             </h1>
-            <div className="d-flex justify-content-center">
-                <table className="w-75 table table-striped table-bordered table-hover table-sm">
+            <div className="d-flex flex-column w-75 mx-auto justify-content-center">
+                <PaginationSummary pagination={pagination} noun="attachments" />
+                <table className="table table-striped table-bordered table-hover table-sm">
                     <thead>
                         <tr>
                             <th>Original Name</th>
@@ -334,6 +336,7 @@ function Attachments({ attachments }) {
                         ))}
                     </tbody>
                 </table>
+                <Pagination pagination={pagination} />
             </div>
         </>
     );

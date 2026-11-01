@@ -38,14 +38,24 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function attachmentsAction(): void {
-        \$attachments = EmailAttachments::find();
+        \$pagination = Pagination::fromRequest(\$this->request, 10, EmailAttachments::findTotal());
+        \$attachments = EmailAttachments::find(\$pagination->paginationParams());
 
         foreach(\$attachments as \$attachment) {
             \$attachment->uploadUsername = EmailAttachments::uploadUsername(\$attachment->user_id);
             \$attachment->formattedBytes = EmailAttachments::formatBytes(\$attachment->size);
         }
 
-        \$props = ['attachments' => \$attachments];
+        \$props = [
+            'attachments' => \$attachments,
+            'pagination' => \$pagination->toArray()
+        ];
+
+        if(\$this->request->isAjax()) {
+            \$this->jsonResponse(['success' => true] + \$props, 200, ['Vary' => 'X-Requested-With']);
+            return;
+        }
+
         \$this->view->renderJsx(
             viewComponent:'admindashboard.Attachments', 
             props: \$props,
