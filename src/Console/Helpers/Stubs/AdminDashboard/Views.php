@@ -1429,12 +1429,12 @@ function ManageAcls({ usedAcls, unUsedAcls, unusedPagination, usedPagination }) 
      */
     const onDeleteClick = (acl) => async (event) => {
         event.preventDefault();
-        if(window.confirm(`Are you sure you want to delete the ACL: ${acl.acl}`)) {
+        if(window.confirm(`Are you sure you want to delete the ACL: \${acl.acl}`)) {
             try {
                 const payload = {
                     csrf_token: CSRFToken(event)
                 }
-                const json = await apiDelete(`/admindashboard/deleteAcl/${acl.id}`, payload);
+                const json = await apiDelete(`/admindashboard/deleteAcl/\${acl.id}`, payload);
                 window.location.reload();
             } catch(err) {
                 setError(apiError(err));
