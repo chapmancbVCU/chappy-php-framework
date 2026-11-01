@@ -84,6 +84,8 @@ class MigrationBuilder extends Console {
         self::generateProfileImagesTableMigration();
         self::generateUserSessionsTableMigration();
         self::generateEmailAttachmentsTableMigration();
+        self::generateQueueTableMigration();
+        self::generateNotificationsTableMigration();
         return Command::SUCCESS;
     }
     
@@ -114,6 +116,8 @@ class MigrationBuilder extends Console {
         if($input->getOption('profile_images')) self::generateProfileImagesTableMigration();
         if($input->getOption('user_sessions')) self::generateUserSessionsTableMigration();
         if($input->getOption('email_attachments')) self::generateEmailAttachmentsTableMigration();
+        if($input->getOption('notifications')) self::generateNotificationsTableMigration();
+        if($input->getOption('queue')) self::generateQueueTableMigration();
         return Command::SUCCESS;
     }
 
@@ -132,6 +136,20 @@ class MigrationBuilder extends Console {
     }
 
     /**
+     * Generates migration for notification table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function generateNotificationsTableMigration(): int {
+        $path = Migrate::MIGRATIONS_PATH."MDT20261027235730CreateNotificationTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::notificationsTableTemplate(),
+            'Notifications table migration'
+        );
+    }
+
+    /**
      * Generates migration for profile_images table.
      *
      * @return int A value that indicates success, invalid, or failure.
@@ -142,6 +160,20 @@ class MigrationBuilder extends Console {
             $path,
             MigrationStubs::profileImagesTableTemplate(),
             'Profile Images table migration'
+        );
+    }
+
+    /**
+     * Generates migration for queue table.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function generateQueueTableMigration(): int {
+        $path = Migrate::MIGRATIONS_PATH."MDT20261024230405CreateQueueTable.php";
+        return Tools::writeFile(
+            $path,
+            MigrationStubs::queueTableTemplate(),
+            'Queue table migration'
         );
     }
 

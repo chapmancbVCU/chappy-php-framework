@@ -55,6 +55,18 @@ class RestoreMigrationsCommand extends ConsoleCommand {
                 null,
                 InputOption::VALUE_NONE,
                 'Generates users table migration when set'
+            )
+            ->addOption(
+                'notifications',
+                null,
+                InputOption::VALUE_NONE,
+                'Generates notifications table migration when set'
+            )
+            ->addOption(
+                'queue',
+                null,
+                InputOption::VALUE_NONE,
+                'Generates queue table migration when set'
             );
     }
  
@@ -65,7 +77,7 @@ class RestoreMigrationsCommand extends ConsoleCommand {
      */
     protected function handle(): int
     {
-        $tables = ['acl', 'email_attachments', 'migrations', 'profile_images', 'user_sessions', 'users'];
+        $tables = ['acl', 'email_attachments', 'migrations', 'notifications','profile_images', 'queue', 'user_sessions', 'users'];
          
         foreach($tables as $table) {
             if($this->hasOption($table) && $this->getOption($table)) {

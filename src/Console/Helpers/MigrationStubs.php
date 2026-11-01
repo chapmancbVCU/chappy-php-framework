@@ -273,6 +273,55 @@ PHP;
     }
 
     /**
+     * Template for notifications table migration.
+     *
+     * @return string The content for notifications table migration.
+     */
+    public static function notificationsTableTemplate(): string {
+        return <<<PHP
+<?php
+namespace Database\Migrations;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Blueprint;
+use Core\Lib\Database\Migration;
+
+/**
+ * Migration class for the notifications table.
+ */
+class MDT20261027235730CreateNotificationTable extends Migration {
+    /**
+     * Performs a migration for a new table.
+     *
+     * @return void
+     */
+    public function up(): void {
+        Schema::create('notifications', function (Blueprint \$table) {
+            \$table->id();
+            \$table->string('type');
+            \$table->string('notifiable_type');
+            \$table->unsignedBigInteger('notifiable_id');
+            \$table->text('data');
+            \$table->timestamp('read_at')->nullable();
+            \$table->timestamps();
+            \$table->index('created_at');
+            \$table->index('notifiable_type');
+            \$table->index('notifiable_id');
+        });
+    }
+
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
+    public function down(): void {
+        Schema::dropIfExists('notifications');
+    }
+}
+PHP;
+    }
+
+    /**
      * Template for profile_images table migration.
      *
      * @return string The content for profile_images table migration.
@@ -315,6 +364,56 @@ class MDT20240821210722CreateProfileImagesTable extends Migration {
   public function down(): void {
     Schema::dropIfExists('profile_images');
   }
+}
+PHP;
+    }
+
+    /**
+     * Template for queue table migration.
+     *
+     * @return string The content for queue table migration.
+     */
+    public static function queueTableTemplate(): string {
+        return <<<PHP
+<?php
+namespace Database\Migrations;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Blueprint;
+use Core\Lib\Database\Migration;
+
+/**
+ * Migration class for the queue table.
+ */
+class MDT20261024230405CreateQueueTable extends Migration {
+    /**
+     * Performs a migration for a new table.
+     *
+     * @return void
+     */
+    public function up(): void {
+        Schema::create('queue', function (Blueprint \$table) {
+            \$table->id();
+            \$table->string('queue')->default('default');
+            \$table->index('queue');
+            \$table->text('payload');
+            \$table->text('exception')->nullable();
+            \$table->unsignedInteger('attempts')->default(0);
+            \$table->timestamp('reserved_at')->nullable();
+            \$table->timestamp('available_at');
+            \$table->index('available_at');
+            \$table->timestamp('failed_at')->nullable();
+            \$table->timestamps();
+        });
+    }
+
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
+    public function down(): void {
+        Schema::dropIfExists('queue');
+    }
 }
 PHP;
     }
