@@ -1444,8 +1444,8 @@ function ManageAcls({ usedAcls, unUsedAcls, unusedPagination, usedPagination }) 
 
     return (
         <>
-            <h1 className="text-center">Manage ACLs
-                <a href={route('admindashboard.editAcl', ['new'])} className="btn btn-primary btn-sm me-5">
+            <h1 className="text-center mb-4">Manage ACLs
+                <a href={route('admindashboard.editAcl', ['new'])} className="btn btn-primary btn-sm ms-3">
                     <i className="fa fa-plus"></i> Add ACL
                 </a>
             </h1>
