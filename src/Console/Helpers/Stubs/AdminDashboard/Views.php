@@ -1779,11 +1779,9 @@ function Notifications({ notifications, pagination }) {
 
             {notifications.length > 0 ? (
                 <div>
-                    <div className="d-flex flex-column justify-content-center">
-                        <div className="w-75 mx-auto mb-3">
-                            <PaginationSummary pagination={pagination} noun="notifications" />
-                        </div>
-                        <table className="w-75 mx-auto table table-striped table-bordered table-hover table-striped table-sm">
+                    <div className="w-75 mx-auto  d-flex flex-column justify-content-center">
+                        <PaginationSummary pagination={pagination} noun="notifications" />
+                        <table className="table table-striped table-bordered table-hover table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -1957,11 +1955,9 @@ function QueueManager({ pagination, queue }) {
             <h1 className="text-center mb-5">Queue Manager</h1>
             {queue.length > 0 ? (
                 <div>
-                    <div className="d-flex flex-column justify-content-center" style={{ opacity: loading ? 0.5 : 1 }}>
-                        <div className="w-75 mx-auto mb-3">
-                            <PaginationSummary pagination={data.pagination} noun="queue" />
-                        </div>
-                        <table className="w-75 mx-auto table table-striped table-bordered table-hover table-sm">
+                    <div className="w-75 mx-auto d-flex flex-column justify-content-center" style={{ opacity: loading ? 0.5 : 1 }}>
+                        <PaginationSummary pagination={data.pagination} noun="queue" />
+                        <table className="table table-striped table-bordered table-hover table-sm">
                             <thead>
                                 <tr>
                                     <td>ID</td>
