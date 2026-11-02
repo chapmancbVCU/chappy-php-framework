@@ -296,7 +296,7 @@ class AdmindashboardController extends Controller {
         $this->view->unUsedAcls = array_slice($unusedAcls, $unusedPagination->offset(), $unusedPagination->limit());
         $this->view->usedPagination = $usedPagination;
         $this->view->unusedPagination = $unusedPagination;
-        $this->view->render('admindashboard.manage_acls');
+        $this->view->render('admindashboard.manage_acls', true, true);
     }
 
     /**
