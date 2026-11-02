@@ -789,8 +789,28 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function manageACLsAction(): void {
-        \$this->view->usedAcls = ACLService::usedACLs();
-        \$this->view->unUsedAcls = ACLService::unUsedACLs();
+        \$acls = ACL::find(['order' => 'acl']);
+        \$usedAcls = ACLService::usedACLs(\$acls);
+        \$unusedAcls = array_values(array_filter(
+            ACLService::unUsedACLs(\$acls),
+            fn(\$acl) => \$acl->acl !== 'Admin'
+        ));
+
+        \$usedPage   = Pagination::currentPage(\$this->request, 'used_page');
+        \$unusedPage = Pagination::currentPage(\$this->request, 'unused_page');
+
+        \$usedPagination = (new Pagination(\$usedPage, 10, count(\$usedAcls)))
+            ->withPageName('used_page')
+            ->withQuery(['unused_page' => \$unusedPage]);
+
+        \$unusedPagination = (new Pagination(\$unusedPage, 10, count(\$unusedAcls)))
+            ->withPageName('unused_page')
+            ->withQuery(['used_page' => \$usedPage]);
+
+        \$this->view->usedAcls = array_slice(\$usedAcls, \$usedPagination->offset(), \$usedPagination->limit());
+        \$this->view->unUsedAcls = array_slice(\$unusedAcls, \$unusedPagination->offset(), \$unusedPagination->limit());
+        \$this->view->usedPagination = \$usedPagination;
+        \$this->view->unusedPagination = \$unusedPagination;
         \$this->view->render('admindashboard.manage_acls');
     }
 
