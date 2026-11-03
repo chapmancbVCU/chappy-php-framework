@@ -361,7 +361,7 @@ JSX;
     </a>
 </h1>
 <div class="d-flex w-75 mx-auto flex-column justify-content-center">
-    <?= \$this->pagination->paginationSummary('queue') ?>
+    <?= \$this->pagination->paginationSummary('attachments') ?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
             <th>Original Name</th>

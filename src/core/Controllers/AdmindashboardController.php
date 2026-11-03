@@ -32,7 +32,7 @@ class AdmindashboardController extends Controller {
         $attachments = EmailAttachments::find($pagination->paginationParams());
         $this->view->pagination = $pagination;
         $this->view->attachments = $attachments;
-        $this->view->render('admindashboard.attachments');
+        $this->view->render('admindashboard.attachments', true, true);
     }
 
     /**
