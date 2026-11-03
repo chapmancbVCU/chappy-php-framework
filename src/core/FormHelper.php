@@ -477,8 +477,8 @@ class FormHelper {
         $id = Str::replace('[]','',$name);
 
         $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$id.'">'.$label.'</label>';
-        $html .= '<input type="'.$type.'" list="'.$listName.'" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '<label class="form-label" for="'.htmlspecialchars($id).'">'.htmlspecialchars($label).'</label>';
+        $html .= '<input type="'.htmlspecialchars($type).'" list="'.htmlspecialchars($listName).'" id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'"'.$inputString.' />';
         
         $html .= '<datalist id="'.$listName.'">';
         if($type === 'range') {
@@ -657,8 +657,8 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
 
         $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$baseName.'">'.$label.'</label>';
-        $html .= '<input type="file" id="'.$baseName.'" name="'.$name.'" value=""'.$inputString.' />';
+        $html .= '<label class="form-label" for="'.htmlspecialchars($baseName).'">'.htmlspecialchars($label).'</label>';
+        $html .= '<input type="file" id="'.htmlspecialchars($baseName).'" name="'.htmlspecialchars($name).'" value=""'.$inputString.' />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $baseName).'</span>';
         $html .= '</div>';
         return $html;
@@ -751,7 +751,7 @@ class FormHelper {
      */
     public static function image(string $id, string $src, int $width, int $height, array $inputAttrs = []): string {
         $inputString = self::stringifyAttrs($inputAttrs);
-        return '<input type="image" id="'.$id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$inputString.' />';
+        return '<input type="image" id="'.htmlspecialchars($id).'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$inputString.' />';
     }
 
     /**
@@ -791,7 +791,7 @@ class FormHelper {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $html = '<div'.$divString.'>';
-        $html .= '<input type="image" id="'.$id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$inputString.' />';
+        $html .= '<input type="image" id="'.htmlspecialchars($id).'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$inputString.' />';
         $html .= '</div>';
         return $html;
     }
@@ -870,8 +870,8 @@ class FormHelper {
         $id = Str::replace('[]','',$name);
 
         $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$id.'">'.$label.'</label>';
-        $html .= '<input type="'.$type.'" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '<label class="form-label" for="'.htmlspecialchars($id).'">'.htmlspecialchars($label).'</label>';
+        $html .= '<input type="'.htmlspecialchars($type).'" id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'"'.$inputString.' />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
@@ -1175,8 +1175,8 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $id = $name . '_' . $value;   // derive once, use for both
 
-        return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'>'
-         . '<label class="form-label me-3" for="'.$id.'">'.$label.'</label> ';
+        return '<input type="radio" id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'"'.$checkString.$inputString.'>'
+         . '<label class="form-label me-3" for="'.htmlspecialchars($id).'">'.htmlspecialchars($label).'</label> ';
     }
 
     /**
@@ -1236,8 +1236,8 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]' ,'' ,$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$id.'" class="form-label">' . $label . '</label>';
-        $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options, $value).'</select>';
+        $html .= '<label class="form-label" for="'.htmlspecialchars($id).'" class="form-label">' . htmlspecialchars($label) . '</label>';
+        $html .= '<select id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" '.$inputString.'>'.self::optionsForSelect($options, $value).'</select>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
@@ -1287,7 +1287,7 @@ class FormHelper {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $html = '<div'.$divString.'>';
-        $html .= '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
+        $html .= '<input type="submit" value="'.htmlspecialchars($buttonText).'"'.$inputString.' />';
         $html .= '</div>';
         return $html;
     }
@@ -1318,7 +1318,7 @@ class FormHelper {
      */
     public static function submitTag(string $buttonText, array $inputAttrs = []): string {
         $inputString = self::stringifyAttrs($inputAttrs);
-        return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
+        return '<input type="submit" value="'.htmlspecialchars($buttonText).'"'.$inputString.' />';
     }
     
     /**
@@ -1440,8 +1440,8 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = Str::replace('[]','',$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label class="form-label" for="'.$id.'" class="form-label">' . $label . '</label>';
-        $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';
+        $html .= '<label class="form-label" for="'.htmlspecialchars($id).'" class="form-label">' . htmlspecialchars($label) . '</label>';
+        $html .= '<textarea id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'"'.$inputString.'>'.$value.'</textarea>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
