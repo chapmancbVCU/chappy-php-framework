@@ -24,18 +24,17 @@ class MailerService {
     public const string FRAMEWORK_STYLES_PATH = CHAPPY_ROOT.DS.'views'.DS.'emails'.DS.'styles'.DS;
     /** Path to user defined layouts. */
     public const string LAYOUT_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS.'layouts'.DS;
-    
+    /** Path to user defined styles. */
+    public const string STYLES_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
+    /** Path to user defined templates. */
+    public const string TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
+
     /**
      * The mailer object
      *
      * @var Mailer
      */
     protected Mailer $mailer;
-    
-    /** Path to user defined styles. */
-    public const string STYLES_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'css'.DS;
-    /** Path to user defined templates. */
-    public const string TEMPLATE_PATH = CHAPPY_BASE_PATH.DS.'resources'.DS.'views'.DS.'emails'.DS;
     
     /**
      * Creates a new mailer.
