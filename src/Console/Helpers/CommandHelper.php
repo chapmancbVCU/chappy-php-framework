@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\Helpers\Stubs\CommandStubs;
 use Console\Helpers\Tools;
 
 /**
