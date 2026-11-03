@@ -1864,7 +1864,7 @@ PHP;
 
 <?php if(\$this->notifications): ?>
     <div class="d-flex w-75 mx-auto flex-column justify-content-center">
-        <?= $\this->pagination->paginationSummary('queue') ?>
+        <?= \$this->pagination->paginationSummary('queue') ?>
         <table class="table table-striped table-bordered table-hover table-striped table-sm">
             <thead>
                 <tr>
