@@ -1553,7 +1553,7 @@ JSX;
     <tbody>
         <?php foreach(\$this->unUsedAcls as \$acl): ?>
             <tr> 
-                <td class="text-center w-50"><?= \$acl->acl ?></td>
+                <td class="text-center w-50"><?= htmlspecialchars(\$acl->acl, ENT_QUOTES, 'UTF-8') ?></td>
                 <td class="text-center"><?= \$acl->date('created_at')->diffForHumans() ?></td>
                 <td class="text-center"><?= \$acl->date('updated_at')->diffForHumans() ?></td>
                 <td class="text-center">
@@ -1588,7 +1588,7 @@ JSX;
     <tbody>
         <?php foreach(\$this->usedAcls as \$acl): ?>
             <tr>
-                <td class="text-center w-50"><?= \$acl->acl ?></td>
+                <td class="text-center w-50"><?= htmlspecialchars(\$acl->acl, ENT_QUOTES, 'UTF-8') ?></td>
                 <td class="text-center"><?= \$acl->date('created_at')->diffForHumans() ?></td>
                 <td class="text-center"><?= \$acl->date('updated_at')->diffForHumans() ?></td>
             </tr>
