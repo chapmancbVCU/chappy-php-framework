@@ -295,7 +295,7 @@ class MailerService {
         array $data = [], 
         ?string $layout = null, 
         ?string $layoutPath = null,
-        string $templatePath,
+        ?string $templatePath = null,
         ?string $styles = null,
         ?string $stylesPath = null
     ): string {
