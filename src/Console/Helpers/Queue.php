@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Console\Helpers;
 
 use Console\Console;
+use Console\Helpers\Stubs\QueueStubs;
 use Core\Exceptions\FrameworkException;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Queue\QueueManager;

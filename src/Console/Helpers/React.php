@@ -4,7 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
-use Console\Helpers\ReactStubs;
+use Console\Helpers\Stubs\ReactStubs;
 use Console\Helpers\Stubs\Home\Views as HomeViews;
 use Console\Helpers\Stubs\Profile\Views as ProfileViews;
 use Console\Helpers\Stubs\Auth\Views as AuthViews;

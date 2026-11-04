@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Console\Helpers\Stubs\ViewStubs;
 use Core\Lib\Utilities\Str;
 
 /**

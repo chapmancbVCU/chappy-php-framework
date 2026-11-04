@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Console\Helpers;
+namespace Console\Helpers\Stubs;
 
 /**
  * A collection of React.js view, component, and util stubs.

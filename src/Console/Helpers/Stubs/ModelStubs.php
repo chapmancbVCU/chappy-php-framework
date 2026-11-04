@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Console\Helpers;
+namespace Console\Helpers\Stubs;
 
 use Core\Lib\Utilities\Str;
 

@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Console\Helpers\Stubs\ModelStubs;
 use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Output\OutputInterface;
 

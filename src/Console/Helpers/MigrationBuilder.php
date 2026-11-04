@@ -4,6 +4,7 @@ namespace Console\Helpers;
 
 use Console\Console;
 use Console\FrameworkQuestion;
+use Console\Helpers\Stubs\MigrationStubs;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Command\Command;
 use Core\Lib\Utilities\Str;

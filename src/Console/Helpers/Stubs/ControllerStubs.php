@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Console\Helpers;
+namespace Console\Helpers\Stubs;
 
 /**
  * Helper class for controller related console commands.
