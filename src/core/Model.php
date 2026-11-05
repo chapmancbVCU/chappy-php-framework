@@ -385,6 +385,30 @@ class Model implements \JsonSerializable {
         return !(isset($this->id) && is_int($this->id) && $this->id > 0);
     }
     
+        /**
+     * Controls how the model serializes to JSON — json_encode(), API
+     * responses, and React data-props all route through this. Declare a
+     * `visible` allowlist (preferred, fail-closed) or a `hidden` denylist on
+     * the model to keep sensitive columns out of output. Output-side mirror
+     * of blackList / whiteList.
+     */
+    public function jsonSerialize(): mixed {
+        $visible = defined(static::class . '::visible') ? static::visible : null;
+        $hidden  = defined(static::class . '::hidden')  ? static::hidden  : [];
+
+        // Public properties only (external-scope get_object_vars), so the
+        // framework's protected/static internals never reach the client.
+        $data = Helper::getObjectProperties($this);
+
+        foreach (array_keys($data) as $key) {
+            $drop = $visible !== null
+                ? !in_array($key, $visible, true)   // allowlist: keep only listed
+                : in_array($key, $hidden, true);     // denylist: drop listed
+            if ($drop) unset($data[$key]);
+        }
+        return $data;
+    }
+    
     /**
      * Runs when the object is constructed.
      *
