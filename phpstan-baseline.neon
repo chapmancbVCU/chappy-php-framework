@@ -1,0 +1,1105 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Negated boolean expression is always true\.$#'
+			identifier: booleanNot.alwaysTrue
+			count: 1
+			path: src/Console/Commands/GenerateMigrationCommand.php
+
+		-
+			message: '#^Property Console\\Commands\\GenerateModelCommand\:\:\$fieldName \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Console/Commands/GenerateModelCommand.php
+
+		-
+			message: '#^Variable \$all might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: src/Console/Commands/GenerateModelCommand.php
+
+		-
+			message: '#^Property Console\\Commands\\MakeCSSCommand\:\:\$fieldName \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Console/Commands/MakeCSSCommand.php
+
+		-
+			message: '#^Variable \$all might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: src/Console/Commands/MakeCSSCommand.php
+
+		-
+			message: '#^Parameter \#1 \$input of static method Console\\Helpers\\Email\:\:makeMailer\(\) expects Symfony\\Component\\Console\\Input\\InputInterface, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/MakeMailerCommand.php
+
+		-
+			message: '#^Parameter \#1 \$step of static method Console\\Helpers\\Migrate\:\:refresh\(\) expects bool\|int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/MigrateRefreshCommand.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 1
+			path: src/Console/Commands/ServeDocsCommand.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 2
+			path: src/Console/Commands/ServeUserGuideCommand.php
+
+		-
+			message: '#^PHPDoc tag @return with type mixed is not subtype of native type string\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: src/Console/Console.php
+
+		-
+			message: '#^Property Console\\Console\:\:\$fieldName \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Console/Console.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/Console/Console.php
+
+		-
+			message: '#^Variable \$all might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: src/Console/Console.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\Console\\Question\\Question\:\:setTimeout\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Console/FrameworkQuestion.php
+
+		-
+			message: '#^Method Console\\FrameworkQuestion\:\:promptUser\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: src/Console/FrameworkQuestion.php
+
+		-
+			message: '#^Offset 0 does not exist on array\{\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Console/FrameworkQuestion.php
+
+		-
+			message: '#^Property Console\\FrameworkQuestion\:\:\$fieldName \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Console/FrameworkQuestion.php
+
+		-
+			message: '#^Variable \$all might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: src/Console/FrameworkQuestion.php
+
+		-
+			message: '#^Call to function is_int\(\) with true will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: src/Console/Helpers/Migrate.php
+
+		-
+			message: '#^Cannot access property \$batch on array\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Console/Helpers/Migrate.php
+
+		-
+			message: '#^Cannot access property \$id on array\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Console/Helpers/Migrate.php
+
+		-
+			message: '#^Parameter \#2 \$uploadOption of static method Console\\Helpers\\Model\:\:contents\(\) expects string, Symfony\\Component\\Console\\Output\\OutputInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Helpers/Model.php
+
+		-
+			message: '#^Cannot call method delete\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Method Console\\Helpers\\Notifications\:\:findUser\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Negated boolean expression is always true\.$#'
+			identifier: booleanNot.alwaysTrue
+			count: 2
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$input$#'
+			identifier: parameter.notFound
+			count: 3
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Static method Console\\Helpers\\Notifications\:\:toDatabaseTemplate\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Static method Console\\Helpers\\Notifications\:\:toLogTemplate\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Static method Console\\Helpers\\Notifications\:\:toMailTemplate\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between string and null will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: src/Console/Helpers/Notifications.php
+
+		-
+			message: '#^Variable \$response might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/Console/Helpers/ProfileImageDir.php
+
+		-
+			message: '#^Variable \$jobClass on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: src/Console/Helpers/Queue.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$feature$#'
+			identifier: parameter.notFound
+			count: 1
+			path: src/Console/Helpers/Testing/PHPUnitTestBuilder.php
+
+		-
+			message: '#^Static method Console\\Helpers\\Testing\\TestRunner\:\:testExists\(\) invoked with 3 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: src/Console/Helpers/Testing/PHPUnitTestBuilder.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: src/Console/Helpers/Testing/PHPUnitTestBuilder.php
+
+		-
+			message: '#^Variable \$filter might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/Console/Helpers/Testing/TestRunner.php
+
+		-
+			message: '#^Variable \$status in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: src/Console/Helpers/Testing/TestRunner.php
+
+		-
+			message: '#^Static method Console\\Helpers\\Testing\\TestRunner\:\:testExists\(\) invoked with 3 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: src/Console/Helpers/Testing/VitestTestBuilder.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$file$#'
+			identifier: parameter.notFound
+			count: 1
+			path: src/Console/Helpers/View.php
+
+		-
+			message: '#^Cannot access property \$acl on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access property \$data on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access property \$id on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 9
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access property \$inactive on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access property \$payload on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access property \$reset_password on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access property \$user_id on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot call method assign\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot call method delete\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot call method getErrorMessages\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot call method isNew\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot call method save\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot call method validationPassed\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Dead catch \- Core\\Exceptions\\FrameworkException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Access to an undefined property Core\\Lib\\Contracts\\Principal\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/core/Controllers/AuthController.php
+
+		-
+			message: '#^Cannot access property \$id on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AuthController.php
+
+		-
+			message: '#^Cannot access property \$password on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Controllers/AuthController.php
+
+		-
+			message: '#^Cannot call method getErrorMessages\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Controllers/AuthController.php
+
+		-
+			message: '#^Cannot call method setChangePassword\(\) on bool\|object\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Controllers/AuthController.php
+
+		-
+			message: '#^Static method Core\\Services\\AuthService\:\:logout\(\) invoked with 0 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: src/core/Controllers/AuthController.php
+
+		-
+			message: '#^Dead catch \- Core\\Exceptions\\FrameworkException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
+			count: 1
+			path: src/core/Controllers/HomeController.php
+
+		-
+			message: '#^Dead catch \- Core\\Exceptions\\FrameworkException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
+			count: 1
+			path: src/core/Controllers/ProfileController.php
+
+		-
+			message: '#^Cannot access property \$count on array\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/DB.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 1
+			path: src/core/DB.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: src/core/DB.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int\)\: bool\)\|null, Closure\(mixed, mixed, mixed, mixed\)\: void given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/core/ErrorHandler.php
+
+		-
+			message: '#^Loose comparison using \!\= between '''' and '''' will always evaluate to false\.$#'
+			identifier: notEqual.alwaysFalse
+			count: 1
+			path: src/core/FormHelper.php
+
+		-
+			message: '#^Negated boolean expression is always false\.$#'
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: src/core/FormHelper.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$selectedValue with type bool\|int\|string is not subtype of native type int\|string\|null\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/core/FormHelper.php
+
+		-
+			message: '#^Property Core\\Lib\\Auth\\SessionGuard\:\:\$remember \(Core\\Lib\\Auth\\RememberMeStore\|null\) is never assigned null so it can be removed from the property type\.$#'
+			identifier: property.unusedType
+			count: 1
+			path: src/core/Lib/Auth/SessionGuard.php
+
+		-
+			message: '#^Cannot access property \$INDEX_NAME on array\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Lib/Database/Blueprint.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 4
+			path: src/core/Lib/Database/Blueprint.php
+
+		-
+			message: '#^Method Core\\Lib\\Database\\Blueprint\:\:getForeignKey\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/core/Lib/Database/Blueprint.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$column$#'
+			identifier: parameter.notFound
+			count: 1
+			path: src/core/Lib/Database/Blueprint.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$references$#'
+			identifier: parameter.notFound
+			count: 1
+			path: src/core/Lib/Database/Blueprint.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 1
+			path: src/core/Lib/Database/Factory.php
+
+		-
+			message: '#^PHPDoc tag @var for property Core\\Lib\\Database\\Factory\:\:\$faker with type Core\\Lib\\Database\\FactoryFaker is not subtype of native type Faker\\Generator\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: src/core/Lib/Database/Factory.php
+
+		-
+			message: '#^Property Core\\Lib\\Database\\Factory\:\:\$faker has unknown class Core\\Lib\\Database\\FactoryFaker as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/core/Lib/Database/Factory.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/core/Lib/Database/Factory.php
+
+		-
+			message: '#^Cannot access property \$max_batch on array\|object\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Lib/Database/Migration.php
+
+		-
+			message: '#^Method Core\\Lib\\Queue\\QueueManager\:\:push\(\) invoked with 3 parameters, 1\-2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: src/core/Lib/Events/EventDispatcher.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$imageTypes$#'
+			identifier: parameter.notFound
+			count: 1
+			path: src/core/Lib/FileSystem/Uploads.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/core/Lib/FileSystem/Uploads.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between non\-empty\-string and false will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: src/core/Lib/Hashing/BcryptHasher.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/core/Lib/Mail/AbstractMailer.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$attachment with type Core\\Lib\\Mail\\EmailAttachment is not subtype of native type Core\\Models\\EmailAttachments\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/core/Lib/Mail/Attachments.php
+
+		-
+			message: '#^Parameter \$attachment of method Core\\Lib\\Mail\\Attachments\:\:path\(\) has invalid type Core\\Lib\\Mail\\EmailAttachment\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/core/Lib/Mail/Attachments.php
+
+		-
+			message: '#^Call to function is_object\(\) with object will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/core/Lib/Notifications/Channels/DatabaseChannel.php
+
+		-
+			message: '#^Instanceof between Core\\Lib\\Notifications\\Notification and Core\\Lib\\Notifications\\Notification will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/core/Lib/Notifications/Channels/DatabaseChannel.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: src/core/Lib/Notifications/Channels/DatabaseChannel.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between null and null will always evaluate to false\.$#'
+			identifier: notIdentical.alwaysFalse
+			count: 1
+			path: src/core/Lib/Notifications/Channels/DatabaseChannel.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/core/Lib/Notifications/Channels/LogChannel.php
+
+		-
+			message: '#^Loose comparison using \=\= between non\-empty\-string and null will always evaluate to false\.$#'
+			identifier: equal.alwaysFalse
+			count: 1
+			path: src/core/Lib/Notifications/Channels/LogChannel.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$payloadMessage with type string\|null is not subtype of native type string\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/core/Lib/Notifications/Channels/LogChannel.php
+
+		-
+			message: '#^Variable \$payloadMessage on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: src/core/Lib/Notifications/Channels/LogChannel.php
+
+		-
+			message: '#^Call to function method_exists\(\) with class\-string\<Core\\Lib\\Mail\\AbstractMailer\> and ''sendTo'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/core/Lib/Notifications/Channels/MailChannel.php
+
+		-
+			message: '#^Expression on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.expr
+			count: 1
+			path: src/core/Lib/Notifications/Channels/MailChannel.php
+
+		-
+			message: '#^Instanceof between Core\\Lib\\Notifications\\Notification and Core\\Lib\\Notifications\\Notification will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/core/Lib/Notifications/Channels/MailChannel.php
+
+		-
+			message: '#^Trait Core\\Lib\\Notifications\\Notifiable is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/core/Lib/Notifications/Notifiable.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 2
+			path: src/core/Lib/Pagination/Pagination.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/core/Lib/Pagination/SearchFilter.php
+
+		-
+			message: '#^Cannot call method delete\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Lib/Queue/DatabaseQueueDriver.php
+
+		-
+			message: '#^PHPDoc tag @implements has invalid value \(QueueableJobInterface\)\: Unexpected token "\\n ", expected ''\<'' at offset 614 on line 15$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/core/Lib/Queue/Jobs/QueuedListenerJob.php
+
+		-
+			message: '#^PHPDoc tag @return with type void is incompatible with native type int\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: src/core/Lib/Queue/QueueableJobInterface.php
+
+		-
+			message: '#^Static method Core\\Lib\\React\\Vite\:\:loadManifest\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: src/core/Lib/React/Vite.php
+
+		-
+			message: '#^Cannot access property \$count on array\|object\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Lib/Testing/ApplicationTestCase.php
+
+		-
+			message: '#^Dead catch \- Core\\Exceptions\\FrameworkException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
+			count: 1
+			path: src/core/Lib/Testing/ApplicationTestCase.php
+
+		-
+			message: '#^Parameter \#1 \$token of static method Core\\FormHelper\:\:checkToken\(\) expects string, Core\\Lib\\Testing\\TestResponse given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/core/Lib/Testing/ApplicationTestCase.php
+
+		-
+			message: '#^Static property Core\\Lib\\Http\\JsonResponse\:\:\$lastStatus \(int\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 2
+			path: src/core/Lib/Testing/ApplicationTestCase.php
+
+		-
+			message: '#^Trait Core\\Lib\\Testing\\InteractsWithTime is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/core/Lib/Testing/InteractsWithTime.php
+
+		-
+			message: '#^Default value of the parameter \#2 \$depth \(float\) of method Core\\Lib\\Utilities\\Arr\:\:flatten\(\) is incompatible with type int\.$#'
+			identifier: parameter.defaultValue
+			count: 1
+			path: src/core/Lib/Utilities/Arr.php
+
+		-
+			message: '#^Default value of the parameter \#2 \$depth \(float\) of method Core\\Lib\\Utilities\\Arr\:\:flattenWithDepth\(\) is incompatible with type int\.$#'
+			identifier: parameter.defaultValue
+			count: 1
+			path: src/core/Lib/Utilities/Arr.php
+
+		-
+			message: '#^Parameter \#2 \$syntax of method Carbon\\CarbonInterface\:\:diffForHumans\(\) expects array\|int\|null, false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/core/Lib/Utilities/DateTime.php
+
+		-
+			message: '#^Access to undefined constant static\(Core\\Model\)\:\:blackList\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Access to undefined constant static\(Core\\Model\)\:\:hidden\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Access to undefined constant static\(Core\\Model\)\:\:visible\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Access to undefined constant static\(Core\\Model\)\:\:whiteList\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Loose comparison using \=\= between int and '''' will always evaluate to false\.$#'
+			identifier: equal.alwaysFalse
+			count: 2
+			path: src/core/Model.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$param with type bool\|object is not subtype of native type bool\|string\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^PHPDoc tag @return with type bool is incompatible with native type void\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^PHPDoc tag @return with type object is not subtype of native type stdClass\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Property Core\\Model\:\:\$fieldName \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Property Core\\Model\:\:\$id \(int\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Result of \|\| is always false\.$#'
+			identifier: booleanOr.alwaysFalse
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Right side of && is always true\.$#'
+			identifier: booleanAnd.rightAlwaysTrue
+			count: 1
+			path: src/core/Model.php
+
+		-
+			message: '#^Variable \$all might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: src/core/Model.php
+
+		-
+			message: '#^Cannot access property \$username on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Models/EmailAttachments.php
+
+		-
+			message: '#^Cannot access property \$read_at on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Models/Notifications.php
+
+		-
+			message: '#^Cannot call method save\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Models/Notifications.php
+
+		-
+			message: '#^Cannot access property \$name on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Models/ProfileImages.php
+
+		-
+			message: '#^Cannot access property \$sort on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Models/ProfileImages.php
+
+		-
+			message: '#^Cannot access property \$user_id on object\|true\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Models/ProfileImages.php
+
+		-
+			message: '#^Cannot call method delete\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Models/ProfileImages.php
+
+		-
+			message: '#^Variable \$image might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/core/Models/ProfileImages.php
+
+		-
+			message: '#^Method Core\\Models\\Queue\:\:reserveNext\(\) should return static\(Core\\Models\\Queue\)\|null but returns Core\\Models\\Queue\.$#'
+			identifier: return.type
+			count: 1
+			path: src/core/Models/Queue.php
+
+		-
+			message: '#^Method Core\\Models\\Queue\:\:setAvailableAt\(\) with return type void returns string but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: src/core/Models/Queue.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$job with type Core\\Models\\QueueModel is not subtype of native type Core\\Models\\Queue\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/core/Models/Queue.php
+
+		-
+			message: '#^Parameter \$job of method Core\\Models\\Queue\:\:updateAttempts\(\) has invalid type Core\\Models\\QueueModel\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/core/Models/Queue.php
+
+		-
+			message: '#^Property Core\\Models\\Queue\:\:\$available_at \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/core/Models/Queue.php
+
+		-
+			message: '#^Result of static method Core\\Models\\Queue\:\:setAvailableAt\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: src/core/Models/Queue.php
+
+		-
+			message: '#^Cannot access property \$acl on object\|true\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: src/core/Services/ACLService.php
+
+		-
+			message: '#^Cannot call method delete\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Services/ACLService.php
+
+		-
+			message: '#^Cannot call method isAssignedToUsers\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Services/ACLService.php
+
+		-
+			message: '#^Cannot call method save\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/core/Services/ACLService.php
+
+		-
+			message: '#^Negated boolean expression is always false\.$#'
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: src/core/Services/ACLService.php
+
+		-
+			message: '#^Cannot access property \$attachment_name on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AttachmentService.php
+
+		-
+			message: '#^Cannot access property \$mime_type on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AttachmentService.php
+
+		-
+			message: '#^Cannot access property \$path on object\|true\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Services/AttachmentService.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 1
+			path: src/core/Services/AttachmentService.php
+
+		-
+			message: '#^Negated boolean expression is always false\.$#'
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: src/core/Services/AttachmentService.php
+
+		-
+			message: '#^Cannot access property \$id on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$id on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$inactive on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$inactive on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$login_attempts on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$password on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$reset_password on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$username on bool\|object\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot call method save\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Loose comparison using \!\= between int and '''' will always evaluate to true\.$#'
+			identifier: notEqual.alwaysTrue
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Method Core\\Services\\AuthService\:\:currentUser\(\) should return App\\Models\\Users\|false\|null but returns Core\\Lib\\Contracts\\Principal\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$user with type Core\\Services\\User is not subtype of native type App\\Models\\Users\.$#'
+			identifier: parameter.phpDocType
+			count: 2
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Parameter \$user of method Core\\Services\\AuthService\:\:loginAttempts\(\) has invalid type Core\\Services\\User\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Parameter \$user of method Core\\Services\\AuthService\:\:logoutUser\(\) has invalid type Core\\Services\\User\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/core/Services/AuthService.php
+
+		-
+			message: '#^Cannot access property \$inactive on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/LoginService.php
+
+		-
+			message: '#^Cannot access property \$login_attempts on object\|true\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Services/LoginService.php
+
+		-
+			message: '#^Cannot access property \$password on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/LoginService.php
+
+		-
+			message: '#^Cannot access property \$reset_password on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/LoginService.php
+
+		-
+			message: '#^Cannot access property \$username on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/LoginService.php
+
+		-
+			message: '#^Cannot call method save\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Services/LoginService.php
+
+		-
+			message: '#^Cannot call method notifications\(\) on App\\Models\\Users\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Services/NotificationService.php
+
+		-
+			message: '#^Cannot access property \$acl on object\|true\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/core/Services/UserService.php
+
+		-
+			message: '#^Cannot access property \$id on object\|true\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/core/Services/UserService.php
+
+		-
+			message: '#^Cannot call method delete\(\) on object\|true\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/core/Services/UserService.php
+
+		-
+			message: '#^Method Core\\Services\\UserService\:\:updatePassword\(\) never returns App\\Models\\Users so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/core/Services/UserService.php
+
+		-
+			message: '#^Negated boolean expression is always false\.$#'
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: src/core/Services/UserService.php
+
+		-
+			message: '#^PHPDoc tag @return with type int is incompatible with native type bool\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: src/core/Services/UserService.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Users\:\:logout\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/core/SessionManager.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 4
+			path: src/core/Traits/HasValidators.php
+
+		-
+			message: '#^Trait Core\\Traits\\IsPrincipal is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/core/Traits/IsPrincipal.php
+
+		-
+			message: '#^Trait Core\\Traits\\IsUser is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/core/Traits/IsUser.php
+
+		-
+			message: '#^Trait Core\\Traits\\PasswordPolicy is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/core/Traits/PasswordPolicy.php
+
+		-
+			message: '#^Call to function is_numeric\(\) with float\|int will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 4
+			path: src/scripts/forms.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$selectedValue with type bool\|int\|string is not subtype of native type int\|string\|null\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/scripts/forms.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$var$#'
+			identifier: parameter.notFound
+			count: 2
+			path: src/scripts/helpers.php

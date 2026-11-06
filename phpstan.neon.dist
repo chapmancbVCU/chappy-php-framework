@@ -1,0 +1,30 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5
+    phpVersion: 80400
+
+    paths:
+        - src
+
+    excludePaths:
+        # Third-party tool and its config, not framework code.
+        - src/api-docs
+        # View templates rely on $this from the View class at include time.
+        - src/views
+
+    # Defines runtime constants (DS, ROOT, CHAPPY_*) normally set by the
+    # starter app's entry points.
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+
+    tmpDir: .cache/phpstan
+
+    ignoreErrors:
+        # Config files (config/database.php, config/providers.php) and
+        # vendor/autoload.php live in the consuming app, not this repo.
+        -
+            identifier: require.fileNotFound
+        -
+            identifier: requireOnce.fileNotFound

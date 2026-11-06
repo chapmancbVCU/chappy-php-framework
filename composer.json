@@ -41,7 +41,11 @@
         "predis/predis": "^3.1",
         "symfony/finder": "^8.0"
     },
+    "require-dev": {
+      "phpstan/phpstan": "^2.1"
+    },
     "scripts": {
+      "analyse": "phpstan analyse --memory-limit=1G",
       "build-docs": [
         "/Applications/XAMPP/xamppfiles/bin/php src/api-docs/doctum.phar update src/api-docs/doctum.php -v"
       ],
