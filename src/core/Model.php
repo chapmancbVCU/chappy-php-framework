@@ -385,7 +385,7 @@ class Model implements \JsonSerializable {
         return !(isset($this->id) && is_int($this->id) && $this->id > 0);
     }
     
-        /**
+    /**
      * Controls how the model serializes to JSON — json_encode(), API
      * responses, and React data-props all route through this. Declare a
      * `visible` allowlist (preferred, fail-closed) or a `hidden` denylist on
@@ -408,7 +408,7 @@ class Model implements \JsonSerializable {
         }
         return $data;
     }
-    
+
     /**
      * Runs when the object is constructed.
      *
