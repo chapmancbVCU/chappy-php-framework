@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Console\Helpers\Stubs\Auth;
 
+use Console\Helpers\Stubs\UserModelStub;
+
 /**
  * Collection of controller stubs.
  */
@@ -12,12 +14,15 @@ class Controllers {
      * @return string The contents of the controller class.
      */
     public static function jsController(): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
 use Core\Controller;
-use App\Models\Users;
+use {$userModel};
 use Core\Lib\Auth\LoginResult;
 use Core\Models\Login;
 use Core\Services\ACLService;
@@ -102,14 +107,14 @@ class AuthController extends Controller {
      * @return void
      */
     public function registerAction(): void {
-        \$user = new Users();
+        \$user = new {$userClass}();
         if(\$this->request->isPost()) {
             \$this->request->csrfCheck();
             
             // Handle file upload
             \$uploads = AuthService::profileImageUpload(\$user);
 
-            \$user->assign(\$this->request->get(), Users::whiteList, Users::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
             \$user->confirm = AuthService::confirm(\$this->request);
             \$user->acl = ACLService::setAclAtRegistration();
             \$user->save();
@@ -136,7 +141,7 @@ class AuthController extends Controller {
      * @return void
      */
     public function resetPasswordAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         \$user->password = "";
         
         if(!\$user) redirect('');
@@ -162,12 +167,15 @@ PHP;
      * @return string The contents of the controller class.
      */
     public static function phpController(): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
 use Core\Controller;
-use App\Models\Users;
+use {$userModel};
 use Core\Lib\Auth\LoginResult;
 use Core\Models\Login;
 use Core\Services\ACLService;
@@ -249,14 +257,14 @@ class AuthController extends Controller {
      * @return void
      */
     public function registerAction(): void {
-        \$user = new Users();
+        \$user = new {$userClass}();
         if(\$this->request->isPost()) {
             \$this->request->csrfCheck();
             
             // Handle file upload
             \$uploads = AuthService::profileImageUpload(\$user);
 
-            \$user->assign(\$this->request->get(), Users::whiteList, Users::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
             \$user->confirm = AuthService::confirm(\$this->request);
             \$user->acl = ACLService::setAclAtRegistration();
             \$user->save();
@@ -281,7 +289,7 @@ class AuthController extends Controller {
      * @return void
      */
     public function resetPasswordAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         \$user->password = "";
         
         if(!\$user) redirect('');

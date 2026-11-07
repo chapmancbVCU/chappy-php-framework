@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Console\Helpers\Stubs\AdminDashboard;
 
+use Console\Helpers\Stubs\UserModelStub;
+
 /**
  * Collection of controller stubs.
  */
@@ -12,12 +14,15 @@ class Controllers {
      * @return string The contents of the controller class.
      */
     public static function jsController(): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
 
-use App\Models\Users;
+use {$userModel};
 use Core\Controller;
 use Core\Models\{ACL, EmailAttachments, Notifications, ProfileImages, Queue};
 use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
@@ -197,7 +202,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function detailsAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
         \$props = [
@@ -241,7 +246,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function editAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
     
         // Fetch all available ACLs
@@ -253,7 +258,7 @@ class AdmindashboardController extends Controller {
     
         if (\$this->request->isPost()) {
             \$this->request->csrfCheck();
-            \$user->assign(\$this->request->get(), Users::whiteList, Users::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
     
             // Handle ACL updates from checkboxes
             ACLService::updateUserACLs(\$user, \$userAcls, \$acls, \$_POST['acls']);
@@ -463,7 +468,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function setResetPasswordAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
         if(\$this->request->isPost()) {
@@ -490,7 +495,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function setStatusAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
         if(\$this->request->isPost()) {
@@ -518,12 +523,15 @@ PHP;
      * @return string The contents of the controller class.
      */
     public static function phpController(): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
 
-use App\Models\Users;
+use {$userModel};
 use Core\Controller;
 use Core\Models\{ACL, EmailAttachments, Notifications, ProfileImages, Queue};
 use Core\Services\{ACLService, AttachmentService, DashboardService, UserService};
@@ -653,7 +661,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function detailsAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
         \$profileImage = ProfileImages::findCurrentProfileImage(\$user->id);
         \$this->view->profileImage = \$profileImage;
@@ -693,7 +701,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function editAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
     
         \$this->view->user = \$user;
@@ -710,7 +718,7 @@ class AdmindashboardController extends Controller {
     
         if (\$this->request->isPost()) {
             \$this->request->csrfCheck();
-            \$user->assign(\$this->request->get(), Users::whiteList, Users::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
     
             // Handle ACL updates from checkboxes
             ACLService::updateUserACLs(\$user, \$userAcls, \$acls, \$_POST['acls']);
@@ -884,7 +892,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function setResetPasswordAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
         if(\$this->request->isPost()) {
@@ -909,7 +917,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function setStatusAction(int \$id): void {
-        \$user = Users::findById((int)\$id);
+        \$user = {$userClass}::findById((int)\$id);
         DashboardService::checkIfCurrentUser(\$user);
 
         if(\$this->request->isPost()) {

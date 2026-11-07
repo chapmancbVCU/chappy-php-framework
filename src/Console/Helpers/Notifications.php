@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Console\Helpers;
 
+use Console\Helpers\Stubs\UserModelStub;
 use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Str;
 use Core\Lib\Notifications\Channel;
@@ -310,11 +311,14 @@ PHP;
         string $classFunctions, 
         string $notificationName
     ): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 namespace App\Notifications;
 
-use App\Models\Users;
+use {$userModel};
 use Core\Lib\Notifications\Channel;
 use Core\Lib\Notifications\Notification;
 
@@ -322,14 +326,14 @@ use Core\Lib\Notifications\Notification;
  * {$notificationName} notification.
  */
 class {$notificationName} extends Notification {
-    protected Users \$user;
+    protected {$userClass} \$user;
 
     /**
      * Constructor
      *
-     * @param Users \$user
+     * @param {$userClass} \$user
      */
-    public function __construct(Users \$user) {
+    public function __construct({$userClass} \$user) {
         \$this->user = \$user;
     }
 

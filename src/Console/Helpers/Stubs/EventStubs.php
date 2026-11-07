@@ -13,11 +13,14 @@ class EventStubs {
      * @return string The content for the new event class.
      */
     public static function eventTemplate(string $eventName): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 namespace App\Events;
 
-use App\Models\Users;
+use {$userModel};
 
 /**
  * Document class here.
@@ -31,7 +34,7 @@ class {$eventName}
      *
      * @param User \$user User associated with event.
      */
-    public function __construct(Users \$user)
+    public function __construct({$userClass} \$user)
     {
         \$this->user = \$user;
     }
@@ -112,11 +115,14 @@ PHP;
      * @return string The contents of the event class.
      */
     public static function queueEventTemplate(string $eventName): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 namespace Core\Lib\Events;
 
-use App\Models\Users;
+use {$userModel};
 
 /**
  * Document class here.
@@ -129,7 +135,7 @@ class {$eventName} {
      *
      * @param User \$user User associated with event.
      */
-    public function __construct(Users \$user) {
+    public function __construct({$userClass} \$user) {
         \$this->user = \$user;
     }
 
@@ -151,7 +157,7 @@ class {$eventName} {
      * @return self New instance of this class.
      */
     public static function fromPayload(array \$data): self {
-        \$user = Users::findById((int)\$data['user_id']);
+        \$user = {$userClass}::findById((int)\$data['user_id']);
         return new self(\$user);
     }
 }

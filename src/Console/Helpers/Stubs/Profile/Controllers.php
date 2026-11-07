@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Console\Helpers\Stubs\Profile;
 
+use Console\Helpers\Stubs\UserModelStub;
+
 /**
  * The PHP supported version.
  *
@@ -14,12 +16,15 @@ class Controllers {
      * @return string The contents of the controller class.
      */
     public static function jsController(): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<JSX
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
 use Core\Controller;
-use App\Models\Users;
+use {$userModel};
 use Core\Models\ProfileImages;
 use Core\Services\AuthService;
 use Core\Services\UserService;
@@ -58,7 +63,7 @@ class ProfileController extends Controller {
         if(\$this->request->isPost()) {
             \$this->request->csrfCheck();
             \$uploads = AuthService::profileImageUpload(\$user);
-            \$user->assign(\$this->request->get(), Users::whiteList, Users::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
             \$user->save();
             if(\$user->validationPassed()){
                 UserService::handleProfileImages(\$user, \$uploads, \$_POST['images_sorted']);
@@ -128,12 +133,15 @@ JSX;
      * @return string The contents of the controller class.
      */
     public static function phpController(): string {
+        $userModel = UserModelStub::fqcn();
+        $userClass = UserModelStub::shortName();
+
         return <<<PHP
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
 use Core\Controller;
-use App\Models\Users;
+use {$userModel};
 use Core\Models\ProfileImages;
 use Core\Services\AuthService;
 use Core\Services\UserService;
@@ -172,7 +180,7 @@ class ProfileController extends Controller {
         if(\$this->request->isPost()) {
             \$this->request->csrfCheck();
             \$uploads = AuthService::profileImageUpload(\$user);
-            \$user->assign(\$this->request->get(), Users::whiteList, Users::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
             \$user->save();
             if(\$user->validationPassed()){
                 UserService::handleProfileImages(\$user, \$uploads, \$_POST['images_sorted']);
