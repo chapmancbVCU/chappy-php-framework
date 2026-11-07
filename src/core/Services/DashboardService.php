@@ -2,7 +2,8 @@
 declare(strict_types=1);
 namespace Core\Services;
 
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 use Core\Services\AuthService;
 use Core\Lib\Pagination\Pagination;
 use Core\Session;
@@ -16,11 +17,11 @@ final class DashboardService {
     /**
      * Warns if admin user is attempting to view an area they should not be.
      *
-     * @param Users $user The current user.
+     * @param User $user The current user.
      * @param string $redirect The destination for redirect.
      * @return void
      */
-    public static function checkIfCurrentUser(Users $user, string $redirect = ''): void {
+    public static function checkIfCurrentUser(User $user, string $redirect = ''): void {
         if($user == AuthService::currentUser()) {
             flashMessage(Session::DANGER, 'Logged in admin user can\'t be edited or viewed through admin dashboard.');
             redirect($redirect);
@@ -62,7 +63,7 @@ final class DashboardService {
      * @return array An array of paginated users.
      */
     public static function paginateUsers(Pagination $pagination, SearchFilter $filter): array {
-        return Users::find($pagination->queryParams($filter));
+        return Auth::userModel()::find($pagination->queryParams($filter));
     }
 
     /**
@@ -72,7 +73,7 @@ final class DashboardService {
      * @return int The number of matching users.
      */
     public static function totalUsers(SearchFilter $filter): int {
-        return Users::findTotal($filter->findParams());
+        return Auth::userModel()::findTotal($filter->findParams());
     }
 
     /**
@@ -99,10 +100,10 @@ final class DashboardService {
      * Serializes a user for the dashboard. Only the fields the table needs;
      * never pass whole models to the client (password hashes, tokens, etc.).
      *
-     * @param Users $user The user.
+     * @param User $user The user.
      * @return array
      */
-    public static function userToArray(Users $user): array {
+    public static function userToArray(User $user): array {
         $acl = json_decode((string)$user->acl, true);
         $dates = $user->toArray();
         return [

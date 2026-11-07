@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace Core\Controllers;
 use Core\Controller;
 use Core\Models\ACL;
-use App\Models\Users;
+use Core\Lib\Auth\Auth;
 use Core\Services\ACLService;
 use Core\Models\ProfileImages;
 use Core\Services\UserService;
@@ -138,7 +138,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function detailsAction(int $id): void {
-        $user = Users::findById((int)$id);
+        $user = Auth::userModel()::findById((int)$id);
         DashboardService::checkIfCurrentUser($user);
         $profileImage = ProfileImages::findCurrentProfileImage($user->id);
         $this->view->profileImage = $profileImage;
@@ -178,7 +178,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function editAction(int $id): void {
-        $user = Users::findById((int)$id);
+        $user = Auth::userModel()::findById((int)$id);
         DashboardService::checkIfCurrentUser($user);
     
         $this->view->user = $user;
@@ -195,7 +195,7 @@ class AdmindashboardController extends Controller {
     
         if ($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get(), Users::blackList);
+            $user->assign($this->request->get(), $user::blackList);
     
             // Handle ACL updates from checkboxes
             ACLService::updateUserACLs($user, $userAcls, $acls, $_POST['acls']);
@@ -369,7 +369,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function setResetPasswordAction(int $id): void {
-        $user = Users::findById((int)$id);
+        $user = Auth::userModel()::findById((int)$id);
         DashboardService::checkIfCurrentUser($user);
 
         if($this->request->isPost()) {
@@ -394,7 +394,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function setStatusAction(int $id): void {
-        $user = Users::findById((int)$id);
+        $user = Auth::userModel()::findById((int)$id);
         DashboardService::checkIfCurrentUser($user);
 
         if($this->request->isPost()) {

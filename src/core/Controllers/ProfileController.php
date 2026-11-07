@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace Core\Controllers;
 
 use Core\Controller;
-use App\Models\Users;
 use Core\Models\ProfileImages;
 use Core\Services\AuthService;
 use Core\Services\UserService;
@@ -42,7 +41,7 @@ class ProfileController extends Controller {
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $uploads = AuthService::profileImageUpload($user);
-            $user->assign($this->request->get(), Users::blackList);
+            $user->assign($this->request->get(), $user::blackList);
             $user->save();
             if($user->validationPassed()){
                 UserService::handleProfileImages($user, $uploads, $_POST['images_sorted']);

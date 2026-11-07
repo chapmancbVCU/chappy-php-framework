@@ -4,7 +4,8 @@ namespace Core\Services;
 
 use Core\Input;
 use Core\Models\ACL;
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 use Core\Lib\Utilities\Arr;
 use Core\Session;
 
@@ -16,10 +17,10 @@ class ACLService {
      * Returns an array containing access control list information.  When the 
      * $acl instance variable is empty an empty array is returned.
      *
-     * @param Users $user The user whose ACLs we want to use.
+     * @param User $user The user whose ACLs we want to use.
      * @return array The array containing access control list information.
      */
-    public static function aclsForUser(Users $user) {
+    public static function aclsForUser(User $user) {
         if(empty($user->acl)) return [];
         return json_decode($user->acl, true);
     }
@@ -46,7 +47,7 @@ class ACLService {
      * @return bool True or false depending on success of operation.
      */
     public static function addAcl(int $user_id, string $acl): bool {
-        $user = Users::findById($user_id);
+        $user = Auth::userModel()::findById($user_id);
         if(!$user) return false;
         $acls = self::aclsForUser($user);
         if(!in_array($acl, $acls)){
@@ -101,12 +102,12 @@ class ACLService {
      * Manages the adding and removing of ACLs.
      *
      * @param array $acls ACLs stored in acl table.
-     * @param Users $user The user we want to modify.
+     * @param User $user The user we want to modify.
      * @param array $newAcls The new ACLs for the user.
      * @param array $userAcls The user's existing ACLs.
      * @return void
      */
-    public static function manageAcls(array $acls, Users $user, array $newAcls, array $userAcls): void {
+    public static function manageAcls(array $acls, User $user, array $newAcls, array $userAcls): void {
         foreach ($acls as $aclName) {
             $aclKeyStr = (string)$aclName;
             if (in_array($aclKeyStr, $newAcls, true) && !in_array($aclKeyStr, $userAcls, true)) {
@@ -125,7 +126,7 @@ class ACLService {
      * @return bool True if  user is found, otherwise we  return false.
      */
     public static function removeAcl(int $user_id, string $acl): bool {
-        $user = Users::findById($user_id);
+        $user = Auth::userModel()::findById($user_id);
         if(!$user) return false;
         $acls = self::aclsForUser($user);
         if(in_array($acl,$acls)){
@@ -145,7 +146,7 @@ class ACLService {
      * registration of a user.
      */
     public static function setAclAtRegistration(): string {
-        if(Users::findTotal() == 0) {
+        if(Auth::userModel()::findTotal() == 0) {
             return '["Admin"]';
         }
         return '[""]';
@@ -171,13 +172,13 @@ class ACLService {
     /**
      * Updates user's acl field
      *
-     * @param Users $user The user whose ACLs we want to update.
+     * @param User $user The user whose ACLs we want to update.
      * @param array $userAcls Existing user's ACLs.
      * @param array $acls All available ACLs.
      * @param array|null $postAcls ACLs from post that are selected.
      * @return void
      */
-    public static function updateUserACLs(Users $user, array $userAcls, array $acls, ?array $postAcls = null): void {
+    public static function updateUserACLs(User $user, array $userAcls, array $acls, ?array $postAcls = null): void {
         $newAcls = $postAcls ?? [];
         self::manageAcls($acls, $user, $newAcls, $userAcls);
         $user->acl = json_encode($newAcls);

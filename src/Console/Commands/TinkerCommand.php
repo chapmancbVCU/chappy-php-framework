@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Console\Commands;
+use Core\Lib\Auth\Auth;
 
 use Console\ConsoleCommand;
 use Psy\Shell;
@@ -31,7 +32,7 @@ class TinkerCommand extends ConsoleCommand
     {
         $variables = [
             'db' => \Core\DB::getInstance(),
-            'user' => new \App\Models\Users()
+            'user' => new (Auth::userModel())()
         ];
 
         $shell = new Shell();

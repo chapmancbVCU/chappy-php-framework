@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Core\Lib\Mail;
 
-use App\Models\Users;
+use Core\Models\User;
 
 /**
  * Describes specification for all mailers.
@@ -29,16 +29,16 @@ abstract class AbstractMailer {
 
     /**
      * The user to send the email.
-     * @var Users
+     * @var User
      */
-    protected Users $user;
+    protected User $user;
 
     /**
      * Constructor for AbstractMailer
      * 
-     * @param Users $user The user to send the email.
+     * @param User $user The user to send the email.
      */
-    public function __construct(Users $user) {
+    public function __construct(User $user) {
         $this->mailer = new MailerService();
         $this->user = $user;
     }
@@ -111,10 +111,10 @@ abstract class AbstractMailer {
     /**
      * Statically sends E-mail
      *
-     * @param Users $user The recipient
+     * @param User $user The recipient
      * @return boolean
      */
-    public static function sendTo(Users $user): bool {
+    public static function sendTo(User $user): bool {
         return (new static($user))->send();
     }
 }

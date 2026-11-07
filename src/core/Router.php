@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Core;
 use Core\Session;
-use App\Models\Users;
 use Core\Exceptions\FrameworkException;
 use Core\Services\ACLService;
 use Core\Services\AuthService;

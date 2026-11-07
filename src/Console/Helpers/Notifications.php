@@ -8,7 +8,7 @@ use Core\Lib\Notifications\Channel;
 use Core\Lib\Notifications\Notification;
 use Symfony\Component\Console\Command\Command;
 use Core\Models\Notifications as NotificationModel;
-use App\Models\Users;
+use Core\Models\User;
 use Console\Console;
 use Console\FrameworkQuestion;
 use Core\DB;
@@ -111,9 +111,9 @@ class Notifications extends Console {
      * Return a dummy notifiable.  Creates a temporary record, retrieves its 
      * data and deletes it before returning.
      *
-     * @return Users The dummy user to be notified.
+     * @return User The dummy user to be notified.
      */
-    public static function dummy(): Users {
+    public static function dummy(): User {
         UserFactory::factory(UserFactory::class)->create([
             'fname' => 'Dummy',
             'lname' => 'User',
@@ -123,7 +123,7 @@ class Notifications extends Console {
         ]);
 
         $lastId = DB::getInstance()->lastID();
-        $last = Users::findById((int)$lastId);
+        $last = \Core\Lib\Auth\Auth::userModel()::findById((int)$lastId);
         $last->delete();
 
         return $last;
@@ -134,9 +134,9 @@ class Notifications extends Console {
      *
      * @param mixed $user String token from CLI (id|email|username).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @return Users|null The matched user or NULL if not found.
+     * @return User|null The matched user or NULL if not found.
      */
-    private static function findUser(mixed $user, FrameworkQuestion $question): ?Users {
+    private static function findUser(mixed $user, FrameworkQuestion $question): ?User {
         if(is_numeric($user)) {
             return self::findUserById((int)$user, $question);
         }
@@ -149,7 +149,7 @@ class Notifications extends Console {
      *
      * @param int $user Token from CLI (id).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @return Users The matched user.
+     * @return User The matched user.
      */
     private static function findUserById(int $user, FrameworkQuestion $question) {
         $foundUser = null;
@@ -161,7 +161,7 @@ class Notifications extends Console {
                 $user = self::prompt($message, $question, $attributes, [], null, true);
             }
 
-            $foundUser = Users::findById((int)$user);
+            $foundUser = \Core\Lib\Auth\Auth::userModel()::findById((int)$user);
             $count++;
         } while(!$foundUser);
 
@@ -174,7 +174,7 @@ class Notifications extends Console {
      *
      * @param string $user String token from CLI (email|username).
      * @param InputInterface $input The Symfony InputInterface object.
-     * @return Users The matched user.
+     * @return User The matched user.
      */
     private static function findUserByString(string $user, FrameworkQuestion $question) {
         $foundUser = null;
@@ -187,7 +187,7 @@ class Notifications extends Console {
             }
 
             $params = self::userParams($user);
-            $foundUser = Users::findFirst($params);
+            $foundUser = \Core\Lib\Auth\Auth::userModel()::findFirst($params);
             $count++;
         } while(!$foundUser);
 

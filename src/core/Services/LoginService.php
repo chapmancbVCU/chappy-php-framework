@@ -5,7 +5,7 @@ namespace Core\Services;
 use Core\Input;
 use Core\Lib\Auth\LoginResult;
 use Core\Models\Login;
-use App\Models\Users;
+use Core\Models\User;
 use Core\Lib\Auth\Auth;
 use Core\Lib\Mail\AccountDeactivatedMailer;
 
@@ -37,7 +37,7 @@ final class LoginService {
         string $username,
         bool $mailer = false
     ): LoginResult {
-        $user = Users::findByUserName($username);
+        $user = Auth::userModel()::findByUserName($username);
 
         // Invalid credentials — unknown user or wrong password.
         if(!$user || !password_verify($request->get('password'), $user->password)) {
@@ -75,7 +75,7 @@ final class LoginService {
      * increments the attempt counter.  Ports AuthService::loginAttempts()
      * verbatim, returning a LoginResult in place of the Login model.
      *
-     * @param Users $user The user who failed to authenticate.
+     * @param User $user The user who failed to authenticate.
      * @param Login $loginModel The login model; the failure message is
      * added to it when the account is not yet locked.
      * @param bool $mailer Whether to send the deactivation email on the
@@ -84,7 +84,7 @@ final class LoginService {
      * account has been locked.
      */
     private static function registerFailedAttempt(
-        Users $user,
+        User $user,
         Login $loginModel,
         bool $mailer = false
     ): LoginResult {

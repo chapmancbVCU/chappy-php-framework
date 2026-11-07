@@ -2,7 +2,8 @@
 declare(strict_types=1);
 namespace Core\Controllers;
 use Core\Controller;
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 use Core\Lib\Auth\LoginResult;
 use Core\Models\Login;
 use Core\Services\ACLService;
@@ -82,7 +83,7 @@ class AuthController extends Controller {
         }
 
         $this->request->csrfCheck();
-        AuthService::logout();
+        AuthService::logout($this->request);
         redirect('auth.login');
     }
 
@@ -101,14 +102,14 @@ class AuthController extends Controller {
      * @return void
      */
     public function registerAction(): void {
-        $user = new Users();
+        $user = new (Auth::userModel())();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             
             // Handle file upload
             $uploads = AuthService::profileImageUpload($user);
 
-            $user->assign($this->request->get(), Users::whiteList, Users::WHITELIST);
+            $user->assign($this->request->get(), $user::whiteList, User::WHITELIST);
             $user->confirm = AuthService::confirm($this->request);
             $user->acl = ACLService::setAclAtRegistration();
             $user->save();
@@ -133,7 +134,7 @@ class AuthController extends Controller {
      * @return void
      */
     public function resetPasswordAction(int $id): void {
-        $user = Users::findById((int)$id);
+        $user = Auth::userModel()::findById((int)$id);
         $user->password = "";
         
         if(!$user) redirect('');

@@ -109,6 +109,12 @@ parameters:
 			path: src/Console/FrameworkQuestion.php
 
 		-
+			message: '#^Instantiated class Database\\Seeders\\DatabaseSeeder not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Console/Helpers/DBSeeder.php
+
+		-
 			message: '#^Call to function is_int\(\) with true will always evaluate to false\.$#'
 			identifier: function.impossibleType
 			count: 1
@@ -233,6 +239,12 @@ parameters:
 			identifier: parameter.notFound
 			count: 1
 			path: src/Console/Helpers/View.php
+
+		-
+			message: '#^Cannot access constant blackList on bool\|object\.$#'
+			identifier: classConstant.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
 
 		-
 			message: '#^Cannot access property \$acl on bool\|object\.$#'
@@ -625,6 +637,12 @@ parameters:
 			path: src/core/Lib/React/Vite.php
 
 		-
+			message: '#^Call to method run\(\) on an unknown class Database\\Seeders\\DatabaseSeeder\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/core/Lib/Testing/ApplicationTestCase.php
+
+		-
 			message: '#^Cannot access property \$count on array\|object\.$#'
 			identifier: property.nonObject
 			count: 2
@@ -633,6 +651,12 @@ parameters:
 		-
 			message: '#^Dead catch \- Core\\Exceptions\\FrameworkException is never thrown in the try block\.$#'
 			identifier: catch.neverThrown
+			count: 1
+			path: src/core/Lib/Testing/ApplicationTestCase.php
+
+		-
+			message: '#^Instantiated class Database\\Seeders\\DatabaseSeeder not found\.$#'
+			identifier: class.notFound
 			count: 1
 			path: src/core/Lib/Testing/ApplicationTestCase.php
 
@@ -955,26 +979,8 @@ parameters:
 			path: src/core/Services/AuthService.php
 
 		-
-			message: '#^Method Core\\Services\\AuthService\:\:currentUser\(\) should return App\\Models\\Users\|false\|null but returns Core\\Lib\\Contracts\\Principal\|null\.$#'
+			message: '#^Method Core\\Services\\AuthService\:\:currentUser\(\) should return Core\\Models\\User\|false\|null but returns Core\\Lib\\Contracts\\Principal\|null\.$#'
 			identifier: return.type
-			count: 1
-			path: src/core/Services/AuthService.php
-
-		-
-			message: '#^PHPDoc tag @param for parameter \$user with type Core\\Services\\User is not subtype of native type App\\Models\\Users\.$#'
-			identifier: parameter.phpDocType
-			count: 2
-			path: src/core/Services/AuthService.php
-
-		-
-			message: '#^Parameter \$user of method Core\\Services\\AuthService\:\:loginAttempts\(\) has invalid type Core\\Services\\User\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/core/Services/AuthService.php
-
-		-
-			message: '#^Parameter \$user of method Core\\Services\\AuthService\:\:logoutUser\(\) has invalid type Core\\Services\\User\.$#'
-			identifier: class.notFound
 			count: 1
 			path: src/core/Services/AuthService.php
 
@@ -1015,7 +1021,7 @@ parameters:
 			path: src/core/Services/LoginService.php
 
 		-
-			message: '#^Cannot call method notifications\(\) on App\\Models\\Users\|false\.$#'
+			message: '#^Cannot call method notifications\(\) on Core\\Models\\User\|false\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/core/Services/NotificationService.php
@@ -1039,7 +1045,7 @@ parameters:
 			path: src/core/Services/UserService.php
 
 		-
-			message: '#^Method Core\\Services\\UserService\:\:updatePassword\(\) never returns App\\Models\\Users so it can be removed from the return type\.$#'
+			message: '#^Method Core\\Services\\UserService\:\:updatePassword\(\) never returns Core\\Models\\User so it can be removed from the return type\.$#'
 			identifier: return.unusedType
 			count: 1
 			path: src/core/Services/UserService.php
@@ -1057,7 +1063,7 @@ parameters:
 			path: src/core/Services/UserService.php
 
 		-
-			message: '#^Call to an undefined method App\\Models\\Users\:\:logout\(\)\.$#'
+			message: '#^Call to an undefined method Core\\Models\\User\:\:logout\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: src/core/SessionManager.php

@@ -5,7 +5,7 @@ use Core\DB;
 use Core\Input;
 use Core\Cookie;
 use Core\Session;
-use App\Models\Users;
+use Core\Models\User;
 use Core\Lib\Auth\Auth;
 use Core\Models\Login;
 use Core\Lib\Utilities\Env;
@@ -32,10 +32,10 @@ class AuthService {
     /**
      * Checks if a user is logged in.
      *
-     * @return Users|false|null An object containing information about current 
+     * @return User|false|null An object containing information about current 
      * logged in user from users table.
      */
-    public static function currentUser(): Users|false|null {
+    public static function currentUser(): User|false|null {
         return Auth::user();
     }
 
@@ -63,7 +63,7 @@ class AuthService {
      * @return Login Model that handles logins.
      */
     public static function login(Input $request, Login $loginModel, string $username, bool $mailer = false) : Login {
-        $user = Users::findByUsername($username);
+        $user = Auth::userModel()::findByUsername($username);
         if($user && password_verify($request->get('password'), $user->password)) {
             if($user->reset_password == 1) {
                 redirect('auth.resetPassword', [$user->id]);
@@ -102,7 +102,7 @@ class AuthService {
      * @return Login $loginModel The Login model after login in attempt test 
      * and session messages are assigned.
      */
-    public static function loginAttempts(Users $user, Login $loginModel, bool $mailer = false): Login {
+    public static function loginAttempts(User $user, Login $loginModel, bool $mailer = false): Login {
         $previousInactiveState = $user->inactive;
         if($user->login_attempts >= Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $user->inactive = 1; 
@@ -126,13 +126,13 @@ class AuthService {
      * user_sessions table and a cookie is created if remember me is 
      * selected.
      *
-     * @param Users $loginUser The user to be logged in.
+     * @param User $loginUser The user to be logged in.
      * @param bool $rememberMe Value obtained from remember me checkbox 
      * found in login form.  Default value is false.
      * @return void
      */
-    public static function loginUser(Users $loginUser, bool $rememberMe = false): void {
-        $user = Users::findFirst([
+    public static function loginUser(User $loginUser, bool $rememberMe = false): void {
+        $user = Auth::userModel()::findFirst([
             'conditions' => 'username = ?',
             'bind' => [$loginUser->username]
         ]);
@@ -152,12 +152,12 @@ class AuthService {
     /**
      * Logs in user from cookie.
      *
-     * @return Users The user associated with previous session.
+     * @return User The user associated with previous session.
      */
-    public static function loginUserFromCookie(): ?Users {
+    public static function loginUserFromCookie(): ?User {
         $userSession = UserSessions::getFromCookie();
         if($userSession && $userSession->user_id != '') {
-            $user = Users::findById((int)$userSession->user_id);
+            $user = Auth::userModel()::findById((int)$userSession->user_id);
             if($user) {
                 self::loginUser($user);
             }
@@ -194,7 +194,7 @@ class AuthService {
      * @param User $user The user to be logged out.
      * @return bool Returns true if operation is successful.
      */
-    public static function logoutUser(Users $user): bool {
+    public static function logoutUser(User $user): bool {
         Auth::guard()->logout();
         info("User {$user->id} ({$user->username}) logged out.");
         return true;
@@ -205,11 +205,11 @@ class AuthService {
      * setting the confirmation field and updating the record.
      *
      * @param Input $request The request for the password reset action.
-     * @param Users $user The user whose password we will reset.
+     * @param User $user The user whose password we will reset.
      * @return void
      */
-    public static function passwordReset(Input $request, Users $user): void {
-        $user->assign($request->get(), Users::blackList);
+    public static function passwordReset(Input $request, User $user): void {
+        $user->assign($request->get(), $user::blackList);
             
         // PW mode on for correct validation.
         $user->setChangePassword(true);
@@ -229,10 +229,10 @@ class AuthService {
      * Processes a profile image upload and returns an `Uploads` object. 
      * Assumes the input name is `profileImage`.
      *
-     * @param Users $user The user who uploaded a profile image.
+     * @param User $user The user who uploaded a profile image.
      * @return Uploads|null The uploads object if it's created or null.
      */
-    public static function profileImageUpload(Users $user): ?Uploads{
+    public static function profileImageUpload(User $user): ?Uploads{
         return Uploads::handleUpload(
             'profileImage',
             ProfileImages::class,

@@ -871,7 +871,7 @@ class FormHelper {
 
         $html = '<div' . $divString . '>';
         $html .= '<label class="form-label" for="'.htmlspecialchars($id).'">'.htmlspecialchars($label).'</label>';
-        $html .= '<input type="'.htmlspecialchars($type).'" id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'"'.$inputString.' />';
+        $html .= '<input type="'.htmlspecialchars($type).'" id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" value="'.$value.'"'.$inputString.' />';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;

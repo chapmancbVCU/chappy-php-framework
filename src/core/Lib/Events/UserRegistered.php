@@ -2,7 +2,8 @@
 declare(strict_types=1);
 namespace Core\Lib\Events;
 
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 
 /**
  * Simple DTO (Data Transfer Object) class for queueing new account 
@@ -11,9 +12,9 @@ use App\Models\Users;
 class UserRegistered {
     /**
      * User associated with event.
-     * @var Users
+     * @var User
      */
-    public Users $user;
+    public User $user;
 
     /**
      * Flag to control if an email should be sent.
@@ -24,11 +25,11 @@ class UserRegistered {
     /**
      * Constructor
      *
-     * @param Users $user User associated with event.
+     * @param User $user User associated with event.
      * @param bool $shouldSendEmail Flag to determine if E-mail should be 
      * sent.  Set default value to false.
      */
-    public function __construct(Users $user, bool $shouldSendEmail = false) {
+    public function __construct(User $user, bool $shouldSendEmail = false) {
         $this->user = $user;
         $this->shouldSendEmail = $shouldSendEmail;
     }
@@ -54,7 +55,7 @@ class UserRegistered {
      * @return self New instance of this class.
      */
     public static function fromPayload(array $data): self {
-        $user = Users::findById((int)$data['user_id']);
+        $user = Auth::userModel()::findById((int)$data['user_id']);
         $should = (bool)($data['shouldSendEmail'] ?? false);
         return new self($user, $should);
     }

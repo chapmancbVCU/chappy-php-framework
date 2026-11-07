@@ -2,7 +2,8 @@
 declare(strict_types=1);
 namespace Core\Services;
 
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 use Core\Models\Notifications;
 use Core\Session;
 
@@ -43,7 +44,7 @@ class NotificationService {
      * @return void
      */
     public static function notifyUsers(object $notification, string $userGroup = 'Admin'): void {
-        $users = Users::find([
+        $users = Auth::userModel()::find([
             'conditions' => 'deleted = ?',
             'bind' => [0]
         ]);

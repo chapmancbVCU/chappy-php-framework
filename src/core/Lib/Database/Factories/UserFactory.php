@@ -2,7 +2,8 @@
 declare(strict_types=1);
 namespace Core\Lib\Database\Factories;
 
-use App\Models\Users;
+use Core\Lib\Auth\Auth;
+use Core\Models\User;
 use Core\Lib\Database\Factory;
 
 /**
@@ -10,11 +11,14 @@ use Core\Lib\Database\Factory;
  */
 class UserFactory extends Factory {
     /**
-     * The name of the model
-     *
-     * @var string
+     * Sets the model to the application's configured user model so created 
+     * records are instances of App\Models\Users (or whatever 
+     * auth.user_model points to), not the base User class.
      */
-    protected string $modelName = Users::class;
+    public function __construct() {
+        $this->modelName = Auth::userModel();
+        parent::__construct();
+    }
 
     /**
      * Overrides default value for acl.
@@ -115,7 +119,7 @@ class UserFactory extends Factory {
      * @return static
      */
     public function withImages(int $count = 2): static {
-        return $this->afterCreating(function (Users $user) use ($count) {
+        return $this->afterCreating(function (User $user) use ($count) {
             ProfileImageFactory::factory($user->id)->count($count)->create();
         });
     }

@@ -2,7 +2,8 @@
 namespace Core\Models;
 use Core\Model;
 use Core\Lib\Mail\Attachments;
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 use Core\Traits\HasTimestamps;
 
 /**
@@ -170,7 +171,7 @@ final class EmailAttachments extends Model {
      * @return string The uploader's username.
      */
     public static function uploadUsername(int $user_id): string {
-        $user = Users::findById($user_id);
+        $user = Auth::userModel()::findById($user_id);
         return $user->username;
     }
 

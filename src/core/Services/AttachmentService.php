@@ -7,7 +7,8 @@ use Core\Services\AuthService;
 use Core\Lib\Mail\Attachments;
 use Core\Lib\FileSystem\Uploads;
 use Core\Models\EmailAttachments;
-use App\Models\Users;
+use Core\Models\User;
+use Core\Lib\Auth\Auth;
 
 /**
  * Service for managing attachment uploads and deletion.
@@ -39,10 +40,10 @@ final class AttachmentService {
      * Retrieves user who uploaded an attachment.
      *
      * @param int $id User id for uploader of attachment.
-     * @return Users The user who uploaded the attachment.
+     * @return User The user who uploaded the attachment.
      */
-    public static function attachmentUploader(int $id): Users {
-        return Users::findById((int)$id);
+    public static function attachmentUploader(int $id): User {
+        return Auth::userModel()::findById((int)$id);
     }
 
     /**

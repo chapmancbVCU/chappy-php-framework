@@ -45,7 +45,7 @@ use Core\Lib\Mail\MailerService;        // <- your service
  * 3) Custom mailer (AbstractMailer subclass)
  *    [
  *      'mailer'      => \Core\Lib\Mail\WelcomeMailer::class,
- *      // The mailer can implement a static sendTo(\App\Models\Users $user): bool
+ *      // The mailer can implement a static sendTo(\Core\Models\User $user): bool
  *      // If not, we construct it and call buildAndSend(...) with optional overrides:
  *      'layout'      => null,
  *      'attachments' => [],
@@ -166,15 +166,15 @@ final class MailChannel implements Channel {
      * Ensure the notifiable is the expected user type for AbstractMailer.
      * 
      * @param object $notifiable The user/entity receiving the notification.
-     * @return \App\Models\Users
+     * @return \Core\Models\User
      * @throws InvalidPayloadException
      */
     private static function requireUser(object $notifiable): object {
-        if($notifiable instanceof \App\Models\Users) {
+        if($notifiable instanceof \Core\Models\User) {
             return $notifiable;
         }
         throw new InvalidPayloadException(
-            'Custom mailers require the notifiable to be an instance of \App\Models\Users.'
+            'Custom mailers require the notifiable to be an instance of ' . \Core\Models\User::class . '.'
         );
     }
 
@@ -276,7 +276,7 @@ final class MailChannel implements Channel {
     /**
      * Handle AbstractMailer subclasses.
      *
-     * @param object $notifiable Must be compatible with the mailer constructor (expects \App\Models\Users)
+     * @param object $notifiable Must be compatible with the mailer constructor (expects \Core\Models\User)
      * @param array<string,mixed> $payload Usually the result of toX() (array/DTO)
      */
     private function sendWithCustomMailer(object $notifiable, array $payload): void {
