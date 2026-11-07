@@ -1069,24 +1069,6 @@ parameters:
 			path: src/core/Traits/HasValidators.php
 
 		-
-			message: '#^Trait Core\\Traits\\IsPrincipal is used zero times and is not analysed\.$#'
-			identifier: trait.unused
-			count: 1
-			path: src/core/Traits/IsPrincipal.php
-
-		-
-			message: '#^Trait Core\\Traits\\IsUser is used zero times and is not analysed\.$#'
-			identifier: trait.unused
-			count: 1
-			path: src/core/Traits/IsUser.php
-
-		-
-			message: '#^Trait Core\\Traits\\PasswordPolicy is used zero times and is not analysed\.$#'
-			identifier: trait.unused
-			count: 1
-			path: src/core/Traits/PasswordPolicy.php
-
-		-
 			message: '#^Call to function is_numeric\(\) with float\|int will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 4
