@@ -5,7 +5,7 @@ namespace Core\Lib\Auth;
 use Core\Lib\Contracts\Hasher;
 use Core\Lib\Contracts\Principal;
 use Core\Lib\Contracts\UserProvider;
-use App\Models\Users;
+use Core\Models\User;
 
 /**
  * Retrieves and validates Principals backed by the Users model.  Isolates
@@ -22,10 +22,20 @@ final class ModelUserProvider implements UserProvider {
     private Hasher $hasher;
 
     /**
-     * @param Hasher $hasher The hasher used to verify credentials.
+     * The user model class used for lookups.
+     *
+     * @var class-string<User>
      */
-    public function __construct(Hasher $hasher) {
+    private string $model;
+
+    /**
+     * @param Hasher $hasher The hasher used to verify credentials.
+     * @param class-string<User> $model The user model class, usually from 
+     * Auth::userModel().
+     */
+    public function __construct(Hasher $hasher, string $model) {
         $this->hasher = $hasher;
+        $this->model = $model;
     }
 
     /**
@@ -35,7 +45,7 @@ final class ModelUserProvider implements UserProvider {
      * @return Principal|null The matching user, or null if none exists.
      */
     public function retrieveById($id): ?Principal {
-        return Users::findById((int)$id) ?: null;
+        return $this->model::findById((int)$id) ?: null;
     }
 
     /**
@@ -50,7 +60,7 @@ final class ModelUserProvider implements UserProvider {
      */
     public function retrieveByCredentials(array $credentials): ?Principal {
         if(empty($credentials['username'])) return null;
-        return Users::findByUsername($credentials['username']) ?: null;
+        return $this->model::findByUserName($credentials['username']) ?: null;
     }
 
     /**
