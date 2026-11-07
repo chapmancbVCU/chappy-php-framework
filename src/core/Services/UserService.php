@@ -153,8 +153,10 @@ final class UserService {
      * @return bool True if password is updated, otherwise false.
      */
     public static function updatePassword(User $user, Input $request): User|bool {
-        if(!password_verify($request->get('current_password'), $user->password)) {
+        // Stop here: errors added outside runValidation() do not block save().
+        if(!password_verify((string)$request->get('current_password'), (string)$user->password)) {
             $user->addErrorMessage('[current password] You entered your current password incorrectly.');
+            return false;
         }
 
         $user->assign($request->get(), $user::blackList);

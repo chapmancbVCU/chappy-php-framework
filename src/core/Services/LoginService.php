@@ -54,6 +54,7 @@ final class LoginService {
 
         // Valid credentials — apply account-state precedence.
         if($user->reset_password == 1) {
+            AuthService::beginPasswordReset($user);
             return LoginResult::needsReset($user);
         }
         if($user->inactive == 1) {

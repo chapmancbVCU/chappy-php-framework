@@ -337,36 +337,6 @@ parameters:
 			path: src/core/Controllers/AuthController.php
 
 		-
-			message: '#^Cannot access property \$id on bool\|object\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/core/Controllers/AuthController.php
-
-		-
-			message: '#^Cannot access property \$password on bool\|object\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/core/Controllers/AuthController.php
-
-		-
-			message: '#^Cannot call method getErrorMessages\(\) on bool\|object\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/core/Controllers/AuthController.php
-
-		-
-			message: '#^Cannot call method setChangePassword\(\) on bool\|object\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/core/Controllers/AuthController.php
-
-		-
-			message: '#^Static method Core\\Services\\AuthService\:\:logout\(\) invoked with 0 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: src/core/Controllers/AuthController.php
-
-		-
 			message: '#^Dead catch \- Core\\Exceptions\\FrameworkException is never thrown in the try block\.$#'
 			identifier: catch.neverThrown
 			count: 1

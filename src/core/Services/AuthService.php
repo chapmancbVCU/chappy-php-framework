@@ -20,6 +20,14 @@ use Core\Lib\Mail\AccountDeactivatedMailer;
  */
 class AuthService {
     /**
+     * Session key holding the id of the user who has just proven their 
+     * credentials and must set a new password.  The reset page only acts on 
+     * this user, so the user id in the URL cannot be used to reset someone 
+     * else's password.
+     */
+    public const PENDING_PASSWORD_RESET = 'pending_password_reset_user_id';
+
+    /**
      * Gets value of password confirm field.  Assumes field value is "confirm".
      *
      * @param Input $request The request.
@@ -66,6 +74,7 @@ class AuthService {
         $user = Auth::userModel()::findByUsername($username);
         if($user && password_verify($request->get('password'), $user->password)) {
             if($user->reset_password == 1) {
+                self::beginPasswordReset($user);
                 redirect('auth.resetPassword', [$user->id]);
             }
             if($user->inactive == 1) {
@@ -209,6 +218,14 @@ class AuthService {
      * @return void
      */
     public static function passwordReset(Input $request, User $user): void {
+        // Only the user who just logged in with a pending reset may set a 
+        // new password.  Guards callers that load the user themselves.
+        if(self::pendingPasswordResetUser((int)$user->id) === null) {
+            warning("Rejected password reset for user {$user->id}: no pending reset in this session.");
+            redirect('auth.login');
+            return;
+        }
+
         $user->assign($request->get(), $user::blackList);
             
         // PW mode on for correct validation.
@@ -221,8 +238,44 @@ class AuthService {
             // PW change mode off.
             $user->reset_password = 0;
             $user->setChangePassword(false);    
+            Session::delete(self::PENDING_PASSWORD_RESET);
             redirect('auth.login');
         }
+    }
+
+    /**
+     * Records that a user has proven their credentials and must now set a 
+     * new password.  Call this when login detects the reset_password flag, 
+     * before redirecting to the reset page.
+     *
+     * @param User $user The user who must reset their password.
+     * @return void
+     */
+    public static function beginPasswordReset(User $user): void {
+        Session::set(self::PENDING_PASSWORD_RESET, (int)$user->id);
+    }
+
+    /**
+     * Returns the user whose password may be reset in this session.  The id 
+     * must match the user recorded by beginPasswordReset() and that user 
+     * must still have the reset_password flag set.
+     *
+     * @param int $id The user id from the reset page URL.
+     * @return User|null The user, or null if this session has no pending 
+     * reset for that id.
+     */
+    public static function pendingPasswordResetUser(int $id): ?User {
+        if(!Session::exists(self::PENDING_PASSWORD_RESET)
+            || (int)Session::get(self::PENDING_PASSWORD_RESET) !== $id) {
+            return null;
+        }
+
+        $user = Auth::userModel()::findById($id);
+        if(!$user instanceof User || (int)$user->reset_password !== 1) {
+            Session::delete(self::PENDING_PASSWORD_RESET);
+            return null;
+        }
+        return $user;
     }
 
     /**

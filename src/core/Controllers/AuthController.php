@@ -127,17 +127,24 @@ class AuthController extends Controller {
     }
 
     /**
-     * Supports ability to reset passwords when a user attempts to 
-     * login when account is locked.
+     * Lets a user whose account is flagged for a password reset set a new 
+     * password.  Only works for the user recorded by 
+     * AuthService::beginPasswordReset() during login in this session.
      *
      * @param int $id The id of the user whose password we want to reset.
      * @return void
      */
     public function resetPasswordAction(int $id): void {
-        $user = Auth::userModel()::findById((int)$id);
+        // Only the user whose login just triggered the forced reset may use 
+        // this page.  Anyone else, including someone following the reset 
+        // email, is sent to log in first.
+        $user = AuthService::pendingPasswordResetUser((int)$id);
+        if(!$user) {
+            flashMessage(Session::INFO, 'Log in to finish resetting your password.');
+            redirect('auth.login');
+            return;
+        }
         $user->password = "";
-        
-        if(!$user) redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             AuthService::passwordReset($this->request, $user);
