@@ -159,7 +159,7 @@ final class UserService {
             return false;
         }
 
-        $user->assign($request->get(), $user::blackList);
+        $user->assign($request->get(), $user::passwordFields, $user::WHITELIST);
         $user->setChangePassword(true);
         $user->confirm = AuthService::confirm($request);
 

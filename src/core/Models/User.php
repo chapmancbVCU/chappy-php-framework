@@ -43,6 +43,21 @@ class User extends Model implements Principal {
     protected static string $_table = 'users';
     public ?string $username = null;
     public const whiteList = ['username', 'email', 'password', 'fname', 'lname', 'description'];
+
+    /**
+     * Columns a user may change on their own profile, and an admin may change 
+     * on the user edit page.  Username, password, ACLs and status flags each 
+     * have their own flow and are never accepted from these forms.  Extend 
+     * this list in the application's user model to make added columns 
+     * editable.
+     */
+    public const profileFields = ['fname', 'lname', 'email', 'description'];
+
+    /**
+     * The only column password reset and password change forms may assign.  
+     * The confirm and current_password fields are read separately.
+     */
+    public const passwordFields = ['password'];
     public const hidden = ['password','deleted', 'confirm', 'login_attempts'];
 
     /**
@@ -263,16 +278,18 @@ class User extends Model implements Principal {
         }
 
         if($this->isNew() || $this->changePassword) {
-            $validators = [
-                "min:{$this->minLength()}",
-                "max:{$this->maxLength()}",
-                'lower',
-                'upper',
-                'number',
-                'special'
-            ];
+            // Each rule is switched on in config/password.php (or .env).
+            $validators = [];
+            if($this->isMinLength()) $validators[] = "min:{$this->minLength()}";
+            if($this->isMaxLength()) $validators[] = "max:{$this->maxLength()}";
+            if($this->lowerChar()) $validators[] = 'lower';
+            if($this->upperChar()) $validators[] = 'upper';
+            if($this->numericChar()) $validators[] = 'number';
+            if($this->specialChar()) $validators[] = 'special';
 
-            $this->runValidation('password', $validators, 'Password');
+            if(!empty($validators)) {
+                $this->runValidation('password', $validators, 'Password');
+            }
             $this->runValidation('confirm', ["match:{$this->password}"], 'Confirm Password');
         }
     }

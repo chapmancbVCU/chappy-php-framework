@@ -41,7 +41,7 @@ class ProfileController extends Controller {
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $uploads = AuthService::profileImageUpload($user);
-            $user->assign($this->request->get(), $user::blackList);
+            $user->assign($this->request->get(), $user::profileFields, $user::WHITELIST);
             $user->save();
             if($user->validationPassed()){
                 UserService::handleProfileImages($user, $uploads, $_POST['images_sorted']);

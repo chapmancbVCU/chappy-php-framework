@@ -241,7 +241,13 @@ parameters:
 			path: src/Console/Helpers/View.php
 
 		-
-			message: '#^Cannot access constant blackList on bool\|object\.$#'
+			message: '#^Cannot access constant WHITELIST on bool\|object\.$#'
+			identifier: classConstant.nonObject
+			count: 1
+			path: src/core/Controllers/AdmindashboardController.php
+
+		-
+			message: '#^Cannot access constant profileFields on bool\|object\.$#'
 			identifier: classConstant.nonObject
 			count: 1
 			path: src/core/Controllers/AdmindashboardController.php

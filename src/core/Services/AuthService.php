@@ -226,7 +226,7 @@ class AuthService {
             return;
         }
 
-        $user->assign($request->get(), $user::blackList);
+        $user->assign($request->get(), $user::passwordFields, $user::WHITELIST);
             
         // PW mode on for correct validation.
         $user->setChangePassword(true);

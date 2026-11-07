@@ -258,7 +258,7 @@ class AdmindashboardController extends Controller {
     
         if (\$this->request->isPost()) {
             \$this->request->csrfCheck();
-            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::profileFields, {$userClass}::WHITELIST);
     
             // Handle ACL updates from checkboxes
             ACLService::updateUserACLs(\$user, \$userAcls, \$acls, \$_POST['acls']);
@@ -718,7 +718,7 @@ class AdmindashboardController extends Controller {
     
         if (\$this->request->isPost()) {
             \$this->request->csrfCheck();
-            \$user->assign(\$this->request->get(), {$userClass}::whiteList, {$userClass}::WHITELIST);
+            \$user->assign(\$this->request->get(), {$userClass}::profileFields, {$userClass}::WHITELIST);
     
             // Handle ACL updates from checkboxes
             ACLService::updateUserACLs(\$user, \$userAcls, \$acls, \$_POST['acls']);
