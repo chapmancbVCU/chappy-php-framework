@@ -20,7 +20,7 @@ trait PasswordPolicy {
      * @return bool True if the maximum length rule is enforced.
      */
     public function isMaxLength(): bool {
-        return self::passwordFlag('set_pw_max_length', 'SET_PW_MAX_LENGTH');
+        return self::policyFlag('set_pw_max_length', 'SET_PW_MAX_LENGTH');
     }
 
     /**
@@ -29,7 +29,7 @@ trait PasswordPolicy {
      * @return bool True if the minimum length rule is enforced.
      */
     public function isMinLength(): bool {
-        return self::passwordFlag('set_pw_min_length', 'SET_PW_MIN_LENGTH');
+        return self::policyFlag('set_pw_min_length', 'SET_PW_MIN_LENGTH');
     }
 
     /**
@@ -38,7 +38,7 @@ trait PasswordPolicy {
      * @return bool True if a lower case character is required.
      */
     public function lowerChar(): bool {
-        return self::passwordFlag('pw_lower_char', 'PW_LOWER_CHAR');
+        return self::policyFlag('pw_lower_char', 'PW_LOWER_CHAR');
     }
 
     /**
@@ -47,7 +47,7 @@ trait PasswordPolicy {
      * @return int The maximum password length.
      */
     public function maxLength(): int {
-        return self::passwordLength('pw_max_length', 'PW_MAX_LENGTH', 25);
+        return self::policyLength('pw_max_length', 'PW_MAX_LENGTH', 25);
     }
 
     /**
@@ -56,7 +56,7 @@ trait PasswordPolicy {
      * @return int The minimum password length.
      */
     public function minLength(): int {
-        return self::passwordLength('pw_min_length', 'PW_MIN_LENGTH', 12);
+        return self::policyLength('pw_min_length', 'PW_MIN_LENGTH', 12);
     }
 
     /**
@@ -65,7 +65,7 @@ trait PasswordPolicy {
      * @return bool True if a numeric character is required.
      */
     public function numericChar(): bool {
-        return self::passwordFlag('pw_num_char', 'PW_NUM_CHAR');
+        return self::policyFlag('pw_num_char', 'PW_NUM_CHAR');
     }
 
     /**
@@ -74,7 +74,7 @@ trait PasswordPolicy {
      * @return bool True if a special character is required.
      */
     public function specialChar(): bool {
-        return self::passwordFlag('pw_special_char', 'PW_SPECIAL_CHAR');
+        return self::policyFlag('pw_special_char', 'PW_SPECIAL_CHAR');
     }
 
     /**
@@ -83,7 +83,7 @@ trait PasswordPolicy {
      * @return bool True if an upper case character is required.
      */
     public function upperChar(): bool {
-        return self::passwordFlag('pw_upper_char', 'PW_UPPER_CHAR');
+        return self::policyFlag('pw_upper_char', 'PW_UPPER_CHAR');
     }
 
     /**
@@ -93,7 +93,7 @@ trait PasswordPolicy {
      * @param string $envKey Fallback .env variable.
      * @return bool The setting.  Accepts true, "true", 1, "1", "on" and "yes".
      */
-    private static function passwordFlag(string $configKey, string $envKey): bool {
+    private static function policyFlag(string $configKey, string $envKey): bool {
         $value = Config::get("password.{$configKey}", env($envKey, false));
         return filter_var($value, FILTER_VALIDATE_BOOLEAN);
     }
@@ -106,7 +106,7 @@ trait PasswordPolicy {
      * @param int $default Used when neither source holds a number.
      * @return int The setting.
      */
-    private static function passwordLength(string $configKey, string $envKey, int $default): int {
+    private static function policyLength(string $configKey, string $envKey, int $default): int {
         $value = Config::get("password.{$configKey}", env($envKey, $default));
         return is_numeric($value) ? (int)$value : $default;
     }
