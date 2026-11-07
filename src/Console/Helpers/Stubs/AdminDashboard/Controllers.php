@@ -91,15 +91,15 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id for the ACL we want to delete.
      * @return void
      */
-    public function deleteAclAction(int \$id) {
+    public function deleteAclAction(int \$id): void {
         try {
             if(!\$this->apiCsrfCheck()) {
-                return \$this->jsonError('Corrupted token');
+                \$this->jsonError('Corrupted token');
             }
             ACLService::deleteIfAllowed(\$id);
-            return \$this->jsonResponse(['success' => true]);
+            \$this->jsonResponse(['success' => true]);
         } catch (Throwable \$e) {
-            return \$this->jsonError('Server error: ' .  \$e, 500);
+            \$this->jsonError('Server error: ' .  \$e, 500);
         }
     }
 
@@ -109,18 +109,18 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id for the user we want to delete.
      * @return void
      */
-    public function deleteAction(int \$id) {
+    public function deleteAction(int \$id): void {
         try {
             if(!\$this->apiCsrfCheck()) {
-                return \$this->jsonError('Corrupted token');
+                \$this->jsonError('Corrupted token');
             }
           
             UserService::deleteIfAllowed((int)\$id, false);
 
             // Respond success and send redirect message.
-            return \$this->jsonRedirect('admindashboard.index');
+            \$this->jsonRedirect('admindashboard.index');
         } catch (Throwable \$e) {
-            return \$this->jsonError('Server error: ' .  \$e, 500);
+            \$this->jsonError('Server error: ' .  \$e, 500);
         } 
     }
 
@@ -131,16 +131,16 @@ class AdmindashboardController extends Controller {
      * record.
      * @return void
      */
-    public function deleteAttachmentAction(int \$id) {
+    public function deleteAttachmentAction(int \$id): void {
         try {
             if(!\$this->apiCsrfCheck()) {
-                return \$this->jsonError('Corrupted token');
+                \$this->jsonError('Corrupted token');
             }
             \$attachment = EmailAttachments::findById(\$id);
             AttachmentService::deleteAttachment(\$attachment);
-            return \$this->jsonResponse(['success' => true]);
+            \$this->jsonResponse(['success' => true]);
         } catch (Throwable \$e) {
-            return \$this->jsonError('Server error: ' .  \$e, 500);
+            \$this->jsonError('Server error: ' .  \$e, 500);
         }
     }
 
@@ -163,16 +163,16 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the job to remove from the queue table.
      * @return void
      */
-    public function deleteJobAction(int \$id) {
+    public function deleteJobAction(int \$id): void {
         try {
             if(!\$this->apiCsrfCheck()) {
-                return \$this->jsonError('Corrupted token');
+                \$this->jsonError('Corrupted token');
             }
             \$job = Queue::findById(\$id);
             \$job->delete();
-            return \$this->jsonResponse(['success' => true]);
+            \$this->jsonResponse(['success' => true]);
         } catch (Throwable \$e) {
-            return \$this->jsonError('Server error: ' .  \$e, 500);
+            \$this->jsonError('Server error: ' .  \$e, 500);
         }
     }
 
@@ -182,16 +182,16 @@ class AdmindashboardController extends Controller {
      * @param int \$id The id of the notification to remove from the notification table.
      * @return void
      */
-    public function deleteNotificationAction(int \$id) {
+    public function deleteNotificationAction(int \$id): void {
         try {
             if(!\$this->apiCsrfCheck()) {
-                return \$this->jsonError('Corrupted token');
+                \$this->jsonError('Corrupted token');
             }
             \$notification = Notifications::findById(\$id);
             \$notification->delete();
-            return \$this->jsonResponse(['success' => true]);
+            \$this->jsonResponse(['success' => true]);
         } catch (Throwable \$e) {
-            return \$this->jsonError('Server error: ' .  \$e, 500);
+            \$this->jsonError('Server error: ' .  \$e, 500);
         }
     }
 
