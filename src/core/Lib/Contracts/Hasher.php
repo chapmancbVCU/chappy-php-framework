@@ -22,7 +22,7 @@ interface Hasher {
     /**
      * Determines whether a previously computed hash should be re-created,
      * for example because the algorithm's configured cost or parameters
-     * have since changed.  Typically checked after a successful verify()
+     * have since changed.  Typically checked after a successful `verify()`
      * so an out-of-date hash can be transparently upgraded.
      *
      * @param string $hashed The existing hash to examine.

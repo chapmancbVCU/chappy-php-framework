@@ -43,14 +43,14 @@ interface Guard {
      * modifying any authentication state.
      *
      * @param array $credentials The credentials to validate (e.g.
-     * ['username' => ..., 'password' => ...]).
+     * `['username' => ..., 'password' => ...]`).
      * @return bool True if the credentials are valid, otherwise false.
      */
     public function validate(array $credentials): bool;
 
     /**
      * Logs the given user in, establishing authentication state for the
-     * current request and subsequent ones.  When $remember is true,
+     * current request and subsequent ones.  When `$remember` is true,
      * implementations should also persist a remember-me token.
      *
      * @param Principal $user The user to authenticate.
