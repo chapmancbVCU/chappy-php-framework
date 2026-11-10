@@ -19,6 +19,7 @@ use Core\Lib\Mail\MailerService;        // <- your service
  * Supported payload shapes (returned by Notification::toMail()):
  *
  * 1) Template mode (MailerService::sendTemplate)
+ * ```php
  *    [
  *      // 'to' => 'user@example.com',            // optional; auto-routes from notifiable if omitted
  *      'subject'     => 'Subject',
@@ -31,8 +32,9 @@ use Core\Lib\Mail\MailerService;        // <- your service
  *      'styles'      => 'default',               // optional
  *      'stylesPath'  => null,                    // optional
  *    ]
- *
+ * ```
  * 2) Raw HTML (MailerService::send / sendWithText)
+ * ```php
  *    [
  *      // 'to' => 'user@example.com',            // optional; auto-route
  *      'subject'     => 'Subject',
@@ -41,8 +43,9 @@ use Core\Lib\Mail\MailerService;        // <- your service
  *      'template'    => 'welcome',               // optional: used only for logging
  *      'attachments' => [...],                   // optional
  *    ]
- *
+ * ```
  * 3) Custom mailer (AbstractMailer subclass)
+ * ```php
  *    [
  *      'mailer'      => \Core\Lib\Mail\WelcomeMailer::class,
  *      // The mailer can implement a static sendTo(\Core\Models\User $user): bool
@@ -54,6 +57,7 @@ use Core\Lib\Mail\MailerService;        // <- your service
  *      'styles'      => null,
  *      'stylesPath'  => null,
  *    ]
+ * ```
  */
 final class MailChannel implements Channel {
     /**
