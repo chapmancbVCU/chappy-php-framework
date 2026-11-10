@@ -29,7 +29,7 @@ interface UserProvider {
      * responsibility of validateCredentials().
      *
      * @param array $credentials The credentials used to locate the
-     * principal (e.g. ['username' => ...]).
+     * principal (e.g. `['username' => ...]`).
      * @return Principal|null The matching principal, or null if none is
      * found.
      */
