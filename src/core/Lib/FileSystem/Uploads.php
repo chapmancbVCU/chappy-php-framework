@@ -59,7 +59,7 @@ class Uploads {
      * Creates instance of Uploads class.
      *
      * @param array|string $files Array of files to be uploaded.
-     * @param array $imageTypes An array containing a list of acceptable file 
+     * @param array $fileTypes An array containing a list of acceptable file 
      * types for a particular upload action.
      * @param int $maxAllowedSize Maximum allowable size for a particular 
      * file.  This can vary depending on requirements.
