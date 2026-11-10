@@ -42,7 +42,7 @@ class AuthController extends Controller {
     }
 
     /**
-     * Handles messaging and redirects for loginAction based on status of LoginResult.
+     * Handles messaging and redirects for `loginAction` based on status of `LoginResult`.
      *
      * @param LoginResult $result The resulting status of a login attempt.
      * @return void
@@ -70,7 +70,7 @@ class AuthController extends Controller {
     }
 
     /**
-     * Manages logout action for a user.  It checks if a user is currently 
+     * Manages `logoutAction` for a user.  It checks if a user is currently 
      * logged.  No matter of the result, the user gets redirected to the 
      * login screen.
      *
@@ -88,7 +88,7 @@ class AuthController extends Controller {
     }
 
     /**
-     * Internal version of this controller uses internal layout.
+     * Internal version of this controller uses `internal` layout.
      *
      * @return void
      */
@@ -129,7 +129,7 @@ class AuthController extends Controller {
     /**
      * Lets a user whose account is flagged for a password reset set a new 
      * password.  Only works for the user recorded by 
-     * AuthService::beginPasswordReset() during login in this session.
+     * `AuthService::beginPasswordReset()` during login in this session.
      *
      * @param int $id The id of the user whose password we want to reset.
      * @return void
