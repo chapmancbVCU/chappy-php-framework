@@ -111,11 +111,11 @@ final class Redactor {
     /**
      * Normalizes DB_LOG_PARAMS to a safe, supported value.
      *
-     * Accepts common .env formatting such as quoted values ('full', "masked")
+     * Accepts common `.env` formatting such as quoted values ('full', "masked")
      * and ignores leading/trailing whitespace. If the value is not recognized,
      * it falls back to a safe default and emits a warning.
      *
-     * Allowed values: none|masked|full
+     * Allowed values: `none|masked|full`
      *
      * @param string|null $raw Raw config value (e.g. from Env::get()).
      * @param string $default Default mode to use if $raw is invalid.
