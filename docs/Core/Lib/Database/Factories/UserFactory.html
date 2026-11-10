@@ -142,8 +142,9 @@ successfully saved.</p></td>
                                                                                 
                                     </td>
                 <td>$modelName</td>
-                <td class="last"><p>The name of the model</p></td>
-                <td></td>
+                <td class="last"><p>The model used by the child factory class.</p></td>
+                <td><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#property_modelName">
+<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_states">
@@ -168,10 +169,10 @@ successfully saved.</p></td>
                 <div class="col-md-8">
                     <a href="#method___construct">__construct</a>()
         
-                                            <p><p>Constructor for Faker class.  Should be called by any child class that
-overrides this constructor.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Core/Lib/Database/Factory.html#method___construct">
-<abbr title="Core\Lib\Database\Factory">Factory</abbr></a></small></div>
+                                            <p><p>Sets the model to the application's configured user model so created
+records are instances of <code>App\Models\Users</code> (or whatever
+<code>auth.user_model</code> points to), not the base User class.</p></p>                </div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -373,8 +374,7 @@ functions.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">in <a href="../../../../Core/Lib/Database/Factory.html#method___construct">
-<abbr title="Core\Lib\Database\Factory">Factory</abbr></a> at line 53</div>
+        <div class="location">at line 18</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -384,8 +384,9 @@ functions.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Constructor for Faker class.  Should be called by any child class that
-overrides this constructor.</p></p>                        
+                            <p><p>Sets the model to the application's configured user model so created
+records are instances of <code>App\Models\Users</code> (or whatever
+<code>auth.user_model</code> points to), not the base User class.</p></p>                        
         </div>
         <div class="tags">
             
@@ -398,7 +399,7 @@ overrides this constructor.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_definition">
-        <div class="location">at line 37</div>
+        <div class="location">at line 41</div>
         <code>            protected        array
     <strong>definition</strong>()
         </code>
@@ -911,7 +912,7 @@ for a specified key.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_admin">
-        <div class="location">at line 24</div>
+        <div class="location">at line 28</div>
         <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
     <strong>admin</strong>()
         </code>
@@ -943,7 +944,7 @@ for a specified key.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleted">
-        <div class="location">at line 65</div>
+        <div class="location">at line 69</div>
         <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
     <strong>deleted</strong>()
         </code>
@@ -975,7 +976,7 @@ for a specified key.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_inactive">
-        <div class="location">at line 78</div>
+        <div class="location">at line 82</div>
         <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
     <strong>inactive</strong>()
         </code>
@@ -1007,7 +1008,7 @@ for a specified key.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginAttempts">
-        <div class="location">at line 90</div>
+        <div class="location">at line 94</div>
         <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
     <strong>loginAttempts</strong>()
         </code>
@@ -1039,7 +1040,7 @@ for a specified key.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_resetPassword">
-        <div class="location">at line 103</div>
+        <div class="location">at line 107</div>
         <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
     <strong>resetPassword</strong>()
         </code>
@@ -1071,7 +1072,7 @@ for a specified key.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_withImages">
-        <div class="location">at line 117</div>
+        <div class="location">at line 121</div>
         <code>                    <a href="../../../../Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a>
     <strong>withImages</strong>(int $count = 2)
         </code>

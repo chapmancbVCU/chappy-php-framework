@@ -101,6 +101,21 @@
             <p><p>Supports authentication operations.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        PENDING_PASSWORD_RESET
+                                    </td>
+                <td class="last">
+                    <p><em><p>Session key holding the id of the user who has just proven their
+credentials and must set a new password.  The reset page only acts on
+this user, so the user id in the URL cannot be used to reset someone
+else's password.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -118,7 +133,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<abbr title="Core\Services\App\Models\Users|false|null">Users|false|null</abbr>
+                    static&nbsp;<abbr title="Core\Services\Core\Models\User|false|null">User|false|null</abbr>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_currentUser">currentUser</a>()
@@ -153,7 +168,7 @@ triggers an email notification.</p></p>                </div>
                     static&nbsp;<a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_loginAttempts">loginAttempts</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, bool $mailer = false)
+                    <a href="#method_loginAttempts">loginAttempts</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, bool $mailer = false)
         
                                             <p><p>Tests for login attempts and sets session messages when there is a
 failed attempt or when account is locked.</p></p>                </div>
@@ -164,7 +179,7 @@ failed attempt or when account is locked.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_loginUser">loginUser</a>(<abbr title="App\Models\Users">Users</abbr> $loginUser, bool $rememberMe = false)
+                    <a href="#method_loginUser">loginUser</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $loginUser, bool $rememberMe = false)
         
                                             <p><p>Creates a session when the user logs in.  A new record is added to the
 user_sessions table and a cookie is created if remember me is
@@ -173,7 +188,7 @@ selected.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<abbr title="Core\Services\App\Models\Users">Users</abbr>|null
+                    static&nbsp;<abbr title="Core\Services\Core\Models\User">User</abbr>|null
                 </div>
                 <div class="col-md-8">
                     <a href="#method_loginUserFromCookie">loginUserFromCookie</a>()
@@ -197,7 +212,7 @@ deleting any active cookies.</p></p>                </div>
                     static&nbsp;bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_logoutUser">logoutUser</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+                    <a href="#method_logoutUser">logoutUser</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         
                                             <p><p>Perform logout operation on current logged in user.  The record for the
 current logged in user is removed from the user_session table and the
@@ -209,7 +224,7 @@ corresponding cookie is deleted.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_passwordReset">passwordReset</a>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <abbr title="App\Models\Users">Users</abbr> $user)
+                    <a href="#method_passwordReset">passwordReset</a>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         
                                             <p><p>Handles the complete flow of resetting a user’s password, including
 setting the confirmation field and updating the record.</p></p>                </div>
@@ -217,10 +232,34 @@ setting the confirmation field and updating the record.</p></p>                <
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_beginPasswordReset">beginPasswordReset</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
+        
+                                            <p><p>Records that a user has proven their credentials and must now set a
+new password.  Call this when login detects the reset_password flag,
+before redirecting to the reset page.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<abbr title="Core\Services\Core\Models\User">User</abbr>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_pendingPasswordResetUser">pendingPasswordResetUser</a>(int $id)
+        
+                                            <p><p>Returns the user whose password may be reset in this session.  The id
+must match the user recorded by beginPasswordReset() and that user
+must still have the reset_password flag set.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;<abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_profileImageUpload">profileImageUpload</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+                    <a href="#method_profileImageUpload">profileImageUpload</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         
                                             <p><p>Processes a profile image upload and returns an <code>Uploads</code> object.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -233,7 +272,7 @@ setting the confirmation field and updating the record.</p></p>                <
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_confirm">
-        <div class="location">at line 28</div>
+        <div class="location">at line 36</div>
         <code>        static            string
     <strong>confirm</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
@@ -275,8 +314,8 @@ setting the confirmation field and updating the record.</p></p>                <
             </div>
                     <div class="method-item">
                     <h3 id="method_currentUser">
-        <div class="location">at line 38</div>
-        <code>        static            <abbr title="Core\Services\App\Models\Users|false|null">Users|false|null</abbr>
+        <div class="location">at line 46</div>
+        <code>        static            <abbr title="Core\Services\Core\Models\User|false|null">User|false|null</abbr>
     <strong>currentUser</strong>()
         </code>
     </h3>
@@ -293,7 +332,7 @@ setting the confirmation field and updating the record.</p></p>                <
 
                     <table class="table table-condensed">
         <tr>
-            <td><abbr title="Core\Services\App\Models\Users|false|null">Users|false|null</abbr></td>
+            <td><abbr title="Core\Services\Core\Models\User|false|null">User|false|null</abbr></td>
             <td><p>An object containing information about current
 logged in user from users table.</p></td>
         </tr>
@@ -308,7 +347,7 @@ logged in user from users table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_hashPassword">
-        <div class="location">at line 49</div>
+        <div class="location">at line 57</div>
         <code>        static            string
     <strong>hashPassword</strong>(string $password)
         </code>
@@ -351,7 +390,7 @@ or update password form.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_login">
-        <div class="location">at line 65</div>
+        <div class="location">at line 73</div>
         <code>        static            <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a>
     <strong>login</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, string $username, bool $mailer = false)
         </code>
@@ -411,9 +450,9 @@ surpasses max number of login attempts before account is locked.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginAttempts">
-        <div class="location">at line 105</div>
+        <div class="location">at line 114</div>
         <code>        static            <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a>
-    <strong>loginAttempts</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, bool $mailer = false)
+    <strong>loginAttempts</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Models/Login.html"><abbr title="Core\Models\Login">Login</abbr></a> $loginModel, bool $mailer = false)
         </code>
     </h3>
     <div class="details">    
@@ -429,7 +468,7 @@ failed attempt or when account is locked.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose login attempts we are tracking.</p></td>
             </tr>
@@ -467,9 +506,9 @@ and session messages are assigned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginUser">
-        <div class="location">at line 134</div>
+        <div class="location">at line 143</div>
         <code>        static            void
-    <strong>loginUser</strong>(<abbr title="App\Models\Users">Users</abbr> $loginUser, bool $rememberMe = false)
+    <strong>loginUser</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $loginUser, bool $rememberMe = false)
         </code>
     </h3>
     <div class="details">    
@@ -486,7 +525,7 @@ selected.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$loginUser</td>
                 <td><p>The user to be logged in.</p></td>
             </tr>
@@ -517,8 +556,8 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginUserFromCookie">
-        <div class="location">at line 157</div>
-        <code>        static            <abbr title="Core\Services\App\Models\Users">Users</abbr>|null
+        <div class="location">at line 166</div>
+        <code>        static            <abbr title="Core\Services\Core\Models\User">User</abbr>|null
     <strong>loginUserFromCookie</strong>()
         </code>
     </h3>
@@ -535,7 +574,7 @@ found in login form.  Default value is false.</p></td>
 
                     <table class="table table-condensed">
         <tr>
-            <td><abbr title="Core\Services\App\Models\Users">Users</abbr>|null</td>
+            <td><abbr title="Core\Services\Core\Models\User">User</abbr>|null</td>
             <td><p>The user associated with previous session.</p></td>
         </tr>
     </table>
@@ -549,7 +588,7 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_logout">
-        <div class="location">at line 176</div>
+        <div class="location">at line 185</div>
         <code>        static            void
     <strong>logout</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
@@ -592,9 +631,9 @@ deleting any active cookies.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_logoutUser">
-        <div class="location">at line 197</div>
+        <div class="location">at line 206</div>
         <code>        static            bool
-    <strong>logoutUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+    <strong>logoutUser</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">    
@@ -611,7 +650,7 @@ corresponding cookie is deleted.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user to be logged out.</p></td>
             </tr>
@@ -636,9 +675,9 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_passwordReset">
-        <div class="location">at line 211</div>
+        <div class="location">at line 220</div>
         <code>        static            void
-    <strong>passwordReset</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <abbr title="App\Models\Users">Users</abbr> $user)
+    <strong>passwordReset</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, <a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">    
@@ -659,7 +698,7 @@ setting the confirmation field and updating the record.</p></p>
                 <td><p>The request for the password reset action.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose password we will reset.</p></td>
             </tr>
@@ -683,10 +722,99 @@ setting the confirmation field and updating the record.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_beginPasswordReset">
+        <div class="location">at line 254</div>
+        <code>        static            void
+    <strong>beginPasswordReset</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Records that a user has proven their credentials and must now set a
+new password.  Call this when login detects the reset_password flag,
+before redirecting to the reset page.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
+                <td>$user</td>
+                <td><p>The user who must reset their password.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pendingPasswordResetUser">
+        <div class="location">at line 267</div>
+        <code>        static            <abbr title="Core\Services\Core\Models\User">User</abbr>|null
+    <strong>pendingPasswordResetUser</strong>(int $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the user whose password may be reset in this session.  The id
+must match the user recorded by beginPasswordReset() and that user
+must still have the reset_password flag set.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The user id from the reset page URL.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Services\Core\Models\User">User</abbr>|null</td>
+            <td><p>The user, or null if this session has no pending
+reset for that id.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_profileImageUpload">
-        <div class="location">at line 235</div>
+        <div class="location">at line 288</div>
         <code>        static            <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null
-    <strong>profileImageUpload</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+    <strong>profileImageUpload</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">    
@@ -701,7 +829,7 @@ setting the confirmation field and updating the record.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user who uploaded a profile image.</p></td>
             </tr>

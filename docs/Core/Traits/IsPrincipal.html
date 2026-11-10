@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Core\Traits\IsUser | Chappy.php API</title>
+    <title>Core\Traits\IsPrincipal | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -23,7 +23,7 @@
           title="Chappy.php API (main)" />
     </head>
 
-    <body id="class" data-name="class:Core_Traits_IsUser" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+    <body id="class" data-name="class:Core_Traits_IsPrincipal" data-root-path="../../" data-search-index-url="../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -79,18 +79,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">trait</span></li>
-                        <li><a href="../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../Core/Traits.html">Traits</a></li><li class="backslash">\</li><li>IsUser</li>
+                        <li><a href="../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../Core/Traits.html">Traits</a></li><li class="backslash">\</li><li>IsPrincipal</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>IsUser    
+        <h1>IsPrincipal    
             </h1>
     </div>
 
     
     <p>        trait
-    <strong>IsUser</strong>
+    <strong>IsPrincipal</strong>
 </p>
 
         
@@ -98,108 +98,52 @@
         
 
             <div class="description">
-            <p><p>Specifies things users must include in order for the model to work.</p></p>                    </div>
+            <p><p>Default implementation of the IsPrincipal contract, reading values
+off public model properties by their configured column names.  A model
+satisfies the contract by using this trait and declaring properties
+matching the configured column names; the identifier, password, and
+remember-me token are then resolved dynamically from those properties.</p></p>            <p><p>To point a model at differently-named columns, OVERRIDE THE GETTER
+METHOD (not the property — see note below), e.g. getRememberTokenName().</p>
+<p>NOTE: The name properties below cannot be safely overridden by
+redeclaration in a using class — PHP requires a redeclared trait
+property to keep an identical default, so a differing value is a fatal
+error.  Override the corresponding getter instead.  Returning null from
+getRememberTokenName() disables remember-me for the model (the token
+methods become no-ops), which is how a model whose remember-me state
+lives outside the table opts out.</p></p>        </div>
             
         
-            <h2>Constants</h2>    <table class="table table-condensed">
-                    <tr>
-                <td>
-                                                                                                                        blackList
-                                    </td>
-                <td class="last">
-                    <p><em><p>User classes must use this blackList</p></em></p>
-                    <p></p>
-                </td>
-            </tr>
-            </table>
-
     
             <h2>Properties</h2>
 
             <table class="table table-condensed">
                     <tr>
-                <td class="type" id="property_acl">
-                                                                                string
+                <td class="type" id="property_authIdentifierName">
+                                        protected                                        string
                                                                                 
                                     </td>
-                <td>$acl</td>
-                <td class="last"><p>The users currently assigned acls.</p></td>
+                <td>$authIdentifierName</td>
+                <td class="last"><p>The name of the column holding the principal's unique identifier.</p></td>
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_changePassword">
-                                                            private                    bool
+                <td class="type" id="property_authPasswordName">
+                                        protected                                        string
                                                                                 
                                     </td>
-                <td>$changePassword</td>
-                <td class="last"><p>Flag to set mode for being able to change a password.  When
-true then the password can be changed or reset.  Default
-value is false.</p></td>
+                <td>$authPasswordName</td>
+                <td class="last"><p>The name of the column holding the principal's hashed password.</p></td>
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_confirm">
-                                                                                string|null
+                <td class="type" id="property_rememberTokenName">
+                                        protected                                        string|null
                                                                                 
                                     </td>
-                <td>$confirm</td>
-                <td class="last"><p>Users must support the $confirm variable name contract for the
-confirm field.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_deleted">
-                                                                                int
-                                                                                
-                                    </td>
-                <td>$deleted</td>
-                <td class="last"><p>Set default value for db field.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_inactive">
-                                                                                int
-                                                                                
-                                    </td>
-                <td>$inactive</td>
-                <td class="last"><p>Inactive status flag.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_login_attempts">
-                                                                                int
-                                                                                
-                                    </td>
-                <td>$login_attempts</td>
-                <td class="last"><p>Login attempts counter.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_password">
-                                                                                string|null
-                                                                                
-                                    </td>
-                <td>$password</td>
-                <td class="last"><p>The password field.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_reset_password">
-                                                                                int
-                                                                                
-                                    </td>
-                <td>$reset_password</td>
-                <td class="last"><p>The reset_password flag.  When set to 1 the user is asked to set a new
-password.</p></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property__softDelete">
-                    static                    protected                                        bool
-                                                                                
-                                    </td>
-                <td>$_softDelete</td>
-                <td class="last"><p>Users models must implement soft delete.</p></td>
+                <td>$rememberTokenName</td>
+                <td class="last"><p>The name of the column holding the remember-me token, or null to
+disable remember-me for the model.  Override getRememberTokenName()
+to change this per model.</p></td>
                 <td></td>
             </tr>
             </table>
@@ -210,43 +154,63 @@ password.</p></td>
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    mixed
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_getAcls">getAcls</a>()
+                    <a href="#method_getAuthIdentifier">getAuthIdentifier</a>()
         
-                                            <p><p>Returns the user's assigned ACLs as an array.</p></p>                </div>
+                                            <p><p>Gets the value of the primary identifier.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool
+                    string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_isInactiveChecked">isInactiveChecked</a>()
+                    <a href="#method_getAuthIdentifierName">getAuthIdentifierName</a>()
         
-                                            <p><p>Assists in setting value of inactive field based on POST.</p></p>                </div>
+                                            <p><p>Gets the name of the primary identifier column.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool
+                    string|null
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_isResetPWChecked">isResetPWChecked</a>()
+                    <a href="#method_getAuthPassword">getAuthPassword</a>()
         
-                                            <p><p>Assists in setting value of reset_password field based on
-POST.</p></p>                </div>
+                                            <p><p>Gets the hashed password for this user.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool
+                    string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_hasAcl">hasAcl</a>(string $acl)
+                    <a href="#method_getAuthPasswordName">getAuthPasswordName</a>()
         
-                                            <p><p>Checks if the user has a specific ACL assigned.</p></p>                </div>
+                                            <p><p>Gets the name of the password column.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getRememberToken">getRememberToken</a>()
+        
+                                            <p><p>Gets the current remember-me token.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getRememberTokenName">getRememberTokenName</a>()
+        
+                                            <p><p>Gets the remember-me column name or null to disable the feature for
+this model.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -254,19 +218,9 @@ POST.</p></p>                </div>
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_setChangePassword">setChangePassword</a>(bool $value)
+                    <a href="#method_setRememberToken">setRememberToken</a>(string $value)
         
-                                            <p><p>Setter function for <code>$changePassword</code>.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    void
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_userBeforeSave">userBeforeSave</a>()
-        
-                                            <p><p>To be called within <code>beforeSave()</code>.</p></p>                </div>
+                                            <p><p>Sets token value to persist.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -276,10 +230,10 @@ POST.</p></p>                </div>
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_getAcls">
-        <div class="location">at line 92</div>
-        <code>                    array
-    <strong>getAcls</strong>()
+                    <h3 id="method_getAuthIdentifier">
+        <div class="location">at line 54</div>
+        <code>                    mixed
+    <strong>getAuthIdentifier</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -287,8 +241,7 @@ POST.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Returns the user's assigned ACLs as an array.</p></p>                <p><p>Decodes the JSON-encoded acl field. Returns an empty array if the field
-is null, empty, or not valid JSON — so callers always get an array.</p></p>        
+                            <p><p>Gets the value of the primary identifier.</p></p>                        
         </div>
         <div class="tags">
             
@@ -296,8 +249,8 @@ is null, empty, or not valid JSON — so callers always get an array.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
-            <td><p>The user's ACLs, or an empty array if none/invalid.</p></td>
+            <td>mixed</td>
+            <td><p>The value of the primary identifier (e.g. id).</p></td>
         </tr>
     </table>
 
@@ -309,10 +262,10 @@ is null, empty, or not valid JSON — so callers always get an array.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_isInactiveChecked">
-        <div class="location">at line 103</div>
-        <code>                    bool
-    <strong>isInactiveChecked</strong>()
+                    <h3 id="method_getAuthIdentifierName">
+        <div class="location">at line 63</div>
+        <code>                    string
+    <strong>getAuthIdentifierName</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -320,7 +273,7 @@ is null, empty, or not valid JSON — so callers always get an array.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Assists in setting value of inactive field based on POST.</p></p>                        
+                            <p><p>Gets the name of the primary identifier column.</p></p>                        
         </div>
         <div class="tags">
             
@@ -328,9 +281,8 @@ is null, empty, or not valid JSON — so callers always get an array.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool</td>
-            <td><p>The value for inactive based on value received from
-POST.</p></td>
+            <td>string</td>
+            <td><p>The name of the primary identifier column.</p></td>
         </tr>
     </table>
 
@@ -342,10 +294,10 @@ POST.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_isResetPWChecked">
-        <div class="location">at line 114</div>
-        <code>                    bool
-    <strong>isResetPWChecked</strong>()
+                    <h3 id="method_getAuthPassword">
+        <div class="location">at line 72</div>
+        <code>                    string|null
+    <strong>getAuthPassword</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -353,8 +305,7 @@ POST.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Assists in setting value of reset_password field based on
-POST.</p></p>                        
+                            <p><p>Gets the hashed password for this user.</p></p>                        
         </div>
         <div class="tags">
             
@@ -362,9 +313,8 @@ POST.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool</td>
-            <td><p>The value for reset_password based on value
-received from POST.</p></td>
+            <td>string|null</td>
+            <td><p>The hashed password for this user.</p></td>
         </tr>
     </table>
 
@@ -376,10 +326,10 @@ received from POST.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_hasAcl">
-        <div class="location">at line 124</div>
-        <code>                    bool
-    <strong>hasAcl</strong>(string $acl)
+                    <h3 id="method_getAuthPasswordName">
+        <div class="location">at line 81</div>
+        <code>                    string
+    <strong>getAuthPasswordName</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -387,7 +337,105 @@ received from POST.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Checks if the user has a specific ACL assigned.</p></p>                        
+                            <p><p>Gets the name of the password column.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The name of the password column.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRememberToken">
+        <div class="location">at line 90</div>
+        <code>                    string|null
+    <strong>getRememberToken</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Gets the current remember-me token.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td><p>The current remember-me token, if any.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRememberTokenName">
+        <div class="location">at line 102</div>
+        <code>                    string|null
+    <strong>getRememberTokenName</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Gets the remember-me column name or null to disable the feature for
+this model.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td><p>The remember-me column name, or null to
+disable the feature for this model.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setRememberToken">
+        <div class="location">at line 112</div>
+        <code>                    void
+    <strong>setRememberToken</strong>(string $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets token value to persist.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -395,85 +443,11 @@ received from POST.</p></td>
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
-                <td>$acl</td>
-                <td><p>The ACL to check.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool</td>
-            <td><p>True if the user has the ACL, otherwise false.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_setChangePassword">
-        <div class="location">at line 139</div>
-        <code>                    void
-    <strong>setChangePassword</strong>(bool $value)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Setter function for <code>$changePassword</code>.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>bool</td>
                 <td>$value</td>
-                <td><p>The value we will assign to $changePassword.</p></td>
+                <td><p>The token value to persist.</p></td>
             </tr>
             </table>
 
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>void</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_userBeforeSave">
-        <div class="location">at line 148</div>
-        <code>                private    void
-    <strong>userBeforeSave</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>To be called within <code>beforeSave()</code>.</p></p>                        
-        </div>
-        <div class="tags">
             
                             <h4>Return Value</h4>
 

@@ -797,9 +797,12 @@ every datetime cast on a model that has no explicit :format.</p></p>            
                 <div class="col-md-8">
                     <a href="#method_jsonSerialize">jsonSerialize</a>()
         
-                                            <p><p>Used by json_encode().</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../Core/Traits/HasCasts.html#method_jsonSerialize">
-<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a></small></div>
+                                            <p><p>Controls how the model serializes to JSON — json_encode(), API
+responses, and React data-props all route through this. Declare a
+<code>visible</code> allowlist (preferred, fail-closed) or a <code>hidden</code> denylist on
+the model to keep sensitive columns out of output. Output-side mirror
+of blackList / whiteList.</p></p>                </div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -2976,8 +2979,7 @@ by every browser and by Chappy's JavaScript datetime utilities.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_jsonSerialize">
-        <div class="location">in <a href="../Core/Traits/HasCasts.html#method_jsonSerialize">
-<abbr title="Core\Traits\HasCasts">HasCasts</abbr></a> at line 163</div>
+        <div class="location">at line 395</div>
         <code>                    mixed
     <strong>jsonSerialize</strong>()
         </code>
@@ -2987,7 +2989,11 @@ by every browser and by Chappy's JavaScript datetime utilities.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Used by json_encode().</p></p>                        
+                            <p><p>Controls how the model serializes to JSON — json_encode(), API
+responses, and React data-props all route through this. Declare a
+<code>visible</code> allowlist (preferred, fail-closed) or a <code>hidden</code> denylist on
+the model to keep sensitive columns out of output. Output-side mirror
+of blackList / whiteList.</p></p>                        
         </div>
         <div class="tags">
             
@@ -3924,7 +3930,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
-        <div class="location">at line 393</div>
+        <div class="location">at line 417</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -3956,7 +3962,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
-        <div class="location">at line 401</div>
+        <div class="location">at line 425</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -3998,7 +4004,7 @@ return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_query">
-        <div class="location">at line 416</div>
+        <div class="location">at line 440</div>
         <code>                    <a href="../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -4046,7 +4052,7 @@ The default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 438</div>
+        <div class="location">at line 462</div>
         <code>                    void
     <strong>runValidation</strong>(<abbr title="Core\bool|string">bool|string</abbr> $param, array $validators = [], string|null $fieldName = null)
         </code>
@@ -4108,7 +4114,7 @@ error message.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_save">
-        <div class="location">at line 461</div>
+        <div class="location">at line 485</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -4142,7 +4148,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
-        <div class="location">at line 502</div>
+        <div class="location">at line 526</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -4185,7 +4191,7 @@ delete.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_toOptions">
-        <div class="location">at line 544</div>
+        <div class="location">at line 568</div>
         <code>        static            array
     <strong>toOptions</strong>(string $valueField, string $labelField, array $conditions = [])
         </code>
@@ -4246,7 +4252,7 @@ name: toOptions('acl', 'acl'). For a typical lookup: toOptions('id', 'name').</p
             </div>
                     <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 567</div>
+        <div class="location">at line 591</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -4290,7 +4296,7 @@ we return false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
-        <div class="location">at line 597</div>
+        <div class="location">at line 621</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -4351,7 +4357,7 @@ Supports:</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
-        <div class="location">at line 607</div>
+        <div class="location">at line 631</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -4384,7 +4390,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 618</div>
+        <div class="location">at line 642</div>
         <code>                    void
     <strong>validator</strong>()
         </code>

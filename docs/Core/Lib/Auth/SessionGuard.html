@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Core\Lib\Auth\SessionGuard | Chappy.php API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
+        <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
+        <script async defer src="../../../js/bootstrap.min.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link rel="search"
+          type="application/opensearchdescription+xml"
+          href="/docs/opensearch.xml"
+          title="Chappy.php API (main)" />
+    </head>
+
+    <body id="class" data-name="class:Core_Lib_Auth_SessionGuard" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
+            <span class="icon icon-search"></span>
+            <input name="search"
+                   id="doctum-search-auto-complete"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Chappy.php API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                    <li><a href="../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib/Auth.html">Auth</a></li><li class="backslash">\</li><li>SessionGuard</li>
+            </ol>
+        </div>
+                <div id="page-content">
+    <div class="page-header">
+        <h1>SessionGuard    
+            </h1>
+    </div>
+
+    
+    <p>final         class
+    <strong>SessionGuard</strong>        implements        <a href="../../../Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a>
+</p>
+
+        
+    
+        
+
+            <div class="description">
+            <p><p>Session-backed guard. Owns &quot;who is logged in right now&quot; and delegates
+all storage to a UserProvider.  Resolves the current user from the
+session once per request and caches the result, writes the session on
+login, and clears it on logout.  Remember-me persistence is delegated to
+a RememberMeStore.</p></p>                    </div>
+            
+        
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_provider">
+                                                            private                    <a href="../../../Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a>
+                                                                                
+                                    </td>
+                <td>$provider</td>
+                <td class="last"><p>Retrieves and validates users on the guard's behalf.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_sessionKey">
+                                                            private                    string
+                                                                                
+                                    </td>
+                <td>$sessionKey</td>
+                <td class="last"><p>The session key under which the authenticated user's identifier is
+stored.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_user">
+                                                            private                    <a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a>|null
+                                                                                
+                                    </td>
+                <td>$user</td>
+                <td class="last"><p>The resolved user for the current request, or null if none is
+authenticated or resolution has not yet occurred.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_resolved">
+                                                            private                    bool
+                                                                                
+                                    </td>
+                <td>$resolved</td>
+                <td class="last"><p>Whether the current user has been resolved from the session yet.</p></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_remember">
+                                                            private                    <a href="../../../Core/Lib/Auth/RememberMeStore.html"><abbr title="Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr></a>|null
+                                                                                
+                                    </td>
+                <td>$remember</td>
+                <td class="last"><p>Handles persistence and teardown of remember-me tokens.</p></td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(<a href="../../../Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a> $provider, string|null $sessionKey = null, <abbr title="Core\Lib\Auth\Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr>|null $remember = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_check">check</a>()
+        
+                                            <p><p>Determines whether a user is currently authenticated.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_id">id</a>()
+        
+                                            <p><p>Gets the identifier of the currently authenticated user.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_login">login</a>(<a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a> $user, bool $remember = false)
+        
+                                            <p><p>Logs the given user in, storing their identifier in the session and
+caching them for the current request.  When $remember is true, a
+remember-me token is also persisted.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Core\Lib\Contracts\Core\Lib\Contracts\Principal">Principal</abbr>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_loginUsingId">loginUsingId</a>(mixed $id)
+        
+                                            <p><p>Resolves a user by identifier and logs them in.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logout">logout</a>()
+        
+                                            <p><p>Logs the current user out, clearing the session, the cached user,
+and any persisted remember-me token.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Core\Lib\Contracts\Core\Lib\Contracts\Principal">Principal</abbr>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_user">user</a>()
+        
+                                            <p><p>Resolves the current user from the session once, then caches it.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_validate">validate</a>(array $credentials)
+        
+                                            <p><p>Checks credentials WITHOUT logging anyone in.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line 65</div>
+        <code>                    
+    <strong>__construct</strong>(<a href="../../../Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a> $provider, string|null $sessionKey = null, <abbr title="Core\Lib\Auth\Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr>|null $remember = null)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a></td>
+                <td>$provider</td>
+                <td><p>The provider used to retrieve and
+validate users.</p></td>
+            </tr>
+                    <tr>
+                <td>string|null</td>
+                <td>$sessionKey</td>
+                <td><p>The session key holding the user's
+identifier.  Defaults to the CURRENT_USER_SESSION_NAME environment
+value when null.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Core\Lib\Auth\Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr>|null</td>
+                <td>$remember</td>
+                <td><p>The remember-me store.  A
+default store is constructed when null.</p></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_check">
+        <div class="location">at line 81</div>
+        <code>                    bool
+    <strong>check</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determines whether a user is currently authenticated.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if a user is resolved for the current request,
+otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_id">
+        <div class="location">at line 91</div>
+        <code>                    mixed
+    <strong>id</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Gets the identifier of the currently authenticated user.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td><p>The authenticated user's identifier, or null if no
+user is authenticated.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_login">
+        <div class="location">at line 106</div>
+        <code>                    void
+    <strong>login</strong>(<a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a> $user, bool $remember = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Logs the given user in, storing their identifier in the session and
+caching them for the current request.  When $remember is true, a
+remember-me token is also persisted.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Core/Lib/Contracts/Principal.html"><abbr title="Core\Lib\Contracts\Principal">Principal</abbr></a></td>
+                <td>$user</td>
+                <td><p>The user to authenticate.</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$remember</td>
+                <td><p>Whether to persist a remember-me token so the
+user remains logged in across sessions.  Defaults to false.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loginUsingId">
+        <div class="location">at line 120</div>
+        <code>                    <abbr title="Core\Lib\Contracts\Core\Lib\Contracts\Principal">Principal</abbr>|null
+    <strong>loginUsingId</strong>(mixed $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resolves a user by identifier and logs them in.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$id</td>
+                <td><p>The identifier of the user to authenticate.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Lib\Contracts\Core\Lib\Contracts\Principal">Principal</abbr>|null</td>
+            <td><p>The authenticated user, or null if no user
+matches the given identifier.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logout">
+        <div class="location">at line 132</div>
+        <code>                    void
+    <strong>logout</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Logs the current user out, clearing the session, the cached user,
+and any persisted remember-me token.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_user">
+        <div class="location">at line 145</div>
+        <code>                    <abbr title="Core\Lib\Contracts\Core\Lib\Contracts\Principal">Principal</abbr>|null
+    <strong>user</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Resolves the current user from the session once, then caches it.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Core\Lib\Contracts\Core\Lib\Contracts\Principal">Principal</abbr>|null</td>
+            <td><p>The authenticated user, or null if no user
+is authenticated.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validate">
+        <div class="location">at line 161</div>
+        <code>                    bool
+    <strong>validate</strong>(array $credentials)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks credentials WITHOUT logging anyone in.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$credentials</td>
+                <td><p>The credentials to validate (e.g.
+['username' =&gt; ..., 'password' =&gt; ...]).</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the credentials are valid, otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
+    </div>
+    </body>
+
+</html>

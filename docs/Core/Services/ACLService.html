@@ -111,7 +111,7 @@
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_aclsForUser">aclsForUser</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+                    <a href="#method_aclsForUser">aclsForUser</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         
                                             <p><p>Returns an array containing access control list information.  When the
 $acl instance variable is empty an empty array is returned.</p></p>                </div>
@@ -163,7 +163,7 @@ checks if it is assigned to a user and sets flash message.</p></p>              
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_manageAcls">manageAcls</a>(array $acls, <abbr title="App\Models\Users">Users</abbr> $user, array $newAcls, array $userAcls)
+                    <a href="#method_manageAcls">manageAcls</a>(array $acls, <a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, array $newAcls, array $userAcls)
         
                                             <p><p>Manages the adding and removing of ACLs.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -204,7 +204,7 @@ value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>           
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_updateUserACLs">updateUserACLs</a>(<abbr title="App\Models\Users">Users</abbr> $user, array $userAcls, array $acls, array|null $postAcls = null)
+                    <a href="#method_updateUserACLs">updateUserACLs</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, array $userAcls, array $acls, array|null $postAcls = null)
         
                                             <p><p>Updates user's acl field</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -214,7 +214,7 @@ value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>           
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_unUsedACLs">unUsedACLs</a>()
+                    <a href="#method_unUsedACLs">unUsedACLs</a>(array $acls)
         
                                             <p><p>Returns array of unused ACLs.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -224,7 +224,7 @@ value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>           
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_usedACLs">usedACLs</a>()
+                    <a href="#method_usedACLs">usedACLs</a>(array $acls)
         
                                             <p><p>Returns array of used ACLs.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -237,9 +237,9 @@ value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>           
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_aclsForUser">
-        <div class="location">at line 22</div>
+        <div class="location">at line 23</div>
         <code>        static            array
-    <strong>aclsForUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+    <strong>aclsForUser</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">    
@@ -255,7 +255,7 @@ $acl instance variable is empty an empty array is returned.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose ACLs we want to use.</p></td>
             </tr>
@@ -280,7 +280,7 @@ $acl instance variable is empty an empty array is returned.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_aclToArray">
-        <div class="location">at line 33</div>
+        <div class="location">at line 34</div>
         <code>        static            array
     <strong>aclToArray</strong>(mixed $acls)
         </code>
@@ -322,7 +322,7 @@ $acl instance variable is empty an empty array is returned.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_addAcl">
-        <div class="location">at line 48</div>
+        <div class="location">at line 49</div>
         <code>        static            bool
     <strong>addAcl</strong>(int $user_id, string $acl)
         </code>
@@ -370,7 +370,7 @@ modify.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_checkACL">
-        <div class="location">at line 67</div>
+        <div class="location">at line 68</div>
         <code>        static            void
     <strong>checkACL</strong>(<a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> $acl)
         </code>
@@ -413,7 +413,7 @@ checks if it is assigned to a user and sets flash message.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteIfAllowed">
-        <div class="location">at line 85</div>
+        <div class="location">at line 86</div>
         <code>        static            bool
     <strong>deleteIfAllowed</strong>(int $id)
         </code>
@@ -455,9 +455,9 @@ checks if it is assigned to a user and sets flash message.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_manageAcls">
-        <div class="location">at line 109</div>
+        <div class="location">at line 110</div>
         <code>        static            void
-    <strong>manageAcls</strong>(array $acls, <abbr title="App\Models\Users">Users</abbr> $user, array $newAcls, array $userAcls)
+    <strong>manageAcls</strong>(array $acls, <a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, array $newAcls, array $userAcls)
         </code>
     </h3>
     <div class="details">    
@@ -477,7 +477,7 @@ checks if it is assigned to a user and sets flash message.</p></p>
                 <td><p>ACLs stored in acl table.</p></td>
             </tr>
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user we want to modify.</p></td>
             </tr>
@@ -512,7 +512,7 @@ checks if it is assigned to a user and sets flash message.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_removeAcl">
-        <div class="location">at line 127</div>
+        <div class="location">at line 128</div>
         <code>        static            bool
     <strong>removeAcl</strong>(int $user_id, string $acl)
         </code>
@@ -559,7 +559,7 @@ checks if it is assigned to a user and sets flash message.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_setAclAtRegistration">
-        <div class="location">at line 147</div>
+        <div class="location">at line 148</div>
         <code>        static            string
     <strong>setAclAtRegistration</strong>()
         </code>
@@ -593,7 +593,7 @@ registration of a user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_saveACL">
-        <div class="location">at line 161</div>
+        <div class="location">at line 162</div>
         <code>        static            bool
     <strong>saveACL</strong>(<a href="../../Core/Models/ACL.html"><abbr title="Core\Models\ACL">ACL</abbr></a> $acl, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
@@ -640,9 +640,9 @@ registration of a user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_updateUserACLs">
-        <div class="location">at line 180</div>
+        <div class="location">at line 181</div>
         <code>        static            void
-    <strong>updateUserACLs</strong>(<abbr title="App\Models\Users">Users</abbr> $user, array $userAcls, array $acls, array|null $postAcls = null)
+    <strong>updateUserACLs</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, array $userAcls, array $acls, array|null $postAcls = null)
         </code>
     </h3>
     <div class="details">    
@@ -657,7 +657,7 @@ registration of a user.</p></td>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose ACLs we want to update.</p></td>
             </tr>
@@ -697,9 +697,9 @@ registration of a user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_unUsedACLs">
-        <div class="location">at line 191</div>
+        <div class="location">at line 193</div>
         <code>        static            array
-    <strong>unUsedACLs</strong>()
+    <strong>unUsedACLs</strong>(array $acls)
         </code>
     </h3>
     <div class="details">    
@@ -710,6 +710,16 @@ registration of a user.</p></td>
                             <p><p>Returns array of unused ACLs.</p></p>                        
         </div>
         <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$acls</td>
+                <td><p>The array of ACLs.</p></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 
@@ -729,9 +739,9 @@ registration of a user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_usedACLs">
-        <div class="location">at line 207</div>
+        <div class="location">at line 209</div>
         <code>        static            array
-    <strong>usedACLs</strong>()
+    <strong>usedACLs</strong>(array $acls)
         </code>
     </h3>
     <div class="details">    
@@ -742,6 +752,16 @@ registration of a user.</p></td>
                             <p><p>Returns array of used ACLs.</p></p>                        
         </div>
         <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$acls</td>
+                <td><p>The array of ACLs.</p></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 

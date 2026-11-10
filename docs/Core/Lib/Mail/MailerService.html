@@ -253,7 +253,7 @@ and/or css stylesheet.</p></p>                </div>
                     string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_template">template</a>(string $view, array $data = [], string|null $layout = null, string|null $layoutPath = null, string $templatePath, string|null $styles = null, string|null $stylesPath = null)
+                    <a href="#method_template">template</a>(string $view, array $data = [], string|null $layout = null, string|null $layoutPath = null, string|null $templatePath = null, string|null $styles = null, string|null $stylesPath = null)
         
                                             <p><p>Prepares E-mail content based on template to be sent.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -276,7 +276,7 @@ and/or css stylesheet.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 43</div>
+        <div class="location">at line 42</div>
         <code>                    
     <strong>__construct</strong>()
         </code>
@@ -299,7 +299,7 @@ and/or css stylesheet.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_layoutPath">
-        <div class="location">at line 56</div>
+        <div class="location">at line 55</div>
         <code>        static    protected        string
     <strong>layoutPath</strong>(string|null $layoutPath = null)
         </code>
@@ -342,7 +342,7 @@ the value of the parameter is used.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_mailLogger">
-        <div class="location">at line 73</div>
+        <div class="location">at line 72</div>
         <code>            protected        void
     <strong>mailLogger</strong>(string $status, string $to, string $subject, string $htmlBody, string|null $textBody = null, string|null $template = null, string|null $error = null, array|null $attachments = null)
         </code>
@@ -419,7 +419,7 @@ the value of the parameter is used.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_renderTemplateFile">
-        <div class="location">at line 126</div>
+        <div class="location">at line 125</div>
         <code>            protected        string
     <strong>renderTemplateFile</strong>(string $path, array $data = [])
         </code>
@@ -466,7 +466,7 @@ the value of the parameter is used.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at line 143</div>
+        <div class="location">at line 142</div>
         <code>                    bool
     <strong>send</strong>(string $to, string $subject, string $htmlBody, string|null $template = null, array $attachments = [])
         </code>
@@ -528,7 +528,7 @@ the value of the parameter is used.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendTemplate">
-        <div class="location">at line 202</div>
+        <div class="location">at line 201</div>
         <code>                    bool
     <strong>sendTemplate</strong>(string $to, string $subject, string $template, array $data, string|null $layout = null, array $attachments = [], string|null $layoutPath = null, string|null $templatePath = null, string|null $styles = null, string|null $stylesPath = null)
         </code>
@@ -617,7 +617,7 @@ attachments.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWithText">
-        <div class="location">at line 238</div>
+        <div class="location">at line 237</div>
         <code>                    bool
     <strong>sendWithText</strong>(string $to, string $subject, string $htmlBody, string $textBody, string|null $template = null, array $attachments = [])
         </code>
@@ -684,9 +684,9 @@ attachments.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_template">
-        <div class="location">at line 293</div>
+        <div class="location">at line 292</div>
         <code>            protected        string
-    <strong>template</strong>(string $view, array $data = [], string|null $layout = null, string|null $layoutPath = null, string $templatePath, string|null $styles = null, string|null $stylesPath = null)
+    <strong>template</strong>(string $view, array $data = [], string|null $layout = null, string|null $layoutPath = null, string|null $templatePath = null, string|null $styles = null, string|null $stylesPath = null)
         </code>
     </h3>
     <div class="details">    
@@ -721,7 +721,7 @@ attachments.</p></td>
                 <td><p>The path to the layout.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>string|null</td>
                 <td>$templatePath</td>
                 <td><p>The path to the template.</p></td>
             </tr>
@@ -756,7 +756,7 @@ attachments.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_templatePath">
-        <div class="location">at line 335</div>
+        <div class="location">at line 334</div>
         <code>        static    protected        string
     <strong>templatePath</strong>(string|null $templatePath = null)
         </code>

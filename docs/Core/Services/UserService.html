@@ -133,7 +133,7 @@ failure.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_ensureAuthenticatedUser">ensureAuthenticatedUser</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+                    <a href="#method_ensureAuthenticatedUser">ensureAuthenticatedUser</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         
                                             <p><p>Acts as safeguard to ensure incorrect user is not updated.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -143,7 +143,7 @@ failure.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_handleProfileImages">handleProfileImages</a>(<abbr title="App\Models\Users">Users</abbr> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
+                    <a href="#method_handleProfileImages">handleProfileImages</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
         
                                             <p><p>Uploads and sorts profile images.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -153,7 +153,7 @@ failure.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_sendWhenSetToInactive">sendWhenSetToInactive</a>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+                    <a href="#method_sendWhenSetToInactive">sendWhenSetToInactive</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, bool $shouldSendEmail = false)
         
                                             <p><p>Sends E-mail to user when account is deactivated as appropriate.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -163,7 +163,7 @@ failure.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_sendWhenSetToResetPW">sendWhenSetToResetPW</a>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+                    <a href="#method_sendWhenSetToResetPW">sendWhenSetToResetPW</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, bool $shouldSendEmail = false)
         
                                             <p><p>Sends E-mail to user when reset_password flag is set as appropriate.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -173,7 +173,7 @@ failure.</p></p>                </div>
                     static&nbsp;bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_toggleAccountStatus">toggleAccountStatus</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
+                    <a href="#method_toggleAccountStatus">toggleAccountStatus</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
         
                                             <p><p>Assist in toggling inactive field.  Returns boolean value to determine
 if E-mail should be sent.  To properly test if E-mail should be sent
@@ -185,17 +185,17 @@ get value of $user-&gt;inactive before post.</p></p>                </div>
                     static&nbsp;bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_toggleResetPassword">toggleResetPassword</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
+                    <a href="#method_toggleResetPassword">toggleResetPassword</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
         
                                             <p><p>Assist in toggling reset_password field.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr>
+                    static&nbsp;<abbr title="Core\Services\Core\Models\User|bool">User|bool</abbr>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_updatePassword">updatePassword</a>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+                    <a href="#method_updatePassword">updatePassword</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         
                                             <p><p>Updates user's password</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -208,7 +208,7 @@ get value of $user-&gt;inactive before post.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_deleteIfAllowed">
-        <div class="location">at line 27</div>
+        <div class="location">at line 28</div>
         <code>        static            void
     <strong>deleteIfAllowed</strong>(int $id, bool $unlink = false)
         </code>
@@ -257,7 +257,7 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteProfileImage">
-        <div class="location">at line 44</div>
+        <div class="location">at line 45</div>
         <code>        static            array
     <strong>deleteProfileImage</strong>(<a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
@@ -299,9 +299,9 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_ensureAuthenticatedUser">
-        <div class="location">at line 60</div>
+        <div class="location">at line 61</div>
         <code>        static            void
-    <strong>ensureAuthenticatedUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+    <strong>ensureAuthenticatedUser</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">    
@@ -316,7 +316,7 @@ failure.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user object to test.</p></td>
             </tr>
@@ -341,9 +341,9 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_handleProfileImages">
-        <div class="location">at line 77</div>
+        <div class="location">at line 78</div>
         <code>        static            void
-    <strong>handleProfileImages</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
+    <strong>handleProfileImages</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <abbr title="Core\Services\Core\Lib\FileSystem\Uploads">Uploads</abbr>|null $uploads, string|null $sortedImages)
         </code>
     </h3>
     <div class="details">    
@@ -358,7 +358,7 @@ failure.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose profile images we want to manage.</p></td>
             </tr>
@@ -393,9 +393,9 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWhenSetToInactive">
-        <div class="location">at line 94</div>
+        <div class="location">at line 95</div>
         <code>        static            void
-    <strong>sendWhenSetToInactive</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+    <strong>sendWhenSetToInactive</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, bool $shouldSendEmail = false)
         </code>
     </h3>
     <div class="details">    
@@ -410,7 +410,7 @@ failure.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user we will send E-mail to.</p></td>
             </tr>
@@ -440,9 +440,9 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sendWhenSetToResetPW">
-        <div class="location">at line 109</div>
+        <div class="location">at line 110</div>
         <code>        static            void
-    <strong>sendWhenSetToResetPW</strong>(<abbr title="App\Models\Users">Users</abbr> $user, bool $shouldSendEmail = false)
+    <strong>sendWhenSetToResetPW</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, bool $shouldSendEmail = false)
         </code>
     </h3>
     <div class="details">    
@@ -457,7 +457,7 @@ failure.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user we will send E-mail to.</p></td>
             </tr>
@@ -487,9 +487,9 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toggleAccountStatus">
-        <div class="location">at line 127</div>
+        <div class="location">at line 128</div>
         <code>        static            bool
-    <strong>toggleAccountStatus</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
+    <strong>toggleAccountStatus</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentInactive = null)
         </code>
     </h3>
     <div class="details">    
@@ -506,7 +506,7 @@ get value of $user-&gt;inactive before post.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose status we want to set.</p></td>
             </tr>
@@ -541,9 +541,9 @@ get value of $user-&gt;inactive before post.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toggleResetPassword">
-        <div class="location">at line 142</div>
+        <div class="location">at line 143</div>
         <code>        static            bool
-    <strong>toggleResetPassword</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
+    <strong>toggleResetPassword</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request, int|null $currentReset = null)
         </code>
     </h3>
     <div class="details">    
@@ -558,7 +558,7 @@ get value of $user-&gt;inactive before post.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose status we want to set.</p></td>
             </tr>
@@ -593,9 +593,9 @@ get value of $user-&gt;inactive before post.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_updatePassword">
-        <div class="location">at line 154</div>
-        <code>        static            <abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr>
-    <strong>updatePassword</strong>(<abbr title="App\Models\Users">Users</abbr> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
+        <div class="location">at line 155</div>
+        <code>        static            <abbr title="Core\Services\Core\Models\User|bool">User|bool</abbr>
+    <strong>updatePassword</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, <a href="../../Core/Input.html"><abbr title="Core\Input">Input</abbr></a> $request)
         </code>
     </h3>
     <div class="details">    
@@ -610,7 +610,7 @@ get value of $user-&gt;inactive before post.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user whose password we want to update.</p></td>
             </tr>
@@ -626,7 +626,7 @@ get value of $user-&gt;inactive before post.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td><abbr title="Core\Services\App\Models\Users|bool">Users|bool</abbr></td>
+            <td><abbr title="Core\Services\Core\Models\User|bool">User|bool</abbr></td>
             <td><p>True if password is updated, otherwise false.</p></td>
         </tr>
     </table>

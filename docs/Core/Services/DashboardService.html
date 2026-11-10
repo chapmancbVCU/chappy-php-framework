@@ -123,7 +123,7 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_checkIfCurrentUser">checkIfCurrentUser</a>(<abbr title="App\Models\Users">Users</abbr> $user, string $redirect = &#039;&#039;)
+                    <a href="#method_checkIfCurrentUser">checkIfCurrentUser</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, string $redirect = &#039;&#039;)
         
                                             <p><p>Warns if admin user is attempting to view an area they should not be.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -175,7 +175,7 @@ initial React render and the JSON responses for page/sort/filter changes.</p></p
                     static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_userToArray">userToArray</a>(<abbr title="App\Models\Users">Users</abbr> $user)
+                    <a href="#method_userToArray">userToArray</a>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         
                                             <p><p>Serializes a user for the dashboard. Only the fields the table needs;
 never pass whole models to the client (password hashes, tokens, etc.).</p></p>                </div>
@@ -200,9 +200,9 @@ and avoids PHP turning '0'/'1' keys into a JSON array.</p></p>                </
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_checkIfCurrentUser">
-        <div class="location">at line 23</div>
+        <div class="location">at line 24</div>
         <code>        static            void
-    <strong>checkIfCurrentUser</strong>(<abbr title="App\Models\Users">Users</abbr> $user, string $redirect = &#039;&#039;)
+    <strong>checkIfCurrentUser</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user, string $redirect = &#039;&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -217,7 +217,7 @@ and avoids PHP turning '0'/'1' keys into a JSON array.</p></p>                </
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The current user.</p></td>
             </tr>
@@ -247,7 +247,7 @@ and avoids PHP turning '0'/'1' keys into a JSON array.</p></p>                </
             </div>
                     <div class="method-item">
                     <h3 id="method_userFilter">
-        <div class="location">at line 46</div>
+        <div class="location">at line 47</div>
         <code>        static            <a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>userFilter</strong>(object $request)
         </code>
@@ -290,7 +290,7 @@ excludes the current user.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_paginateUsers">
-        <div class="location">at line 64</div>
+        <div class="location">at line 65</div>
         <code>        static            array
     <strong>paginateUsers</strong>(<a href="../../Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a> $pagination, <a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
         </code>
@@ -337,7 +337,7 @@ excludes the current user.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_totalUsers">
-        <div class="location">at line 74</div>
+        <div class="location">at line 75</div>
         <code>        static            int
     <strong>totalUsers</strong>(<a href="../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a> $filter)
         </code>
@@ -379,7 +379,7 @@ excludes the current user.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_userList">
-        <div class="location">at line 86</div>
+        <div class="location">at line 87</div>
         <code>        static            array
     <strong>userList</strong>(object $request, int $perPage = 10)
         </code>
@@ -414,7 +414,7 @@ initial React render and the JSON responses for page/sort/filter changes.</p></p
                     <table class="table table-condensed">
         <tr>
             <td>array</td>
-            <td></td>
+            <td><p>{Users: array, pagination: array, filter: array}</p></td>
         </tr>
     </table>
 
@@ -427,9 +427,9 @@ initial React render and the JSON responses for page/sort/filter changes.</p></p
             </div>
                     <div class="method-item">
                     <h3 id="method_userToArray">
-        <div class="location">at line 105</div>
+        <div class="location">at line 106</div>
         <code>        static            array
-    <strong>userToArray</strong>(<abbr title="App\Models\Users">Users</abbr> $user)
+    <strong>userToArray</strong>(<a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">    
@@ -445,7 +445,7 @@ never pass whole models to the client (password hashes, tokens, etc.).</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="App\Models\Users">Users</abbr></td>
+                <td><a href="../../Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></td>
                 <td>$user</td>
                 <td><p>The user.</p></td>
             </tr>
@@ -470,7 +470,7 @@ never pass whole models to the client (password hashes, tokens, etc.).</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_optionList">
-        <div class="location">at line 125</div>
+        <div class="location">at line 126</div>
         <code>        static            array
     <strong>optionList</strong>(array $options)
         </code>

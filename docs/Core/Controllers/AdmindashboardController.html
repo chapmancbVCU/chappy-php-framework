@@ -402,6 +402,26 @@ to avoid leaking into other tests.</p></p>                </div>
                     void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_deleteJobAction">deleteJobAction</a>(int $id)
+        
+                                            <p><p>Delete a job and redirects back to queueManager.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_deleteNotificationAction">deleteNotificationAction</a>(int $id)
+        
+                                            <p><p>Delete a notification and redirects back to main notifications page.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_detailsAction">detailsAction</a>(int $id)
         
                                             <p><p>Presents information about a particular user's profile.</p></p>                </div>
@@ -453,6 +473,16 @@ site's admin dashboard page.</p></p>                </div>
                     void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_jobDetailsAction">jobDetailsAction</a>(int $id)
+        
+                                            <p><p>Renders view with information related to a job within the queue table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_manageACLsAction">manageACLsAction</a>()
         
                                             <p><p>Renders view for managing ACLs.</p></p>                </div>
@@ -463,9 +493,40 @@ site's admin dashboard page.</p></p>                </div>
                     void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_notificationDetailsAction">notificationDetailsAction</a>(int $id)
+        
+                                            <p><p>Displays information for a particular notification within the
+database channel</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_notificationsAction">notificationsAction</a>()
+        
+                                            <p><p>Get list of notifications that are found in the database channel.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_previewAction">previewAction</a>(int $id)
         
-                                            <p><p>Previews an attachment</p></p>                </div>
+                                            <p><p>Previews an attachment.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_queueManagerAction">queueManagerAction</a>()
+        
+                                            <p><p>Retrieves list of jobs in queue and renders queue_manager view.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -653,7 +714,7 @@ when the application is running in the 'testing' environment.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
-        <div class="location">at line 242</div>
+        <div class="location">at line 336</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -988,7 +1049,7 @@ to avoid leaking into other tests.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_attachmentsAction">
-        <div class="location">at line 28</div>
+        <div class="location">at line 30</div>
         <code>                    void
     <strong>attachmentsAction</strong>()
         </code>
@@ -1020,7 +1081,7 @@ to avoid leaking into other tests.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_attachmentDetailsAction">
-        <div class="location">at line 40</div>
+        <div class="location">at line 44</div>
         <code>                    void
     <strong>attachmentDetailsAction</strong>(int $id)
         </code>
@@ -1062,7 +1123,7 @@ to avoid leaking into other tests.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteAclAction">
-        <div class="location">at line 52</div>
+        <div class="location">at line 56</div>
         <code>                    void
     <strong>deleteAclAction</strong>()
         </code>
@@ -1094,7 +1155,7 @@ to avoid leaking into other tests.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteAction">
-        <div class="location">at line 66</div>
+        <div class="location">at line 70</div>
         <code>                    void
     <strong>deleteAction</strong>(int $id)
         </code>
@@ -1136,7 +1197,7 @@ to avoid leaking into other tests.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteAttachmentAction">
-        <div class="location">at line 81</div>
+        <div class="location">at line 85</div>
         <code>                    void
     <strong>deleteAttachmentAction</strong>(int $id)
         </code>
@@ -1179,7 +1240,7 @@ record.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteImageAction">
-        <div class="location">at line 92</div>
+        <div class="location">at line 96</div>
         <code>                    void
     <strong>deleteImageAction</strong>()
         </code>
@@ -1210,8 +1271,92 @@ record.</p></td>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_deleteJobAction">
+        <div class="location">at line 110</div>
+        <code>                    void
+    <strong>deleteJobAction</strong>(int $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Delete a job and redirects back to queueManager.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The id of the job to remove from the queue table.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_deleteNotificationAction">
+        <div class="location">at line 125</div>
+        <code>                    void
+    <strong>deleteNotificationAction</strong>(int $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Delete a notification and redirects back to main notifications page.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The id of the notification to remove from the notification table.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_detailsAction">
-        <div class="location">at line 106</div>
+        <div class="location">at line 140</div>
         <code>                    void
     <strong>detailsAction</strong>(int $id)
         </code>
@@ -1253,7 +1398,7 @@ record.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_editAclAction">
-        <div class="location">at line 121</div>
+        <div class="location">at line 155</div>
         <code>                    void
     <strong>editAclAction</strong>(<abbr title="Core\Controllers\int|string">int|string</abbr> $id)
         </code>
@@ -1295,7 +1440,7 @@ record.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_editAction">
-        <div class="location">at line 146</div>
+        <div class="location">at line 180</div>
         <code>                    void
     <strong>editAction</strong>(int $id)
         </code>
@@ -1337,7 +1482,7 @@ record.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_editAttachmentsAction">
-        <div class="location">at line 188</div>
+        <div class="location">at line 222</div>
         <code>                    void
     <strong>editAttachmentsAction</strong>(<abbr title="Core\Controllers\int|string">int|string</abbr> $id)
         </code>
@@ -1380,7 +1525,7 @@ E-mail attachment.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_indexAction">
-        <div class="location">at line 213</div>
+        <div class="location">at line 247</div>
         <code>                    void
     <strong>indexAction</strong>()
         </code>
@@ -1412,8 +1557,50 @@ site's admin dashboard page.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_jobDetailsAction">
+        <div class="location">at line 266</div>
+        <code>                    void
+    <strong>jobDetailsAction</strong>(int $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Renders view with information related to a job within the queue table.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>the id of job in the queue table.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_manageACLsAction">
-        <div class="location">at line 231</div>
+        <div class="location">at line 278</div>
         <code>                    void
     <strong>manageACLsAction</strong>()
         </code>
@@ -1444,8 +1631,83 @@ site's admin dashboard page.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_notificationDetailsAction">
+        <div class="location">at line 311</div>
+        <code>                    void
+    <strong>notificationDetailsAction</strong>(int $id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Displays information for a particular notification within the
+database channel</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The id of the notification.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_notificationsAction">
+        <div class="location">at line 323</div>
+        <code>                    void
+    <strong>notificationsAction</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Get list of notifications that are found in the database channel.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_previewAction">
-        <div class="location">at line 252</div>
+        <div class="location">at line 346</div>
         <code>                    void
     <strong>previewAction</strong>(int $id)
         </code>
@@ -1455,7 +1717,7 @@ site's admin dashboard page.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Previews an attachment</p></p>                        
+                            <p><p>Previews an attachment.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1486,8 +1748,40 @@ site's admin dashboard page.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_queueManagerAction">
+        <div class="location">at line 355</div>
+        <code>                    void
+    <strong>queueManagerAction</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves list of jobs in queue and renders queue_manager view.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_setResetPasswordAction">
-        <div class="location">at line 264</div>
+        <div class="location">at line 371</div>
         <code>                    void
     <strong>setResetPasswordAction</strong>(int $id)
         </code>
@@ -1531,7 +1825,7 @@ modify.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setStatusAction">
-        <div class="location">at line 289</div>
+        <div class="location">at line 396</div>
         <code>                    void
     <strong>setStatusAction</strong>(int $id)
         </code>

@@ -986,7 +986,7 @@ protected and private properties are excluded.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_beforeSave">beforeSave</a>()
         
-                                            <p><p>Implements beforeSave function described in Model parent class.</p></p>                </div>
+                                            <p><p>Called after save.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -3525,7 +3525,7 @@ rejected and everything else is assignable (fail-open).</li>
             
 
         <div class="method-description">
-                            <p><p>Implements beforeSave function described in Model parent class.</p></p>                <p><p>Generates timestamps.</p></p>        
+                            <p><p>Called after save.</p></p>                        
         </div>
         <div class="tags">
             
@@ -4181,7 +4181,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
         <div class="location">in <a href="../../Core/Model.html#method_onConstruct">
-<abbr title="Core\Model">Model</abbr></a> at line 393</div>
+<abbr title="Core\Model">Model</abbr></a> at line 417</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -4214,7 +4214,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_populateObjData">
         <div class="location">in <a href="../../Core/Model.html#method_populateObjData">
-<abbr title="Core\Model">Model</abbr></a> at line 401</div>
+<abbr title="Core\Model">Model</abbr></a> at line 425</div>
         <code>            protected        void
     <strong>populateObjData</strong>(<abbr title="Core\array|object">array|object</abbr> $result)
         </code>
@@ -4257,7 +4257,7 @@ return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_query">
         <div class="location">in <a href="../../Core/Model.html#method_query">
-<abbr title="Core\Model">Model</abbr></a> at line 416</div>
+<abbr title="Core\Model">Model</abbr></a> at line 440</div>
         <code>                    <a href="../../Core/DB.html"><abbr title="Core\DB">DB</abbr></a>
     <strong>query</strong>(string $sql, array $bind = [])
         </code>
@@ -4306,7 +4306,7 @@ The default value is an empty array.</p></td>
                     <div class="method-item">
                     <h3 id="method_runValidation">
         <div class="location">in <a href="../../Core/Model.html#method_runValidation">
-<abbr title="Core\Model">Model</abbr></a> at line 438</div>
+<abbr title="Core\Model">Model</abbr></a> at line 462</div>
         <code>                    void
     <strong>runValidation</strong>(<abbr title="Core\bool|string">bool|string</abbr> $param, array $validators = [], string|null $fieldName = null)
         </code>
@@ -4369,7 +4369,7 @@ error message.</p></td>
                     <div class="method-item">
                     <h3 id="method_save">
         <div class="location">in <a href="../../Core/Model.html#method_save">
-<abbr title="Core\Model">Model</abbr></a> at line 461</div>
+<abbr title="Core\Model">Model</abbr></a> at line 485</div>
         <code>                    bool
     <strong>save</strong>()
         </code>
@@ -4404,7 +4404,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method__softDeleteParams">
         <div class="location">in <a href="../../Core/Model.html#method__softDeleteParams">
-<abbr title="Core\Model">Model</abbr></a> at line 502</div>
+<abbr title="Core\Model">Model</abbr></a> at line 526</div>
         <code>        static    protected        array
     <strong>_softDeleteParams</strong>(array $params)
         </code>
@@ -4448,7 +4448,7 @@ delete.</p></td>
                     <div class="method-item">
                     <h3 id="method_toOptions">
         <div class="location">in <a href="../../Core/Model.html#method_toOptions">
-<abbr title="Core\Model">Model</abbr></a> at line 544</div>
+<abbr title="Core\Model">Model</abbr></a> at line 568</div>
         <code>        static            array
     <strong>toOptions</strong>(string $valueField, string $labelField, array $conditions = [])
         </code>
@@ -4510,7 +4510,7 @@ name: toOptions('acl', 'acl'). For a typical lookup: toOptions('id', 'name').</p
                     <div class="method-item">
                     <h3 id="method_update">
         <div class="location">in <a href="../../Core/Model.html#method_update">
-<abbr title="Core\Model">Model</abbr></a> at line 567</div>
+<abbr title="Core\Model">Model</abbr></a> at line 591</div>
         <code>                    bool
     <strong>update</strong>(array $fields)
         </code>
@@ -4555,7 +4555,7 @@ we return false.</p></td>
                     <div class="method-item">
                     <h3 id="method_updateWhere">
         <div class="location">in <a href="../../Core/Model.html#method_updateWhere">
-<abbr title="Core\Model">Model</abbr></a> at line 597</div>
+<abbr title="Core\Model">Model</abbr></a> at line 621</div>
         <code>        static            int
     <strong>updateWhere</strong>(array $fields, array $params)
         </code>
@@ -4617,7 +4617,7 @@ Supports:</p>
                     <div class="method-item">
                     <h3 id="method_validationPassed">
         <div class="location">in <a href="../../Core/Model.html#method_validationPassed">
-<abbr title="Core\Model">Model</abbr></a> at line 607</div>
+<abbr title="Core\Model">Model</abbr></a> at line 631</div>
         <code>                    bool
     <strong>validationPassed</strong>()
         </code>
@@ -4651,7 +4651,7 @@ false if there is a failure.</p></td>
                     <div class="method-item">
                     <h3 id="method_validator">
         <div class="location">in <a href="../../Core/Model.html#method_validator">
-<abbr title="Core\Model">Model</abbr></a> at line 618</div>
+<abbr title="Core\Model">Model</abbr></a> at line 642</div>
         <code>                    void
     <strong>validator</strong>()
         </code>

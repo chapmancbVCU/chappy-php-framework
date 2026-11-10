@@ -259,8 +259,9 @@ login screen.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_resetPasswordAction">resetPasswordAction</a>(int $id)
         
-                                            <p><p>Supports ability to reset passwords when a user attempts to
-login when account is locked.</p></p>                </div>
+                                            <p><p>Lets a user whose account is flagged for a password reset set a new
+password.  Only works for the user recorded by
+AuthService::beginPasswordReset() during login in this session.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -426,7 +427,7 @@ when the application is running in the 'testing' environment.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_onConstruct">
-        <div class="location">at line 94</div>
+        <div class="location">at line 95</div>
         <code>                    void
     <strong>onConstruct</strong>()
         </code>
@@ -458,7 +459,7 @@ when the application is running in the 'testing' environment.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginAction">
-        <div class="location">at line 26</div>
+        <div class="location">at line 27</div>
         <code>                    void
     <strong>loginAction</strong>()
         </code>
@@ -490,7 +491,7 @@ when the application is running in the 'testing' environment.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginRedirects">
-        <div class="location">at line 49</div>
+        <div class="location">at line 50</div>
         <code>                private    void
     <strong>loginRedirects</strong>(<a href="../../Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a> $result)
         </code>
@@ -532,7 +533,7 @@ when the application is running in the 'testing' environment.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_logoutAction">
-        <div class="location">at line 78</div>
+        <div class="location">at line 79</div>
         <code>                    void
     <strong>logoutAction</strong>()
         </code>
@@ -566,7 +567,7 @@ login screen.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_registerAction">
-        <div class="location">at line 103</div>
+        <div class="location">at line 104</div>
         <code>                    void
     <strong>registerAction</strong>()
         </code>
@@ -598,7 +599,7 @@ login screen.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_resetPasswordAction">
-        <div class="location">at line 135</div>
+        <div class="location">at line 137</div>
         <code>                    void
     <strong>resetPasswordAction</strong>(int $id)
         </code>
@@ -608,8 +609,9 @@ login screen.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Supports ability to reset passwords when a user attempts to
-login when account is locked.</p></p>                        
+                            <p><p>Lets a user whose account is flagged for a password reset set a new
+password.  Only works for the user recorded by
+AuthService::beginPasswordReset() during login in this session.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>

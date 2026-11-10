@@ -82,7 +82,7 @@ final class DashboardService {
      *
      * @param object $request The request object.
      * @param int $perPage Users per page.
-     * @return array{users: array, pagination: array, filter: array}
+     * @return array {Users: array, pagination: array, filter: array}
      */
     public static function userList(object $request, int $perPage = 10): array {
         $filter = self::userFilter($request);
@@ -121,7 +121,7 @@ final class DashboardService {
      * and avoids PHP turning '0'/'1' keys into a JSON array.
      *
      * @param array $options value => label.
-     * @return array<array{value: string, label: string}>
+     * @return array
      */
     public static function optionList(array $options): array {
         $list = [];
