@@ -26,10 +26,10 @@ class ProfileImageFactory extends Factory {
     private int $userId;
 
     /**
-     * Creates new instance of this factory.  You must provide user id
+     * Creates new instance of this factory.  You must provide `userId`
      * to constructor.
      *
-     * @param int $userId The user_id for the profile image.
+     * @param int $userId The `user_id` for the profile image.
      */
     public function __construct(int $userId)
     {
