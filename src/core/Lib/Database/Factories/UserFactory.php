@@ -12,8 +12,8 @@ use Core\Lib\Database\Factory;
 class UserFactory extends Factory {
     /**
      * Sets the model to the application's configured user model so created 
-     * records are instances of App\Models\Users (or whatever 
-     * auth.user_model points to), not the base User class.
+     * records are instances of `App\Models\Users` (or whatever 
+     * `auth.user_model` points to), not the base User class.
      */
     public function __construct() {
         $this->modelName = Auth::userModel();
