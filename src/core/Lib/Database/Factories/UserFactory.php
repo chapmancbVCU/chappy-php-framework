@@ -75,7 +75,7 @@ class UserFactory extends Factory {
     }
     
     /**
-     * Overrides default value for inactive.
+     * Overrides default value for `inactive`.
      *
      * @return static
      */
@@ -87,7 +87,7 @@ class UserFactory extends Factory {
         });
     }
     /**
-     * Overrides default value for login_attempts.
+     * Overrides default value for `login_attempts`.
      *
      * @return static
      */
@@ -100,7 +100,7 @@ class UserFactory extends Factory {
     }
 
     /**
-     * Overrides default value for resetPassword.
+     * Overrides default value for `reset_password`.
      *
      * @return static
      */
