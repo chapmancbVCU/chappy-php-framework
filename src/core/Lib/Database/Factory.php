@@ -202,7 +202,7 @@ abstract class Factory {
      *
      * @param array $attributes The attributes used to override default definition 
      * values.
-     * @param array<string, mixed> $data Data to be saved in new database record.
+     * @param array<string,mixed> $data Data to be saved in new database record.
      * @return array $data The data that contains values that overrides defaults 
      * found in definition.
      */
