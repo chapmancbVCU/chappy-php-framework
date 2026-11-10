@@ -172,7 +172,7 @@ immediately after another column in the table (MySQL only).</p></dd><dt><a href=
                     <dd><p>Array containing callbacks that are used after database record is
 successfully saved.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_afterCreating">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::afterCreating</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
-                    <dd><p>Adds callback to afterCreatingCallbacks array.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_append">
+                    <dd><p>Adds callback to <code>afterCreatingCallbacks</code> array.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_append">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::append</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
                     <dd><p>Helper function for satisfying complexity or length requirements.</p></dd><dt><a href="Core/Lib/Database/Migration.html#method_aclSetup">
 <abbr title="Core\Lib\Database\Migration">Migration</abbr>::aclSetup</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Migration.html"><abbr title="Core\Lib\Database\Migration">Migration</abbr></a></em></dt>
@@ -670,7 +670,7 @@ fails the user is routed to a view stating access is restricted.</p></dd><dt><a 
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
                     <dd><p>Create a record(s) in the database.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_configure">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::configure</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
-                    <dd><p>Configure function used for registering afterCreating callbacks.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_count">
+                    <dd><p>Configure function used for registering <code>afterCreating</code> callbacks.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_count">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::count</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
                     <dd><p>Specify number of records to insert into the database.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_create">
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
@@ -1852,11 +1852,11 @@ requiring the full user object to be used by the caller.</p></dd><dt>$<a href="C
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::integer</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define an integer column.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method_inactive">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::inactive</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
-                    <dd><p>Overrides default value for inactive.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_insert">
+                    <dd><p>Overrides default value for <code>inactive</code>.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_insert">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::insert</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
                     <dd><p>Insert data into the database table.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_invokeAfterCreatingCallbacks">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::invokeAfterCreatingCallbacks</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
-                    <dd><p>Calls all registered afterCreating callbacks associated with a factory.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_invokeStateCallbacks">
+                    <dd><p>Calls all registered <code>afterCreating</code> callbacks associated with a factory.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_invokeStateCallbacks">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::invokeStateCallbacks</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
                     <dd><p>Calls state callback functions.</p></dd><dt>$<a href="Core/Lib/Database/Sequence.html#property_index">
 <abbr title="Core\Lib\Database\Sequence">Sequence</abbr>#index</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Sequence.html"><abbr title="Core\Lib\Database\Sequence">Sequence</abbr></a></em></dt>
@@ -2078,7 +2078,7 @@ request and removing any persisted remember-me token.</p></dd><dt>$<a href="Core
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>#lastColumn</a> &mdash; <em>Property in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method_loginAttempts">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::loginAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
-                    <dd><p>Overrides default value for login_attempts.</p></dd><dt>$<a href="Core/Lib/Events/EventDispatcher.html#property_listeners">
+                    <dd><p>Overrides default value for <code>login_attempts</code>.</p></dd><dt>$<a href="Core/Lib/Events/EventDispatcher.html#property_listeners">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>#listeners</a> &mdash; <em>Property in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
                     <dd><p>An array of registered listeners.</p></dd><dt><a href="Core/Lib/Events/EventDispatcher.html#method_listen">
 <abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr>::listen</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/EventDispatcher.html"><abbr title="Core\Lib\Events\EventDispatcher">EventDispatcher</abbr></a></em></dt>
@@ -3124,7 +3124,7 @@ responsibility of validateCredentials().</p></dd><dt><a href="Core/Lib/Database/
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::renameUnique</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Renames a column with a unique constraint by preserving and reapplying the index.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method_resetPassword">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::resetPassword</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
-                    <dd><p>Overrides default value for resetPassword.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_rename">
+                    <dd><p>Overrides default value for <code>reset_password</code>.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_rename">
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::rename</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
                     <dd><p>Renames a table</p></dd><dt><a href="Core/Lib/Database/Seeder.html#method_run">
 <abbr title="Core\Lib\Database\Seeder">Seeder</abbr>::run</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Seeder.html"><abbr title="Core\Lib\Database\Seeder">Seeder</abbr></a></em></dt>
@@ -4194,7 +4194,7 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Constructor for Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Factories/ProfileImageFactory.html#method___construct">
 <abbr title="Core\Lib\Database\Factories\ProfileImageFactory">ProfileImageFactory</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/ProfileImageFactory.html"><abbr title="Core\Lib\Database\Factories\ProfileImageFactory">ProfileImageFactory</abbr></a></em></dt>
-                    <dd><p>Creates new instance of this factory.  You must provide user id
+                    <dd><p>Creates new instance of this factory.  You must provide <code>userId</code>
 to constructor.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method___construct">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
                     <dd><p>Sets the model to the application's configured user model so created

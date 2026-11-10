@@ -737,7 +737,7 @@ foreign key.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_after">
-        <div class="location">at line 48</div>
+        <div class="location">at line 50</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>after</strong>(string $column)
         </code>
@@ -751,9 +751,9 @@ foreign key.</p></p>                </div>
 immediately after another column in the table (MySQL only).</p></p>                <p><p>This method is only meaningful during ALTER TABLE operations
 (i.e., when calling $table-&gt;update()). The generated SQL will
 include an <code>AFTER column_name</code> clause to control column order.</p>
-<p>Example:
-$table-&gt;string('nickname')-&gt;after('last_name');
-// Produces: ALTER TABLE users ADD COLUMN nickname VARCHAR(255) AFTER last_name;</p></p>        
+<p>Example:</p>
+<pre><code class="language-php">$table-&gt;string('nickname')-&gt;after('last_name');
+// Produces: ALTER TABLE users ADD COLUMN nickname VARCHAR(255) AFTER last_name;</code></pre></p>        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -785,7 +785,7 @@ $table-&gt;string('nickname')-&gt;after('last_name');
             </div>
                     <div class="method-item">
                     <h3 id="method_bigInteger">
-        <div class="location">at line 61</div>
+        <div class="location">at line 63</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>bigInteger</strong>(string $name)
         </code>
@@ -827,7 +827,7 @@ $table-&gt;string('nickname')-&gt;after('last_name');
             </div>
                     <div class="method-item">
                     <h3 id="method_boolean">
-        <div class="location">at line 73</div>
+        <div class="location">at line 75</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>boolean</strong>(string $name)
         </code>
@@ -869,7 +869,7 @@ $table-&gt;string('nickname')-&gt;after('last_name');
             </div>
                     <div class="method-item">
                     <h3 id="method_create">
-        <div class="location">at line 82</div>
+        <div class="location">at line 84</div>
         <code>                    void
     <strong>create</strong>()
         </code>
@@ -901,7 +901,7 @@ $table-&gt;string('nickname')-&gt;after('last_name');
             </div>
                     <div class="method-item">
                     <h3 id="method_createForeignKey">
-        <div class="location">at line 109</div>
+        <div class="location">at line 111</div>
         <code>            protected        void
     <strong>createForeignKey</strong>(string $fk)
         </code>
@@ -922,7 +922,7 @@ $table-&gt;string('nickname')-&gt;after('last_name');
                 <td>$fk</td>
                 <td><p>The full SQL statement to create the foreign key constraint.
 This should be a valid <code>ALTER TABLE</code> query for adding a foreign key. Example:
-&quot;ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)&quot;</p></td>
+<code>"ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)"</code></p></td>
             </tr>
             </table>
 
@@ -945,7 +945,7 @@ This should be a valid <code>ALTER TABLE</code> query for adding a foreign key. 
             </div>
                     <div class="method-item">
                     <h3 id="method_createIndex">
-        <div class="location">at line 130</div>
+        <div class="location">at line 132</div>
         <code>            protected        void
     <strong>createIndex</strong>(<abbr title="Core\Lib\Database\array|string">array|string</abbr> $index)
         </code>
@@ -968,7 +968,8 @@ or set of columns. The index name is automatically generated as
                     <tr>
                 <td><abbr title="Core\Lib\Database\array|string">array|string</abbr></td>
                 <td>$index</td>
-                <td></td>
+                <td><p>The name of the column or an array of columns to index.
+If a string is provided, a default index name will be generated.</p></td>
             </tr>
             </table>
 
@@ -991,7 +992,7 @@ or set of columns. The index name is automatically generated as
             </div>
                     <div class="method-item">
                     <h3 id="method_date">
-        <div class="location">at line 157</div>
+        <div class="location">at line 159</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>date</strong>(string $name)
         </code>
@@ -1033,7 +1034,7 @@ or set of columns. The index name is automatically generated as
             </div>
                     <div class="method-item">
                     <h3 id="method_dateTime">
-        <div class="location">at line 169</div>
+        <div class="location">at line 171</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>dateTime</strong>(string $name)
         </code>
@@ -1075,7 +1076,7 @@ or set of columns. The index name is automatically generated as
             </div>
                     <div class="method-item">
                     <h3 id="method_decimal">
-        <div class="location">at line 183</div>
+        <div class="location">at line 185</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>decimal</strong>(string $name, int $precision = 8, int $scale = 2)
         </code>
@@ -1127,7 +1128,7 @@ or set of columns. The index name is automatically generated as
             </div>
                     <div class="method-item">
                     <h3 id="method_default">
-        <div class="location">at line 203</div>
+        <div class="location">at line 205</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>default</strong>(<abbr title="Core\Lib\Database\string|int|float|bool">string|int|float|bool</abbr> $value)
         </code>
@@ -1182,7 +1183,7 @@ Strings will be wrapped in quotes. Other types will be cast directly.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropColumns">
-        <div class="location">at line 234</div>
+        <div class="location">at line 236</div>
         <code>                    void
     <strong>dropColumns</strong>(<abbr title="Core\Lib\Database\array|string">array|string</abbr> $columns)
         </code>
@@ -1226,7 +1227,7 @@ columns to drop.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropForeign">
-        <div class="location">at line 290</div>
+        <div class="location">at line 292</div>
         <code>                    void
     <strong>dropForeign</strong>(string $column, bool $preserveColumn = true)
         </code>
@@ -1275,7 +1276,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropIfExists">
-        <div class="location">at line 325</div>
+        <div class="location">at line 327</div>
         <code>                    void
     <strong>dropIfExists</strong>(string $table)
         </code>
@@ -1317,7 +1318,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropIndex">
-        <div class="location">at line 340</div>
+        <div class="location">at line 342</div>
         <code>                    void
     <strong>dropIndex</strong>(string $column, bool $preserveColumn = true)
         </code>
@@ -1366,7 +1367,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropPrimaryKey">
-        <div class="location">at line 373</div>
+        <div class="location">at line 375</div>
         <code>                    void
     <strong>dropPrimaryKey</strong>(string $column, bool $preserveColumn = true)
         </code>
@@ -1415,7 +1416,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_dropUnique">
-        <div class="location">at line 405</div>
+        <div class="location">at line 407</div>
         <code>                    void
     <strong>dropUnique</strong>(string $column, bool $preserveColumn = false)
         </code>
@@ -1464,7 +1465,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_double">
-        <div class="location">at line 476</div>
+        <div class="location">at line 478</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>double</strong>(string $name, int $precision = 16, int $scale = 4)
         </code>
@@ -1516,7 +1517,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_enum">
-        <div class="location">at line 489</div>
+        <div class="location">at line 491</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>enum</strong>(string $name, array $values)
         </code>
@@ -1563,7 +1564,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_float">
-        <div class="location">at line 508</div>
+        <div class="location">at line 510</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>float</strong>(string $name, int $precision = 8, int $scale = 2)
         </code>
@@ -1615,7 +1616,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_foreign">
-        <div class="location">at line 523</div>
+        <div class="location">at line 525</div>
         <code>                    void
     <strong>foreign</strong>(string $column, string $referencedColumn, string $onTable, string $onDelete = &#039;RESTRICT&#039;, string $onUpdate = &#039;RESTRICT&#039;)
         </code>
@@ -1639,7 +1640,7 @@ The default value is true.</p></td>
                     <tr>
                 <td>string</td>
                 <td>$referencedColumn</td>
-                <td></td>
+                <td><p>The column name in the foreign table being referenced.</p></td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -1677,7 +1678,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getForeignKey">
-        <div class="location">at line 545</div>
+        <div class="location">at line 547</div>
         <code>                private    object|null
     <strong>getForeignKey</strong>(string $column)
         </code>
@@ -1719,7 +1720,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_id">
-        <div class="location">at line 572</div>
+        <div class="location">at line 574</div>
         <code>                    
     <strong>id</strong>()
         </code>
@@ -1742,7 +1743,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_index">
-        <div class="location">at line 582</div>
+        <div class="location">at line 584</div>
         <code>                    void
     <strong>index</strong>(string $column)
         </code>
@@ -1784,7 +1785,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isForeignKey">
-        <div class="location">at line 594</div>
+        <div class="location">at line 596</div>
         <code>                private    bool
     <strong>isForeignKey</strong>(string $column)
         </code>
@@ -1826,7 +1827,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isIndex">
-        <div class="location">at line 638</div>
+        <div class="location">at line 640</div>
         <code>                private    bool
     <strong>isIndex</strong>(string $column)
         </code>
@@ -1868,7 +1869,7 @@ The default value is true.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isPrimaryKey">
-        <div class="location">at line 667</div>
+        <div class="location">at line 669</div>
         <code>                private    bool
     <strong>isPrimaryKey</strong>(string $column)
         </code>
@@ -1911,7 +1912,7 @@ false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isUnique">
-        <div class="location">at line 699</div>
+        <div class="location">at line 701</div>
         <code>                private    bool
     <strong>isUnique</strong>(string $column)
         </code>
@@ -1954,7 +1955,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_integer">
-        <div class="location">at line 743</div>
+        <div class="location">at line 745</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>integer</strong>(string $name)
         </code>
@@ -1996,7 +1997,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_mediumInteger">
-        <div class="location">at line 756</div>
+        <div class="location">at line 758</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>mediumInteger</strong>(string $name)
         </code>
@@ -2038,7 +2039,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_nullable">
-        <div class="location">at line 767</div>
+        <div class="location">at line 769</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>nullable</strong>()
         </code>
@@ -2070,7 +2071,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_renameColumn">
-        <div class="location">at line 782</div>
+        <div class="location">at line 784</div>
         <code>                    void
     <strong>renameColumn</strong>(string $from, string $to)
         </code>
@@ -2117,7 +2118,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_renameForeign">
-        <div class="location">at line 807</div>
+        <div class="location">at line 809</div>
         <code>                    void
     <strong>renameForeign</strong>(string $from, string $to)
         </code>
@@ -2164,7 +2165,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_renameIndex">
-        <div class="location">at line 849</div>
+        <div class="location">at line 851</div>
         <code>                    void
     <strong>renameIndex</strong>(string $from, string $to)
         </code>
@@ -2211,7 +2212,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_renamePrimaryKey">
-        <div class="location">at line 884</div>
+        <div class="location">at line 886</div>
         <code>                    void
     <strong>renamePrimaryKey</strong>(string $from, string $to)
         </code>
@@ -2258,7 +2259,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_renameUnique">
-        <div class="location">at line 919</div>
+        <div class="location">at line 921</div>
         <code>                    void
     <strong>renameUnique</strong>(string $from, string $to)
         </code>
@@ -2305,7 +2306,7 @@ unintentionally during schema changes like dropping or renaming.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_setForeignKeys">
-        <div class="location">at line 953</div>
+        <div class="location">at line 955</div>
         <code>                private    void
     <strong>setForeignKeys</strong>()
         </code>
@@ -2338,7 +2339,7 @@ foreign key.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_setUnique">
-        <div class="location">at line 970</div>
+        <div class="location">at line 972</div>
         <code>                private    void
     <strong>setUnique</strong>(string $column)
         </code>
@@ -2381,7 +2382,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_smallInteger">
-        <div class="location">at line 985</div>
+        <div class="location">at line 987</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>smallInteger</strong>(string $name)
         </code>
@@ -2423,7 +2424,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_softDeletes">
-        <div class="location">at line 996</div>
+        <div class="location">at line 998</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>softDeletes</strong>()
         </code>
@@ -2455,7 +2456,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_string">
-        <div class="location">at line 1008</div>
+        <div class="location">at line 1010</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>string</strong>(string $name, int $length = 255)
         </code>
@@ -2502,7 +2503,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_text">
-        <div class="location">at line 1021</div>
+        <div class="location">at line 1023</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>text</strong>(string $name)
         </code>
@@ -2544,7 +2545,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_time">
-        <div class="location">at line 1033</div>
+        <div class="location">at line 1035</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>time</strong>(string $name)
         </code>
@@ -2586,7 +2587,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_timestamp">
-        <div class="location">at line 1045</div>
+        <div class="location">at line 1047</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>timestamp</strong>(string $name)
         </code>
@@ -2628,7 +2629,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_timestamps">
-        <div class="location">at line 1054</div>
+        <div class="location">at line 1056</div>
         <code>                    void
     <strong>timestamps</strong>()
         </code>
@@ -2660,7 +2661,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_tinyInteger">
-        <div class="location">at line 1065</div>
+        <div class="location">at line 1067</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>tinyInteger</strong>(string $name)
         </code>
@@ -2702,7 +2703,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_unique">
-        <div class="location">at line 1078</div>
+        <div class="location">at line 1080</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>unique</strong>()
         </code>
@@ -2743,7 +2744,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_unsignedInteger">
-        <div class="location">at line 1094</div>
+        <div class="location">at line 1096</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>unsignedInteger</strong>(string $name)
         </code>
@@ -2785,7 +2786,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_unsignedBigInteger">
-        <div class="location">at line 1110</div>
+        <div class="location">at line 1112</div>
         <code>                    <a href="../../../Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a>
     <strong>unsignedBigInteger</strong>(string $name)
         </code>
@@ -2827,7 +2828,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_update">
-        <div class="location">at line 1124</div>
+        <div class="location">at line 1126</div>
         <code>                    void
     <strong>update</strong>()
         </code>
@@ -2859,7 +2860,7 @@ will be applied.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_uuid">
-        <div class="location">at line 1157</div>
+        <div class="location">at line 1159</div>
         <code>                    
     <strong>uuid</strong>(string $name)
         </code>
