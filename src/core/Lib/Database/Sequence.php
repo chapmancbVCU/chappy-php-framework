@@ -34,7 +34,7 @@ class Sequence {
     /**
      * Uses modulo operator to determine sequence.
      *
-     * @param array<string, mixed> $data Data to be saved in new database record.
+     * @param array<string,mixed> $data Data to be saved in new database record.
      * @param array $attributes The attributes used to override default definition 
      * values.
      * @return array An associative array of attributes that will be merged 
