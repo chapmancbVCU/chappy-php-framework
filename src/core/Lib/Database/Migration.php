@@ -18,7 +18,7 @@ abstract class Migration {
     /**
      * Maps column types to blueprint methods.
      *
-     * @var array<string, string>
+     * @var array<string,string>
      */
     protected array $_columnTypesMap = [
         'int' => '_intColumn', 'integer' => '_intColumn', 'tinyint' => '_tinyintColumn', 'smallint' => '_smallintColumn',
