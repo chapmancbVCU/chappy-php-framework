@@ -63,7 +63,7 @@ abstract class Factory {
     abstract protected function definition(): array;
 
     /**
-     * Adds callback to afterCreatingCallbacks array.
+     * Adds callback to `afterCreatingCallbacks` array.
      *
      * @param callable $callback The anonymous callback for afterCreating.
      * @return static
@@ -120,7 +120,7 @@ abstract class Factory {
     }
 
     /**
-     * Configure function used for registering afterCreating callbacks.
+     * Configure function used for registering `afterCreating` callbacks.
      *
      * @return static
      */
@@ -153,7 +153,7 @@ abstract class Factory {
     /**
      * Insert data into the database table.
      *
-     * @param array<string, mixed> $data Data to be saved in new database record.
+     * @param array<string,mixed> $data Data to be saved in new database record.
      * @param string $modelName The name of the model to reference correct table.
      * @return object The model object if save is successful.  Otherwise, we 
      * return null.
@@ -186,7 +186,7 @@ abstract class Factory {
     }
 
     /**
-     * Calls all registered afterCreating callbacks associated with a factory.
+     * Calls all registered `afterCreating` callbacks associated with a factory.
      *
      * @param object $model The parent model
      * @return void
