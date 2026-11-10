@@ -39,9 +39,11 @@ class Blueprint {
      * include an `AFTER column_name` clause to control column order.
      *
      * Example:
+     * ```php
      * $table->string('nickname')->after('last_name');
      * // Produces: ALTER TABLE users ADD COLUMN nickname VARCHAR(255) AFTER last_name;
-     *
+     * ```
+     * 
      * @param string $column The existing column name after which the new column should be added.
      * @return Blueprint Returns the current Blueprint instance for method chaining.
      */
@@ -103,7 +105,7 @@ class Blueprint {
      *
      * @param string $fk The full SQL statement to create the foreign key constraint.
      * This should be a valid `ALTER TABLE` query for adding a foreign key. Example: 
-     * "ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)"
+     * `"ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users(id)"`
      * @return void
      */
     protected function createForeignKey(string $fk): void {
@@ -123,7 +125,7 @@ class Blueprint {
      *
      * Note: Actual SQL index creation occurs in the `create()` method via `createIndex()`.
      *
-     * @param string|array $column The name of the column or an array of columns to index.
+     * @param string|array $index The name of the column or an array of columns to index.
      * If a string is provided, a default index name will be generated.
      * @return void
      */
@@ -515,7 +517,7 @@ class Blueprint {
      * Define a foreign key (MySQL only).
      * 
      * @param string $column The column name to add a foreign key constraint on.
-     * @param string $references The column name in the foreign table being referenced.
+     * @param string $referencedColumn The column name in the foreign table being referenced.
      * @param string $onTable The name of the table being referenced.
      * @param string $onDelete Action on delete (e.g., CASCADE).
      * @param string $onUpdate Action on update (e.g., CASCADE).
