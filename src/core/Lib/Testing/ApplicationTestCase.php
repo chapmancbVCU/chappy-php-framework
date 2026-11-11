@@ -100,7 +100,7 @@ abstract class ApplicationTestCase extends TestCase {
     }
 
     /**
-     * Asserts that a property exists on the View object captured via controllerOutput().
+     * Asserts that a property exists on the View object captured via `controllerOutput()`.
      * Optionally asserts that the value matches.
      *
      * @param string $property The view property to check.
@@ -171,7 +171,7 @@ abstract class ApplicationTestCase extends TestCase {
      * Simulates a DELETE request to a specified URI. This sets the request method
      * to DELETE and runs the matching controller action.
      *
-     * @param string $uri The URI to simulate, e.g., '/model_name/destroy/10'
+     * @param string $uri The URI to simulate, e.g., `'/model_name/destroy/10'`
      * @param array $data The DELETE data.
      * @return \Core\Lib\Testing\TestResponse The test response object
      */
@@ -204,14 +204,16 @@ abstract class ApplicationTestCase extends TestCase {
      * Simulates an HTTP GET request to a given URI by resolving and executing
      * the corresponding controller and action, capturing the output.
      *
-     * Supports URI segments in the form of /controller/action/param1/param2,
+     * Supports URI segments in the form of `/controller/action/param1/param2`,
      * and maps them to a controller class and action method with optional
      * parameters passed positionally.
      *
      * Example:
+     * ```
      * - get('/')                → HomeController::indexAction()
      * - get('/products/show/3') → ProductsController::showAction(3)
-     *
+     * ```
+     * 
      * @param string $uri The URI string, e.g., '/home/index' or '/products/show/3'
      * @return \Core\Lib\Testing\TestResponse The response object containing status and content
      */
