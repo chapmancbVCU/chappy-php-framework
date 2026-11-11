@@ -35,7 +35,7 @@ final class EmailAttachments extends Model {
 
     /**
      * Columns converted when the model is serialized with toArray() or json_encode().
-     * @var array<string, string>
+     * @var array<string,string>
      */
     protected array $casts = [
         'created_at' => 'datetime',
