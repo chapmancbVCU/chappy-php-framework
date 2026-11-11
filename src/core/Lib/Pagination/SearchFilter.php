@@ -8,11 +8,13 @@ namespace Core\Lib\Pagination;
  * generated SQL is safe to concatenate; all values go through bind.
  *
  * Example:
+ * ```php
  *   $filter = SearchFilter::fromRequest($request)
  *       ->where('id != ?', [$currentUserId])
  *       ->searchable(['fname', 'lname', 'email', 'username'])
  *       ->filterable(['acl' => ['Admin', 'Manager', '']])
  *       ->sortable(['created_at', 'lname', 'email'], 'created_at', 'desc');
+ * ```
  */
 class SearchFilter {
     /** Raw request input for the keys this class understands. */
