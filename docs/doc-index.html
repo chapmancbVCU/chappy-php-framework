@@ -211,7 +211,7 @@ the wrapper, a link, an active page, a disabled item, and a gap.</p></dd><dt><a 
 <abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr>::assertDatabaseMissing</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/ApplicationTestCase.html"><abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr></a></em></dt>
                     <dd><p>Assert that no record exists in the specified database table with the given conditions.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_assertViewContains">
 <abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr>::assertViewContains</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/ApplicationTestCase.html"><abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr></a></em></dt>
-                    <dd><p>Asserts that a property exists on the View object captured via controllerOutput().</p></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method_assertDontSee">
+                    <dd><p>Asserts that a property exists on the View object captured via <code>controllerOutput()</code>.</p></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method_assertDontSee">
 <abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr>::assertDontSee</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></em></dt>
                     <dd><p>Asserts that the given text is not present in the response content.</p></dd><dt><a href="Core/Lib/Testing/TestResponse.html#method_assertJson">
 <abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr>::assertJson</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/TestResponse.html"><abbr title="Core\Lib\Testing\TestResponse">TestResponse</abbr></a></em></dt>
@@ -901,7 +901,7 @@ then warnings are presented to the user.</p></dd><dt><a href="Core/Lib/Database/
 <abbr title="Core\Lib\Database\Factories\ProfileImageFactory">ProfileImageFactory</abbr>::definition</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/ProfileImageFactory.html"><abbr title="Core\Lib\Database\Factories\ProfileImageFactory">ProfileImageFactory</abbr></a></em></dt>
                     <dd><p>Define the model's default state.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method_definition">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::definition</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
-                    <dd><p>Definition for UsersFactory.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method_deleted">
+                    <dd><p>Define the model's default state.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method_deleted">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::deleted</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
                     <dd><p>Overrides default value for deleted.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method_definition">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::definition</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
@@ -1831,7 +1831,8 @@ attribute tags in the form section.  Not to be used for inputs of type
 <abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr>::invalid</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></em></dt>
                     <dd><p>Returns new instance with status set to self::INVALID.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_id">
 <abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr>::id</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a></em></dt>
-                    <dd><p>Gets the identifier of the currently authenticated user.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_id">
+                    <dd><p>Retrieves the identifier of the currently authenticated user without
+requiring the full user object to be used by the caller.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_id">
 <abbr title="Core\Lib\Contracts\Guard">Guard</abbr>::id</a>() &mdash; <em>Method in class <a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em></dt>
                     <dd><p>Retrieves the identifier of the currently authenticated user without
 requiring the full user object to be used by the caller.</p></dd><dt>$<a href="Core/Lib/Database/Blueprint.html#property_indexes">
@@ -2042,9 +2043,9 @@ of blackList / whiteList.</p></dd><dt><a href="Core/Traits/HasCasts.html#method_
 <abbr title="Core\Controllers\AuthController">AuthController</abbr>::loginAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/AuthController.html"><abbr title="Core\Controllers\AuthController">AuthController</abbr></a></em></dt>
                     <dd><p>Manages login action processes.</p></dd><dt><a href="Core/Controllers/AuthController.html#method_loginRedirects">
 <abbr title="Core\Controllers\AuthController">AuthController</abbr>::loginRedirects</a>() &mdash; <em>Method in class <a href="Core/Controllers/AuthController.html"><abbr title="Core\Controllers\AuthController">AuthController</abbr></a></em></dt>
-                    <dd><p>Handles messaging and redirects for loginAction based on status of LoginResult.</p></dd><dt><a href="Core/Controllers/AuthController.html#method_logoutAction">
+                    <dd><p>Handles messaging and redirects for <code>loginAction</code> based on status of <code>LoginResult</code>.</p></dd><dt><a href="Core/Controllers/AuthController.html#method_logoutAction">
 <abbr title="Core\Controllers\AuthController">AuthController</abbr>::logoutAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/AuthController.html"><abbr title="Core\Controllers\AuthController">AuthController</abbr></a></em></dt>
-                    <dd><p>Manages logout action for a user.  It checks if a user is currently
+                    <dd><p>Manages <code>logoutAction</code> for a user.  It checks if a user is currently
 logged.  No matter of the result, the user gets redirected to the
 login screen.</p></dd><dt><a href="Core/DB.html#method_lastID">
 <abbr title="Core\DB">DB</abbr>::lastID</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
@@ -2058,17 +2059,17 @@ messages — rather than those being fired from inside the service.</p></dd><dt>
 <abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr>::locked</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/LoginResult.html"><abbr title="Core\Lib\Auth\LoginResult">LoginResult</abbr></a></em></dt>
                     <dd><p>Returns new instance with status set to self::LOCKED.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_login">
 <abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr>::login</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a></em></dt>
-                    <dd><p>Logs the given user in, storing their identifier in the session and
-caching them for the current request.  When $remember is true, a
-remember-me token is also persisted.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_loginUsingId">
+                    <dd><p>Logs the given user in, establishing authentication state for the
+current request and subsequent ones.  When <code>$remember</code> is true,
+implementations should also persist a remember-me token.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_loginUsingId">
 <abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr>::loginUsingId</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a></em></dt>
                     <dd><p>Resolves a user by identifier and logs them in.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_logout">
 <abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr>::logout</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a></em></dt>
-                    <dd><p>Logs the current user out, clearing the session, the cached user,
-and any persisted remember-me token.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_login">
+                    <dd><p>Logs the current user out, clearing authentication state for the
+request and removing any persisted remember-me token.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_login">
 <abbr title="Core\Lib\Contracts\Guard">Guard</abbr>::login</a>() &mdash; <em>Method in class <a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em></dt>
                     <dd><p>Logs the given user in, establishing authentication state for the
-current request and subsequent ones.  When $remember is true,
+current request and subsequent ones.  When <code>$remember</code> is true,
 implementations should also persist a remember-me token.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_loginUsingId">
 <abbr title="Core\Lib\Contracts\Guard">Guard</abbr>::loginUsingId</a>() &mdash; <em>Method in class <a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em></dt>
                     <dd><p>Resolves a user by identifier and logs them in.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_logout">
@@ -2513,7 +2514,7 @@ without depending on it directly.</p></dd><dt>$<a href="Core/Lib/Auth/ModelUserP
 <abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr>::maxAttempts</a>() &mdash; <em>Method in class <a href="Core/Lib/Events/Contracts/QueuePreferences.html"><abbr title="Core\Lib\Events\Contracts\QueuePreferences">QueuePreferences</abbr></a></em></dt>
                     <dd><p>Get the maximum number of attempts for processing this job/listener.</p></dd><dt><a href="Core/Lib/Hashing/BcryptHasher.html#method_make">
 <abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr>::make</a>() &mdash; <em>Method in class <a href="Core/Lib/Hashing/BcryptHasher.html"><abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr></a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_mailer">
+                    <dd><p>Hashes the given plain-text value.</p></dd><dt>$<a href="Core/Lib/Mail/AbstractMailer.html#property_mailer">
 <abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr>#mailer</a> &mdash; <em>Property in class <a href="Core/Lib/Mail/AbstractMailer.html"><abbr title="Core\Lib\Mail\AbstractMailer">AbstractMailer</abbr></a></em></dt>
                     <dd><p>The mailer service object sending the mail.</p></dd><dt><a href="Core/Lib/Mail/Attachments.html#method_mime">
 <abbr title="Core\Lib\Mail\Attachments">Attachments</abbr>::mime</a>() &mdash; <em>Method in class <a href="Core/Lib/Mail/Attachments.html"><abbr title="Core\Lib\Mail\Attachments">Attachments</abbr></a></em></dt>
@@ -2645,12 +2646,15 @@ and fixed precision.</p></dd><dt><a href="Core/FormHelper.html#method_normalizeC
 <abbr title="Core\Lib\Contracts\Hasher">Hasher</abbr>::needsRehash</a>() &mdash; <em>Method in class <a href="Core/Lib/Contracts/Hasher.html"><abbr title="Core\Lib\Contracts\Hasher">Hasher</abbr></a></em></dt>
                     <dd><p>Determines whether a previously computed hash should be re-created,
 for example because the algorithm's configured cost or parameters
-have since changed.  Typically checked after a successful verify()
+have since changed.  Typically checked after a successful <code>verify()</code>
 so an out-of-date hash can be transparently upgraded.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_nullable">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::nullable</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Modifies last column added to the schema and make it nullable.</p></dd><dt><a href="Core/Lib/Hashing/BcryptHasher.html#method_needsRehash">
 <abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr>::needsRehash</a>() &mdash; <em>Method in class <a href="Core/Lib/Hashing/BcryptHasher.html"><abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_normalizeParamLogMode">
+                    <dd><p>Determines whether a previously computed hash should be re-created,
+for example because the algorithm's configured cost or parameters
+have since changed.  Typically checked after a successful <code>verify()</code>
+so an out-of-date hash can be transparently upgraded.</p></dd><dt><a href="Core/Lib/Logging/Redactor.html#method_normalizeParamLogMode">
 <abbr title="Core\Lib\Logging\Redactor">Redactor</abbr>::normalizeParamLogMode</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Redactor.html"><abbr title="Core\Lib\Logging\Redactor">Redactor</abbr></a></em></dt>
                     <dd><p>Normalizes DB_LOG_PARAMS to a safe, supported value.</p></dd><dt><a href="Core/Lib/Notifications/Channels/DatabaseChannel.html#method_name">
 <abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr>::name</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Channels/DatabaseChannel.html"><abbr title="Core\Lib\Notifications\Channels\DatabaseChannel">DatabaseChannel</abbr></a></em></dt>
@@ -2730,7 +2734,7 @@ instantiated.</p></dd><dt><a href="Core/Controllers/AdmindashboardController.htm
 <abbr title="Core\Controllers\AdmindashboardController">AdmindashboardController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controllers/AdmindashboardController.html"><abbr title="Core\Controllers\AdmindashboardController">AdmindashboardController</abbr></a></em></dt>
                     <dd><p>Runs when the object is constructed.</p></dd><dt><a href="Core/Controllers/AuthController.html#method_onConstruct">
 <abbr title="Core\Controllers\AuthController">AuthController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controllers/AuthController.html"><abbr title="Core\Controllers\AuthController">AuthController</abbr></a></em></dt>
-                    <dd><p>Internal version of this controller uses internal layout.</p></dd><dt><a href="Core/Controllers/HomeController.html#method_onConstruct">
+                    <dd><p>Internal version of this controller uses <code>internal</code> layout.</p></dd><dt><a href="Core/Controllers/HomeController.html#method_onConstruct">
 <abbr title="Core\Controllers\HomeController">HomeController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controllers/HomeController.html"><abbr title="Core\Controllers\HomeController">HomeController</abbr></a></em></dt>
                     <dd><p>Internal version of this controller uses internal layout.</p></dd><dt><a href="Core/Controllers/ProfileController.html#method_onConstruct">
 <abbr title="Core\Controllers\ProfileController">ProfileController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controllers/ProfileController.html"><abbr title="Core\Controllers\ProfileController">ProfileController</abbr></a></em></dt>
@@ -3078,7 +3082,7 @@ trait and returns JSON instead of rendering a view.</p></dd><dt><a href="Console
 <abbr title="Core\Controllers\AuthController">AuthController</abbr>::resetPasswordAction</a>() &mdash; <em>Method in class <a href="Core/Controllers/AuthController.html"><abbr title="Core\Controllers\AuthController">AuthController</abbr></a></em></dt>
                     <dd><p>Lets a user whose account is flagged for a password reset set a new
 password.  Only works for the user recorded by
-AuthService::beginPasswordReset() during login in this session.</p></dd><dt><a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a> &mdash; <em>Class in namespace <a href="Core/Controllers.html">Core\Controllers</a></em></dt>
+<code>AuthService::beginPasswordReset()</code> during login in this session.</p></dd><dt><a href="Core/Controllers/RestrictedController.html"><abbr title="Core\Controllers\RestrictedController">RestrictedController</abbr></a> &mdash; <em>Class in namespace <a href="Core/Controllers.html">Core\Controllers</a></em></dt>
                     <dd><p>Implements support for the Restricted controller.  Interactions that the
 user performs that are restricted will result in a relevant view being
 rendered.</p></dd><dt><a href="Core/DB.html#method_results">
@@ -3095,8 +3099,10 @@ element.  Compatible with radio button groups.</p></dd><dt><a href="Core/Lib/Aut
                     <dd><p>Retrieves a principal by its unique identifier.</p></dd><dt><a href="Core/Lib/Auth/ModelUserProvider.html#method_retrieveByCredentials">
 <abbr title="Core\Lib\Auth\ModelUserProvider">ModelUserProvider</abbr>::retrieveByCredentials</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/ModelUserProvider.html"><abbr title="Core\Lib\Auth\ModelUserProvider">ModelUserProvider</abbr></a></em></dt>
                     <dd><p>Retrieves a principal matching the given credentials, without
-verifying them.  Looks the user up by username only; password
-verification is performed separately by validateCredentials().</p></dd><dt><a href="Core/Lib/Auth/RememberMeStore.html"><abbr title="Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Auth.html">Core\Lib\Auth</a></em></dt>
+verifying them.  Implementations should look the principal up by
+its identifying credential(s) only (e.g. username) and must not
+treat the password as part of the lookup; verification is the
+responsibility of validateCredentials().</p></dd><dt><a href="Core/Lib/Auth/RememberMeStore.html"><abbr title="Core\Lib\Auth\RememberMeStore">RememberMeStore</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Auth.html">Core\Lib\Auth</a></em></dt>
                     <dd><p>Owns remember-me persistence: minting the cookie token and its hashed
 user_sessions row, and tearing both down on logout.</p></dd><dt><a href="Core/Lib/Auth/RememberToken.html"><abbr title="Core\Lib\Auth\RememberToken">RememberToken</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Auth.html">Core\Lib\Auth</a></em></dt>
                     <dd><p>Generates and hashes remember-me tokens.  The raw token lives only in
@@ -3814,7 +3820,8 @@ to App\Models\Users.</p></dd><dt>$<a href="Core/Lib/Auth/SessionGuard.html#prope
                     <dd><p>The resolved user for the current request, or null if none is
 authenticated or resolution has not yet occurred.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_user">
 <abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr>::user</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a></em></dt>
-                    <dd><p>Resolves the current user from the session once, then caches it.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_user">
+                    <dd><p>Retrieves the currently authenticated user.  Implementations
+typically resolve the user once per request and cache the result.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_user">
 <abbr title="Core\Lib\Contracts\Guard">Guard</abbr>::user</a>() &mdash; <em>Method in class <a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em></dt>
                     <dd><p>Retrieves the currently authenticated user.  Implementations
 typically resolve the user once per request and cache the result.</p></dd><dt><a href="Core/Lib/Contracts/UserProvider.html"><abbr title="Core\Lib\Contracts\UserProvider">UserProvider</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Contracts.html">Core\Lib\Contracts</a></em></dt>
@@ -3981,10 +3988,12 @@ json files.</p></dd><dt>$<a href="Core/Controller.html#property_view">
 class.</p></dd><dt><a href="Core/Exceptions/View/ViewNotFoundException.html"><abbr title="Core\Exceptions\View\ViewNotFoundException">ViewNotFoundException</abbr></a> &mdash; <em>Class in namespace <a href="Core/Exceptions/View.html">Core\Exceptions\View</a></em></dt>
                     <dd><p>Class to handle events related to views not being found.</p></dd><dt><a href="Core/Lib/Auth/ModelUserProvider.html#method_validateCredentials">
 <abbr title="Core\Lib\Auth\ModelUserProvider">ModelUserProvider</abbr>::validateCredentials</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/ModelUserProvider.html"><abbr title="Core\Lib\Auth\ModelUserProvider">ModelUserProvider</abbr></a></em></dt>
-                    <dd><p>Verifies that the supplied password matches the principal's stored
-hash.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_validate">
+                    <dd><p>Verifies that the given credentials are valid for the given
+principal, typically by checking the supplied password against the
+principal's stored hash.</p></dd><dt><a href="Core/Lib/Auth/SessionGuard.html#method_validate">
 <abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr>::validate</a>() &mdash; <em>Method in class <a href="Core/Lib/Auth/SessionGuard.html"><abbr title="Core\Lib\Auth\SessionGuard">SessionGuard</abbr></a></em></dt>
-                    <dd><p>Checks credentials WITHOUT logging anyone in.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_validate">
+                    <dd><p>Validates a set of credentials without logging the user in or
+modifying any authentication state.</p></dd><dt><a href="Core/Lib/Contracts/Guard.html#method_validate">
 <abbr title="Core\Lib\Contracts\Guard">Guard</abbr>::validate</a>() &mdash; <em>Method in class <a href="Core/Lib/Contracts/Guard.html"><abbr title="Core\Lib\Contracts\Guard">Guard</abbr></a></em></dt>
                     <dd><p>Validates a set of credentials without logging the user in or
 modifying any authentication state.</p></dd><dt><a href="Core/Lib/Contracts/Hasher.html#method_verify">
@@ -4003,7 +4012,7 @@ principal's stored hash.</p></dd><dt><a href="Core/Lib/Events/Contracts/QueuePre
 <abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr>::validateSize</a>() &mdash; <em>Method in class <a href="Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Validates file size and sets error message if file is too large.</p></dd><dt><a href="Core/Lib/Hashing/BcryptHasher.html#method_verify">
 <abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr>::verify</a>() &mdash; <em>Method in class <a href="Core/Lib/Hashing/BcryptHasher.html"><abbr title="Core\Lib\Hashing\BcryptHasher">BcryptHasher</abbr></a></em></dt>
-                    <dd></dd><dt><a href="Core/Lib/Logging/Logger.html#method_verifyLoggingLevel">
+                    <dd><p>Verifies that a plain-text value matches a previously computed hash.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_verifyLoggingLevel">
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::verifyLoggingLevel</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
                     <dd><p>Tests if the PSR-3 logging level that is provided is valid</p></dd><dt><a href="Core/Lib/Notifications/Notification.html#method_via">
 <abbr title="Core\Lib\Notifications\Notification">Notification</abbr>::via</a>() &mdash; <em>Method in class <a href="Core/Lib/Notifications/Notification.html"><abbr title="Core\Lib\Notifications\Notification">Notification</abbr></a></em></dt>
@@ -4194,12 +4203,11 @@ class, and notifiable id) to aid logging and retries.</p></dd><dt><a href="Core/
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Constructor for Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Factories/ProfileImageFactory.html#method___construct">
 <abbr title="Core\Lib\Database\Factories\ProfileImageFactory">ProfileImageFactory</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/ProfileImageFactory.html"><abbr title="Core\Lib\Database\Factories\ProfileImageFactory">ProfileImageFactory</abbr></a></em></dt>
-                    <dd><p>Creates new instance of this factory.  You must provide <code>userId</code>
-to constructor.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method___construct">
+                    <dd><p>Constructor for Faker class.  Should be called by any child class that
+overrides this constructor.</p></dd><dt><a href="Core/Lib/Database/Factories/UserFactory.html#method___construct">
 <abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factories/UserFactory.html"><abbr title="Core\Lib\Database\Factories\UserFactory">UserFactory</abbr></a></em></dt>
-                    <dd><p>Sets the model to the application's configured user model so created
-records are instances of <code>App\Models\Users</code> (or whatever
-<code>auth.user_model</code> points to), not the base User class.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method___construct">
+                    <dd><p>Constructor for Faker class.  Should be called by any child class that
+overrides this constructor.</p></dd><dt><a href="Core/Lib/Database/Factory.html#method___construct">
 <abbr title="Core\Lib\Database\Factory">Factory</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Factory.html"><abbr title="Core\Lib\Database\Factory">Factory</abbr></a></em></dt>
                     <dd><p>Constructor for Faker class.  Should be called by any child class that
 overrides this constructor.</p></dd><dt>$<a href="Core/Lib/Database/Migration.html#property__db">

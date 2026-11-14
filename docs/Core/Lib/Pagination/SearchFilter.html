@@ -100,12 +100,12 @@
             <div class="description">
             <p><p>Turns request input (search term, filters, sort) into find() params using
 whitelists only. Column names never come from user input directly, so the
-generated SQL is safe to concatenate; all values go through bind.</p></p>            <p><p>Example:
-$filter = SearchFilter::fromRequest($request)
--&gt;where('id != ?', [$currentUserId])
--&gt;searchable(['fname', 'lname', 'email', 'username'])
--&gt;filterable(['acl' =&gt; ['Admin', 'Manager', '']])
--&gt;sortable(['created_at', 'lname', 'email'], 'created_at', 'desc');</p></p>        </div>
+generated SQL is safe to concatenate; all values go through bind.</p></p>            <p><p>Example:</p>
+<pre><code class="language-php">  $filter = SearchFilter::fromRequest($request)
+      -&gt;where('id != ?', [$currentUserId])
+      -&gt;searchable(['fname', 'lname', 'email', 'username'])
+      -&gt;filterable(['acl' =&gt; ['Admin', 'Manager', '']])
+      -&gt;sortable(['created_at', 'lname', 'email'], 'created_at', 'desc');</code></pre></p>        </div>
             
         
     
@@ -452,7 +452,7 @@ sorted by that column. Resets to page 1.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 49</div>
+        <div class="location">at line 51</div>
         <code>                    
     <strong>__construct</strong>(array $input = [])
         </code>
@@ -486,7 +486,7 @@ sorted by that column. Resets to page 1.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_fromRequest">
-        <div class="location">at line 62</div>
+        <div class="location">at line 64</div>
         <code>        static            <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>fromRequest</strong>(object $request)
         </code>
@@ -532,7 +532,7 @@ the raw values before whitelist matching and searching.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_decode">
-        <div class="location">at line 70</div>
+        <div class="location">at line 72</div>
         <code>        static    protected        array
     <strong>decode</strong>(array $input)
         </code>
@@ -574,7 +574,7 @@ the raw values before whitelist matching and searching.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_where">
-        <div class="location">at line 86</div>
+        <div class="location">at line 88</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>where</strong>(string $condition, array $bind = [])
         </code>
@@ -621,7 +621,7 @@ the raw values before whitelist matching and searching.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_searchable">
-        <div class="location">at line 93</div>
+        <div class="location">at line 95</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>searchable</strong>(array $columns)
         </code>
@@ -664,7 +664,7 @@ the raw values before whitelist matching and searching.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_filterable">
-        <div class="location">at line 102</div>
+        <div class="location">at line 104</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>filterable</strong>(array $filters)
         </code>
@@ -708,7 +708,7 @@ the raw values before whitelist matching and searching.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_filterUsing">
-        <div class="location">at line 120</div>
+        <div class="location">at line 122</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>filterUsing</strong>(string $param, array|null $allowed, <a target="_blank" rel="noopener" href="https://www.php.net/Closure">Closure</a> $build)
         </code>
@@ -761,7 +761,7 @@ and returns [sql, bind]. Use for anything other than &quot;column = value&quot;.
             </div>
                     <div class="method-item">
                     <h3 id="method_filterJsonContains">
-        <div class="location">at line 134</div>
+        <div class="location">at line 136</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>filterJsonContains</strong>(string $column, array|null $allowed = null)
         </code>
@@ -810,7 +810,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sortable">
-        <div class="location">at line 143</div>
+        <div class="location">at line 145</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>sortable</strong>(array $columns, string $default = &#039;&#039;, string $defaultDir = &#039;asc&#039;)
         </code>
@@ -863,7 +863,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_params">
-        <div class="location">at line 151</div>
+        <div class="location">at line 153</div>
         <code>                    <a href="../../../Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a>
     <strong>params</strong>(string $search = &#039;q&#039;, string $sort = &#039;sort&#039;, string $dir = &#039;dir&#039;)
         </code>
@@ -915,7 +915,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_term">
-        <div class="location">at line 163</div>
+        <div class="location">at line 165</div>
         <code>                    string
     <strong>term</strong>()
         </code>
@@ -947,7 +947,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_activeFilters">
-        <div class="location">at line 169</div>
+        <div class="location">at line 171</div>
         <code>                    array
     <strong>activeFilters</strong>()
         </code>
@@ -979,7 +979,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sortColumn">
-        <div class="location">at line 189</div>
+        <div class="location">at line 191</div>
         <code>                    string
     <strong>sortColumn</strong>()
         </code>
@@ -1011,7 +1011,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sortDirection">
-        <div class="location">at line 195</div>
+        <div class="location">at line 197</div>
         <code>                    string
     <strong>sortDirection</strong>()
         </code>
@@ -1043,7 +1043,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_isActive">
-        <div class="location">at line 204</div>
+        <div class="location">at line 206</div>
         <code>                    bool
     <strong>isActive</strong>()
         </code>
@@ -1075,7 +1075,7 @@ so &quot;Admin&quot; will not match &quot;SuperAdmin&quot;.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_findParams">
-        <div class="location">at line 216</div>
+        <div class="location">at line 218</div>
         <code>                    array
     <strong>findParams</strong>()
         </code>
@@ -1108,7 +1108,7 @@ so the same array works for both the count and the page query.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toArray">
-        <div class="location">at line 258</div>
+        <div class="location">at line 260</div>
         <code>                    array
     <strong>toArray</strong>()
         </code>
@@ -1141,7 +1141,7 @@ for filters/query so empty values encode as {} instead of [].</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_query">
-        <div class="location">at line 275</div>
+        <div class="location">at line 277</div>
         <code>                    array
     <strong>query</strong>()
         </code>
@@ -1173,7 +1173,7 @@ for filters/query so empty values encode as {} instead of [].</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_sortUrl">
-        <div class="location">at line 291</div>
+        <div class="location">at line 293</div>
         <code>                    string
     <strong>sortUrl</strong>(string $column, string $path = &#039;&#039;)
         </code>
@@ -1221,7 +1221,7 @@ sorted by that column. Resets to page 1.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_escapeLike">
-        <div class="location">at line 298</div>
+        <div class="location">at line 300</div>
         <code>            protected        string
     <strong>escapeLike</strong>(string $value)
         </code>
@@ -1263,7 +1263,7 @@ sorted by that column. Resets to page 1.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_isSafeColumn">
-        <div class="location">at line 303</div>
+        <div class="location">at line 305</div>
         <code>            protected        bool
     <strong>isSafeColumn</strong>(mixed $column)
         </code>
