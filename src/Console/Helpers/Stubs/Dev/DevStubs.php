@@ -57,7 +57,8 @@ class DevStubs {
     }
   ],
   "require-dev": {
-    "psy/psysh": "^0.12.20"
+    "psy/psysh": "^0.12.20",
+    "phpstan/phpstan": "^2.1"
   }
 }
 TXT;
@@ -105,7 +106,8 @@ TXT;
       "@setup"
     ],
     "require-dev": {
-      "psy/psysh": "^0.12.20"
+      "psy/psysh": "^0.12.20",
+      "phpstan/phpstan": "^2.1"
     }
   }
 }
