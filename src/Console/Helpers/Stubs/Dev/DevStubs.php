@@ -85,7 +85,7 @@ TXT;
   ],
   "require": {
     "php": ">=8.4",
-      "chappy-php/chappy-php-framework": "^3.0"
+      "chappy-php/chappy-php-framework": "^4.0"
   },
   "autoload": {
     "psr-4": {
