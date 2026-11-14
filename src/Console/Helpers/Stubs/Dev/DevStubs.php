@@ -40,6 +40,7 @@ class DevStubs {
     "setup": [
       "@php vendor/chappy-php/chappy-php-framework/src/scripts/setup.php"
     ],
+    "analyse": "phpstan analyse --memory-limit=1G",
     "post-install-cmd": [
       "@setup"
     ],
@@ -99,6 +100,7 @@ TXT;
     "setup": [
       "@php vendor/chappy-php/chappy-php-framework/src/scripts/setup.php"
     ],
+    "analyse": "phpstan analyse --memory-limit=1G",
     "post-install-cmd": [
       "@setup"
     ],
