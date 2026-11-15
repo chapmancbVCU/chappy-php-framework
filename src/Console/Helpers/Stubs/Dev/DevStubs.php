@@ -153,7 +153,7 @@ TXT;
      *
      * @return string The file's contents.
      */
-    public function toggleComposerWin(): string {
+    public static function toggleComposerWin(): string {
         return <<<BAT
 @echo off
 setlocal

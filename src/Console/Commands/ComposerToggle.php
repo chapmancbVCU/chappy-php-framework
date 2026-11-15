@@ -21,7 +21,7 @@ class ComposerToggle extends ConsoleCommand {
         $this->setName('dev:composer')
             ->setDescription('Generates tools to allow framework developers to switch between local and remote repo.')
             ->setHelp('php console dev:composer')
-            ->addOption('react', null, InputOption::VALUE_NONE, 'React version');
+            ->addOption('win', null, InputOption::VALUE_NONE, 'Windows .bat version');
     }
 
     /**
@@ -35,6 +35,10 @@ class ComposerToggle extends ConsoleCommand {
             console_alert("Cannot deploy this tool in a production environment");
             return Command::SUCCESS;
         }
-        return DevTools::deployComposerToggle();
+
+        $win = $this->getOption('win');
+        DevTools::composerFiles();
+        if($win) return DevTools::toggleWin();
+        return DevTools::toggle();
     }
 }

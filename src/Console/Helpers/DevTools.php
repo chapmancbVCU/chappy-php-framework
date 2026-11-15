@@ -14,7 +14,7 @@ class DevTools extends Console {
      *
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function deployComposerToggle(): int {
+    public static function composerFiles(): int {
         Tools::writeFile(
             CHAPPY_BASE_PATH.DS.'composer_local.txt',
             DevStubs::composerLocal(),
@@ -27,11 +27,23 @@ class DevTools extends Console {
             'composer_remote.txt'
         );
 
-        Tools::writeFile(
+        
+        return Command::SUCCESS;
+    }
+
+    public static function toggle(): int {
+        return Tools::writeFile(
             CHAPPY_BASE_PATH.DS.'toggle-composer.sh',
             DevStubs::toggleComposer(),
             'toggle-composer.sh'
         );
-        return Command::SUCCESS;
+    }
+
+    public static function toggleWin(): int {
+        return Tools::writeFile(
+            CHAPPY_BASE_PATH.DS.'toggle-composer.bat',
+            DevStubs::toggleComposerWin(),
+            'toggle-composer.bat'
+        );
     }
 }
