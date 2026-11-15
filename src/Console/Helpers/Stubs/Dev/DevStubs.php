@@ -147,4 +147,44 @@ echo "✅ composer.json has been toggled."
 
 TXT;
     }
+
+    /**
+     * Generates toggle-composer.bat file.
+     *
+     * @return string The file's contents.
+     */
+    public function toggleComposerWin(): string {
+        return <<<BAT
+@echo off
+setlocal
+
+rem Paths
+set "LOCAL=composer_local.txt"
+set "REMOTE=composer_remote.txt"
+set "ACTIVE=composer.json"
+
+rem Detect current mode (fc returns 0 when files are identical)
+fc /b "%ACTIVE%" "%LOCAL%" >nul 2>&1
+if not errorlevel 1 (
+    echo Switching to REMOTE version of composer.json...
+    copy /y "%REMOTE%" "%ACTIVE%" >nul
+    goto done
+)
+
+fc /b "%ACTIVE%" "%REMOTE%" >nul 2>&1
+if not errorlevel 1 (
+    echo Switching to LOCAL version of composer.json...
+    copy /y "%LOCAL%" "%ACTIVE%" >nul
+    goto done
+)
+
+echo Current composer.json does not match either template.
+echo Defaulting to LOCAL version...
+copy /y "%LOCAL%" "%ACTIVE%" >nul
+
+:done
+echo composer.json has been toggled.
+endlocal
+BAT;
+    }
 }
