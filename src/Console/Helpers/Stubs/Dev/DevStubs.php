@@ -106,11 +106,11 @@ TXT;
     ],
     "post-create-project-cmd": [
       "@setup"
-    ],
-    "require-dev": {
-      "psy/psysh": "^0.12.20",
-      "phpstan/phpstan": "^2.1"
-    }
+    ]
+  },
+  "require-dev": {
+    "psy/psysh": "^0.12.20",
+    "phpstan/phpstan": "^2.1"
   }
 }
 TXT;
