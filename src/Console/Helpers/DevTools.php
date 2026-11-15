@@ -9,8 +9,7 @@ use Symfony\Component\Console\Command\Command;
  */
 class DevTools extends Console {
     /**
-     * Generates template files and script for toggling composer config 
-     * between local and remote.
+     * Generates template files for toggle composer development tool.
      *
      * @return int A value that indicates success, invalid, or failure.
      */
@@ -27,10 +26,14 @@ class DevTools extends Console {
             'composer_remote.txt'
         );
 
-        
         return Command::SUCCESS;
     }
 
+    /**
+     * Writes the Linux/MacOs version of toggle script to a file.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function toggle(): int {
         return Tools::writeFile(
             CHAPPY_BASE_PATH.DS.'toggle-composer.sh',
@@ -39,6 +42,11 @@ class DevTools extends Console {
         );
     }
 
+    /**
+     * Writes the Windows .bat version of the toggle script to a file.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function toggleWin(): int {
         return Tools::writeFile(
             CHAPPY_BASE_PATH.DS.'toggle-composer.bat',
