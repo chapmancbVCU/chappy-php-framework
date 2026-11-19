@@ -120,7 +120,7 @@ PHP;
         $seederOption = $input->getOption('seeder');
         if($seederOption) {
             $message = "Enter name for seeder class.";
-            $attributes = ['required', 'noReservedKeywords', 'noSpecialChars', 'max:100', 'classExists:'.self::SEEDER_NAMESPACE];
+            $attributes = ['required', 'notReservedKeyword', 'noSpecialChars', 'max:100', 'classExists:'.self::SEEDER_NAMESPACE];
             self::argOptionValidate($seederOption, $message, $question, $attributes, true);
         }
         $classname = self::SEEDER_NAMESPACE.$seederOption;
