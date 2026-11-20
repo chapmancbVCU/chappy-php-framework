@@ -29,11 +29,11 @@ class DevStubs {
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
-      "Config\\": "config/",
-      "Database\\Seeders\\": "database/seeders/",
-      "Database\\Migrations\\": "database/migrations/",
-      "Database\\Factories\\": "database/factories/"
+      "App\\\\": "app/",
+      "Config\\\\": "config/",
+      "Database\\\\Seeders\\\\": "database/seeders/",
+      "Database\\\\Migrations\\\\": "database/migrations/",
+      "Database\\\\Factories\\\\": "database/factories/"
     }
   },
   "scripts": {
@@ -89,11 +89,11 @@ TXT;
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
-      "Config\\": "config/",
-      "Database\\Seeders\\": "database/seeders/",
-      "Database\\Migrations\\": "database/migrations/",
-      "Database\\Factories\\": "database/factories/"
+      "App\\\\": "app/",
+      "Config\\\\": "config/",
+      "Database\\\\Seeders\\\\": "database/seeders/",
+      "Database\\\\Migrations\\\\": "database/migrations/",
+      "Database\\\\Factories\\\\": "database/factories/"
     }
   },
   "scripts": {
