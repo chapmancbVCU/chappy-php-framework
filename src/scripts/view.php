@@ -24,9 +24,10 @@ if(!function_exists('initVite')) {
     function initVite(bool $isDev) {
         $html = " ";
         if ($isDev) {
+            $dev = htmlspecialchars(\Core\Lib\React\Vite::devServerUrl(), ENT_QUOTES, 'UTF-8');
             $html .= "<!-- React Fast Refresh preamble -->";
             $html .= "<script type=\"module\">
-                import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+                import RefreshRuntime from '{$dev}/@react-refresh'
                 RefreshRuntime.injectIntoGlobalHook(window)
                 window.\$RefreshReg$ = () => {}
                 window.\$RefreshSig$ = () => (type) => type
@@ -34,8 +35,8 @@ if(!function_exists('initVite')) {
             </script>";
 
             $html .= "<!-- Vite HMR client + your React entry from DEV SERVER -->";
-            $html .= "<script type=\"module\" src=\"http://localhost:5173/@vite/client\"></script>";
-            $html .= "<script type=\"module\" src=\"http://localhost:5173/resources/js/app.jsx\"></script>";
+            $html .= "<script type=\"module\" src=\"{$dev}/@vite/client\"></script>";
+            $html .= "<script type=\"module\" src=\"{$dev}/resources/js/app.jsx\"></script>";
         } else {
             $html .= "<!-- PRODUCTION: hashed assets from manifest -->";
             $html .= "<link rel=\"stylesheet\" href=\"".vite('resources/css/app.css')."\">";

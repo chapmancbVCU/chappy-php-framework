@@ -229,9 +229,8 @@ if (!function_exists('vite')) {
             }
         }
 
-        $env        = env('APP_ENV', 'production');
         $publicBase = rtrim(env('APP_DOMAIN', '/'), '/'); // e.g. '/', 'http://localhost:8000'
-        $devServer  = 'http://localhost:5173';
+        $devServer  = \Core\Lib\React\Vite::devServerUrl();
 
         // If manifest exists and has this asset key — always use it
         if (is_array($manifest) && isset($manifest[$asset]['file'])) {
@@ -239,8 +238,8 @@ if (!function_exists('vite')) {
             return $publicBase . '/public/build/' . ltrim($file, '/');
         }
 
-        // In dev-like envs, fall back to dev server
-        if (in_array($env, ['local', 'dev', 'development'], true)) {
+        // In dev-like envs with the dev server running, fall back to it
+        if (\Core\Lib\React\Vite::isDev()) {
             return rtrim($devServer, '/') . '/' . ltrim($asset, '/');
         }
 

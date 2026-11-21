@@ -23,23 +23,71 @@ final class Vite
     }
 
     /**
-     * Simple env-based dev check.
+     * Fallback dev server URL used when no hot file is present.
+     */
+    public const DEFAULT_DEV_SERVER = 'http://localhost:5173';
+
+    /**
+     * Absolute path to the "hot" file written by the chappyHot Vite plugin
+     * while `npm run dev` is running.  It contains the dev server's public URL.
+     *
+     * @return string Path to the hot file.
+     */
+    public static function hotFile(): string {
+        $base = defined('CHAPPY_BASE_PATH') ? CHAPPY_BASE_PATH : dirname(__DIR__, 5);
+        return $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'hot';
+    }
+
+    /**
+     * Determines if the Vite dev server is running by checking for the hot file.
+     *
+     * @return bool True if the hot file exists, otherwise false.
+     */
+    public static function isRunningHot(): bool {
+        return is_file(self::hotFile());
+    }
+
+    /**
+     * Returns the dev server URL without a trailing slash.
+     *
+     * Resolution order: hot file contents, VITE_DEV_SERVER env variable,
+     * then DEFAULT_DEV_SERVER.
+     *
+     * @return string The dev server URL.
+     */
+    public static function devServerUrl(): string {
+        if (self::isRunningHot()) {
+            $url = trim((string) @file_get_contents(self::hotFile()));
+            if ($url !== '') {
+                return rtrim($url, '/');
+            }
+        }
+
+        return rtrim((string) env('VITE_DEV_SERVER', self::DEFAULT_DEV_SERVER), '/');
+    }
+
+    /**
+     * Dev check.  Dev assets are used only when APP_ENV is a dev-like
+     * environment AND the Vite dev server is running (hot file exists).
+     * Otherwise the built assets from the manifest are used.
      *
      * @return bool
      */
     public static function isDev(): bool {
         $env = env('APP_ENV', 'production');
-        return in_array($env, ['local', 'dev', 'development'], true);
+        return in_array($env, ['local', 'dev', 'development'], true) && self::isRunningHot();
     }
 
     /**
      * Check if Vite dev server is reachable.
      *
-     * @param string $devBase URL for dev server.
+     * @deprecated 4.0.4 Use Vite::isRunningHot() instead.  This performs a
+     * network request on every call.
+     * @param string|null $devBase URL for dev server.  Defaults to devServerUrl().
      * @return bool True if running, otherwise false.
      */
-    public static function viteIsRunning(string $devBase = 'http://localhost:5173'): bool {
-        $url = rtrim($devBase, '/') . '/@vite/client';
+    public static function viteIsRunning(?string $devBase = null): bool {
+        $url = rtrim($devBase ?? self::devServerUrl(), '/') . '/@vite/client';
         $ctx = stream_context_create(['http' => ['method' => 'HEAD', 'timeout' => 0.25]]);
         $fh = @fopen($url, 'r', false, $ctx);
         if ($fh) { fclose($fh); return true; }
@@ -111,7 +159,6 @@ HTML;
         $base = defined('CHAPPY_BASE_PATH')
             ? CHAPPY_BASE_PATH
             : dirname(__DIR__, 5); // fallback to climb out of vendor
-        dump($base);
         $manifestCandidates = [
             $base . '/public/build/.vite/manifest.json',
             $base . '/public/build/manifest.json',
@@ -167,20 +214,17 @@ HTML;
 
     /**
      * Render script/link tags for a Vite entry.
-     * - In dev (env=local/dev & dev server up), inject HMR client + raw module URL.
-     * - In prod (APP_ENV=production), always use manifest-based assets.
+     * - In dev (env=local/dev & hot file present), inject HMR client + raw module URL.
+     * - Otherwise use manifest-based assets.
      *
      * @param string $entry Relative path from project root (e.g. 'resources/js/app.jsx')
-     * @param string $devServer URL for dev server.
+     * @param string|null $devServer URL for dev server.  Defaults to devServerUrl().
      * @return string Script/link tags for a Vite entry.
      */
-    public static function tags(string $entry, string $devServer = 'http://localhost:5173'): string
+    public static function tags(string $entry, ?string $devServer = null): string
     {
-        $env = env('APP_ENV', 'production');
-
-        // In dev-like envs, always use the dev server
-        if (in_array($env, ['local', 'dev', 'development'], true)) {
-            return self::devTags($entry, $devServer);
+        if (self::isDev()) {
+            return self::devTags($entry, $devServer ?? self::devServerUrl());
         }
 
         // Otherwise, use built assets
