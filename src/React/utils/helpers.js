@@ -25,6 +25,7 @@ const vars = {
     VITE_SET_PW_MIN_LENGTH: import.meta.env.VITE_SET_PW_MIN_LENGTH,
     VITE_SET_PW_MAX_LENGTH: import.meta.env.VITE_SET_PW_MAX_LENGTH,
     VITE_STORAGE_PREFIX: import.meta.env.VITE_STORAGE_PREFIX,
+    VITE_PROFILE_IMAGE_DIRECTORY: import.meta.env.VITE_PROFILE_IMAGE_DIRECTORY
 }
 
 /**
@@ -48,6 +49,15 @@ export function documentTitle(title) {
     document.title = title;
     return () => { document.title = prev; };
   }, [title]);
+}
+
+/**
+ * Retrieves publicly available profile image. 
+ * @param {string} path Path to the profile image.
+ * @returns The full path to the asset.
+ */
+export function profileImg(path) {
+    return env('VITE_PROFILE_IMAGE_DIRECTORY') + path;
 }
 
 /**
