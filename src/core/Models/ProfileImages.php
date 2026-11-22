@@ -22,7 +22,7 @@ final class ProfileImages extends Model {
      * Deleted value, defaults to 0.
      * @var int
      */
-    public $deleted = 0;
+    public int $deleted = 0;
 
     /**
      * ID for this image.
@@ -34,13 +34,13 @@ final class ProfileImages extends Model {
      * Max allowed size.
      * @var int
      */
-    protected static $maxAllowedFileSize = 5242880;
+    protected static int $maxAllowedFileSize = 5242880;
 
     /**
      * Name of the file.
      * @var string
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * Soft delete mode set to true.
@@ -52,7 +52,7 @@ final class ProfileImages extends Model {
      * Sorted position.
      * @var int
      */
-    public $sort;
+    public int $sort;
 
     /**
      * Name of the table.
@@ -64,21 +64,21 @@ final class ProfileImages extends Model {
      * Upload path.
      * @var string
      */
-    protected static $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'profile_images'.DS.'user_';
+    protected static string $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'profile_images'.DS.'user_';
 
     /**
      * The URL for the profile image.
      *
      * @var string
      */
-    public $url;
+    public ?string $url = null;
 
     /**
      * ID of user associated with image.
      *
      * @var int
      */
-    public $user_id;
+    public int $user_id;
 
     /**
      * Implements beforeSave function described in Model parent class. 
