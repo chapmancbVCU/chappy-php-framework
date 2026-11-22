@@ -153,6 +153,19 @@ if (!function_exists('now')) {
     }
 }
 
+if (!function_exists('profileImg')) {
+    /**
+     * Retrieves publicly available profile image. 
+     *
+     * @param string $path Path to the profile image.
+     * @return string The full path.
+     */
+    function profileImg(string $path): string {
+        $safePath = htmlentities($path);
+        return rtrim(Env::get('PROFILE_IMAGE_DIRECTORY', '/'), '/') . '/' . ltrim($safePath, '/');
+    }
+}
+
 if(!function_exists('redirect')) {
     /**
      * Performs redirect operations.
