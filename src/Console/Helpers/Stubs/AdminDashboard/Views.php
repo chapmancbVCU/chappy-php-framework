@@ -411,12 +411,12 @@ PHP;
 import React, { useState } from "react";
 import { 
     apiDelete, 
-    apiError, 
-    asset, 
+    apiError,  
     CSRFInput, 
     CSRFToken,
     DateTime, 
     documentTitle, 
+    profileImg,
     redirect, 
     route, 
     SafeHtml 
@@ -457,7 +457,7 @@ function Details({ profileImage, user }) {
             <div className="align-items-center justify-content-center mx-auto my-3 w-50">
                 <a href={route('admindashboard.index')} className="btn btn-sm btn-secondary mb-3">Back</a>
                 {profileImage &&
-                    <img src={asset(profileImage.url)}
+                    <img src={profileImg(profileImage.url)}
                         className="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
                     </img>
                 }

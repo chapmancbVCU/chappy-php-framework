@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.css';
 import '@core-css/profileImage.css';
-import { asset, getCsrf } from '@chappy/utils';
+import { getCsrf, profileImg } from '@chappy/utils';
 
 /**
  * A single profile image row used by the sorter.
@@ -134,7 +134,7 @@ export default function ProfileImageSorter({
                     <i className="fa fa-times" />
                     </button>
                     <div className={`edit-image-wrapper ${img.sort === 0 ? 'current-profile-img' : ''}`} data-id={img.id}>
-                    <img src={asset(img.url)} alt="" />
+                    <img src={profileImg(img.url)} alt="" />
                     </div>
                 </div>
                 ))}

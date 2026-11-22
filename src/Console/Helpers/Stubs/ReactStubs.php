@@ -226,7 +226,7 @@ export default function ProfileImageSorter({
                     <i className="fa fa-times" />
                     </button>
                     <div className={`edit-image-wrapper ${img.sort === 0 ? 'current-profile-img' : ''}`} data-id={img.id}>
-                    <img src={asset(img.url)} alt="" />
+                    <img src={profileImg(img.url)} alt="" />
                     </div>
                 </div>
                 ))}

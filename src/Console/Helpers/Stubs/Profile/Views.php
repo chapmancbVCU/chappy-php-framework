@@ -142,7 +142,7 @@ PHP;
         return <<<'JSX'
 import React from "react";
 import SafeHtml from '@chappy/components/SafeHtml.jsx';
-import { asset, documentTitle, route } from '@chappy/utils';
+import { documentTitle, profileImg, route } from '@chappy/utils';
 /**
  * Renders index view for profile controller.
  * @param {string} param0 Props for user and current profile image URL.
@@ -156,7 +156,7 @@ function Index({ user, profileImage }) {
             <h1 className="text-center">Profile Details for {user.username}</h1>
             <div className="col align-items-center justify-content-center mx-auto my-3 w-50">
                 {profileImage && (
-                    <img src={asset(profileImage.url)}
+                    <img src={profileImg(profileImage.url)}
                         className="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg"
                         loading="lazy"
                     />
