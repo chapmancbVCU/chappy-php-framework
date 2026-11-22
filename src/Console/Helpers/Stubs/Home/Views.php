@@ -14,7 +14,7 @@ class Views {
     public static function makeIndexJS(): string {
         return <<<'JSX'
 import React from "react";
-import { asset } from '@chappy/utils';
+import { env } from '@chappy/utils';
 
 /**
  * The home page.
@@ -31,7 +31,7 @@ export default function Index({ user, version }) {
                 <h1 className="display-4">Hello, {name} 👋</h1>
                 <h1 className="display-4">Welcome to</h1>
                 <div className="col-12 mx-auto text-center">
-                    <img className="w-50" src={asset("public/logo.png", true)} alt="Framework Logo" />
+                    <img className="w-50" src={env("VITE_APP_DOMAIN") + "public/logo.png"} alt="Framework Logo" />
                 </div>
                 <p className="lead my-3">
                     A lightweight and modern PHP framework built for simplicity, speed, and the power of React.js.
