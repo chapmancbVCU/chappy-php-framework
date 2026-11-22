@@ -9,6 +9,9 @@ import path from 'node:path';
  * decide between dev server assets and the build manifest, so the
  * dev server URL never has to be hardcoded on the PHP side.
  *
+ * On `vite build`, any stale hot file is removed so the app falls back to
+ * the build manifest.
+ *
  * URL resolution order:
  *   1. options.url
  *   2. server.origin from vite.config.js
@@ -30,10 +33,15 @@ export default function chappyHot(options = {}) {
 
     return {
         name: 'chappy-hot',
-        apply: 'serve',
 
         configResolved(config) {
             hotFile = path.resolve(config.root, options.hotFile ?? 'public/hot');
+
+            // A build means "use the manifest".  Remove a hot file left behind
+            // by a dev server that was killed without cleaning up.
+            if (config.command === 'build') {
+                removeHotFile();
+            }
         },
 
         configureServer(server) {
