@@ -692,10 +692,29 @@ user is asked to enter a new value.</p></p>                </div>
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_deployComposerToggle">deployComposerToggle</a>()
+                    <a href="#method_composerFiles">composerFiles</a>()
         
-                                            <p><p>Generates template files and script for toggling composer config
-between local and remote.</p></p>                </div>
+                                            <p><p>Generates template files for toggle composer development tool.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toggle">toggle</a>()
+        
+                                            <p><p>Writes the Linux/MacOs version of toggle script to a file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toggleWin">toggleWin</a>()
+        
+                                            <p><p>Writes the Windows .bat version of the toggle script to a file.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -2591,10 +2610,10 @@ supply are appended to list of default validators.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_deployComposerToggle">
-        <div class="location">at line 17</div>
+                    <h3 id="method_composerFiles">
+        <div class="location">at line 16</div>
         <code>        static            int
-    <strong>deployComposerToggle</strong>()
+    <strong>composerFiles</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -2602,8 +2621,71 @@ supply are appended to list of default validators.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Generates template files and script for toggling composer config
-between local and remote.</p></p>                        
+                            <p><p>Generates template files for toggle composer development tool.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toggle">
+        <div class="location">at line 37</div>
+        <code>        static            int
+    <strong>toggle</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Writes the Linux/MacOs version of toggle script to a file.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toggleWin">
+        <div class="location">at line 50</div>
+        <code>        static            int
+    <strong>toggleWin</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Writes the Windows .bat version of the toggle script to a file.</p></p>                        
         </div>
         <div class="tags">
             

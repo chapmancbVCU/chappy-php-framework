@@ -382,7 +382,7 @@ block.</p></dd><dt><a href="Core/Helper.html#method_buildMenuListItems">
 <abbr title="Core\Models\Notifications">Notifications</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Notifications.html"><abbr title="Core\Models\Notifications">Notifications</abbr></a></em></dt>
                     <dd><p>Implementation of beforeSave from base class.</p></dd><dt><a href="Core/Models/ProfileImages.html#method_beforeSave">
 <abbr title="Core\Models\ProfileImages">ProfileImages</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/ProfileImages.html"><abbr title="Core\Models\ProfileImages">ProfileImages</abbr></a></em></dt>
-                    <dd><p>Called after save.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
+                    <dd><p>Implements beforeSave function described in Model parent class.</p></dd><dt><a href="Core/Models/Queue.html#method_beforeSave">
 <abbr title="Core\Models\Queue">Queue</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/Queue.html"><abbr title="Core\Models\Queue">Queue</abbr></a></em></dt>
                     <dd><p>Implements beforeSave.</p></dd><dt><a href="Core/Models/User.html#method_beforeSave">
 <abbr title="Core\Models\User">User</abbr>::beforeSave</a>() &mdash; <em>Method in class <a href="Core/Models/User.html"><abbr title="Core\Models\User">User</abbr></a></em></dt>
@@ -578,7 +578,9 @@ that they want to create.</p></dd><dt><a href="Console/Helpers/Controller.html">
 set then a resource controller is generated.</p></dd><dt><a href="Console/Helpers/Controller.html#method_controllerNamePrompt">
 <abbr title="Console\Helpers\Controller">Controller</abbr>::controllerNamePrompt</a>() &mdash; <em>Method in class <a href="Console/Helpers/Controller.html"><abbr title="Console\Helpers\Controller">Controller</abbr></a></em></dt>
                     <dd><p>Handles question for controller name if it is not provided as an
-argument.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmDropAllTables">
+argument.</p></dd><dt><a href="Console/Helpers/DevTools.html#method_composerFiles">
+<abbr title="Console\Helpers\DevTools">DevTools</abbr>::composerFiles</a>() &mdash; <em>Method in class <a href="Console/Helpers/DevTools.html"><abbr title="Console\Helpers\DevTools">DevTools</abbr></a></em></dt>
+                    <dd><p>Generates template files for toggle composer development tool.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmDropAllTables">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::confirmDropAllTables</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Ask user to confirm if they want to drop all tables.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_confirmMigrationInProduction">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::confirmMigrationInProduction</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
@@ -810,10 +812,7 @@ necessary, we can implement additional types of content.</p></dd>        </dl><h
 <abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr>::disableTrimmable</a>() &mdash; <em>Method in class <a href="Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></em></dt>
                     <dd><p>Disables trimmable.  Default value is false.</p></dd><dt><a href="Console/Helpers/DBSeeder.html"><abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports operations related to database seeding.</p></dd><dt><a href="Console/Helpers/DevTools.html"><abbr title="Console\Helpers\DevTools">DevTools</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
-                    <dd><p>Supports ability to deploy framework dev tools.</p></dd><dt><a href="Console/Helpers/DevTools.html#method_deployComposerToggle">
-<abbr title="Console\Helpers\DevTools">DevTools</abbr>::deployComposerToggle</a>() &mdash; <em>Method in class <a href="Console/Helpers/DevTools.html"><abbr title="Console\Helpers\DevTools">DevTools</abbr></a></em></dt>
-                    <dd><p>Generates template files and script for toggling composer config
-between local and remote.</p></dd><dt><a href="Console/Helpers/Log.html#method_delete">
+                    <dd><p>Supports ability to deploy framework dev tools.</p></dd><dt><a href="Console/Helpers/Log.html#method_delete">
 <abbr title="Console\Helpers\Log">Log</abbr>::delete</a>() &mdash; <em>Method in class <a href="Console/Helpers/Log.html"><abbr title="Console\Helpers\Log">Log</abbr></a></em></dt>
                     <dd><p>Performs delete operation on log files.</p></dd><dt><a href="Console/Helpers/Log.html#method_deleteAll">
 <abbr title="Console\Helpers\Log">Log</abbr>::deleteAll</a>() &mdash; <em>Method in class <a href="Console/Helpers/Log.html"><abbr title="Console\Helpers\Log">Log</abbr></a></em></dt>
@@ -964,7 +963,9 @@ that support database queue operations.</p></dd><dt><a href="Core/Lib/Queue/Data
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::delay</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
                     <dd><p>Sets delay for a job.</p></dd><dt><a href="Core/Lib/Queue/RedisQueueDriver.html#method_delete">
 <abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/RedisQueueDriver.html"><abbr title="Core\Lib\Queue\RedisQueueDriver">RedisQueueDriver</abbr></a></em></dt>
-                    <dd><p>Deletes a job from the queue.  Is a no-op with Redis.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_devTags">
+                    <dd><p>Deletes a job from the queue.  Is a no-op with Redis.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_devServerUrl">
+<abbr title="Core\Lib\React\Vite">Vite</abbr>::devServerUrl</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
+                    <dd><p>Returns the dev server URL without a trailing slash.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_devTags">
 <abbr title="Core\Lib\React\Vite">Vite</abbr>::devTags</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
                     <dd><p>Adds dev tags.</p></dd><dt><a href="Core/Lib/Testing/ApplicationTestCase.html#method_delete">
 <abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/ApplicationTestCase.html"><abbr title="Core\Lib\Testing\ApplicationTestCase">ApplicationTestCase</abbr></a></em></dt>
@@ -1734,7 +1735,10 @@ passwords.  Implementations wrap a specific hashing algorithm (e.g.</p></dd><dt>
 <abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr>::handle</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/Jobs/QueuedListenerJob.html"><abbr title="Core\Lib\Queue\Jobs\QueuedListenerJob">QueuedListenerJob</abbr></a></em></dt>
                     <dd><p>Execute the job: rehydrate the event and call the listener's handle().</p></dd><dt><a href="Core/Lib/Queue/QueueableJobInterface.html#method_handle">
 <abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr>::handle</a>() &mdash; <em>Method in class <a href="Core/Lib/Queue/QueueableJobInterface.html"><abbr title="Core\Lib\Queue\QueueableJobInterface">QueueableJobInterface</abbr></a></em></dt>
-                    <dd><p>The logic that should be executed when the job is processed.</p></dd><dt><a href="Core/Lib/Testing/Wormhole.html#method_hours">
+                    <dd><p>The logic that should be executed when the job is processed.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_hotFile">
+<abbr title="Core\Lib\React\Vite">Vite</abbr>::hotFile</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
+                    <dd><p>Absolute path to the &quot;hot&quot; file written by the chappyHot Vite plugin
+while <code>npm run dev</code> is running.  It contains the dev server's public URL.</p></dd><dt><a href="Core/Lib/Testing/Wormhole.html#method_hours">
 <abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr>::hours</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/Wormhole.html"><abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Lib/Testing/Wormhole.html#method_hour">
 <abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr>::hour</a>() &mdash; <em>Method in class <a href="Core/Lib/Testing/Wormhole.html"><abbr title="Core\Lib\Testing\Wormhole">Wormhole</abbr></a></em></dt>
@@ -1881,9 +1885,12 @@ to PHP log file and dump message to console or view.</p></dd><dt><a href="Core/L
 <abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr>::isActive</a>() &mdash; <em>Method in class <a href="Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></em></dt>
                     <dd><p>True when the user has searched or filtered (useful for &quot;Clear&quot; links).</p></dd><dt><a href="Core/Lib/Pagination/SearchFilter.html#method_isSafeColumn">
 <abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr>::isSafeColumn</a>() &mdash; <em>Method in class <a href="Core/Lib/Pagination/SearchFilter.html"><abbr title="Core\Lib\Pagination\SearchFilter">SearchFilter</abbr></a></em></dt>
-                    <dd><p>Allows plain or table-qualified identifiers only: name, users.name.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isDev">
+                    <dd><p>Allows plain or table-qualified identifiers only: name, users.name.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isRunningHot">
+<abbr title="Core\Lib\React\Vite">Vite</abbr>::isRunningHot</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
+                    <dd><p>Determines if the Vite dev server is running by checking for the hot file.</p></dd><dt><a href="Core/Lib/React/Vite.html#method_isDev">
 <abbr title="Core\Lib\React\Vite">Vite</abbr>::isDev</a>() &mdash; <em>Method in class <a href="Core/Lib/React/Vite.html"><abbr title="Core\Lib\React\Vite">Vite</abbr></a></em></dt>
-                    <dd><p>Simple env-based dev check.</p></dd><dt><a href="Core/Lib/Testing/InteractsWithTime.html"><abbr title="Core\Lib\Testing\InteractsWithTime">InteractsWithTime</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Testing.html">Core\Lib\Testing</a></em></dt>
+                    <dd><p>Dev check.  Dev assets are used only when APP_ENV is a dev-like
+environment AND the Vite dev server is running (hot file exists).</p></dd><dt><a href="Core/Lib/Testing/InteractsWithTime.html"><abbr title="Core\Lib\Testing\InteractsWithTime">InteractsWithTime</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Testing.html">Core\Lib\Testing</a></em></dt>
                     <dd><p>Time travel helpers for tests.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_insertAfter">
 <abbr title="Core\Lib\Utilities\Arr">Arr</abbr>::insertAfter</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Arr.html"><abbr title="Core\Lib\Utilities\Arr">Arr</abbr></a></em></dt>
                     <dd><p>Insert an element after a given key in an array.</p></dd><dt><a href="Core/Lib/Utilities/Arr.html#method_insertBefore">
@@ -3616,7 +3623,11 @@ included in our view.</p></dd>        </dl><h2 id="letterT">T</h2>
 <abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr>#trimmable</a> &mdash; <em>Property in class <a href="Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></em></dt>
                     <dd><p>Sets mode for trimmable.</p></dd><dt><a href="Console/FrameworkQuestion.html#method_timeout">
 <abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr>::timeout</a>() &mdash; <em>Method in class <a href="Console/FrameworkQuestion.html"><abbr title="Console\FrameworkQuestion">FrameworkQuestion</abbr></a></em></dt>
-                    <dd><p>Sets timeout for input.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_tableCount">
+                    <dd><p>Sets timeout for input.</p></dd><dt><a href="Console/Helpers/DevTools.html#method_toggle">
+<abbr title="Console\Helpers\DevTools">DevTools</abbr>::toggle</a>() &mdash; <em>Method in class <a href="Console/Helpers/DevTools.html"><abbr title="Console\Helpers\DevTools">DevTools</abbr></a></em></dt>
+                    <dd><p>Writes the Linux/MacOs version of toggle script to a file.</p></dd><dt><a href="Console/Helpers/DevTools.html#method_toggleWin">
+<abbr title="Console\Helpers\DevTools">DevTools</abbr>::toggleWin</a>() &mdash; <em>Method in class <a href="Console/Helpers/DevTools.html"><abbr title="Console\Helpers\DevTools">DevTools</abbr></a></em></dt>
+                    <dd><p>Writes the Windows .bat version of the toggle script to a file.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_tableCount">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::tableCount</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Determines number of tables in database before performing migration
 operations.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_toDatabaseTemplate">
@@ -3629,7 +3640,9 @@ operations.</p></dd><dt><a href="Console/Helpers/Notifications.html#method_toDat
 <abbr title="Console\Helpers\Stubs\ComponentStubs">ComponentStubs</abbr>::tableComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/Stubs/ComponentStubs.html"><abbr title="Console\Helpers\Stubs\ComponentStubs">ComponentStubs</abbr></a></em></dt>
                     <dd><p>Generates content for table component.</p></dd><dt><a href="Console/Helpers/Stubs/Dev/DevStubs.html#method_toggleComposer">
 <abbr title="Console\Helpers\Stubs\Dev\DevStubs">DevStubs</abbr>::toggleComposer</a>() &mdash; <em>Method in class <a href="Console/Helpers/Stubs/Dev/DevStubs.html"><abbr title="Console\Helpers\Stubs\Dev\DevStubs">DevStubs</abbr></a></em></dt>
-                    <dd><p>Generates toggle-composer.sh file.</p></dd><dt><a href="Console/Helpers/Testing/TestBuilderInterface.html"><abbr title="Console\Helpers\Testing\TestBuilderInterface">TestBuilderInterface</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
+                    <dd><p>Generates toggle-composer.sh file.</p></dd><dt><a href="Console/Helpers/Stubs/Dev/DevStubs.html#method_toggleComposerWin">
+<abbr title="Console\Helpers\Stubs\Dev\DevStubs">DevStubs</abbr>::toggleComposerWin</a>() &mdash; <em>Method in class <a href="Console/Helpers/Stubs/Dev/DevStubs.html"><abbr title="Console\Helpers\Stubs\Dev\DevStubs">DevStubs</abbr></a></em></dt>
+                    <dd><p>Generates toggle-composer.bat file.</p></dd><dt><a href="Console/Helpers/Testing/TestBuilderInterface.html"><abbr title="Console\Helpers\Testing\TestBuilderInterface">TestBuilderInterface</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Interface to be implemented by test builder classes for PHPUnit, Jest, and Vitest.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers/Testing.html">Console\Helpers\Testing</a></em></dt>
                     <dd><p>Class that contains functions that can be used by runner child classes.</p></dd><dt><a href="Console/Helpers/Testing/TestRunner.html#method_testByFilter">
 <abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr>::testByFilter</a>() &mdash; <em>Method in class <a href="Console/Helpers/Testing/TestRunner.html"><abbr title="Console\Helpers\Testing\TestRunner">TestRunner</abbr></a></em></dt>

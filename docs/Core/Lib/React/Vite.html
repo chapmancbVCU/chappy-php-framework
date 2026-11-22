@@ -101,6 +101,18 @@
             <p><p>Supports operations for Vite.</p></p>                    </div>
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        DEFAULT_DEV_SERVER
+                                    </td>
+                <td class="last">
+                    <p><em><p>Fallback dev server URL used when no hot file is present.</p></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
@@ -118,12 +130,13 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;bool
+                    static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_isDev">isDev</a>()
+                    <a href="#method_hotFile">hotFile</a>()
         
-                                            <p><p>Simple env-based dev check.</p></p>                </div>
+                                            <p><p>Absolute path to the &quot;hot&quot; file written by the chappyHot Vite plugin
+while <code>npm run dev</code> is running.  It contains the dev server's public URL.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -131,8 +144,39 @@
                     static&nbsp;bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_viteIsRunning">viteIsRunning</a>(string $devBase = &#039;http://localhost:5173&#039;)
+                    <a href="#method_isRunningHot">isRunningHot</a>()
         
+                                            <p><p>Determines if the Vite dev server is running by checking for the hot file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_devServerUrl">devServerUrl</a>()
+        
+                                            <p><p>Returns the dev server URL without a trailing slash.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isDev">isDev</a>()
+        
+                                            <p><p>Dev check.  Dev assets are used only when APP_ENV is a dev-like
+environment AND the Vite dev server is running (hot file exists).</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_viteIsRunning">viteIsRunning</a>(string|null $devBase = null)
+        <small><span class="label label-danger">deprecated</span></small>
                                             <p><p>Check if Vite dev server is reachable.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -171,7 +215,7 @@
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_tags">tags</a>(string $entry, string $devServer = &#039;http://localhost:5173&#039;)
+                    <a href="#method_tags">tags</a>(string $entry, string|null $devServer = null)
         
                                             <p><p>Render script/link tags for a Vite entry.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -215,8 +259,106 @@
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_hotFile">
+        <div class="location">at line 36</div>
+        <code>        static            string
+    <strong>hotFile</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Absolute path to the &quot;hot&quot; file written by the chappyHot Vite plugin
+while <code>npm run dev</code> is running.  It contains the dev server's public URL.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Path to the hot file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isRunningHot">
+        <div class="location">at line 46</div>
+        <code>        static            bool
+    <strong>isRunningHot</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Determines if the Vite dev server is running by checking for the hot file.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the hot file exists, otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_devServerUrl">
+        <div class="location">at line 58</div>
+        <code>        static            string
+    <strong>devServerUrl</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the dev server URL without a trailing slash.</p></p>                <p><p>Resolution order: hot file contents, VITE_DEV_SERVER env variable,
+then DEFAULT_DEV_SERVER.</p></p>        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The dev server URL.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_isDev">
-        <div class="location">at line 30</div>
+        <div class="location">at line 76</div>
         <code>        static            bool
     <strong>isDev</strong>()
         </code>
@@ -226,7 +368,8 @@
             
 
         <div class="method-description">
-                            <p><p>Simple env-based dev check.</p></p>                        
+                            <p><p>Dev check.  Dev assets are used only when APP_ENV is a dev-like
+environment AND the Vite dev server is running (hot file exists).</p></p>                <p><p>Otherwise the built assets from the manifest are used.</p></p>        
         </div>
         <div class="tags">
             
@@ -248,12 +391,20 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_viteIsRunning">
-        <div class="location">at line 41</div>
+        <div class="location">at line 89</div>
         <code>        static            bool
-    <strong>viteIsRunning</strong>(string $devBase = &#039;http://localhost:5173&#039;)
-        </code>
+    <strong>viteIsRunning</strong>(string|null $devBase = null)
+        <small><span class="label label-danger">deprecated</span></small></code>
     </h3>
     <div class="details">    
+            <p>
+                <small><span class="label label-danger">deprecated</span></small>
+                            <tr>
+                    <td>4.0.4</td>
+                    <td>Use Vite::isRunningHot() instead.  This performs a
+network request on every call.</td>
+                </tr>
+                    </p>
     
             
 
@@ -265,9 +416,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>string</td>
+                <td>string|null</td>
                 <td>$devBase</td>
-                <td><p>URL for dev server.</p></td>
+                <td><p>URL for dev server.  Defaults to devServerUrl().</p></td>
             </tr>
             </table>
 
@@ -290,7 +441,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_devTags">
-        <div class="location">at line 56</div>
+        <div class="location">at line 104</div>
         <code>        static        private    string
     <strong>devTags</strong>(string $entry, string $devServer)
         </code>
@@ -337,7 +488,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_loadManifest">
-        <div class="location">at line 72</div>
+        <div class="location">at line 120</div>
         <code>        static        private    array|null
     <strong>loadManifest</strong>()
         </code>
@@ -369,7 +520,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_prodTags">
-        <div class="location">at line 109</div>
+        <div class="location">at line 157</div>
         <code>        static        private    string
     <strong>prodTags</strong>(string $entry)
         </code>
@@ -411,9 +562,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_tags">
-        <div class="location">at line 177</div>
+        <div class="location">at line 224</div>
         <code>        static            string
-    <strong>tags</strong>(string $entry, string $devServer = &#039;http://localhost:5173&#039;)
+    <strong>tags</strong>(string $entry, string|null $devServer = null)
         </code>
     </h3>
     <div class="details">    
@@ -422,8 +573,8 @@
 
         <div class="method-description">
                             <p><p>Render script/link tags for a Vite entry.</p></p>                <p><ul>
-<li>In dev (env=local/dev &amp; dev server up), inject HMR client + raw module URL.</li>
-<li>In prod (APP_ENV=production), always use manifest-based assets.</li>
+<li>In dev (env=local/dev &amp; hot file present), inject HMR client + raw module URL.</li>
+<li>Otherwise use manifest-based assets.</li>
 </ul></p>        
         </div>
         <div class="tags">
@@ -436,9 +587,9 @@
                 <td><p>Relative path from project root (e.g. 'resources/js/app.jsx')</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>string|null</td>
                 <td>$devServer</td>
-                <td><p>URL for dev server.</p></td>
+                <td><p>URL for dev server.  Defaults to devServerUrl().</p></td>
             </tr>
             </table>
 
